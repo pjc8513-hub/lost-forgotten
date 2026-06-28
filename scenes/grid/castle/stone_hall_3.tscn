@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://daxubdx6y7a05"]
+
+[ext_resource type="PackedScene" uid="uid://o2y6171iwo0b" path="res://assets/models/rooms/stone_hall3.glb" id="1_d8bns"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_h5jea"]
+
+[node name="stone_hall3" unique_id=813386216 instance=ExtResource("1_d8bns")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=2092412426]
+script = ExtResource("2_h5jea")
+cell_shape = 2

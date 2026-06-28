@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bhwhmj61exxxl"]
+
+[node name="Main" type="Node3D" unique_id=1214640721]
+
+[node name="Systems" type="Node" parent="." unique_id=1153812703]
+
+[node name="World" type="Node" parent="." unique_id=1108621967]
+
+[node name="LevelRoot" type="Node" parent="World" unique_id=1493889937]
+
+[node name="EntityRoot" type="Node" parent="World" unique_id=673285383]
+
+[node name="EffectRoot" type="Node" parent="World" unique_id=1592745982]
+
+[node name="HudLayer" type="Node" parent="." unique_id=306252378]
+
+[node name="HudRoot" type="Node" parent="HudLayer" unique_id=2143251189]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="HudLayer/HudRoot" unique_id=2067498579]
+
+[node name="Automap" type="ColorRect" parent="HudLayer/HudRoot/CanvasLayer" unique_id=50891086]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="PauseLayer" type="Node" parent="." unique_id=192665520]
+
+[node name="PauseRoot" type="Node" parent="PauseLayer" unique_id=39422594]
+
+[node name="TransitionLayer" type="Node" parent="." unique_id=1040393301]
+
+[node name="TransitionRoot" type="Node" parent="TransitionLayer" unique_id=774989796]
+
+[node name="DebugLayer" type="Node" parent="." unique_id=201161667]

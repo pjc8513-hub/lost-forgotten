@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dajpl27a3y52a"]
+
+[ext_resource type="PackedScene" uid="uid://c54p6vrabrjb8" path="res://assets/models/rooms/stone_wall2.glb" id="1_6m7n1"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_6qtqp"]
+
+[node name="stone_wall2" unique_id=659127570 instance=ExtResource("1_6m7n1")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=51337659]
+script = ExtResource("2_6qtqp")
+cell_shape = 1

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cbau51dhr66ax"]
+
+[ext_resource type="PackedScene" uid="uid://0lsac15guwxv" path="res://assets/models/rooms/stone_dead3.glb" id="1_y0tf3"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_h6pxu"]
+
+[node name="stone_dead3" unique_id=948585608 instance=ExtResource("1_y0tf3")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=1494419558]
+script = ExtResource("2_h6pxu")
+cell_shape = 4

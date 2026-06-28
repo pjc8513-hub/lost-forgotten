@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dapuyqeqivxm8"]
+
+[ext_resource type="PackedScene" uid="uid://b01e0douolltk" path="res://assets/models/rooms/stone_floor2.glb" id="1_xja6x"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_ux5m8"]
+
+[node name="stone_floor2" unique_id=807525150 instance=ExtResource("1_xja6x")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=1284985302]
+script = ExtResource("2_ux5m8")

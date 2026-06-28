@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://dkaw7nic8abj8"]
+
+[ext_resource type="PackedScene" uid="uid://urwlv585wae5" path="res://scenes/grid/castle/stone_corner_2.tscn" id="1_diyrt"]
+[ext_resource type="PackedScene" uid="uid://cbau51dhr66ax" path="res://scenes/grid/castle/stone_dead_3.tscn" id="3_23ero"]
+[ext_resource type="PackedScene" uid="uid://daxubdx6y7a05" path="res://scenes/grid/castle/stone_hall_3.tscn" id="4_81y4f"]
+[ext_resource type="PackedScene" uid="uid://dapuyqeqivxm8" path="res://scenes/grid/castle/stone_floor_2.tscn" id="4_diyrt"]
+[ext_resource type="PackedScene" uid="uid://dajpl27a3y52a" path="res://scenes/grid/castle/stone_wall_2.tscn" id="5_81y4f"]
+[ext_resource type="PackedScene" uid="uid://c1buyprn7xxw4" path="res://scenes/actors/PlayerPawn.tscn" id="6_awgpw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_awgpw"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_yqopg"]
+sky_material = SubResource("ProceduralSkyMaterial_awgpw")
+
+[sub_resource type="Environment" id="Environment_mby4i"]
+background_mode = 1
+background_color = Color(0.35606432, 0.35606432, 0.35606432, 1)
+sky = SubResource("Sky_yqopg")
+ambient_light_color = Color(0.35606432, 0.35606432, 0.35606432, 1)
+tonemap_mode = 3
+ssao_enabled = true
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.35606432, 0.35606432, 0.35606432, 1)
+
+[node name="Bonepit1" type="Node3D" unique_id=648665917]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1650998190]
+environment = SubResource("Environment_mby4i")
+
+[node name="stone_corner2" parent="." unique_id=1870512281 instance=ExtResource("1_diyrt")]
+
+[node name="stone_corner4" parent="." unique_id=1161553298 instance=ExtResource("1_diyrt")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 4, 0, 0)
+
+[node name="stone_corner3" parent="." unique_id=2140778048 instance=ExtResource("1_diyrt")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 4)
+
+[node name="stone_corner6" parent="." unique_id=321887686 instance=ExtResource("1_diyrt")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 8)
+
+[node name="stone_corner8" parent="." unique_id=232006851 instance=ExtResource("1_diyrt")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 10)
+
+[node name="stone_corner9" parent="." unique_id=535294206 instance=ExtResource("1_diyrt")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 14)
+
+[node name="stone_corner7" parent="." unique_id=2091648733 instance=ExtResource("1_diyrt")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8, 0, 8)
+
+[node name="stone_corner10" parent="." unique_id=1200680204 instance=ExtResource("1_diyrt")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0, 14)
+
+[node name="stone_corner5" parent="." unique_id=603016402 instance=ExtResource("1_diyrt")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 0, 4)
+
+[node name="stone_floor2" parent="." unique_id=807525150 instance=ExtResource("4_diyrt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="stone_floor3" parent="." unique_id=1135121657 instance=ExtResource("4_diyrt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="stone_floor4" parent="." unique_id=951989944 instance=ExtResource("4_diyrt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+
+[node name="stone_floor6" parent="." unique_id=183797199 instance=ExtResource("4_diyrt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="stone_floor7" parent="." unique_id=1746585884 instance=ExtResource("4_diyrt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 10)
+
+[node name="stone_floor8" parent="." unique_id=592323424 instance=ExtResource("4_diyrt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 10)
+
+[node name="stone_floor9" parent="." unique_id=1404008859 instance=ExtResource("4_diyrt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 12)
+
+[node name="stone_floor5" parent="." unique_id=9493036 instance=ExtResource("4_diyrt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+
+[node name="stone_dead3" parent="." unique_id=948585608 instance=ExtResource("3_23ero")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2, 0, 6)
+
+[node name="stone_dead4" parent="." unique_id=729791373 instance=ExtResource("3_23ero")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="stone_hall3" parent="." unique_id=813386216 instance=ExtResource("4_81y4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="stone_hall10" parent="." unique_id=1659288564 instance=ExtResource("4_81y4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="stone_hall11" parent="." unique_id=43618696 instance=ExtResource("4_81y4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 6)
+
+[node name="stone_hall12" parent="." unique_id=702047955 instance=ExtResource("4_81y4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 8)
+
+[node name="stone_hall8" parent="." unique_id=1167076749 instance=ExtResource("4_81y4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 6)
+
+[node name="stone_hall9" parent="." unique_id=278723491 instance=ExtResource("4_81y4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
+
+[node name="stone_hall5" parent="." unique_id=863611573 instance=ExtResource("4_81y4f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 2)
+
+[node name="stone_hall13" parent="." unique_id=208989314 instance=ExtResource("4_81y4f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 10)
+
+[node name="stone_hall14" parent="." unique_id=417940241 instance=ExtResource("4_81y4f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 10)
+
+[node name="stone_hall4" parent="." unique_id=616772398 instance=ExtResource("4_81y4f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 2)
+
+[node name="stone_hall6" parent="." unique_id=1801895148 instance=ExtResource("4_81y4f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 8)
+
+[node name="stone_hall7" parent="." unique_id=1725324783 instance=ExtResource("4_81y4f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 8)
+
+[node name="stone_wall2" parent="." unique_id=659127570 instance=ExtResource("5_81y4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+
+[node name="stone_wall3" parent="." unique_id=519031416 instance=ExtResource("5_81y4f")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8, 0, 2)
+
+[node name="stone_wall5" parent="." unique_id=526948628 instance=ExtResource("5_81y4f")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0, 12)
+
+[node name="stone_wall7" parent="." unique_id=299444603 instance=ExtResource("5_81y4f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 14)
+
+[node name="stone_wall6" parent="." unique_id=222473621 instance=ExtResource("5_81y4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 12)
+
+[node name="stone_wall4" parent="." unique_id=639186757 instance=ExtResource("5_81y4f")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0, 10)
+
+[node name="PlayerPawn" parent="." unique_id=947801590 instance=ExtResource("6_awgpw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
