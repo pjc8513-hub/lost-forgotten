@@ -21,3 +21,22 @@ func get_grid_pos() -> Vector3i:
 func get_world_edge() -> Vector3i:
 	var rotated := global_basis * Vector3(local_edge)
 	return Vector3i(roundi(rotated.x), 0, roundi(rotated.z))
+
+
+func _on_area_3d_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
+		return
+	if CommandQueue.is_busy():
+		return
+
+	var player := MapManager.get_actor(get_grid_pos())
+	if player == null:
+		return
+	var movement := player.get_node_or_null("GridMovementController") as GridMovementController
+	if movement == null or not can_interact(movement.grid_pos, movement.facing):
+		return
+
+	var cmd := InteractCommand.new()
+	cmd.actor = player
+	cmd.movement = movement
+	CommandQueue.add_command(cmd)

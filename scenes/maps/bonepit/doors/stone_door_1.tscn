@@ -39,8 +39,7 @@ cell_shape = 2
 
 [node name="DoorComponent" type="Node3D" parent="." index="3" unique_id=820589636]
 script = ExtResource("3_1vsx7")
-door_id = &"bonepit.stone_door_1"
-local_edge = Vector3i(-1, 0, 0)
+local_edge = Vector3i(0, 0, 0)
 starts_locked = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=1299333250]
