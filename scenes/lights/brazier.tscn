@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://kyy1ro2jvove"]
+
+[ext_resource type="PackedScene" uid="uid://cdowi55108e5u" path="res://assets/models/objects/brazier.glb" id="1_pnxv6"]
+[ext_resource type="Script" uid="uid://bf2fn1u84gdrg" path="res://scripts/brazier.gd" id="2_fl8os"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnxv6"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.7764706, 0.23529412, 0, 1)
+stencil_flags = 2
+
+[node name="brazier" unique_id=979701869 instance=ExtResource("1_pnxv6")]
+script = ExtResource("2_fl8os")
+
+[node name="Icosphere" parent="." index="0" unique_id=1635744333]
+transform = Transform3D(0.44718385, 0, 0, 0, 0.5542814, 0, 0, 0, 0.43507755, 0, 0.46201384, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_pnxv6")
+
+[node name="Cube" parent="." index="2" unique_id=579012840]
+transform = Transform3D(0.7200729, 0, 0, 0, 0.77415293, 0, 0, 0, 0.6398651, 0, 0.19181275, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="3" unique_id=1773309329]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00929, 0)
+light_color = Color(1, 0.2784314, 0.25490198, 1)
+light_energy = 1.5
+distance_fade_enabled = true
+omni_range = 9.0

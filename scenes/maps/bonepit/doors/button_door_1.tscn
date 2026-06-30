@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cw51gvstk7ps2"]
+
+[ext_resource type="PackedScene" uid="uid://bha40112hpeok" path="res://assets/models/objects/button.glb" id="1_mi2ga"]
+[ext_resource type="Script" uid="uid://dw8fen8k4fw7p" path="res://scripts/components/SwitchComponent.gd" id="2_jrqsh"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_upgn3"]
+
+[node name="button" unique_id=1618898909 instance=ExtResource("1_mi2ga")]
+
+[node name="GridElement" type="Node3D" parent="." index="2" unique_id=1931224589]
+script = ExtResource("2_upgn3")
+
+[node name="SwitchComponent" type="Node" parent="." index="3" unique_id=1763643439]
+script = ExtResource("2_jrqsh")

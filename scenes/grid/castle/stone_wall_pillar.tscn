@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cc8otyxgp7ygu"]
+
+[ext_resource type="PackedScene" uid="uid://dv80trdccrbi5" path="res://assets/models/rooms/stone_wall_pillar.glb" id="1_qikaw"]
+
+[node name="stone_wall_pillar" unique_id=321652682 instance=ExtResource("1_qikaw")]

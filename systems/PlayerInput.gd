@@ -25,6 +25,9 @@ func _unhandled_input(event):
 
 	if event.is_action_pressed("ui_right"):
 		_queue_player_turn(TurnRightCommand.new())
+		
+	if event.is_action_pressed("interact"):
+		pass
 	
 func _queue_player_turn(cmd: Command) -> void:
 	if CommandQueue.is_busy():

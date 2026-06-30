@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BrazierData" format=3 uid="uid://hl3rperfq6jd"]
+
+[ext_resource type="Script" uid="uid://c8erat5cnqm10" path="res://resources/BrazierData.gd" id="1_c82um"]
+
+[resource]
+script = ExtResource("1_c82um")
+scene_path = "res://assets/models/brazier.tscn"
+light_color = Color(1, 0.654902, 0.44705883, 1)
+base_energy = 1.5
+omni_range = 9.0
+flicker_speed = 10.0
+flicker_amount = 0.1
+metadata/_custom_type_script = "uid://c8erat5cnqm10"

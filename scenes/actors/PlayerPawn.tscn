@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cwa7pg6vtkfxw" path="res://systems/GridMovementController.gd" id="1_ekj7e"]
 [ext_resource type="Script" uid="uid://bbnqrmg0d3juv" path="res://scenes/actors/omni_light_3d.gd" id="2_qei0e"]
 [ext_resource type="Script" uid="uid://dju1i3l83if7l" path="res://systems/PlayerInput.gd" id="3_h7ymm"]
-[ext_resource type="Script" path="res://scenes/actors/Player.gd" id="4_player"]
+[ext_resource type="Script" uid="uid://btsm3unmaxas6" path="res://scenes/actors/Player.gd" id="4_player"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xa8nu"]
 
@@ -14,9 +14,11 @@ script = ExtResource("4_player")
 shape = SubResource("CapsuleShape3D_xa8nu")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=164452680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
 current = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=708004227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.2, -0.5)
 light_color = Color(1, 0.8017515, 0.7049051, 1)
 light_volumetric_fog_energy = 0.7
 distance_fade_enabled = true

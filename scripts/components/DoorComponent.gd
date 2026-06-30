@@ -1,11 +1,25 @@
-extends Node
+class_name DoorComponent
+extends Node3D
 
+@export var door_id: StringName
+@export var local_edge := Vector3.LEFT
+@export var starts_locked := false
 
-# Called when the node enters the scene tree for the first time.
+var is_open := false
+var is_locked := false
+
 func _ready() -> void:
-	pass # Replace with function body.
+	is_locked = starts_locked
+	MapManager.register_door(self)
 
+func blocks_movement() -> bool:
+	return not is_open
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func unlock() -> void:
+	is_locked = false
+
+func open() -> bool:
+	if is_locked:
+		return false
+	is_open = true
+	return true
