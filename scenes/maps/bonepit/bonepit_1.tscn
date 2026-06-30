@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://kyy1ro2jvove" path="res://scenes/lights/brazier.tscn" id="10_cknfr"]
 [ext_resource type="PackedScene" uid="uid://cc8otyxgp7ygu" path="res://scenes/grid/castle/stone_wall_pillar.tscn" id="11_kc6bh"]
 [ext_resource type="PackedScene" uid="uid://btlv6ccwtq11c" path="res://scenes/maps/bonepit/doors/stone_door_1.tscn" id="13_vxqbn"]
+[ext_resource type="PackedScene" uid="uid://cw51gvstk7ps2" path="res://scenes/maps/bonepit/doors/button_door_1.tscn" id="13_wthsc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y1ayg"]
 shader = ExtResource("1_vxqbn")
@@ -213,3 +214,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 14)
 
 [node name="stone_door_1" parent="." unique_id=626338898 instance=ExtResource("13_vxqbn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="button_door_1" parent="." unique_id=1618898909 instance=ExtResource("13_wthsc")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, -2)

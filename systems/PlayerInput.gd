@@ -25,6 +25,9 @@ func _unhandled_input(event):
 
 	if event.is_action_pressed("ui_right"):
 		_queue_player_turn(TurnRightCommand.new())
+
+	if event.is_action_pressed("interact"):
+		_queue_player_interaction()
 		
 	if event.is_action_pressed("interact"):
 		pass
@@ -41,6 +44,15 @@ func _queue_player_move() -> void:
 		return
 
 	var cmd := MoveForwardCommand.new()
+	cmd.actor = actor
+	cmd.movement = movement
+	CommandQueue.add_command(cmd)
+
+func _queue_player_interaction() -> void:
+	if CommandQueue.is_busy() or movement == null:
+		return
+
+	var cmd := InteractCommand.new()
 	cmd.actor = actor
 	cmd.movement = movement
 	CommandQueue.add_command(cmd)

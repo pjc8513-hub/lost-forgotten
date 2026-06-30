@@ -9,5 +9,7 @@
 [node name="GridElement" type="Node3D" parent="." index="2" unique_id=1931224589]
 script = ExtResource("2_upgn3")
 
-[node name="SwitchComponent" type="Node" parent="." index="3" unique_id=1763643439]
+[node name="SwitchComponent" type="Node3D" parent="." index="3" unique_id=1763643439]
 script = ExtResource("2_jrqsh")
+target_door_ids = Array[StringName]([&"bonepit.stone_door_1"])
+local_edge = Vector3i(1, 0, 0)

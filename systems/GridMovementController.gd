@@ -51,22 +51,34 @@ func rotate_right() -> void:
 	facing = Vector3i(-facing.z, 0, facing.x)
 	actor.rotate_y(-PI / 2.0)
 
+func interact_forward() -> bool:
+	for element in MapManager.get_elements(grid_pos):
+		for component in element.get_parent().get_children():
+			if component is SwitchComponent and component.can_interact(grid_pos, facing):
+				component.activate()
+				return true
+
+	var door := MapManager.get_door_on_edge(grid_pos, facing)
+	if door != null:
+		return door.open()
+	return false
+
 func is_blocked(pos: Vector3i) -> bool:
 	if MapManager.get_actor(pos) != null:
 		return true
 
 	for element in MapManager.get_elements(pos):
-		for child in element.get_children():
-			if child is BlockerComponent and child.blocks_movement:
+		for component in element.get_parent().get_children():
+			if component is BlockerComponent and component.blocks_movement:
 				return true
 
 	return false
 
 func trigger_tile_effects(pos: Vector3i) -> void:
 	for element in MapManager.get_elements(pos):
-		for child in element.get_children():
-			if child is TrapComponent:
-				child.trigger(actor)
+		for component in element.get_parent().get_children():
+			if component is TrapComponent:
+				component.trigger(actor)
 
 func world_to_grid(world_pos: Vector3) -> Vector3i:
 	return Vector3i(
