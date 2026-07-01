@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d3ferhc0s4ik6"]
+
+[ext_resource type="Texture2D" uid="uid://8kc4ku6df11t" path="res://assets/models/rooms/stone_lift1_wood_boards_blend.png" id="1_cupso"]
+
+[resource]
+resource_name = "wood"
+cull_mode = 2
+albedo_texture = ExtResource("1_cupso")
+roughness = 0.5
+metadata/_gltf_primary_texture_coord = 0

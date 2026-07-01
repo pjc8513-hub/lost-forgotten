@@ -11,8 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="9_4w8b5"]
 [ext_resource type="PackedScene" uid="uid://kyy1ro2jvove" path="res://scenes/lights/brazier.tscn" id="10_cknfr"]
 [ext_resource type="PackedScene" uid="uid://cc8otyxgp7ygu" path="res://scenes/grid/castle/stone_wall_pillar.tscn" id="11_kc6bh"]
-[ext_resource type="PackedScene" uid="uid://btlv6ccwtq11c" path="res://scenes/maps/bonepit/doors/stone_door_1.tscn" id="13_vxqbn"]
-[ext_resource type="PackedScene" uid="uid://cw51gvstk7ps2" path="res://scenes/maps/bonepit/doors/button_door_1.tscn" id="13_wthsc"]
+[ext_resource type="PackedScene" uid="uid://btlv6ccwtq11c" path="res://scenes/maps/bonepit/doors/stone_1.tscn" id="13_vxqbn"]
+[ext_resource type="PackedScene" uid="uid://cw51gvstk7ps2" path="res://scenes/maps/bonepit/doors/button_1.tscn" id="13_wthsc"]
+[ext_resource type="PackedScene" uid="uid://cruh8vkxmhq3r" path="res://scenes/grid/castle/stone_lift_1.tscn" id="14_wthsc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y1ayg"]
 shader = ExtResource("1_vxqbn")
@@ -46,6 +47,9 @@ shader_parameter/contrast = 1.20000003325
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1650998190]
 environment = SubResource("Environment_mby4i")
 
+[node name="PlayerPawn" parent="." unique_id=947801590 instance=ExtResource("7_jr1l3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
 [node name="stone_corner2" parent="." unique_id=1870512281 instance=ExtResource("2_wthsc")]
 
 [node name="stone_corner14" parent="." unique_id=1193267005 instance=ExtResource("2_wthsc")]
@@ -53,6 +57,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 16)
 
 [node name="stone_corner4" parent="." unique_id=1161553298 instance=ExtResource("2_wthsc")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 4, 0, 0)
+
+[node name="stone_corner15" parent="." unique_id=242592416 instance=ExtResource("2_wthsc")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -6, 0, -4)
+
+[node name="stone_corner17" parent="." unique_id=276124389 instance=ExtResource("2_wthsc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -4)
+
+[node name="stone_corner18" parent="." unique_id=426347916 instance=ExtResource("2_wthsc")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, 2)
+
+[node name="stone_corner16" parent="." unique_id=1808004593 instance=ExtResource("2_wthsc")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6, 0, 2)
 
 [node name="stone_corner13" parent="." unique_id=1868217865 instance=ExtResource("2_wthsc")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 6, 0, 16)
@@ -99,6 +115,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 [node name="stone_floor13" parent="." unique_id=133027981 instance=ExtResource("3_gix0e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 
+[node name="stone_floor15" parent="." unique_id=456143564 instance=ExtResource("3_gix0e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="stone_floor17" parent="." unique_id=558064785 instance=ExtResource("3_gix0e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -2)
+
+[node name="stone_floor16" parent="." unique_id=1473078315 instance=ExtResource("3_gix0e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+
+[node name="stone_floor14" parent="." unique_id=1573727613 instance=ExtResource("3_gix0e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -2)
+
 [node name="stone_floor7" parent="." unique_id=1746585884 instance=ExtResource("3_gix0e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 10)
 
@@ -144,6 +172,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
 [node name="stone_hall5" parent="." unique_id=863611573 instance=ExtResource("5_0fjhd")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 2)
 
+[node name="stone_hall15" parent="." unique_id=2123630831 instance=ExtResource("5_0fjhd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, 0)
+
 [node name="stone_hall13" parent="." unique_id=208989314 instance=ExtResource("5_0fjhd")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 10)
 
@@ -171,6 +202,15 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0
 [node name="stone_wall8" parent="." unique_id=1951410348 instance=ExtResource("6_p5i1o")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8, 0, 2)
 
+[node name="stone_wall9" parent="." unique_id=1399743819 instance=ExtResource("6_p5i1o")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 2)
+
+[node name="stone_wall11" parent="." unique_id=1678292761 instance=ExtResource("6_p5i1o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -2)
+
+[node name="stone_wall10" parent="." unique_id=226528462 instance=ExtResource("6_p5i1o")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -8, 0, -4)
+
 [node name="stone_wall5" parent="." unique_id=526948628 instance=ExtResource("6_p5i1o")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0, 12)
 
@@ -180,22 +220,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 12)
 [node name="stone_wall4" parent="." unique_id=639186757 instance=ExtResource("6_p5i1o")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0, 10)
 
-[node name="PlayerPawn" parent="." unique_id=947801590 instance=ExtResource("7_jr1l3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2109028152]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=105313070]
-material = SubResource("ShaderMaterial_xa8nu")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
 [node name="brazier" parent="." unique_id=979701869 instance=ExtResource("10_cknfr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, 3)
+
+[node name="brazier3" parent="." unique_id=1733536714 instance=ExtResource("10_cknfr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -1, -1)
 
 [node name="brazier2" parent="." unique_id=1603852322 instance=ExtResource("10_cknfr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1, 12)
@@ -226,6 +255,20 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 
 [node name="SwitchComponent" parent="button_door_1" index="3" unique_id=1763643439]
 target_door_ids = Array[StringName]([&"bonepit.stone_door_1"])
 local_edge = Vector3i(1, 0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2109028152]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=105313070]
+material = SubResource("ShaderMaterial_xa8nu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="stone_lift1" parent="." unique_id=1795187880 instance=ExtResource("14_wthsc")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 0, 0)
 
 [editable path="stone_door_1"]
 [editable path="button_door_1"]

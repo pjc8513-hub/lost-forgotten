@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cruh8vkxmhq3r"]
+
+[ext_resource type="PackedScene" uid="uid://b1l0tjd8br47g" path="res://assets/models/rooms/stone_lift1.glb" id="1_3mm1y"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_s7oc1"]
+[ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="3_3mm1y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
+size = Vector3(0.39593506, 0.5, 0.5)
+
+[node name="stone_lift1" unique_id=1795187880 instance=ExtResource("1_3mm1y")]
+
+[node name="GridElement" type="Node3D" parent="." index="4" unique_id=2000216317]
+script = ExtResource("2_s7oc1")
+
+[node name="InteractableComponent" type="Node" parent="." index="5" unique_id=156939288]
+script = ExtResource("3_3mm1y")
+
+[node name="Area3D" type="Area3D" parent="." index="6" unique_id=1166577395]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=167670878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009685144, -0.01473999, -0.9442333)
+shape = SubResource("BoxShape3D_xa8nu")

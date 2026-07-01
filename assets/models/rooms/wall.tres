@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://xlxo11jp27n0"]
+
+[ext_resource type="Texture2D" uid="uid://26d0nva8usjm" path="res://assets/models/rooms/stone_lift1_temple_stone_blend.png" id="1_paw6l"]
+[ext_resource type="Texture2D" uid="uid://c2tephrn5a07d" path="res://assets/models/rooms/stone_lift1_temple_stone_normal.png" id="2_784lj"]
+
+[resource]
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("1_paw6l")
+normal_enabled = true
+normal_texture = ExtResource("2_784lj")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0

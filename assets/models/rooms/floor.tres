@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dc06kmp2r5g57"]
+
+[ext_resource type="Texture2D" uid="uid://1e3flnphw81c" path="res://assets/models/rooms/stone_lift1_broken_brick_blend.png" id="1_og7dd"]
+[ext_resource type="Texture2D" uid="uid://4lfg118x650w" path="res://assets/models/rooms/stone_lift1_broken_brick_normal.png" id="2_4bwmi"]
+
+[resource]
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("1_og7dd")
+normal_enabled = true
+normal_texture = ExtResource("2_4bwmi")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cw51gvstk7ps2"]
+
+[ext_resource type="PackedScene" uid="uid://bha40112hpeok" path="res://assets/models/objects/button.glb" id="1_mi2ga"]
+[ext_resource type="Script" uid="uid://dw8fen8k4fw7p" path="res://scripts/components/SwitchComponent.gd" id="2_jrqsh"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_upgn3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
+
+[node name="button" unique_id=1618898909 instance=ExtResource("1_mi2ga")]
+
+[node name="Area3D" type="Area3D" parent="Cube" parent_id_path=PackedInt32Array(603888600) index="0" unique_id=1047124009]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/Area3D" index="0" unique_id=1270638493]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0, 0)
+shape = SubResource("BoxShape3D_xa8nu")
+
+[node name="GridElement" type="Node3D" parent="." index="2" unique_id=1931224589]
+script = ExtResource("2_upgn3")
+
+[node name="SwitchComponent" type="Node3D" parent="." index="3" unique_id=1763643439]
+script = ExtResource("2_jrqsh")
+local_edge = Vector3i(0, 0, 0)
+
+[connection signal="input_event" from="Cube/Area3D" to="SwitchComponent" method="_on_area_3d_input_event"]

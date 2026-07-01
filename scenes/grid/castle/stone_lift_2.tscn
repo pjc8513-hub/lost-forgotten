@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://udlcxn1d6b7a"]
+
+[ext_resource type="PackedScene" uid="uid://b1l0tjd8br47g" path="res://assets/models/rooms/stone_lift1.glb" id="1_74r2y"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_ipk2i"]
+[ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="3_04b3x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lf0cl"]
+albedo_color = Color(0.04755766, 0.047557645, 0.047557645, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
+size = Vector3(0.4, 0.4, 0.3)
+
+[node name="stone_lift2" unique_id=1795187880 instance=ExtResource("1_74r2y")]
+
+[node name="wall" parent="." index="2" unique_id=1462691218]
+surface_material_override/0 = SubResource("StandardMaterial3D_lf0cl")
+
+[node name="GridElement" type="Node3D" parent="." index="4" unique_id=488717051]
+script = ExtResource("2_ipk2i")
+
+[node name="InteractableComponent" type="Node" parent="." index="5" unique_id=2129381738]
+script = ExtResource("3_04b3x")
+
+[node name="Area3D" type="Area3D" parent="." index="6" unique_id=1037537152]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=100918472]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9671586)
+shape = SubResource("BoxShape3D_xa8nu")

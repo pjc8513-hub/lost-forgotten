@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxkwwx5wl8sv7"
-path.s3tc="res://.godot/imported/stone_hall_door3_broken_brick_blend.png-fe69b2832c3a343ff0a5e380033c62fb.s3tc.ctex"
+path="res://.godot/imported/stone_hall_door3_broken_brick_blend.png-fe69b2832c3a343ff0a5e380033c62fb.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "74e64984d140abeb8df3dd67409dbb7a"
@@ -15,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/rooms/stone_hall_door3_broken_brick_blend.png"
-dest_files=["res://.godot/imported/stone_hall_door3_broken_brick_blend.png-fe69b2832c3a343ff0a5e380033c62fb.s3tc.ctex"]
+dest_files=["res://.godot/imported/stone_hall_door3_broken_brick_blend.png-fe69b2832c3a343ff0a5e380033c62fb.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -41,4 +40,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
