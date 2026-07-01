@@ -6,9 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cbau51dhr66ax" path="res://scenes/grid/castle/stone_dead_3.tscn" id="4_035c6"]
 [ext_resource type="PackedScene" uid="uid://daxubdx6y7a05" path="res://scenes/grid/castle/stone_hall_3.tscn" id="5_0fjhd"]
 [ext_resource type="PackedScene" uid="uid://dajpl27a3y52a" path="res://scenes/grid/castle/stone_wall_2.tscn" id="6_p5i1o"]
-[ext_resource type="PackedScene" uid="uid://c1buyprn7xxw4" path="res://scenes/actors/PlayerPawn.tscn" id="7_jr1l3"]
-[ext_resource type="Shader" uid="uid://8a25oser5fpm" path="res://scripts/shaders/Main_shader.gdshader" id="8_lf0cl"]
-[ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="9_4w8b5"]
 [ext_resource type="PackedScene" uid="uid://kyy1ro2jvove" path="res://scenes/lights/brazier.tscn" id="10_cknfr"]
 [ext_resource type="PackedScene" uid="uid://cc8otyxgp7ygu" path="res://scenes/grid/castle/stone_wall_pillar.tscn" id="11_kc6bh"]
 [ext_resource type="PackedScene" uid="uid://btlv6ccwtq11c" path="res://scenes/maps/bonepit/doors/stone_1.tscn" id="13_vxqbn"]
@@ -37,20 +34,10 @@ glow_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0.35606432, 0.35606432, 0.35606432, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xa8nu"]
-shader = ExtResource("8_lf0cl")
-shader_parameter/palette_texture = ExtResource("9_4w8b5")
-shader_parameter/pixel_size = 2.0000000475
-shader_parameter/dither_strength = 0.0010000000475
-shader_parameter/contrast = 1.20000003325
-
 [node name="Bonepit1" type="Node3D" unique_id=648665917]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1650998190]
 environment = SubResource("Environment_mby4i")
-
-[node name="PlayerPawn" parent="." unique_id=947801590 instance=ExtResource("7_jr1l3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
 [node name="stone_corner2" parent="." unique_id=1870512281 instance=ExtResource("2_wthsc")]
 
@@ -258,17 +245,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 
 target_door_ids = Array[StringName]([&"bonepit.stone_door_1"])
 local_edge = Vector3i(1, 0, 0)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2109028152]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=105313070]
-material = SubResource("ShaderMaterial_xa8nu")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
 [node name="stone_lift1" parent="." unique_id=1795187880 instance=ExtResource("14_wthsc")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 0, 0)
 script = ExtResource("15_035c6")
@@ -278,7 +254,7 @@ destination_spawn_id = &"lift_1"
 [node name="SpawnPoints" type="Node" parent="." unique_id=1081397977]
 
 [node name="entrance" parent="SpawnPoints" unique_id=302214123 instance=ExtResource("15_gix0e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2, 0, -2)
 spawn_id = &"entrance"
 
 [node name="lift_1" parent="SpawnPoints" unique_id=1280021637 instance=ExtResource("15_gix0e")]

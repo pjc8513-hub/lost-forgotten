@@ -12,6 +12,10 @@ var is_moving: bool = false
 func _ready() -> void:
 	if actor == null:
 		actor = get_parent() as Node3D
+	sync_to_actor()
+
+func sync_to_actor() -> void:
+	MapManager.unregister_actor(grid_pos)
 	var world_forward := actor.global_basis * Vector3.FORWARD
 	facing = Vector3i(roundi(world_forward.x), 0, roundi(world_forward.z))
 	grid_pos = world_to_grid(actor.global_position)

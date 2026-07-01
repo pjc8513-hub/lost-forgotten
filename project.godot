@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Lost and Forgotten Game"
-run/main_scene="uid://dkaw7nic8abj8"
+run/main_scene="uid://bhwhmj61exxxl"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -22,6 +22,7 @@ StatCalculator="*uid://btrboy3qvjrcc"
 StatusEffects="*uid://upoilmcgiddu"
 CommandQueue="*uid://cev17by6gohvg"
 TurnManager="*uid://cbe0tvcjqnwp6"
+StageManager="*uid://bpyfaacsk8xgt"
 
 [display]
 
