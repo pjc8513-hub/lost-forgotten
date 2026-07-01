@@ -45,6 +45,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="AutomapControl" parent="HudLayer/HudRoot/CanvasLayer" unique_id=140842024 instance=ExtResource("6_1rhdn")]
+wall_color = Color(0.34476638, 0.14726096, 0.22037056, 1)
 
 [node name="PauseLayer" type="Node" parent="." unique_id=192665520]
 

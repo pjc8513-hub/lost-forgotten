@@ -1,6 +1,8 @@
 class_name GridMovementController
 extends Node
 
+signal grid_state_changed(grid_pos: Vector3i, facing: Vector3i)
+
 @export var actor: Node3D
 @export var tile_size: float = 2.0
 @export var move_time: float = 0.15
@@ -20,6 +22,7 @@ func sync_to_actor() -> void:
 	facing = Vector3i(roundi(world_forward.x), 0, roundi(world_forward.z))
 	grid_pos = world_to_grid(actor.global_position)
 	MapManager.register_actor(grid_pos, actor)
+	grid_state_changed.emit(grid_pos, facing)
 
 func _exit_tree() -> void:
 	MapManager.unregister_actor(grid_pos)
@@ -42,6 +45,7 @@ func try_move(direction: Vector3i) -> bool:
 
 	var target_world := grid_to_world(grid_pos)
 	actor.global_position = target_world
+	grid_state_changed.emit(grid_pos, facing)
 
 	trigger_tile_effects(target)
 
@@ -50,10 +54,12 @@ func try_move(direction: Vector3i) -> bool:
 func rotate_left() -> void:
 	facing = Vector3i(facing.z, 0, -facing.x)
 	actor.rotate_y(PI / 2.0)
+	grid_state_changed.emit(grid_pos, facing)
 
 func rotate_right() -> void:
 	facing = Vector3i(-facing.z, 0, facing.x)
 	actor.rotate_y(-PI / 2.0)
+	grid_state_changed.emit(grid_pos, facing)
 
 func interact_forward() -> bool:
 	for element in MapManager.get_elements(grid_pos):

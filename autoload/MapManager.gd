@@ -1,6 +1,8 @@
 # autoload/MapManager.gd
 extends Node
 
+signal navigation_changed
+
 var grid: Dictionary = {}
 var actors: Dictionary = {}
 var doors: Dictionary[StringName, DoorComponent] = {}
@@ -132,6 +134,7 @@ func open_blocker(blocker_id: StringName) -> bool:
 	var blocker: BlockerComponent = blockers.get(blocker_id)
 	if blocker != null:
 		blocker.apply_state(state)
+	navigation_changed.emit()
 	return true
 
 func get_persistent_state() -> Dictionary:
@@ -159,6 +162,7 @@ func _set_door_state(door_id: StringName, state: Dictionary) -> void:
 	var door: DoorComponent = doors.get(door_id)
 	if door != null:
 		door.apply_state(state)
+	navigation_changed.emit()
 
 func _edge_key(pos: Vector3i, direction: Vector3i) -> String:
 	return "%d,%d,%d:%d,%d,%d" % [
