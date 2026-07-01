@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c1buyprn7xxw4" path="res://scenes/actors/PlayerPawn.tscn" id="3_player"]
 [ext_resource type="Shader" uid="uid://8a25oser5fpm" path="res://scripts/shaders/Main_shader.gdshader" id="4_filter_shader"]
 [ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="5_palette"]
+[ext_resource type="PackedScene" uid="uid://ungfb04ujreb" path="res://scenes/ui/automap.tscn" id="6_1rhdn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_screen_filter"]
 shader = ExtResource("4_filter_shader")
@@ -34,7 +35,7 @@ player_scene = ExtResource("3_player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="HudLayer/HudRoot" unique_id=2067498579]
 
-[node name="ScreenFilter" type="ColorRect" parent="HudLayer/HudRoot/CanvasLayer"]
+[node name="ScreenFilter" type="ColorRect" parent="HudLayer/HudRoot/CanvasLayer" unique_id=1591408408]
 material = SubResource("ShaderMaterial_screen_filter")
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,16 +44,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Automap" type="ColorRect" parent="HudLayer/HudRoot/CanvasLayer" unique_id=50891086]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -100.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="AutomapControl" parent="HudLayer/HudRoot/CanvasLayer" unique_id=140842024 instance=ExtResource("6_1rhdn")]
 
 [node name="PauseLayer" type="Node" parent="." unique_id=192665520]
 
