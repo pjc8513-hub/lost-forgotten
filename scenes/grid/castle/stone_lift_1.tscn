@@ -7,6 +7,33 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
 size = Vector3(0.39593506, 0.5, 0.5)
 
+[sub_resource type="Animation" id="Animation_3mm1y"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lift")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_s7oc1"]
+resource_name = "descend"
+length = 0.7
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lift")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.033333335, 1, 0, 0, 0, 0.2, 1, 0, -0.5, 0, 0.4, 1, 0, -1, 0, 0.6, 1, 0, -1.5, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qw6l1"]
+_data = {
+&"RESET": SubResource("Animation_3mm1y"),
+&"descend": SubResource("Animation_s7oc1")
+}
+
 [node name="stone_lift1" unique_id=1795187880 instance=ExtResource("1_3mm1y")]
 
 [node name="GridElement" type="Node3D" parent="." index="4" unique_id=2000216317]
@@ -20,3 +47,6 @@ script = ExtResource("3_3mm1y")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=167670878]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009685144, -0.01473999, -0.9442333)
 shape = SubResource("BoxShape3D_xa8nu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7" unique_id=2082235044]
+libraries/ = SubResource("AnimationLibrary_qw6l1")

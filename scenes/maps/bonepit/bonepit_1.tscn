@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://btlv6ccwtq11c" path="res://scenes/maps/bonepit/doors/stone_1.tscn" id="13_vxqbn"]
 [ext_resource type="PackedScene" uid="uid://cw51gvstk7ps2" path="res://scenes/maps/bonepit/doors/button_1.tscn" id="13_wthsc"]
 [ext_resource type="PackedScene" uid="uid://cruh8vkxmhq3r" path="res://scenes/grid/castle/stone_lift_1.tscn" id="14_wthsc"]
+[ext_resource type="Script" uid="uid://c4lr44p3emdjd" path="res://resources/MapExit.gd" id="15_035c6"]
+[ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="15_gix0e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y1ayg"]
 shader = ExtResource("1_vxqbn")
@@ -269,6 +271,19 @@ mouse_filter = 1
 
 [node name="stone_lift1" parent="." unique_id=1795187880 instance=ExtResource("14_wthsc")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 0, 0)
+script = ExtResource("15_035c6")
+destination_map = "uid://cplxb1qpw7vr3"
+destination_spawn_id = &"lift_1"
+
+[node name="SpawnPoints" type="Node" parent="." unique_id=1081397977]
+
+[node name="entrance" parent="SpawnPoints" unique_id=302214123 instance=ExtResource("15_gix0e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+spawn_id = &"entrance"
+
+[node name="lift_1" parent="SpawnPoints" unique_id=1280021637 instance=ExtResource("15_gix0e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 0)
+spawn_id = &"lift_1"
 
 [editable path="stone_door_1"]
 [editable path="button_door_1"]

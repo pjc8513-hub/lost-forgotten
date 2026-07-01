@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cerm24rgxpv08"]
+
+[ext_resource type="Script" uid="uid://clgv0j582nweo" path="res://resources/MapSpawnPoint.gd" id="1_wrssx"]
+
+[node name="MapSpawnPoint" type="Marker3D" unique_id=302214123]
+script = ExtResource("1_wrssx")

@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://kyy1ro2jvove" path="res://scenes/lights/brazier.tscn" id="6_7d0ck"]
 [ext_resource type="PackedScene" uid="uid://cw51gvstk7ps2" path="res://scenes/maps/bonepit/doors/button_1.tscn" id="6_vsvcw"]
 [ext_resource type="PackedScene" uid="uid://udlcxn1d6b7a" path="res://scenes/grid/castle/stone_lift_2.tscn" id="7_afgqr"]
+[ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="8_afgqr"]
+[ext_resource type="Script" uid="uid://c4lr44p3emdjd" path="res://resources/MapExit.gd" id="8_ljpd6"]
 
 [node name="Bonepit2" type="Node3D" unique_id=2071637791]
 
@@ -85,7 +87,15 @@ transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -6, 
 [node name="button" parent="." unique_id=1618898909 instance=ExtResource("6_vsvcw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
-[node name="stone_lift2" parent="button" unique_id=1795187880 instance=ExtResource("7_afgqr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+[node name="stone_lift2" parent="." unique_id=1795187880 instance=ExtResource("7_afgqr")]
+script = ExtResource("8_ljpd6")
+destination_map = "uid://dkaw7nic8abj8"
+destination_spawn_id = &"lift_1"
+
+[node name="SpawnPoints" type="Node" parent="." unique_id=1090116708]
+
+[node name="lift_1" parent="SpawnPoints" unique_id=302214123 instance=ExtResource("8_afgqr")]
+spawn_id = &"lift_1"
 
 [editable path="button"]
+[editable path="stone_lift2"]
