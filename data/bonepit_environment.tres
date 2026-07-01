@@ -1,0 +1,23 @@
+[gd_resource type="Environment" format=3 uid="uid://cv7posx2uelkc"]
+
+[ext_resource type="Shader" uid="uid://bf8avyue6rmnu" path="res://scripts/shaders/dark_sky.gdshader" id="1_7d1pb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y1ayg"]
+shader = ExtResource("1_7d1pb")
+shader_parameter/zenith_color = Color(0.1, 0.1, 0.2, 1)
+shader_parameter/horizon_color = Color(0.5, 0.3, 0.2, 1)
+shader_parameter/horizon_blur = 0.5
+
+[sub_resource type="Sky" id="Sky_yqopg"]
+sky_material = SubResource("ShaderMaterial_y1ayg")
+
+[resource]
+background_mode = 2
+background_color = Color(0.35606432, 0.35606432, 0.35606432, 1)
+sky = SubResource("Sky_yqopg")
+ambient_light_color = Color(0.35606432, 0.35606432, 0.35606432, 1)
+tonemap_mode = 3
+ssao_enabled = true
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.35606432, 0.35606432, 0.35606432, 1)

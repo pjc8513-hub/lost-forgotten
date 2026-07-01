@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cplxb1qpw7vr3"]
 
+[ext_resource type="Environment" uid="uid://cv7posx2uelkc" path="res://data/bonepit_environment.tres" id="1_27p8q"]
 [ext_resource type="PackedScene" uid="uid://daxubdx6y7a05" path="res://scenes/grid/castle/stone_hall_3.tscn" id="2_vsvcw"]
 [ext_resource type="PackedScene" uid="uid://urwlv585wae5" path="res://scenes/grid/castle/stone_corner_2.tscn" id="3_afgqr"]
 [ext_resource type="PackedScene" uid="uid://dajpl27a3y52a" path="res://scenes/grid/castle/stone_wall_2.tscn" id="4_ljpd6"]
@@ -9,8 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://udlcxn1d6b7a" path="res://scenes/grid/castle/stone_lift_2.tscn" id="7_afgqr"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="8_afgqr"]
 [ext_resource type="Script" uid="uid://c4lr44p3emdjd" path="res://resources/MapExit.gd" id="8_ljpd6"]
+[ext_resource type="PackedScene" uid="uid://cebwfn72gowuu" path="res://scenes/grid/castle/draw_bridge_1.tscn" id="11_7d0ck"]
+[ext_resource type="PackedScene" uid="uid://cc8otyxgp7ygu" path="res://scenes/grid/castle/stone_wall_pillar.tscn" id="12_hpu1e"]
 
 [node name="Bonepit2" type="Node3D" unique_id=2071637791]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1599142068]
+environment = ExtResource("1_27p8q")
 
 [node name="stone_hall3" parent="." unique_id=813386216 instance=ExtResource("2_vsvcw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
@@ -69,14 +75,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 [node name="stone_floor4" parent="." unique_id=2011966448 instance=ExtResource("5_27p8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
 
+[node name="stone_floor8" parent="." unique_id=1577091694 instance=ExtResource("5_27p8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8)
+
 [node name="stone_floor6" parent="." unique_id=751000425 instance=ExtResource("5_27p8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 10)
 
 [node name="stone_floor5" parent="." unique_id=593572512 instance=ExtResource("5_27p8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
-
-[node name="stone_floor7" parent="." unique_id=334785376 instance=ExtResource("5_27p8q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 10)
 
 [node name="brazier" parent="." unique_id=979701869 instance=ExtResource("6_7d0ck")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, 10)
@@ -87,15 +93,38 @@ transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -6, 
 [node name="button" parent="." unique_id=1618898909 instance=ExtResource("6_vsvcw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
+[node name="SwitchComponent" parent="button" index="3" unique_id=1763643439]
+target_blocker_ids = Array[StringName]([&"bonepit_2.bridge_1"])
+local_edge = Vector3i(1, 0, 0)
+
 [node name="stone_lift2" parent="." unique_id=1795187880 instance=ExtResource("7_afgqr")]
 script = ExtResource("8_ljpd6")
 destination_map = "uid://dkaw7nic8abj8"
 destination_spawn_id = &"lift_1"
+destination_label = "Ascend to Bonepit 1"
+animation_name = &"ascend"
+player_travel_offset = Vector3(0, 2, 0)
 
 [node name="SpawnPoints" type="Node" parent="." unique_id=1090116708]
 
 [node name="lift_1" parent="SpawnPoints" unique_id=302214123 instance=ExtResource("8_afgqr")]
 spawn_id = &"lift_1"
 
+[node name="draw_bridge1" parent="." unique_id=1441389704 instance=ExtResource("11_7d0ck")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 8)
+
+[node name="bridge1" parent="draw_bridge1" index="1" unique_id=286426098]
+transform = Transform3D(0.25881925, 0.9659256, 0, -0.9659256, 0.25881925, 0, 0, 0, 1, 1, -1, 0)
+
+[node name="bridge2" parent="draw_bridge1" index="2" unique_id=970720876]
+transform = Transform3D(0.25881925, -0.9659256, 0, 0.9659256, 0.25881925, 0, 0, 0, 1, -1, -1, 0)
+
+[node name="BlockerComponent" parent="draw_bridge1" index="4" unique_id=71732931]
+blocker_ID = &"bonepit_2.bridge_1"
+
+[node name="stone_wall_pillar" parent="." unique_id=321652682 instance=ExtResource("12_hpu1e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 10)
+
 [editable path="button"]
 [editable path="stone_lift2"]
+[editable path="draw_bridge1"]

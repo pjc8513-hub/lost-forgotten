@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://btlv6ccwtq11c"]
+
+[ext_resource type="PackedScene" uid="uid://bfkxaio56b8lw" path="res://assets/models/rooms/stone_hall_door3.glb" id="1_dfkmy"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_jm18a"]
+[ext_resource type="Script" uid="uid://31xg5h6wio64" path="res://scripts/components/DoorComponent.gd" id="3_1vsx7"]
+
+[sub_resource type="Animation" id="Animation_6dqru"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_u4q1q"]
+resource_name = "open"
+length = 0.43333334
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.033333335, 1, 0, 0, 0, 1, 0.35, 1, 0, -0.866025, 0, 0.5)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r27je"]
+_data = {
+&"RESET": SubResource("Animation_6dqru"),
+&"open": SubResource("Animation_u4q1q")
+}
+
+[node name="stone_hall_door3" unique_id=626338898 instance=ExtResource("1_dfkmy")]
+
+[node name="GridElement" type="Node3D" parent="." index="2" unique_id=1778463279]
+script = ExtResource("2_jm18a")
+cell_shape = 2
+
+[node name="DoorComponent" type="Node3D" parent="." index="3" unique_id=820589636]
+script = ExtResource("3_1vsx7")
+local_edge = Vector3i(0, 0, 0)
+starts_locked = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=1299333250]
+libraries/ = SubResource("AnimationLibrary_r27je")

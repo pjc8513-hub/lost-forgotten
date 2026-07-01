@@ -2,12 +2,15 @@ class_name SwitchComponent
 extends Node3D
 
 @export var target_door_ids: Array[StringName]
+@export var target_blocker_ids: Array[StringName]
 @export var local_edge := Vector3i(0, 0, -1)
 
 func activate() -> void:
 	for door_id in target_door_ids:
 		if MapManager.unlock_door(door_id):
 			MapManager.open_door(door_id)
+	for blocker_id in target_blocker_ids:
+		MapManager.open_blocker(blocker_id)
 
 func can_interact(player_grid_pos: Vector3i, player_facing: Vector3i) -> bool:
 	return player_grid_pos == get_grid_pos() and player_facing == get_world_edge()

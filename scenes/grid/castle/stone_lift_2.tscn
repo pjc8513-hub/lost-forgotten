@@ -56,3 +56,5 @@ shape = SubResource("BoxShape3D_xa8nu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7" unique_id=1037835897]
 libraries/ = SubResource("AnimationLibrary_nsjam")
+
+[connection signal="input_event" from="Area3D" to="InteractableComponent" method="_on_area_3d_input_event"]

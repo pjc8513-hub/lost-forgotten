@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dkaw7nic8abj8"]
 
-[ext_resource type="Shader" uid="uid://bf8avyue6rmnu" path="res://scripts/shaders/dark_sky.gdshader" id="1_vxqbn"]
+[ext_resource type="Environment" uid="uid://cv7posx2uelkc" path="res://data/bonepit_environment.tres" id="1_vxqbn"]
 [ext_resource type="PackedScene" uid="uid://urwlv585wae5" path="res://scenes/grid/castle/stone_corner_2.tscn" id="2_wthsc"]
 [ext_resource type="PackedScene" uid="uid://dapuyqeqivxm8" path="res://scenes/grid/castle/stone_floor_2.tscn" id="3_gix0e"]
 [ext_resource type="PackedScene" uid="uid://cbau51dhr66ax" path="res://scenes/grid/castle/stone_dead_3.tscn" id="4_035c6"]
@@ -8,36 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://dajpl27a3y52a" path="res://scenes/grid/castle/stone_wall_2.tscn" id="6_p5i1o"]
 [ext_resource type="PackedScene" uid="uid://kyy1ro2jvove" path="res://scenes/lights/brazier.tscn" id="10_cknfr"]
 [ext_resource type="PackedScene" uid="uid://cc8otyxgp7ygu" path="res://scenes/grid/castle/stone_wall_pillar.tscn" id="11_kc6bh"]
-[ext_resource type="PackedScene" uid="uid://btlv6ccwtq11c" path="res://scenes/maps/bonepit/doors/stone_1.tscn" id="13_vxqbn"]
+[ext_resource type="PackedScene" uid="uid://btlv6ccwtq11c" path="res://scenes/maps/bonepit/doors/stone_door_1.tscn" id="13_vxqbn"]
 [ext_resource type="PackedScene" uid="uid://cw51gvstk7ps2" path="res://scenes/maps/bonepit/doors/button_1.tscn" id="13_wthsc"]
 [ext_resource type="PackedScene" uid="uid://cruh8vkxmhq3r" path="res://scenes/grid/castle/stone_lift_1.tscn" id="14_wthsc"]
 [ext_resource type="Script" uid="uid://c4lr44p3emdjd" path="res://resources/MapExit.gd" id="15_035c6"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="15_gix0e"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y1ayg"]
-shader = ExtResource("1_vxqbn")
-shader_parameter/zenith_color = Color(0.1, 0.1, 0.2, 1)
-shader_parameter/horizon_color = Color(0.5, 0.3, 0.2, 1)
-shader_parameter/horizon_blur = 0.5
-
-[sub_resource type="Sky" id="Sky_yqopg"]
-sky_material = SubResource("ShaderMaterial_y1ayg")
-
-[sub_resource type="Environment" id="Environment_mby4i"]
-background_mode = 2
-background_color = Color(0.35606432, 0.35606432, 0.35606432, 1)
-sky = SubResource("Sky_yqopg")
-ambient_light_color = Color(0.35606432, 0.35606432, 0.35606432, 1)
-tonemap_mode = 3
-ssao_enabled = true
-glow_enabled = true
-volumetric_fog_enabled = true
-volumetric_fog_albedo = Color(0.35606432, 0.35606432, 0.35606432, 1)
-
 [node name="Bonepit1" type="Node3D" unique_id=648665917]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1650998190]
-environment = SubResource("Environment_mby4i")
+environment = ExtResource("1_vxqbn")
 
 [node name="stone_corner2" parent="." unique_id=1870512281 instance=ExtResource("2_wthsc")]
 
@@ -250,6 +230,9 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14,
 script = ExtResource("15_035c6")
 destination_map = "uid://cplxb1qpw7vr3"
 destination_spawn_id = &"lift_1"
+destination_label = "Descend to Bonepit 2"
+animation_name = &"descend"
+player_travel_offset = Vector3(0, -1.5, 0)
 
 [node name="SpawnPoints" type="Node" parent="." unique_id=1081397977]
 

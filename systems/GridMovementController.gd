@@ -61,10 +61,20 @@ func interact_forward() -> bool:
 			if component is SwitchComponent and component.can_interact(grid_pos, facing):
 				component.activate()
 				return true
+			if component is InteractableComponent:
+				component.interact(actor)
+				return true
 
 	var door := MapManager.get_door_on_edge(grid_pos, facing)
 	if door != null:
 		return door.open()
+
+	var target := grid_pos + facing
+	for element in MapManager.get_elements(target):
+		for component in element.get_parent().get_children():
+			if component is InteractableComponent:
+				component.interact(actor)
+				return true
 	return false
 
 func is_blocked(pos: Vector3i) -> bool:
