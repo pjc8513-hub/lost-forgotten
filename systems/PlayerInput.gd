@@ -28,10 +28,7 @@ func _unhandled_input(event):
 
 	if event.is_action_pressed("interact"):
 		_queue_player_interaction()
-		
-	if event.is_action_pressed("interact"):
-		pass
-	
+
 func _queue_player_turn(cmd: Command) -> void:
 	if CommandQueue.is_busy():
 		return
