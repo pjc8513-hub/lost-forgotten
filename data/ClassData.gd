@@ -43,8 +43,8 @@ enum ClassName {
 @export var base_willpower: int = 2
 
 # ---------------------------------------------------------------------------
-# HP / MP Scaling
-# Used by StatCalculator to derive max HP and MP at any level.
+# HP / Stamina Scaling
+# Used by StatCalculator to derive max HP and Stamina at any level.
 # Formula: base + (per_level * level) + floor(stat * scale)
 # ---------------------------------------------------------------------------
 
@@ -53,6 +53,11 @@ enum ClassName {
 @export var hp_per_level: int = 5
 @export var hp_str_scale: float = 0.5
 @export var hp_end_scale: float = 1.0
+
+@export_group("Stamina Scaling")
+@export var stamina: int = 25
+@export var stamina_per_level: int = 1
+@export var stamina_end_scale: float = 0.5
 
 # ---------------------------------------------------------------------------
 # Combat Stat Scaling

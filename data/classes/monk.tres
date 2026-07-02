@@ -15,6 +15,7 @@ base_dexterity = 8
 base_piety = 14
 hp_base = 8
 hp_per_level = 2
+stamina = 27
 ac_bonus = -2
 initiative_base = 3
 metadata/_custom_type_script = "uid://diy5ybgx3dj85"

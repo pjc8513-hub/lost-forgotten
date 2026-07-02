@@ -14,6 +14,7 @@ base_piety = 10
 base_willpower = 3
 hp_base = 11
 hp_per_level = 2
+stamina = 27
 ac_bonus = -3
 initiative_base = 2
 metadata/_custom_type_script = "uid://diy5ybgx3dj85"
