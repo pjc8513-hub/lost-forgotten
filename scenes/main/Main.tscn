@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://8a25oser5fpm" path="res://scripts/shaders/Main_shader.gdshader" id="4_filter_shader"]
 [ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="5_palette"]
 [ext_resource type="PackedScene" uid="uid://ungfb04ujreb" path="res://scenes/ui/automap.tscn" id="6_1rhdn"]
+[ext_resource type="PackedScene" uid="uid://c3ikins8j845w" path="res://scenes/ui/PartyMemberCards.tscn" id="7_sjxhf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_screen_filter"]
 shader = ExtResource("4_filter_shader")
@@ -46,6 +47,15 @@ mouse_filter = 2
 
 [node name="AutomapControl" parent="HudLayer/HudRoot/CanvasLayer" unique_id=140842024 instance=ExtResource("6_1rhdn")]
 wall_color = Color(0.34476638, 0.14726096, 0.22037056, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HudLayer/HudRoot" unique_id=580663567]
+offset_right = 125.0
+offset_bottom = 375.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 25
+
+[node name="MemberPanel" parent="HudLayer/HudRoot/MarginContainer" unique_id=569048960 instance=ExtResource("7_sjxhf")]
+layout_mode = 2
 
 [node name="PauseLayer" type="Node" parent="." unique_id=192665520]
 

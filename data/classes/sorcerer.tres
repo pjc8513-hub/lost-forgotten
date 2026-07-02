@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ClassData" format=3 uid="uid://og5pl7a67yoi"]
+
+[ext_resource type="Script" uid="uid://diy5ybgx3dj85" path="res://data/ClassData.gd" id="1_2kap2"]
+[ext_resource type="Texture2D" uid="uid://di7rqvd4bsllp" path="res://assets/portraits/sorcerer_p.png" id="2_bh2cm"]
+
+[resource]
+script = ExtResource("1_2kap2")
+class_id = 4
+display_name = "Maynard"
+sprite_texture = ExtResource("2_bh2cm")
+base_strength = 8
+base_endurance = 9
+base_wisdom = 17
+base_willpower = 3
+hp_base = 7
+hp_per_level = 1
+accuracy_dex_scale = 0.0
+accuracy_wis_scale = 0.5
+initiative_base = 1
+initiative_dex_scale = 0.0
+initiative_wis_scale = 0.5
+magic_amp_base = 2
+magic_amp_wis_scale = 0.5
+metadata/_custom_type_script = "uid://diy5ybgx3dj85"

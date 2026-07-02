@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ClassData" format=3 uid="uid://x6qj7ufcu4t6"]
+
+[ext_resource type="Script" uid="uid://diy5ybgx3dj85" path="res://data/ClassData.gd" id="1_7ph07"]
+[ext_resource type="Texture2D" uid="uid://c3wcdugdvqb0y" path="res://assets/portraits/rogue_p.png" id="2_qgxf2"]
+
+[resource]
+script = ExtResource("1_7ph07")
+class_id = 2
+display_name = "Sting"
+sprite_texture = ExtResource("2_qgxf2")
+base_strength = 11
+base_endurance = 8
+base_wisdom = 12
+base_dexterity = 16
+base_willpower = 3
+hp_base = 8
+hp_per_level = 2
+ac_bonus = -2
+accuracy_base = 2
+initiative_base = 2
+metadata/_custom_type_script = "uid://diy5ybgx3dj85"

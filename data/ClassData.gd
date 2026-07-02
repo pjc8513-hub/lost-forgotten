@@ -53,11 +53,6 @@ enum ClassName {
 @export var hp_str_scale: float = 0.5
 @export var hp_end_scale: float = 1.0
 
-@export_group("MP Scaling")
-@export var mp_base: int = 0
-@export var mp_per_level: int = 0
-@export var mp_wis_scale: float = 0.0
-
 # ---------------------------------------------------------------------------
 # Combat Stat Scaling
 # Each derived combat stat = base + floor(stat * scale).
@@ -99,11 +94,10 @@ enum ClassName {
 @export var magic_amp_wis_scale: float = 0.0
 
 # ---------------------------------------------------------------------------
-# Mobility & Equipment
+# Equipment
 # ---------------------------------------------------------------------------
 
-@export_group("Movement & Armor")
-@export var base_movement: int = 4
+@export_group("Armor")
 @export var allowed_armor_types: Array[int] = []  # ArmorData.Armor_Type values
 
 # ---------------------------------------------------------------------------

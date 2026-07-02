@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ClassData" format=3 uid="uid://bfcpbsodxb75r"]
+
+[ext_resource type="Script" uid="uid://diy5ybgx3dj85" path="res://data/ClassData.gd" id="1_8lm20"]
+[ext_resource type="Texture2D" uid="uid://b6lgjrs3mcrli" path="res://assets/portraits/cleric_p.png" id="2_w54nn"]
+
+[resource]
+script = ExtResource("1_8lm20")
+class_id = 1
+display_name = "Forsberg"
+sprite_texture = ExtResource("2_w54nn")
+base_strength = 16
+base_endurance = 15
+base_wisdom = 8
+base_dexterity = 9
+hp_base = 12
+hp_per_level = 2
+ac_bonus = -2
+accuracy_base = 2
+accuracy_str_scale = 0.5
+accuracy_dex_scale = 0.0
+initiative_base = 1
+metadata/_custom_type_script = "uid://diy5ybgx3dj85"

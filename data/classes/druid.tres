@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ClassData" format=3 uid="uid://b3ctehsr648to"]
+
+[ext_resource type="Script" uid="uid://diy5ybgx3dj85" path="res://data/ClassData.gd" id="1_kan4a"]
+[ext_resource type="Texture2D" uid="uid://di7rqvd4bsllp" path="res://assets/portraits/sorcerer_p.png" id="2_3amth"]
+
+[resource]
+script = ExtResource("1_kan4a")
+class_id = 5
+display_name = "Attila"
+sprite_texture = ExtResource("2_3amth")
+base_strength = 9
+base_endurance = 12
+base_wisdom = 14
+base_willpower = 3
+hp_base = 8
+hp_per_level = 2
+ac_bonus = -1
+accuracy_base = 1
+magic_amp_base = 2
+magic_amp_wis_scale = 0.5
+metadata/_custom_type_script = "uid://diy5ybgx3dj85"

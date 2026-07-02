@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ClassData" format=3 uid="uid://sx783sp4bcl8"]
+
+[ext_resource type="Script" uid="uid://diy5ybgx3dj85" path="res://data/ClassData.gd" id="1_pptha"]
+[ext_resource type="Texture2D" uid="uid://cgvr3ct3jojxq" path="res://assets/portraits/knight_p.png" id="2_uln4d"]
+
+[resource]
+script = ExtResource("1_pptha")
+class_id = 0
+display_name = "PowerChord"
+sprite_texture = ExtResource("2_uln4d")
+base_strength = 12
+base_endurance = 12
+base_willpower = 3
+hp_base = 11
+hp_per_level = 2
+ac_bonus = -3
+initiative_base = 2
+metadata/_custom_type_script = "uid://diy5ybgx3dj85"

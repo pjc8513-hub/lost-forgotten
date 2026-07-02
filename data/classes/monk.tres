@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ClassData" format=3 uid="uid://bcwbyc8q2u6gb"]
+
+[ext_resource type="Script" uid="uid://diy5ybgx3dj85" path="res://data/ClassData.gd" id="1_7mst2"]
+[ext_resource type="Texture2D" uid="uid://cehnlxwujieo1" path="res://assets/portraits/monk_p.png" id="2_fuvof"]
+
+[resource]
+script = ExtResource("1_7mst2")
+class_id = 6
+display_name = "Sykes"
+sprite_texture = ExtResource("2_fuvof")
+base_strength = 11
+base_endurance = 9
+base_wisdom = 12
+base_dexterity = 8
+hp_base = 8
+hp_per_level = 2
+ac_bonus = -2
+initiative_base = 3
+metadata/_custom_type_script = "uid://diy5ybgx3dj85"

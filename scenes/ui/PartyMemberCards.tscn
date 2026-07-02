@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c3ikins8j845w"]
+
+[ext_resource type="Script" uid="uid://btqftubfgg1pf" path="res://scenes/ui/party_member_cards.gd" id="1_djupp"]
+
+[sub_resource type="Theme" id="Theme_xa8nu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvxho"]
+bg_color = Color(0.21281448, 0.19446799, 0.14051089, 0.8392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyyt5"]
+bg_color = Color(0.726465, 0.053302236, 0.009592459, 1)
+
+[node name="MemberPanel" type="PanelContainer" unique_id=569048960]
+offset_right = 125.0
+offset_bottom = 53.0
+script = ExtResource("1_djupp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1505704886]
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="HBoxContainer" unique_id=2063881645]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="combatFX" type="Node" parent="HBoxContainer/Portrait" unique_id=1144866210]
+
+[node name="StatusOverlay" type="TextureRect" parent="HBoxContainer/Portrait/combatFX" unique_id=1273237881]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DamageLabel" type="Label" parent="HBoxContainer/Portrait/combatFX" unique_id=1189328727]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1112364791]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 5
+
+[node name="MemberName" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=85380153]
+layout_mode = 2
+
+[node name="HPbar" type="ProgressBar" parent="HBoxContainer/VBoxContainer" unique_id=914935688]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = SubResource("Theme_xa8nu")
+theme_override_styles/background = SubResource("StyleBoxFlat_vvxho")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gyyt5")
+value = 100.0
+rounded = true
+show_percentage = false
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

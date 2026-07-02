@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ClassData" format=3 uid="uid://bkxxt38mllbid"]
+
+[ext_resource type="Script" uid="uid://diy5ybgx3dj85" path="res://data/ClassData.gd" id="1_3lo8d"]
+[ext_resource type="Texture2D" uid="uid://b6lgjrs3mcrli" path="res://assets/portraits/cleric_p.png" id="2_ym5c5"]
+
+[resource]
+script = ExtResource("1_3lo8d")
+class_id = 3
+display_name = "Christmas"
+sprite_texture = ExtResource("2_ym5c5")
+base_strength = 8
+base_endurance = 9
+base_wisdom = 13
+base_dexterity = 12
+base_willpower = 3
+hp_per_level = 2
+ac_bonus = -1
+accuracy_base = 1
+accuracy_dex_scale = 0.0
+accuracy_wis_scale = 0.5
+magic_amp_wis_scale = 0.5
+metadata/_custom_type_script = "uid://diy5ybgx3dj85"
