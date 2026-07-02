@@ -14,6 +14,12 @@ func _ready() -> void:
 		movement = actor.get_node_or_null("GridMovementController") as GridMovementController
 
 func _unhandled_input(event):
+	for index in PartyManager.MAX_PARTY_SIZE:
+		if event.is_action_pressed("select_member_%d" % (index + 1)):
+			PartyManager.select_party_member(index)
+			get_viewport().set_input_as_handled()
+			return
+
 	if not TurnManager.can_player_move():
 		return
 

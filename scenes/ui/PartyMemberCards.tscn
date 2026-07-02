@@ -11,16 +11,21 @@ bg_color = Color(0.21281448, 0.19446799, 0.14051089, 0.8392157)
 bg_color = Color(0.726465, 0.053302236, 0.009592459, 1)
 
 [node name="MemberPanel" type="PanelContainer" unique_id=569048960]
+custom_minimum_size = Vector2(125, 53)
 offset_right = 125.0
 offset_bottom = 53.0
+mouse_default_cursor_shape = 2
 script = ExtResource("1_djupp")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1505704886]
 layout_mode = 2
 
 [node name="Portrait" type="TextureRect" parent="HBoxContainer" unique_id=2063881645]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
+expand_mode = 1
+stretch_mode = 5
 
 [node name="combatFX" type="Node" parent="HBoxContainer/Portrait" unique_id=1144866210]
 

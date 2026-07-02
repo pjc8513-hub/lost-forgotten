@@ -23,6 +23,7 @@ StatusEffects="*uid://upoilmcgiddu"
 CommandQueue="*uid://cev17by6gohvg"
 TurnManager="*uid://cbe0tvcjqnwp6"
 StageManager="*uid://bpyfaacsk8xgt"
+PartyManager="*uid://cwtri8vq5bhew"
 
 [display]
 

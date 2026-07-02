@@ -6,7 +6,6 @@
 [ext_resource type="Shader" uid="uid://8a25oser5fpm" path="res://scripts/shaders/Main_shader.gdshader" id="4_filter_shader"]
 [ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="5_palette"]
 [ext_resource type="PackedScene" uid="uid://ungfb04ujreb" path="res://scenes/ui/automap.tscn" id="6_1rhdn"]
-[ext_resource type="PackedScene" uid="uid://c3ikins8j845w" path="res://scenes/ui/PartyMemberCards.tscn" id="7_sjxhf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_screen_filter"]
 shader = ExtResource("4_filter_shader")
@@ -54,8 +53,9 @@ offset_bottom = 375.0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 25
 
-[node name="MemberPanel" parent="HudLayer/HudRoot/MarginContainer" unique_id=569048960 instance=ExtResource("7_sjxhf")]
+[node name="PartyCards" type="VBoxContainer" parent="HudLayer/HudRoot/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 3
 
 [node name="PauseLayer" type="Node" parent="." unique_id=192665520]
 
