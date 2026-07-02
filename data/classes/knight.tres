@@ -10,6 +10,7 @@ display_name = "PowerChord"
 sprite_texture = ExtResource("2_uln4d")
 base_strength = 12
 base_endurance = 12
+base_piety = 10
 base_willpower = 3
 hp_base = 11
 hp_per_level = 2

@@ -11,6 +11,7 @@ sprite_texture = ExtResource("2_bh2cm")
 base_strength = 8
 base_endurance = 9
 base_wisdom = 17
+base_piety = 11
 base_willpower = 3
 hp_base = 7
 hp_per_level = 1

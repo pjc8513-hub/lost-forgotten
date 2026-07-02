@@ -12,6 +12,7 @@ base_strength = 11
 base_endurance = 9
 base_wisdom = 12
 base_dexterity = 8
+base_piety = 14
 hp_base = 8
 hp_per_level = 2
 ac_bonus = -2

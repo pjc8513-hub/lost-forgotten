@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dajpl27a3y52a" path="res://scenes/grid/castle/stone_wall_2.tscn" id="6_p5i1o"]
 [ext_resource type="PackedScene" uid="uid://kyy1ro2jvove" path="res://scenes/lights/brazier.tscn" id="10_cknfr"]
 [ext_resource type="PackedScene" uid="uid://cc8otyxgp7ygu" path="res://scenes/grid/castle/stone_wall_pillar.tscn" id="11_kc6bh"]
-[ext_resource type="PackedScene" uid="uid://btlv6ccwtq11c" path="res://scenes/maps/bonepit/doors/stone_door_1.tscn" id="13_vxqbn"]
+[ext_resource type="PackedScene" uid="uid://btlv6ccwtq11c" path="res://scenes/maps/bonepit/doors/stone_hall_door_1.tscn" id="13_vxqbn"]
 [ext_resource type="PackedScene" uid="uid://cw51gvstk7ps2" path="res://scenes/maps/bonepit/doors/button_1.tscn" id="13_wthsc"]
 [ext_resource type="PackedScene" uid="uid://cruh8vkxmhq3r" path="res://scenes/grid/castle/stone_lift_1.tscn" id="14_wthsc"]
 [ext_resource type="Script" uid="uid://c4lr44p3emdjd" path="res://resources/MapExit.gd" id="15_035c6"]
@@ -217,6 +217,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 [node name="DoorComponent" parent="stone_door_1" index="3" unique_id=820589636]
 door_id = &"bonepit.stone_door_1"
 local_edge = Vector3i(-1, 0, 0)
+starts_locked = true
 
 [node name="button_door_1" parent="." unique_id=1618898909 instance=ExtResource("13_wthsc")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, -2)

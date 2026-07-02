@@ -68,3 +68,24 @@ func _play_animation(animation_name: StringName) -> void:
 
 func _get_animation_player() -> AnimationPlayer:
 	return get_parent().get_node_or_null("AnimationPlayer") as AnimationPlayer
+
+func can_interact(player_grid_pos: Vector3i, player_facing: Vector3i) -> bool:
+	return player_grid_pos == get_grid_pos() and player_facing == get_world_edge()
+
+func _on_area_3d_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
+		return
+	if CommandQueue.is_busy():
+		return
+
+	var player := MapManager.get_actor(get_grid_pos())
+	if player == null:
+		return
+	var movement := player.get_node_or_null("GridMovementController") as GridMovementController
+	if movement == null or not can_interact(movement.grid_pos, movement.facing):
+		return
+
+	var cmd := InteractCommand.new()
+	cmd.actor = player
+	cmd.movement = movement
+	CommandQueue.add_command(cmd)

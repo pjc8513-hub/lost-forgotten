@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://x5kyyslryhw4"]
+
+[ext_resource type="PackedScene" uid="uid://bb4lv4qpjsuu3" path="res://assets/models/rooms/stone_wall3_door.glb" id="1_6uh1y"]
+[ext_resource type="Material" uid="uid://xlxo11jp27n0" path="res://assets/models/rooms/wall.tres" id="2_7pau4"]
+[ext_resource type="Material" uid="uid://d3ferhc0s4ik6" path="res://assets/models/rooms/wood.tres" id="3_i1110"]
+[ext_resource type="Material" uid="uid://dc06kmp2r5g57" path="res://assets/models/rooms/floor.tres" id="4_iqsyl"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="5_1ptlr"]
+[ext_resource type="Script" uid="uid://31xg5h6wio64" path="res://scripts/components/DoorComponent.gd" id="6_ckha8"]
+[ext_resource type="Animation" uid="uid://djmamdfmblcjq" path="res://assets/animations/open.res" id="7_7pau4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
+size = Vector3(0.1048584, 1.7204895, 1.0775757)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7pau4"]
+_data = {
+&"open": ExtResource("7_7pau4")
+}
+
+[node name="stone_wall3_door" unique_id=141663307 instance=ExtResource("1_6uh1y")]
+
+[node name="wall" parent="." index="0" unique_id=1285790314]
+surface_material_override/0 = ExtResource("2_7pau4")
+
+[node name="door" parent="." index="1" unique_id=27495278]
+surface_material_override/0 = ExtResource("3_i1110")
+
+[node name="floor" parent="." index="2" unique_id=1369459373]
+surface_material_override/0 = ExtResource("4_iqsyl")
+
+[node name="GridElement" type="Node3D" parent="." index="3" unique_id=1886403208]
+script = ExtResource("5_1ptlr")
+cell_shape = 1
+
+[node name="DoorComponent" type="Node3D" parent="." index="4" unique_id=534338047]
+script = ExtResource("6_ckha8")
+
+[node name="Area3D" type="Area3D" parent="." index="5" unique_id=579304387]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=2087277238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.97494197, -0.10719299, -0.0018005371)
+shape = SubResource("BoxShape3D_xa8nu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6" unique_id=1618487145]
+libraries/ = SubResource("AnimationLibrary_7pau4")
+
+[connection signal="input_event" from="Area3D" to="DoorComponent" method="_on_area_3d_input_event"]

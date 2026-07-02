@@ -39,6 +39,7 @@ enum ClassName {
 @export var base_endurance: int = 10
 @export var base_wisdom: int = 10
 @export var base_dexterity: int = 10
+@export var base_piety: int = 8
 @export var base_willpower: int = 2
 
 # ---------------------------------------------------------------------------

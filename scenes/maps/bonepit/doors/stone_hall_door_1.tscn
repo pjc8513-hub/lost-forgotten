@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://btlv6ccwtq11c"]
 
-[ext_resource type="PackedScene" uid="uid://bfkxaio56b8lw" path="res://assets/models/rooms/stone_hall_door3.glb" id="1_dfkmy"]
-[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_jm18a"]
-[ext_resource type="Script" uid="uid://31xg5h6wio64" path="res://scripts/components/DoorComponent.gd" id="3_1vsx7"]
+[ext_resource type="PackedScene" uid="uid://bfkxaio56b8lw" path="res://assets/models/rooms/stone_hall_door3.glb" id="1_ppake"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_gdvta"]
+[ext_resource type="Script" uid="uid://31xg5h6wio64" path="res://scripts/components/DoorComponent.gd" id="3_knehd"]
 
 [sub_resource type="Animation" id="Animation_6dqru"]
 length = 0.001
@@ -31,16 +31,26 @@ _data = {
 &"open": SubResource("Animation_u4q1q")
 }
 
-[node name="stone_hall_door3" unique_id=626338898 instance=ExtResource("1_dfkmy")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
+size = Vector3(0.26116943, 1.7212524, 1)
+
+[node name="stone_hall_door3" unique_id=626338898 instance=ExtResource("1_ppake")]
 
 [node name="GridElement" type="Node3D" parent="." index="2" unique_id=1778463279]
-script = ExtResource("2_jm18a")
+script = ExtResource("2_gdvta")
 cell_shape = 2
 
 [node name="DoorComponent" type="Node3D" parent="." index="3" unique_id=820589636]
-script = ExtResource("3_1vsx7")
+script = ExtResource("3_knehd")
 local_edge = Vector3i(0, 0, 0)
-starts_locked = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=1299333250]
 libraries/ = SubResource("AnimationLibrary_r27je")
+
+[node name="Area3D" type="Area3D" parent="." index="5" unique_id=1217630804]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=78182797]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0318298, -0.13135427, 0)
+shape = SubResource("BoxShape3D_xa8nu")
+
+[connection signal="input_event" from="Area3D" to="DoorComponent" method="_on_area_3d_input_event"]
