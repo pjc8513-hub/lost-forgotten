@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://c58ntrnv0yxtf"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_ps0q5"]
+
+[resource]
+script = ExtResource("1_ps0q5")
+skill_id = &"disarm_trap"
+display_name = "Disarm Trap"
+available_classes = Array[int]([2, 0])
+archetype = 0
+stamina_cost = 4
+dc_stat = "dexterity"
+dc_base = 14
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

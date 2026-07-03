@@ -1,7 +1,7 @@
 extends Node
 
 signal party_changed
-signal selected_party_member_changed(index: int, member: ClassData)
+signal selected_party_member_changed(index: int, member: CharacterState)
 
 const MAX_PARTY_SIZE: int = 5
 const DEFAULT_PARTY: Array[ClassData] = [
@@ -12,9 +12,9 @@ const DEFAULT_PARTY: Array[ClassData] = [
 	preload("res://data/classes/sorcerer.tres"),
 ]
 
-var party: Array[ClassData] = []
+var party: Array[CharacterState] = []
 var selected_party_member_index: int = -1
-var selected_party_member: ClassData:
+var selected_party_member: CharacterState:
 	get:
 		if selected_party_member_index < 0 or selected_party_member_index >= party.size():
 			return null
@@ -22,10 +22,15 @@ var selected_party_member: ClassData:
 
 
 func _ready() -> void:
-	set_party(DEFAULT_PARTY)
+	var default_members: Array[CharacterState] = []
+	for class_data in DEFAULT_PARTY:
+		var member := CharacterState.create(class_data, class_data.display_name)
+		StatCalculator.recalculate(member, true)
+		default_members.append(member)
+	set_party(default_members)
 
 
-func set_party(members: Array[ClassData]) -> void:
+func set_party(members: Array[CharacterState]) -> void:
 	party.assign(members.slice(0, MAX_PARTY_SIZE))
 	selected_party_member_index = 0 if not party.is_empty() else -1
 	party_changed.emit()
@@ -43,7 +48,7 @@ func select_party_member(index: int) -> bool:
 	return true
 
 
-func add_party_member(member: ClassData) -> bool:
+func add_party_member(member: CharacterState) -> bool:
 	if member == null or party.size() >= MAX_PARTY_SIZE:
 		return false
 	party.append(member)
@@ -62,3 +67,8 @@ func remove_party_member(index: int) -> bool:
 	party_changed.emit()
 	selected_party_member_changed.emit(selected_party_member_index, selected_party_member)
 	return true
+
+
+func spend_party_stamina(amount: int) -> void:
+	for member in party:
+		member.spend_stamina(amount)

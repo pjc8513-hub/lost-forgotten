@@ -35,14 +35,14 @@ signal leveled_up(new_level: int)
 		if current_hp == 0:
 			died.emit()
 
-@export var current_mp: int = 0:
+@export var current_stamina: int = 0:
 	set(value):
-		current_mp = clampi(value, 0, max_mp)
+		current_stamina = clampi(value, 0, max_stamina)
 		stats_changed.emit()
 
 # Cached maximums — set by StatCalculator after any stat change.
 @export var max_hp: int = 0
-@export var max_mp: int = 0
+@export var max_stamina: int = 0
 
 # ---------------------------------------------------------------------------
 # Progression
@@ -121,6 +121,23 @@ func is_alive() -> bool:
 
 func is_conscious() -> bool:
 	return current_hp > 0
+
+func take_damage(amount: int) -> void:
+	current_hp -= maxi(amount, 0)
+
+func heal(amount: int) -> void:
+	current_hp += maxi(amount, 0)
+
+func spend_stamina(amount: int) -> bool:
+	if amount <= 0:
+		return true
+	if current_stamina < amount:
+		return false
+	current_stamina -= amount
+	return true
+
+func restore_stamina(amount: int) -> void:
+	current_stamina += maxi(amount, 0)
 
 func get_class_id() -> ClassData.ClassName:
 	if class_data == null:

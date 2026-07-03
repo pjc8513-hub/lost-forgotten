@@ -8,9 +8,10 @@ signal selection_requested(index: int)
 @onready var damage_label: Label = $HBoxContainer/Portrait/combatFX/DamageLabel
 @onready var member_name: Label = $HBoxContainer/VBoxContainer/MemberName
 @onready var h_pbar: ProgressBar = $HBoxContainer/VBoxContainer/HPbar
+@onready var stamina_bar: ProgressBar = $HBoxContainer/VBoxContainer/StaminaBar
 
 var party_index: int = -1
-var member: ClassData
+var member: CharacterState
 
 var _selected_style := StyleBoxFlat.new()
 
@@ -21,21 +22,28 @@ func _ready() -> void:
 	refresh()
 
 
-func setup(member_data: ClassData, index: int) -> void:
+func setup(member_data: CharacterState, index: int) -> void:
+	if member != null and member.stats_changed.is_connected(refresh):
+		member.stats_changed.disconnect(refresh)
 	member = member_data
 	party_index = index
+	member.stats_changed.connect(refresh)
 	refresh()
 
 
 func refresh() -> void:
 	if not is_node_ready() or member == null:
 		return
-	portrait.texture = member.sprite_texture
-	member_name.text = member.display_name
+	portrait.texture = member.class_data.sprite_texture
+	member_name.text = member.member_name
+	h_pbar.max_value = member.max_hp
+	h_pbar.value = member.current_hp
+	stamina_bar.max_value = member.max_stamina
+	stamina_bar.value = member.current_stamina
 	tooltip_text = "%d: %s (%s)" % [
 		party_index + 1,
-		member.display_name,
-		ClassData.get_display_name_for(member.class_id),
+		member.member_name,
+		ClassData.get_display_name_for(member.class_data.class_id),
 	]
 
 

@@ -15,6 +15,7 @@ const PARTY_MEMBER_CARD_SCENE := preload("res://scenes/ui/PartyMemberCards.tscn"
 func _ready() -> void:
 	PartyManager.party_changed.connect(_rebuild_party_cards)
 	PartyManager.selected_party_member_changed.connect(_on_selected_party_member_changed)
+	WorldManager.stamina_cost_due.connect(PartyManager.spend_party_stamina)
 	_rebuild_party_cards()
 
 	if initial_map == null or player_scene == null:
@@ -24,9 +25,11 @@ func _ready() -> void:
 	var player := player_scene.instantiate() as Node3D
 	entity_root.add_child(player)
 	StageManager.configure(level_root, entity_root, effect_root, player)
+	WorldManager.begin_dungeon()
 	StageManager.load_map_scene(initial_map, initial_spawn_id)
 	var movement := player.get_node_or_null("GridMovementController") as GridMovementController
 	if movement != null:
+		movement.step_taken.connect(WorldManager.record_step)
 		automap.setup(movement)
 
 
@@ -42,7 +45,7 @@ func _rebuild_party_cards() -> void:
 		card.set_selected(index == PartyManager.selected_party_member_index)
 
 
-func _on_selected_party_member_changed(index: int, _member: ClassData) -> void:
+func _on_selected_party_member_changed(index: int, _member: CharacterState) -> void:
 	for child_index in party_cards.get_child_count():
 		var card := party_cards.get_child(child_index) as PartyMemberCard
 		if card != null:

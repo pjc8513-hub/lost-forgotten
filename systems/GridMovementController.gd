@@ -2,6 +2,7 @@ class_name GridMovementController
 extends Node
 
 signal grid_state_changed(grid_pos: Vector3i, facing: Vector3i)
+signal step_taken
 
 @export var actor: Node3D
 @export var tile_size: float = 2.0
@@ -46,6 +47,7 @@ func try_move(direction: Vector3i) -> bool:
 	var target_world := grid_to_world(grid_pos)
 	actor.global_position = target_world
 	grid_state_changed.emit(grid_pos, facing)
+	step_taken.emit()
 
 	trigger_tile_effects(target)
 

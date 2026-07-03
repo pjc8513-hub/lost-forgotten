@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://c34beuspcofpa"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_a751k"]
+
+[resource]
+script = ExtResource("1_a751k")
+skill_id = &"search"
+display_name = "Search"
+available_classes = Array[int]([2, 6])
+archetype = 0
+stamina_cost = 3
+dc_stat = "wisdom"
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

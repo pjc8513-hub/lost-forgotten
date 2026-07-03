@@ -53,9 +53,9 @@ offset_bottom = 375.0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 25
 
-[node name="PartyCards" type="VBoxContainer" parent="HudLayer/HudRoot/MarginContainer"]
+[node name="PartyCards" type="VBoxContainer" parent="HudLayer/HudRoot/MarginContainer" unique_id=581799539]
 layout_mode = 2
-theme_override_constants/separation = 3
+theme_override_constants/separation = 6
 
 [node name="PauseLayer" type="Node" parent="." unique_id=192665520]
 

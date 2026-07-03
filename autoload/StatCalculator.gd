@@ -36,14 +36,13 @@ func get_max_hp(state: CharacterState) -> int:
 		+ floori(end_val * cd.hp_end_scale) \
 		+ state.bonus_willpower  # Willpower grants minor HP buffer
 
-func get_max_mp(state: CharacterState) -> int:
+func get_max_stamina(state: CharacterState) -> int:
 	var cd := state.class_data
 	if cd == null:
-		return state.max_mp
-	var wis_val := get_wisdom(state)
-	return cd.mp_base \
-		+ (cd.mp_per_level * state.level) \
-		+ floori(wis_val * cd.mp_wis_scale)
+		return state.max_stamina
+	return cd.stamina \
+		+ (cd.stamina_per_level * state.level) \
+		+ floori(get_endurance(state) * cd.stamina_end_scale)
 
 func get_armor_class(state: CharacterState) -> int:
 	var cd := state.class_data
@@ -150,14 +149,14 @@ func get_resistance(state: CharacterState, element: String) -> int:
 
 func recalculate(state: CharacterState, reset_vitals: bool = false) -> void:
 	state.max_hp = get_max_hp(state)
-	state.max_mp = get_max_mp(state)
+	state.max_stamina = get_max_stamina(state)
 
 	if reset_vitals:
 		state.current_hp = state.max_hp
-		state.current_mp = state.max_mp
+		state.current_stamina = state.max_stamina
 	else:
 		state.current_hp = clampi(state.current_hp, 0, state.max_hp)
-		state.current_mp = clampi(state.current_mp, 0, state.max_mp)
+		state.current_stamina = clampi(state.current_stamina, 0, state.max_stamina)
 
 	state.stats_changed.emit()
 

@@ -5,12 +5,18 @@ extends Node3D
 @export var local_edge := Vector3i(0, 0, -1)
 @export var starts_locked := false
 @export var starts_open := false
+@export var starts_discovered := false
+@onready var door_mesh: MeshInstance3D = $"../door"
+
+var blink_tween: Tween
 
 var is_open := false
 var is_locked := false
 
 func _ready() -> void:
 	MapManager.register_door(self)
+	if starts_discovered:
+		discover_door()
 
 func _exit_tree() -> void:
 	MapManager.unregister_door(self)
@@ -71,6 +77,29 @@ func _get_animation_player() -> AnimationPlayer:
 
 func can_interact(player_grid_pos: Vector3i, player_facing: Vector3i) -> bool:
 	return player_grid_pos == get_grid_pos() and player_facing == get_world_edge()
+
+func discover_door():
+	# Get the material (assumes it's unique or a local-to-scene material)
+	var mat = door_mesh.get_active_material(0) as StandardMaterial3D
+	if not mat:
+		print ("not mat")
+		return
+
+	door_mesh.set_surface_override_material(0, mat)
+	
+	# Create a looping tween to pulse the emission color
+	blink_tween = create_tween().set_loops()
+	
+	# Fade to bright red emission over 0.8 seconds
+	blink_tween.tween_property(mat, "emission", Color(0.8, 0.0, 0.0), 0.8)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_IN_OUT)
+		
+	# Fade back to black (no emission) over 0.8 seconds
+	blink_tween.tween_property(mat, "emission", Color(0, 0, 0), 0.8)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_IN_OUT)
+
 
 func _on_area_3d_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):

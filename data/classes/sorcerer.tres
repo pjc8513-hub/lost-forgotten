@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ClassData" format=3 uid="uid://og5pl7a67yoi"]
 
-[ext_resource type="Script" uid="uid://diy5ybgx3dj85" path="res://data/ClassData.gd" id="1_2kap2"]
+[ext_resource type="Script" uid="uid://diy5ybgx3dj85" path="res://resources/ClassData.gd" id="1_2kap2"]
 [ext_resource type="Texture2D" uid="uid://di7rqvd4bsllp" path="res://assets/portraits/sorcerer_p.png" id="2_bh2cm"]
 
 [resource]

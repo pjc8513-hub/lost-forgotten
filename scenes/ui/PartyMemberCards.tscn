@@ -10,6 +10,12 @@ bg_color = Color(0.21281448, 0.19446799, 0.14051089, 0.8392157)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyyt5"]
 bg_color = Color(0.726465, 0.053302236, 0.009592459, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ed5yw"]
+bg_color = Color(0.21176471, 0.19607843, 0.14117648, 0.8392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xa8nu"]
+bg_color = Color(0.14509805, 0.92941177, 0.10980392, 1)
+
 [node name="MemberPanel" type="PanelContainer" unique_id=569048960]
 custom_minimum_size = Vector2(125, 53)
 offset_right = 125.0
@@ -47,13 +53,22 @@ theme_override_constants/separation = 5
 layout_mode = 2
 
 [node name="HPbar" type="ProgressBar" parent="HBoxContainer/VBoxContainer" unique_id=914935688]
-custom_minimum_size = Vector2(0, 25)
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 theme = SubResource("Theme_xa8nu")
 theme_override_styles/background = SubResource("StyleBoxFlat_vvxho")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gyyt5")
 value = 100.0
 rounded = true
+show_percentage = false
+
+[node name="StaminaBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer" unique_id=1805301055]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_ed5yw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xa8nu")
+value = 100.0
 show_percentage = false
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

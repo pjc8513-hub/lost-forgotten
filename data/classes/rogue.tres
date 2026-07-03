@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="ClassData" format=3 uid="uid://x6qj7ufcu4t6"]
 
-[ext_resource type="Script" uid="uid://diy5ybgx3dj85" path="res://data/ClassData.gd" id="1_7ph07"]
+[ext_resource type="Script" uid="uid://diy5ybgx3dj85" path="res://resources/ClassData.gd" id="1_qgxf2"]
 [ext_resource type="Texture2D" uid="uid://c3wcdugdvqb0y" path="res://assets/portraits/rogue_p.png" id="2_qgxf2"]
 
 [resource]
-script = ExtResource("1_7ph07")
+script = ExtResource("1_qgxf2")
 class_id = 2
 display_name = "Sting"
 sprite_texture = ExtResource("2_qgxf2")
@@ -21,4 +21,5 @@ stamina_per_level = 0
 ac_bonus = -2
 accuracy_base = 2
 initiative_base = 2
+starting_skills = Array[String](["search"])
 metadata/_custom_type_script = "uid://diy5ybgx3dj85"
