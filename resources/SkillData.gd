@@ -14,12 +14,38 @@ enum Archetype {
 	PARTY_SPELL
 }
 
+enum Element {
+	UNKNOWN = -1,
+	FIRE,
+	EARTH,
+	AIR,
+	WATER,
+	PHYSICAL,
+	SPIRIT,
+	HOLY,
+	DARK
+}
+
+enum Status_effect {
+	NONE = -1,
+	STUN,
+	FEAR,
+	POISON,
+	BURN,
+	FREEZE,
+	PARALYZE,
+	BLIND,
+	WEAK,
+	SILENCE
+}
+
 # identity
 @export var skill_id: StringName = ""
 @export var display_name:  String = ""
 @export var available_classes: Array[ClassData.ClassName]
 @export var icon: Texture2D
 @export var archetype: Archetype = Archetype.UNKNOWN
+@export var element: Element = Element.UNKNOWN
 @export var starting_rank: int = 1
 @export var maximum_rank: int = 10
 
@@ -31,6 +57,11 @@ enum Archetype {
 # difficulty check roll
 @export var dc_stat: String
 @export var dc_base: int = 12
+
+@export_group("damage and Status Effect")
+@export var  damage_amount_dice: int = 0
+@export var damage_amount_rolls: int = 0
+@export var status_effect: Status_effect = Status_effect.NONE
 
 # heal and remove effect
 @export_group("Heal and remove effect")

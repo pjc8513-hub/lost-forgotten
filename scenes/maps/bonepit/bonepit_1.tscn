@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="15_gix0e"]
 [ext_resource type="Texture2D" uid="uid://c2tephrn5a07d" path="res://assets/models/rooms/stone_lift1_temple_stone_normal.png" id="16_p5i1o"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jr1l3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_035c6"]
 resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
@@ -265,10 +265,10 @@ spawn_id = &"lift_1"
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 8, 0, 2)
 
 [node name="wall" parent="stone_wall3_door" index="0" unique_id=1285790314]
-surface_material_override/0 = SubResource("StandardMaterial3D_jr1l3")
+surface_material_override/0 = SubResource("StandardMaterial3D_035c6")
 
 [node name="door" parent="stone_wall3_door" index="1" unique_id=27495278]
-surface_material_override/0 = SubResource("StandardMaterial3D_jr1l3")
+surface_material_override/0 = SubResource("StandardMaterial3D_035c6")
 
 [node name="DoorComponent" parent="stone_wall3_door" index="4" unique_id=534338047]
 door_id = &"secret_door1"

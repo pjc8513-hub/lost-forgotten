@@ -8,6 +8,7 @@ skill_id = &"invigorate"
 display_name = "Invigorate"
 available_classes = Array[int]([6])
 archetype = 4
+element = 5
 stamina_restore_sides = 8
 bonus_res_per_rank = 2
 metadata/_custom_type_script = "uid://bfe0w1owguy30"

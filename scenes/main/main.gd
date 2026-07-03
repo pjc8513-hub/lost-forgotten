@@ -42,6 +42,7 @@ func _rebuild_party_cards() -> void:
 		party_cards.add_child(card)
 		card.setup(PartyManager.party[index], index)
 		card.selection_requested.connect(PartyManager.select_party_member)
+		card.skill_requested.connect(SkillSystem.request_execution)
 		card.set_selected(index == PartyManager.selected_party_member_index)
 
 

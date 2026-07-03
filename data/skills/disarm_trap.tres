@@ -8,6 +8,7 @@ skill_id = &"disarm_trap"
 display_name = "Disarm Trap"
 available_classes = Array[int]([2, 0])
 archetype = 0
+element = 4
 stamina_cost = 4
 dc_stat = "dexterity"
 dc_base = 14
