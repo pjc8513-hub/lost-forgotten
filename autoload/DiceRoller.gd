@@ -2,6 +2,9 @@ extends Node
 
 var _rng := RandomNumberGenerator.new()
 
+func _ready() -> void:
+	_rng.randomize()
+
 func roll(dice_count: int, sides: int, modifier: int = 0) -> DiceRoll:
 	assert(dice_count >= 0, "Dice count cannot be negative.")
 	assert(sides > 0, "Dice must have at least one side.")

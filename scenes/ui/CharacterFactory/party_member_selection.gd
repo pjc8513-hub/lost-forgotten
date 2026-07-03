@@ -2,7 +2,7 @@ extends Control
 
 const PARTY_MEMBER_CARD_SCENE := preload("res://scenes/ui/CharacterFactory/PartyMemberCard.tscn")
 
-@onready var party_list_container: VBoxContainer = $VBoxContainer/PartyListContainer
+@onready var party_list_container: VBoxContainer = $VBoxContainer/ScrollContainer/PartyListContainer
 @onready var empty_label: Label = $VBoxContainer/EmptyLabel
 @onready var party_status_label: Label = $VBoxContainer/PartyStatusLabel
 @onready var create_character_button: Button = $VBoxContainer/ButtonRow/CreateCharacterButton
@@ -25,7 +25,7 @@ func _rebuild_party_list() -> void:
 
 	var roster := PartyManager.get_roster()
 	empty_label.visible = roster.is_empty()
-	party_status_label.text = "Current Party: %d/%d" % [PartyManager.get_active_party().size(), PartyManager.MAX_ACTIVE_PARTY_SIZE]
+	party_status_label.text = "Current Party: %d/%d" % [PartyManager.get_active_party().size(), PartyManager.MAX_PARTY_SIZE]
 	set_out_button.disabled = not PartyManager.can_set_out()
 
 	for member in roster:
@@ -46,11 +46,11 @@ func _on_delete_requested(member: PartyMember) -> void:
 	PartyManager.delete_roster_member(member)
 
 func _on_create_character_button_pressed() -> void:
-	SceneFlow.change_scene(SceneIndex.CHARACTER_CREATION)
+	SceneFlow.change_scene(load("res://scenes/ui/CharacterFactory/CharacterCreation.tscn") as PackedScene)
 
 func _on_set_out_button_pressed() -> void:
 	if PartyManager.can_set_out():
-		SceneFlow.change_scene(SceneIndex.MAIN_SCENE)
+		SceneFlow.change_scene(load("res://scenes/main/Main.tscn") as PackedScene)
 
 func _on_return_button_pressed():
-	SceneFlow.change_scene(SceneIndex.PARTY_MEMBER_SETUP_SCREEN)
+	SceneFlow.change_scene(load("res://scenes/ui/CharacterFactory/PartySetupScreen.tscn") as PackedScene)

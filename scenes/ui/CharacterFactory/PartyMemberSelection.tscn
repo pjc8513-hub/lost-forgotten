@@ -12,16 +12,26 @@ grow_vertical = 2
 script = ExtResource("1_ptwdj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=895715989]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="PartyListContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=290104105]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=830952876]
+layout_mode = 2
+
+[node name="PartyListContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=290104105]
 layout_mode = 2
 
 [node name="PartyStatusLabel" type="Label" parent="VBoxContainer" unique_id=1912657401]
 layout_mode = 2
-text = "Current Party: 0/6"
+text = "Current Party: 0/5"
 
 [node name="EmptyLabel" type="Label" parent="VBoxContainer" unique_id=1515627454]
 layout_mode = 2

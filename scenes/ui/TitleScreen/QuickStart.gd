@@ -2,7 +2,7 @@
 extends Control
 
 const CHARACTER_CREATION := preload(
-	"res://scenes/ui/CharacterFactory/PartySetupScreen.tscn"
+	"res://scenes/ui/CharacterFactory/CharacterCreation.tscn"
 )
 @onready var quick_start: Button = $VBoxContainer/quick_start
 @onready var create_character_button: Button = $VBoxContainer/CreateCharacterButton
@@ -18,13 +18,14 @@ func _ready() -> void:
 	
 func _on_quick_start_pressed():
 	# ROLL stats for default party 
-	SceneFlow.change_scene(SceneIndex.MAIN_SCENE)
+	SceneFlow.change_scene(load("res://scenes/main/Main.tscn") as PackedScene)
 
 func _on_CreateCharacterButton_pressed():
 	SceneFlow.change_scene(CHARACTER_CREATION)
 
 func _on_manage_party_pressed():
-	SceneFlow.change_scene(SceneIndex.PARTY_MEMBER_SELECTION)
+	SceneFlow.change_scene(load("res://scenes/ui/CharacterFactory/PartyMemberSelection.tscn") as PackedScene)
 
 func _on_begin_pressed():
-	pass
+	if PartyManager.can_set_out():
+		SceneFlow.change_scene(load("res://scenes/main/Main.tscn") as PackedScene)

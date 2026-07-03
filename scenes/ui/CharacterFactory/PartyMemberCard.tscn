@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cxwirjqbv56v3" path="res://scenes/ui/CharacterFactory/party_member_card.gd" id="1_lgvhm"]
 
 [node name="Control" type="Control" unique_id=1751811961]
+custom_minimum_size = Vector2(0, 105)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,6 +40,10 @@ text = "Class"
 [node name="LevelLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1597882380]
 layout_mode = 2
 text = "Level"
+
+[node name="RowLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1763260242]
+layout_mode = 2
+text = "Row"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=1537751815]
 layout_mode = 2
