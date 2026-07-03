@@ -35,12 +35,13 @@ enum ClassName {
 # ---------------------------------------------------------------------------
 
 @export_group("Base Stats")
-@export var base_strength: int = 10
-@export var base_endurance: int = 10
-@export var base_wisdom: int = 10
-@export var base_dexterity: int = 10
-@export var base_piety: int = 8
-@export var base_willpower: int = 2
+@export var base_strength: int = 5
+@export var base_endurance: int = 5
+@export var base_wisdom: int = 5
+@export var base_dexterity: int = 5
+@export var base_piety: int = 2
+@export var base_willpower: int = 1
+@export var base_movement: int = 4
 
 # ---------------------------------------------------------------------------
 # HP / Stamina Scaling

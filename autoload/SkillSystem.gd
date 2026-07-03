@@ -1,6 +1,6 @@
 extends Node
 
-signal execution_requested(caster: CharacterState, skill: SkillData)
+signal execution_requested(caster: PartyMember, skill: SkillData)
 
 const SKILL_DIRECTORY := "res://data/skills"
 const PARTY_MENU_ARCHETYPES: Array[SkillData.Archetype] = [
@@ -34,7 +34,7 @@ func reload_catalog() -> void:
 func get_skill(skill_id: StringName) -> SkillData:
 	return _skills.get(skill_id) as SkillData
 
-func get_learned_skills(character: CharacterState, archetypes: Array[SkillData.Archetype] = []) -> Array[SkillData]:
+func get_learned_skills(character: PartyMember, archetypes: Array[SkillData.Archetype] = []) -> Array[SkillData]:
 	var result: Array[SkillData] = []
 	if character == null:
 		return result
@@ -45,10 +45,10 @@ func get_learned_skills(character: CharacterState, archetypes: Array[SkillData.A
 	result.sort_custom(func(a: SkillData, b: SkillData) -> bool: return a.display_name.naturalnocasecmp_to(b.display_name) < 0)
 	return result
 
-func get_party_menu_skills(character: CharacterState) -> Array[SkillData]:
+func get_party_menu_skills(character: PartyMember) -> Array[SkillData]:
 	return get_learned_skills(character, PARTY_MENU_ARCHETYPES)
 
-func request_execution(caster: CharacterState, skill_id: StringName) -> bool:
+func request_execution(caster: PartyMember, skill_id: StringName) -> bool:
 	var skill := get_skill(skill_id)
 	if caster == null or skill == null or not caster.learned_skills.has(skill_id):
 		return false

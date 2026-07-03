@@ -4,7 +4,7 @@ extends RefCounted
 const FAILURE_MESSAGE := "Failed to find anything here"
 const NO_STAMINA_MESSAGE := "Not enough Stamina"
 
-static func execute(caster: CharacterState, skill: SkillData, origin: Vector3i) -> String:
+static func execute(caster: PartyMember, skill: SkillData, origin: Vector3i) -> String:
 	if caster == null or skill == null:
 		return FAILURE_MESSAGE
 	if not caster.spend_stamina(skill.stamina_cost):

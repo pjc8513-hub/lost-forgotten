@@ -52,13 +52,13 @@ func _rebuild_party_cards() -> void:
 		card.set_selected(index == PartyManager.selected_party_member_index)
 
 
-func _on_selected_party_member_changed(index: int, _member: CharacterState) -> void:
+func _on_selected_party_member_changed(index: int, _member: PartyMember) -> void:
 	for child_index in party_cards.get_child_count():
 		var card := party_cards.get_child(child_index) as PartyMemberCard
 		if card != null:
 			card.set_selected(child_index == index)
 
-func _on_skill_execution_requested(caster: CharacterState, skill: SkillData) -> void:
+func _on_skill_execution_requested(caster: PartyMember, skill: SkillData) -> void:
 	match skill.skill_id:
 		&"search":
 			if player_movement != null:

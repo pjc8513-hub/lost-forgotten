@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RaceData" format=3 uid="uid://brfuyskhxvg33"]
+
+[ext_resource type="Script" uid="uid://cxh3jt7r6t3a5" path="res://resources/RaceData.gd" id="1_j42n0"]
+
+[resource]
+script = ExtResource("1_j42n0")
+bonus_dexterity = 2
+bonus_wisdom = 4
+bonus_willpower = 2
+bonus_piety = 4
+metadata/_custom_type_script = "uid://cxh3jt7r6t3a5"

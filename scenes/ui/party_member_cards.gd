@@ -2,7 +2,7 @@ class_name PartyMemberCard
 extends PanelContainer
 
 signal selection_requested(index: int)
-signal skill_requested(member: CharacterState, skill_id: StringName)
+signal skill_requested(member: PartyMember, skill_id: StringName)
 
 @onready var portrait: TextureRect = $HBoxContainer/Portrait
 @onready var status_overlay: TextureRect = $HBoxContainer/Portrait/combatFX/StatusOverlay
@@ -13,7 +13,7 @@ signal skill_requested(member: CharacterState, skill_id: StringName)
 @onready var popup_menu: PopupMenu = $PopupMenu
 
 var party_index: int = -1
-var member: CharacterState
+var member: PartyMember
 
 var _selected_style := StyleBoxFlat.new()
 var _popup_skill_ids: Array[StringName] = []
@@ -26,7 +26,7 @@ func _ready() -> void:
 	refresh()
 
 
-func setup(member_data: CharacterState, index: int) -> void:
+func setup(member_data: PartyMember, index: int) -> void:
 	if member != null and member.stats_changed.is_connected(refresh):
 		member.stats_changed.disconnect(refresh)
 	member = member_data

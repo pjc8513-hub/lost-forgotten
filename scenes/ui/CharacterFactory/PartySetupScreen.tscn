@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://duh030kuqdwpm"]
+
+[ext_resource type="Script" uid="uid://nexy2b61uujw" path="res://scenes/ui/TitleScreen/QuickStart.gd" id="1_n4jmr"]
+
+[node name="control" type="Control" unique_id=254130386]
+propagate_maximum_size = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n4jmr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=55656662]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_right = 75.0
+offset_bottom = 469.0
+grow_horizontal = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="quick_start" type="Button" parent="VBoxContainer" unique_id=1901269627]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Quick Start"
+
+[node name="CreateCharacterButton" type="Button" parent="VBoxContainer" unique_id=250500151]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Create Character"
+
+[node name="ManagePartyButton" type="Button" parent="VBoxContainer" unique_id=1570590784]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Manage Party"
+
+[node name="BeginButton" type="Button" parent="VBoxContainer" unique_id=808748736]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Set Out"

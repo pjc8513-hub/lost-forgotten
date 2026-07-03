@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://piej668ycbfx"]
+
+[ext_resource type="Script" uid="uid://bwy3wgpx41ils" path="res://scenes/ui/CharacterFactory/party_member_selection.gd" id="1_ptwdj"]
+
+[node name="Control" type="Control" unique_id=1173296602]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ptwdj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=895715989]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PartyListContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=290104105]
+layout_mode = 2
+
+[node name="PartyStatusLabel" type="Label" parent="VBoxContainer" unique_id=1912657401]
+layout_mode = 2
+text = "Current Party: 0/6"
+
+[node name="EmptyLabel" type="Label" parent="VBoxContainer" unique_id=1515627454]
+layout_mode = 2
+text = "No current party members"
+
+[node name="ButtonRow" type="HBoxContainer" parent="VBoxContainer" unique_id=1084415113]
+layout_mode = 2
+
+[node name="CreateCharacterButton" type="Button" parent="VBoxContainer/ButtonRow" unique_id=1348216118]
+layout_mode = 2
+text = "Create Character"
+
+[node name="SetOutButton" type="Button" parent="VBoxContainer/ButtonRow" unique_id=1938311571]
+layout_mode = 2
+text = "Set Out"
+
+[node name="ReturnButton" type="Button" parent="VBoxContainer" unique_id=274055313]
+layout_mode = 2
+text = "Return"

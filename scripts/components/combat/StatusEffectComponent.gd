@@ -1,5 +1,5 @@
 # StatusEffectComponent.gd  (components/combat/status_effect_component.gd)
-# Responsibility: Apply, tick, and clear status effects on one CharacterState.
+# Responsibility: Apply, tick, and clear status effects on one PartyMember.
 # Reads effect definitions from the StatusEffects autoload.
 # Emits signals so UI and audio can react — never touches them directly.
 # One instance lives on each PartyMember node.
@@ -20,16 +20,16 @@ signal all_effects_cleared
 # References
 # ---------------------------------------------------------------------------
 
-@export var character_state: CharacterState   # Injected by parent PartyMember
+@export var character_state: PartyMember   # Injected by parent PartyMember
 
 # ---------------------------------------------------------------------------
-# Internal state structure stored in CharacterState.active_status_effects:
+# Internal state structure stored in PartyMember.active_status_effects:
 #   { effect_id: int: {
 #       "remaining_rounds": int,
 #       "save_dc": int,        # DC for Willpower save each round
 #       "source": String,      # Who/what applied it (for UI tooltip)
 #   } }
-# We write to CharacterState so it persists with the save resource.
+# We write to PartyMember so it persists with the save resource.
 # ---------------------------------------------------------------------------
 
 # ---------------------------------------------------------------------------
@@ -207,5 +207,5 @@ func get_active_labels() -> Array[String]:
 func _get_willpower() -> int:
 	if not Engine.has_singleton("StatCalculator"):
 		push_warning("StatusEffectComponent: StatCalculator autoload not found")
-		return character_state.base_willpower
+		return StatCalculator.get_willpower(character_state)
 	return StatCalculator.get_willpower(character_state)

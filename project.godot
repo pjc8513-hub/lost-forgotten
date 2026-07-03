@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Lost and Forgotten Game"
-run/main_scene="uid://bhwhmj61exxxl"
+run/main_scene="uid://bsb0khwmixqdk"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://emh8aewkkdkp"
 
 [autoload]
 
@@ -28,6 +32,8 @@ TurnManager="*uid://cbe0tvcjqnwp6"
 StageManager="*uid://bpyfaacsk8xgt"
 PartyManager="*uid://cwtri8vq5bhew"
 WorldManager="*uid://fqm68e8mk1qv"
+SceneFlow="*uid://boasdbtwi06cf"
+MusicManager="*uid://d1tm0lvlq8wf5"
 
 [display]
 

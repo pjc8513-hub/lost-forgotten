@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RaceData" format=3 uid="uid://rfjmy7so53dq"]
+
+[ext_resource type="Script" uid="uid://cxh3jt7r6t3a5" path="res://resources/RaceData.gd" id="1_hwfdr"]
+
+[resource]
+script = ExtResource("1_hwfdr")
+bonus_strength = 2
+bonus_endurance = 3
+bonus_dexterity = 2
+bonus_willpower = 1
+bonus_piety = 1
+metadata/_custom_type_script = "uid://cxh3jt7r6t3a5"

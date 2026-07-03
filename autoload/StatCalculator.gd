@@ -1,7 +1,7 @@
 # StatCalculator.gd  (Autoload — res://systems/StatCalculator.gd)
-# Responsibility: Compute derived stats from a CharacterState + its ClassData.
+# Responsibility: Compute derived stats from a PartyMember + its ClassData.
 # Pure calculation only — reads state, returns values, never modifies anything.
-# Call recalculate() after any stat change to push results back into CharacterState.
+# Call recalculate() after any stat change to push results back into PartyMember.
 
 extends Node
 
@@ -9,22 +9,25 @@ extends Node
 # Public API — call these from UI, combat, and component code
 # ---------------------------------------------------------------------------
 
-func get_strength(state: CharacterState) -> int:
-	return state.base_strength + state.bonus_strength + _combat_bonus(state, "strength")
+func get_strength(state: PartyMember) -> int:
+	return state.rolled_strength + _class_stat(state, "base_strength") + _race_stat(state, "bonus_strength") + state.bonus_strength + _combat_bonus(state, "strength")
 
-func get_endurance(state: CharacterState) -> int:
-	return state.base_endurance + state.bonus_endurance + _combat_bonus(state, "endurance")
+func get_endurance(state: PartyMember) -> int:
+	return state.rolled_endurance + _class_stat(state, "base_endurance") + _race_stat(state, "bonus_endurance") + state.bonus_endurance + _combat_bonus(state, "endurance")
 
-func get_wisdom(state: CharacterState) -> int:
-	return state.base_wisdom + state.bonus_wisdom + _combat_bonus(state, "wisdom")
+func get_wisdom(state: PartyMember) -> int:
+	return state.rolled_wisdom + _class_stat(state, "base_wisdom") + _race_stat(state, "bonus_wisdom") + state.bonus_wisdom + _combat_bonus(state, "wisdom")
 
-func get_dexterity(state: CharacterState) -> int:
-	return state.base_dexterity + state.bonus_dexterity + _combat_bonus(state, "dexterity")
+func get_dexterity(state: PartyMember) -> int:
+	return state.rolled_dexterity + _class_stat(state, "base_dexterity") + _race_stat(state, "bonus_dexterity") + state.bonus_dexterity + _combat_bonus(state, "dexterity")
 
-func get_willpower(state: CharacterState) -> int:
-	return state.base_willpower + state.bonus_willpower + _combat_bonus(state, "willpower")
+func get_piety(state: PartyMember) -> int:
+	return state.rolled_piety + _class_stat(state, "base_piety") + _race_stat(state, "bonus_piety") + state.bonus_piety + _combat_bonus(state, "piety")
 
-func get_max_hp(state: CharacterState) -> int:
+func get_willpower(state: PartyMember) -> int:
+	return state.rolled_willpower + _class_stat(state, "base_willpower") + _race_stat(state, "bonus_willpower") + state.bonus_willpower + _combat_bonus(state, "willpower")
+
+func get_max_hp(state: PartyMember) -> int:
 	var cd := state.class_data
 	if cd == null:
 		return state.max_hp
@@ -36,7 +39,7 @@ func get_max_hp(state: CharacterState) -> int:
 		+ floori(end_val * cd.hp_end_scale) \
 		+ state.bonus_willpower  # Willpower grants minor HP buffer
 
-func get_max_stamina(state: CharacterState) -> int:
+func get_max_stamina(state: PartyMember) -> int:
 	var cd := state.class_data
 	if cd == null:
 		return state.max_stamina
@@ -44,7 +47,7 @@ func get_max_stamina(state: CharacterState) -> int:
 		+ (cd.stamina_per_level * state.level) \
 		+ floori(get_endurance(state) * cd.stamina_end_scale)
 
-func get_armor_class(state: CharacterState) -> int:
+func get_armor_class(state: PartyMember) -> int:
 	var cd := state.class_data
 	if cd == null:
 		return 10
@@ -55,7 +58,7 @@ func get_armor_class(state: CharacterState) -> int:
 		+ _status_modifier(state, "armor_class") \
 		+ _combat_bonus(state, "armor_class")
 
-func get_accuracy(state: CharacterState) -> int:
+func get_accuracy(state: PartyMember) -> int:
 	var cd := state.class_data
 	if cd == null:
 		return 0
@@ -69,7 +72,7 @@ func get_accuracy(state: CharacterState) -> int:
 		+ _status_modifier(state, "accuracy") \
 		+ _combat_bonus(state, "accuracy")
 
-func get_critical_chance(state: CharacterState) -> int:
+func get_critical_chance(state: PartyMember) -> int:
 	var cd := state.class_data
 	if cd == null:
 		return 1
@@ -80,7 +83,7 @@ func get_critical_chance(state: CharacterState) -> int:
 		+ floori(wis_val * cd.crit_wis_scale) \
 		+ _combat_bonus(state, "critical_chance")
 
-func get_initiative(state: CharacterState) -> int:
+func get_initiative(state: PartyMember) -> int:
 	var cd := state.class_data
 	if cd == null:
 		return 0
@@ -92,7 +95,7 @@ func get_initiative(state: CharacterState) -> int:
 		+ _status_modifier(state, "initiative") \
 		+ _combat_bonus(state, "initiative")
 
-func get_attack_speed(state: CharacterState) -> int:
+func get_attack_speed(state: PartyMember) -> int:
 	var cd := state.class_data
 	if cd == null:
 		return 0
@@ -101,7 +104,7 @@ func get_attack_speed(state: CharacterState) -> int:
 		+ floori(dex_val * cd.attack_speed_dex_scale) \
 		+ _combat_bonus(state, "attack_speed")
 
-func get_bonus_damage(state: CharacterState) -> int:
+func get_bonus_damage(state: PartyMember) -> int:
 	var cd := state.class_data
 	if cd == null:
 		return 0
@@ -114,7 +117,7 @@ func get_bonus_damage(state: CharacterState) -> int:
 		+ floori(wis_val * cd.damage_wis_scale) \
 		+ _combat_bonus(state, "bonus_damage")
 
-func get_magic_amp(state: CharacterState) -> int:
+func get_magic_amp(state: PartyMember) -> int:
 	var cd := state.class_data
 	if cd == null:
 		return 0
@@ -123,7 +126,7 @@ func get_magic_amp(state: CharacterState) -> int:
 		+ floori(wis_val * cd.magic_amp_wis_scale) \
 		+ _combat_bonus(state, "magic_amp")
 
-func get_movement(state: CharacterState) -> int:
+func get_movement(state: PartyMember) -> int:
 	var cd := state.class_data
 	if cd == null:
 		return 4
@@ -131,7 +134,7 @@ func get_movement(state: CharacterState) -> int:
 		+ _status_modifier(state, "movement") \
 		+ _combat_bonus(state, "movement")
 
-func get_resistance(state: CharacterState, element: String) -> int:
+func get_resistance(state: PartyMember, element: String) -> int:
 	match element.to_lower().strip_edges():
 		"fire":     return state.resist_fire     + _combat_bonus(state, "resist_fire")
 		"water":    return state.resist_water    + _combat_bonus(state, "resist_water")
@@ -142,12 +145,12 @@ func get_resistance(state: CharacterState, element: String) -> int:
 	return 0
 
 # ---------------------------------------------------------------------------
-# Recalculate — writes cached maximums back into CharacterState.
+# Recalculate — writes cached maximums back into PartyMember.
 # Call this after leveling up, spending stat points, equipping items, etc.
 # Does NOT reset current HP/MP unless reset_vitals is true.
 # ---------------------------------------------------------------------------
 
-func recalculate(state: CharacterState, reset_vitals: bool = false) -> void:
+func recalculate(state: PartyMember, reset_vitals: bool = false) -> void:
 	state.max_hp = get_max_hp(state)
 	state.max_stamina = get_max_stamina(state)
 
@@ -164,13 +167,13 @@ func recalculate(state: CharacterState, reset_vitals: bool = false) -> void:
 # Private helpers — read from active_combat_buffs / active_status_effects
 # ---------------------------------------------------------------------------
 
-func _combat_bonus(state: CharacterState, key: String) -> int:
+func _combat_bonus(state: PartyMember, key: String) -> int:
 	var entry = state.active_combat_buffs.get(key, {})
 	if entry is Dictionary:
 		return int(entry.get("value", 0))
 	return int(entry)
 
-func _status_modifier(state: CharacterState, stat: String) -> int:
+func _status_modifier(state: PartyMember, stat: String) -> int:
 	# StatusEffects autoload provides per-status stat deltas.
 	# This keeps StatCalculator decoupled from status logic.
 	if not Engine.has_singleton("StatusEffects"):
@@ -179,3 +182,9 @@ func _status_modifier(state: CharacterState, stat: String) -> int:
 	for status_id in state.active_status_effects.keys():
 		total += StatusEffects.stat_modifier(status_id, stat)
 	return total
+
+func _class_stat(state: PartyMember, property: StringName) -> int:
+	return 0 if state.class_data == null else int(state.class_data.get(property))
+
+func _race_stat(state: PartyMember, property: StringName) -> int:
+	return 0 if state.race_data == null else int(state.race_data.get(property))

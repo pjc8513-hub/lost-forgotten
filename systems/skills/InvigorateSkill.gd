@@ -3,7 +3,7 @@ extends RefCounted
 
 const NO_USES_MESSAGE := "No uses of Invigorate remaining until you rest"
 
-static func execute(caster: CharacterState, skill: SkillData) -> String:
+static func execute(caster: PartyMember, skill: SkillData) -> String:
 	if caster == null or skill == null:
 		return "Invigorate could not be used"
 	if caster.get_skill_uses_remaining(skill) == 0:

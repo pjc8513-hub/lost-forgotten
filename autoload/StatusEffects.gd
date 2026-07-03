@@ -2,7 +2,7 @@
 # Responsibility: Define every status effect in one place.
 # Provides stat_modifier() so StatCalculator can query deltas without
 # knowing anything about how effects are applied or removed.
-# Never modifies CharacterState directly — that is StatusEffectComponent's job.
+# Never modifies PartyMember directly — that is StatusEffectComponent's job.
 
 extends Node
 
