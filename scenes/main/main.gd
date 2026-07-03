@@ -59,5 +59,9 @@ func _on_selected_party_member_changed(index: int, _member: CharacterState) -> v
 			card.set_selected(child_index == index)
 
 func _on_skill_execution_requested(caster: CharacterState, skill: SkillData) -> void:
-	if skill.skill_id == &"search" and player_movement != null:
-		alert.show_message(SearchSkill.execute(caster, skill, player_movement.grid_pos))
+	match skill.skill_id:
+		&"search":
+			if player_movement != null:
+				alert.show_message(SearchSkill.execute(caster, skill, player_movement.grid_pos))
+		&"invigorate":
+			alert.show_message(InvigorateSkill.execute(caster, skill))

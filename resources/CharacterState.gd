@@ -102,6 +102,9 @@ signal leveled_up(new_level: int)
 
 @export_group("Skills")
 @export var learned_skills: Dictionary = {}
+# Limited-use skills store uses spent rather than uses remaining, so changing a
+# skill's configured maximum does not require migrating save data.
+@export var daily_skill_uses_spent: Dictionary = {}
 
 # ---------------------------------------------------------------------------
 # Status & Buffs (runtime only — not exported, not saved between combats)
@@ -138,6 +141,24 @@ func spend_stamina(amount: int) -> bool:
 
 func restore_stamina(amount: int) -> void:
 	current_stamina += maxi(amount, 0)
+
+func get_skill_uses_remaining(skill: SkillData) -> int:
+	if skill == null or skill.uses_per_day < 0:
+		return -1
+	return maxi(skill.uses_per_day - int(daily_skill_uses_spent.get(skill.skill_id, 0)), 0)
+
+func consume_skill_use(skill: SkillData) -> bool:
+	if skill == null:
+		return false
+	if skill.uses_per_day < 0:
+		return true
+	if get_skill_uses_remaining(skill) <= 0:
+		return false
+	daily_skill_uses_spent[skill.skill_id] = int(daily_skill_uses_spent.get(skill.skill_id, 0)) + 1
+	return true
+
+func reset_daily_skill_uses() -> void:
+	daily_skill_uses_spent.clear()
 
 func get_class_id() -> ClassData.ClassName:
 	if class_data == null:

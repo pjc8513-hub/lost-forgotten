@@ -72,3 +72,8 @@ func remove_party_member(index: int) -> bool:
 func spend_party_stamina(amount: int) -> void:
 	for member in party:
 		member.spend_stamina(amount)
+
+# Call this from the eventual rest flow after the rest has completed.
+func reset_daily_skill_uses() -> void:
+	for member in party:
+		member.reset_daily_skill_uses()
