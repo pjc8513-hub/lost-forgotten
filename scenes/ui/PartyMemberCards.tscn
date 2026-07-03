@@ -71,4 +71,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_xa8nu")
 value = 100.0
 show_percentage = false
 
+[node name="PopupMenu" type="PopupMenu" parent="." unique_id=962355035]
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

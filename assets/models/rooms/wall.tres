@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c2tephrn5a07d" path="res://assets/models/rooms/stone_lift1_temple_stone_normal.png" id="2_784lj"]
 
 [resource]
+resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
 albedo_texture = ExtResource("1_paw6l")

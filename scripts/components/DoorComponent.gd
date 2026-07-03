@@ -85,13 +85,14 @@ func discover_door():
 		print ("not mat")
 		return
 
+	mat.emission_enabled = true
 	door_mesh.set_surface_override_material(0, mat)
 	
 	# Create a looping tween to pulse the emission color
 	blink_tween = create_tween().set_loops()
 	
 	# Fade to bright red emission over 0.8 seconds
-	blink_tween.tween_property(mat, "emission", Color(0.8, 0.0, 0.0), 0.8)\
+	blink_tween.tween_property(mat, "emission", Color(0.331, 0.0, 0.0, 1.0), 0.8)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN_OUT)
 		

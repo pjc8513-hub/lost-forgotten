@@ -18,4 +18,5 @@ hp_per_level = 2
 stamina = 27
 ac_bonus = -2
 initiative_base = 3
+starting_skills = Array[String](["invigorate"])
 metadata/_custom_type_script = "uid://diy5ybgx3dj85"

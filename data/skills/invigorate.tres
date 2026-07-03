@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://cfu31b67w3vqk"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_sbtkv"]
+
+[resource]
+script = ExtResource("1_sbtkv")
+skill_id = &"invigorate"
+display_name = "Invigorate"
+available_classes = Array[int]([6])
+archetype = 4
+stamina_restore_sides = 8
+bonus_res_per_rank = 2
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

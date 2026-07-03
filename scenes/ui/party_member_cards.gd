@@ -9,6 +9,7 @@ signal selection_requested(index: int)
 @onready var member_name: Label = $HBoxContainer/VBoxContainer/MemberName
 @onready var h_pbar: ProgressBar = $HBoxContainer/VBoxContainer/HPbar
 @onready var stamina_bar: ProgressBar = $HBoxContainer/VBoxContainer/StaminaBar
+@onready var popup_menu: PopupMenu = $PopupMenu
 
 var party_index: int = -1
 var member: CharacterState

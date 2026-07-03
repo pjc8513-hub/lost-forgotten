@@ -10,7 +10,8 @@ enum Archetype {
 	EXPLORATION,
 	PASSIVE,
 	COMBAT_ACTIVE,
-	COMBAT_PASSIVE
+	COMBAT_PASSIVE,
+	PARTY_SPELL
 }
 
 # identity
@@ -30,6 +31,14 @@ enum Archetype {
 # difficulty check roll
 @export var dc_stat: String
 @export var dc_base: int = 12
+
+# heal and remove effect
+@export_group("Heal and remove effect")
+@export var heal_amount_dice: int = 0
+@export var heal_amount_sides: int = 0
+@export var stamina_restore_sides: int = 0
+@export var bonus_res_per_rank: int = 0
+@export var remove_effect: Array[String]
 
 # stat bonuses
 @export var stat_deltas: Dictionary[String, int] # StatCalculator reads this per skill rank
