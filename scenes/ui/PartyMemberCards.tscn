@@ -55,6 +55,7 @@ layout_mode = 2
 [node name="HPbar" type="ProgressBar" parent="HBoxContainer/VBoxContainer" unique_id=914935688]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
+mouse_filter = 1
 theme = SubResource("Theme_xa8nu")
 theme_override_styles/background = SubResource("StyleBoxFlat_vvxho")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gyyt5")
@@ -65,6 +66,7 @@ show_percentage = false
 [node name="StaminaBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer" unique_id=1805301055]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
+mouse_filter = 1
 size_flags_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_ed5yw")
 theme_override_styles/fill = SubResource("StyleBoxFlat_xa8nu")

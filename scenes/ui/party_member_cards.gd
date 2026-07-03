@@ -39,8 +39,13 @@ func refresh() -> void:
 	member_name.text = member.member_name
 	h_pbar.max_value = member.max_hp
 	h_pbar.value = member.current_hp
+	h_pbar.tooltip_text = "HP: %d / %d" % [member.current_hp, member.max_hp]
 	stamina_bar.max_value = member.max_stamina
 	stamina_bar.value = member.current_stamina
+	stamina_bar.tooltip_text = "Stamina: %d / %d" % [
+		member.current_stamina,
+		member.max_stamina,
+	]
 	tooltip_text = "%d: %s (%s)" % [
 		party_index + 1,
 		member.member_name,
