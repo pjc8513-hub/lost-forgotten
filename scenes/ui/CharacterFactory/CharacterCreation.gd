@@ -17,7 +17,6 @@ const CLASSES: Array[ClassData] = [
 	preload("res://data/classes/druid.tres"),
 ]
 const CLASS_NAMES: Array[String] = ["Knight", "Barbarian", "Monk", "Cleric", "Rogue", "Sorcerer", "Druid"]
-const STAT_NAMES: Array[String] = ["strength", "endurance", "wisdom", "dexterity", "piety", "willpower"]
 
 @onready var portrait: TextureRect = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/PortraitContainer/Portrait
 @onready var name_edit: LineEdit = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/NameEdit
@@ -59,8 +58,7 @@ func _populate_choices() -> void:
 		class_select.add_item(class_name_value)
 
 func _roll_stats() -> void:
-	for stat_name in STAT_NAMES:
-		rolled_stats[stat_name] = DiceRoller.roll(3, 6).total
+	rolled_stats = DiceRoller.roll_character_stats()
 	_refresh_preview()
 
 func _refresh_preview(_selected_index: int = 0) -> void:

@@ -15,6 +15,7 @@ const DEFAULT_PARTY: Array[ClassData] = [
 	preload("res://data/classes/sorcerer.tres"),
 ]
 
+var default_party: Array[PartyMember] = []
 var roster: Array[PartyMember] = []
 var party: Array[PartyMember] = []
 var selected_party_member_index: int = -1
@@ -28,12 +29,22 @@ var selected_party_member: PartyMember:
 func _ready() -> void:
 	var default_members: Array[PartyMember] = []
 	for class_data in DEFAULT_PARTY:
-		var member := PartyMember.create(class_data, DEFAULT_RACE, class_data.display_name)
+		var member := PartyMember.create(
+			class_data,
+			DEFAULT_RACE,
+			class_data.display_name,
+			DiceRoller.roll_character_stats()
+		)
 		StatCalculator.recalculate(member, true)
 		default_members.append(member)
+	default_party.assign(default_members)
 	roster.assign(default_members)
 	set_party(default_members)
 	roster_changed.emit()
+
+
+func use_default_party() -> void:
+	set_party(default_party)
 
 
 func set_party(members: Array[PartyMember]) -> void:

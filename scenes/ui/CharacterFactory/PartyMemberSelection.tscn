@@ -25,9 +25,12 @@ grow_vertical = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=830952876]
 layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
 
 [node name="PartyListContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=290104105]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="PartyStatusLabel" type="Label" parent="VBoxContainer" unique_id=1912657401]
 layout_mode = 2

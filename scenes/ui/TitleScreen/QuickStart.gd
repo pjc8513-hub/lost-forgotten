@@ -17,7 +17,7 @@ func _ready() -> void:
 	begin_button.pressed.connect(_on_begin_pressed)
 	
 func _on_quick_start_pressed():
-	# ROLL stats for default party 
+	PartyManager.use_default_party()
 	SceneFlow.change_scene(load("res://scenes/main/Main.tscn") as PackedScene)
 
 func _on_CreateCharacterButton_pressed():
