@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dkaw7nic8abj8" path="res://scenes/maps/bonepit/bonepit_1.tscn" id="2_initial_map"]
 [ext_resource type="PackedScene" uid="uid://c1buyprn7xxw4" path="res://scenes/actors/PlayerPawn.tscn" id="3_player"]
 [ext_resource type="Shader" uid="uid://8a25oser5fpm" path="res://scripts/shaders/Main_shader.gdshader" id="4_filter_shader"]
+[ext_resource type="PackedScene" uid="uid://182xd2127w4r" path="res://scenes/ui/alert.tscn" id="4_sjxhf"]
 [ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="5_palette"]
 [ext_resource type="PackedScene" uid="uid://ungfb04ujreb" path="res://scenes/ui/automap.tscn" id="6_1rhdn"]
 
@@ -32,6 +33,9 @@ player_scene = ExtResource("3_player")
 [node name="HudLayer" type="Node" parent="." unique_id=306252378]
 
 [node name="HudRoot" type="Node" parent="HudLayer" unique_id=2143251189]
+
+[node name="Alert" parent="HudLayer/HudRoot" unique_id=101966706 instance=ExtResource("4_sjxhf")]
+visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="HudLayer/HudRoot" unique_id=2067498579]
 

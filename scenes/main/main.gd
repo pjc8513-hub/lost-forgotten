@@ -11,11 +11,15 @@ const PARTY_MEMBER_CARD_SCENE := preload("res://scenes/ui/PartyMemberCards.tscn"
 @onready var effect_root: Node = $World/EffectRoot
 @onready var automap: Automap = $HudLayer/HudRoot/CanvasLayer/AutomapControl
 @onready var party_cards: VBoxContainer = $HudLayer/HudRoot/MarginContainer/PartyCards
+@onready var alert: Control = $HudLayer/HudRoot/Alert
+
+var player_movement: GridMovementController
 
 func _ready() -> void:
 	PartyManager.party_changed.connect(_rebuild_party_cards)
 	PartyManager.selected_party_member_changed.connect(_on_selected_party_member_changed)
 	WorldManager.stamina_cost_due.connect(PartyManager.spend_party_stamina)
+	SkillSystem.execution_requested.connect(_on_skill_execution_requested)
 	_rebuild_party_cards()
 
 	if initial_map == null or player_scene == null:
@@ -29,7 +33,9 @@ func _ready() -> void:
 	StageManager.load_map_scene(initial_map, initial_spawn_id)
 	var movement := player.get_node_or_null("GridMovementController") as GridMovementController
 	if movement != null:
+		player_movement = movement
 		movement.step_taken.connect(WorldManager.record_step)
+		movement.step_taken.connect(alert.dismiss)
 		automap.setup(movement)
 
 
@@ -51,3 +57,7 @@ func _on_selected_party_member_changed(index: int, _member: CharacterState) -> v
 		var card := party_cards.get_child(child_index) as PartyMemberCard
 		if card != null:
 			card.set_selected(child_index == index)
+
+func _on_skill_execution_requested(caster: CharacterState, skill: SkillData) -> void:
+	if skill.skill_id == &"search" and player_movement != null:
+		alert.show_message(SearchSkill.execute(caster, skill, player_movement.grid_pos))

@@ -76,9 +76,14 @@ func _get_animation_player() -> AnimationPlayer:
 	return get_parent().get_node_or_null("AnimationPlayer") as AnimationPlayer
 
 func can_interact(player_grid_pos: Vector3i, player_facing: Vector3i) -> bool:
+	var secret := get_parent().get_node_or_null("SecretComponent") as SecretComponent
+	if secret != null and secret.is_secret:
+		return false
 	return player_grid_pos == get_grid_pos() and player_facing == get_world_edge()
 
-func discover_door():
+func discover_door() -> void:
+	if blink_tween != null and blink_tween.is_valid():
+		return
 	# Get the material (assumes it's unique or a local-to-scene material)
 	var mat = door_mesh.get_active_material(0) as StandardMaterial3D
 	if not mat:

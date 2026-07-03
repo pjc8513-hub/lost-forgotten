@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://182xd2127w4r"]
+
+[ext_resource type="Script" uid="uid://886sltlhmgnk" path="res://scenes/ui/alert.gd" id="1_1i12p"]
+
+[node name="Alert" type="Control" unique_id=101966706]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+mouse_filter = 1
+script = ExtResource("1_1i12p")
+
+[node name="AlertText" type="Label" parent="." unique_id=1443791715]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 60.0
+mouse_filter = 1

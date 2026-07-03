@@ -274,6 +274,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_035c6")
 door_id = &"secret_door1"
 local_edge = Vector3i(-1, 0, 0)
 
+[node name="SecretComponent" parent="stone_wall3_door" index="5" unique_id=845481881]
+secret_ID = &"secret_1"
+secret_type = "door"
+
 [editable path="stone_door_1"]
 [editable path="button_door_1"]
 [editable path="stone_wall3_door"]
