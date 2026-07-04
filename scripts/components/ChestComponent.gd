@@ -30,6 +30,7 @@ func _ready() -> void:
 		_trap = TrapComponent.new()
 		_trap.name = "TrapComponent"
 		_trap.trap_id = StringName("%s.trap" % chest_ID) if not chest_ID.is_empty() else &""
+		_trap.trigger_on_step = false
 		_trap.trap_type = trap_type
 		var chest_mesh := get_parent().get_node_or_null("chest")
 		if chest_mesh != null:

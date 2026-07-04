@@ -3,6 +3,7 @@ extends Node
 
 @export var trap_id: StringName
 @export var trigger_once: bool = false
+@export var trigger_on_step: bool = true
 @export var trap_type: trap_data
 var triggered: bool = false
 var disarmed: bool = false

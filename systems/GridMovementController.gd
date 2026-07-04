@@ -100,7 +100,7 @@ func trigger_tile_effects(pos: Vector3i) -> void:
 	for element in MapManager.get_elements(pos):
 		for component in element.get_parent().find_children("*", "TrapComponent", true, false):
 			var trap := component as TrapComponent
-			if trap != null:
+			if trap != null and trap.trigger_on_step:
 				trap.trigger(actor)
 
 func world_to_grid(world_pos: Vector3) -> Vector3i:
