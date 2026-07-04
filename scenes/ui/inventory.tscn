@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cxm5ycb6246ay"]
 
+[ext_resource type="Script" uid="uid://btqty3akf28tq" path="res://scenes/ui/inventory.gd" id="1_s6ek7"]
+
 [node name="Control" type="Control" unique_id=478230194]
 layout_mode = 3
 anchors_preset = 15
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_s6ek7")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=422224215]
 layout_mode = 1
@@ -34,7 +37,10 @@ horizontal_alignment = 1
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=441564661]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer" unique_id=701420002]
 layout_mode = 2
@@ -51,14 +57,86 @@ layout_mode = 2
 text = "Equipped"
 horizontal_alignment = 1
 
-[node name="Bag" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=504929564]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer" unique_id=1945182853]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer" unique_id=251909706]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.24
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1207705159]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Weapon:
+Shield:
+Helmet:
+Armor:
+Gloves:
+Boots:
+Ring:
+Amulet:"
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer" unique_id=1462111915]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag" unique_id=1649494251]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2" unique_id=728934719]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/VBoxContainer" unique_id=40425567]
+[node name="WeaponSlot" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer" unique_id=122089688]
+layout_mode = 2
+text = "<Empty>"
+horizontal_alignment = 1
+
+[node name="ShieldSlot" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer" unique_id=1949616901]
+layout_mode = 2
+text = "<Empty>"
+horizontal_alignment = 1
+
+[node name="HelmetSlot" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer" unique_id=853685758]
+layout_mode = 2
+text = "<Empty>"
+horizontal_alignment = 1
+
+[node name="ArmorSlot" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer" unique_id=854802782]
+layout_mode = 2
+text = "<Empty>"
+horizontal_alignment = 1
+
+[node name="GlovesSlot" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer" unique_id=1740040195]
+layout_mode = 2
+text = "<Empty>"
+horizontal_alignment = 1
+
+[node name="BootsSlot" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer" unique_id=1897718522]
+layout_mode = 2
+text = "<Empty>"
+horizontal_alignment = 1
+
+[node name="RingSlot" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer" unique_id=2019007239]
+layout_mode = 2
+text = "<Empty>"
+horizontal_alignment = 1
+
+[node name="AmuletSlot" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer" unique_id=1881188273]
+layout_mode = 2
+text = "<Empty>"
+horizontal_alignment = 1
+
+[node name="Bag" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=504929564]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.58
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag" unique_id=359820238]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer" unique_id=1649494251]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer" unique_id=40425567]
 layout_mode = 2
 text = "Bag"
 horizontal_alignment = 1
