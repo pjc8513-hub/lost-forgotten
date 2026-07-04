@@ -15,10 +15,13 @@
 [ext_resource type="PackedScene" uid="uid://x5kyyslryhw4" path="res://scenes/grid/castle/stone_wall_3_door.tscn" id="13_ydne8"]
 [ext_resource type="Texture2D" uid="uid://26d0nva8usjm" path="res://assets/models/rooms/stone_lift1_temple_stone_blend.png" id="14_op3fu"]
 [ext_resource type="PackedScene" uid="uid://btlv6ccwtq11c" path="res://scenes/maps/bonepit/doors/stone_hall_door_1.tscn" id="15_26bhf"]
+[ext_resource type="Texture2D" uid="uid://1e3flnphw81c" path="res://assets/models/rooms/stone_lift1_broken_brick_blend.png" id="15_i7463"]
 [ext_resource type="Texture2D" uid="uid://c2tephrn5a07d" path="res://assets/models/rooms/stone_lift1_temple_stone_normal.png" id="15_nxhp2"]
+[ext_resource type="Texture2D" uid="uid://4lfg118x650w" path="res://assets/models/rooms/stone_lift1_broken_brick_normal.png" id="16_dp0fc"]
 [ext_resource type="PackedScene" uid="uid://by5inqu6mkfpw" path="res://scenes/grid/castle/stone_hall_3_trap.tscn" id="17_26bhf"]
+[ext_resource type="Resource" uid="uid://dfc5or6svg7no" path="res://data/traps/thorns.tres" id="20_kr5g1"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jvnor"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_na6gq"]
 resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
@@ -31,7 +34,18 @@ uv2_triplanar = true
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jom6t"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_beqsf"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("15_i7463")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("16_dp0fc")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7w7o"]
 resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
@@ -41,6 +55,41 @@ normal_texture = ExtResource("15_nxhp2")
 uv1_triplanar = true
 uv1_world_triplanar = true
 uv2_triplanar = true
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xa540"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("15_i7463")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("16_dp0fc")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpklv"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("14_op3fu")
+normal_enabled = true
+normal_texture = ExtResource("15_nxhp2")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2o36"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("15_i7463")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("16_dp0fc")
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
@@ -236,7 +285,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 10)
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 0, 6)
 
 [node name="wall" parent="stone_wall3_door" index="0" unique_id=1285790314]
-surface_material_override/0 = SubResource("StandardMaterial3D_jvnor")
+surface_material_override/0 = SubResource("StandardMaterial3D_na6gq")
+
+[node name="floor" parent="stone_wall3_door" index="2" unique_id=1369459373]
+surface_material_override/0 = SubResource("StandardMaterial3D_beqsf")
 
 [node name="DoorComponent" parent="stone_wall3_door" index="4" unique_id=534338047]
 door_id = &"door_1"
@@ -246,7 +298,10 @@ local_edge = Vector3i(-1, 0, 0)
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 0, 20)
 
 [node name="wall" parent="stone_wall3_door2" index="0" unique_id=1285790314]
-surface_material_override/0 = SubResource("StandardMaterial3D_jom6t")
+surface_material_override/0 = SubResource("StandardMaterial3D_y7w7o")
+
+[node name="floor" parent="stone_wall3_door2" index="2" unique_id=1369459373]
+surface_material_override/0 = SubResource("StandardMaterial3D_xa540")
 
 [node name="DoorComponent" parent="stone_wall3_door2" index="4" unique_id=534338047]
 door_id = &"bonepit2.door_2"
@@ -272,6 +327,19 @@ spawn_id = &"bonepit2.lift_2"
 [node name="stone_hall3_trap" parent="." unique_id=1009563942 instance=ExtResource("17_26bhf")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, 20)
 
+[node name="wall" parent="stone_hall3_trap" index="0" unique_id=775694757]
+surface_material_override/0 = SubResource("StandardMaterial3D_kpklv")
+
+[node name="trap" parent="stone_hall3_trap" index="1" unique_id=1437746724]
+surface_material_override/0 = SubResource("StandardMaterial3D_p2o36")
+
+[node name="TrapComponent" parent="stone_hall3_trap/trap" index="1" unique_id=1882980845]
+trap_id = &"bonepit2.trap_1"
+trap_type = ExtResource("20_kr5g1")
+
+[node name="celing" parent="stone_hall3_trap" index="2" unique_id=1477318140]
+surface_material_override/0 = SubResource("StandardMaterial3D_p2o36")
+
 [editable path="button"]
 [editable path="stone_lift2"]
 [editable path="draw_bridge1"]
@@ -279,3 +347,4 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12,
 [editable path="stone_wall3_door"]
 [editable path="stone_wall3_door2"]
 [editable path="stone_hall_door3"]
+[editable path="stone_hall3_trap"]

@@ -9,11 +9,15 @@ static func execute(caster: PartyMember, skill: SkillData, origin: Vector3i) -> 
 	if not caster.spend_stamina(skill.stamina_cost):
 		return "Not enough Stamina"
 	var rank := maxi(int(caster.learned_skills.get(skill.skill_id, 0)), 1)
-	var trap := _find_nearest_discovered_trap(origin, rank)
+	var trap := _find_nearest_discovered_trap(origin, 3)
 	if trap == null or trap.trap_type == null:
 		return "No discovered trap nearby"
 	var class_bonus := int(caster.class_data.skill_bonuses.get(skill.skill_id, 0)) if caster.class_data != null else 0
-	var check := DCChecks.check_character(caster, skill.dc_stat, skill.dc_base + trap.trap_type.disarm_rank, class_bonus)
+	var rank_bonus := rank
+	var total_bonus := class_bonus + rank_bonus
+	var target_dc := skill.dc_base + trap.trap_type.disarm_rank
+	
+	var check := DCChecks.check_character(caster, skill.dc_stat, target_dc, total_bonus)
 	if not check.succeeded or not trap.disarm():
 		return FAILURE_MESSAGE
 	return "Disarmed trap"

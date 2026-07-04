@@ -5,6 +5,7 @@ extends Resource
 @export var status_effect: StatusEffects.Effect
 @export var dice_rolls: int = 1
 @export var dice_sides: int = 4
+@export var target_stamina: bool = false
 
 @export_group("Saving Throw")
 @export var save_stat: String = "dexterity"

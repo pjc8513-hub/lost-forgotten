@@ -11,7 +11,7 @@ static func execute(caster: PartyMember, skill: SkillData, origin: Vector3i) -> 
 		return NO_STAMINA_MESSAGE
 
 	var rank := maxi(int(caster.learned_skills.get(skill.skill_id, 0)), 1)
-	var secrets := _find_secrets(origin, rank)
+	var secrets := _find_secrets(origin, rank + 2)
 	var class_bonus := int(caster.class_data.skill_bonuses.get(skill.skill_id, 0)) if caster.class_data != null else 0
 	var check := DCChecks.check_character(caster, skill.dc_stat, skill.dc_base, class_bonus)
 	if not check.succeeded or secrets.is_empty():

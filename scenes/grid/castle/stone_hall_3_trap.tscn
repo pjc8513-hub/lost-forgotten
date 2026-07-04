@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://bceexab1akxyc" path="res://scripts/components/SecretComponent.gd" id="4_dyxhk"]
 [ext_resource type="Texture2D" uid="uid://1e3flnphw81c" path="res://assets/models/rooms/stone_lift1_broken_brick_blend.png" id="4_taqy1"]
 [ext_resource type="Texture2D" uid="uid://4lfg118x650w" path="res://assets/models/rooms/stone_lift1_broken_brick_normal.png" id="5_y6lrb"]
-[ext_resource type="Resource" uid="uid://dfc5or6svg7no" path="res://data/traps/thorns.tres" id="8_rbqs5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6lb5"]
 resource_local_to_scene = true
@@ -50,8 +49,6 @@ metadata/_custom_type_script = "uid://bceexab1akxyc"
 
 [node name="TrapComponent" type="Node" parent="trap" index="1" unique_id=1882980845]
 script = ExtResource("3_32us6")
-trap_id = &"bonepit2.trap_1"
-trap_type = ExtResource("8_rbqs5")
 metadata/_custom_type_script = "uid://cj45pbh4240o6"
 
 [node name="celing" parent="." index="2" unique_id=1477318140]

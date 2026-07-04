@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="trap_data" format=3 uid="uid://bvxnc7kpsi76q"]
+
+[ext_resource type="Script" uid="uid://ncc4wyh3iq8u" path="res://resources/TrapData.gd" id="1_4aje6"]
+
+[resource]
+script = ExtResource("1_4aje6")
+dice_sides = 6
+target_stamina = true
+metadata/_custom_type_script = "uid://ncc4wyh3iq8u"

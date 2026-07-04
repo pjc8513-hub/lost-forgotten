@@ -20,4 +20,7 @@ ac_bonus = -2
 accuracy_base = 2
 initiative_base = 2
 starting_skills = Array[String](["search", "disarm_trap"])
+skill_bonuses = {
+"disarm_trap": 1
+}
 metadata/_custom_type_script = "uid://diy5ybgx3dj85"

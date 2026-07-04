@@ -9,6 +9,7 @@ display_name = "Search"
 available_classes = Array[int]([2, 6])
 archetype = 0
 element = 4
+maximum_rank = 3
 stamina_cost = 3
 dc_stat = "wisdom"
 metadata/_custom_type_script = "uid://bfe0w1owguy30"
