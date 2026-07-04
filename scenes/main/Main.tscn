@@ -78,7 +78,7 @@ theme_override_constants/margin_right = 5
 [node name="VBoxContainer" type="VBoxContainer" parent="HudLayer/HudRoot/MarginContainer2" unique_id=314145026]
 layout_mode = 2
 
-[node name="TextureButton" type="TextureButton" parent="HudLayer/HudRoot/MarginContainer2/VBoxContainer" unique_id=310961304]
+[node name="inventoryButton" type="TextureButton" parent="HudLayer/HudRoot/MarginContainer2/VBoxContainer" unique_id=310961304]
 layout_mode = 2
 tooltip_text = "Inventory"
 texture_normal = ExtResource("9_ostsq")

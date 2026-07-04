@@ -135,11 +135,17 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer" unique_id=1649494251]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer" unique_id=40425567]
 layout_mode = 2
 text = "Bag"
 horizontal_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer" unique_id=1760974576]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1701075373]
 layout_mode = 2
