@@ -2,6 +2,10 @@
 extends Node
 
 signal navigation_changed
+signal alert_requested(message: String)
+
+func request_alert(message: String) -> void:
+	alert_requested.emit(message)
 
 var grid: Dictionary = {}
 var actors: Dictionary = {}
@@ -10,6 +14,10 @@ var doors_by_edge: Dictionary = {}
 var door_states: Dictionary[StringName, Dictionary] = {}
 var blockers: Dictionary[StringName, BlockerComponent] = {}
 var blocker_states: Dictionary[StringName, Dictionary] = {}
+var secrets: Dictionary[StringName, SecretComponent] = {}
+var secret_states: Dictionary[StringName, Dictionary] = {}
+var traps: Dictionary[StringName, TrapComponent] = {}
+var trap_states: Dictionary[StringName, Dictionary] = {}
 
 func clear_grid() -> void:
 	grid.clear()
@@ -17,6 +25,8 @@ func clear_grid() -> void:
 	doors.clear()
 	doors_by_edge.clear()
 	blockers.clear()
+	secrets.clear()
+	traps.clear()
 
 func register_cell(pos: Vector3i, element: GridElement) -> void:
 	if not grid.has(pos):
@@ -137,25 +147,88 @@ func open_blocker(blocker_id: StringName) -> bool:
 	navigation_changed.emit()
 	return true
 
+func register_secret(secret: SecretComponent) -> void:
+	if secret.secret_ID.is_empty():
+		push_warning("SecretComponent requires a unique secret_ID: %s" % secret.get_path())
+		return
+	if secrets.has(secret.secret_ID) and secrets[secret.secret_ID] != secret:
+		push_error("Duplicate secret_ID registered: %s" % secret.secret_ID)
+		return
+	secrets[secret.secret_ID] = secret
+	if not secret_states.has(secret.secret_ID):
+		secret_states[secret.secret_ID] = {"discovered": not secret.is_secret}
+	secret.apply_state(secret_states[secret.secret_ID], true)
+
+func unregister_secret(secret: SecretComponent) -> void:
+	if secrets.get(secret.secret_ID) == secret:
+		secrets.erase(secret.secret_ID)
+
+func discover_secret(secret_id: StringName) -> bool:
+	if not secret_states.has(secret_id):
+		return false
+	var state: Dictionary = secret_states[secret_id].duplicate()
+	if state.get("discovered", false):
+		return false
+	state["discovered"] = true
+	secret_states[secret_id] = state
+	var secret: SecretComponent = secrets.get(secret_id)
+	if secret != null:
+		secret.apply_state(state)
+	return true
+
+func register_trap(trap: TrapComponent) -> void:
+	if trap.trap_id.is_empty():
+		push_warning("TrapComponent requires a unique trap_id: %s" % trap.get_path())
+		return
+	if traps.has(trap.trap_id) and traps[trap.trap_id] != trap:
+		push_error("Duplicate trap_id registered: %s" % trap.trap_id)
+		return
+	traps[trap.trap_id] = trap
+	if not trap_states.has(trap.trap_id):
+		trap_states[trap.trap_id] = {"disarmed": trap.disarmed, "triggered": trap.triggered}
+	trap.apply_state(trap_states[trap.trap_id])
+
+func unregister_trap(trap: TrapComponent) -> void:
+	if traps.get(trap.trap_id) == trap:
+		traps.erase(trap.trap_id)
+
+func set_trap_state(trap_id: StringName, disarmed: bool, triggered: bool) -> void:
+	trap_states[trap_id] = {"disarmed": disarmed, "triggered": triggered}
+	var trap: TrapComponent = traps.get(trap_id)
+	if trap != null:
+		trap.apply_state(trap_states[trap_id])
+
 func get_persistent_state() -> Dictionary:
 	return {
 		"doors": door_states.duplicate(true),
 		"blockers": blocker_states.duplicate(true),
+		"secrets": secret_states.duplicate(true),
+		"traps": trap_states.duplicate(true),
 	}
 
 func load_persistent_state(data: Dictionary) -> void:
 	door_states.assign(data.get("doors", {}))
 	blocker_states.assign(data.get("blockers", {}))
+	secret_states.assign(data.get("secrets", {}))
+	trap_states.assign(data.get("traps", {}))
 	for door_id in doors:
 		if door_states.has(door_id):
 			doors[door_id].apply_state(door_states[door_id], true)
 	for blocker_id in blockers:
 		if blocker_states.has(blocker_id):
 			blockers[blocker_id].apply_state(blocker_states[blocker_id], true)
+	for secret_id in secrets:
+		if secret_states.has(secret_id):
+			secrets[secret_id].apply_state(secret_states[secret_id], true)
+	for trap_id in traps:
+		if trap_states.has(trap_id):
+			traps[trap_id].apply_state(trap_states[trap_id])
 
 func reset_persistent_state() -> void:
 	door_states.clear()
 	blocker_states.clear()
+	secret_states.clear()
+	trap_states.clear()
 
 func _set_door_state(door_id: StringName, state: Dictionary) -> void:
 	door_states[door_id] = state

@@ -8,6 +8,12 @@ var triggered: bool = false
 var disarmed: bool = false
 var blink_tween: Tween
 
+func _ready() -> void:
+	MapManager.register_trap(self)
+
+func _exit_tree() -> void:
+	MapManager.unregister_trap(self)
+
 func discover_trap() -> void:
 	if blink_tween != null and blink_tween.is_valid():
 		return
@@ -39,18 +45,30 @@ func is_discovered() -> bool:
 func disarm() -> bool:
 	if disarmed or triggered:
 		return false
-	disarmed = true
+	if trap_id.is_empty():
+		disarmed = true
+	else:
+		MapManager.set_trap_state(trap_id, true, triggered)
 	return true
+
+func apply_state(state: Dictionary) -> void:
+	disarmed = bool(state.get("disarmed", false))
+	triggered = bool(state.get("triggered", false))
 
 func trigger(_actor: Node) -> void:
 	if disarmed or (trigger_once and triggered) or trap_type == null:
 		return
 	triggered = true
+	if not trap_id.is_empty():
+		MapManager.set_trap_state(trap_id, disarmed, true)
 	for member in PartyManager.party:
 		var save := DCChecks.check_character(member, trap_type.save_stat, trap_type.save_dc)
 		if save.succeeded:
 			continue
+		var hp_before := member.current_hp
 		member.take_damage(DiceRoller.roll(trap_type.dice_rolls, trap_type.dice_sides).total)
+		var damage_taken := hp_before - member.current_hp
+		var message := "%s took %d damage from the trap" % [member.member_name, damage_taken]
 		if trap_type.status_effect != StatusEffects.Effect.NONE:
 			member.active_status_effects[trap_type.status_effect] = {
 				"remaining_rounds": trap_type.status_rounds,
@@ -58,3 +76,5 @@ func trigger(_actor: Node) -> void:
 				"source": String(trap_id) if not trap_id.is_empty() else "Trap",
 			}
 			member.stats_changed.emit()
+			message += " and was afflicted with %s" % StatusEffects.get_label(trap_type.status_effect)
+		MapManager.request_alert(message)

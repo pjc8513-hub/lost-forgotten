@@ -20,6 +20,7 @@ func _ready() -> void:
 	PartyManager.selected_party_member_changed.connect(_on_selected_party_member_changed)
 	WorldManager.stamina_cost_due.connect(PartyManager.spend_party_stamina)
 	SkillSystem.execution_requested.connect(_on_skill_execution_requested)
+	MapManager.alert_requested.connect(alert.show_message)
 	_rebuild_party_cards()
 
 	if initial_map == null or player_scene == null:

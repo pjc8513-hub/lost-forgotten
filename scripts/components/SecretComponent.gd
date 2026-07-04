@@ -7,6 +7,12 @@ signal discovered(secret: SecretComponent)
 @export var is_secret := true
 @export var secret_type : String
 
+func _ready() -> void:
+	MapManager.register_secret(self)
+
+func _exit_tree() -> void:
+	MapManager.unregister_secret(self)
+
 func get_grid_pos() -> Vector3i:
 	var grid_element := _find_grid_element()
 	if grid_element != null:
@@ -16,15 +22,24 @@ func get_grid_pos() -> Vector3i:
 func discover() -> bool:
 	if not is_secret:
 		return false
-	is_secret = false
+	if not secret_ID.is_empty():
+		return MapManager.discover_secret(secret_ID)
+	apply_state({"discovered": true})
+	return true
+
+func apply_state(state: Dictionary, _instant: bool = false) -> void:
+	var was_secret := is_secret
+	is_secret = not bool(state.get("discovered", false))
+	if is_secret:
+		return
 	var door := get_parent().get_node_or_null("DoorComponent") as DoorComponent
 	if door != null:
 		door.discover_door()
 	var trap := get_parent().get_node_or_null("TrapComponent") as TrapComponent
 	if trap != null:
 		trap.discover_trap()
-	discovered.emit(self)
-	return true
+	if was_secret:
+		discovered.emit(self)
 
 func get_discovery_message() -> String:
 	match secret_type.to_lower().strip_edges():
