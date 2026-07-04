@@ -1,6 +1,7 @@
 extends Node3D
 
 const PARTY_MEMBER_CARD_SCENE := preload("res://scenes/ui/PartyMemberCards.tscn")
+const INVENTORY_SCENE := preload("res://scenes/ui/inventory.tscn")
 
 @export var initial_map: PackedScene
 @export var initial_spawn_id: StringName = &"entrance"
@@ -12,8 +13,10 @@ const PARTY_MEMBER_CARD_SCENE := preload("res://scenes/ui/PartyMemberCards.tscn"
 @onready var automap: Automap = $HudLayer/HudRoot/CanvasLayer/AutomapControl
 @onready var party_cards: VBoxContainer = $HudLayer/HudRoot/MarginContainer/PartyCards
 @onready var alert: Control = $HudLayer/HudRoot/Alert
+@onready var inventory_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/inventoryButton
 
 var player_movement: GridMovementController
+var inventory_menu: InventoryMenu
 
 func _ready() -> void:
 	PartyManager.party_changed.connect(_rebuild_party_cards)
@@ -21,6 +24,9 @@ func _ready() -> void:
 	WorldManager.stamina_cost_due.connect(PartyManager.spend_party_stamina)
 	SkillSystem.execution_requested.connect(_on_skill_execution_requested)
 	MapManager.alert_requested.connect(alert.show_message)
+	inventory_menu = INVENTORY_SCENE.instantiate() as InventoryMenu
+	$HudLayer/HudRoot/CanvasLayer.add_child(inventory_menu)
+	inventory_button.pressed.connect(inventory_menu.open)
 	_rebuild_party_cards()
 
 	if initial_map == null or player_scene == null:
