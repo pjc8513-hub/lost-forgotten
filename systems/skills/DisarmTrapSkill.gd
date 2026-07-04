@@ -34,7 +34,7 @@ static func _find_nearest_discovered_trap(origin: Vector3i, radius: int) -> Trap
 			for element in MapManager.get_elements(position):
 				for child in element.get_parent().find_children("*", "TrapComponent", true, false):
 					var trap := child as TrapComponent
-					if trap != null and trap.is_discovered() and not trap.disarmed and not trap.triggered:
+					if trap != null and trap.is_discovered() and not trap.disarmed:
 						nearest = trap
 						nearest_distance = distance
 	return nearest

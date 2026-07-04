@@ -16,5 +16,4 @@ script = ExtResource("1_1i12p")
 layout_mode = 0
 offset_right = 400.0
 offset_bottom = 60.0
-mouse_filter = 1
 theme_override_constants/separation = 4
