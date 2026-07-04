@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://c2tephrn5a07d" path="res://assets/models/rooms/stone_lift1_temple_stone_normal.png" id="15_nxhp2"]
 [ext_resource type="Texture2D" uid="uid://4lfg118x650w" path="res://assets/models/rooms/stone_lift1_broken_brick_normal.png" id="16_dp0fc"]
 [ext_resource type="PackedScene" uid="uid://by5inqu6mkfpw" path="res://scenes/grid/castle/stone_hall_3_trap.tscn" id="17_26bhf"]
-[ext_resource type="Resource" uid="uid://dfc5or6svg7no" path="res://data/traps/thorns.tres" id="20_kr5g1"]
+[ext_resource type="Resource" uid="uid://dnwvpn4nbo4xc" path="res://data/traps/weakness.tres" id="19_i7463"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dp0fc"]
 resource_local_to_scene = true
@@ -325,7 +325,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_xa540")
 
 [node name="TrapComponent" parent="stone_hall3_trap/trap" index="1" unique_id=1882980845]
 trap_id = &"bonepit2.trap_1"
-trap_type = ExtResource("20_kr5g1")
+trap_type = ExtResource("19_i7463")
 
 [node name="celing" parent="stone_hall3_trap" index="2" unique_id=1477318140]
 surface_material_override/0 = SubResource("StandardMaterial3D_xa540")

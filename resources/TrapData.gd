@@ -10,4 +10,3 @@ extends Resource
 @export_group("Saving Throw")
 @export var save_stat: String = "dexterity"
 @export var save_dc: int = 12
-@export var status_rounds: int = 3

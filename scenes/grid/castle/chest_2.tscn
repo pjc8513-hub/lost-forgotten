@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://8wixrecw3y3d"]
+
+[ext_resource type="PackedScene" uid="uid://chge2y0rgbddr" path="res://assets/models/objects/chest2.glb" id="1_84ehm"]
+[ext_resource type="Material" uid="uid://d3ferhc0s4ik6" path="res://assets/models/rooms/wood.tres" id="2_npnji"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="3_8ewer"]
+[ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="4_bdvd2"]
+[ext_resource type="Script" uid="uid://cu55r1gs5ol76" path="res://scripts/components/ChestComponent.gd" id="5_bl5rw"]
+
+[sub_resource type="Animation" id="Animation_8ewer"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lid")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_bdvd2"]
+resource_name = "open"
+length = 0.36666667
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lid")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.3, 1, 0, 0, 0.393942, 0.919135)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bl5rw"]
+_data = {
+&"RESET": SubResource("Animation_8ewer"),
+&"open": SubResource("Animation_bdvd2")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
+size = Vector3(0.6689453, 0.3930664, 0.5366211)
+
+[node name="chest2" unique_id=1477042983 instance=ExtResource("1_84ehm")]
+
+[node name="chest" parent="." index="0" unique_id=1249126601]
+surface_material_override/0 = ExtResource("2_npnji")
+
+[node name="lid" parent="." index="1" unique_id=135323685]
+surface_material_override/0 = ExtResource("2_npnji")
+
+[node name="GridElement" type="Node3D" parent="." index="2" unique_id=1552511016]
+script = ExtResource("3_8ewer")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="InteractableComponent" type="Node" parent="." index="3" unique_id=761403638]
+script = ExtResource("4_bdvd2")
+metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
+
+[node name="ChestComponent" type="Node" parent="." index="4" unique_id=575630463]
+script = ExtResource("5_bl5rw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=1345623437]
+libraries/ = SubResource("AnimationLibrary_bl5rw")
+
+[node name="Area3D" type="Area3D" parent="." index="6" unique_id=1783478883]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=373856092]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8560162, -0.7778866, -0.010009766)
+shape = SubResource("BoxShape3D_xa8nu")
+
+[connection signal="input_event" from="Area3D" to="InteractableComponent" method="_on_area_3d_input_event"]

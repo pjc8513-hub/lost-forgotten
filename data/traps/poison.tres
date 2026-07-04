@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="trap_data" format=3 uid="uid://dd5a150sn26i3"]
+
+[ext_resource type="Script" uid="uid://ncc4wyh3iq8u" path="res://resources/TrapData.gd" id="1_yim35"]
+
+[resource]
+script = ExtResource("1_yim35")
+disarm_rank = 1
+status_effect = 1
+dice_sides = 12
+metadata/_custom_type_script = "uid://ncc4wyh3iq8u"
