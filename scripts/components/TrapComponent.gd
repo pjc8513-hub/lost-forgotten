@@ -5,3 +5,56 @@ extends Node
 @export var trigger_once: bool = false
 @export var trap_type: trap_data
 var triggered: bool = false
+var disarmed: bool = false
+var blink_tween: Tween
+
+func discover_trap() -> void:
+	if blink_tween != null and blink_tween.is_valid():
+		return
+	var trap_mesh := get_parent() as MeshInstance3D
+	if trap_mesh == null or trap_mesh.mesh == null or trap_mesh.mesh.get_surface_count() == 0:
+		push_warning("TrapComponent requires a parent MeshInstance3D to reveal the trap.")
+		return
+	var source_material := trap_mesh.get_active_material(0) as StandardMaterial3D
+	if source_material == null:
+		push_warning("Trap mesh has no StandardMaterial3D to animate.")
+		return
+	# Trap floors commonly share floor.tres. A local duplicate prevents every
+	# floor using that resource from pulsing when this trap is discovered.
+	var material := source_material.duplicate() as StandardMaterial3D
+	material.resource_local_to_scene = true
+	material.emission_enabled = true
+	material.emission = Color.BLACK
+	trap_mesh.set_surface_override_material(0, material)
+	blink_tween = create_tween().set_loops()
+	blink_tween.tween_property(material, "emission", Color(0.331, 0.0, 0.0, 1.0), 0.8) \
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	blink_tween.tween_property(material, "emission", Color.BLACK, 0.8) \
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+func is_discovered() -> bool:
+	var secret := get_parent().get_node_or_null("SecretComponent") as SecretComponent
+	return secret == null or not secret.is_secret
+
+func disarm() -> bool:
+	if disarmed or triggered:
+		return false
+	disarmed = true
+	return true
+
+func trigger(_actor: Node) -> void:
+	if disarmed or (trigger_once and triggered) or trap_type == null:
+		return
+	triggered = true
+	for member in PartyManager.party:
+		var save := DCChecks.check_character(member, trap_type.save_stat, trap_type.save_dc)
+		if save.succeeded:
+			continue
+		member.take_damage(DiceRoller.roll(trap_type.dice_rolls, trap_type.dice_sides).total)
+		if trap_type.status_effect != StatusEffects.Effect.NONE:
+			member.active_status_effects[trap_type.status_effect] = {
+				"remaining_rounds": trap_type.status_rounds,
+				"save_dc": trap_type.save_dc,
+				"source": String(trap_id) if not trap_id.is_empty() else "Trap",
+			}
+			member.stats_changed.emit()

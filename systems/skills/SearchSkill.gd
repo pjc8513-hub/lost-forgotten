@@ -33,7 +33,8 @@ static func _find_secrets(origin: Vector3i, radius: int) -> Array[SecretComponen
 				continue
 			var position := origin + Vector3i(x_offset, 0, z_offset)
 			for element in MapManager.get_elements(position):
-				for child in element.get_parent().get_children():
-					if child is SecretComponent and child.is_secret:
-						result.append(child)
+				for child in element.get_parent().find_children("*", "SecretComponent", true, false):
+					var secret := child as SecretComponent
+					if secret != null and secret.is_secret and secret not in result:
+						result.append(secret)
 	return result

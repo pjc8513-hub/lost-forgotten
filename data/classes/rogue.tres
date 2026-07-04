@@ -19,5 +19,5 @@ stamina_per_level = 0
 ac_bonus = -2
 accuracy_base = 2
 initiative_base = 2
-starting_skills = Array[String](["search"])
+starting_skills = Array[String](["search", "disarm_trap"])
 metadata/_custom_type_script = "uid://diy5ybgx3dj85"

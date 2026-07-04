@@ -65,3 +65,6 @@ func _on_skill_execution_requested(caster: PartyMember, skill: SkillData) -> voi
 				alert.show_message(SearchSkill.execute(caster, skill, player_movement.grid_pos))
 		&"invigorate":
 			alert.show_message(InvigorateSkill.execute(caster, skill))
+		&"disarm_trap":
+			if player_movement != null:
+				alert.show_message(DisarmTrapSkill.execute(caster, skill, player_movement.grid_pos))

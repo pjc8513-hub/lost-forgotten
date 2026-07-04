@@ -98,9 +98,10 @@ func is_blocked(pos: Vector3i) -> bool:
 
 func trigger_tile_effects(pos: Vector3i) -> void:
 	for element in MapManager.get_elements(pos):
-		for component in element.get_parent().get_children():
-			if component is TrapComponent:
-				component.trigger(actor)
+		for component in element.get_parent().find_children("*", "TrapComponent", true, false):
+			var trap := component as TrapComponent
+			if trap != null:
+				trap.trigger(actor)
 
 func world_to_grid(world_pos: Vector3) -> Vector3i:
 	return Vector3i(
