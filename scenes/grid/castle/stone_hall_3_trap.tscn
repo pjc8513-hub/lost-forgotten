@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://by5inqu6mkfpw"]
+
+[ext_resource type="PackedScene" uid="uid://con7klpkgkld8" path="res://assets/models/rooms/stone_hall3_trap.glb" id="1_usmo4"]
+[ext_resource type="Material" uid="uid://xlxo11jp27n0" path="res://assets/models/rooms/wall.tres" id="2_6lkyt"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_dyxhk"]
+[ext_resource type="Script" uid="uid://cj45pbh4240o6" path="res://scripts/components/TrapComponent.gd" id="3_32us6"]
+[ext_resource type="Material" uid="uid://dc06kmp2r5g57" path="res://assets/models/rooms/floor.tres" id="3_crajp"]
+[ext_resource type="Script" uid="uid://bceexab1akxyc" path="res://scripts/components/SecretComponent.gd" id="4_dyxhk"]
+
+[node name="stone_hall3_trap" unique_id=1009563942 instance=ExtResource("1_usmo4")]
+
+[node name="wall" parent="." index="0" unique_id=775694757]
+surface_material_override/0 = ExtResource("2_6lkyt")
+
+[node name="trap" parent="." index="1" unique_id=1437746724]
+surface_material_override/0 = ExtResource("3_crajp")
+
+[node name="SecretComponent" type="Node3D" parent="trap" index="0" unique_id=149759868]
+script = ExtResource("4_dyxhk")
+secret_ID = &"bonepit2.trap_1"
+secret_type = "trap"
+metadata/_custom_type_script = "uid://bceexab1akxyc"
+
+[node name="TrapComponent" type="Node" parent="trap" index="1" unique_id=1882980845]
+script = ExtResource("3_32us6")
+metadata/_custom_type_script = "uid://cj45pbh4240o6"
+
+[node name="celing" parent="." index="2" unique_id=1477318140]
+surface_material_override/0 = ExtResource("3_crajp")
+
+[node name="GridElement" type="Node3D" parent="." index="3" unique_id=1650345797]
+script = ExtResource("2_dyxhk")
+cell_shape = 2
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"

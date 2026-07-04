@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="trap_data" format=3 uid="uid://dnwvpn4nbo4xc"]
+
+[ext_resource type="Script" uid="uid://ncc4wyh3iq8u" path="res://resources/TrapData.gd" id="1_dx4oo"]
+
+[resource]
+script = ExtResource("1_dx4oo")
+status_effect = 11
+metadata/_custom_type_script = "uid://ncc4wyh3iq8u"

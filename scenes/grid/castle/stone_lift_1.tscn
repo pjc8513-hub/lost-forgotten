@@ -38,6 +38,7 @@ _data = {
 
 [node name="GridElement" type="Node3D" parent="." index="4" unique_id=2000216317]
 script = ExtResource("2_s7oc1")
+cell_shape = 4
 
 [node name="InteractableComponent" type="Node" parent="." index="5" unique_id=156939288]
 script = ExtResource("3_3mm1y")

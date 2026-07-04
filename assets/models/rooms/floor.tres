@@ -4,9 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://4lfg118x650w" path="res://assets/models/rooms/stone_lift1_broken_brick_normal.png" id="2_4bwmi"]
 
 [resource]
+resource_local_to_scene = true
 resource_name = "floor"
 cull_mode = 2
 albedo_texture = ExtResource("1_og7dd")
+emission_enabled = true
 normal_enabled = true
 normal_texture = ExtResource("2_4bwmi")
 texture_filter = 2
