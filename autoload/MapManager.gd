@@ -18,6 +18,8 @@ var secrets: Dictionary[StringName, SecretComponent] = {}
 var secret_states: Dictionary[StringName, Dictionary] = {}
 var traps: Dictionary[StringName, TrapComponent] = {}
 var trap_states: Dictionary[StringName, Dictionary] = {}
+var chests: Dictionary[StringName, ChestComponent] = {}
+var chest_states: Dictionary[StringName, Dictionary] = {}
 
 func clear_grid() -> void:
 	grid.clear()
@@ -27,6 +29,7 @@ func clear_grid() -> void:
 	blockers.clear()
 	secrets.clear()
 	traps.clear()
+	chests.clear()
 
 func register_cell(pos: Vector3i, element: GridElement) -> void:
 	if not grid.has(pos):
@@ -198,12 +201,40 @@ func set_trap_state(trap_id: StringName, disarmed: bool, triggered: bool) -> voi
 	if trap != null:
 		trap.apply_state(trap_states[trap_id])
 
+func register_chest(chest: ChestComponent) -> void:
+	if chest.chest_ID.is_empty():
+		push_warning("ChestComponent requires a unique chest_ID: %s" % chest.get_path())
+		return
+	if chests.has(chest.chest_ID) and chests[chest.chest_ID] != chest:
+		push_error("Duplicate chest_ID registered: %s" % chest.chest_ID)
+		return
+	chests[chest.chest_ID] = chest
+	if not chest_states.has(chest.chest_ID):
+		chest_states[chest.chest_ID] = {
+			"is_open": chest.is_open,
+			"is_empty": chest.is_empty,
+		}
+	chest.apply_state(chest_states[chest.chest_ID], true)
+
+func unregister_chest(chest: ChestComponent) -> void:
+	if chests.get(chest.chest_ID) == chest:
+		chests.erase(chest.chest_ID)
+
+func set_chest_state(chest_id: StringName, is_open: bool, is_empty: bool) -> void:
+	if chest_id.is_empty():
+		return
+	chest_states[chest_id] = {"is_open": is_open, "is_empty": is_empty}
+	var chest: ChestComponent = chests.get(chest_id)
+	if chest != null:
+		chest.apply_state(chest_states[chest_id])
+
 func get_persistent_state() -> Dictionary:
 	return {
 		"doors": door_states.duplicate(true),
 		"blockers": blocker_states.duplicate(true),
 		"secrets": secret_states.duplicate(true),
 		"traps": trap_states.duplicate(true),
+		"chests": chest_states.duplicate(true),
 	}
 
 func load_persistent_state(data: Dictionary) -> void:
@@ -211,6 +242,7 @@ func load_persistent_state(data: Dictionary) -> void:
 	blocker_states.assign(data.get("blockers", {}))
 	secret_states.assign(data.get("secrets", {}))
 	trap_states.assign(data.get("traps", {}))
+	chest_states.assign(data.get("chests", {}))
 	for door_id in doors:
 		if door_states.has(door_id):
 			doors[door_id].apply_state(door_states[door_id], true)
@@ -223,12 +255,16 @@ func load_persistent_state(data: Dictionary) -> void:
 	for trap_id in traps:
 		if trap_states.has(trap_id):
 			traps[trap_id].apply_state(trap_states[trap_id])
+	for chest_id in chests:
+		if chest_states.has(chest_id):
+			chests[chest_id].apply_state(chest_states[chest_id], true)
 
 func reset_persistent_state() -> void:
 	door_states.clear()
 	blocker_states.clear()
 	secret_states.clear()
 	trap_states.clear()
+	chest_states.clear()
 
 func _set_door_state(door_id: StringName, state: Dictionary) -> void:
 	door_states[door_id] = state

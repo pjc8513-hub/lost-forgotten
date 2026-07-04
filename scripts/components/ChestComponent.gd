@@ -20,6 +20,7 @@ var is_open: bool = false
 var _trap: TrapComponent
 
 func _ready() -> void:
+	MapManager.register_chest(self)
 	var interactable := get_parent().get_node_or_null("InteractableComponent") as InteractableComponent
 	if interactable == null:
 		push_warning("ChestComponent requires an InteractableComponent sibling.")
@@ -38,6 +39,9 @@ func _ready() -> void:
 		else:
 			add_child(_trap)
 
+func _exit_tree() -> void:
+	MapManager.unregister_chest(self)
+
 func _on_interacted(actor: Node) -> void:
 	open(actor)
 
@@ -55,7 +59,23 @@ func open(actor: Node) -> bool:
 
 	opened.emit(actor)
 	_distribute_placeholder_loot()
+	MapManager.set_chest_state(chest_ID, is_open, is_empty)
 	return true
+
+func apply_state(state: Dictionary, instant := false) -> void:
+	is_open = bool(state.get("is_open", false))
+	is_empty = bool(state.get("is_empty", false))
+	if instant:
+		call_deferred("_sync_visual")
+
+func _sync_visual() -> void:
+	if not is_open:
+		return
+	var animation_player := get_parent().get_node_or_null("AnimationPlayer") as AnimationPlayer
+	if animation_player != null and animation_player.has_animation(&"open"):
+		animation_player.play(&"open")
+		animation_player.seek(animation_player.get_animation(&"open").length, true)
+		animation_player.pause()
 
 func _distribute_placeholder_loot() -> void:
 	if is_empty:
