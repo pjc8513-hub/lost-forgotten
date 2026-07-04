@@ -36,6 +36,13 @@ enum Effect {
 	STONE_SKIN,     # -AC (old-school: lower is better)
 }
 
+# Canonical lifetime for timed effects. Effects omitted from this table persist
+# until explicitly cleared by rest, death, a temple, an item, or a spell.
+# A value of -1 from duration_rounds() means indefinite.
+const DURATION_ROUNDS: Dictionary = {
+	Effect.STUN: 1,
+}
+
 # ---------------------------------------------------------------------------
 # Effect definitions
 # Each entry:
@@ -248,6 +255,10 @@ func is_negative(effect_id: int) -> bool:
 func get_label(effect_id: int) -> String:
 	var def: Dictionary = DEFINITIONS.get(effect_id, {})
 	return str(def.get("label", "Unknown"))
+
+## Returns the canonical lifetime assigned to an effect.
+func duration_rounds(effect_id: int) -> int:
+	return int(DURATION_ROUNDS.get(effect_id, -1))
 
 ## Returns the full definition dict (read-only).
 func get_definition(effect_id: int) -> Dictionary:

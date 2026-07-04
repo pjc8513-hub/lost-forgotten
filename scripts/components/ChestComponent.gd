@@ -1,6 +1,9 @@
 class_name ChestComponent
 extends Node
 
+signal opened(actor: Node)
+signal loot_requested(chest: ChestComponent, placeholder_loot: Dictionary)
+
 @export var chest_ID: StringName
 
 @export var gold_roll_dice: int = 1
@@ -12,3 +15,60 @@ extends Node
 @export var is_empty: bool = false
 @export var trigger_encounter = false
 @export var monster_id: Array[StringName] = []
+
+var is_open: bool = false
+var _trap: TrapComponent
+
+func _ready() -> void:
+	var interactable := get_parent().get_node_or_null("InteractableComponent") as InteractableComponent
+	if interactable == null:
+		push_warning("ChestComponent requires an InteractableComponent sibling.")
+	else:
+		interactable.interacted.connect(_on_interacted)
+
+	if is_trapped:
+		_trap = TrapComponent.new()
+		_trap.name = "TrapComponent"
+		_trap.trap_id = StringName("%s.trap" % chest_ID) if not chest_ID.is_empty() else &""
+		_trap.trap_type = trap_type
+		var chest_mesh := get_parent().get_node_or_null("chest")
+		if chest_mesh != null:
+			chest_mesh.add_child(_trap)
+		else:
+			add_child(_trap)
+
+func _on_interacted(actor: Node) -> void:
+	open(actor)
+
+func open(actor: Node) -> bool:
+	if is_open:
+		return false
+
+	if _trap != null and not _trap.disarmed:
+		_trap.trigger(actor)
+
+	is_open = true
+	var animation_player := get_parent().get_node_or_null("AnimationPlayer") as AnimationPlayer
+	if animation_player != null and animation_player.has_animation(&"open"):
+		animation_player.play(&"open")
+
+	opened.emit(actor)
+	_distribute_placeholder_loot()
+	return true
+
+func _distribute_placeholder_loot() -> void:
+	if is_empty:
+		MapManager.request_alert("The chest is empty")
+		return
+
+	var gold := 0
+	if gold_roll_dice > 0 and gold_roll_sides > 0:
+		gold = DiceRoller.roll(gold_roll_dice, gold_roll_sides).total
+	var placeholder_loot := {
+		"chest_id": chest_ID,
+		"gold": gold,
+		"loot_table": loot_table,
+	}
+	is_empty = true
+	loot_requested.emit(self, placeholder_loot)
+	MapManager.request_alert("Found %d gold (loot placeholder)" % gold)

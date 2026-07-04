@@ -38,7 +38,7 @@ signal all_effects_cleared
 
 ## Apply an effect to this character.
 ## If the effect is already active, refreshes duration (does not stack).
-func apply_effect(effect_id: int, rounds: int, save_dc: int = 0, source: String = "") -> void:
+func apply_effect(effect_id: int, save_dc: int = 0, source: String = "") -> void:
 	if character_state == null:
 		push_error("StatusEffectComponent: character_state not set on " + name)
 		return
@@ -48,7 +48,7 @@ func apply_effect(effect_id: int, rounds: int, save_dc: int = 0, source: String 
 		return
 
 	var entry := {
-		"remaining_rounds": rounds,
+		"remaining_rounds": StatusEffects.duration_rounds(effect_id),
 		"save_dc": save_dc,
 		"source": source,
 	}
@@ -93,10 +93,13 @@ func tick_effects() -> int:
 				to_clear.append(effect_id)
 				continue
 
-		# --- Countdown ---
-		entry["remaining_rounds"] -= 1
-		if entry["remaining_rounds"] <= 0:
-			to_clear.append(effect_id)
+		# --- Countdown (negative means persistent until explicitly cleared) ---
+		var remaining_rounds := int(entry.get("remaining_rounds", -1))
+		if remaining_rounds > 0:
+			remaining_rounds -= 1
+			entry["remaining_rounds"] = remaining_rounds
+			if remaining_rounds == 0:
+				to_clear.append(effect_id)
 
 	for effect_id in to_clear:
 		clear_effect(effect_id)

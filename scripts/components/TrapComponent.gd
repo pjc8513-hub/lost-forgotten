@@ -99,7 +99,7 @@ func trigger(_actor: Node) -> void:
 			message = "%s took %d damage from the trap" % [member.member_name, damage_taken]
 		if trap_type.status_effect != StatusEffects.Effect.NONE:
 			member.active_status_effects[trap_type.status_effect] = {
-				"remaining_rounds": trap_type.status_rounds,
+				"remaining_rounds": StatusEffects.duration_rounds(trap_type.status_effect),
 				"save_dc": trap_type.save_dc,
 				"source": String(trap_id) if not trap_id.is_empty() else "Trap",
 			}
