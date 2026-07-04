@@ -13,8 +13,8 @@ extends Control
 @onready var dexterity_label: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/StatsPanel/MarginContainer/StatsContainer/DexterityLabel
 @onready var piety_label: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/StatsPanel/MarginContainer/StatsContainer/PietyLabel
 @onready var willpower_label: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/StatsPanel/MarginContainer/StatsContainer/Willpower
-@onready var description_label: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DescriptionLabel
-@onready var character_name: Label = $MarginContainer/PanelContainer/VBoxContainer/CharacterName
+@onready var description_label: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer/DescriptionLabel
+@onready var character_name: Label = $MarginContainer/PanelContainer/VBoxContainer/PanelContainer/CharacterName
 
 
 # Inventory slots
@@ -87,7 +87,8 @@ func _refresh(member: PartyMember) -> void:
 	member.stats_changed.connect(_refresh_displayed_member)
 
 	character_name.text = member.member_name
-	var class_name_text := member.class_data.display_name if member.class_data != null else "Adventurer"
+	var class_name_number := member.class_data.class_id
+	var class_name_text := member.class_data.get_display_name_for(class_name_number) if member.class_data != null else "Adventurer"
 	description_label.text = "Level %d %s" % [member.level, class_name_text]
 	strength_label.text = "Strength: %d" % StatCalculator.get_strength(member)
 	endurance_label.text = "Endurance: %d" % StatCalculator.get_endurance(member)

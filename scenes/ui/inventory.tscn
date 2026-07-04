@@ -1,6 +1,31 @@
 [gd_scene format=3 uid="uid://cxm5ycb6246ay"]
 
 [ext_resource type="Script" uid="uid://btqty3akf28tq" path="res://scenes/ui/inventory.gd" id="1_s6ek7"]
+[ext_resource type="StyleBox" uid="uid://c0viesgilwm4w" path="res://interfacePanel.tres" id="2_avmd0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7d1pb"]
+resource_local_to_scene = true
+bg_color = Color(0.6, 0.37800002, 0.37800002, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyyt5"]
+resource_local_to_scene = true
+bg_color = Color(0.47058824, 0.18039216, 0.18039216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ed5yw"]
+resource_local_to_scene = true
+bg_color = Color(0.47058824, 0.18039216, 0.18039216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhrfr"]
+resource_local_to_scene = true
+bg_color = Color(0.47058824, 0.18039216, 0.18039216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t0nk"]
+resource_local_to_scene = true
+bg_color = Color(0.47058824, 0.18039216, 0.18039216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0avfp"]
+resource_local_to_scene = true
+bg_color = Color(0.47058824, 0.18039216, 0.18039216, 1)
 
 [node name="Control" type="Control" unique_id=478230194]
 layout_mode = 3
@@ -25,11 +50,16 @@ theme_override_constants/margin_bottom = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=70133792]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7d1pb")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer" unique_id=945361741]
 layout_mode = 2
 
-[node name="CharacterName" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=705289248]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1913028333]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_avmd0")
+
+[node name="CharacterName" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer" unique_id=705289248]
 layout_mode = 2
 text = "Character Name"
 horizontal_alignment = 1
@@ -48,6 +78,7 @@ layout_mode = 2
 [node name="Equipped" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1027517800]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_gyyt5")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped" unique_id=898981112]
 layout_mode = 2
@@ -66,7 +97,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.24
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1207705159]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer" unique_id=290499659]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=1207705159]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Weapon:
@@ -129,6 +164,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.58
+theme_override_styles/panel = SubResource("StyleBoxFlat_ed5yw")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag" unique_id=359820238]
 layout_mode = 2
@@ -155,27 +191,29 @@ size_flags_stretch_ratio = 0.58
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2" unique_id=1884036167]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1621861452]
+[node name="DescriptionContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1621861452]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_hhrfr")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/PanelContainer" unique_id=913609598]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/DescriptionContainer" unique_id=913609598]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/PanelContainer/MarginContainer" unique_id=2106756468]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/DescriptionContainer/MarginContainer" unique_id=2106756468]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1309682912]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer" unique_id=1309682912]
 layout_mode = 2
 text = "Description:"
 
-[node name="DescriptionLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1857098591]
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer" unique_id=1857098591]
 layout_mode = 2
 
 [node name="StatsPanel" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=595084617]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t0nk")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/StatsPanel" unique_id=1932121613]
 layout_mode = 2
@@ -217,6 +255,7 @@ text = "Willpower: "
 [node name="options" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1443726474]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0avfp")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/options" unique_id=1504063228]
 layout_mode = 2

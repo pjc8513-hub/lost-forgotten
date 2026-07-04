@@ -1,0 +1,5 @@
+[gd_resource type="StyleBoxFlat" format=3 uid="uid://c0viesgilwm4w"]
+
+[resource]
+resource_local_to_scene = true
+bg_color = Color(0.47, 0.1786, 0.1786, 1)
