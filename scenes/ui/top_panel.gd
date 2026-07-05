@@ -7,11 +7,11 @@ extends Control
 
 
 func _ready() -> void:
-	LootDistributor.gold_changed.connect(_on_gold_changed)
-	LootDistributor.food_changed.connect(_on_food_changed)
+	PartyManager.gold_changed.connect(_on_gold_changed)
+	PartyManager.food_changed.connect(_on_food_changed)
 	WorldManager.dungeon_time_changed.connect(_on_dungeon_time_changed)
-	_on_gold_changed(LootDistributor.gold)
-	_on_food_changed(LootDistributor.food)
+	_on_gold_changed(PartyManager.gold)
+	_on_food_changed(PartyManager.food)
 	_on_dungeon_time_changed(WorldManager.dungeon_elapsed_time)
 
 

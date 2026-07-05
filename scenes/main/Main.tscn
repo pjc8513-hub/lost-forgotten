@@ -11,7 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://ungfb04ujreb" path="res://scenes/ui/automap.tscn" id="6_1rhdn"]
 [ext_resource type="Texture2D" uid="uid://brcdtgihmxtqt" path="res://assets/icons/inventory.png" id="9_ostsq"]
 [ext_resource type="Texture2D" uid="uid://dfg0gpmdv8fs4" path="res://assets/icons/character_icon.png" id="11_qkm1d"]
+[ext_resource type="Texture2D" uid="uid://j4qdwd2ckx6d" path="res://assets/icons/skills.png" id="12_jsdfw"]
 [ext_resource type="PackedScene" uid="uid://bybp4rkefm0hv" path="res://scenes/ui/debug/debug.tscn" id="12_p5fgu"]
+[ext_resource type="Texture2D" uid="uid://dh138fqkjysk" path="res://assets/icons/camp.png" id="13_tck0d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_screen_filter"]
 shader = ExtResource("4_filter_shader")
@@ -102,6 +104,24 @@ texture_pressed = ExtResource("11_qkm1d")
 texture_hover = ExtResource("11_qkm1d")
 texture_disabled = ExtResource("11_qkm1d")
 texture_focused = ExtResource("11_qkm1d")
+
+[node name="SkillsButton" type="TextureButton" parent="HudLayer/HudRoot/MarginContainer2/VBoxContainer" unique_id=1732124974]
+layout_mode = 2
+tooltip_text = "Skills"
+texture_normal = ExtResource("12_jsdfw")
+texture_pressed = ExtResource("12_jsdfw")
+texture_hover = ExtResource("12_jsdfw")
+texture_disabled = ExtResource("12_jsdfw")
+texture_focused = ExtResource("12_jsdfw")
+
+[node name="CampButton" type="TextureButton" parent="HudLayer/HudRoot/MarginContainer2/VBoxContainer" unique_id=1611056844]
+layout_mode = 2
+tooltip_text = "Camp"
+texture_normal = ExtResource("13_tck0d")
+texture_pressed = ExtResource("13_tck0d")
+texture_hover = ExtResource("13_tck0d")
+texture_disabled = ExtResource("13_tck0d")
+texture_focused = ExtResource("13_tck0d")
 
 [node name="PauseLayer" type="Node" parent="." unique_id=192665520]
 

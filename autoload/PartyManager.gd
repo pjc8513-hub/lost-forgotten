@@ -4,6 +4,8 @@ signal party_changed
 signal roster_changed
 signal active_party_changed
 signal selected_party_member_changed(index: int, member: PartyMember)
+signal gold_changed(total: int)
+signal food_changed(total: int)
 
 const MAX_PARTY_SIZE: int = 5
 const DEFAULT_RACE: RaceData = preload("res://data/races/human.tres")
@@ -25,6 +27,8 @@ const DEFAULT_ROWS: Dictionary = {
 var default_party: Array[PartyMember] = []
 var roster: Array[PartyMember] = []
 var party: Array[PartyMember] = []
+var gold: int = 0
+var food: int = 0
 var selected_party_member_index: int = -1
 var selected_party_member: PartyMember:
 	get:
@@ -100,6 +104,38 @@ func remove_party_member(index: int) -> bool:
 func spend_party_stamina(amount: int) -> void:
 	for member in party:
 		member.spend_stamina(amount)
+
+func add_gold(amount: int) -> void:
+	if amount <= 0:
+		return
+	gold += amount
+	gold_changed.emit(gold)
+
+func spend_gold(amount: int) -> bool:
+	if amount < 0 or amount > gold:
+		return false
+	gold -= amount
+	gold_changed.emit(gold)
+	return true
+
+func add_food(amount: int) -> void:
+	if amount <= 0:
+		return
+	food += amount
+	food_changed.emit(food)
+
+func spend_food(amount: int) -> bool:
+	if amount < 0 or amount > food:
+		return false
+	food -= amount
+	food_changed.emit(food)
+	return true
+
+func set_resources(gold_amount: int, food_amount: int) -> void:
+	gold = maxi(gold_amount, 0)
+	food = maxi(food_amount, 0)
+	gold_changed.emit(gold)
+	food_changed.emit(food)
 
 # Call this from the eventual rest flow after the rest has completed.
 func reset_daily_skill_uses() -> void:
