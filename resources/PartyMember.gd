@@ -127,7 +127,7 @@ func equip_inventory_item(item: ItemInstance) -> bool:
 			equipped_item.is_equipped = false
 	item.is_equipped = true
 	inventory_changed.emit()
-	stats_changed.emit()
+	StatCalculator.recalculate(self)
 	return true
 
 func unequip_inventory_item(item: ItemInstance) -> bool:
@@ -135,7 +135,7 @@ func unequip_inventory_item(item: ItemInstance) -> bool:
 		return false
 	item.is_equipped = false
 	inventory_changed.emit()
-	stats_changed.emit()
+	StatCalculator.recalculate(self)
 	return true
 
 func use_inventory_item(item: ItemInstance) -> bool:
@@ -156,7 +156,7 @@ func drop_inventory_item(item: ItemInstance) -> bool:
 	item.is_equipped = false
 	inventory.erase(item)
 	inventory_changed.emit()
-	stats_changed.emit()
+	StatCalculator.recalculate(self)
 	return true
 
 func trade_inventory_item(item: ItemInstance, recipient: PartyMember) -> bool:
@@ -168,7 +168,7 @@ func trade_inventory_item(item: ItemInstance, recipient: PartyMember) -> bool:
 		inventory.append(item)
 		return false
 	inventory_changed.emit()
-	stats_changed.emit()
+	StatCalculator.recalculate(self)
 	return true
 
 func get_skill_uses_remaining(skill: SkillData) -> int:

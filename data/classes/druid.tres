@@ -20,4 +20,5 @@ accuracy_base = 1
 magic_amp_base = 2
 magic_amp_wis_scale = 0.5
 allowed_armor_types = Array[int]([0])
+starting_skills = Array[String](["earth_resist"])
 metadata/_custom_type_script = "uid://diy5ybgx3dj85"

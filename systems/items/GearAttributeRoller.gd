@@ -17,11 +17,11 @@ const WEAPON_TAGS := [
 ]
 
 const ARMOR_CLASS_TAGS := [
-	{"name": "Hardened", "weight": 50, "armor_class_bonus": -1, "definition": "-1 AC"},
-	{"name": "Magic", "weight": 25, "armor_class_bonus": -2, "definition": "-2 AC"},
-	{"name": "Golem", "weight": 13, "armor_class_bonus": -3, "definition": "-3 AC"},
-	{"name": "Dwarven", "weight": 8, "armor_class_bonus": -4, "definition": "-4 AC"},
-	{"name": "Divine", "weight": 4, "armor_class_bonus": -5, "definition": "-5 AC"},
+	{"name": "Hardened", "weight": 50, "armor_class_bonus": 1, "definition": "-1 AC"},
+	{"name": "Magic", "weight": 25, "armor_class_bonus": 2, "definition": "-2 AC"},
+	{"name": "Golem", "weight": 13, "armor_class_bonus": 3, "definition": "-3 AC"},
+	{"name": "Dwarven", "weight": 8, "armor_class_bonus": 4, "definition": "-4 AC"},
+	{"name": "Divine", "weight": 4, "armor_class_bonus": 5, "definition": "-5 AC"},
 ]
 
 const ARMOR_UTILITY_TAGS := [

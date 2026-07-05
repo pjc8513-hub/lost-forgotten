@@ -104,6 +104,6 @@ func trigger(_actor: Node) -> void:
 				"save_dc": trap_type.save_dc,
 				"source": String(trap_id) if not trap_id.is_empty() else "Trap",
 			}
-			member.stats_changed.emit()
+			StatCalculator.recalculate(member)
 			message += " and was afflicted with %s" % StatusEffects.get_label(trap_type.status_effect)
 		MapManager.request_alert(message)

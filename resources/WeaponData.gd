@@ -15,6 +15,7 @@ enum Weapon_Type{
 @export var dice_sides: int
 @export var dice_rolls: int
 @export var bonus_damage_bonus: int
+@export var accuracy_bonus: int
 @export var attack_speed: float
 @export var loot_table: LootManager.Loot_Table
 @export var is_ranged: bool = false

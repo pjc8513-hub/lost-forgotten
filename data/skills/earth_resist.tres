@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://cs5ys05tc4u50"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_h7xvf"]
+
+[resource]
+script = ExtResource("1_h7xvf")
+skill_id = &"earth_resist"
+display_name = "Earth Resist"
+available_classes = Array[int]([5])
+archetype = 1
+element = 1
+maximum_rank = 1
+resist_element = 1
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

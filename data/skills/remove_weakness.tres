@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://hrc8l6l686b3"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_0ex0l"]
+
+[resource]
+script = ExtResource("1_0ex0l")
+skill_id = &"remove_weakness"
+display_name = "Remove Weakness"
+available_classes = Array[int]([3, 6])
+archetype = 4
+element = 4
+maximum_rank = 5
+stamina_cost = 3
+uses_per_day = 4
+remove_effect = Array[String](["weak"])
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

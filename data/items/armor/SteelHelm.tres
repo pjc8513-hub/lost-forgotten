@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_iis4g")
-armor_class = -2
+armor_class = 2
 loot_table = 1
 armor_type = 1
 item_id = "SteelHelm"

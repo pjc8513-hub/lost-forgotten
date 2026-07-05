@@ -121,6 +121,8 @@ func _refresh(member: PartyMember) -> void:
 	dexterity_label.text = "Dexterity: %d" % StatCalculator.get_dexterity(member)
 	piety_label.text = "Piety: %d" % StatCalculator.get_piety(member)
 	willpower_label.text = "Willpower: %d" % StatCalculator.get_willpower(member)
+	_refresh_derived_stats(member)
+	_refresh_statuses(member)
 	_refresh_displayed_inventory()
 
 	var multiple_members := PartyManager.party.size() > 1
@@ -129,6 +131,45 @@ func _refresh(member: PartyMember) -> void:
 
 func _refresh_displayed_member() -> void:
 	_refresh(_displayed_member)
+
+func _refresh_derived_stats(member: PartyMember) -> void:
+	var damage := StatCalculator.get_damage_profile(member)
+	var dice_rolls := int(damage.get("dice_rolls", 0))
+	var dice_sides := int(damage.get("dice_sides", 0))
+	var damage_bonus := int(damage.get("bonus", 0))
+	if dice_rolls > 0 and dice_sides > 0:
+		damage_label.text = "%dd%d %+d" % [dice_rolls, dice_sides, damage_bonus]
+	else:
+		damage_label.text = "Unarmed %+d" % damage_bonus
+	ac_label.text = "AC: %d" % StatCalculator.get_armor_class(member)
+	accuracy_label.text = "Accuracy: %d" % StatCalculator.get_accuracy(member)
+	initiative_label.text = "Initiative: %d" % StatCalculator.get_initiative(member)
+
+func _refresh_statuses(member: PartyMember) -> void:
+	for child in status_container.get_children():
+		child.free()
+	if member.active_status_effects.is_empty() and member.active_combat_buffs.is_empty():
+		_add_status_label("None")
+		return
+	for effect_id in member.active_status_effects:
+		var definition := StatusEffects.get_definition(int(effect_id))
+		var text := StatusEffects.get_label(int(effect_id))
+		var entry: Dictionary = member.active_status_effects[effect_id]
+		var rounds := int(entry.get("remaining_rounds", -1))
+		if rounds >= 0:
+			text += " (%d rounds)" % rounds
+		_add_status_label(text, String(definition.get("description", "")))
+	for buff_name in member.active_combat_buffs:
+		var entry = member.active_combat_buffs[buff_name]
+		var value := int(entry.get("value", 0)) if entry is Dictionary else int(entry)
+		_add_status_label("%s: %+d" % [String(buff_name).capitalize(), value])
+
+func _add_status_label(text: String, tooltip: String = "") -> void:
+	var label := Label.new()
+	label.text = text
+	label.tooltip_text = tooltip
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	status_container.add_child(label)
 
 func _refresh_displayed_inventory() -> void:
 	if _displayed_member == null:

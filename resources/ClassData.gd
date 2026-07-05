@@ -44,59 +44,60 @@ enum ClassName {
 @export var base_movement: int = 4
 
 # ---------------------------------------------------------------------------
-# HP / Stamina Scaling
+# HP / Stamina Modifiers
 # Used by StatCalculator to derive max HP and Stamina at any level.
-# Formula: base + (per_level * level) + floor(stat * scale)
+# Formula: base + (per_level * level) + floor(ability_modifier * scale)
 # ---------------------------------------------------------------------------
 
-@export_group("HP Scaling")
+@export_group("HP Modifier")
 @export var hp_base: int = 10
 @export var hp_per_level: int = 5
 @export var hp_str_scale: float = 0.5
 @export var hp_end_scale: float = 1.0
 
-@export_group("Stamina Scaling")
+@export_group("Stamina Modifier")
 @export var stamina: int = 25
 @export var stamina_per_level: int = 1
 @export var stamina_end_scale: float = 0.5
 
 # ---------------------------------------------------------------------------
-# Combat Stat Scaling
-# Each derived combat stat = base + floor(stat * scale).
+# Combat Stat Modifiers
+# Each derived combat stat = base + floor(ability_modifier * scale).
 # StatCalculator reads these; ClassData never calls them itself.
 # ---------------------------------------------------------------------------
 
-@export_group("Armor Class Scaling")
+@export_group("Armor Class Modifier")
 @export var ac_bonus: int = 0          # Flat class AC modifier (negative = better in old-school convention)
 @export var ac_dex_scale: float = 0.5
 
-@export_group("Accuracy Scaling")
+@export_group("Accuracy Modifier")
 @export var accuracy_base: int = 0
 @export var accuracy_str_scale: float = 0.0
 @export var accuracy_dex_scale: float = 0.5
 @export var accuracy_wis_scale: float = 0.0
 
-@export_group("Critical Scaling")
+@export_group("Critical Modifier")
 @export var crit_base: int = 1
 @export var crit_dex_scale: float = 0.5
 @export var crit_wis_scale: float = 0.0
 
-@export_group("Initiative Scaling")
+@export_group("Initiative Modifier")
 @export var initiative_base: int = 0
 @export var initiative_dex_scale: float = 0.5
 @export var initiative_wis_scale: float = 0.0
 
-@export_group("Attack Speed Scaling")
+@export_group("Attack Speed Modifier")
 @export var attack_speed_base: int = 0
 @export var attack_speed_dex_scale: float = 0.25
 
-@export_group("Damage Scaling")
+@export_group("Damage Modifier")
 @export var bonus_damage_base: int = 0
 @export var damage_str_scale: float = 0.5
 @export var damage_dex_scale: float = 0.0
 @export var damage_wis_scale: float = 0.0
 
-@export_group("Magic Scaling")
+@export_group("Magic Modifier")
+@export var wisdom_modifier: float = 0.5
 @export var magic_amp_base: int = 0
 @export var magic_amp_wis_scale: float = 0.0
 

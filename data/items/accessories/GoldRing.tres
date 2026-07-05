@@ -4,10 +4,11 @@
 
 [resource]
 script = ExtResource("1_mtyxh")
+armor_class = 1
 loot_table = 1
 item_id = "GoldRing"
 name = "Gold Ring"
 sell_value = 50
 equip_slot = 8
-description = "A ring of gold"
+description = "A ring of gold\\n+1 AC"
 metadata/_custom_type_script = "uid://bv675ladojo1j"

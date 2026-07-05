@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://erwe4618nr7"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_6pdi2"]
+
+[resource]
+script = ExtResource("1_6pdi2")
+skill_id = &"toughness"
+display_name = "Toughness"
+available_classes = Array[int]([1])
+archetype = 1
+maximum_rank = 1
+resist_status = 7
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

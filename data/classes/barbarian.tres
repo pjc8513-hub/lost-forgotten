@@ -20,4 +20,5 @@ accuracy_str_scale = 0.5
 accuracy_dex_scale = 0.0
 initiative_base = 1
 allowed_armor_types = Array[int]([0, 1, 2])
+starting_skills = Array[String](["bash"])
 metadata/_custom_type_script = "uid://diy5ybgx3dj85"

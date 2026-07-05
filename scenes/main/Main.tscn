@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="5_palette"]
 [ext_resource type="PackedScene" uid="uid://ungfb04ujreb" path="res://scenes/ui/automap.tscn" id="6_1rhdn"]
 [ext_resource type="Texture2D" uid="uid://brcdtgihmxtqt" path="res://assets/icons/inventory.png" id="9_ostsq"]
+[ext_resource type="Texture2D" uid="uid://dfg0gpmdv8fs4" path="res://assets/icons/character_icon.png" id="11_qkm1d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_screen_filter"]
 shader = ExtResource("4_filter_shader")
@@ -81,6 +82,7 @@ theme_override_constants/margin_right = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HudLayer/HudRoot/MarginContainer2" unique_id=314145026]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="inventoryButton" type="TextureButton" parent="HudLayer/HudRoot/MarginContainer2/VBoxContainer" unique_id=310961304]
 layout_mode = 2
@@ -90,6 +92,15 @@ texture_pressed = ExtResource("9_ostsq")
 texture_hover = ExtResource("9_ostsq")
 texture_disabled = ExtResource("9_ostsq")
 texture_focused = ExtResource("9_ostsq")
+
+[node name="CharacterButton" type="TextureButton" parent="HudLayer/HudRoot/MarginContainer2/VBoxContainer" unique_id=1197318158]
+layout_mode = 2
+tooltip_text = "Character"
+texture_normal = ExtResource("11_qkm1d")
+texture_pressed = ExtResource("11_qkm1d")
+texture_hover = ExtResource("11_qkm1d")
+texture_disabled = ExtResource("11_qkm1d")
+texture_focused = ExtResource("11_qkm1d")
 
 [node name="PauseLayer" type="Node" parent="." unique_id=192665520]
 

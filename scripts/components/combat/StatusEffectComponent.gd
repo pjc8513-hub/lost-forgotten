@@ -54,8 +54,7 @@ func apply_effect(effect_id: int, save_dc: int = 0, source: String = "") -> void
 	}
 	character_state.active_status_effects[effect_id] = entry
 	effect_applied.emit(effect_id, entry)
-	# Notify stat system that derived stats may have changed
-	character_state.stats_changed.emit()
+	StatCalculator.recalculate(character_state)
 
 # ---------------------------------------------------------------------------
 # Tick — call once per combat round for this character
@@ -116,7 +115,7 @@ func clear_effect(effect_id: int) -> void:
 		return
 	if character_state.active_status_effects.erase(effect_id):
 		effect_cleared.emit(effect_id)
-		character_state.stats_changed.emit()
+		StatCalculator.recalculate(character_state)
 
 ## Remove all effects matching a condition string.
 ## Condition options: "all", "negative", "positive", "dot", "cc"

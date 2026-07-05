@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://cicylksnsrgut"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_jxegu"]
+
+[resource]
+script = ExtResource("1_jxegu")
+skill_id = &"bash"
+display_name = "Bash"
+available_classes = Array[int]([1])
+archetype = 2
+element = 4
+maximum_rank = 1
+stamina_cost = 5
+charge_turns = 1
+damage_amount_dice = 2
+damage_amount_rolls = 8
+status_effect = 0
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

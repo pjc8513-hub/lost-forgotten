@@ -33,7 +33,7 @@ enum Effect {
 	REGENERATE,     # HP per round
 	HASTE,          # +initiative, +dexterity
 	BLESS,          # +accuracy, +willpower saves
-	STONE_SKIN,     # -AC (old-school: lower is better)
+	STONE_SKIN,     # +AC
 }
 
 # Canonical lifetime for timed effects. Effects omitted from this table persist
@@ -86,7 +86,7 @@ const DEFINITIONS: Dictionary = {
 		"description": "Fire damage each round. Reduces armor.",
 		"is_negative": true,
 		"dot_damage": 5,
-		"stat_deltas": { "armor_class": 2 },  # +2 AC = worse in descending AC
+		"stat_deltas": { "armor_class": -2 },
 		"blocks_action": false,
 		"blocks_move": false,
 		"blocks_casting": false,
@@ -119,7 +119,7 @@ const DEFINITIONS: Dictionary = {
 		"description": "Cannot act or move this round.",
 		"is_negative": true,
 		"dot_damage": 0,
-		"stat_deltas": { "initiative": -10, "armor_class": 2 },
+		"stat_deltas": { "initiative": -10, "armor_class": -2 },
 		"blocks_action": true,
 		"blocks_move": true,
 		"blocks_casting": true,
@@ -130,7 +130,7 @@ const DEFINITIONS: Dictionary = {
 		"description": "Cannot act. Breaks on damage.",
 		"is_negative": true,
 		"dot_damage": 0,
-		"stat_deltas": { "initiative": -10, "armor_class": 4 },
+		"stat_deltas": { "initiative": -10, "armor_class": -4 },
 		"blocks_action": true,
 		"blocks_move": true,
 		"blocks_casting": true,
@@ -141,7 +141,7 @@ const DEFINITIONS: Dictionary = {
 		"description": "Completely immobile.",
 		"is_negative": true,
 		"dot_damage": 0,
-		"stat_deltas": { "initiative": -10, "armor_class": 4, "dexterity": -4 },
+		"stat_deltas": { "initiative": -10, "armor_class": -4, "dexterity": -4 },
 		"blocks_action": true,
 		"blocks_move": true,
 		"blocks_casting": true,
@@ -180,7 +180,7 @@ const DEFINITIONS: Dictionary = {
 		"end_of_combat": true,
 	},
 	Effect.WEAKEN: {
-		"label": "Weaken",
+		"label": "Weakness",
 		"description": "Reduced Strength and bonus damage.",
 		"is_negative": true,
 		"dot_damage": 0,
@@ -258,10 +258,10 @@ const DEFINITIONS: Dictionary = {
 	},
 	Effect.STONE_SKIN: {
 		"label": "Stone Skin",
-		"description": "Hardens AC. -2 AC (descending: lower is better).",
+		"description": "Hardens AC. +2 AC",
 		"is_negative": false,
 		"dot_damage": 0,
-		"stat_deltas": { "armor_class": -2 },
+		"stat_deltas": { "armor_class": 2 },
 		"blocks_action": false,
 		"blocks_move": false,
 		"blocks_casting": false,

@@ -15,7 +15,7 @@ enum Archetype {
 }
 
 enum Element {
-	UNKNOWN = -1,
+	NONE = -1,
 	FIRE,
 	EARTH,
 	AIR,
@@ -45,9 +45,13 @@ enum Status_effect {
 @export var available_classes: Array[ClassData.ClassName]
 @export var icon: Texture2D
 @export var archetype: Archetype = Archetype.UNKNOWN
-@export var element: Element = Element.UNKNOWN
+@export var element: Element = Element.NONE
+
 @export var starting_rank: int = 1
 @export var maximum_rank: int = 10
+
+@export var target_self: bool = false
+@export var is_AOE: bool = false
 
 # cost
 @export var stamina_cost: int = 0
@@ -73,6 +77,8 @@ enum Status_effect {
 
 # stat bonuses
 @export var stat_deltas: Dictionary[String, int] # StatCalculator reads this per skill rank
+@export var resist_element: Element = Element.NONE
+@export var resist_status: Status_effect = Status_effect.NONE
 
 @export var bonus_damage_per_rank: int = 0
 @export var grants_crit: bool = false

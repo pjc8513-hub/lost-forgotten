@@ -18,5 +18,5 @@ func apply_to_character(character: PartyMember) -> bool:
 		if status_id != StatusEffects.Effect.NONE and character.active_status_effects.erase(status_id):
 			changed = true
 	if changed:
-		character.stats_changed.emit()
+		StatCalculator.recalculate(character)
 	return changed
