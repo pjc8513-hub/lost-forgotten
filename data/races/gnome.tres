@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cxh3jt7r6t3a5" path="res://resources/RaceData.gd" id="1_j42n0"]
 
 [resource]
+display_name = "Gnome"
 script = ExtResource("1_j42n0")
 bonus_dexterity = 2
 bonus_wisdom = 4

@@ -30,6 +30,7 @@ func _ready() -> void:
 	inventory_menu = INVENTORY_SCENE.instantiate() as InventoryMenu
 	character_menu = CHARACTER_SCENE.instantiate() as CharacterMenu
 	$HudLayer/HudRoot/CanvasLayer.add_child(inventory_menu)
+	$HudLayer/HudRoot/CanvasLayer.add_child(character_menu)
 	inventory_button.pressed.connect(inventory_menu.open)
 	character_button.pressed.connect(character_menu.open)
 	_rebuild_party_cards()

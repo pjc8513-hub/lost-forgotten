@@ -1,6 +1,8 @@
 class_name RaceData
 extends Resource
 
+@export var display_name: String = "Unknown"
+
 enum SelectedRace{
 	UNKNOWN = -1,
 	HUMAN,

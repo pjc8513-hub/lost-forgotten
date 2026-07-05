@@ -188,15 +188,18 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("1_8do7n")
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ResistContainer" unique_id=2132566062]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ResistContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ResistContainer/VBoxContainer" unique_id=2132566062]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Resistances"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ResistContainer" unique_id=73493062]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ResistContainer/VBoxContainer" unique_id=73493062]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ResistContainer/ScrollContainer" unique_id=754864739]
+[node name="ResistanceList" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ResistContainer/VBoxContainer/ScrollContainer" unique_id=754864739]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

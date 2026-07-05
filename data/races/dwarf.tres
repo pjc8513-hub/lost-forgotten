@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cxh3jt7r6t3a5" path="res://resources/RaceData.gd" id="1_6uylo"]
 
 [resource]
+display_name = "Dwarf"
 script = ExtResource("1_6uylo")
 bonus_strength = 3
 bonus_endurance = 4

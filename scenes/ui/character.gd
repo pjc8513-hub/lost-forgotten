@@ -24,7 +24,7 @@ extends Control
 @onready var damage_label: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MoreStatsContainer/MarginContainer/VBoxContainer/DamageLabel
 
 # Resist container
-@onready var v_box_container: VBoxContainer = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ResistContainer/ScrollContainer/VBoxContainer
+@onready var resistance_container: VBoxContainer = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ResistContainer/VBoxContainer/ScrollContainer/ResistanceList
 
 # Options
 @onready var next_button: Button = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/NextButton
@@ -36,6 +36,8 @@ var _displayed_member: PartyMember
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	PartyManager.selected_party_member_changed.connect(_on_selected_party_member_changed)
+	next_button.pressed.connect(_show_next_character)
+	previous_button.pressed.connect(_show_previous_character)
 	close_button.pressed.connect(close)
 	hide()
 
@@ -58,9 +60,11 @@ func _refresh(member: PartyMember) -> void:
 	member.stats_changed.connect(_refresh_displayed_member)
 
 	character_name.text = member.member_name
-	var class_name_number := member.class_data.class_id
-	var class_name_text := member.class_data.get_display_name_for(class_name_number) if member.class_data != null else "Adventurer"
+	var class_name_text := "Adventurer"
+	if member.class_data != null:
+		class_name_text = member.class_data.get_display_name_for(member.class_data.class_id)
 	description_label.text = "Level %d %s" % [member.level, class_name_text]
+	race_label.text = "Race: %s" % (member.race_data.display_name if member.race_data != null else "Unknown")
 	strength_label.text = "Strength: %d" % StatCalculator.get_strength(member)
 	endurance_label.text = "Endurance: %d" % StatCalculator.get_endurance(member)
 	wisdom_label.text = "Wisdom: %d" % StatCalculator.get_wisdom(member)
@@ -69,6 +73,7 @@ func _refresh(member: PartyMember) -> void:
 	willpower_label.text = "Willpower: %d" % StatCalculator.get_willpower(member)
 	_refresh_derived_stats(member)
 	_refresh_statuses(member)
+	_refresh_resistances(member)
 
 	var multiple_members := PartyManager.party.size() > 1
 	next_button.disabled = not multiple_members
@@ -116,10 +121,22 @@ func _add_status_label(text: String, tooltip: String = "") -> void:
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	status_container.add_child(label)
 	
+func _refresh_resistances(member: PartyMember) -> void:
+	for child in resistance_container.get_children():
+		child.queue_free()
+	for element in [&"fire", &"water", &"earth", &"electric", &"light", &"dark"]:
+		var label := Label.new()
+		label.text = "%s: %d" % [String(element).capitalize(), StatCalculator.get_resistance(member, element)]
+		resistance_container.add_child(label)
 func _on_selected_party_member_changed(_index: int, member: PartyMember) -> void:
 	if visible:
 		_refresh(member)
 		
+func _show_next_character() -> void:
+	_select_relative_character(1)
+
+func _show_previous_character() -> void:
+	_select_relative_character(-1)
 func _select_relative_character(offset: int) -> void:
 	if PartyManager.party.is_empty():
 		return
