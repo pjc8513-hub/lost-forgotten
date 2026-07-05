@@ -105,7 +105,7 @@ enum ClassName {
 # ---------------------------------------------------------------------------
 
 @export_group("Armor")
-@export var allowed_armor_types: Array[int] = []  # ArmorData.Armor_Type values
+@export var allowed_armor_types: Array[ArmorData.Armor_Type] = []  # ArmorData.Armor_Type values
 
 # ---------------------------------------------------------------------------
 # Starting Skills

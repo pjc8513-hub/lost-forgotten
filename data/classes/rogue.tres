@@ -19,6 +19,7 @@ stamina_per_level = 0
 ac_bonus = -2
 accuracy_base = 2
 initiative_base = 2
+allowed_armor_types = Array[int]([0])
 starting_skills = Array[String](["search", "disarm_trap"])
 skill_bonuses = {
 "disarm_trap": 1

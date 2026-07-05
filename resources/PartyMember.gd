@@ -105,6 +105,72 @@ func add_inventory_item(item: ItemInstance) -> bool:
 	inventory_changed.emit()
 	return true
 
+func can_equip_item(item: ItemInstance) -> bool:
+	if item == null or item.item_data == null:
+		return false
+	if item.item_data.item_type != ItemData.ItemType.EQUIPMENT:
+		return false
+	if item.item_data.equip_slot == ItemData.Equip_Slot.NONE:
+		return false
+	if item.item_data is ArmorData:
+		var armor := item.item_data as ArmorData
+		return class_data != null and class_data.allowed_armor_types.has(armor.armor_type)
+	return true
+
+func equip_inventory_item(item: ItemInstance) -> bool:
+	if not inventory.has(item) or not can_equip_item(item):
+		return false
+	for equipped_item in inventory:
+		if equipped_item != item and equipped_item.is_equipped \
+				and equipped_item.item_data != null \
+				and equipped_item.item_data.equip_slot == item.item_data.equip_slot:
+			equipped_item.is_equipped = false
+	item.is_equipped = true
+	inventory_changed.emit()
+	stats_changed.emit()
+	return true
+
+func unequip_inventory_item(item: ItemInstance) -> bool:
+	if not inventory.has(item) or not item.is_equipped:
+		return false
+	item.is_equipped = false
+	inventory_changed.emit()
+	stats_changed.emit()
+	return true
+
+func use_inventory_item(item: ItemInstance) -> bool:
+	if not inventory.has(item) or not item.item_data is ConsumableData:
+		return false
+	var consumable := item.item_data as ConsumableData
+	if not consumable.apply_to_character(self):
+		return false
+	inventory.erase(item)
+	inventory_changed.emit()
+	return true
+
+func drop_inventory_item(item: ItemInstance) -> bool:
+	if not inventory.has(item) or item.item_data == null:
+		return false
+	if item.item_data.item_type == ItemData.ItemType.QUEST:
+		return false
+	item.is_equipped = false
+	inventory.erase(item)
+	inventory_changed.emit()
+	stats_changed.emit()
+	return true
+
+func trade_inventory_item(item: ItemInstance, recipient: PartyMember) -> bool:
+	if recipient == null or recipient == self or not inventory.has(item):
+		return false
+	item.is_equipped = false
+	inventory.erase(item)
+	if not recipient.add_inventory_item(item):
+		inventory.append(item)
+		return false
+	inventory_changed.emit()
+	stats_changed.emit()
+	return true
+
 func get_skill_uses_remaining(skill: SkillData) -> int:
 	if skill == null or skill.uses_per_day < 0:
 		return -1

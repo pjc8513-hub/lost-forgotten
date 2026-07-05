@@ -26,15 +26,25 @@ extends Control
 @onready var boots_slot: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer/BootsSlot
 @onready var ring_slot: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer/RingSlot
 @onready var amulet_slot: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer/AmuletSlot
-@onready var item_list: ItemList = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer/ItemList
+@onready var item_list: InventoryItemList = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer/ItemList
+@onready var item_popup: PopupMenu = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer/PopupMenu
+@onready var trade_popup: PopupMenu = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer/PopupMenu/TradeMenu
+
+enum ItemAction { EQUIP, UNEQUIP, USE, DROP }
 
 var _displayed_member: PartyMember
+var _context_item: ItemInstance
+var _trade_recipients: Array[PartyMember] = []
 
 func _ready() -> void:
 	next_button.pressed.connect(_show_next_character)
 	previous_button.pressed.connect(_show_previous_character)
 	close_button.pressed.connect(close)
 	PartyManager.selected_party_member_changed.connect(_on_selected_party_member_changed)
+	item_list.context_menu_requested.connect(_show_item_menu)
+	item_list.equip_requested.connect(_equip_item)
+	item_popup.id_pressed.connect(_on_item_action_pressed)
+	trade_popup.id_pressed.connect(_on_trade_recipient_pressed)
 	hide()
 
 func open() -> void:
@@ -45,6 +55,9 @@ func open() -> void:
 	close_button.grab_focus()
 
 func close() -> void:
+	item_popup.hide()
+	trade_popup.hide()
+	item_list._hide_item_tooltip()
 	hide()
 
 func _input(event: InputEvent) -> void:
@@ -110,11 +123,79 @@ func _refresh_displayed_member() -> void:
 	_refresh(_displayed_member)
 
 func _refresh_displayed_inventory() -> void:
-	item_list.clear()
+	if _displayed_member == null:
+		item_list.set_inventory([])
+		return
+	item_list.set_inventory(_displayed_member.inventory)
+	_refresh_equipped_slots()
+
+func _refresh_equipped_slots() -> void:
+	var labels := {
+		ItemData.Equip_Slot.WEAPON: weapon_slot,
+		ItemData.Equip_Slot.ARMOR: armor_slot,
+		ItemData.Equip_Slot.HELMET: helmet_slot,
+		ItemData.Equip_Slot.BOOTS: boots_slot,
+		ItemData.Equip_Slot.GLOVES: gloves_slot,
+		ItemData.Equip_Slot.RING: ring_slot,
+		ItemData.Equip_Slot.AMULET: amulet_slot,
+	}
+	shield_slot.text = "<Empty>"
+	for label in labels.values():
+		label.text = "<Empty>"
 	if _displayed_member == null:
 		return
 	for item in _displayed_member.inventory:
-		if item == null or item.item_data == null:
+		if item.is_equipped and item.item_data != null and labels.has(item.item_data.equip_slot):
+			(labels[item.item_data.equip_slot] as Label).text = item.get_display_name()
+
+func _show_item_menu(item: ItemInstance, screen_position: Vector2i) -> void:
+	_context_item = item
+	item_popup.clear()
+	if item.is_equipped:
+		item_popup.add_item("Unequip", ItemAction.UNEQUIP)
+	elif item.item_data.item_type == ItemData.ItemType.EQUIPMENT:
+		item_popup.add_item("Equip", ItemAction.EQUIP)
+	if item.item_data is ConsumableData:
+		item_popup.add_item("Use", ItemAction.USE)
+	item_popup.add_item("Drop", ItemAction.DROP)
+	item_popup.set_item_disabled(item_popup.get_item_index(ItemAction.DROP), item.item_data.item_type == ItemData.ItemType.QUEST)
+	_populate_trade_menu()
+	if not _trade_recipients.is_empty():
+		item_popup.add_submenu_item("Trade", trade_popup.name)
+	item_popup.position = screen_position
+	item_popup.popup()
+
+func _populate_trade_menu() -> void:
+	trade_popup.clear()
+	_trade_recipients.clear()
+	for member in PartyManager.party:
+		if member == _displayed_member:
 			continue
-		item_list.add_item(item.get_display_name(), item.item_data.icon)
-		item_list.set_item_metadata(item_list.item_count - 1, item)
+		var id := _trade_recipients.size()
+		_trade_recipients.append(member)
+		trade_popup.add_item(member.member_name, id)
+
+func _on_item_action_pressed(action_id: int) -> void:
+	if _displayed_member == null or _context_item == null:
+		return
+	match action_id:
+		ItemAction.EQUIP:
+			_equip_item(_context_item)
+		ItemAction.UNEQUIP:
+			_displayed_member.unequip_inventory_item(_context_item)
+		ItemAction.USE:
+			if not _displayed_member.use_inventory_item(_context_item):
+				MapManager.request_alert("That item cannot be used right now")
+		ItemAction.DROP:
+			if not _displayed_member.drop_inventory_item(_context_item):
+				MapManager.request_alert("Quest items cannot be dropped")
+
+func _equip_item(item: ItemInstance) -> void:
+	if _displayed_member != null and not _displayed_member.equip_inventory_item(item):
+		MapManager.request_alert("This character cannot equip that item")
+
+func _on_trade_recipient_pressed(recipient_id: int) -> void:
+	if _displayed_member == null or _context_item == null:
+		return
+	if recipient_id >= 0 and recipient_id < _trade_recipients.size():
+		_displayed_member.trade_inventory_item(_context_item, _trade_recipients[recipient_id])

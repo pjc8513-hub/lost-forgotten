@@ -8,5 +8,6 @@ enum Armor_Type {
 }
 
 @export var armor_class: int
+@export var armor_class_bonus: int = 0
 @export var loot_table: LootManager.Loot_Table
 @export var armor_type: Armor_Type

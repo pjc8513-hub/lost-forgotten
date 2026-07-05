@@ -22,5 +22,6 @@ accuracy_base = 1
 accuracy_dex_scale = 0.0
 accuracy_wis_scale = 0.5
 magic_amp_wis_scale = 0.5
+allowed_armor_types = Array[int]([0, 1])
 starting_skills = Array[String](["minor_heal"])
 metadata/_custom_type_script = "uid://diy5ybgx3dj85"

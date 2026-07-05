@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://btqty3akf28tq" path="res://scenes/ui/inventory.gd" id="1_s6ek7"]
 [ext_resource type="StyleBox" uid="uid://c0viesgilwm4w" path="res://interfacePanel.tres" id="2_avmd0"]
+[ext_resource type="Script" uid="uid://cnd73lfm4hkkt" path="res://scenes/ui/item_list.gd" id="3_xeaml"]
+[ext_resource type="Script" uid="uid://bql6v3if0t18k" path="res://scenes/ui/popup_menu.gd" id="4_5yy05"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7d1pb"]
 resource_local_to_scene = true
@@ -182,6 +184,12 @@ horizontal_alignment = 1
 [node name="ItemList" type="ItemList" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer" unique_id=1760974576]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("3_xeaml")
+
+[node name="PopupMenu" type="PopupMenu" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer" unique_id=1517674335]
+script = ExtResource("4_5yy05")
+
+[node name="TradeMenu" type="PopupMenu" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer/PopupMenu" unique_id=966921805]
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1701075373]
 layout_mode = 2
@@ -277,3 +285,7 @@ text = "Previous"
 [node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/options/MarginContainer/VBoxContainer" unique_id=1405158108]
 layout_mode = 2
 text = "Close"
+
+[connection signal="gui_input" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer/ItemList" to="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer/ItemList" method="_on_gui_input"]
+[connection signal="item_activated" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer/ItemList" to="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer/ItemList" method="_on_item_activated"]
+[connection signal="item_clicked" from="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer/ItemList" to="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer/ItemList" method="_on_item_clicked"]

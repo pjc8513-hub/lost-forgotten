@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dus56khm8x3rd"]
+
+[ext_resource type="Script" uid="uid://di858h4n3yjxk" path="res://scenes/ui/item_tooltip.gd" id="1_ix1hg"]
+[ext_resource type="StyleBox" uid="uid://c0viesgilwm4w" path="res://interfacePanel.tres" id="1_rs1h6"]
+
+[node name="ItemTooltip" type="PanelContainer" unique_id=688586890]
+theme_override_styles/panel = ExtResource("1_rs1h6")
+script = ExtResource("1_ix1hg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1454989418]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=1621417554]
+layout_mode = 2
+
+[node name="TypeLabel" type="Label" parent="VBoxContainer" unique_id=1003522939]
+layout_mode = 2
+
+[node name="StatLabel" type="Label" parent="VBoxContainer" unique_id=1155163126]
+layout_mode = 2
+
+[node name="BonusesLabel" type="Label" parent="VBoxContainer" unique_id=869737474]
+layout_mode = 2
+
+[node name="DefinitionLabel" type="Label" parent="VBoxContainer" unique_id=152272623]
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer" unique_id=608200149]
+layout_mode = 2

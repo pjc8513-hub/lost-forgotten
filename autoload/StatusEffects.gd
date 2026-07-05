@@ -256,6 +256,14 @@ func get_label(effect_id: int) -> String:
 	var def: Dictionary = DEFINITIONS.get(effect_id, {})
 	return str(def.get("label", "Unknown"))
 
+## Converts data-facing names into the canonical Effect enum value.
+func normalize_id(effect_name: String) -> int:
+	var key := effect_name.strip_edges().to_upper().replace(" ", "_")
+	match key:
+		"PARALYZE": key = "PARALYSIS"
+		"CONFUSION": key = "CONFUSE"
+	return int(Effect.get(key, Effect.NONE))
+
 ## Returns the canonical lifetime assigned to an effect.
 func duration_rounds(effect_id: int) -> int:
 	return int(DURATION_ROUNDS.get(effect_id, -1))
