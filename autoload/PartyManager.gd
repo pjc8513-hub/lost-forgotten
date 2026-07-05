@@ -14,6 +14,13 @@ const DEFAULT_PARTY: Array[ClassData] = [
 	preload("res://data/classes/rogue.tres"),
 	preload("res://data/classes/sorcerer.tres"),
 ]
+const DEFAULT_ROWS: Dictionary = {
+	ClassData.ClassName.KNIGHT: PartyMember.CombatRow.FRONT,
+	ClassData.ClassName.MONK: PartyMember.CombatRow.FRONT,
+	ClassData.ClassName.CLERIC: PartyMember.CombatRow.FRONT,
+	ClassData.ClassName.ROGUE: PartyMember.CombatRow.BACK,
+	ClassData.ClassName.SORCERER: PartyMember.CombatRow.BACK,
+}
 
 var default_party: Array[PartyMember] = []
 var roster: Array[PartyMember] = []
@@ -33,7 +40,8 @@ func _ready() -> void:
 			class_data,
 			DEFAULT_RACE,
 			class_data.display_name,
-			DiceRoller.roll_character_stats()
+			DiceRoller.roll_character_stats(),
+			DEFAULT_ROWS.get(class_data.class_id, PartyMember.CombatRow.FRONT) as PartyMember.CombatRow
 		)
 		StatCalculator.recalculate(member, true)
 		default_members.append(member)

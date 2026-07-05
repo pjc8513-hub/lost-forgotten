@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ungfb04ujreb" path="res://scenes/ui/automap.tscn" id="6_1rhdn"]
 [ext_resource type="Texture2D" uid="uid://brcdtgihmxtqt" path="res://assets/icons/inventory.png" id="9_ostsq"]
 [ext_resource type="Texture2D" uid="uid://dfg0gpmdv8fs4" path="res://assets/icons/character_icon.png" id="11_qkm1d"]
+[ext_resource type="PackedScene" uid="uid://bybp4rkefm0hv" path="res://scenes/ui/debug/debug.tscn" id="12_p5fgu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_screen_filter"]
 shader = ExtResource("4_filter_shader")
@@ -111,3 +112,6 @@ texture_focused = ExtResource("11_qkm1d")
 [node name="TransitionRoot" type="Node" parent="TransitionLayer" unique_id=774989796]
 
 [node name="DebugLayer" type="Node" parent="." unique_id=201161667]
+
+[node name="Debug" parent="DebugLayer" unique_id=372138702 instance=ExtResource("12_p5fgu")]
+visible = false

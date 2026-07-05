@@ -109,7 +109,7 @@ func _on_accept_pressed() -> void:
 		_selected_race(),
 		name_edit.text,
 		rolled_stats,
-		row_select.selected
+		row_select.selected as PartyMember.CombatRow
 	)
 	StatCalculator.recalculate(member, true)
 	if PartyManager.add_roster_member(member):

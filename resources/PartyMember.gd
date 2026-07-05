@@ -10,12 +10,17 @@ signal inventory_changed
 signal died
 signal leveled_up(new_level: int)
 
+enum CombatRow {
+	FRONT,
+	BACK,
+}
+
 @export_group("Identity")
 @export var member_name: String = ""
 @export var portrait: Texture2D
 @export var class_data: ClassData
 @export var race_data: RaceData
-@export var row: int = 0
+@export var row: CombatRow = CombatRow.FRONT
 
 @export_group("Vitals")
 @export var current_hp: int = 0:
@@ -192,6 +197,18 @@ func reset_daily_skill_uses() -> void:
 func get_class_id() -> ClassData.ClassName:
 	return ClassData.ClassName.UNKNOWN if class_data == null else class_data.class_id
 
+func get_race_display_name() -> String:
+	if race_data == null:
+		return "Unknown"
+	if not race_data.display_name.strip_edges().is_empty():
+		return race_data.display_name
+	if not race_data.resource_path.is_empty():
+		return race_data.resource_path.get_file().get_basename().capitalize()
+	return "Unknown"
+
+func get_row_display_name() -> String:
+	return "Back" if row == CombatRow.BACK else "Front"
+
 func spend_stat_point(stat: String) -> bool:
 	if available_stat_points <= 0:
 		return false
@@ -224,7 +241,7 @@ static func create(
 	race_resource: RaceData,
 	name_value: String,
 	rolled_stats: Dictionary = {},
-	row_value: int = 0
+	row_value: CombatRow = CombatRow.FRONT
 ) -> PartyMember:
 	var member := PartyMember.new()
 	member.class_data = class_resource

@@ -117,6 +117,7 @@ text = "Fighting Row"
 
 [node name="RowSelect" type="OptionButton" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer" unique_id=858198878]
 layout_mode = 2
+selected = 0
 item_count = 2
 popup/item_0/text = "Front Row"
 popup/item_0/id = 0

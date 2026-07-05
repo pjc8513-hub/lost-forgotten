@@ -38,6 +38,7 @@ func _ready() -> void:
 	PartyManager.selected_party_member_changed.connect(_on_selected_party_member_changed)
 	next_button.pressed.connect(_show_next_character)
 	previous_button.pressed.connect(_show_previous_character)
+	row_option.item_selected.connect(_on_row_selected)
 	close_button.pressed.connect(close)
 	hide()
 
@@ -64,7 +65,8 @@ func _refresh(member: PartyMember) -> void:
 	if member.class_data != null:
 		class_name_text = member.class_data.get_display_name_for(member.class_data.class_id)
 	description_label.text = "Level %d %s" % [member.level, class_name_text]
-	race_label.text = "Race: %s" % (member.race_data.display_name if member.race_data != null else "Unknown")
+	race_label.text = "Race: %s" % member.get_race_display_name()
+	row_option.select(int(member.row))
 	strength_label.text = "Strength: %d" % StatCalculator.get_strength(member)
 	endurance_label.text = "Endurance: %d" % StatCalculator.get_endurance(member)
 	wisdom_label.text = "Wisdom: %d" % StatCalculator.get_wisdom(member)
@@ -137,6 +139,13 @@ func _show_next_character() -> void:
 
 func _show_previous_character() -> void:
 	_select_relative_character(-1)
+
+func _on_row_selected(index: int) -> void:
+	if _displayed_member == null or index < 0 or index >= PartyMember.CombatRow.size():
+		return
+	_displayed_member.row = index as PartyMember.CombatRow
+
+
 func _select_relative_character(offset: int) -> void:
 	if PartyManager.party.is_empty():
 		return

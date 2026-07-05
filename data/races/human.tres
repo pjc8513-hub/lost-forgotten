@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cxh3jt7r6t3a5" path="res://resources/RaceData.gd" id="1_hwfdr"]
 
 [resource]
-display_name = "Human"
 script = ExtResource("1_hwfdr")
+display_name = "Human"
 bonus_strength = 2
 bonus_endurance = 3
 bonus_dexterity = 2

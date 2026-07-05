@@ -20,6 +20,13 @@ func _unhandled_input(event):
 			get_viewport().set_input_as_handled()
 			return
 
+	if event.is_action_pressed("toggle_debug"):
+		var debug_overlay := get_tree().get_first_node_in_group("debug_overlay") as CanvasItem
+		if debug_overlay != null:
+			debug_overlay.visible = not debug_overlay.visible
+		get_viewport().set_input_as_handled()
+		return
+
 	if not TurnManager.can_player_move():
 		return
 
