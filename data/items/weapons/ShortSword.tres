@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://2iv33mfhfwkt"]
+
+[ext_resource type="Script" uid="uid://cogina04lplf3" path="res://resources/WeaponData.gd" id="1_cbbmp"]
+
+[resource]
+script = ExtResource("1_cbbmp")
+dice_sides = 6
+dice_rolls = 1
+name = "Short Sword"
+sell_value = 15
+equip_slot = 1
+metadata/_custom_type_script = "uid://cogina04lplf3"

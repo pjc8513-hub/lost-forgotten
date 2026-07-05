@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ArmorData" format=3 uid="uid://bre7u5ob7ucbn"]
+
+[ext_resource type="Script" uid="uid://04yxrplu6cft" path="res://resources/ArmorData.gd" id="1_gcdug"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_gcdug")
+armor_class = -3
+loot_table = 1
+armor_type = 1
+item_id = "ChainMail"
+name = "ChainMail"
+sell_value = 22
+equip_slot = 3
+might_bonus = 5
+metadata/_custom_type_script = "uid://04yxrplu6cft"

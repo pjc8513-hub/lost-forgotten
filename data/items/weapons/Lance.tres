@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dtq0y0l085i5e"]
+
+[ext_resource type="Script" uid="uid://cogina04lplf3" path="res://resources/WeaponData.gd" id="1_vkmv0"]
+
+[resource]
+script = ExtResource("1_vkmv0")
+dice_sides = 14
+dice_rolls = 1
+loot_table = 1
+tile_range = 2
+weapon_type = 2
+item_id = "Lance"
+name = "Lance"
+sell_value = 20
+equip_slot = 1
+metadata/_custom_type_script = "uid://cogina04lplf3"

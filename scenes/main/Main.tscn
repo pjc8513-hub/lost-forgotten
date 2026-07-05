@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://8a25oser5fpm" path="res://scripts/shaders/Main_shader.gdshader" id="4_filter_shader"]
 [ext_resource type="PackedScene" uid="uid://d1tm0lvlq8wf5" path="res://systems/MusicManager.tscn" id="4_ko0rf"]
 [ext_resource type="PackedScene" uid="uid://182xd2127w4r" path="res://scenes/ui/alert.tscn" id="4_sjxhf"]
+[ext_resource type="PackedScene" uid="uid://b8lwb17nrv7bu" path="res://scenes/ui/TopPanel.tscn" id="5_3km4f"]
 [ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="5_palette"]
 [ext_resource type="PackedScene" uid="uid://ungfb04ujreb" path="res://scenes/ui/automap.tscn" id="6_1rhdn"]
 [ext_resource type="Texture2D" uid="uid://brcdtgihmxtqt" path="res://assets/icons/inventory.png" id="9_ostsq"]
@@ -37,6 +38,9 @@ player_scene = ExtResource("3_player")
 [node name="HudLayer" type="Node" parent="." unique_id=306252378]
 
 [node name="HudRoot" type="Node" parent="HudLayer" unique_id=2143251189]
+
+[node name="Control" parent="HudLayer/HudRoot" unique_id=1308240107 instance=ExtResource("5_3km4f")]
+top_level = true
 
 [node name="Alert" parent="HudLayer/HudRoot" unique_id=101966706 instance=ExtResource("4_sjxhf")]
 visible = false

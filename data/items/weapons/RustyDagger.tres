@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://brot0mgb7gogm"]
+
+[ext_resource type="Texture2D" uid="uid://cl6gbgbel5ucn" path="res://assets/icons/RustyDagger.png" id="1_fcynr"]
+[ext_resource type="Script" uid="uid://cogina04lplf3" path="res://resources/WeaponData.gd" id="1_qtg1n"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_qtg1n")
+dice_sides = 4
+dice_rolls = 1
+attack_speed = 1.0
+name = "Rusty Dagger"
+icon = ExtResource("1_fcynr")
+sell_value = 5
+equip_slot = 1
+metadata/_custom_type_script = "uid://cogina04lplf3"

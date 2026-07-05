@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://cw00bqchb5pw0"]
+
+[ext_resource type="Script" uid="uid://cogina04lplf3" path="res://resources/WeaponData.gd" id="1_rtnp6"]
+
+[resource]
+script = ExtResource("1_rtnp6")
+dice_sides = 8
+dice_rolls = 1
+loot_table = 1
+item_id = "IronSword"
+name = "Iron Sword"
+sell_value = 25
+equip_slot = 1
+bonus_damage_bonus = 5
+metadata/_custom_type_script = "uid://cogina04lplf3"

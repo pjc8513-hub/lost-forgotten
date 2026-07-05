@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AccessoryData" format=3 uid="uid://cwrbiv18jme21"]
+
+[ext_resource type="Script" uid="uid://bck5gyfkl017h" path="res://resources/AccessoryData.gd" id="1_mtyxh"]
+
+[resource]
+script = ExtResource("1_mtyxh")
+loot_table = 1
+item_id = "GoldRing"
+name = "Gold Ring"
+sell_value = 50
+equip_slot = 8
+description = "A ring of gold"
+metadata/_custom_type_script = "uid://bck5gyfkl017h"

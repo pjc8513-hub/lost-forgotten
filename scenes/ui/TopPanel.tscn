@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://b8lwb17nrv7bu"]
+
+[ext_resource type="StyleBox" uid="uid://c0viesgilwm4w" path="res://interfacePanel.tres" id="1_cv8v4"]
+[ext_resource type="Script" uid="uid://blvot2qr0iaee" path="res://scenes/ui/top_panel.gd" id="1_pdw0g"]
+
+[node name="Control" type="Control" unique_id=1308240107]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+script = ExtResource("1_pdw0g")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1696669098]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_styles/panel = ExtResource("1_cv8v4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=607039093]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer" unique_id=1007912161]
+layout_mode = 2
+text = "Gold:"
+
+[node name="GoldLabel" type="Label" parent="PanelContainer/HBoxContainer" unique_id=1703122867]
+layout_mode = 2
+text = "0"
+
+[node name="Label2" type="Label" parent="PanelContainer/HBoxContainer" unique_id=419430565]
+layout_mode = 2
+text = "Food:"
+
+[node name="FoodLabel" type="Label" parent="PanelContainer/HBoxContainer" unique_id=754711138]
+layout_mode = 2
+text = "0"
+
+[node name="Label3" type="Label" parent="PanelContainer/HBoxContainer" unique_id=908655062]
+layout_mode = 2
+text = "Time:"
+
+[node name="TimeLabel" type="Label" parent="PanelContainer/HBoxContainer" unique_id=835070425]
+layout_mode = 2
+text = "9:00 AM"

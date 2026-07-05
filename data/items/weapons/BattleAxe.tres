@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://cs7i5exd715e7"]
+
+[ext_resource type="Script" uid="uid://cogina04lplf3" path="res://resources/WeaponData.gd" id="1_rmjky"]
+
+[resource]
+script = ExtResource("1_rmjky")
+dice_sides = 8
+dice_rolls = 1
+weapon_type = 3
+item_id = "BattleAxe"
+name = "Battle Axe"
+sell_value = 20
+equip_slot = 1
+bonus_damage_bonus = 6
+metadata/_custom_type_script = "uid://cogina04lplf3"

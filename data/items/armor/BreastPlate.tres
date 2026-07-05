@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ArmorData" format=3 uid="uid://bbqd37gmwkk1i"]
+
+[ext_resource type="Script" uid="uid://04yxrplu6cft" path="res://resources/ArmorData.gd" id="1_2233m"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_2233m")
+armor_class = -3
+loot_table = 1
+armor_type = 2
+item_id = "BreastPlate"
+name = "Breast Plate"
+sell_value = 31
+equip_slot = 3
+endurance_bonus = 5
+metadata/_custom_type_script = "uid://04yxrplu6cft"

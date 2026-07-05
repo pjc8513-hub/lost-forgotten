@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://rffuwe6hykv4"]
+
+[ext_resource type="Script" uid="uid://cogina04lplf3" path="res://resources/WeaponData.gd" id="1_v1nqg"]
+
+[resource]
+script = ExtResource("1_v1nqg")
+dice_sides = 4
+dice_rolls = 1
+weapon_type = 5
+item_id = "Staff"
+name = "Staff"
+sell_value = 10
+equip_slot = 1
+max_mp_bonus = 5
+magic_amp_bonus = 2
+metadata/_custom_type_script = "uid://cogina04lplf3"

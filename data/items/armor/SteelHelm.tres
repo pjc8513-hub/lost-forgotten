@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ArmorData" format=3 uid="uid://cyoowdflwjvcs"]
+
+[ext_resource type="Script" uid="uid://04yxrplu6cft" path="res://resources/ArmorData.gd" id="1_iis4g"]
+
+[resource]
+script = ExtResource("1_iis4g")
+armor_class = -2
+loot_table = 1
+armor_type = 1
+item_id = "SteelHelm"
+name = "Steel Helm"
+sell_value = 15
+equip_slot = 5
+metadata/_custom_type_script = "uid://04yxrplu6cft"

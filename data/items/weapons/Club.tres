@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://c4erxv1txepdu"]
+
+[ext_resource type="Script" uid="uid://cogina04lplf3" path="res://resources/WeaponData.gd" id="1_p0wv4"]
+
+[resource]
+script = ExtResource("1_p0wv4")
+dice_sides = 5
+dice_rolls = 1
+weapon_type = 4
+item_id = "Club"
+name = "Club"
+sell_value = 9
+equip_slot = 1
+accuracy_bonus = 2
+metadata/_custom_type_script = "uid://cogina04lplf3"

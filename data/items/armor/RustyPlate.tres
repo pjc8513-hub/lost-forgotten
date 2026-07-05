@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ArmorData" format=3 uid="uid://dw6o5lehxnayx"]
+
+[ext_resource type="Script" uid="uid://04yxrplu6cft" path="res://resources/ArmorData.gd" id="1_178iw"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_178iw")
+armor_class = -2
+armor_type = 2
+item_id = "RustyPlate"
+name = "Rusty Plate"
+sell_value = 17
+equip_slot = 3
+endurance_bonus = 2
+metadata/_custom_type_script = "uid://04yxrplu6cft"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ArmorData" format=3 uid="uid://cr5pefpi85dve"]
+
+[ext_resource type="Script" uid="uid://04yxrplu6cft" path="res://resources/ArmorData.gd" id="1_5uo3h"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_5uo3h")
+armor_class = -1
+item_id = "LeatherArmor"
+name = "Leather Armor"
+sell_value = 10
+equip_slot = 3
+dexterity_bonus = 2
+metadata/_custom_type_script = "uid://04yxrplu6cft"

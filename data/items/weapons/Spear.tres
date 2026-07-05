@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dyxoaqqivjgg8"]
+
+[ext_resource type="Script" uid="uid://cogina04lplf3" path="res://resources/WeaponData.gd" id="1_qx2i0"]
+
+[resource]
+script = ExtResource("1_qx2i0")
+dice_sides = 8
+dice_rolls = 1
+tile_range = 2
+weapon_type = 2
+item_id = "Spear"
+name = "Spear"
+sell_value = 11
+equip_slot = 1
+metadata/_custom_type_script = "uid://cogina04lplf3"

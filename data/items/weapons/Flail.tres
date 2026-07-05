@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://7q65b2x1s4vq"]
+
+[ext_resource type="Script" uid="uid://cogina04lplf3" path="res://resources/WeaponData.gd" id="1_pltkw"]
+
+[resource]
+script = ExtResource("1_pltkw")
+dice_sides = 8
+dice_rolls = 1
+weapon_type = 4
+item_id = "Flail"
+name = "Flail"
+sell_value = 18
+equip_slot = 1
+accuracy_bonus = 2
+metadata/_custom_type_script = "uid://cogina04lplf3"
