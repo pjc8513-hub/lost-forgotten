@@ -79,7 +79,7 @@ func _refresh_preview(_selected_index: int = 0) -> void:
 
 func _set_stat_label(label: Label, title: String, stat_name: String, class_bonus: int, race_bonus: int) -> void:
 	var roll := int(rolled_stats.get(stat_name, 0))
-	label.text = "%s: %d + %d + %d = %d" % [title, roll, class_bonus, race_bonus, roll + class_bonus + race_bonus]
+	label.text = "%s: %d + %d (C) + %d (R) = %d" % [title, roll, class_bonus, race_bonus, roll + class_bonus + race_bonus]
 	label.tooltip_text = "3d6 roll + class + race"
 
 func _format_skills(skill_ids: Array[String]) -> String:
