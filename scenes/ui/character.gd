@@ -126,10 +126,13 @@ func _add_status_label(text: String, tooltip: String = "") -> void:
 func _refresh_resistances(member: PartyMember) -> void:
 	for child in resistance_container.get_children():
 		child.queue_free()
+	var resisted_elements: Array[String] = []
 	for element in [&"fire", &"water", &"earth", &"electric", &"light", &"dark"]:
-		var label := Label.new()
-		label.text = "%s: %d" % [String(element).capitalize(), StatCalculator.get_resistance(member, element)]
-		resistance_container.add_child(label)
+		if StatCalculator.has_resistance(member, element):
+			resisted_elements.append(String(element).capitalize())
+	var label := Label.new()
+	label.text = "None" if resisted_elements.is_empty() else "\n".join(resisted_elements)
+	resistance_container.add_child(label)
 func _on_selected_party_member_changed(_index: int, member: PartyMember) -> void:
 	if visible:
 		_refresh(member)

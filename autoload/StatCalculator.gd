@@ -152,15 +152,17 @@ func get_movement(state: PartyMember) -> int:
 		+ _status_modifier(state, "movement") \
 		+ _combat_bonus(state, "movement")
 
-func get_resistance(state: PartyMember, element: String) -> int:
-	match element.to_lower().strip_edges():
-		"fire":     return state.resist_fire     + _combat_bonus(state, "resist_fire") + _equipment_resistance(state, "fire")
-		"water":    return state.resist_water    + _combat_bonus(state, "resist_water") + _equipment_resistance(state, "water")
-		"earth":    return state.resist_earth    + _combat_bonus(state, "resist_earth") + _equipment_resistance(state, "earth")
-		"electric": return state.resist_electric + _combat_bonus(state, "resist_electric") + _equipment_resistance(state, "electric")
-		"light":    return state.resist_light    + _combat_bonus(state, "resist_light") + _equipment_resistance(state, "light")
-		"dark":     return state.resist_dark     + _combat_bonus(state, "resist_dark") + _equipment_resistance(state, "dark")
-	return 0
+func has_resistance(state: PartyMember, element: String) -> bool:
+	var key := element.to_lower().strip_edges()
+	if key.is_empty():
+		return false
+	return _innate_resistance(state, key) \
+		or _combat_resistance(state, key) \
+		or _skill_resistance(state, key) \
+		or _equipment_resistance(state, key)
+
+func get_resistance(state: PartyMember, element: String) -> bool:
+	return has_resistance(state, element)
 
 # ---------------------------------------------------------------------------
 # Recalculate — writes cached maximums back into PartyMember.
@@ -234,12 +236,46 @@ func _equipped_bonus_damage(state: PartyMember) -> int:
 			total += (item.item_data as WeaponData).bonus_damage_bonus
 	return total
 
-func _equipment_resistance(state: PartyMember, element: String) -> int:
-	var total := 0
+func _innate_resistance(state: PartyMember, element: String) -> bool:
+	match element:
+		"fire": return state.resist_fire
+		"water": return state.resist_water
+		"earth": return state.resist_earth
+		"electric": return state.resist_electric
+		"light": return state.resist_light
+		"dark": return state.resist_dark
+	return false
+
+func _combat_resistance(state: PartyMember, element: String) -> bool:
+	var entry = state.active_combat_buffs.get("resist_" + element)
+	if entry is Dictionary:
+		return int(entry.get("value", 0)) != 0
+	return entry != null and bool(entry)
+
+func _skill_resistance(state: PartyMember, element: String) -> bool:
+	for skill_id in state.learned_skills:
+		var skill := SkillSystem.get_skill(StringName(skill_id))
+		if skill != null and _skill_resistance_key(skill.resist_element) == element:
+			return true
+	return false
+
+func _skill_resistance_key(element: SkillData.Element) -> String:
+	match element:
+		SkillData.Element.FIRE: return "fire"
+		SkillData.Element.EARTH: return "earth"
+		SkillData.Element.AIR: return "electric"
+		SkillData.Element.WATER: return "water"
+		SkillData.Element.PHYSICAL: return "physical"
+		SkillData.Element.SPIRIT: return "spirit"
+		SkillData.Element.HOLY: return "light"
+		SkillData.Element.DARK: return "dark"
+	return ""
+
+func _equipment_resistance(state: PartyMember, element: String) -> bool:
 	for item in state.inventory:
-		if item.is_equipped:
-			total += item.get_resistance(element)
-	return total
+		if item.is_equipped and item.has_resistance(element):
+			return true
+	return false
 
 func _class_stat(state: PartyMember, property: StringName) -> int:
 	return 0 if state.class_data == null else int(state.class_data.get(property))

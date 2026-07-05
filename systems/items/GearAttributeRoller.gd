@@ -30,13 +30,13 @@ const ARMOR_UTILITY_TAGS := [
 ]
 
 const ARMOR_RESIST_TAGS := [
-	{"name": "Fire", "resistance": "fire", "definition": "Fire resist +1"},
-	{"name": "Electric", "resistance": "electric", "definition": "Electric resist +1"},
-	{"name": "Water", "resistance": "water", "definition": "Water resist +1"},
-	{"name": "Earth", "resistance": "earth", "definition": "Earth resist +1"},
-	{"name": "Dark", "resistance": "dark", "definition": "Dark resist +1"},
-	{"name": "Light", "resistance": "light", "definition": "Light resist +1"},
-	{"name": "Physical", "resistance": "physical", "definition": "Physical resist +1"},
+	{"name": "Fire", "resistance": "fire", "definition": "Grants Fire resistance"},
+	{"name": "Electric", "resistance": "electric", "definition": "Grants Electric resistance"},
+	{"name": "Water", "resistance": "water", "definition": "Grants Water resistance"},
+	{"name": "Earth", "resistance": "earth", "definition": "Grants Earth resistance"},
+	{"name": "Dark", "resistance": "dark", "definition": "Grants Dark resistance"},
+	{"name": "Light", "resistance": "light", "definition": "Grants Light resistance"},
+	{"name": "Physical", "resistance": "physical", "definition": "Grants Physical resistance"},
 ]
 
 const ACCESSORY_IMMUNITY_TAGS := [

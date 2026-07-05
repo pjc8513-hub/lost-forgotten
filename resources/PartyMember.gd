@@ -63,12 +63,12 @@ enum CombatRow {
 @export var bonus_willpower: int = 0
 
 @export_group("Resistances")
-@export var resist_fire: int = 0
-@export var resist_water: int = 0
-@export var resist_earth: int = 0
-@export var resist_electric: int = 0
-@export var resist_light: int = 0
-@export var resist_dark: int = 0
+@export var resist_fire: bool = false
+@export var resist_water: bool = false
+@export var resist_earth: bool = false
+@export var resist_electric: bool = false
+@export var resist_light: bool = false
+@export var resist_dark: bool = false
 
 @export_group("Skills")
 @export var learned_skills: Dictionary = {}

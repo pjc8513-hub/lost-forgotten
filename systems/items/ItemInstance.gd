@@ -22,11 +22,11 @@ func add_bonus(stat_name: String, value: int) -> void:
 func get_bonus(stat_name: String) -> int:
 	return int(rolled_bonuses.get(stat_name, 0))
 
-func add_resistance(element: String, value: int) -> void:
-	resistances[element] = int(resistances.get(element, 0)) + value
+func add_resistance(element: String, _value: int = 1) -> void:
+	resistances[element.to_lower()] = true
 
-func get_resistance(element: String) -> int:
-	return int(resistances.get(element.to_lower(), 0))
+func has_resistance(element: String) -> bool:
+	return bool(resistances.get(element.to_lower(), false))
 
 func get_display_name() -> String:
 	if item_data == null:
