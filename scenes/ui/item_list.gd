@@ -107,6 +107,7 @@ func _hide_item_tooltip() -> void:
 func _on_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
 	if mouse_button_index != MOUSE_BUTTON_RIGHT:
 		return
+	_hide_item_tooltip()
 	var inst := get_item_metadata(index) as ItemInstance
 	if inst != null:
 		var screen_position := Vector2i(get_screen_transform() * at_position)

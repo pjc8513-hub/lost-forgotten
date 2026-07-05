@@ -191,7 +191,11 @@ func _on_item_action_pressed(action_id: int) -> void:
 				MapManager.request_alert("Quest items cannot be dropped")
 
 func _equip_item(item: ItemInstance) -> void:
-	if _displayed_member != null and not _displayed_member.equip_inventory_item(item):
+	if _displayed_member == null:
+		return
+	if item.is_equipped:
+		_displayed_member.unequip_inventory_item(item)
+	elif not _displayed_member.equip_inventory_item(item):
 		MapManager.request_alert("This character cannot equip that item")
 
 func _on_trade_recipient_pressed(recipient_id: int) -> void:
