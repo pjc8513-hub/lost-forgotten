@@ -85,6 +85,15 @@ func create_item_instance(item_id: String) -> ItemInstance:
 	GearAttributeRoller.roll_for_item(item_instance)
 	return item_instance
 
+
+func generate_loot(tables: Array[Loot_Table], bonus_luck: int = 0) -> Array[ItemInstance]:
+	var instances: Array[ItemInstance] = []
+	for item_id in roll_loot(tables, bonus_luck):
+		var instance := create_item_instance(item_id)
+		if instance != null:
+			instances.append(instance)
+	return instances
+
 # Debug helper
 func table_name(table: Loot_Table) -> String:
 	return Loot_Table.keys()[table]

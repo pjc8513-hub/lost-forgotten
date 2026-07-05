@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dtq0y0l085i5e"]
 
-[ext_resource type="Script" uid="uid://cogina04lplf3" path="res://resources/WeaponData.gd" id="1_vkmv0"]
+[ext_resource type="Script" uid="uid://bnfrxh1xo7jsn" path="res://resources/WeaponData.gd" id="1_vkmv0"]
 
 [resource]
 script = ExtResource("1_vkmv0")
@@ -13,4 +13,4 @@ item_id = "Lance"
 name = "Lance"
 sell_value = 20
 equip_slot = 1
-metadata/_custom_type_script = "uid://cogina04lplf3"
+metadata/_custom_type_script = "uid://bnfrxh1xo7jsn"

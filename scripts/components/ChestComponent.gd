@@ -2,13 +2,13 @@ class_name ChestComponent
 extends Node
 
 signal opened(actor: Node)
-signal loot_requested(chest: ChestComponent, placeholder_loot: Dictionary)
+signal loot_requested(chest: ChestComponent, loot: Dictionary)
 
 @export var chest_ID: StringName
 
 @export var gold_roll_dice: int = 1
 @export var gold_roll_sides: int = 20
-@export var loot_table: String
+@export var loot_table: LootManager.Loot_Table = LootManager.Loot_Table.EQUIP_1
 @export var is_trapped: bool =  false
 @export var trap_type: trap_data
 @export var dc_rank: int = 0
@@ -58,7 +58,7 @@ func open(actor: Node) -> bool:
 		animation_player.play(&"open")
 
 	opened.emit(actor)
-	_distribute_placeholder_loot()
+	_distribute_loot()
 	MapManager.set_chest_state(chest_ID, is_open, is_empty)
 	return true
 
@@ -77,7 +77,7 @@ func _sync_visual() -> void:
 		animation_player.seek(animation_player.get_animation(&"open").length, true)
 		animation_player.pause()
 
-func _distribute_placeholder_loot() -> void:
+func _distribute_loot() -> void:
 	if is_empty:
 		MapManager.request_alert("The chest is empty")
 		return
@@ -85,12 +85,23 @@ func _distribute_placeholder_loot() -> void:
 	var gold := 0
 	if gold_roll_dice > 0 and gold_roll_sides > 0:
 		gold = DiceRoller.roll(gold_roll_dice, gold_roll_sides).total
-	var placeholder_loot := {
+	var tables: Array[LootManager.Loot_Table] = [loot_table]
+	var generated_items := LootManager.generate_loot(tables)
+	var loot := {
 		"chest_id": chest_ID,
 		"gold": gold,
 		"loot_table": loot_table,
+		"items": generated_items,
 	}
 	is_empty = true
-	LootDistributor.distribute(placeholder_loot)
-	loot_requested.emit(self, placeholder_loot)
-	MapManager.request_alert("Found %d gold" % gold)
+	var received_items := LootDistributor.distribute(loot, PartyManager.selected_party_member)
+	loot_requested.emit(self, loot)
+	_show_loot_message(gold, received_items)
+
+func _show_loot_message(gold: int, items: Array[ItemInstance]) -> void:
+	var rewards: Array[String] = []
+	if gold > 0:
+		rewards.append("%d gold" % gold)
+	for item in items:
+		rewards.append(item.get_display_name())
+	MapManager.request_alert("The chest was empty" if rewards.is_empty() else "Found %s" % ", ".join(rewards))

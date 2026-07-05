@@ -6,6 +6,7 @@ extends Resource
 ## belong to this resource.
 
 signal stats_changed
+signal inventory_changed
 signal died
 signal leveled_up(new_level: int)
 
@@ -68,6 +69,9 @@ signal leveled_up(new_level: int)
 @export var learned_skills: Dictionary = {}
 @export var daily_skill_uses_spent: Dictionary = {}
 
+@export_group("Inventory")
+@export var inventory: Array[ItemInstance] = []
+
 var active_status_effects: Dictionary = {}
 var active_combat_buffs: Dictionary = {}
 
@@ -93,6 +97,13 @@ func spend_stamina(amount: int) -> bool:
 
 func restore_stamina(amount: int) -> void:
 	current_stamina += maxi(amount, 0)
+
+func add_inventory_item(item: ItemInstance) -> bool:
+	if item == null or item.item_data == null:
+		return false
+	inventory.append(item)
+	inventory_changed.emit()
+	return true
 
 func get_skill_uses_remaining(skill: SkillData) -> int:
 	if skill == null or skill.uses_per_day < 0:

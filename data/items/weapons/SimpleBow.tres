@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://yh0mt3uoh4i0"]
 
-[ext_resource type="Script" uid="uid://cogina04lplf3" path="res://resources/WeaponData.gd" id="1_b40xf"]
+[ext_resource type="Script" uid="uid://bnfrxh1xo7jsn" path="res://resources/WeaponData.gd" id="1_b40xf"]
 
 [resource]
 script = ExtResource("1_b40xf")
@@ -13,4 +13,4 @@ item_id = "simple_bow"
 name = "Simple Bow"
 sell_value = 10
 equip_slot = 2
-metadata/_custom_type_script = "uid://cogina04lplf3"
+metadata/_custom_type_script = "uid://bnfrxh1xo7jsn"

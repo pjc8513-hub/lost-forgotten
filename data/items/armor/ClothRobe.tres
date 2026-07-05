@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ArmorData" format=3 uid="uid://36xm8c6557iu"]
 
-[ext_resource type="Script" uid="uid://04yxrplu6cft" path="res://resources/ArmorData.gd" id="1_8ue2b"]
+[ext_resource type="Script" uid="uid://crtybou8lcskx" path="res://resources/ArmorData.gd" id="1_8ue2b"]
 
 [resource]
 resource_local_to_scene = true
@@ -11,4 +11,4 @@ name = "Cloth Robe"
 sell_value = 12
 equip_slot = 3
 wisdom_bonus = 2
-metadata/_custom_type_script = "uid://04yxrplu6cft"
+metadata/_custom_type_script = "uid://crtybou8lcskx"

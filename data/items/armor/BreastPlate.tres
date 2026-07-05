@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ArmorData" format=3 uid="uid://bbqd37gmwkk1i"]
 
-[ext_resource type="Script" uid="uid://04yxrplu6cft" path="res://resources/ArmorData.gd" id="1_2233m"]
+[ext_resource type="Script" uid="uid://crtybou8lcskx" path="res://resources/ArmorData.gd" id="1_2233m"]
 
 [resource]
 resource_local_to_scene = true
@@ -13,4 +13,4 @@ name = "Breast Plate"
 sell_value = 31
 equip_slot = 3
 endurance_bonus = 5
-metadata/_custom_type_script = "uid://04yxrplu6cft"
+metadata/_custom_type_script = "uid://crtybou8lcskx"

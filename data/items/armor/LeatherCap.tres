@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ArmorData" format=3 uid="uid://jgyywgdpyoc0"]
 
-[ext_resource type="Script" uid="uid://04yxrplu6cft" path="res://resources/ArmorData.gd" id="1_eamnn"]
+[ext_resource type="Script" uid="uid://crtybou8lcskx" path="res://resources/ArmorData.gd" id="1_eamnn"]
 
 [resource]
 script = ExtResource("1_eamnn")
@@ -8,4 +8,4 @@ armor_class = -1
 name = "LeatherCap"
 sell_value = 10
 equip_slot = 5
-metadata/_custom_type_script = "uid://04yxrplu6cft"
+metadata/_custom_type_script = "uid://crtybou8lcskx"

@@ -26,6 +26,7 @@ extends Control
 @onready var boots_slot: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer/BootsSlot
 @onready var ring_slot: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer/RingSlot
 @onready var amulet_slot: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer/AmuletSlot
+@onready var item_list: ItemList = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer/ItemList
 
 var _displayed_member: PartyMember
 
@@ -81,10 +82,13 @@ func _on_selected_party_member_changed(_index: int, member: PartyMember) -> void
 func _refresh(member: PartyMember) -> void:
 	if _displayed_member != null and _displayed_member.stats_changed.is_connected(_refresh_displayed_member):
 		_displayed_member.stats_changed.disconnect(_refresh_displayed_member)
+	if _displayed_member != null and _displayed_member.inventory_changed.is_connected(_refresh_displayed_inventory):
+		_displayed_member.inventory_changed.disconnect(_refresh_displayed_inventory)
 	_displayed_member = member
 	if member == null:
 		return
 	member.stats_changed.connect(_refresh_displayed_member)
+	member.inventory_changed.connect(_refresh_displayed_inventory)
 
 	character_name.text = member.member_name
 	var class_name_number := member.class_data.class_id
@@ -96,6 +100,7 @@ func _refresh(member: PartyMember) -> void:
 	dexterity_label.text = "Dexterity: %d" % StatCalculator.get_dexterity(member)
 	piety_label.text = "Piety: %d" % StatCalculator.get_piety(member)
 	willpower_label.text = "Willpower: %d" % StatCalculator.get_willpower(member)
+	_refresh_displayed_inventory()
 
 	var multiple_members := PartyManager.party.size() > 1
 	next_button.disabled = not multiple_members
@@ -103,3 +108,13 @@ func _refresh(member: PartyMember) -> void:
 
 func _refresh_displayed_member() -> void:
 	_refresh(_displayed_member)
+
+func _refresh_displayed_inventory() -> void:
+	item_list.clear()
+	if _displayed_member == null:
+		return
+	for item in _displayed_member.inventory:
+		if item == null or item.item_data == null:
+			continue
+		item_list.add_item(item.get_display_name(), item.item_data.icon)
+		item_list.set_item_metadata(item_list.item_count - 1, item)
