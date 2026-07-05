@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cxm5ycb6246ay"]
 
-[ext_resource type="Script" uid="uid://btqty3akf28tq" path="res://scenes/ui/inventory.gd" id="1_s6ek7"]
-[ext_resource type="StyleBox" uid="uid://c0viesgilwm4w" path="res://interfacePanel.tres" id="2_avmd0"]
-[ext_resource type="Script" uid="uid://cnd73lfm4hkkt" path="res://scenes/ui/item_list.gd" id="3_xeaml"]
-[ext_resource type="Script" uid="uid://bql6v3if0t18k" path="res://scenes/ui/popup_menu.gd" id="4_5yy05"]
+[ext_resource type="Script" uid="uid://btqty3akf28tq" path="res://scenes/ui/inventory/inventory.gd" id="1_lobmi"]
+[ext_resource type="StyleBox" uid="uid://c0viesgilwm4w" path="res://interfacePanel.tres" id="2_8ndef"]
+[ext_resource type="Script" uid="uid://cnd73lfm4hkkt" path="res://scenes/ui/inventory/item_list.gd" id="3_wi1cf"]
+[ext_resource type="Script" uid="uid://bql6v3if0t18k" path="res://scenes/ui/inventory/popup_menu.gd" id="4_lobmi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7d1pb"]
 resource_local_to_scene = true
@@ -36,7 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_s6ek7")
+script = ExtResource("1_lobmi")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=422224215]
 layout_mode = 1
@@ -59,7 +59,7 @@ layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1913028333]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("2_avmd0")
+theme_override_styles/panel = ExtResource("2_8ndef")
 
 [node name="CharacterName" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer" unique_id=705289248]
 layout_mode = 2
@@ -184,10 +184,10 @@ horizontal_alignment = 1
 [node name="ItemList" type="ItemList" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer" unique_id=1760974576]
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("3_xeaml")
+script = ExtResource("3_wi1cf")
 
 [node name="PopupMenu" type="PopupMenu" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer" unique_id=1517674335]
-script = ExtResource("4_5yy05")
+script = ExtResource("4_lobmi")
 
 [node name="TradeMenu" type="PopupMenu" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag/ScrollContainer/VBoxContainer/PopupMenu" unique_id=966921805]
 
@@ -207,6 +207,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_hhrfr")
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/DescriptionContainer" unique_id=913609598]
 layout_mode = 2
 theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/DescriptionContainer/MarginContainer" unique_id=2106756468]
 layout_mode = 2
@@ -217,6 +218,19 @@ text = "Description:"
 
 [node name="DescriptionLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer" unique_id=1857098591]
 layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer" unique_id=1718745854]
+layout_mode = 2
+text = "Status:"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer" unique_id=554692372]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatusContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1206148798]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="StatsPanel" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=595084617]
 layout_mode = 2
@@ -260,6 +274,40 @@ text = "Piety: "
 layout_mode = 2
 text = "Willpower: "
 
+[node name="MoreStatsContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=263050831]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("2_8ndef")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/MoreStatsContainer" unique_id=415227876]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 27
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/MoreStatsContainer/MarginContainer" unique_id=251609167]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/MoreStatsContainer/MarginContainer/VBoxContainer" unique_id=569105227]
+layout_mode = 2
+text = "Damage:"
+
+[node name="DamageLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/MoreStatsContainer/MarginContainer/VBoxContainer" unique_id=565186880]
+layout_mode = 2
+
+[node name="ACLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/MoreStatsContainer/MarginContainer/VBoxContainer" unique_id=550798716]
+layout_mode = 2
+text = "AC: "
+
+[node name="AccuracyLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/MoreStatsContainer/MarginContainer/VBoxContainer" unique_id=1786000732]
+layout_mode = 2
+text = "Accuracy: "
+
+[node name="InitiativeLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/MoreStatsContainer/MarginContainer/VBoxContainer" unique_id=162015418]
+layout_mode = 2
+text = "Initiative: "
+
 [node name="options" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1443726474]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -268,6 +316,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_0avfp")
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/options" unique_id=1504063228]
 layout_mode = 2
 theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/options/MarginContainer" unique_id=1869992674]
 layout_mode = 2

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dus56khm8x3rd"]
 
-[ext_resource type="Script" uid="uid://di858h4n3yjxk" path="res://scenes/ui/item_tooltip.gd" id="1_ix1hg"]
+[ext_resource type="Script" uid="uid://di858h4n3yjxk" path="res://scenes/ui/inventory/item_tooltip.gd" id="1_ix1hg"]
 [ext_resource type="StyleBox" uid="uid://c0viesgilwm4w" path="res://interfacePanel.tres" id="1_rs1h6"]
 
 [node name="ItemTooltip" type="PanelContainer" unique_id=688586890]

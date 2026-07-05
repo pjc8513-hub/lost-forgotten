@@ -15,6 +15,14 @@ extends Control
 @onready var willpower_label: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/StatsPanel/MarginContainer/StatsContainer/Willpower
 @onready var description_label: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer/DescriptionLabel
 @onready var character_name: Label = $MarginContainer/PanelContainer/VBoxContainer/PanelContainer/CharacterName
+@onready var status_container: VBoxContainer = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer/ScrollContainer/StatusContainer
+
+
+# Derived stats
+@onready var damage_label: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/MoreStatsContainer/MarginContainer/VBoxContainer/DamageLabel
+@onready var ac_label: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/MoreStatsContainer/MarginContainer/VBoxContainer/ACLabel
+@onready var accuracy_label: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/MoreStatsContainer/MarginContainer/VBoxContainer/AccuracyLabel
+@onready var initiative_label: Label = $MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/MoreStatsContainer/MarginContainer/VBoxContainer/InitiativeLabel
 
 
 # Inventory slots

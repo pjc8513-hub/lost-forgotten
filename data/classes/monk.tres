@@ -18,6 +18,7 @@ hp_base = 6
 hp_per_level = 1
 stamina = 27
 ac_bonus = -2
+accuracy_base = 2
 initiative_base = 3
 allowed_armor_types = Array[int]([0, 1])
 starting_skills = Array[String](["invigorate"])

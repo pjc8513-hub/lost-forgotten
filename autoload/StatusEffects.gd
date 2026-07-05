@@ -18,20 +18,20 @@ enum Effect {
 	BLEED,
 	DECAY,          # Wisdom / magic resistance drain
 	# Crowd control
-	STUN,
-	SLEEP,
-	FREEZE,
-	PARALYSIS,
-	CONFUSE,
-	FEAR,
+	STUN,			# Can't act. Ends at end of turn (or combat)
+	SLEEP,			# Can't act. Ends on taking damage (or combat)
+	FREEZE,			# Can't act. Chance to roll out every turn (clears after combat)
+	PARALYSIS,		# Can't act.
+	CONFUSE,		# Can't cast. -Willpower
 	# Stat debuffs
+	FEAR,			# Lowers initiative and accuracy
 	WEAKEN,         # -Strength
-	SLOW,           # -Dexterity / movement
+	SLOW,           # -Accuracy /-Initiative
 	BLIND,          # -Accuracy / -Dexterity
-	CURSE,          # -Willpower saves
+	CURSE,          # -Willpower saves / -Dexterity / Cannot cast
 	# Positive
 	REGENERATE,     # HP per round
-	HASTE,          # +initiative, +movement
+	HASTE,          # +initiative, +dexterity
 	BLESS,          # +accuracy, +willpower saves
 	STONE_SKIN,     # -AC (old-school: lower is better)
 }
@@ -41,6 +41,18 @@ enum Effect {
 # A value of -1 from duration_rounds() means indefinite.
 const DURATION_ROUNDS: Dictionary = {
 	Effect.STUN: 1,
+	Effect.POISON: -1,
+	Effect.BURN: -1,
+	Effect.BLEED: -1,
+	Effect.SLEEP: -1,
+	Effect.FREEZE: -1,
+	Effect.DECAY: -1,
+	Effect.PARALYSIS: -1,
+	Effect.WEAKEN: -1,
+	Effect.FEAR: -1,
+	Effect.CONFUSE: -1,
+	Effect.BLIND: -1,
+	Effect.CURSE: -1
 }
 
 # ---------------------------------------------------------------------------
@@ -53,6 +65,8 @@ const DURATION_ROUNDS: Dictionary = {
 #   stat_deltas  — flat modifiers applied to derived stats while active
 #   blocks_action — true = character cannot act this round
 #   blocks_move   — true = character cannot move this round
+#	blocks_casting - true = character cannot cast this round
+#	end_of_comnbat - true = clears at end of combat
 # ---------------------------------------------------------------------------
 
 const DEFINITIONS: Dictionary = {
@@ -64,6 +78,8 @@ const DEFINITIONS: Dictionary = {
 		"stat_deltas": { "endurance": -1 },
 		"blocks_action": false,
 		"blocks_move": false,
+		"blocks_casting": false,
+		"end_of_combat": false,
 	},
 	Effect.BURN: {
 		"label": "Burn",
@@ -73,6 +89,8 @@ const DEFINITIONS: Dictionary = {
 		"stat_deltas": { "armor_class": 2 },  # +2 AC = worse in descending AC
 		"blocks_action": false,
 		"blocks_move": false,
+		"blocks_casting": false,
+		"end_of_combat": false,
 	},
 	Effect.BLEED: {
 		"label": "Bleed",
@@ -82,15 +100,19 @@ const DEFINITIONS: Dictionary = {
 		"stat_deltas": { "strength": -1 },
 		"blocks_action": false,
 		"blocks_move": false,
+		"blocks_casting": false,
+		"end_of_combat": false,
 	},
 	Effect.DECAY: {
 		"label": "Decay",
 		"description": "Drains magical resistance and Wisdom.",
 		"is_negative": true,
 		"dot_damage": 0,
-		"stat_deltas": { "wisdom": -2, "magic_amp": -2 },
+		"stat_deltas": { "wisdom": -5, "magic_amp": -2 },
 		"blocks_action": false,
 		"blocks_move": false,
+		"blocks_casting": false,
+		"end_of_combat": false,
 	},
 	Effect.STUN: {
 		"label": "Stun",
@@ -100,6 +122,8 @@ const DEFINITIONS: Dictionary = {
 		"stat_deltas": { "initiative": -10, "armor_class": 2 },
 		"blocks_action": true,
 		"blocks_move": true,
+		"blocks_casting": true,
+		"end_of_combat": true,
 	},
 	Effect.SLEEP: {
 		"label": "Sleep",
@@ -109,6 +133,8 @@ const DEFINITIONS: Dictionary = {
 		"stat_deltas": { "initiative": -10, "armor_class": 4 },
 		"blocks_action": true,
 		"blocks_move": true,
+		"blocks_casting": true,
+		"end_of_combat": true,
 	},
 	Effect.PARALYSIS: {
 		"label": "Paralysis",
@@ -118,6 +144,8 @@ const DEFINITIONS: Dictionary = {
 		"stat_deltas": { "initiative": -10, "armor_class": 4, "dexterity": -4 },
 		"blocks_action": true,
 		"blocks_move": true,
+		"blocks_casting": true,
+		"end_of_combat": false,
 	},
 	Effect.FREEZE: {
 		"label": "Freeze",
@@ -127,42 +155,51 @@ const DEFINITIONS: Dictionary = {
 		"stat_deltas": { "initiative": -10, "dexterity": -4 },
 		"blocks_action": true,
 		"blocks_move": true,
+		"blocks_casting": true,
+		"end_of_combat": true,
 	},
 	Effect.CONFUSE: {
 		"label": "Confuse",
-		"description": "Actions may target random party members.",
+		"description": "Cannot cast spells and willpower penalty.",
 		"is_negative": true,
 		"dot_damage": 0,
-		"stat_deltas": { "accuracy": -3 },
+		"stat_deltas": { "willpower": -2 },
 		"blocks_action": false,
 		"blocks_move": false,
+		"blocks_casting": true,
+		"end_of_combat": false,
 	},
 	Effect.FEAR: {
 		"label": "Fear",
-		"description": "May flee instead of acting. -Initiative.",
+		"description": "Penalty to initiative and accuracy.",
 		"is_negative": true,
 		"dot_damage": 0,
 		"stat_deltas": { "initiative": -3, "accuracy": -2 },
 		"blocks_action": false,
 		"blocks_move": false,
+		"end_of_combat": true,
 	},
 	Effect.WEAKEN: {
 		"label": "Weaken",
 		"description": "Reduced Strength and bonus damage.",
 		"is_negative": true,
 		"dot_damage": 0,
-		"stat_deltas": { "strength": -3, "bonus_damage": -2 },
+		"stat_deltas": { "strength": -5, "bonus_damage": -5 },
 		"blocks_action": false,
 		"blocks_move": false,
+		"blocks_casting": false,
+		"end_of_combat": false,
 	},
 	Effect.SLOW: {
 		"label": "Slow",
-		"description": "Reduced Dexterity, initiative, and movement.",
+		"description": "Reduced Dexterity and initiative",
 		"is_negative": true,
 		"dot_damage": 0,
-		"stat_deltas": { "dexterity": -3, "initiative": -3 },
+		"stat_deltas": { "dexterity": -5, "initiative": -3 },
 		"blocks_action": false,
 		"blocks_move": false,
+		"blocks_casting": false,
+		"end_of_combat": true,
 	},
 	Effect.BLIND: {
 		"label": "Blind",
@@ -172,15 +209,19 @@ const DEFINITIONS: Dictionary = {
 		"stat_deltas": { "accuracy": -5, "dexterity": -2 },
 		"blocks_action": false,
 		"blocks_move": false,
+		"blocks_casting": false,
+		"end_of_combat": false,
 	},
 	Effect.CURSE: {
 		"label": "Curse",
-		"description": "Weakens Willpower saves against further effects.",
+		"description": "Weakens Willpower saves against further effects and lowers Dexterity.\nBlocks casting.",
 		"is_negative": true,
 		"dot_damage": 0,
-		"stat_deltas": { "willpower": -3 },
+		"stat_deltas": { "willpower": -3, "dexterity": -2 },
 		"blocks_action": false,
 		"blocks_move": false,
+		"blocks_casting": true,
+		"end_of_combat": false,
 	},
 	Effect.REGENERATE: {
 		"label": "Regenerate",
@@ -190,15 +231,19 @@ const DEFINITIONS: Dictionary = {
 		"stat_deltas": {},
 		"blocks_action": false,
 		"blocks_move": false,
+		"blocks_casting": false,
+		"end_of_combat": true,
 	},
 	Effect.HASTE: {
 		"label": "Haste",
-		"description": "+Initiative and +Movement.",
+		"description": "+Initiative and dexterity",
 		"is_negative": false,
 		"dot_damage": 0,
-		"stat_deltas": { "initiative": 4, "movement": 1, "dexterity": 2 },
+		"stat_deltas": { "initiative": 4, "dexterity": 2 },
 		"blocks_action": false,
 		"blocks_move": false,
+		"blocks_casting": false,
+		"end_of_combat": true,
 	},
 	Effect.BLESS: {
 		"label": "Bless",
@@ -208,6 +253,8 @@ const DEFINITIONS: Dictionary = {
 		"stat_deltas": { "accuracy": 3, "willpower": 2 },
 		"blocks_action": false,
 		"blocks_move": false,
+		"blocks_casting": false,
+		"end_of_combat": true,
 	},
 	Effect.STONE_SKIN: {
 		"label": "Stone Skin",
@@ -217,6 +264,8 @@ const DEFINITIONS: Dictionary = {
 		"stat_deltas": { "armor_class": -2 },
 		"blocks_action": false,
 		"blocks_move": false,
+		"blocks_casting": false,
+		"end_of_combat": true,
 	},
 }
 

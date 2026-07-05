@@ -4,7 +4,7 @@ extends ItemList
 signal context_menu_requested(item: ItemInstance, screen_position: Vector2i)
 signal equip_requested(item: ItemInstance)
 
-const ITEM_TOOLTIP_SCENE = preload ("res://scenes/ui/item_tooltip.tscn")
+const ITEM_TOOLTIP_SCENE = preload ("res://scenes/ui/inventory/item_tooltip.tscn")
 var item_tooltip: ItemTooltip
 var hovered_item_index := -1
 @onready var item_list: ItemList = $"."

@@ -1,7 +1,7 @@
 extends Node3D
 
 const PARTY_MEMBER_CARD_SCENE := preload("res://scenes/ui/PartyMemberCards.tscn")
-const INVENTORY_SCENE := preload("res://scenes/ui/inventory.tscn")
+const INVENTORY_SCENE := preload("res://scenes/ui/inventory/inventory.tscn")
 
 @export var initial_map: PackedScene
 @export var initial_spawn_id: StringName = &"entrance"
