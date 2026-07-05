@@ -35,6 +35,7 @@ WorldManager="*uid://fqm68e8mk1qv"
 SceneFlow="*uid://boasdbtwi06cf"
 MusicManager="*uid://d1tm0lvlq8wf5"
 LootManager="*uid://sadpetgxjlng"
+LootDistributor="*res://autoload/LootDistributor.gd"
 
 [display]
 

@@ -6,6 +6,7 @@ signal stamina_cost_due(amount: int)
 
 const STEPS_PER_STAMINA: int = 10
 const SECONDS_PER_STEP: int = 6
+const DUNGEON_START_TIME_SECONDS: int = 9 * 60 * 60
 
 var dungeon_elapsed_time: int = 0
 var dungeon_steps: int = 0
@@ -33,3 +34,7 @@ func record_step() -> void:
 	dungeon_time_changed.emit(dungeon_elapsed_time)
 	if dungeon_steps % STEPS_PER_STAMINA == 0:
 		stamina_cost_due.emit(1)
+
+
+func get_time_of_day_seconds() -> int:
+	return DUNGEON_START_TIME_SECONDS + dungeon_elapsed_time

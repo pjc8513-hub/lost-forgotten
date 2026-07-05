@@ -91,5 +91,6 @@ func _distribute_placeholder_loot() -> void:
 		"loot_table": loot_table,
 	}
 	is_empty = true
+	LootDistributor.distribute(placeholder_loot)
 	loot_requested.emit(self, placeholder_loot)
-	MapManager.request_alert("Found %d gold (loot placeholder)" % gold)
+	MapManager.request_alert("Found %d gold" % gold)
