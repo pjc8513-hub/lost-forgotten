@@ -28,7 +28,7 @@ var default_party: Array[PartyMember] = []
 var roster: Array[PartyMember] = []
 var party: Array[PartyMember] = []
 var gold: int = 0
-var food: int = 0
+var food: int = 4
 var selected_party_member_index: int = -1
 var selected_party_member: PartyMember:
 	get:

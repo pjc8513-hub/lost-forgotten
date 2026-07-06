@@ -29,6 +29,7 @@ enum Effect {
 	SLOW,           # -Accuracy /-Initiative
 	BLIND,          # -Accuracy / -Dexterity
 	CURSE,          # -Willpower saves / -Dexterity / Cannot cast
+	DISEASED,		# Cannot gain HP from healing or resting
 	# Positive
 	REGENERATE,     # HP per round
 	HASTE,          # +initiative, +dexterity
@@ -52,7 +53,8 @@ const DURATION_ROUNDS: Dictionary = {
 	Effect.FEAR: -1,
 	Effect.CONFUSE: -1,
 	Effect.BLIND: -1,
-	Effect.CURSE: -1
+	Effect.CURSE: -1,
+	Effect.DISEASED: -1,
 }
 
 # ---------------------------------------------------------------------------
@@ -64,9 +66,11 @@ const DURATION_ROUNDS: Dictionary = {
 #   dot_damage   — HP dealt per round (negative = healing)
 #   stat_deltas  — flat modifiers applied to derived stats while active
 #   blocks_action — true = character cannot act this round
+#	blocks_healing - true = character cannot receive healing
 #   blocks_move   — true = character cannot move this round
 #	blocks_casting - true = character cannot cast this round
 #	end_of_comnbat - true = clears at end of combat
+#	clear_on_rest  - true = clears when party rests
 # ---------------------------------------------------------------------------
 
 const DEFINITIONS: Dictionary = {
@@ -77,9 +81,11 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 4,
 		"stat_deltas": { "endurance": -1 },
 		"blocks_action": false,
+		"blocks_healing": false,
 		"blocks_move": false,
 		"blocks_casting": false,
 		"end_of_combat": false,
+		"clear_on_rest": false,
 	},
 	Effect.BURN: {
 		"label": "Burn",
@@ -88,9 +94,11 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 5,
 		"stat_deltas": { "armor_class": -2 },
 		"blocks_action": false,
+		"blocks_healing": false,
 		"blocks_move": false,
 		"blocks_casting": false,
 		"end_of_combat": false,
+		"clear_on_rest": true,
 	},
 	Effect.BLEED: {
 		"label": "Bleed",
@@ -99,20 +107,24 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 3,
 		"stat_deltas": { "strength": -1 },
 		"blocks_action": false,
+		"blocks_healing": false,
 		"blocks_move": false,
 		"blocks_casting": false,
 		"end_of_combat": false,
+		"clear_on_rest": true,
 	},
 	Effect.DECAY: {
 		"label": "Decay",
-		"description": "Drains magical resistance and Wisdom.",
+		"description": "Drains magical resistance and Wisdom. Blocks healing effects",
 		"is_negative": true,
 		"dot_damage": 0,
 		"stat_deltas": { "wisdom": -5, "magic_amp": -2 },
 		"blocks_action": false,
+		"blocks_healing": true,
 		"blocks_move": false,
 		"blocks_casting": false,
 		"end_of_combat": false,
+		"clear_on_rest": true,
 	},
 	Effect.STUN: {
 		"label": "Stun",
@@ -121,9 +133,11 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 0,
 		"stat_deltas": { "initiative": -10, "armor_class": -2 },
 		"blocks_action": true,
+		"blocks_healing": false,
 		"blocks_move": true,
 		"blocks_casting": true,
 		"end_of_combat": true,
+		"clear_on_rest": false,
 	},
 	Effect.SLEEP: {
 		"label": "Sleep",
@@ -132,9 +146,11 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 0,
 		"stat_deltas": { "initiative": -10, "armor_class": -4 },
 		"blocks_action": true,
+		"blocks_healing": false,
 		"blocks_move": true,
 		"blocks_casting": true,
 		"end_of_combat": true,
+		"clear_on_rest": false,
 	},
 	Effect.PARALYSIS: {
 		"label": "Paralysis",
@@ -143,9 +159,11 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 0,
 		"stat_deltas": { "initiative": -10, "armor_class": -4, "dexterity": -4 },
 		"blocks_action": true,
+		"blocks_healing": false,
 		"blocks_move": true,
 		"blocks_casting": true,
 		"end_of_combat": false,
+		"clear_on_rest": false,
 	},
 	Effect.FREEZE: {
 		"label": "Freeze",
@@ -154,9 +172,11 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 0,
 		"stat_deltas": { "initiative": -10, "dexterity": -4 },
 		"blocks_action": true,
+		"blocks_healing": false,
 		"blocks_move": true,
 		"blocks_casting": true,
 		"end_of_combat": true,
+		"clear_on_rest": false,
 	},
 	Effect.CONFUSE: {
 		"label": "Confuse",
@@ -165,9 +185,11 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 0,
 		"stat_deltas": { "willpower": -2 },
 		"blocks_action": false,
+		"blocks_healing": false,
 		"blocks_move": false,
 		"blocks_casting": true,
 		"end_of_combat": false,
+		"clear_on_rest": true,
 	},
 	Effect.FEAR: {
 		"label": "Fear",
@@ -176,8 +198,10 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 0,
 		"stat_deltas": { "initiative": -3, "accuracy": -2 },
 		"blocks_action": false,
+		"blocks_healing": false,
 		"blocks_move": false,
 		"end_of_combat": true,
+		"clear_on_rest": true,
 	},
 	Effect.WEAKEN: {
 		"label": "Weakness",
@@ -186,9 +210,11 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 0,
 		"stat_deltas": { "strength": -5, "bonus_damage": -5 },
 		"blocks_action": false,
+		"blocks_healing": false,
 		"blocks_move": false,
 		"blocks_casting": false,
 		"end_of_combat": false,
+		"clear_on_rest": true,
 	},
 	Effect.SLOW: {
 		"label": "Slow",
@@ -197,9 +223,11 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 0,
 		"stat_deltas": { "dexterity": -5, "initiative": -3 },
 		"blocks_action": false,
+		"blocks_healing": false,
 		"blocks_move": false,
 		"blocks_casting": false,
 		"end_of_combat": true,
+		"clear_on_rest": true,
 	},
 	Effect.BLIND: {
 		"label": "Blind",
@@ -208,9 +236,11 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 0,
 		"stat_deltas": { "accuracy": -5, "dexterity": -2 },
 		"blocks_action": false,
+		"blocks_healing": false,
 		"blocks_move": false,
 		"blocks_casting": false,
 		"end_of_combat": false,
+		"clear_on_rest": false,
 	},
 	Effect.CURSE: {
 		"label": "Curse",
@@ -219,9 +249,24 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 0,
 		"stat_deltas": { "willpower": -3, "dexterity": -2 },
 		"blocks_action": false,
+		"blocks_healing": false,
 		"blocks_move": false,
 		"blocks_casting": true,
 		"end_of_combat": false,
+		"clear_on_rest": false,
+	},
+	Effect.DISEASED: {
+		"label": "Diseased",
+		"description": "Cannot receive healing. Strength and Willpower penalty",
+		"is_negative": true,
+		"dot_damage": 0,
+		"stat_deltas": { "willpower": -1, "strength": -1 },
+		"blocks_action": false,
+		"blocks_healing": true,
+		"blocks_move": false,
+		"blocks_casting": true,
+		"end_of_combat": false,
+		"clear_on_rest": false,
 	},
 	Effect.REGENERATE: {
 		"label": "Regenerate",
@@ -230,9 +275,11 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": -4,    # Negative = healing
 		"stat_deltas": {},
 		"blocks_action": false,
+		"blocks_healing": false,
 		"blocks_move": false,
 		"blocks_casting": false,
 		"end_of_combat": true,
+		"clear_on_rest": false,
 	},
 	Effect.HASTE: {
 		"label": "Haste",
@@ -241,9 +288,11 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 0,
 		"stat_deltas": { "initiative": 4, "dexterity": 2 },
 		"blocks_action": false,
+		"blocks_healing": false,
 		"blocks_move": false,
 		"blocks_casting": false,
 		"end_of_combat": true,
+		"clear_on_rest": false,
 	},
 	Effect.BLESS: {
 		"label": "Bless",
@@ -252,9 +301,11 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 0,
 		"stat_deltas": { "accuracy": 3, "willpower": 2 },
 		"blocks_action": false,
+		"blocks_healing": false,
 		"blocks_move": false,
 		"blocks_casting": false,
 		"end_of_combat": true,
+		"clear_on_rest": false,
 	},
 	Effect.STONE_SKIN: {
 		"label": "Stone Skin",
@@ -263,9 +314,11 @@ const DEFINITIONS: Dictionary = {
 		"dot_damage": 0,
 		"stat_deltas": { "armor_class": 2 },
 		"blocks_action": false,
+		"blocks_healing": false,
 		"blocks_move": false,
 		"blocks_casting": false,
 		"end_of_combat": true,
+		"clear_on_rest": false,
 	},
 }
 

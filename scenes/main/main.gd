@@ -3,6 +3,7 @@ extends Node3D
 const PARTY_MEMBER_CARD_SCENE := preload("res://scenes/ui/PartyMemberCards.tscn")
 const INVENTORY_SCENE := preload("res://scenes/ui/inventory/inventory.tscn")
 const CHARACTER_SCENE := preload("res://scenes/ui/character.tscn")
+const CAMP_SCENE := preload("res://scenes/ui/camp_control.tscn")
 
 @export var initial_map: PackedScene
 @export var initial_spawn_id: StringName = &"entrance"
@@ -16,10 +17,12 @@ const CHARACTER_SCENE := preload("res://scenes/ui/character.tscn")
 @onready var alert: Control = $HudLayer/HudRoot/Alert
 @onready var inventory_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/inventoryButton
 @onready var character_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/CharacterButton
+@onready var camp_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/CampButton
 
 var player_movement: GridMovementController
 var inventory_menu: InventoryMenu
 var character_menu: CharacterMenu
+var camp_menu: CampMenu
 
 func _ready() -> void:
 	PartyManager.party_changed.connect(_rebuild_party_cards)
@@ -29,10 +32,13 @@ func _ready() -> void:
 	MapManager.alert_requested.connect(alert.show_message)
 	inventory_menu = INVENTORY_SCENE.instantiate() as InventoryMenu
 	character_menu = CHARACTER_SCENE.instantiate() as CharacterMenu
+	camp_menu = CAMP_SCENE.instantiate()as CampMenu
 	$HudLayer/HudRoot/CanvasLayer.add_child(inventory_menu)
 	$HudLayer/HudRoot/CanvasLayer.add_child(character_menu)
+	$HudLayer/HudRoot/CanvasLayer.add_child(camp_menu)
 	inventory_button.pressed.connect(inventory_menu.open)
 	character_button.pressed.connect(character_menu.open)
+	camp_button.pressed.connect(camp_menu.open_dialogue)
 	_rebuild_party_cards()
 
 	if initial_map == null or player_scene == null:
