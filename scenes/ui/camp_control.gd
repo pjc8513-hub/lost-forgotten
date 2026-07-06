@@ -2,14 +2,20 @@ class_name CampMenu
 extends Control
 
 const REST_DURATION_SECONDS: int = 6 * 60 * 60
+const FADE_DURATION_SECONDS: float = 0.5
+const BLACKOUT_HOLD_SECONDS: float = 0.25
 
 # Signals to notify the rest of your game what the player chose
 signal camp_confirmed
 signal camp_cancelled
 
+@onready var dialog_box: PanelContainer = $DialogBox
+@onready var blackout: ColorRect = $TransitionCanvas/Blackout
 @onready var food_label: Label = $DialogBox/PaperPanel/VBoxContainer/FoodLabel
 @onready var camp_button: Button = $DialogBox/PaperPanel/VBoxContainer/HBoxContainer/CampButton
 @onready var close_button: Button = $DialogBox/PaperPanel/VBoxContainer/HBoxContainer/CloseButton
+
+var _is_transitioning: bool = false
 
 func _ready() -> void:
 	# Hide by default until open_dialogue() is called
@@ -24,7 +30,10 @@ func _ready() -> void:
 	_apply_notification_style()
 
 func open_dialogue() -> void:
+	if _is_transitioning:
+		return
 	_refresh_food_display()
+	dialog_box.show()
 	show()
 	if not camp_button.disabled:
 		camp_button.grab_focus()
@@ -32,14 +41,40 @@ func open_dialogue() -> void:
 		close_button.grab_focus()
 
 func _on_camp_pressed() -> void:
-	if not PartyManager.spend_food(1):
+	if _is_transitioning or not PartyManager.spend_food(1):
 		_refresh_food_display()
 		return
+	_is_transitioning = true
+	camp_button.disabled = true
+	close_button.disabled = true
+	blackout.color = Color(0.0, 0.0, 0.0, 0.0)
+	blackout.show()
+
+	var fade_out := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	fade_out.tween_property(blackout, "color:a", 1.0, FADE_DURATION_SECONDS)
+	await fade_out.finished
+
 	for member in PartyManager.party:
 		_rest_member(member)
 	WorldManager.advance_time(REST_DURATION_SECONDS)
 	camp_confirmed.emit()
+	dialog_box.hide()
+	await get_tree().create_timer(BLACKOUT_HOLD_SECONDS).timeout
+
+	var fade_in := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	fade_in.tween_property(blackout, "color:a", 0.0, FADE_DURATION_SECONDS)
+	await fade_in.finished
+
+	blackout.hide()
 	hide()
+	dialog_box.show()
+	close_button.disabled = false
+	_is_transitioning = false
+	_refresh_food_display()
+
+func _input(_event: InputEvent) -> void:
+	if _is_transitioning:
+		get_viewport().set_input_as_handled()
 
 func _rest_member(member: PartyMember) -> void:
 	if member == null:
@@ -73,6 +108,8 @@ func _refresh_food_display() -> void:
 	camp_button.disabled = PartyManager.food < 1
 
 func _on_close_pressed() -> void:
+	if _is_transitioning:
+		return
 	camp_cancelled.emit()
 	hide()
 

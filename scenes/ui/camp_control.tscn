@@ -14,6 +14,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6ve0j")
 
+[node name="TransitionCanvas" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Blackout" type="ColorRect" parent="TransitionCanvas"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+color = Color(0, 0, 0, 0)
+
 [node name="DialogBox" type="PanelContainer" parent="." unique_id=544207212]
 layout_mode = 1
 anchors_preset = 8
