@@ -9,6 +9,10 @@ const ARCHETYPE_ORDER: Array[SkillData.Archetype] = [
 	SkillData.Archetype.COMBAT_PASSIVE,
 	SkillData.Archetype.PASSIVE,
 ]
+const EXECUTABLE_ARCHETYPES: Array[SkillData.Archetype] = [
+	SkillData.Archetype.PARTY_SPELL,
+	SkillData.Archetype.EXPLORATION,
+]
 
 @onready var character_name: Label = $PanelContainer/MarginContainer/VBoxContainer/CharacterName
 @onready var skill_list: ItemList = $PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/SkillContainer/VBoxContainer/ScrollContainer/SkillList
@@ -18,6 +22,7 @@ const ARCHETYPE_ORDER: Array[SkillData.Archetype] = [
 
 var _displayed_member_index: int = -1
 var _displayed_member: PartyMember
+var _listed_skills: Array[SkillData] = []
 
 func _ready() -> void:
 	hide()
@@ -40,6 +45,7 @@ func close() -> void:
 func _refresh(member_index: int, member: PartyMember) -> void:
 	_displayed_member_index = member_index
 	_displayed_member = member
+	_listed_skills.clear()
 	skill_list.clear()
 
 	var party_size := PartyManager.party.size()
@@ -61,6 +67,7 @@ func _refresh(member_index: int, member: PartyMember) -> void:
 
 	for skill in skills:
 		var item_index := skill_list.add_item(skill.display_name, skill.icon)
+		_listed_skills.append(skill)
 		skill_list.set_item_tooltip(item_index, _get_skill_tooltip(member, skill))
 
 
@@ -118,4 +125,10 @@ func _select_relative_member(offset: int) -> void:
 
 
 func _on_skill_list_item_activated(index: int) -> void:
-	pass # Replace with function body.
+	if _displayed_member == null or index < 0 or index >= _listed_skills.size():
+		return
+	var skill := _listed_skills[index]
+	if skill == null or not skill.archetype in EXECUTABLE_ARCHETYPES:
+		return
+	close()
+	SkillSystem.request_execution(_displayed_member, skill.skill_id)
