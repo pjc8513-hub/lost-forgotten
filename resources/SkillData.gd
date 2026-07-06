@@ -42,6 +42,7 @@ enum Status_effect {
 # identity
 @export var skill_id: StringName = ""
 @export var display_name:  String = ""
+@export var description: String = ""
 @export var available_classes: Array[ClassData.ClassName]
 @export var icon: Texture2D
 @export var archetype: Archetype = Archetype.UNKNOWN

@@ -6,6 +6,7 @@
 script = ExtResource("1_0ex0l")
 skill_id = &"remove_weakness"
 display_name = "Remove Weakness"
+description = "Clears the weak status"
 available_classes = Array[int]([3, 6])
 archetype = 4
 element = 4

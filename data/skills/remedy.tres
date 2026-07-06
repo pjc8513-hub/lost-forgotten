@@ -6,6 +6,7 @@
 script = ExtResource("1_ujopx")
 skill_id = &"remedy"
 display_name = "Remedy"
+description = "Clears the poison status"
 available_classes = Array[int]([3, 5, 6])
 archetype = 4
 element = 5

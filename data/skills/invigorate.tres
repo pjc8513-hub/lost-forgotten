@@ -6,6 +6,7 @@
 script = ExtResource("1_sbtkv")
 skill_id = &"invigorate"
 display_name = "Invigorate"
+description = "Restores a small amount of stamina"
 available_classes = Array[int]([6])
 archetype = 4
 element = 5

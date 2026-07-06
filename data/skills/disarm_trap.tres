@@ -6,6 +6,7 @@
 script = ExtResource("1_ps0q5")
 skill_id = &"disarm_trap"
 display_name = "Disarm Trap"
+description = "Used to disarm traps"
 available_classes = Array[int]([2, 0, 6])
 archetype = 0
 element = 4

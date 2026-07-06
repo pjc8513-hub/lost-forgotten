@@ -3,14 +3,6 @@
 [ext_resource type="StyleBox" uid="uid://c0viesgilwm4w" path="res://interfacePanel.tres" id="1_8do7n"]
 [ext_resource type="Script" uid="uid://efhfwld746v7" path="res://scenes/ui/character.gd" id="1_n3nui"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8do7n"]
-resource_local_to_scene = true
-bg_color = Color(0.47058824, 0.18039216, 0.18039216, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3nui"]
-resource_local_to_scene = true
-bg_color = Color(0.47058824, 0.18039216, 0.18039216, 1)
-
 [node name="Character" type="Control" unique_id=1237777309]
 layout_mode = 3
 anchors_preset = 15
@@ -62,7 +54,7 @@ layout_mode = 2
 [node name="DescriptionContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1364405114]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_8do7n")
+theme_override_styles/panel = ExtResource("1_8do7n")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DescriptionContainer" unique_id=1446992498]
 layout_mode = 2
@@ -110,7 +102,7 @@ size_flags_vertical = 3
 [node name="StatsPanel" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=786125788]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_n3nui")
+theme_override_styles/panel = ExtResource("1_8do7n")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/StatsPanel" unique_id=528882939]
 layout_mode = 2

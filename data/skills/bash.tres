@@ -6,6 +6,7 @@
 script = ExtResource("1_jxegu")
 skill_id = &"bash"
 display_name = "Bash"
+description = "Deals physical damage and attempts to stun target"
 available_classes = Array[int]([1])
 archetype = 2
 element = 4

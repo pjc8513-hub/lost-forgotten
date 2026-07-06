@@ -4,6 +4,7 @@ const PARTY_MEMBER_CARD_SCENE := preload("res://scenes/ui/PartyMemberCards.tscn"
 const INVENTORY_SCENE := preload("res://scenes/ui/inventory/inventory.tscn")
 const CHARACTER_SCENE := preload("res://scenes/ui/character.tscn")
 const CAMP_SCENE := preload("res://scenes/ui/camp_control.tscn")
+const SKILL_SCENE := preload("res://scenes/ui/skill_menu.tscn")
 
 @export var initial_map: PackedScene
 @export var initial_spawn_id: StringName = &"entrance"
@@ -18,11 +19,14 @@ const CAMP_SCENE := preload("res://scenes/ui/camp_control.tscn")
 @onready var inventory_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/inventoryButton
 @onready var character_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/CharacterButton
 @onready var camp_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/CampButton
+@onready var skills_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/SkillsButton
+
 
 var player_movement: GridMovementController
 var inventory_menu: InventoryMenu
 var character_menu: CharacterMenu
 var camp_menu: CampMenu
+var skill_menu: skill_menu
 
 func _ready() -> void:
 	PartyManager.party_changed.connect(_rebuild_party_cards)
@@ -33,12 +37,15 @@ func _ready() -> void:
 	inventory_menu = INVENTORY_SCENE.instantiate() as InventoryMenu
 	character_menu = CHARACTER_SCENE.instantiate() as CharacterMenu
 	camp_menu = CAMP_SCENE.instantiate()as CampMenu
+	skill_menu = SKILL_SCENE.instantiate()as skill_menu
 	$HudLayer/HudRoot/CanvasLayer.add_child(inventory_menu)
 	$HudLayer/HudRoot/CanvasLayer.add_child(character_menu)
 	$HudLayer/HudRoot/CanvasLayer.add_child(camp_menu)
+	$HudLayer/HudRoot/CanvasLayer.add_child(skill_menu)
 	inventory_button.pressed.connect(inventory_menu.open)
 	character_button.pressed.connect(character_menu.open)
 	camp_button.pressed.connect(camp_menu.open_dialogue)
+	skills_button.pressed.connect(skill_menu.open)
 	_rebuild_party_cards()
 
 	if initial_map == null or player_scene == null:

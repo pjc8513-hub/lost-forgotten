@@ -32,7 +32,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
-size = Vector3(0.26116943, 1.7212524, 1)
+size = Vector3(0.11648178, 1.7212524, 1)
 
 [node name="stone_hall_door3" unique_id=626338898 instance=ExtResource("1_ppake")]
 
@@ -50,7 +50,8 @@ libraries/ = SubResource("AnimationLibrary_r27je")
 [node name="Area3D" type="Area3D" parent="." index="5" unique_id=1217630804]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=78182797]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0318298, -0.13135427, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.98804665, -0.13135427, 0)
 shape = SubResource("BoxShape3D_xa8nu")
+debug_color = Color(0, 0.5950001, 0.7, 1)
 
 [connection signal="input_event" from="Area3D" to="DoorComponent" method="_on_area_3d_input_event"]

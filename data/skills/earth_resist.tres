@@ -6,6 +6,7 @@
 script = ExtResource("1_h7xvf")
 skill_id = &"earth_resist"
 display_name = "Earth Resist"
+description = "Provides resistance to earth magic"
 available_classes = Array[int]([5])
 archetype = 1
 element = 1

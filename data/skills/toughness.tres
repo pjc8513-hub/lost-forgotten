@@ -6,6 +6,7 @@
 script = ExtResource("1_6pdi2")
 skill_id = &"toughness"
 display_name = "Toughness"
+description = "Provides resistance to weak status effect"
 available_classes = Array[int]([1])
 archetype = 1
 maximum_rank = 1

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://dk3pu5ssng2p2"]
+
+[ext_resource type="PackedScene" uid="uid://b62a8lxec6kms" path="res://assets/models/objects/chest3.glb" id="1_a2g0v"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_1o7t0"]
+[ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="3_v33pb"]
+[ext_resource type="Script" uid="uid://cu55r1gs5ol76" path="res://scripts/components/ChestComponent.gd" id="4_1h7cb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a2g0v"]
+size = Vector3(0.37295532, 0.3930664, 0.5366211)
+
+[sub_resource type="Animation" id="Animation_8ewer"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lid")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_bdvd2"]
+resource_name = "open"
+length = 0.36666667
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lid")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.3, 1, 0, 0, 0.393942, 0.919135)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1o7t0"]
+_data = {
+&"RESET": SubResource("Animation_8ewer"),
+&"open": SubResource("Animation_bdvd2")
+}
+
+[node name="chest3" unique_id=1001326355 instance=ExtResource("1_a2g0v")]
+
+[node name="GridElement" type="Node3D" parent="." index="2" unique_id=810257989]
+script = ExtResource("2_1o7t0")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="InteractableComponent" type="Node" parent="." index="3" unique_id=1714233704]
+script = ExtResource("3_v33pb")
+metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
+
+[node name="ChestComponent" type="Node" parent="." index="4" unique_id=971460780]
+script = ExtResource("4_1h7cb")
+metadata/_custom_type_script = "uid://cu55r1gs5ol76"
+
+[node name="Area3D" type="Area3D" parent="." index="5" unique_id=258547174]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=293072086]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5723165, -0.7778866, -0.010009766)
+shape = SubResource("BoxShape3D_a2g0v")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6" unique_id=1870956552]
+libraries/ = SubResource("AnimationLibrary_1o7t0")
+
+[connection signal="input_event" from="Area3D" to="InteractableComponent" method="_on_area_3d_input_event"]

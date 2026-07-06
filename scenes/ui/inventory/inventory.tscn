@@ -13,22 +13,6 @@ bg_color = Color(0.6, 0.37800002, 0.37800002, 1)
 resource_local_to_scene = true
 bg_color = Color(0.47058824, 0.18039216, 0.18039216, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ed5yw"]
-resource_local_to_scene = true
-bg_color = Color(0.47058824, 0.18039216, 0.18039216, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhrfr"]
-resource_local_to_scene = true
-bg_color = Color(0.47058824, 0.18039216, 0.18039216, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t0nk"]
-resource_local_to_scene = true
-bg_color = Color(0.47058824, 0.18039216, 0.18039216, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0avfp"]
-resource_local_to_scene = true
-bg_color = Color(0.47058824, 0.18039216, 0.18039216, 1)
-
 [node name="Control" type="Control" unique_id=478230194]
 layout_mode = 3
 anchors_preset = 15
@@ -118,6 +102,7 @@ Amulet:"
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer" unique_id=1462111915]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("2_8ndef")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Equipped/VBoxContainer/HBoxContainer/PanelContainer2" unique_id=728934719]
 layout_mode = 2
@@ -166,7 +151,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.58
-theme_override_styles/panel = SubResource("StyleBoxFlat_ed5yw")
+theme_override_styles/panel = ExtResource("2_8ndef")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Bag" unique_id=359820238]
 layout_mode = 2
@@ -202,7 +187,7 @@ layout_mode = 2
 [node name="DescriptionContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1621861452]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_hhrfr")
+theme_override_styles/panel = ExtResource("2_8ndef")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/DescriptionContainer" unique_id=913609598]
 layout_mode = 2
@@ -235,7 +220,7 @@ size_flags_vertical = 3
 [node name="StatsPanel" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=595084617]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_8t0nk")
+theme_override_styles/panel = ExtResource("2_8ndef")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/StatsPanel" unique_id=1932121613]
 layout_mode = 2
@@ -311,7 +296,7 @@ text = "Initiative: "
 [node name="options" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1443726474]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_0avfp")
+theme_override_styles/panel = ExtResource("2_8ndef")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2/HBoxContainer/options" unique_id=1504063228]
 layout_mode = 2

@@ -6,6 +6,7 @@
 script = ExtResource("1_fxavp")
 skill_id = &"minor_heal"
 display_name = "Minor Heal"
+description = "Retores a small amount of HP"
 available_classes = Array[int]([3, 5, 6])
 archetype = 4
 element = 5

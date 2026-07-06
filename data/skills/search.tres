@@ -6,6 +6,7 @@
 script = ExtResource("1_a751k")
 skill_id = &"search"
 display_name = "Search"
+description = "Searches for traps and secrets in a small radius"
 available_classes = Array[int]([2, 6])
 archetype = 0
 element = 4
