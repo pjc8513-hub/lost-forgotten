@@ -343,6 +343,16 @@ func blocks_action(effect_id: int) -> bool:
 	var def: Dictionary = DEFINITIONS.get(effect_id, {})
 	return bool(def.get("blocks_action", false))
 
+## Returns true if this effect prevents healing or rest-based HP recovery.
+func blocks_healing(effect_id: int) -> bool:
+	var def: Dictionary = DEFINITIONS.get(effect_id, {})
+	return bool(def.get("blocks_healing", false))
+
+## Returns true if this effect is removed when the party rests.
+func clears_on_rest(effect_id: int) -> bool:
+	var def: Dictionary = DEFINITIONS.get(effect_id, {})
+	return bool(def.get("clear_on_rest", false))
+
 ## Returns true if this effect prevents movement.
 func blocks_move(effect_id: int) -> bool:
 	var def: Dictionary = DEFINITIONS.get(effect_id, {})

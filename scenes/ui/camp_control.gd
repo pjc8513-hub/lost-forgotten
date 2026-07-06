@@ -1,6 +1,8 @@
 class_name CampMenu
 extends Control
 
+const REST_DURATION_SECONDS: int = 6 * 60 * 60
+
 # Signals to notify the rest of your game what the player chose
 signal camp_confirmed
 signal camp_cancelled
@@ -16,23 +18,59 @@ func _ready() -> void:
 	# Connect button signals
 	camp_button.pressed.connect(_on_camp_pressed)
 	close_button.pressed.connect(_on_close_pressed)
+	PartyManager.food_changed.connect(_on_food_changed)
 	
 	# Build the visual style dynamically matching your alert notification
 	_apply_notification_style()
 
 func open_dialogue() -> void:
-	# Fetch the current food from your PartyManager autoload
-	var current_food = PartyManager.food # Adjust this to match your actual variable
-	food_label.text = "Current Food: %d" % current_food
-	
-	# Optional: Disable the camp button if they don't have enough food
-	# camp_button.disabled = current_food <= 0
-	
+	_refresh_food_display()
 	show()
+	if not camp_button.disabled:
+		camp_button.grab_focus()
+	else:
+		close_button.grab_focus()
 
 func _on_camp_pressed() -> void:
+	if not PartyManager.spend_food(1):
+		_refresh_food_display()
+		return
+	for member in PartyManager.party:
+		_rest_member(member)
+	WorldManager.advance_time(REST_DURATION_SECONDS)
 	camp_confirmed.emit()
 	hide()
+
+func _rest_member(member: PartyMember) -> void:
+	if member == null:
+		return
+	var was_dead := not member.is_alive()
+	var healing_blocked := _has_healing_blocker(member)
+	var diseased := member.active_status_effects.has(StatusEffects.Effect.DISEASED)
+	var effects_to_clear: Array[int] = []
+	for effect_id in member.active_status_effects:
+		if StatusEffects.clears_on_rest(int(effect_id)):
+			effects_to_clear.append(int(effect_id))
+	for effect_id in effects_to_clear:
+		member.active_status_effects.erase(effect_id)
+	StatCalculator.recalculate(member)
+	if not healing_blocked:
+		member.current_hp = member.max_hp
+	if not was_dead and not diseased:
+		member.current_stamina = member.max_stamina
+
+func _has_healing_blocker(member: PartyMember) -> bool:
+	for effect_id in member.active_status_effects:
+		if StatusEffects.blocks_healing(int(effect_id)):
+			return true
+	return false
+
+func _on_food_changed(_total: int) -> void:
+	_refresh_food_display()
+
+func _refresh_food_display() -> void:
+	food_label.text = "Current Food: %d" % PartyManager.food
+	camp_button.disabled = PartyManager.food < 1
 
 func _on_close_pressed() -> void:
 	camp_cancelled.emit()

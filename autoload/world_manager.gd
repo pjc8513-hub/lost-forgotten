@@ -36,5 +36,12 @@ func record_step() -> void:
 		stamina_cost_due.emit(1)
 
 
+func advance_time(seconds: int) -> void:
+	if seconds <= 0:
+		return
+	dungeon_elapsed_time += seconds
+	dungeon_time_changed.emit(dungeon_elapsed_time)
+
+
 func get_time_of_day_seconds() -> int:
 	return DUNGEON_START_TIME_SECONDS + dungeon_elapsed_time
