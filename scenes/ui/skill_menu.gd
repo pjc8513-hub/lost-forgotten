@@ -98,9 +98,9 @@ func _get_archetype_order(skill: SkillData) -> int:
 
 func _get_skill_tooltip(member: PartyMember, skill: SkillData) -> String:
 	var uses_remaining := member.get_skill_uses_remaining(skill)
-	var uses_text := "Unlimited" if uses_remaining < 0 else str(uses_remaining)
-	return "Uses per day remaining: %s\nStamina cost: %d\n%s" % [
-		uses_text,
+	var use_line := "Passive" if skill.archetype == SkillData.Archetype.PASSIVE else "Uses per day remaining: %s" % ("Unlimited" if uses_remaining < 0 else str(uses_remaining))
+	return "%s\nStamina cost: %d\n%s" % [
+		use_line,
 		skill.stamina_cost,
 		skill.description,
 	]
