@@ -87,6 +87,11 @@ layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
+[node name="CastButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/OptionsContainer/VBoxContainer" unique_id=1671113094]
+layout_mode = 2
+disabled = true
+text = "Cast"
+
 [node name="NextButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/OptionsContainer/VBoxContainer" unique_id=2041681]
 layout_mode = 2
 text = "Next"

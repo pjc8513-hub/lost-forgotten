@@ -22,6 +22,30 @@
 [ext_resource type="PackedScene" uid="uid://dk3pu5ssng2p2" path="res://scenes/grid/castle/chest_3.tscn" id="20_4w8b5"]
 [ext_resource type="Resource" uid="uid://bvxnc7kpsi76q" path="res://data/traps/exhaust.tres" id="21_cknfr"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4w8b5"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("15_0fjhd")
+normal_enabled = true
+normal_texture = ExtResource("16_p5i1o")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cknfr"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("15_p5i1o")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("16_jr1l3")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kc6bh"]
 resource_local_to_scene = true
 resource_name = "wall"
@@ -36,30 +60,6 @@ texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1hocr"]
-resource_local_to_scene = true
-resource_name = "floor"
-cull_mode = 2
-albedo_texture = ExtResource("15_p5i1o")
-emission_enabled = true
-normal_enabled = true
-normal_texture = ExtResource("16_jr1l3")
-texture_filter = 2
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7u55"]
-resource_local_to_scene = true
-resource_name = "wall"
-cull_mode = 2
-albedo_texture = ExtResource("15_0fjhd")
-normal_enabled = true
-normal_texture = ExtResource("16_p5i1o")
-uv1_triplanar = true
-uv1_world_triplanar = true
-uv2_triplanar = true
-texture_filter = 2
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56gw1"]
 resource_local_to_scene = true
 resource_name = "floor"
 cull_mode = 2
@@ -302,13 +302,13 @@ player_travel_offset = Vector3(0, -1.5, 0)
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 8, 0, 2)
 
 [node name="wall" parent="stone_wall3_secret" index="0" unique_id=1285790314]
-surface_material_override/0 = SubResource("StandardMaterial3D_kc6bh")
+surface_material_override/0 = SubResource("StandardMaterial3D_4w8b5")
 
 [node name="door" parent="stone_wall3_secret" index="1" unique_id=27495278]
-surface_material_override/0 = SubResource("StandardMaterial3D_kc6bh")
+surface_material_override/0 = SubResource("StandardMaterial3D_4w8b5")
 
 [node name="floor" parent="stone_wall3_secret" index="2" unique_id=1369459373]
-surface_material_override/0 = SubResource("StandardMaterial3D_1hocr")
+surface_material_override/0 = SubResource("StandardMaterial3D_cknfr")
 
 [node name="DoorComponent" parent="stone_wall3_secret" index="4" unique_id=534338047]
 door_id = &"secret_door1"
@@ -322,13 +322,13 @@ secret_type = "door"
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0, -4)
 
 [node name="wall" parent="stone_wall3_secret2" index="0" unique_id=1285790314]
-surface_material_override/0 = SubResource("StandardMaterial3D_i7u55")
+surface_material_override/0 = SubResource("StandardMaterial3D_kc6bh")
 
 [node name="door" parent="stone_wall3_secret2" index="1" unique_id=27495278]
-surface_material_override/0 = SubResource("StandardMaterial3D_i7u55")
+surface_material_override/0 = SubResource("StandardMaterial3D_kc6bh")
 
 [node name="floor" parent="stone_wall3_secret2" index="2" unique_id=1369459373]
-surface_material_override/0 = SubResource("StandardMaterial3D_56gw1")
+surface_material_override/0 = SubResource("StandardMaterial3D_1hocr")
 
 [node name="DoorComponent" parent="stone_wall3_secret2" index="4" unique_id=534338047]
 door_id = &"secret_door2"
@@ -369,8 +369,18 @@ gold_roll_dice = 2
 is_trapped = true
 trap_type = ExtResource("21_cknfr")
 
+[node name="chest3" parent="." unique_id=609794638 instance=ExtResource("20_4w8b5")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0, -6)
+
+[node name="ChestComponent" parent="chest3" index="4" unique_id=971460780]
+chest_ID = &"bonepit1.chest_3"
+gold_roll_dice = 2
+gold_roll_sides = 12
+loot_table = 3
+
 [editable path="stone_door_1"]
 [editable path="stone_wall3_secret"]
 [editable path="stone_wall3_secret2"]
 [editable path="chest2"]
 [editable path="chest2/chest3"]
+[editable path="chest3"]
