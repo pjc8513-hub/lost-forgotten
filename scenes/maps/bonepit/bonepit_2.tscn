@@ -121,9 +121,6 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 [node name="stone_corner3" parent="." unique_id=1180374585 instance=ExtResource("3_afgqr")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -4, 0, 2)
 
-[node name="stone_corner9" parent="." unique_id=1322356354 instance=ExtResource("3_afgqr")]
-transform = Transform3D(-1, 0, 2.6226832e-07, 0, 1, 0, -2.6226832e-07, 0, -1, -2, 0, 22)
-
 [node name="stone_corner10" parent="." unique_id=412610564 instance=ExtResource("3_afgqr")]
 transform = Transform3D(-2.1855692e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855692e-07, -2, 0, 18)
 
@@ -174,6 +171,9 @@ transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -10,
 
 [node name="stone_wall17" parent="." unique_id=1919784130 instance=ExtResource("4_ljpd6")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2, 0, 20)
+
+[node name="stone_wall20" parent="." unique_id=781478128 instance=ExtResource("4_ljpd6")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2, 0, 22)
 
 [node name="stone_wall8" parent="." unique_id=1383598474 instance=ExtResource("4_ljpd6")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 12)
