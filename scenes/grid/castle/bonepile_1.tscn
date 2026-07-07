@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://chn67o46i33um"]
+
+[ext_resource type="PackedScene" uid="uid://cwmasnij3r6eq" path="res://assets/models/rooms/bonepile1.glb" id="1_uym32"]
+
+[node name="bonepile1" unique_id=346089655 instance=ExtResource("1_uym32")]
