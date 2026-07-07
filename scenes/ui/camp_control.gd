@@ -83,6 +83,7 @@ func _rest_member(member: PartyMember) -> void:
 	var healing_blocked := _has_healing_blocker(member)
 	var diseased := member.active_status_effects.has(StatusEffects.Effect.DISEASED)
 	var effects_to_clear: Array[int] = []
+	if not was_dead: member.reset_daily_skill_uses()
 	for effect_id in member.active_status_effects:
 		if StatusEffects.clears_on_rest(int(effect_id)):
 			effects_to_clear.append(int(effect_id))
