@@ -125,7 +125,7 @@ func interact_forward() -> bool:
 		return false
 	for element in MapManager.get_elements(grid_pos):
 		for component in element.get_parent().get_children():
-			if component is SwitchComponent and component.can_interact(grid_pos, facing):
+			if component is SwitchComponent and component.can_interact(grid_pos):
 				component.activate()
 				return true
 			if component is InteractableComponent:

@@ -19,6 +19,5 @@ script = ExtResource("2_upgn3")
 
 [node name="SwitchComponent" type="Node3D" parent="." index="3" unique_id=1763643439]
 script = ExtResource("2_jrqsh")
-local_edge = Vector3i(0, 0, 0)
 
 [connection signal="input_event" from="Cube/Area3D" to="SwitchComponent" method="_on_area_3d_input_event"]
