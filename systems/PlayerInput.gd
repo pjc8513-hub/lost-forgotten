@@ -38,6 +38,9 @@ func _unhandled_input(event):
 
 	if event.is_action_pressed("ui_right"):
 		_queue_player_turn(TurnRightCommand.new())
+		
+	if event.is_action_pressed("ui_down"):
+		_queue_player_turn(TurnAroundCommand.new())
 
 	if event.is_action_pressed("interact"):
 		_queue_player_interaction()

@@ -7,3 +7,6 @@ func rotate_left() -> void:
 
 func rotate_right() -> void:
 	movement.rotate_right()
+	
+func turn_around() -> void:
+	movement.turn_around()

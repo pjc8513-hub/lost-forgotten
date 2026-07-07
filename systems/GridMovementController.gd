@@ -80,6 +80,13 @@ func rotate_left() -> void:
 	grid_state_changed.emit(grid_pos, facing)
 	_start_rotation_tween(PI / 2.0)
 
+func turn_around() -> void:
+	if is_rotating or is_moving:
+		return
+	facing = -facing
+	grid_state_changed.emit(grid_pos, facing)
+	_start_rotation_tween(PI)
+
 func rotate_right() -> void:
 	if is_rotating or is_moving:
 		return
