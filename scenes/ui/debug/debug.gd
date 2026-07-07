@@ -1,6 +1,9 @@
 extends Control
 
-@onready var messages: RichTextLabel = $PanelContainer/ScrollContainer/Messages
+@onready var messages: RichTextLabel = $PanelContainer/VBoxContainer/ScrollContainer/Messages
+@onready var enter_button: Button = $PanelContainer/VBoxContainer/HBoxContainer/EnterButton
+@onready var clear_button: Button = $PanelContainer/VBoxContainer/HBoxContainer/ClearButton
+@onready var line_edit: LineEdit = $PanelContainer/VBoxContainer/HBoxContainer/LineEdit
 
 const MAX_SWITCH_DEBUG_LINES := 8
 const STAT_FIELDS: Array[Dictionary] = [
@@ -13,11 +16,27 @@ const STAT_FIELDS: Array[Dictionary] = [
 ]
 
 var switch_debug_lines: Array[String] = []
+var console_log: Array[String] = []
 
 func _ready() -> void:
+	messages.bbcode_enabled = true
 	PartyManager.selected_party_member_changed.connect(_on_selected_party_member_changed)
 	visibility_changed.connect(_on_visibility_changed)
+	clear_button.pressed.connect(_clear_messages)
+	line_edit.text_submitted.connect(_on_text_submitted)
+	enter_button.pressed.connect(_on_enter_pressed)
 	_refresh(PartyManager.selected_party_member)
+
+func _clear_messages()->void:
+	messages.clear()
+	switch_debug_lines.clear()
+	console_log.clear()
+
+func _on_text_submitted(new_text: String) -> void:
+	_execute_command(new_text)
+
+func _on_enter_pressed() -> void:
+	_execute_command(line_edit.text)
 
 func _on_selected_party_member_changed(_index: int, member: PartyMember) -> void:
 	_refresh(member)
@@ -91,6 +110,7 @@ func _refresh(member: PartyMember) -> void:
 	lines.append("Race starting skills: %s" % _format_skills(race_data.starting_skills if race_data != null else []))
 	lines.append("Learned skills: %s" % _format_learned_skills(member.learned_skills))
 	_append_switch_debug(lines)
+	_append_console_log(lines)
 	messages.text = "\n".join(lines)
 
 func _class_name(class_data: ClassData) -> String:
@@ -155,3 +175,237 @@ func _error_name(error_code: int) -> String:
 	if error_code == OK:
 		return "OK"
 	return "Error %d" % error_code
+
+func _append_console_log(lines: Array[String]) -> void:
+	if console_log.is_empty():
+		return
+	lines.append("")
+	lines.append("Console Log:")
+	lines.append_array(console_log)
+
+func _log_message(msg: String) -> void:
+	console_log.append(msg)
+	if console_log.size() > 10:
+		console_log.remove_at(0)
+	_refresh(PartyManager.selected_party_member)
+
+func _get_player() -> Node3D:
+	for actor in MapManager.actors.values():
+		if actor != null and (actor.name == "PlayerPawn" or actor.has_node("GridMovementController")):
+			return actor
+	return null
+
+func _execute_command(input: String) -> void:
+	var text := input.strip_edges()
+	if text.is_empty():
+		return
+	line_edit.clear()
+	
+	_log_message("> " + text)
+	
+	var parts := text.split(" ", false)
+	if parts.is_empty():
+		return
+		
+	var cmd := parts[0].to_lower()
+	var args := parts.slice(1)
+	
+	match cmd:
+		"help":
+			_log_message("Commands: help, gold <amt>, food <amt>, xp [all] <amt>, heal [all], stamina [all/full] <amt>, damage [all] <amt>, kill [all], additem <id>, tp <x> <z>")
+		"gold":
+			if args.is_empty():
+				_log_message("Error: gold requires an amount (e.g. gold 100)")
+				return
+			var amt := int(args[0])
+			if amt > 0:
+				PartyManager.add_gold(amt)
+				_log_message("Added %d gold. Total: %d" % [amt, PartyManager.gold])
+			elif amt < 0:
+				var success := PartyManager.spend_gold(-amt)
+				if success:
+					_log_message("Spent %d gold. Total: %d" % [-amt, PartyManager.gold])
+				else:
+					_log_message("Failed to spend %d gold. Total: %d" % [-amt, PartyManager.gold])
+			else:
+				_log_message("Gold unchanged. Total: %d" % PartyManager.gold)
+		"food":
+			if args.is_empty():
+				_log_message("Error: food requires an amount (e.g. food 10)")
+				return
+			var amt := int(args[0])
+			if amt > 0:
+				PartyManager.add_food(amt)
+				_log_message("Added %d food. Total: %d" % [amt, PartyManager.food])
+			elif amt < 0:
+				var success := PartyManager.spend_food(-amt)
+				if success:
+					_log_message("Spent %d food. Total: %d" % [-amt, PartyManager.food])
+				else:
+					_log_message("Failed to spend %d food. Total: %d" % [-amt, PartyManager.food])
+			else:
+				_log_message("Food unchanged. Total: %d" % PartyManager.food)
+		"xp":
+			if args.is_empty():
+				_log_message("Error: xp requires an amount (e.g. xp 100 or xp all 100)")
+				return
+			var is_all := false
+			var amt_str := args[0]
+			if args[0].to_lower() == "all":
+				is_all = true
+				if args.size() < 2:
+					_log_message("Error: xp all requires an amount (e.g. xp all 100)")
+					return
+				amt_str = args[1]
+			var amt := int(amt_str)
+			if amt <= 0:
+				_log_message("Error: XP must be positive.")
+				return
+			
+			if is_all:
+				for member in PartyManager.get_active_party():
+					member.add_xp(amt)
+				_log_message("Added %d XP to all active party members." % amt)
+			else:
+				var member := PartyManager.selected_party_member
+				if member == null:
+					_log_message("Error: No selected party member.")
+				else:
+					member.add_xp(amt)
+					_log_message("Added %d XP to %s. Total: %d" % [amt, member.member_name, member.xp])
+		"heal":
+			var is_all := false
+			if not args.is_empty() and args[0].to_lower() == "all":
+				is_all = true
+			
+			if is_all:
+				for member in PartyManager.get_active_party():
+					member.heal(member.max_hp)
+				_log_message("Healed all active party members.")
+			else:
+				var member := PartyManager.selected_party_member
+				if member == null:
+					_log_message("Error: No selected party member.")
+				else:
+					member.heal(member.max_hp)
+					_log_message("Healed %s." % member.member_name)
+		"stamina":
+			if args.is_empty():
+				_log_message("Error: stamina requires an amount or 'full' (e.g. stamina 20, stamina all 20, stamina full)")
+				return
+			var first_arg := args[0].to_lower()
+			if first_arg == "full":
+				for member in PartyManager.get_active_party():
+					member.restore_stamina(member.max_stamina)
+				_log_message("Restored all active party members to full stamina.")
+				return
+			
+			var is_all := false
+			var amt_str := args[0]
+			if first_arg == "all":
+				is_all = true
+				if args.size() < 2:
+					_log_message("Error: stamina all requires an amount (e.g. stamina all 20)")
+					return
+				amt_str = args[1]
+			var amt := int(amt_str)
+			if amt <= 0:
+				_log_message("Error: stamina amount must be positive.")
+				return
+				
+			if is_all:
+				for member in PartyManager.get_active_party():
+					member.restore_stamina(amt)
+				_log_message("Restored %d stamina to all active party members." % amt)
+			else:
+				var member := PartyManager.selected_party_member
+				if member == null:
+					_log_message("Error: No selected party member.")
+				else:
+					member.restore_stamina(amt)
+					_log_message("Restored %d stamina to %s. Total: %d" % [amt, member.member_name, member.current_stamina])
+		"damage":
+			if args.is_empty():
+				_log_message("Error: damage requires an amount (e.g. damage 10 or damage all 10)")
+				return
+			var is_all := false
+			var amt_str := args[0]
+			if args[0].to_lower() == "all":
+				is_all = true
+				if args.size() < 2:
+					_log_message("Error: damage all requires an amount (e.g. damage all 10)")
+					return
+				amt_str = args[1]
+			var amt := int(amt_str)
+			if amt <= 0:
+				_log_message("Error: damage amount must be positive.")
+				return
+				
+			if is_all:
+				for member in PartyManager.get_active_party():
+					member.take_damage(amt)
+				_log_message("Dealt %d damage to all active party members." % amt)
+			else:
+				var member := PartyManager.selected_party_member
+				if member == null:
+					_log_message("Error: No selected party member.")
+				else:
+					member.take_damage(amt)
+					_log_message("Dealt %d damage to %s. HP: %d/%d" % [amt, member.member_name, member.current_hp, member.max_hp])
+		"kill":
+			var is_all := false
+			if not args.is_empty() and args[0].to_lower() == "all":
+				is_all = true
+			
+			if is_all:
+				for member in PartyManager.get_active_party():
+					member.current_hp = 0
+				_log_message("Killed all active party members.")
+			else:
+				var member := PartyManager.selected_party_member
+				if member == null:
+					_log_message("Error: No selected party member.")
+				else:
+					member.current_hp = 0
+					_log_message("Killed %s." % member.member_name)
+		"additem":
+			if args.is_empty():
+				_log_message("Error: additem requires an item ID (e.g. additem health_potion)")
+				return
+			var item_id := args[0]
+			var member := PartyManager.selected_party_member
+			if member == null:
+				_log_message("Error: No selected party member.")
+				return
+			var instance := LootManager.create_item_instance(item_id)
+			if instance == null or instance.item_data == null:
+				_log_message("Error: Item database could not find or create item: %s" % item_id)
+			else:
+				var success := member.add_inventory_item(instance)
+				if success:
+					_log_message("Added item %s to %s's inventory." % [item_id, member.member_name])
+				else:
+					_log_message("Failed to add item %s to %s." % [item_id, member.member_name])
+		"tp", "teleport":
+			if args.size() < 2:
+				_log_message("Error: teleport/tp requires x and z coordinates (e.g. tp 4 -2)")
+				return
+			var x := int(args[0])
+			var z := int(args[1])
+			var player := _get_player()
+			if player == null:
+				_log_message("Error: Player actor not found in registered actors.")
+				return
+			var movement := player.get_node_or_null("GridMovementController") as GridMovementController
+			if movement == null:
+				_log_message("Error: GridMovementController not found on player.")
+				return
+			
+			MapManager.unregister_actor(movement.grid_pos)
+			movement.grid_pos = Vector3i(x, 0, z)
+			player.global_position = movement.grid_to_world(movement.grid_pos)
+			MapManager.register_actor(movement.grid_pos, player)
+			movement.grid_state_changed.emit(movement.grid_pos, movement.facing)
+			_log_message("Teleported player to (%d, 0, %d)." % [x, z])
+		_:
+			_log_message("Unknown command: %s. Type 'help' for options." % cmd)

@@ -465,6 +465,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 
 chest_ID = &"bonepit2.chest_4"
 gold_roll_dice = 3
 loot_table = 3
+is_trapped = true
 trap_type = ExtResource("25_xa540")
 
 [node name="SpawnPoints" type="Node" parent="." unique_id=1090116708]
