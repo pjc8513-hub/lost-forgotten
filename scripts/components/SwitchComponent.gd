@@ -24,8 +24,10 @@ func activate() -> void:
 		"target_door_ids": target_door_ids.duplicate(),
 		"target_blocker_ids": target_blocker_ids.duplicate(),
 	}
+	var signal_exists := has_signal(&"activated")
+	var signal_connection_count := get_signal_connection_list(&"activated").size() if signal_exists else 0
 	var signal_result := emit_signal(&"activated", self, exported_data, results, success)
-	_report_debug_interaction(exported_data, results, success, signal_result)
+	_report_debug_interaction(exported_data, results, success, signal_result, signal_exists, signal_connection_count)
 
 func can_interact(player_grid_pos: Vector3i) -> bool:
 	return player_grid_pos == get_grid_pos()
@@ -54,7 +56,14 @@ func _on_area_3d_input_event(_camera: Node, event: InputEvent, _event_position: 
 	cmd.movement = movement
 	CommandQueue.add_command(cmd)
 
-func _report_debug_interaction(exported_data: Dictionary, results: Array, success: bool, signal_result: int) -> void:
+func _report_debug_interaction(
+	exported_data: Dictionary,
+	results: Array,
+	success: bool,
+	signal_result: int,
+	signal_exists: bool,
+	signal_connection_count: int
+) -> void:
 	for node in get_tree().get_nodes_in_group(&"debug_overlay"):
 		if node.has_method(&"add_switch_interaction"):
-			node.add_switch_interaction(self, exported_data, results, success, signal_result)
+			node.add_switch_interaction(self, exported_data, results, success, signal_result, signal_exists, signal_connection_count)

@@ -26,7 +26,15 @@ func _on_visibility_changed() -> void:
 	if visible:
 		_refresh(PartyManager.selected_party_member)
 
-func add_switch_interaction(switch: SwitchComponent, exported_data: Dictionary, results: Array, success: bool, signal_result: int) -> void:
+func add_switch_interaction(
+	switch: SwitchComponent,
+	exported_data: Dictionary,
+	results: Array,
+	success: bool,
+	signal_result: int,
+	signal_exists: bool,
+	signal_connection_count: int
+) -> void:
 	var target_door_ids: Array = exported_data.get("target_door_ids", [])
 	var target_blocker_ids: Array = exported_data.get("target_blocker_ids", [])
 	var lines: Array[String] = [
@@ -35,7 +43,11 @@ func add_switch_interaction(switch: SwitchComponent, exported_data: Dictionary, 
 			_format_string_names(target_door_ids),
 			_format_string_names(target_blocker_ids),
 		],
-		"Signal emitted: %s (%s)" % [signal_result == OK, _error_name(signal_result)],
+		"Signal: %s, exists=%s, connections=%d" % [
+			_error_name(signal_result),
+			signal_exists,
+			signal_connection_count,
+		],
 		"Success: %s" % success,
 		"Results: %s" % _format_results(results),
 	]
