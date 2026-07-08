@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bu68b3fy37h2f"]
+
+[ext_resource type="Texture2D" uid="uid://7a6qx7gogvkd" path="res://assets/models/nobel/nobel_road1_cobble_albedo.png" id="1_d4xd2"]
+
+[resource]
+resource_name = "Material"
+cull_mode = 2
+albedo_texture = ExtResource("1_d4xd2")
+roughness = 0.5
+metadata/_gltf_primary_texture_coord = 0

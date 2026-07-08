@@ -27,6 +27,15 @@ func _unhandled_input(event):
 		get_viewport().set_input_as_handled()
 		return
 
+	if event.is_action_pressed("toggle_torch") or (event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F):
+		if actor != null and actor.has_node("OmniLight3D"):
+			var torch = actor.get_node("OmniLight3D")
+			if torch.has_method("toggle"):
+				torch.toggle()
+				get_viewport().set_input_as_handled()
+				return
+
+
 	if not TurnManager.can_player_move():
 		return
 

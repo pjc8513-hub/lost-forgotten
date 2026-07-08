@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c8rq222cdo4i7"]
+
+[ext_resource type="PackedScene" uid="uid://duea6urkvaeb0" path="res://assets/models/nobel/nobel_road1.glb" id="1_bj80u"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_qfpuk"]
+
+[node name="nobel_road1" unique_id=540540455 instance=ExtResource("1_bj80u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 0)
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=393090416]
+script = ExtResource("2_qfpuk")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"

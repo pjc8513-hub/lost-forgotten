@@ -62,6 +62,7 @@ func _ready() -> void:
 	entity_root.add_child(player)
 	StageManager.configure(level_root, entity_root, effect_root, player)
 	WorldManager.begin_dungeon()
+	StageManager.map_changed.connect(_on_map_changed)
 	StageManager.load_map_scene(initial_map, initial_spawn_id)
 	var movement := player.get_node_or_null("GridMovementController") as GridMovementController
 	if movement != null:
@@ -83,6 +84,19 @@ func _rebuild_party_cards() -> void:
 		card.skill_requested.connect(SkillSystem.request_execution)
 		card.set_selected(index == PartyManager.selected_party_member_index)
 	_refresh_targeting_cursor()
+
+
+func _on_map_changed(_map_path: String, _spawn_id: StringName) -> void:
+	var enable_torch: bool = true
+	var current_level = StageManager.current_level
+	if current_level is MapData:
+		enable_torch = current_level.enable_torch
+
+	var player = StageManager.player
+	if player != null and player.has_node("OmniLight3D"):
+		var torch = player.get_node("OmniLight3D")
+		if torch.has_method("set_torch_enabled"):
+			torch.set_torch_enabled(enable_torch)
 
 
 func _on_selected_party_member_changed(index: int, _member: PartyMember) -> void:

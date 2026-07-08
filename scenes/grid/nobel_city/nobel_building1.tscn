@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b2s2cio02vnu2"]
+
+[ext_resource type="PackedScene" uid="uid://dv80trdccrbi5" path="res://assets/models/rooms/stone_wall_pillar.glb" id="1_ornsu"]
+[ext_resource type="Material" uid="uid://bu68b3fy37h2f" path="res://assets/models/nobel/Material.tres" id="2_bpvyc"]
+[ext_resource type="Material" uid="uid://sgcmsvnhurf7" path="res://assets/materials/brick.tres" id="3_qdvkd"]
+
+[node name="stone_wall_pillar" unique_id=321652682 instance=ExtResource("1_ornsu")]
+
+[node name="wall" parent="." index="0" unique_id=375008706]
+surface_material_override/0 = ExtResource("2_bpvyc")
+surface_material_override/1 = ExtResource("3_qdvkd")

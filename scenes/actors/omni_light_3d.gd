@@ -18,6 +18,14 @@ func _ready() -> void:
 	noise.fractal_octaves = 3
 	noise.frequency = 0.9
 
+func toggle() -> void:
+	set_torch_enabled(not visible)
+
+func set_torch_enabled(enabled: bool) -> void:
+	visible = enabled
+	set_process(enabled)
+
+
 func _process(delta: float) -> void:
 	time += delta * noise_speed
 
