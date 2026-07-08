@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dxbnq6q1rin3"]
+
+[ext_resource type="PackedScene" uid="uid://q1x3twqlvhf8" path="res://assets/models/nobel/nobel_house3.glb" id="1_n27ya"]
+
+[node name="nobel_house3" unique_id=1868457646 instance=ExtResource("1_n27ya")]
