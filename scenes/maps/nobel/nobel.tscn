@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dxbnq6q1rin3" path="res://scenes/grid/nobel_city/nobel_house_3.tscn" id="7_gbr7x"]
 [ext_resource type="PackedScene" uid="uid://bfl2653067t3" path="res://scenes/grid/nobel_city/nobel_house_5.tscn" id="8_26rvf"]
 [ext_resource type="PackedScene" uid="uid://dtmuxu1xvq888" path="res://scenes/grid/nobel_city/dirt_1.tscn" id="9_raqe6"]
+[ext_resource type="PackedScene" uid="uid://bg8obfevnelp8" path="res://scenes/grid/nobel_city/temple_1.tscn" id="10_qxong"]
+[ext_resource type="PackedScene" uid="uid://bmi1xho8uhv6m" path="res://scenes/grid/nobel_city/tower_2.tscn" id="11_c76hx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gyyt5"]
 shader = ExtResource("1_ornp4")
@@ -118,10 +120,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 2)
 [node name="nobel_road27" parent="." unique_id=1977125076 instance=ExtResource("3_54nej")]
 
 [node name="stone_wall_pillar" parent="." unique_id=321652682 instance=ExtResource("6_msoig")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 16)
 
 [node name="stone_wall_pillar2" parent="." unique_id=1885943647 instance=ExtResource("6_msoig")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 16)
 
 [node name="nobel_road8" parent="." unique_id=540540455 instance=ExtResource("2_xwq33")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.66, 10)
@@ -131,10 +133,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 
 
 [node name="nobel_house5" parent="." unique_id=971472596 instance=ExtResource("8_26rvf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
-
-[node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("4_t0kxk")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 4)
-spawn_id = &"entrance"
 
 [node name="dirt1" parent="." unique_id=68315993 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
@@ -157,6 +155,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
 [node name="dirt2" parent="." unique_id=83146209 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
+[node name="dirt28" parent="." unique_id=1057038701 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
+
+[node name="dirt29" parent="." unique_id=1863707483 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8)
+
+[node name="dirt23" parent="." unique_id=2007772009 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 12)
+
+[node name="dirt24" parent="." unique_id=2139242175 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 14)
+
+[node name="dirt25" parent="." unique_id=124613632 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 14)
+
+[node name="dirt26" parent="." unique_id=1281384380 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 14)
+
+[node name="dirt27" parent="." unique_id=1948267875 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 12)
+
 [node name="dirt3" parent="." unique_id=755765311 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
 
@@ -168,9 +187,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
 [node name="dirt6" parent="." unique_id=1151465781 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
-
-[node name="dirt7" parent="." unique_id=2032911195 instance=ExtResource("9_raqe6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
 [node name="dirt8" parent="." unique_id=829835990 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 2)
@@ -201,3 +217,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 8)
 
 [node name="dirt17" parent="." unique_id=282454070 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 8)
+
+[node name="temple1" parent="." unique_id=2070639420 instance=ExtResource("10_qxong")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 12)
+
+[node name="tower2" parent="." unique_id=244700781 instance=ExtResource("11_c76hx")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
+
+[node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("4_t0kxk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 4)
+spawn_id = &"entrance"
