@@ -2,7 +2,6 @@
 
 [ext_resource type="Shader" uid="uid://jxmlaj3taoro" path="res://scripts/shaders/day_sky.gdshader" id="1_ornp4"]
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_t0kxk"]
-[ext_resource type="PackedScene" uid="uid://c8rq222cdo4i7" path="res://scenes/grid/nobel_city/nobel_road_1.tscn" id="2_xwq33"]
 [ext_resource type="PackedScene" uid="uid://c35lx4au86vvv" path="res://scenes/grid/nobel_city/nobel_road_2.tscn" id="3_54nej"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="4_t0kxk"]
 [ext_resource type="PackedScene" uid="uid://b2s2cio02vnu2" path="res://scenes/grid/nobel_city/nobel_building1.tscn" id="6_msoig"]
@@ -11,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dtmuxu1xvq888" path="res://scenes/grid/nobel_city/dirt_1.tscn" id="9_raqe6"]
 [ext_resource type="PackedScene" uid="uid://bg8obfevnelp8" path="res://scenes/grid/nobel_city/temple_1.tscn" id="10_qxong"]
 [ext_resource type="PackedScene" uid="uid://bmi1xho8uhv6m" path="res://scenes/grid/nobel_city/tower_2.tscn" id="11_c76hx"]
+[ext_resource type="PackedScene" uid="uid://dyi63mi8rdwj0" path="res://scenes/grid/nobel_city/inn_5.tscn" id="12_sycog"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gyyt5"]
 shader = ExtResource("1_ornp4")
@@ -48,26 +48,14 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1313216306]
 environment = SubResource("Environment_xa8nu")
 
-[node name="nobel_road5" parent="." unique_id=2038607135 instance=ExtResource("2_xwq33")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, -2)
-
-[node name="nobel_road25" parent="." unique_id=1353801565 instance=ExtResource("2_xwq33")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.66, -2)
-
-[node name="nobel_road9" parent="." unique_id=1228626084 instance=ExtResource("2_xwq33")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 10)
-
-[node name="nobel_road16" parent="." unique_id=888111819 instance=ExtResource("2_xwq33")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.66, 10)
-
-[node name="nobel_road11" parent="." unique_id=2081291484 instance=ExtResource("2_xwq33")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.66, 4)
-
-[node name="nobel_road12" parent="." unique_id=1321332703 instance=ExtResource("2_xwq33")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.66, 4)
-
 [node name="nobel_road3" parent="." unique_id=613991737 instance=ExtResource("3_54nej")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 4)
+
+[node name="nobel_road5" parent="." unique_id=654819874 instance=ExtResource("3_54nej")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0.66, 4)
+
+[node name="nobel_road8" parent="." unique_id=919740652 instance=ExtResource("3_54nej")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0.66, 4)
 
 [node name="nobel_road26" parent="." unique_id=554007846 instance=ExtResource("3_54nej")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 6)
@@ -78,11 +66,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 8)
 [node name="nobel_road10" parent="." unique_id=2082599729 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2, 0.66, 10)
 
+[node name="nobel_road16" parent="." unique_id=1305846766 instance=ExtResource("3_54nej")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0.66, 10)
+
+[node name="nobel_road35" parent="." unique_id=1570778977 instance=ExtResource("3_54nej")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.66, 10)
+
+[node name="nobel_road30" parent="." unique_id=315310750 instance=ExtResource("3_54nej")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0.66, 10)
+
+[node name="nobel_road31" parent="." unique_id=2062494029 instance=ExtResource("3_54nej")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0.66, 10)
+
+[node name="nobel_road32" parent="." unique_id=687198423 instance=ExtResource("3_54nej")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0.66, 12)
+
+[node name="nobel_road33" parent="." unique_id=731888367 instance=ExtResource("3_54nej")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0.66, 14)
+
+[node name="nobel_road34" parent="." unique_id=1315557460 instance=ExtResource("3_54nej")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0.66, 14)
+
+[node name="nobel_road36" parent="." unique_id=2090396891 instance=ExtResource("3_54nej")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0.66, 14)
+
 [node name="nobel_road13" parent="." unique_id=588788160 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0.66, 10)
 
 [node name="nobel_road17" parent="." unique_id=1662486605 instance=ExtResource("3_54nej")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10, 0.66, 8)
+
+[node name="nobel_road29" parent="." unique_id=1466288703 instance=ExtResource("3_54nej")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10, 0.66, 10)
 
 [node name="nobel_road18" parent="." unique_id=1366174067 instance=ExtResource("3_54nej")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10, 0.66, 6)
@@ -105,6 +120,9 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 
 [node name="nobel_road6" parent="." unique_id=1948610631 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2, 0.66, -2)
 
+[node name="nobel_road28" parent="." unique_id=8605160 instance=ExtResource("3_54nej")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.66, -2)
+
 [node name="nobel_road22" parent="." unique_id=1143982925 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0.66, -2)
 
@@ -113,6 +131,9 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6, 
 
 [node name="nobel_road24" parent="." unique_id=1802210791 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0.66, -2)
+
+[node name="nobel_road25" parent="." unique_id=1213400760 instance=ExtResource("3_54nej")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -10, 0.66, -2)
 
 [node name="nobel_road7" parent="." unique_id=576874590 instance=ExtResource("3_54nej")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 2)
@@ -125,20 +146,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 16)
 [node name="stone_wall_pillar2" parent="." unique_id=1885943647 instance=ExtResource("6_msoig")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 16)
 
-[node name="nobel_road8" parent="." unique_id=540540455 instance=ExtResource("2_xwq33")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.66, 10)
-
 [node name="nobel_house3" parent="." unique_id=1868457646 instance=ExtResource("7_gbr7x")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 2)
 
+[node name="nobel_house4" parent="." unique_id=1564877828 instance=ExtResource("7_gbr7x")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0, 2)
+
+[node name="nobel_house8" parent="." unique_id=1536911241 instance=ExtResource("7_gbr7x")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0, 6)
+
+[node name="nobel_house9" parent="." unique_id=1551290073 instance=ExtResource("7_gbr7x")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -8, 0, 12)
+
+[node name="nobel_house10" parent="." unique_id=1266506516 instance=ExtResource("7_gbr7x")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2, 0, 12)
+
 [node name="nobel_house5" parent="." unique_id=971472596 instance=ExtResource("8_26rvf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="nobel_house7" parent="." unique_id=2011862418 instance=ExtResource("8_26rvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -4)
+
+[node name="nobel_house6" parent="." unique_id=87138680 instance=ExtResource("8_26rvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
 [node name="dirt1" parent="." unique_id=68315993 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
 [node name="dirt18" parent="." unique_id=1862068994 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+
+[node name="dirt29" parent="." unique_id=954665285 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
 
 [node name="dirt19" parent="." unique_id=1220627550 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
@@ -149,20 +188,62 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -6)
 [node name="dirt21" parent="." unique_id=1904845202 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -6)
 
+[node name="dirt31" parent="." unique_id=1501312707 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -6)
+
+[node name="dirt32" parent="." unique_id=311766947 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -6)
+
+[node name="dirt33" parent="." unique_id=463931443 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -4)
+
 [node name="dirt22" parent="." unique_id=1444683167 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
 
 [node name="dirt2" parent="." unique_id=83146209 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
-[node name="dirt28" parent="." unique_id=1057038701 instance=ExtResource("9_raqe6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
-
-[node name="dirt29" parent="." unique_id=1863707483 instance=ExtResource("9_raqe6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8)
-
 [node name="dirt23" parent="." unique_id=2007772009 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 12)
+
+[node name="dirt34" parent="." unique_id=1661493949 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="dirt45" parent="." unique_id=2109037173 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 12)
+
+[node name="dirt46" parent="." unique_id=979907153 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
+
+[node name="dirt47" parent="." unique_id=556337095 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6)
+
+[node name="dirt48" parent="." unique_id=265666433 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="dirt49" parent="." unique_id=213444875 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8)
+
+[node name="dirt36" parent="." unique_id=1365248466 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 14)
+
+[node name="dirt44" parent="." unique_id=384150824 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 14)
+
+[node name="dirt37" parent="." unique_id=297516887 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
+
+[node name="dirt38" parent="." unique_id=1436158201 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+
+[node name="dirt39" parent="." unique_id=489504946 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 16)
+
+[node name="dirt42" parent="." unique_id=321523653 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 16)
+
+[node name="dirt43" parent="." unique_id=267654914 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 16)
 
 [node name="dirt24" parent="." unique_id=2139242175 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 14)
@@ -176,6 +257,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 14)
 [node name="dirt27" parent="." unique_id=1948267875 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 12)
 
+[node name="dirt41" parent="." unique_id=1293235826 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 14)
+
 [node name="dirt3" parent="." unique_id=755765311 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
 
@@ -187,9 +271,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
 [node name="dirt6" parent="." unique_id=1151465781 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
-
-[node name="dirt8" parent="." unique_id=829835990 instance=ExtResource("9_raqe6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 2)
 
 [node name="dirt9" parent="." unique_id=1835072708 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 4)
@@ -206,9 +287,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6)
 [node name="dirt13" parent="." unique_id=1668956766 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 6)
 
-[node name="dirt14" parent="." unique_id=2008643899 instance=ExtResource("9_raqe6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 6)
-
 [node name="dirt15" parent="." unique_id=724760547 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
 
@@ -224,6 +302,12 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 
 [node name="tower2" parent="." unique_id=244700781 instance=ExtResource("11_c76hx")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
 
+[node name="tower3" parent="." unique_id=667444859 instance=ExtResource("11_c76hx")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 16)
+
 [node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("4_t0kxk")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 4)
 spawn_id = &"entrance"
+
+[node name="inn5" parent="." unique_id=1061531617 instance=ExtResource("12_sycog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
