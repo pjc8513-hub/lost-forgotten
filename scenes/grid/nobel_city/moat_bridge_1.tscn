@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cmdb7mnvmevaw"]
+
+[ext_resource type="PackedScene" uid="uid://deqkbout2cwej" path="res://assets/models/nobel/moat_bridge1.glb" id="1_aybbg"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_qt6as"]
+
+[node name="moat_bridge1" unique_id=1336274816 instance=ExtResource("1_aybbg")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=1057251722]
+script = ExtResource("2_qt6as")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
