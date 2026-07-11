@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ds4am0k25g8q4" path="res://scenes/grid/nobel_city/wallcorner_1.tscn" id="13_72yvy"]
 [ext_resource type="PackedScene" uid="uid://co81duxjlu76s" path="res://scenes/grid/nobel_city/gate_3.tscn" id="14_oyxdf"]
 [ext_resource type="PackedScene" uid="uid://dmge8mm2unmb0" path="res://scenes/grid/nobel_city/tree_2.tscn" id="15_3morc"]
+[ext_resource type="PackedScene" uid="uid://b2fjhjvv0wnqc" path="res://scenes/grid/nobel_city/moat_1.tscn" id="16_0xi3f"]
 [ext_resource type="PackedScene" uid="uid://b50pl125e0e61" path="res://scenes/grid/nobel_city/well_2.tscn" id="16_i5yg6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gyyt5"]
@@ -289,6 +290,39 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 14)
 
 [node name="dirt42" parent="." unique_id=169922057 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 14)
+
+[node name="dirt45" parent="." unique_id=1960467121 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 14)
+
+[node name="dirt46" parent="." unique_id=869030545 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 12)
+
+[node name="dirt47" parent="." unique_id=768686323 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 10)
+
+[node name="dirt48" parent="." unique_id=1799769422 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 8)
+
+[node name="dirt49" parent="." unique_id=1961436762 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 6)
+
+[node name="dirt50" parent="." unique_id=611150848 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 4)
+
+[node name="dirt51" parent="." unique_id=1103535762 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 2)
+
+[node name="dirt52" parent="." unique_id=590429642 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
+
+[node name="dirt53" parent="." unique_id=823250986 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -2)
+
+[node name="dirt54" parent="." unique_id=1295452291 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -4)
+
+[node name="dirt55" parent="." unique_id=747474960 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -6)
 
 [node name="dirt43" parent="." unique_id=1388695051 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 12)
@@ -581,6 +615,51 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -6, 
 
 [node name="well2" parent="decor" unique_id=176428099 instance=ExtResource("16_i5yg6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="moat1" parent="." unique_id=1411012358 instance=ExtResource("16_0xi3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 4)
+
+[node name="moat7" parent="." unique_id=932147324 instance=ExtResource("16_0xi3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 2)
+
+[node name="moat8" parent="." unique_id=1228012590 instance=ExtResource("16_0xi3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 0)
+
+[node name="moat9" parent="." unique_id=1285856448 instance=ExtResource("16_0xi3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -2)
+
+[node name="moat10" parent="." unique_id=878224870 instance=ExtResource("16_0xi3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -4)
+
+[node name="moat13" parent="." unique_id=757110950 instance=ExtResource("16_0xi3f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16, 0, -6)
+
+[node name="moat14" parent="." unique_id=228787816 instance=ExtResource("16_0xi3f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18, 0, -6)
+
+[node name="moat15" parent="." unique_id=293633578 instance=ExtResource("16_0xi3f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -20, 0, -6)
+
+[node name="moat2" parent="." unique_id=732471064 instance=ExtResource("16_0xi3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 6)
+
+[node name="moat3" parent="." unique_id=1741906339 instance=ExtResource("16_0xi3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 8)
+
+[node name="moat4" parent="." unique_id=1828541641 instance=ExtResource("16_0xi3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 10)
+
+[node name="moat5" parent="." unique_id=1466792060 instance=ExtResource("16_0xi3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 12)
+
+[node name="moat6" parent="." unique_id=1809415036 instance=ExtResource("16_0xi3f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 0, 14)
+
+[node name="moat11" parent="." unique_id=1479337723 instance=ExtResource("16_0xi3f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18, 0, 14)
+
+[node name="moat12" parent="." unique_id=1334804270 instance=ExtResource("16_0xi3f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20, 0, 14)
 
 [node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("4_t0kxk")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 4)

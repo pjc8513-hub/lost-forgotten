@@ -7,6 +7,10 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xa8nu"]
 
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_h7ymm"]
+dof_blur_far_enabled = true
+dof_blur_near_enabled = true
+
 [node name="PlayerPawn" type="CharacterBody3D" unique_id=947801590]
 script = ExtResource("4_player")
 
@@ -15,7 +19,9 @@ shape = SubResource("CapsuleShape3D_xa8nu")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=164452680]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
+attributes = SubResource("CameraAttributesPractical_h7ymm")
 current = true
+fov = 37.849285
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=708004227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.2, -0.5)
