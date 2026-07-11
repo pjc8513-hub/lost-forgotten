@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dmge8mm2unmb0"]
+
+[ext_resource type="PackedScene" uid="uid://hib1x0tp1bv4" path="res://assets/models/nobel/tree2.glb" id="1_igdxu"]
+
+[node name="tree2" unique_id=1830953628 instance=ExtResource("1_igdxu")]

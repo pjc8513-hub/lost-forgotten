@@ -14,14 +14,16 @@
 [ext_resource type="PackedScene" uid="uid://dyi63mi8rdwj0" path="res://scenes/grid/nobel_city/inn_5.tscn" id="12_sycog"]
 [ext_resource type="PackedScene" uid="uid://ds4am0k25g8q4" path="res://scenes/grid/nobel_city/wallcorner_1.tscn" id="13_72yvy"]
 [ext_resource type="PackedScene" uid="uid://co81duxjlu76s" path="res://scenes/grid/nobel_city/gate_3.tscn" id="14_oyxdf"]
+[ext_resource type="PackedScene" uid="uid://dmge8mm2unmb0" path="res://scenes/grid/nobel_city/tree_2.tscn" id="15_3morc"]
+[ext_resource type="PackedScene" uid="uid://b50pl125e0e61" path="res://scenes/grid/nobel_city/well_2.tscn" id="16_i5yg6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gyyt5"]
 shader = ExtResource("1_ornp4")
 shader_parameter/zenith_color = Color(0.2, 0.45, 0.85, 1)
 shader_parameter/horizon_color = Color(0.55, 0.75, 0.9, 1)
-shader_parameter/horizon_blur = 0.3
+shader_parameter/horizon_blur = 1.0
 shader_parameter/sun_color = Color(1, 0.95, 0.8, 1)
-shader_parameter/sun_size = 0.05
+shader_parameter/sun_size = 0.00999999977648
 shader_parameter/sun_blur = 0.01
 
 [sub_resource type="Sky" id="Sky_vvxho"]
@@ -512,10 +514,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16,
 [node name="wall22" parent="walls" unique_id=804214230 instance=ExtResource("12_oyxdf")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18, 0, -8)
 
-[node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("4_t0kxk")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 4)
-spawn_id = &"entrance"
-
 [node name="wallcorner1" parent="." unique_id=974815313 instance=ExtResource("13_72yvy")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10, 0, 16)
 
@@ -530,3 +528,60 @@ transform = Transform3D(-1.6292066e-07, 0, 1, 0, 1, 0, -1, 0, -1.6292066e-07, -2
 
 [node name="gate3" parent="." unique_id=441048132 instance=ExtResource("14_oyxdf")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10, 0, 4)
+
+[node name="decor" type="Node" parent="." unique_id=1384272380]
+
+[node name="tree2" parent="decor" unique_id=1830953628 instance=ExtResource("15_3morc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6)
+
+[node name="tree3" parent="decor" unique_id=1173358030 instance=ExtResource("15_3morc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="tree4" parent="decor" unique_id=1880551189 instance=ExtResource("15_3morc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -8)
+
+[node name="tree5" parent="decor" unique_id=2094198015 instance=ExtResource("15_3morc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
+
+[node name="tree6" parent="decor" unique_id=1936086447 instance=ExtResource("15_3morc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -8)
+
+[node name="tree7" parent="decor" unique_id=263002467 instance=ExtResource("15_3morc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -8)
+
+[node name="tree8" parent="decor" unique_id=232355411 instance=ExtResource("15_3morc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -8)
+
+[node name="tree9" parent="decor" unique_id=520659320 instance=ExtResource("15_3morc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 16)
+
+[node name="tree10" parent="decor" unique_id=1473157825 instance=ExtResource("15_3morc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 16)
+
+[node name="tree11" parent="decor" unique_id=2087274448 instance=ExtResource("15_3morc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 16)
+
+[node name="tree12" parent="decor" unique_id=1295028417 instance=ExtResource("15_3morc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 16)
+
+[node name="tree13" parent="decor" unique_id=325566568 instance=ExtResource("15_3morc")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 0, 10)
+
+[node name="tree14" parent="decor" unique_id=435254049 instance=ExtResource("15_3morc")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10, 0, -2)
+
+[node name="tree15" parent="decor" unique_id=2080190325 instance=ExtResource("15_3morc")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 2, 0, -2)
+
+[node name="tree16" parent="decor" unique_id=743517227 instance=ExtResource("15_3morc")]
+transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, -4, 0, 0)
+
+[node name="tree17" parent="decor" unique_id=577930724 instance=ExtResource("15_3morc")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -6, 0, 6)
+
+[node name="well2" parent="decor" unique_id=176428099 instance=ExtResource("16_i5yg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("4_t0kxk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 4)
+spawn_id = &"entrance"
