@@ -12,11 +12,15 @@ func is_met() -> bool:
 			return PartyManager.gold >= target_value
 		ConditionType.HAS_ITEM:
 			# check if any party member has target_id
-			pass
+			for member in PartyManager.party:
+				for item in member.inventory:
+					if item.item_data != null and item.item_data.item_id == target_id:
+						return true
+			return false
 		ConditionType.QUEST_STAGE_EQUAL:
 			# check if player's quest stage is at a target value
-			pass
+			return QuestManager.get_quest_stage(target_id) == target_value
 		ConditionType.QUEST_STAGE_GREATER:
 			# check if payer's quest stage is beyond a target value
-			pass
+			return QuestManager.get_quest_stage(target_id) > target_value
 	return true

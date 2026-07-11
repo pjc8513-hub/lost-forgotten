@@ -1,10 +1,14 @@
 class_name DialogueReward extends Resource
 
-enum RewardType { ADD_GOLD, REMOVE_GOLD, ADD_ITEM, REMOVE_ITEM, ADD_EXP, SET_QUEST_STAGE }
+enum RewardType { ADD_GOLD, REMOVE_GOLD, ADD_ITEM, REMOVE_ITEM, ADD_EXP, SET_QUEST_STAGE, TELEPORT }
 
 @export var type: RewardType
 @export var target_id: String # item_id or quest_id
 @export var value: int       # amount of gold, exp, or quest stage
+
+@export_group("Teleportation Options")
+@export_file("*.tscn") var destination_map: String
+@export var destination_spawn_id: StringName
 
 func give_reward() -> void:
 	var message: String
@@ -29,13 +33,29 @@ func give_reward() -> void:
 				else:
 					push_error("Failed to item item %s to %s's inventory." % [target_id, member.member_name])
 		RewardType.REMOVE_ITEM:
-			pass
-			# find the character holding the quest item and then remove it using member drop inventory item
-			# member.drop_inventory_item(target_id)
+			var removed := false
+			for member in PartyManager.party:
+				for item in member.inventory:
+					if item.item_data != null and item.item_data.item_id == target_id:
+						member.drop_inventory_item(item)
+						removed = true
+						message = "Removed item %s from %s's inventory." % [item.item_data.name, member.member_name]
+						MapManager.request_alert(message)
+						break
+				if removed:
+					break
+			if not removed:
+				push_error("Error: Could not find item %s in party inventory to remove." % target_id)
 		RewardType.ADD_EXP:
-			pass
-			#give xp to every party member
-			# member.add_xp(value)
+			for member in PartyManager.party:
+				var leveled_up = member.add_xp(value)
+				if leveled_up:
+					MapManager.request_alert("%s leveled up to %d!" % [member.member_name, member.level])
+			MapManager.request_alert("Party gained %d experience points." % value)
 		RewardType.SET_QUEST_STAGE:
-			pass
-			# Update quest status if multi-stage quest (ie. main quest)
+			QuestManager.set_quest_stage(target_id, value)
+		RewardType.TELEPORT:
+			if destination_map.is_empty():
+				push_error("Error: Teleport destination map is empty.")
+				return
+			StageManager.call_deferred("change_map", destination_map, destination_spawn_id)

@@ -2,6 +2,7 @@ class_name Quest extends Resource
 
 @export var quest_id: String = ""
 @export var quest_name: String = ""
+@export var is_main_quest: bool = false
 @export_multiline var description: String
 
 # Mapping stage numbers to a short log description
