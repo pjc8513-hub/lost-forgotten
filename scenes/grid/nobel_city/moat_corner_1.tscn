@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://nkv24ao2eb0v"]
+
+[ext_resource type="PackedScene" uid="uid://dh8ldemmv3qk4" path="res://assets/models/nobel/moat_corner1.glb" id="1_iqqig"]
+
+[node name="moat_corner1" unique_id=854675105 instance=ExtResource("1_iqqig")]
