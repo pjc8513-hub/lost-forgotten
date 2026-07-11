@@ -30,15 +30,22 @@ sky_material = SubResource("ShaderMaterial_gyyt5")
 radiance_size = 4
 
 [sub_resource type="Environment" id="Environment_xa8nu"]
+resource_local_to_scene = true
 background_mode = 2
-background_color = Color(0.33213586, 0.3321359, 0.3321359, 1)
+background_color = Color(0.6923535, 0.783633, 0.9097625, 1)
 sky = SubResource("Sky_vvxho")
+ambient_light_source = 3
+ambient_light_color = Color(0.6523966, 0.74503434, 0.9136144, 1)
 tonemap_mode = 3
+tonemap_exposure = 1.12
 ssao_enabled = true
 fog_light_color = Color(0.38511264, 0.5775074, 0.6945993, 1)
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.001
 volumetric_fog_albedo = Color(0.7731871, 0.8208626, 0.9204789, 1)
+adjustment_enabled = true
+adjustment_contrast = 0.92
+adjustment_saturation = 0.91
 
 [node name="Nobel" type="Node3D" unique_id=1819116379]
 script = ExtResource("1_t0kxk")

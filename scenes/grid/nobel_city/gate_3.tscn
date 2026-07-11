@@ -12,3 +12,4 @@ metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="2" unique_id=2072979715]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9852914, 0.81351626, 0)
+visible = false
