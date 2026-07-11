@@ -24,7 +24,7 @@ func _on_area_3d_input_event(
 	if grid_element == null:
 		return
 	var grid_pos := grid_element.world_to_grid(grid_element.global_position)
-	var player := MapManager.get_actor(grid_pos)
+	var player = MapManager.get_actor(grid_pos)
 	if player == null:
 		return
 	var movement := player.get_node_or_null("GridMovementController") as GridMovementController

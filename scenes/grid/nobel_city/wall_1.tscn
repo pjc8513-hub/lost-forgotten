@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c0qg7yyq6qd6l"]
+
+[ext_resource type="PackedScene" uid="uid://ckbw5aqf4a1ub" path="res://assets/models/nobel/wall1.glb" id="1_wtm27"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_7mphd"]
+
+[node name="wall1" unique_id=243243673 instance=ExtResource("1_wtm27")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=46859394]
+script = ExtResource("2_7mphd")
+cell_shape = 1
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"

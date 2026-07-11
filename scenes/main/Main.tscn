@@ -131,6 +131,18 @@ texture_focused = ExtResource("13_tck0d")
 
 [node name="TransitionRoot" type="Node" parent="TransitionLayer" unique_id=774989796]
 
+[node name="TransitionCanvas" type="CanvasLayer" parent="TransitionLayer/TransitionRoot" unique_id=2045563163]
+layer = 100
+
+[node name="Blackout" type="ColorRect" parent="TransitionLayer/TransitionRoot/TransitionCanvas" unique_id=266427859]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
 [node name="DebugLayer" type="Node" parent="." unique_id=201161667]
 
 [node name="Debug" parent="DebugLayer" unique_id=372138702 instance=ExtResource("12_p5fgu")]

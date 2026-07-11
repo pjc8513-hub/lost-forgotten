@@ -5,7 +5,7 @@ signal steps_changed(steps: int)
 signal stamina_cost_due(amount: int)
 
 const STEPS_PER_STAMINA: int = 10
-const SECONDS_PER_STEP: int = 6
+const SECONDS_PER_STEP: int = 60
 const DUNGEON_START_TIME_SECONDS: int = 9 * 60 * 60
 
 var dungeon_elapsed_time: int = 0

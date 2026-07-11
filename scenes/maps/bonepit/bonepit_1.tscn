@@ -277,8 +277,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 14)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
 [node name="DoorComponent" parent="stone_door_1" index="3" unique_id=820589636]
-door_id = &"bonepit.stone_door_1"
 local_edge = Vector3i(-1, 0, 0)
+door_id = &"bonepit.stone_door_1"
 
 [node name="stone_lift1" parent="." unique_id=1795187880 instance=ExtResource("14_wthsc")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 0, 0)
@@ -301,13 +301,13 @@ player_travel_offset = Vector3(0, -1.5, 0)
 [node name="stone_wall3_secret" parent="." unique_id=141663307 instance=ExtResource("14_gix0e")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 8, 0, 2)
 
-[node name="wall" parent="stone_wall3_secret" index="0" unique_id=1285790314]
+[node name="wall" parent="stone_wall3_secret" index="0" unique_id=524815201]
 surface_material_override/0 = SubResource("StandardMaterial3D_4w8b5")
 
-[node name="door" parent="stone_wall3_secret" index="1" unique_id=27495278]
+[node name="door" parent="stone_wall3_secret" index="1" unique_id=893429260]
 surface_material_override/0 = SubResource("StandardMaterial3D_4w8b5")
 
-[node name="floor" parent="stone_wall3_secret" index="2" unique_id=1369459373]
+[node name="floor" parent="stone_wall3_secret" index="2" unique_id=1029300820]
 surface_material_override/0 = SubResource("StandardMaterial3D_cknfr")
 
 [node name="DoorComponent" parent="stone_wall3_secret" index="4" unique_id=534338047]
@@ -321,13 +321,13 @@ secret_type = "door"
 [node name="stone_wall3_secret2" parent="." unique_id=1756686758 instance=ExtResource("14_gix0e")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0, -4)
 
-[node name="wall" parent="stone_wall3_secret2" index="0" unique_id=1285790314]
+[node name="wall" parent="stone_wall3_secret2" index="0" unique_id=524815201]
 surface_material_override/0 = SubResource("StandardMaterial3D_kc6bh")
 
-[node name="door" parent="stone_wall3_secret2" index="1" unique_id=27495278]
+[node name="door" parent="stone_wall3_secret2" index="1" unique_id=893429260]
 surface_material_override/0 = SubResource("StandardMaterial3D_kc6bh")
 
-[node name="floor" parent="stone_wall3_secret2" index="2" unique_id=1369459373]
+[node name="floor" parent="stone_wall3_secret2" index="2" unique_id=1029300820]
 surface_material_override/0 = SubResource("StandardMaterial3D_1hocr")
 
 [node name="DoorComponent" parent="stone_wall3_secret2" index="4" unique_id=534338047]

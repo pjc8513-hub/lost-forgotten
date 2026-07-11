@@ -89,12 +89,12 @@ func trigger(_actor: Node) -> void:
 		var damage_taken: int
 		var message: String
 		if trap_type.target_stamina:
-			var stamina_before := member.current_stamina
+			var stamina_before = member.current_stamina
 			member.current_stamina -= rolled_damage
 			damage_taken = stamina_before - member.current_stamina
 			message = "%s lost %d Stamina from the trap" % [member.member_name, damage_taken]
 		else:
-			var hp_before := member.current_hp
+			var hp_before = member.current_hp
 			member.take_damage(rolled_damage)
 			damage_taken = hp_before - member.current_hp
 			message = "%s took %d damage from the trap" % [member.member_name, damage_taken]

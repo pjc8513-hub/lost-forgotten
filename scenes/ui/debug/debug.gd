@@ -373,15 +373,15 @@ func _execute_command(input: String) -> void:
 				_log_message("Error: additem requires an item ID (e.g. additem health_potion)")
 				return
 			var item_id := args[0]
-			var member := PartyManager.selected_party_member
+			var member = PartyManager.selected_party_member
 			if member == null:
 				_log_message("Error: No selected party member.")
 				return
-			var instance := LootManager.create_item_instance(item_id)
+			var instance = LootManager.create_item_instance(item_id)
 			if instance == null or instance.item_data == null:
 				_log_message("Error: Item database could not find or create item: %s" % item_id)
 			else:
-				var success := member.add_inventory_item(instance)
+				var success = member.add_inventory_item(instance)
 				if success:
 					_log_message("Added item %s to %s's inventory." % [item_id, member.member_name])
 				else:
