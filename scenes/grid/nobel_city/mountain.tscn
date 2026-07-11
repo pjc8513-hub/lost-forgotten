@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cwphdwqqt832y"]
+
+[ext_resource type="PackedScene" uid="uid://bpwudi34kfyi2" path="res://assets/models/nobel/mountain.glb" id="1_2b2rt"]
+
+[node name="mountain" unique_id=1751026007 instance=ExtResource("1_2b2rt")]
