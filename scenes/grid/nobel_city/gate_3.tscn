@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://co81duxjlu76s"]
+
+[ext_resource type="PackedScene" uid="uid://dbbqn2w0lelv4" path="res://assets/models/nobel/gate3.glb" id="1_kt6a1"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_wm8dj"]
+
+[node name="gate3" unique_id=441048132 instance=ExtResource("1_kt6a1")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=569513100]
+script = ExtResource("2_wm8dj")
+cell_shape = 1
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="2" unique_id=2072979715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9852914, 0.81351626, 0)

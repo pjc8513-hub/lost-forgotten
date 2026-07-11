@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ds4am0k25g8q4"]
+
+[ext_resource type="PackedScene" uid="uid://1ifglwvk6bhc" path="res://assets/models/nobel/wallcorner1.glb" id="1_q0cbc"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_a4gn7"]
+
+[node name="wallcorner1" unique_id=974815313 instance=ExtResource("1_q0cbc")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=679696507]
+script = ExtResource("2_a4gn7")
+cell_shape = 3
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
