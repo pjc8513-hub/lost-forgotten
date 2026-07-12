@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="5_ktwdp"]
 [ext_resource type="Script" uid="uid://d3memun0m0avi" path="res://scripts/components/NPCTileComponent.gd" id="6_ktwdp"]
 [ext_resource type="PackedScene" uid="uid://dxbnq6q1rin3" path="res://scenes/grid/nobel_city/nobel_house_3.tscn" id="7_gbr7x"]
+[ext_resource type="Resource" uid="uid://dilxfreh3khjs" path="res://data/dialogue/nobel/temple/Temple_Kira.tres" id="7_kira"]
+[ext_resource type="Resource" uid="uid://bqogx53osfocl" path="res://data/dialogue/nobel/temple/Temple_basement.tres" id="8_4ex8l"]
 [ext_resource type="PackedScene" uid="uid://bfl2653067t3" path="res://scenes/grid/nobel_city/nobel_house_5.tscn" id="8_26rvf"]
 [ext_resource type="PackedScene" uid="uid://dtmuxu1xvq888" path="res://scenes/grid/nobel_city/dirt_1.tscn" id="9_raqe6"]
 [ext_resource type="PackedScene" uid="uid://bg8obfevnelp8" path="res://scenes/grid/nobel_city/temple_1.tscn" id="10_qxong"]
@@ -83,7 +85,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0
 
 [node name="nobel_road26" parent="." unique_id=554007846 instance=ExtResource("3_54nej")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 6)
-script = ExtResource("4_qt0u2")
 
 [node name="InteractableComponent" type="Node" parent="nobel_road26" unique_id=1510878304]
 script = ExtResource("5_ktwdp")
@@ -191,6 +192,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6, 
 [node name="nobel_road54" parent="." unique_id=1726860802 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0.66, 12)
 script = ExtResource("6_ktwdp")
+NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("7_kira"), ExtResource("8_4ex8l")])
 
 [node name="InteractableComponent" type="Node" parent="nobel_road54" unique_id=247005299]
 script = ExtResource("5_ktwdp")

@@ -3,9 +3,13 @@ extends Node
 
 signal navigation_changed
 signal alert_requested(message: String)
+signal dialogue_requested(npcs: Array[NPCComponent])
 
 func request_alert(message: String) -> void:
 	alert_requested.emit(message)
+
+func request_dialogue(npcs: Array[NPCComponent]) -> void:
+	dialogue_requested.emit(npcs)
 
 var grid: Dictionary = {}
 var actors: Dictionary = {}

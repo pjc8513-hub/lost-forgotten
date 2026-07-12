@@ -5,6 +5,7 @@ const INVENTORY_SCENE := preload("res://scenes/ui/inventory/inventory.tscn")
 const CHARACTER_SCENE := preload("res://scenes/ui/character.tscn")
 const CAMP_SCENE := preload("res://scenes/ui/camp_control.tscn")
 const SKILL_SCENE := preload("res://scenes/ui/skill_menu.tscn")
+const DIALOGUE_SCENE := preload("res://scenes/ui/dialogue.tscn")
 const CAST_TARGET_INPUT_CURSOR := Input.CURSOR_HELP
 const NORMAL_INPUT_CURSOR := Input.CURSOR_ARROW
 const CAST_TARGET_CONTROL_CURSOR := Control.CURSOR_HELP
@@ -31,6 +32,7 @@ var inventory_menu: InventoryMenu
 var character_menu: CharacterMenu
 var camp_menu: CampMenu
 var skill_menu: skill_menu
+var dialogue_menu: Control
 var _pending_target_skill: SkillData
 var _pending_target_caster: PartyMember
 
@@ -40,14 +42,17 @@ func _ready() -> void:
 	WorldManager.stamina_cost_due.connect(PartyManager.spend_party_stamina)
 	SkillSystem.execution_requested.connect(_on_skill_execution_requested)
 	MapManager.alert_requested.connect(alert.show_message)
+	MapManager.dialogue_requested.connect(_on_dialogue_requested)
 	inventory_menu = INVENTORY_SCENE.instantiate() as InventoryMenu
 	character_menu = CHARACTER_SCENE.instantiate() as CharacterMenu
 	camp_menu = CAMP_SCENE.instantiate()as CampMenu
 	skill_menu = SKILL_SCENE.instantiate()as skill_menu
+	dialogue_menu = DIALOGUE_SCENE.instantiate() as Control
 	$HudLayer/HudRoot/CanvasLayer.add_child(inventory_menu)
 	$HudLayer/HudRoot/CanvasLayer.add_child(character_menu)
 	$HudLayer/HudRoot/CanvasLayer.add_child(camp_menu)
 	$HudLayer/HudRoot/CanvasLayer.add_child(skill_menu)
+	$HudLayer/HudRoot/CanvasLayer.add_child(dialogue_menu)
 	inventory_button.pressed.connect(inventory_menu.open)
 	character_button.pressed.connect(character_menu.open)
 	camp_button.pressed.connect(camp_menu.open_dialogue)
@@ -97,6 +102,10 @@ func _on_map_changed(_map_path: String, _spawn_id: StringName) -> void:
 		var torch = player.get_node("OmniLight3D")
 		if torch.has_method("set_torch_enabled"):
 			torch.set_torch_enabled(enable_torch)
+
+func _on_dialogue_requested(npcs: Array[NPCComponent]) -> void:
+	if dialogue_menu != null and dialogue_menu.has_method("open"):
+		dialogue_menu.call("open", npcs)
 
 
 func _on_selected_party_member_changed(index: int, _member: PartyMember) -> void:

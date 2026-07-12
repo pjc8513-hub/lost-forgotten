@@ -124,7 +124,14 @@ func interact_forward() -> bool:
 	if is_moving or is_rotating:
 		return false
 	for element in MapManager.get_elements(grid_pos):
-		for component in element.get_parent().get_children():
+		var tile = element.get_parent()
+		if tile is NPC_Tile_Component:
+			tile.interact(actor)
+			return true
+		for component in tile.get_children():
+			if component is NPC_Tile_Component:
+				component.interact(actor)
+				return true
 			if component is SwitchComponent and component.can_interact(grid_pos):
 				component.activate()
 				return true
@@ -138,7 +145,14 @@ func interact_forward() -> bool:
 
 	var target := grid_pos + facing
 	for element in MapManager.get_elements(target):
-		for component in element.get_parent().get_children():
+		var tile = element.get_parent()
+		if tile is NPC_Tile_Component:
+			tile.interact(actor)
+			return true
+		for component in tile.get_children():
+			if component is NPC_Tile_Component:
+				component.interact(actor)
+				return true
 			if component is InteractableComponent:
 				component.interact(actor)
 				return true

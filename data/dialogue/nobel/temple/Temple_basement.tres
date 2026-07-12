@@ -34,8 +34,15 @@ conditions = Array[ExtResource("2_a5k27")]([SubResource("Resource_38bxf")])
 choices = Array[ExtResource("2_38bxf")]([SubResource("Resource_gkkxs")])
 metadata/_custom_type_script = "uid://bu2iii31o0rrx"
 
+[sub_resource type="Resource" id="Resource_pswlu"]
+script = ExtResource("2_a5k27")
+type = 3
+target_id = "BrotherPatrick"
+metadata/_custom_type_script = "uid://biwbs1n6b7tyr"
+
 [resource]
 script = ExtResource("4_8k4br")
 npc_name = "Basement"
 dialogue_nodes = Array[ExtResource("1_ab3l4")]([SubResource("Resource_8k4br")])
+npc_active_conditions = Array[ExtResource("2_a5k27")]([SubResource("Resource_pswlu")])
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"
