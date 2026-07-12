@@ -1,4 +1,6 @@
+class_name QuestMenu
 extends Control
+
 @onready var tab_container: TabContainer = $PanelContainer/MarginContainer/HBoxContainer/TabContainer
 @onready var in_progress_list: RichTextLabel = $PanelContainer/MarginContainer/HBoxContainer/TabContainer/InProgress/ScrollContainer/InProgressList
 @onready var completed_list: RichTextLabel = $PanelContainer/MarginContainer/HBoxContainer/TabContainer/Completed/ScrollContainer/CompletedList

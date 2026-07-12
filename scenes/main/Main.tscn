@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://j4qdwd2ckx6d" path="res://assets/icons/skills.png" id="12_jsdfw"]
 [ext_resource type="PackedScene" uid="uid://bybp4rkefm0hv" path="res://scenes/ui/debug/debug.tscn" id="12_p5fgu"]
 [ext_resource type="Texture2D" uid="uid://dh138fqkjysk" path="res://assets/icons/camp.png" id="13_tck0d"]
-[ext_resource type="Texture2D" uid="uid://coi2d7nnsxixd" path="res://assets/icons/travel.png" id="14_tck0d"]
+[ext_resource type="Texture2D" uid="uid://coi2d7nnsxixd" path="res://assets/icons/quest.png" id="14_tck0d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_screen_filter"]
 shader = ExtResource("4_filter_shader")
@@ -124,7 +124,7 @@ texture_hover = ExtResource("13_tck0d")
 texture_disabled = ExtResource("13_tck0d")
 texture_focused = ExtResource("13_tck0d")
 
-[node name="TextureButton" type="TextureButton" parent="HudLayer/HudRoot/MarginContainer2/VBoxContainer" unique_id=125361620]
+[node name="QuestButton" type="TextureButton" parent="HudLayer/HudRoot/MarginContainer2/VBoxContainer" unique_id=125361620]
 layout_mode = 2
 texture_normal = ExtResource("14_tck0d")
 

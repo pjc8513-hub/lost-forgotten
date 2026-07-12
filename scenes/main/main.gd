@@ -5,6 +5,7 @@ const INVENTORY_SCENE := preload("res://scenes/ui/inventory/inventory.tscn")
 const CHARACTER_SCENE := preload("res://scenes/ui/character.tscn")
 const CAMP_SCENE := preload("res://scenes/ui/camp_control.tscn")
 const SKILL_SCENE := preload("res://scenes/ui/skill_menu.tscn")
+const QUEST_SCENE := preload("res://scenes/ui/QuestMenu.tscn")
 const DIALOGUE_SCENE := preload("res://scenes/ui/dialogue.tscn")
 const CAST_TARGET_INPUT_CURSOR := Input.CURSOR_HELP
 const NORMAL_INPUT_CURSOR := Input.CURSOR_ARROW
@@ -28,6 +29,7 @@ const MAP_TRANSITION_HOLD_TIME := 0.08
 @onready var character_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/CharacterButton
 @onready var camp_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/CampButton
 @onready var skills_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/SkillsButton
+@onready var quest_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/QuestButton
 
 
 var player_movement: GridMovementController
@@ -36,6 +38,7 @@ var character_menu: CharacterMenu
 var camp_menu: CampMenu
 var skill_menu: skill_menu
 var dialogue_menu: Control
+var quest_menu: QuestMenu
 var _pending_target_skill: SkillData
 var _pending_target_caster: PartyMember
 var _map_transition_running := false
@@ -54,16 +57,19 @@ func _ready() -> void:
 	character_menu = CHARACTER_SCENE.instantiate() as CharacterMenu
 	camp_menu = CAMP_SCENE.instantiate()as CampMenu
 	skill_menu = SKILL_SCENE.instantiate()as skill_menu
+	quest_menu = QUEST_SCENE.instantiate()as QuestMenu
 	dialogue_menu = DIALOGUE_SCENE.instantiate() as Control
 	$HudLayer/HudRoot/CanvasLayer.add_child(inventory_menu)
 	$HudLayer/HudRoot/CanvasLayer.add_child(character_menu)
 	$HudLayer/HudRoot/CanvasLayer.add_child(camp_menu)
 	$HudLayer/HudRoot/CanvasLayer.add_child(skill_menu)
+	$HudLayer/HudRoot/CanvasLayer.add_child(quest_menu)
 	$HudLayer/HudRoot/CanvasLayer.add_child(dialogue_menu)
 	inventory_button.pressed.connect(inventory_menu.open)
 	character_button.pressed.connect(character_menu.open)
 	camp_button.pressed.connect(camp_menu.open_dialogue)
 	skills_button.pressed.connect(skill_menu.open)
+	quest_button.pressed.connect(quest_menu.open)
 	_rebuild_party_cards()
 
 	if initial_map == null or player_scene == null:
