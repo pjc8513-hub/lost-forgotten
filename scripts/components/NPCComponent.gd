@@ -15,6 +15,7 @@ enum Shop_Type {
 @export var dialogue_nodes: Array[DialogueNode] = []
 @export var default_dialogue: DialogueNode
 @export var npc_active_conditions: Array[DialogueCondition] = []
+@export var dialogue_label: String = "Dialogue"
 
 @export_category("Quests")
 @export var quests_offered: Array[Quest] = []
