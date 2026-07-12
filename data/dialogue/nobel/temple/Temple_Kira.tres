@@ -26,6 +26,9 @@ stage_descriptions = {
 2: "Return with information about Brother Patrick.",
 3: "Quest Completed"
 }
+quest_giver = "Kira"
+return_location = "Temple in Nobel"
+suggested_level = 1
 quest_rewards = SubResource("Resource_ly515")
 metadata/_custom_type_script = "uid://phuimf2skp05"
 

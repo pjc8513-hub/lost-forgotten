@@ -13,5 +13,11 @@ class_name Quest extends Resource
 	3: "Quest Completed"
 }
 
+@export_group("Quest_description")
+# information to be used in the quest log
+@export var quest_giver: String = ""
+@export var return_location: String = "Nobel"
+@export var suggested_level: int = 0
+
 @export_group("Quest Reward")
 @export var quest_rewards: DialogueReward
