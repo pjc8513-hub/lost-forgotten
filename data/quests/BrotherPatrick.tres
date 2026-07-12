@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://cn82tayowl3g5"]
+
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="1_q17j5"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="2_ckvh8"]
+
+[sub_resource type="Resource" id="Resource_ly515"]
+script = ExtResource("1_q17j5")
+value = 1000
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[resource]
+script = ExtResource("2_ckvh8")
+quest_id = "BrotherPatrick"
+quest_name = "Brother Patrick"
+description = "Brother Patrick went into the Temple basement three days ago to feed the rats and has not been seen since.
+
+We fear the worst for him."
+stage_descriptions = {
+0: "Not Started",
+1: "Find what happened to Brother Patrick in the Temple basement.",
+2: "Return with information about Brother Patrick.",
+3: "Quest Completed"
+}
+quest_giver = "Kira"
+return_location = "Temple in Nobel"
+suggested_level = 1
+display_name = "Temple Basement"
+destination_map = "uid://dkaw7nic8abj8"
+quest_rewards = SubResource("Resource_ly515")
+metadata/_custom_type_script = "uid://phuimf2skp05"

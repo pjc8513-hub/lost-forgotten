@@ -6,38 +6,12 @@
 [ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="3_ly515"]
 [ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="4_5j7h0"]
 [ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="5_f1pne"]
-[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="5_ly515"]
-
-[sub_resource type="Resource" id="Resource_ly515"]
-script = ExtResource("5_ly515")
-value = 1000
-metadata/_custom_type_script = "uid://boy0c7bryv6tm"
-
-[sub_resource type="Resource" id="Resource_gcher"]
-script = ExtResource("3_ly515")
-quest_id = "BrotherPatrick"
-quest_name = "Brother Patrick"
-description = "Brother Patrick went into the Temple basement three days ago to feed the rats and has not been seen since.
-
-We fear the worst for him."
-stage_descriptions = {
-0: "Not Started",
-1: "Find what happened to Brother Patrick in the Temple basement.",
-2: "Return with information about Brother Patrick.",
-3: "Quest Completed"
-}
-quest_giver = "Kira"
-return_location = "Temple in Nobel"
-suggested_level = 1
-display_name = "Temple Basement"
-destination_map = "uid://dkaw7nic8abj8"
-quest_rewards = SubResource("Resource_ly515")
-metadata/_custom_type_script = "uid://phuimf2skp05"
+[ext_resource type="Resource" uid="uid://cn82tayowl3g5" path="res://data/quests/BrotherPatrick.tres" id="5_ly515"]
 
 [resource]
 script = ExtResource("4_5j7h0")
 npc_name = "Kira"
 dialogue_nodes = Array[ExtResource("1_k153n")]([ExtResource("1_5m116")])
 default_dialogue = ExtResource("1_5m116")
-quests_offered = Array[ExtResource("3_ly515")]([SubResource("Resource_gcher")])
+quests_offered = Array[ExtResource("3_ly515")]([ExtResource("5_ly515")])
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"

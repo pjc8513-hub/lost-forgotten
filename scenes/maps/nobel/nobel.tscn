@@ -9,11 +9,16 @@
 [ext_resource type="Script" uid="uid://d3memun0m0avi" path="res://scripts/components/NPCTileComponent.gd" id="6_ktwdp"]
 [ext_resource type="PackedScene" uid="uid://dxbnq6q1rin3" path="res://scenes/grid/nobel_city/nobel_house_3.tscn" id="7_gbr7x"]
 [ext_resource type="Resource" uid="uid://dilxfreh3khjs" path="res://data/dialogue/nobel/temple/Temple_Kira.tres" id="7_kira"]
-[ext_resource type="Resource" uid="uid://bqogx53osfocl" path="res://data/dialogue/nobel/temple/Temple_basement.tres" id="8_4ex8l"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="7_odlrn"]
 [ext_resource type="PackedScene" uid="uid://bfl2653067t3" path="res://scenes/grid/nobel_city/nobel_house_5.tscn" id="8_26rvf"]
+[ext_resource type="Resource" uid="uid://bgajy6p4q2pw4" path="res://data/dialogue/nobel/temple/TempleBasement.tres" id="8_i6hlf"]
+[ext_resource type="Resource" uid="uid://c0psowp0x87lg" path="res://data/dialogue/nobel/temple/TemplePortia.tres" id="8_k5fv7"]
 [ext_resource type="PackedScene" uid="uid://dtmuxu1xvq888" path="res://scenes/grid/nobel_city/dirt_1.tscn" id="9_raqe6"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="9_wld13"]
 [ext_resource type="PackedScene" uid="uid://bg8obfevnelp8" path="res://scenes/grid/nobel_city/temple_1.tscn" id="10_qxong"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="10_t6sru"]
 [ext_resource type="PackedScene" uid="uid://bmi1xho8uhv6m" path="res://scenes/grid/nobel_city/tower_2.tscn" id="11_c76hx"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="11_iaq1w"]
 [ext_resource type="PackedScene" uid="uid://ceq0xnlsdrgmi" path="res://scenes/grid/nobel_city/grass_1.tscn" id="12_72yvy"]
 [ext_resource type="PackedScene" uid="uid://c0qg7yyq6qd6l" path="res://scenes/grid/nobel_city/wall_1.tscn" id="12_oyxdf"]
 [ext_resource type="PackedScene" uid="uid://dyi63mi8rdwj0" path="res://scenes/grid/nobel_city/inn_5.tscn" id="12_sycog"]
@@ -68,6 +73,14 @@ adjustment_enabled = true
 adjustment_contrast = 0.815
 adjustment_saturation = 0.91
 adjustment_color_correction = SubResource("CurveTexture_4ex8l")
+
+[sub_resource type="Resource" id="Resource_281l5"]
+script = ExtResource("4_qt0u2")
+npc_name = "Portia"
+dialogue_nodes = Array[ExtResource("7_odlrn")]([ExtResource("8_k5fv7")])
+shop_type = 3
+shop_name = "Temple of Noble"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
 [node name="Nobel" type="Node3D" unique_id=1819116379]
 script = ExtResource("1_t0kxk")
@@ -205,7 +218,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6, 
 [node name="nobel_road54" parent="." unique_id=1726860802 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0.66, 12)
 script = ExtResource("6_ktwdp")
-NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("7_kira"), ExtResource("8_4ex8l")])
+NPC_List = Array[ExtResource("4_qt0u2")]([SubResource("Resource_281l5"), ExtResource("7_kira"), ExtResource("8_i6hlf")])
 
 [node name="InteractableComponent" type="Node" parent="nobel_road54" unique_id=247005299]
 script = ExtResource("5_ktwdp")

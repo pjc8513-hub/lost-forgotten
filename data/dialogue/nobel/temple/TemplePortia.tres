@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogueNode" format=3 uid="uid://c0psowp0x87lg"]
+
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="1_5savj"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="2_bxr6k"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="3_3uq8b"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="4_aw8rv"]
+
+[resource]
+script = ExtResource("4_aw8rv")
+text = "Do you require assistance?"
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"

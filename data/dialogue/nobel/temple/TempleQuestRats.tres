@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_gkkxs"]
 script = ExtResource("4_281l5")
-text = "I really do find rats to be a real nuisance, but some of our members insist that they deserve to be cared for like any other creature!"
+text = "I really do find rats to be a nuisance, but some of our members insist that they deserve to be cared for like any other creature!"
 metadata/_custom_type_script = "uid://bu2iii31o0rrx"
 
 [resource]

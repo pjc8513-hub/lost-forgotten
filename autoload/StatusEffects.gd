@@ -30,6 +30,7 @@ enum Effect {
 	BLIND,          # -Accuracy / -Dexterity
 	CURSE,          # -Willpower saves / -Dexterity / Cannot cast
 	DISEASED,		# Cannot gain HP from healing or resting
+	DEAD,           # Member is dead
 	# Positive
 	REGENERATE,     # HP per round
 	HASTE,          # +initiative, +dexterity
@@ -283,6 +284,20 @@ const DEFINITIONS: Dictionary = {
 		"end_of_combat": false,
 		"clear_on_rest": false,
 		"cost_to_remove": 70,
+	},
+	Effect.DEAD: {
+		"label": "Dead",
+		"description": "Cannot act",
+		"is_negative": true,
+		"dot_damage": 0,
+		"stat_deltas": {},
+		"blocks_action": true,
+		"blocks_healing": true,
+		"blocks_move": true,
+		"blocks_casting": true,
+		"end_of_combat": false,
+		"clear_on_rest": false,
+		"cost_to_remove": 50,
 	},
 	Effect.REGENERATE: {
 		"label": "Regenerate",
