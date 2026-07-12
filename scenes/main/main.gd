@@ -103,9 +103,9 @@ func _on_map_changed(_map_path: String, _spawn_id: StringName) -> void:
 		if torch.has_method("set_torch_enabled"):
 			torch.set_torch_enabled(enable_torch)
 
-func _on_dialogue_requested(npcs: Array[NPCComponent]) -> void:
+func _on_dialogue_requested(npcs: Array[NPCComponent], source_tile: NPC_Tile_Component) -> void:
 	if dialogue_menu != null and dialogue_menu.has_method("open"):
-		dialogue_menu.call("open", npcs)
+		dialogue_menu.call("open", npcs, source_tile)
 
 
 func _on_selected_party_member_changed(index: int, _member: PartyMember) -> void:

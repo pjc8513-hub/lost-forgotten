@@ -15,4 +15,4 @@ func interact(_actor: Node) -> void:
 	if active_npcs.is_empty():
 		MapManager.request_alert("No one is available.")
 		return
-	MapManager.request_dialogue(active_npcs)
+	MapManager.request_dialogue(active_npcs, self)
