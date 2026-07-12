@@ -3,7 +3,9 @@
 [ext_resource type="Shader" uid="uid://jxmlaj3taoro" path="res://scripts/shaders/day_sky.gdshader" id="1_ornp4"]
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_t0kxk"]
 [ext_resource type="PackedScene" uid="uid://c35lx4au86vvv" path="res://scenes/grid/nobel_city/nobel_road_2.tscn" id="3_54nej"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="4_qt0u2"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="4_t0kxk"]
+[ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="5_ktwdp"]
 [ext_resource type="PackedScene" uid="uid://dxbnq6q1rin3" path="res://scenes/grid/nobel_city/nobel_house_3.tscn" id="7_gbr7x"]
 [ext_resource type="PackedScene" uid="uid://bfl2653067t3" path="res://scenes/grid/nobel_city/nobel_house_5.tscn" id="8_26rvf"]
 [ext_resource type="PackedScene" uid="uid://dtmuxu1xvq888" path="res://scenes/grid/nobel_city/dirt_1.tscn" id="9_raqe6"]
@@ -79,6 +81,11 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0
 
 [node name="nobel_road26" parent="." unique_id=554007846 instance=ExtResource("3_54nej")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 6)
+script = ExtResource("4_qt0u2")
+
+[node name="InteractableComponent" type="Node" parent="nobel_road26" unique_id=1510878304]
+script = ExtResource("5_ktwdp")
+metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
 
 [node name="nobel_road4" parent="." unique_id=356692569 instance=ExtResource("3_54nej")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 8)
@@ -148,6 +155,11 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0
 
 [node name="nobel_road13" parent="." unique_id=588788160 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0.66, 10)
+script = ExtResource("4_qt0u2")
+
+[node name="InteractableComponent" type="Node" parent="nobel_road13" unique_id=1089616568]
+script = ExtResource("5_ktwdp")
+metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
 
 [node name="nobel_road17" parent="." unique_id=1662486605 instance=ExtResource("3_54nej")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10, 0.66, 8)
@@ -794,3 +806,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 4)
 [node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("4_t0kxk")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 4)
 spawn_id = &"entrance"
+
+[editable path="nobel_road26"]
+[editable path="nobel_road13"]

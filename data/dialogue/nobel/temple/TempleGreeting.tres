@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DialogueNode" format=3 uid="uid://cluunrbyyq57x"]
+
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="1_5x3n4"]
+[ext_resource type="Resource" uid="uid://6sbbwe4uaatr" path="res://data/dialogue/nobel/temple/TempleQuestRats.tres" id="2_gki6f"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="3_ph5qk"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="4_ekhe2"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="5_8xvju"]
+
+[resource]
+script = ExtResource("5_8xvju")
+text = "Walk in the light.
+How may we assist you?"
+choices = Array[ExtResource("1_5x3n4")]([ExtResource("2_gki6f")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"

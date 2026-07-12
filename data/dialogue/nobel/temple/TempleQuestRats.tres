@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DialogueEdge" format=3 uid="uid://6sbbwe4uaatr"]
+
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="1_ha60s"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="2_281l5"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="3_i68o0"]
+
+[resource]
+script = ExtResource("3_i68o0")
+choice_string = "Rats"
+metadata/_custom_type_script = "uid://crjpwo8no2r4u"

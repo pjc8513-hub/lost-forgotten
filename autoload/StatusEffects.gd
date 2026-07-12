@@ -71,6 +71,7 @@ const DURATION_ROUNDS: Dictionary = {
 #	blocks_casting - true = character cannot cast this round
 #	end_of_comnbat - true = clears at end of combat
 #	clear_on_rest  - true = clears when party rests
+#	cost_to_remove - Cost to remove status at temple
 # ---------------------------------------------------------------------------
 
 const DEFINITIONS: Dictionary = {
@@ -86,6 +87,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"cost_to_remove": 50,
 	},
 	Effect.BURN: {
 		"label": "Burn",
@@ -99,6 +101,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": true,
+		"cost_to_remove": 30,
 	},
 	Effect.BLEED: {
 		"label": "Bleed",
@@ -112,6 +115,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": true,
+		"cost_to_remove": 20,
 	},
 	Effect.DECAY: {
 		"label": "Decay",
@@ -125,6 +129,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": true,
+		"cost_to_remove": 60,
 	},
 	Effect.STUN: {
 		"label": "Stun",
@@ -138,6 +143,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"cost_to_remove": 0,
 	},
 	Effect.SLEEP: {
 		"label": "Sleep",
@@ -151,6 +157,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"cost_to_remove": 10,
 	},
 	Effect.PARALYSIS: {
 		"label": "Paralysis",
@@ -164,6 +171,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"cost_to_remove": 70,
 	},
 	Effect.FREEZE: {
 		"label": "Freeze",
@@ -177,6 +185,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"cost_to_remove": 50,
 	},
 	Effect.CONFUSE: {
 		"label": "Confuse",
@@ -190,6 +199,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": true,
+		"cost_to_remove": 60,
 	},
 	Effect.FEAR: {
 		"label": "Fear",
@@ -202,6 +212,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_move": false,
 		"end_of_combat": true,
 		"clear_on_rest": true,
+		"cost_to_remove": 40,
 	},
 	Effect.WEAKEN: {
 		"label": "Weakness",
@@ -215,6 +226,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": true,
+		"cost_to_remove": 20,
 	},
 	Effect.SLOW: {
 		"label": "Slow",
@@ -228,6 +240,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": true,
 		"clear_on_rest": true,
+		"cost_to_remove": 20,
 	},
 	Effect.BLIND: {
 		"label": "Blind",
@@ -241,6 +254,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"cost_to_remove": 40,
 	},
 	Effect.CURSE: {
 		"label": "Curse",
@@ -254,6 +268,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"cost_to_remove": 50,
 	},
 	Effect.DISEASED: {
 		"label": "Diseased",
@@ -267,6 +282,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"cost_to_remove": 70,
 	},
 	Effect.REGENERATE: {
 		"label": "Regenerate",
@@ -280,6 +296,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"cost_to_remove": 0,
 	},
 	Effect.HASTE: {
 		"label": "Haste",
@@ -293,6 +310,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"cost_to_remove": 0,
 	},
 	Effect.BLESS: {
 		"label": "Bless",
@@ -306,6 +324,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"cost_to_remove": 0,
 	},
 	Effect.STONE_SKIN: {
 		"label": "Stone Skin",
@@ -319,6 +338,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"cost_to_remove": 0,
 	},
 }
 
