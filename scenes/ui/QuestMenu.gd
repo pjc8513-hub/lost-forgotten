@@ -97,6 +97,9 @@ func _build_quest_entry(quest: Quest) -> String:
 	if not quest.return_location.is_empty():
 		lines.append("[b]Return To:[/b] %s" % _bbcode_escape(quest.return_location))
 
+	if not quest.display_name.is_empty():
+		lines.append("[b]Destination:[/b] %s" % _bbcode_escape(quest.display_name))
+
 	if quest.suggested_level > 0:
 		lines.append("[b]Suggested Level:[/b] %d" % quest.suggested_level)
 

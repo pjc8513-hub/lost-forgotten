@@ -4,6 +4,7 @@ extends Node
 signal quest_started(quest_id: String)
 signal quest_stage_changed(quest_id: String, stage: int)
 signal quest_completed(quest_id: String)
+signal travel_destinations_changed
 
 # Stores the current stage of quests.
 # key: quest_id (String), value: stage (int)
@@ -12,6 +13,9 @@ var quest_stages: Dictionary = {}
 # A dictionary to hold all loaded Quest data resources.
 # key: quest_id (String), value: Quest (resource)
 var quest_db: Dictionary = {}
+
+# key: destination map and spawn, value: Dictionary with display_name, map, and spawn_id
+var travel_destinations: Dictionary = {}
 
 const QUEST_ROOT := "res://data/quests/"
 
@@ -58,6 +62,7 @@ func set_quest_stage(quest_id: String, stage: int) -> void:
 	quest_stages[quest_id] = stage
 	
 	if prev_stage == 0 and stage > 0:
+		unlock_quest_travel_destination(quest_id)
 		quest_started.emit(quest_id)
 		MapManager.request_alert("Started Quest: %s" % get_quest_name(quest_id))
 	
@@ -91,11 +96,60 @@ func get_quest_name(quest_id: String) -> String:
 		return quest.quest_name
 	return quest_id
 
+func unlock_quest_travel_destination(quest_id: String) -> bool:
+	var quest := quest_db.get(quest_id) as Quest
+	if quest == null:
+		return false
+	return unlock_travel_destination(
+		quest.display_name,
+		quest.destination_map,
+		quest.destination_spawn_id
+	)
+
+func unlock_travel_destination(display_name: String, destination_map: String, destination_spawn_id: StringName) -> bool:
+	if destination_map.is_empty():
+		return false
+
+	var key := _get_travel_destination_key(destination_map, destination_spawn_id)
+	if travel_destinations.has(key):
+		return false
+
+	var resolved_display_name := display_name
+	if resolved_display_name.is_empty():
+		resolved_display_name = destination_map.get_file().get_basename().capitalize()
+
+	travel_destinations[key] = {
+		"display_name": resolved_display_name,
+		"map": destination_map,
+		"spawn_id": destination_spawn_id,
+	}
+	travel_destinations_changed.emit()
+	return true
+
+func get_travel_destinations() -> Array[Dictionary]:
+	var destinations: Array[Dictionary] = []
+	for destination in travel_destinations.values():
+		destinations.append(destination.duplicate())
+	destinations.sort_custom(_sort_travel_destinations)
+	return destinations
+
+func _sort_travel_destinations(a: Dictionary, b: Dictionary) -> bool:
+	return str(a.get("display_name", "")).naturalnocasecmp_to(str(b.get("display_name", ""))) < 0
+
 # Save and load compatibility
 func get_save_data() -> Dictionary:
 	return {
-		"quest_stages": quest_stages
+		"quest_stages": quest_stages,
+		"travel_destinations": travel_destinations,
 	}
 
 func load_save_data(data: Dictionary) -> void:
 	quest_stages.assign(data.get("quest_stages", {}))
+	travel_destinations.assign(data.get("travel_destinations", {}))
+	for quest_id in quest_stages.keys():
+		if get_quest_stage(quest_id) > 0:
+			unlock_quest_travel_destination(quest_id)
+	travel_destinations_changed.emit()
+
+func _get_travel_destination_key(destination_map: String, destination_spawn_id: StringName) -> String:
+	return "%s:%s" % [destination_map, str(destination_spawn_id)]
