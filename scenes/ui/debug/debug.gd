@@ -212,7 +212,7 @@ func _execute_command(input: String) -> void:
 	
 	match cmd:
 		"help":
-			_log_message("Commands: help, gold <amt>, food <amt>, xp [all] <amt>, heal [all], stamina [all/full] <amt>, damage [all] <amt>, kill [all], additem <id>, tp <x> <z>")
+			_log_message("Commands: help, gold <amt>, food <amt>, xp [all] <amt>, heal [all], stamina [all/full] <amt>, damage [all] <amt>, kill [all], status <status>, additem <id>, tp <x> <z>")
 		"gold":
 			if args.is_empty():
 				_log_message("Error: gold requires an amount (e.g. gold 100)")
@@ -368,6 +368,28 @@ func _execute_command(input: String) -> void:
 				else:
 					member.current_hp = 0
 					_log_message("Killed %s." % member.member_name)
+		"status":
+			if args.is_empty():
+				_log_message("Error: status requires a status name (e.g. status poison)")
+				return
+			var member := PartyManager.selected_party_member
+			if member == null:
+				_log_message("Error: No selected party member.")
+				return
+			var status_name := " ".join(args)
+			var status_id := StatusEffects.normalize_id(status_name)
+			if status_id == StatusEffects.Effect.NONE or not StatusEffects.DEFINITIONS.has(status_id):
+				_log_message("Error: Unknown status '%s'." % status_name)
+				return
+			member.active_status_effects[status_id] = {
+				"remaining_rounds": StatusEffects.duration_rounds(status_id),
+				"save_dc": 0,
+				"source": "debug",
+			}
+			if status_id == StatusEffects.Effect.DEAD:
+				member.current_hp = 0
+			StatCalculator.recalculate(member)
+			_log_message("Applied %s to %s." % [StatusEffects.get_label(status_id), member.member_name])
 		"additem":
 			if args.is_empty():
 				_log_message("Error: additem requires an item ID (e.g. additem health_potion)")

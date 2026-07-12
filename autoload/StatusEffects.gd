@@ -403,12 +403,18 @@ func get_label(effect_id: int) -> String:
 	var def: Dictionary = DEFINITIONS.get(effect_id, {})
 	return str(def.get("label", "Unknown"))
 
+## Returns the base gold cost to remove this effect at a temple.
+func cost_to_remove(effect_id: int) -> int:
+	var def: Dictionary = DEFINITIONS.get(effect_id, {})
+	return int(def.get("cost_to_remove", 0))
+
 ## Converts data-facing names into the canonical Effect enum value.
 func normalize_id(effect_name: String) -> int:
 	var key := effect_name.strip_edges().to_upper().replace(" ", "_")
 	match key:
 		"PARALYZE": key = "PARALYSIS"
 		"CONFUSION": key = "CONFUSE"
+		"WEAKNESS": key = "WEAKEN"
 	return int(Effect.get(key, Effect.NONE))
 
 ## Returns the canonical lifetime assigned to an effect.
