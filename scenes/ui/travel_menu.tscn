@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://ctjx6posyaqfv"]
+
+[ext_resource type="Script" uid="uid://ckvf724m438u0" path="res://scenes/ui/travel_menu.gd" id="1_ii56h"]
+[ext_resource type="StyleBox" uid="uid://c0viesgilwm4w" path="res://interfacePanel.tres" id="1_kk08f"]
+
+[node name="Control" type="Control" unique_id=2016083487]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ii56h")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1696058129]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -150.0
+offset_right = 225.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_kk08f")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1150885528]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1453165528]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=515611521]
+layout_mode = 2
+text = "TRAVEL"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1753218943]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=1787153763]
+layout_mode = 2
+
+[node name="DestinationContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1199291188]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DestinationContainer" unique_id=766187279]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DestinationContainer/VBoxContainer" unique_id=1187740654]
+layout_mode = 2
+text = "Destination"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DestinationContainer/VBoxContainer" unique_id=1458456547]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DestinationList" type="ItemList" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DestinationContainer/VBoxContainer/ScrollContainer" unique_id=668626516]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="OptionsContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=292757166]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/OptionsContainer" unique_id=354565895]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TravelButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/OptionsContainer/VBoxContainer" unique_id=1773046016]
+layout_mode = 2
+text = "Travel"
+
+[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/OptionsContainer/VBoxContainer" unique_id=2110747403]
+layout_mode = 2
+text = "Close"
+
+[connection signal="item_activated" from="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DestinationContainer/VBoxContainer/ScrollContainer/DestinationList" to="." method="_on_destination_list_item_activated"]

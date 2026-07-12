@@ -677,6 +677,81 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -6, 
 [node name="well2" parent="decor" unique_id=176428099 instance=ExtResource("16_i5yg6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
 
+[node name="mountain" parent="decor" unique_id=1751026007 instance=ExtResource("21_yl67k")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -28, 0, 34)
+
+[node name="mountain2" parent="decor" unique_id=907914037 instance=ExtResource("21_yl67k")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10, 4, 42)
+
+[node name="mountain3" parent="decor" unique_id=827938636 instance=ExtResource("21_yl67k")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 38)
+
+[node name="mountain4" parent="decor" unique_id=171956629 instance=ExtResource("21_yl67k")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 22, 2, 40)
+
+[node name="mountain5" parent="decor" unique_id=272183468 instance=ExtResource("21_yl67k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32, 4, 22)
+
+[node name="mountain6" parent="decor" unique_id=979741594 instance=ExtResource("21_yl67k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32, -2, 4)
+
+[node name="mountain7" parent="decor" unique_id=10353609 instance=ExtResource("21_yl67k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32, 4, -20)
+
+[node name="mountain8" parent="decor" unique_id=482288222 instance=ExtResource("21_yl67k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32, 0, -34)
+
+[node name="mountain9" parent="decor" unique_id=330884357 instance=ExtResource("21_yl67k")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 32, 0, -42)
+
+[node name="mountain10" parent="decor" unique_id=1879528923 instance=ExtResource("21_yl67k")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 10, -4, -42)
+
+[node name="mountain11" parent="decor" unique_id=1797916033 instance=ExtResource("21_yl67k")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -8, 6, -38)
+
+[node name="mountain12" parent="decor" unique_id=381011947 instance=ExtResource("21_yl67k")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -28, 0, -40)
+
+[node name="mountain13" parent="decor" unique_id=386338299 instance=ExtResource("21_yl67k")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -44, 4, -42)
+
+[node name="mountain14" parent="decor" unique_id=672502431 instance=ExtResource("21_yl67k")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -60, 0, -36)
+
+[node name="mountain15" parent="decor" unique_id=1426608856 instance=ExtResource("21_yl67k")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -60, 0, -22)
+
+[node name="mountain16" parent="decor" unique_id=1012491882 instance=ExtResource("21_yl67k")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -60, 4, -8)
+
+[node name="mountain17" parent="decor" unique_id=1057518048 instance=ExtResource("21_yl67k")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -60, 8, 4)
+
+[node name="mountain18" parent="decor" unique_id=1049651236 instance=ExtResource("21_yl67k")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -60, 4, 22)
+
+[node name="mountain19" parent="decor" unique_id=1928254272 instance=ExtResource("21_yl67k")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -50, 4, 28)
+
+[node name="wall_castle2" parent="decor" unique_id=1897828621 instance=ExtResource("20_10ubw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 2, 8)
+
+[node name="wall_castle3" parent="decor" unique_id=2053499479 instance=ExtResource("20_10ubw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 2, 6)
+
+[node name="wall_castle4" parent="decor" unique_id=518269847 instance=ExtResource("20_10ubw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 2, 4)
+
+[node name="wall_castle6" parent="decor" unique_id=1159040675 instance=ExtResource("20_10ubw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4, 4)
+
+[node name="wall_castle7" parent="decor" unique_id=1271099211 instance=ExtResource("20_10ubw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4, 6)
+
+[node name="wall_castle5" parent="decor" unique_id=1180229335 instance=ExtResource("20_10ubw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 2, 2)
+
 [node name="moat7" parent="." unique_id=932147324 instance=ExtResource("16_0xi3f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 2)
 
@@ -719,63 +794,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 4)
 [node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("4_t0kxk")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 4)
 spawn_id = &"entrance"
-
-[node name="wall_castle2" parent="." unique_id=1897828621 instance=ExtResource("20_10ubw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 2, 8)
-
-[node name="wall_castle3" parent="." unique_id=2053499479 instance=ExtResource("20_10ubw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 2, 6)
-
-[node name="wall_castle4" parent="." unique_id=518269847 instance=ExtResource("20_10ubw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 2, 4)
-
-[node name="wall_castle6" parent="." unique_id=1159040675 instance=ExtResource("20_10ubw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4, 4)
-
-[node name="wall_castle7" parent="." unique_id=1271099211 instance=ExtResource("20_10ubw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4, 6)
-
-[node name="wall_castle5" parent="." unique_id=1180229335 instance=ExtResource("20_10ubw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 2, 2)
-
-[node name="mountain" parent="." unique_id=1751026007 instance=ExtResource("21_yl67k")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -24, 0, 34)
-
-[node name="mountain2" parent="." unique_id=907914037 instance=ExtResource("21_yl67k")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10, 0, 42)
-
-[node name="mountain3" parent="." unique_id=827938636 instance=ExtResource("21_yl67k")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 38)
-
-[node name="mountain4" parent="." unique_id=171956629 instance=ExtResource("21_yl67k")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 22, 0, 40)
-
-[node name="mountain5" parent="." unique_id=272183468 instance=ExtResource("21_yl67k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32, 0, 22)
-
-[node name="mountain6" parent="." unique_id=979741594 instance=ExtResource("21_yl67k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32, 0, 4)
-
-[node name="mountain7" parent="." unique_id=10353609 instance=ExtResource("21_yl67k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32, 0, -20)
-
-[node name="mountain8" parent="." unique_id=482288222 instance=ExtResource("21_yl67k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32, 0, -34)
-
-[node name="mountain9" parent="." unique_id=330884357 instance=ExtResource("21_yl67k")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 32, 0, -42)
-
-[node name="mountain10" parent="." unique_id=1879528923 instance=ExtResource("21_yl67k")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 10, 0, -42)
-
-[node name="mountain11" parent="." unique_id=1797916033 instance=ExtResource("21_yl67k")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -8, 0, -42)
-
-[node name="mountain12" parent="." unique_id=381011947 instance=ExtResource("21_yl67k")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -28, 0, -42)
-
-[node name="mountain13" parent="." unique_id=386338299 instance=ExtResource("21_yl67k")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -44, 0, -42)
-
-[node name="mountain14" parent="." unique_id=672502431 instance=ExtResource("21_yl67k")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -60, 0, -42)

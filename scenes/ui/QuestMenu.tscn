@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://dh31ebl8l1ofx"]
+
+[ext_resource type="Script" uid="uid://ckgxur7b6w8d3" path="res://scenes/ui/QuestMenu.gd" id="1_h75dq"]
+[ext_resource type="StyleBox" uid="uid://c0viesgilwm4w" path="res://interfacePanel.tres" id="2_p7262"]
+
+[node name="Control" type="Control" unique_id=1021753622]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h75dq")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=486096978]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -150.0
+offset_right = 225.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_p7262")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1170980365]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=2033391597]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1697693535]
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+
+[node name="InProgress" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/TabContainer" unique_id=552620145]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/HBoxContainer/TabContainer/InProgress" unique_id=1133385342]
+layout_mode = 2
+
+[node name="InProgressList" type="RichTextLabel" parent="PanelContainer/MarginContainer/HBoxContainer/TabContainer/InProgress/ScrollContainer" unique_id=928982217]
+layout_mode = 2
+
+[node name="Completed" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/TabContainer" unique_id=533604776]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/HBoxContainer/TabContainer/Completed" unique_id=881278978]
+layout_mode = 2
+
+[node name="CompletedList" type="RichTextLabel" parent="PanelContainer/MarginContainer/HBoxContainer/TabContainer/Completed/ScrollContainer" unique_id=1629279742]
+layout_mode = 2
+
+[node name="OptionsContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1874674504]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/OptionsContainer" unique_id=1510029229]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/OptionsContainer/VBoxContainer" unique_id=419613019]
+layout_mode = 2
+text = "Close"
