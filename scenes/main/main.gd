@@ -14,6 +14,7 @@ const NORMAL_PARTY_CARD_CURSOR := Control.CURSOR_POINTING_HAND
 @export var initial_map: PackedScene
 @export var initial_spawn_id: StringName = &"entrance"
 @export var player_scene: PackedScene
+@onready var blackout: ColorRect = $TransitionLayer/TransitionRoot/TransitionCanvas/Blackout
 
 @onready var level_root: Node = $World/LevelRoot
 @onready var entity_root: Node = $World/EntityRoot
