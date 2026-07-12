@@ -29,6 +29,8 @@ stage_descriptions = {
 quest_giver = "Kira"
 return_location = "Temple in Nobel"
 suggested_level = 1
+display_name = "Temple Basement"
+destination_map = "uid://dkaw7nic8abj8"
 quest_rewards = SubResource("Resource_ly515")
 metadata/_custom_type_script = "uid://phuimf2skp05"
 

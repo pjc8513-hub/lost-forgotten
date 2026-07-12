@@ -53,6 +53,8 @@ layout_mode = 2
 
 [node name="InProgressList" type="RichTextLabel" parent="PanelContainer/MarginContainer/HBoxContainer/TabContainer/InProgress/ScrollContainer" unique_id=928982217]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Completed" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/TabContainer" unique_id=533604776]
 visible = false
@@ -64,6 +66,8 @@ layout_mode = 2
 
 [node name="CompletedList" type="RichTextLabel" parent="PanelContainer/MarginContainer/HBoxContainer/TabContainer/Completed/ScrollContainer" unique_id=1629279742]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="OptionsContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1874674504]
 layout_mode = 2

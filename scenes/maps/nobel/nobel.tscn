@@ -24,8 +24,16 @@
 [ext_resource type="PackedScene" uid="uid://b50pl125e0e61" path="res://scenes/grid/nobel_city/well_2.tscn" id="16_i5yg6"]
 [ext_resource type="PackedScene" uid="uid://nkv24ao2eb0v" path="res://scenes/grid/nobel_city/moat_corner_1.tscn" id="18_3fuu0"]
 [ext_resource type="PackedScene" uid="uid://cmdb7mnvmevaw" path="res://scenes/grid/nobel_city/moat_bridge_1.tscn" id="18_4766a"]
+[ext_resource type="Script" uid="uid://dqne8i3vgw0vo" path="res://scenes/grid/nobel_city/gate_tile.gd" id="19_i6hlf"]
 [ext_resource type="PackedScene" uid="uid://b3ebpvigt3qbw" path="res://scenes/grid/nobel_city/wall_castle_2.tscn" id="20_10ubw"]
 [ext_resource type="PackedScene" uid="uid://cwphdwqqt832y" path="res://scenes/grid/nobel_city/mountain.tscn" id="21_yl67k"]
+
+[sub_resource type="Curve" id="Curve_i6hlf"]
+_data = [Vector2(0.009259254, 0.0625), 0.0, 0.16463417, 0, 0, Vector2(0.39814815, 0.23214293), 0.0, 0.0, 0, 0, Vector2(0.75, 0.7589286), 0.0, 0.0, 0, 0, Vector2(1, 0.16071439), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_4ex8l"]
+curve = SubResource("Curve_i6hlf")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gyyt5"]
 shader = ExtResource("1_ornp4")
@@ -50,14 +58,16 @@ ambient_light_source = 3
 ambient_light_color = Color(0.6523966, 0.74503434, 0.9136144, 1)
 tonemap_mode = 3
 tonemap_exposure = 1.12
+tonemap_white = 5.0
 ssao_enabled = true
 fog_light_color = Color(0.38511264, 0.5775074, 0.6945993, 1)
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.01
 volumetric_fog_albedo = Color(0.2, 0.4509804, 0.8509804, 1)
 adjustment_enabled = true
-adjustment_contrast = 0.92
+adjustment_contrast = 0.815
 adjustment_saturation = 0.91
+adjustment_color_correction = SubResource("CurveTexture_4ex8l")
 
 [node name="Nobel" type="Node3D" unique_id=1819116379]
 script = ExtResource("1_t0kxk")
@@ -122,6 +132,9 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0
 
 [node name="nobel_road37" parent="." unique_id=878220714 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0.66, -6)
+
+[node name="nobel_road56" parent="." unique_id=953623418 instance=ExtResource("3_54nej")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.66, -6)
 
 [node name="nobel_road38" parent="." unique_id=976942482 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0.66, -4)
@@ -645,6 +658,11 @@ transform = Transform3D(7.549788e-08, 0, -1, 0, 1, 0, 1, 0, 7.549788e-08, -18, 0
 
 [node name="gate3" parent="." unique_id=441048132 instance=ExtResource("14_oyxdf")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10, 0, 4)
+script = ExtResource("19_i6hlf")
+
+[node name="InteractableComponent" type="Node" parent="gate3" unique_id=1422909978]
+script = ExtResource("5_ktwdp")
+metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
 
 [node name="gate4" parent="." unique_id=1120782456 instance=ExtResource("14_oyxdf")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -16, 0, 4)
@@ -828,3 +846,4 @@ spawn_id = &"entrance"
 
 [editable path="nobel_road26"]
 [editable path="nobel_road54"]
+[editable path="gate3"]
