@@ -3,8 +3,15 @@
 [ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="1_ha60s"]
 [ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="2_281l5"]
 [ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="3_i68o0"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="4_281l5"]
+
+[sub_resource type="Resource" id="Resource_gkkxs"]
+script = ExtResource("4_281l5")
+text = "Rats really are a nuisance!"
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
 
 [resource]
 script = ExtResource("3_i68o0")
 choice_string = "Rats"
+next_node = SubResource("Resource_gkkxs")
 metadata/_custom_type_script = "uid://crjpwo8no2r4u"
