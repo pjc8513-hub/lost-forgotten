@@ -10,6 +10,8 @@ const CAST_TARGET_INPUT_CURSOR := Input.CURSOR_HELP
 const NORMAL_INPUT_CURSOR := Input.CURSOR_ARROW
 const CAST_TARGET_CONTROL_CURSOR := Control.CURSOR_HELP
 const NORMAL_PARTY_CARD_CURSOR := Control.CURSOR_POINTING_HAND
+const MAP_TRANSITION_FADE_TIME := 0.3
+const MAP_TRANSITION_HOLD_TIME := 0.08
 
 @export var initial_map: PackedScene
 @export var initial_spawn_id: StringName = &"entrance"
@@ -36,14 +38,18 @@ var skill_menu: skill_menu
 var dialogue_menu: Control
 var _pending_target_skill: SkillData
 var _pending_target_caster: PartyMember
+var _map_transition_running := false
 
 func _ready() -> void:
+	blackout.visible = false
+	blackout.color.a = 0.0
 	PartyManager.party_changed.connect(_rebuild_party_cards)
 	PartyManager.selected_party_member_changed.connect(_on_selected_party_member_changed)
 	WorldManager.stamina_cost_due.connect(PartyManager.spend_party_stamina)
 	SkillSystem.execution_requested.connect(_on_skill_execution_requested)
 	MapManager.alert_requested.connect(alert.show_message)
 	MapManager.dialogue_requested.connect(_on_dialogue_requested)
+	MapManager.map_transition_requested.connect(_on_map_transition_requested)
 	inventory_menu = INVENTORY_SCENE.instantiate() as InventoryMenu
 	character_menu = CHARACTER_SCENE.instantiate() as CharacterMenu
 	camp_menu = CAMP_SCENE.instantiate()as CampMenu
@@ -107,6 +113,30 @@ func _on_map_changed(_map_path: String, _spawn_id: StringName) -> void:
 func _on_dialogue_requested(npcs: Array[NPCComponent], source_tile: NPC_Tile_Component) -> void:
 	if dialogue_menu != null and dialogue_menu.has_method("open"):
 		dialogue_menu.call("open", npcs, source_tile)
+
+func _on_map_transition_requested(map_path: String, spawn_id: StringName) -> void:
+	if _map_transition_running:
+		return
+	_run_map_transition(map_path, spawn_id)
+
+func _run_map_transition(map_path: String, spawn_id: StringName) -> void:
+	_map_transition_running = true
+	blackout.visible = true
+	blackout.color.a = 0.0
+
+	var fade_out := create_tween()
+	fade_out.tween_property(blackout, "color:a", 1.0, MAP_TRANSITION_FADE_TIME)
+	await fade_out.finished
+
+	StageManager.change_map(map_path, spawn_id)
+	await get_tree().create_timer(MAP_TRANSITION_HOLD_TIME).timeout
+
+	var fade_in := create_tween()
+	fade_in.tween_property(blackout, "color:a", 0.0, MAP_TRANSITION_FADE_TIME)
+	await fade_in.finished
+
+	blackout.visible = false
+	_map_transition_running = false
 
 
 func _on_selected_party_member_changed(index: int, _member: PartyMember) -> void:

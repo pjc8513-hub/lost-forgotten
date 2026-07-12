@@ -71,4 +71,4 @@ func trigger_travel() -> void:
 	if not is_travel_available():
 		push_error("Error: Cannot travel to destination, requirements not met or destination empty.")
 		return
-	StageManager.call_deferred("change_map", destination_map, destination_spawn_id)
+	MapManager.request_map_transition(destination_map, destination_spawn_id)

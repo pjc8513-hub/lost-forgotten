@@ -67,7 +67,7 @@ func _show_npc_actions() -> void:
 		_add_option(label, _open_shop)
 
 	if _selected_npc.is_travel_available():
-		_add_option(_selected_npc.destination_label, Callable(_selected_npc, "trigger_travel"))
+		_add_option(_selected_npc.destination_label, _trigger_npc_travel)
 
 	_add_option("Leave", close)
 
@@ -86,9 +86,14 @@ func _show_dialogue_node(node: DialogueNode) -> void:
 		return
 
 	dialogue_label.text = node.text
+	var will_teleport := _rewards_will_teleport(node.immediate_rewards)
+	if will_teleport:
+		close()
 	for reward in node.immediate_rewards:
 		if reward != null:
 			reward.give_reward()
+	if will_teleport:
+		return
 	_refresh_npc_list(_selected_npc, false)
 
 	for edge in node.choices:
@@ -104,9 +109,14 @@ func _show_dialogue_node(node: DialogueNode) -> void:
 	_add_option("Back", _show_npc_actions)
 
 func _choose_dialogue_edge(edge: DialogueEdge) -> void:
+	var will_teleport := _rewards_will_teleport(edge.choice_rewards)
+	if will_teleport:
+		close()
 	for reward in edge.choice_rewards:
 		if reward != null:
 			reward.give_reward()
+	if will_teleport:
+		return
 	_refresh_npc_list(_selected_npc, false)
 	_show_dialogue_node(edge.next_node)
 
@@ -123,6 +133,13 @@ func _open_shop() -> void:
 		shop_label = "Shop"
 	dialogue_label.text = "%s is not implemented yet." % shop_label
 	_show_npc_actions()
+
+func _trigger_npc_travel() -> void:
+	var npc := _selected_npc
+	if npc == null:
+		return
+	close()
+	npc.trigger_travel()
 
 func _add_option(label: String, callback: Callable) -> Button:
 	var button := Button.new()
@@ -162,6 +179,12 @@ func _get_dialogue_action_label(npc: NPCComponent) -> String:
 	if npc == null or npc.dialogue_label.strip_edges().is_empty():
 		return "Dialogue"
 	return npc.dialogue_label
+
+func _rewards_will_teleport(rewards: Array[DialogueReward]) -> bool:
+	for reward in rewards:
+		if reward != null and reward.type == DialogueReward.RewardType.TELEPORT:
+			return true
+	return false
 
 func _clear_options() -> void:
 	for child in options_container.get_children():

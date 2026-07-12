@@ -64,8 +64,4 @@ func _travel(destination: Dictionary, actor: Node3D) -> void:
 	elif duration > 0.0:
 		await get_tree().create_timer(duration).timeout
 
-	StageManager.call_deferred(
-		"change_map",
-		destination["map"],
-		destination["spawn_id"]
-	)
+	MapManager.request_map_transition(destination["map"], destination["spawn_id"])

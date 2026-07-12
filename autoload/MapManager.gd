@@ -4,12 +4,16 @@ extends Node
 signal navigation_changed
 signal alert_requested(message: String)
 signal dialogue_requested(npcs: Array[NPCComponent], source_tile: NPC_Tile_Component)
+signal map_transition_requested(map_path: String, spawn_id: StringName)
 
 func request_alert(message: String) -> void:
 	alert_requested.emit(message)
 
 func request_dialogue(npcs: Array[NPCComponent], source_tile: NPC_Tile_Component = null) -> void:
 	dialogue_requested.emit(npcs, source_tile)
+
+func request_map_transition(map_path: String, spawn_id: StringName) -> void:
+	map_transition_requested.emit(map_path, spawn_id)
 
 var grid: Dictionary = {}
 var actors: Dictionary = {}

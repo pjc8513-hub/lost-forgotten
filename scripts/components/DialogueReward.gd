@@ -58,4 +58,4 @@ func give_reward() -> void:
 			if destination_map.is_empty():
 				push_error("Error: Teleport destination map is empty.")
 				return
-			StageManager.call_deferred("change_map", destination_map, destination_spawn_id)
+			MapManager.request_map_transition(destination_map, destination_spawn_id)
