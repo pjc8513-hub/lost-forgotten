@@ -30,7 +30,16 @@ func sync_to_actor() -> void:
 	grid_state_changed.emit(grid_pos, facing)
 
 func _exit_tree() -> void:
+	if move_tween != null and move_tween.is_valid():
+		move_tween.kill()
+	if rotate_tween != null and rotate_tween.is_valid():
+		rotate_tween.kill()
+	move_tween = null
+	rotate_tween = null
+	is_moving = false
+	is_rotating = false
 	MapManager.unregister_actor(grid_pos)
+	actor = null
 
 func try_move_forward() -> bool:
 	return try_move(facing)
@@ -52,8 +61,9 @@ func try_move(direction: Vector3i) -> bool:
 	var target_world := grid_to_world(grid_pos)
 
 	# Kill any existing tween cleanly
-	if move_tween and move_tween.is_running():
+	if move_tween != null and move_tween.is_valid():
 		move_tween.kill()
+	move_tween = null
 
 	is_moving = true
 
@@ -66,6 +76,7 @@ func try_move(direction: Vector3i) -> bool:
 
 	move_tween.finished.connect(func():
 		is_moving = false
+		move_tween = null
 		grid_state_changed.emit(grid_pos, facing)
 		step_taken.emit()
 		trigger_tile_effects(grid_pos)
@@ -97,8 +108,9 @@ func rotate_right() -> void:
 func _start_rotation_tween(amount: float) -> void:
 	_snap_rotation()
 
-	if rotate_tween and rotate_tween.is_running():
+	if rotate_tween != null and rotate_tween.is_valid():
 		rotate_tween.kill()
+	rotate_tween = null
 
 	is_rotating = true
 
@@ -113,6 +125,7 @@ func _start_rotation_tween(amount: float) -> void:
 
 	rotate_tween.finished.connect(func():
 		is_rotating = false
+		rotate_tween = null
 	)
 	
 func _snap_rotation() -> void:
@@ -139,7 +152,7 @@ func interact_forward() -> bool:
 				component.interact(actor)
 				return true
 
-	var door := MapManager.get_door_on_edge(grid_pos, facing)
+	var door = MapManager.get_door_on_edge(grid_pos, facing)
 	if door != null:
 		return door.open()
 

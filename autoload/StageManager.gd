@@ -33,6 +33,7 @@ func load_map_scene(map_scene: PackedScene, spawn_id: StringName) -> bool:
 		return false
 
 	TurnManager.set_state(TurnManager.State.TRANSITION)
+	CommandQueue.clear_queue()
 	if current_level != null:
 		current_level.free()
 	MapManager.clear_grid()
@@ -41,14 +42,14 @@ func load_map_scene(map_scene: PackedScene, spawn_id: StringName) -> bool:
 	level_root.add_child(current_level)
 	current_map_path = map_scene.resource_path
 
-	var spawn_point := _find_spawn_point(current_level, spawn_id)
+	var spawn_point = _find_spawn_point(current_level, spawn_id)
 	if spawn_point == null:
 		push_error("Spawn point '%s' was not found in %s" % [spawn_id, current_map_path])
 		TurnManager.set_state(TurnManager.State.EXPLORATION)
 		return false
 
 	player.global_transform = spawn_point.global_transform
-	var movement := player.get_node_or_null("GridMovementController") as GridMovementController
+	var movement = player.get_node_or_null("GridMovementController")
 	if movement != null:
 		movement.sync_to_actor()
 
@@ -56,12 +57,21 @@ func load_map_scene(map_scene: PackedScene, spawn_id: StringName) -> bool:
 	map_changed.emit(current_map_path, spawn_id)
 	return true
 
-func _find_spawn_point(node: Node, spawn_id: StringName) -> MapSpawnPoint:
-	var spawn_point := node as MapSpawnPoint
-	if spawn_point != null and spawn_point.spawn_id == spawn_id:
-		return spawn_point
+func _exit_tree() -> void:
+	CommandQueue.clear_queue()
+	if current_level != null and is_instance_valid(current_level):
+		current_level.free()
+	current_level = null
+	level_root = null
+	entity_root = null
+	effect_root = null
+	player = null
+
+func _find_spawn_point(node: Node, spawn_id: StringName):
+	if node.get("spawn_id") == spawn_id:
+		return node
 	for child in node.get_children():
-		var result := _find_spawn_point(child, spawn_id)
+		var result = _find_spawn_point(child, spawn_id)
 		if result != null:
 			return result
 	return null

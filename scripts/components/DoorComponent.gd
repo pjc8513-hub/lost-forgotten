@@ -19,6 +19,7 @@ func _ready() -> void:
 		discover_door()
 
 func _exit_tree() -> void:
+	stop_blinking()
 	MapManager.unregister_door(self)
 
 func blocks_movement() -> bool:
@@ -106,6 +107,10 @@ func discover_door() -> void:
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN_OUT)
 
+func stop_blinking() -> void:
+	if blink_tween != null and blink_tween.is_valid():
+		blink_tween.kill()
+	blink_tween = null
 
 func _on_area_3d_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):

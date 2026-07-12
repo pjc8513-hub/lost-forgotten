@@ -14,6 +14,7 @@ func _ready() -> void:
 	MapManager.register_trap(self)
 
 func _exit_tree() -> void:
+	stop_blinking()
 	MapManager.unregister_trap(self)
 
 func discover_trap() -> void:
@@ -44,8 +45,12 @@ func stop_blinking() -> void:
 	if blink_tween != null and blink_tween.is_valid():
 		blink_tween.kill()
 	blink_tween = null
+	var trap_mesh := get_parent() as MeshInstance3D
+	if trap_mesh != null:
+		trap_mesh.set_surface_override_material(0, null)
 	if blink_material != null:
 		blink_material.emission = Color.BLACK
+		blink_material = null
 
 func is_discovered() -> bool:
 	var secret := get_parent().get_node_or_null("SecretComponent") as SecretComponent

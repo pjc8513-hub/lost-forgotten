@@ -3,14 +3,14 @@ extends Node
 
 signal navigation_changed
 signal alert_requested(message: String)
-signal dialogue_requested(npcs: Array[NPCComponent], source_tile: NPC_Tile_Component)
+signal dialogue_requested(npcs: Array, source_tile: Node)
 signal travel_menu_requested
 signal map_transition_requested(map_path: String, spawn_id: StringName)
 
 func request_alert(message: String) -> void:
 	alert_requested.emit(message)
 
-func request_dialogue(npcs: Array[NPCComponent], source_tile: NPC_Tile_Component = null) -> void:
+func request_dialogue(npcs: Array, source_tile: Node = null) -> void:
 	dialogue_requested.emit(npcs, source_tile)
 
 func request_travel_menu() -> void:
@@ -21,17 +21,17 @@ func request_map_transition(map_path: String, spawn_id: StringName) -> void:
 
 var grid: Dictionary = {}
 var actors: Dictionary = {}
-var doors: Dictionary[StringName, DoorComponent] = {}
+var doors: Dictionary = {}
 var doors_by_edge: Dictionary = {}
-var door_states: Dictionary[StringName, Dictionary] = {}
-var blockers: Dictionary[StringName, BlockerComponent] = {}
-var blocker_states: Dictionary[StringName, Dictionary] = {}
-var secrets: Dictionary[StringName, SecretComponent] = {}
-var secret_states: Dictionary[StringName, Dictionary] = {}
-var traps: Dictionary[StringName, TrapComponent] = {}
-var trap_states: Dictionary[StringName, Dictionary] = {}
-var chests: Dictionary[StringName, ChestComponent] = {}
-var chest_states: Dictionary[StringName, Dictionary] = {}
+var door_states: Dictionary = {}
+var blockers: Dictionary = {}
+var blocker_states: Dictionary = {}
+var secrets: Dictionary = {}
+var secret_states: Dictionary = {}
+var traps: Dictionary = {}
+var trap_states: Dictionary = {}
+var chests: Dictionary = {}
+var chest_states: Dictionary = {}
 
 func clear_grid() -> void:
 	grid.clear()
@@ -43,12 +43,15 @@ func clear_grid() -> void:
 	traps.clear()
 	chests.clear()
 
-func register_cell(pos: Vector3i, element: GridElement) -> void:
+func _exit_tree() -> void:
+	clear_grid()
+
+func register_cell(pos: Vector3i, element: Node) -> void:
 	if not grid.has(pos):
 		grid[pos] = []
 	grid[pos].append(element)
 
-func unregister_cell(pos: Vector3i, element: GridElement) -> void:
+func unregister_cell(pos: Vector3i, element: Node) -> void:
 	if grid.has(pos):
 		grid[pos].erase(element)
 		if grid[pos].is_empty():
@@ -63,7 +66,7 @@ func is_edge_blocked(from: Vector3i, direction: Vector3i) -> bool:
 		return true
 
 	# A door replaces the static wall rule on its registered edge.
-	var door := get_door_on_edge(from, direction)
+	var door = get_door_on_edge(from, direction)
 	if door != null:
 		return door.blocks_movement()
 
@@ -77,7 +80,7 @@ func is_edge_blocked(from: Vector3i, direction: Vector3i) -> bool:
 
 	return false
 
-func register_door(door: DoorComponent) -> void:
+func register_door(door: Node) -> void:
 	if door.door_id.is_empty():
 		push_error("DoorComponent requires a unique door_id: %s" % door.get_path())
 		return
@@ -86,8 +89,8 @@ func register_door(door: DoorComponent) -> void:
 		return
 
 	doors[door.door_id] = door
-	var grid_pos := door.get_grid_pos()
-	var edge := door.get_world_edge()
+	var grid_pos = door.get_grid_pos()
+	var edge = door.get_world_edge()
 	doors_by_edge[_edge_key(grid_pos, edge)] = door
 	doors_by_edge[_edge_key(grid_pos + edge, -edge)] = door
 
@@ -98,16 +101,16 @@ func register_door(door: DoorComponent) -> void:
 		}
 	door.apply_state(door_states[door.door_id], true)
 
-func unregister_door(door: DoorComponent) -> void:
+func unregister_door(door: Node) -> void:
 	if doors.get(door.door_id) == door:
 		doors.erase(door.door_id)
-	var grid_pos := door.get_grid_pos()
-	var edge := door.get_world_edge()
+	var grid_pos = door.get_grid_pos()
+	var edge = door.get_world_edge()
 	doors_by_edge.erase(_edge_key(grid_pos, edge))
 	doors_by_edge.erase(_edge_key(grid_pos + edge, -edge))
 
-func get_door_on_edge(from: Vector3i, direction: Vector3i) -> DoorComponent:
-	return doors_by_edge.get(_edge_key(from, direction)) as DoorComponent
+func get_door_on_edge(from: Vector3i, direction: Vector3i):
+	return doors_by_edge.get(_edge_key(from, direction))
 
 func unlock_door(door_id: StringName) -> bool:
 	if not door_states.has(door_id):
@@ -134,7 +137,7 @@ func close_door(door_id: StringName) -> bool:
 	_set_door_state(door_id, state)
 	return true
 
-func register_blocker(blocker: BlockerComponent) -> void:
+func register_blocker(blocker: Node) -> void:
 	if blocker.blocker_ID.is_empty():
 		return
 	if blockers.has(blocker.blocker_ID) and blockers[blocker.blocker_ID] != blocker:
@@ -145,7 +148,7 @@ func register_blocker(blocker: BlockerComponent) -> void:
 		blocker_states[blocker.blocker_ID] = {"is_open": false}
 	blocker.apply_state(blocker_states[blocker.blocker_ID], true)
 
-func unregister_blocker(blocker: BlockerComponent) -> void:
+func unregister_blocker(blocker: Node) -> void:
 	if blockers.get(blocker.blocker_ID) == blocker:
 		blockers.erase(blocker.blocker_ID)
 
@@ -156,13 +159,13 @@ func open_blocker(blocker_id: StringName) -> bool:
 	var state: Dictionary = blocker_states[blocker_id].duplicate()
 	state["is_open"] = true
 	blocker_states[blocker_id] = state
-	var blocker: BlockerComponent = blockers.get(blocker_id)
+	var blocker = blockers.get(blocker_id)
 	if blocker != null:
 		blocker.apply_state(state)
 	navigation_changed.emit()
 	return true
 
-func register_secret(secret: SecretComponent) -> void:
+func register_secret(secret: Node) -> void:
 	if secret.secret_ID.is_empty():
 		push_warning("SecretComponent requires a unique secret_ID: %s" % secret.get_path())
 		return
@@ -174,7 +177,7 @@ func register_secret(secret: SecretComponent) -> void:
 		secret_states[secret.secret_ID] = {"discovered": not secret.is_secret}
 	secret.apply_state(secret_states[secret.secret_ID], true)
 
-func unregister_secret(secret: SecretComponent) -> void:
+func unregister_secret(secret: Node) -> void:
 	if secrets.get(secret.secret_ID) == secret:
 		secrets.erase(secret.secret_ID)
 
@@ -186,12 +189,12 @@ func discover_secret(secret_id: StringName) -> bool:
 		return false
 	state["discovered"] = true
 	secret_states[secret_id] = state
-	var secret: SecretComponent = secrets.get(secret_id)
+	var secret = secrets.get(secret_id)
 	if secret != null:
 		secret.apply_state(state)
 	return true
 
-func register_trap(trap: TrapComponent) -> void:
+func register_trap(trap: Node) -> void:
 	if trap.trap_id.is_empty():
 		push_warning("TrapComponent requires a unique trap_id: %s" % trap.get_path())
 		return
@@ -203,17 +206,17 @@ func register_trap(trap: TrapComponent) -> void:
 		trap_states[trap.trap_id] = {"disarmed": trap.disarmed, "triggered": trap.triggered}
 	trap.apply_state(trap_states[trap.trap_id])
 
-func unregister_trap(trap: TrapComponent) -> void:
+func unregister_trap(trap: Node) -> void:
 	if traps.get(trap.trap_id) == trap:
 		traps.erase(trap.trap_id)
 
 func set_trap_state(trap_id: StringName, disarmed: bool, triggered: bool) -> void:
 	trap_states[trap_id] = {"disarmed": disarmed, "triggered": triggered}
-	var trap: TrapComponent = traps.get(trap_id)
+	var trap = traps.get(trap_id)
 	if trap != null:
 		trap.apply_state(trap_states[trap_id])
 
-func register_chest(chest: ChestComponent) -> void:
+func register_chest(chest: Node) -> void:
 	if chest.chest_ID.is_empty():
 		push_warning("ChestComponent requires a unique chest_ID: %s" % chest.get_path())
 		return
@@ -228,7 +231,7 @@ func register_chest(chest: ChestComponent) -> void:
 		}
 	chest.apply_state(chest_states[chest.chest_ID], true)
 
-func unregister_chest(chest: ChestComponent) -> void:
+func unregister_chest(chest: Node) -> void:
 	if chests.get(chest.chest_ID) == chest:
 		chests.erase(chest.chest_ID)
 
@@ -236,7 +239,7 @@ func set_chest_state(chest_id: StringName, is_open: bool, is_empty: bool) -> voi
 	if chest_id.is_empty():
 		return
 	chest_states[chest_id] = {"is_open": is_open, "is_empty": is_empty}
-	var chest: ChestComponent = chests.get(chest_id)
+	var chest = chests.get(chest_id)
 	if chest != null:
 		chest.apply_state(chest_states[chest_id])
 
@@ -280,7 +283,7 @@ func reset_persistent_state() -> void:
 
 func _set_door_state(door_id: StringName, state: Dictionary) -> void:
 	door_states[door_id] = state
-	var door: DoorComponent = doors.get(door_id)
+	var door = doors.get(door_id)
 	if door != null:
 		door.apply_state(state)
 	navigation_changed.emit()
