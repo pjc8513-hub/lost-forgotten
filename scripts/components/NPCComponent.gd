@@ -1,5 +1,5 @@
 class_name NPCComponent
-extends Node
+extends Resource
 
 enum Shop_Type {
 	NONE = -1,

@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://bqogx53osfocl"]
+
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="1_ab3l4"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="2_38bxf"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="2_a5k27"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="3_38bxf"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="4_8k4br"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="4_pswlu"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="5_pswlu"]
+
+[sub_resource type="Resource" id="Resource_kg0s0"]
+script = ExtResource("4_pswlu")
+type = 6
+destination_map = "uid://dkaw7nic8abj8"
+destination_spawn_id = &"entrance"
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_gkkxs"]
+script = ExtResource("2_38bxf")
+choice_string = "Enter basement"
+choice_rewards = Array[ExtResource("4_pswlu")]([SubResource("Resource_kg0s0")])
+metadata/_custom_type_script = "uid://crjpwo8no2r4u"
+
+[sub_resource type="Resource" id="Resource_38bxf"]
+script = ExtResource("2_a5k27")
+type = 3
+target_id = "BrotherPatrick"
+metadata/_custom_type_script = "uid://biwbs1n6b7tyr"
+
+[sub_resource type="Resource" id="Resource_8k4br"]
+script = ExtResource("1_ab3l4")
+text = "Enter Basement?"
+conditions = Array[ExtResource("2_a5k27")]([SubResource("Resource_38bxf")])
+choices = Array[ExtResource("2_38bxf")]([SubResource("Resource_gkkxs")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("4_8k4br")
+npc_name = "Basement"
+dialogue_nodes = Array[ExtResource("1_ab3l4")]([SubResource("Resource_8k4br")])
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"

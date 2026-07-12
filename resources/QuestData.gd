@@ -12,3 +12,6 @@ class_name Quest extends Resource
 	2: "Return the emblem to the old man.",
 	3: "Quest Completed"
 }
+
+@export_group("Quest Reward")
+@export var quest_rewards: DialogueReward

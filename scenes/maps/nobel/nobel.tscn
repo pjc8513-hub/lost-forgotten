@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="4_qt0u2"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="4_t0kxk"]
 [ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="5_ktwdp"]
+[ext_resource type="Script" uid="uid://d3memun0m0avi" path="res://scripts/components/NPCTileComponent.gd" id="6_ktwdp"]
 [ext_resource type="PackedScene" uid="uid://dxbnq6q1rin3" path="res://scenes/grid/nobel_city/nobel_house_3.tscn" id="7_gbr7x"]
 [ext_resource type="PackedScene" uid="uid://bfl2653067t3" path="res://scenes/grid/nobel_city/nobel_house_5.tscn" id="8_26rvf"]
 [ext_resource type="PackedScene" uid="uid://dtmuxu1xvq888" path="res://scenes/grid/nobel_city/dirt_1.tscn" id="9_raqe6"]
@@ -62,6 +63,7 @@ enable_torch = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1327308039]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 12, 0)
+visible = false
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1313216306]
@@ -101,6 +103,9 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 
 [node name="nobel_road30" parent="." unique_id=315310750 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0.66, 10)
+
+[node name="nobel_road51" parent="." unique_id=2133812039 instance=ExtResource("3_54nej")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0.66, 10)
 
 [node name="nobel_road31" parent="." unique_id=2062494029 instance=ExtResource("3_54nej")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0.66, 10)
@@ -150,16 +155,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.66, 10)
 [node name="nobel_road48" parent="." unique_id=512682224 instance=ExtResource("3_54nej")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.66, 12)
 
+[node name="nobel_road52" parent="." unique_id=354908572 instance=ExtResource("3_54nej")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.66, 14)
+
 [node name="nobel_road36" parent="." unique_id=2090396891 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0.66, 14)
 
 [node name="nobel_road13" parent="." unique_id=588788160 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0.66, 10)
-script = ExtResource("4_qt0u2")
-
-[node name="InteractableComponent" type="Node" parent="nobel_road13" unique_id=1089616568]
-script = ExtResource("5_ktwdp")
-metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
 
 [node name="nobel_road17" parent="." unique_id=1662486605 instance=ExtResource("3_54nej")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10, 0.66, 8)
@@ -179,8 +182,22 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10,
 [node name="nobel_road21" parent="." unique_id=1347487602 instance=ExtResource("3_54nej")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10, 0.66, 0)
 
+[node name="nobel_road53" parent="." unique_id=1949661886 instance=ExtResource("3_54nej")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10, 0.66, -2)
+
 [node name="nobel_road14" parent="." unique_id=1695630662 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6, 0.66, 10)
+
+[node name="nobel_road54" parent="." unique_id=1726860802 instance=ExtResource("3_54nej")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0.66, 12)
+script = ExtResource("6_ktwdp")
+
+[node name="InteractableComponent" type="Node" parent="nobel_road54" unique_id=247005299]
+script = ExtResource("5_ktwdp")
+metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
+
+[node name="nobel_road55" parent="." unique_id=1263124266 instance=ExtResource("3_54nej")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.66, 12)
 
 [node name="nobel_road15" parent="." unique_id=2048468280 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0.66, 10)
@@ -210,6 +227,9 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -10,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 2)
 
 [node name="nobel_road27" parent="." unique_id=1977125076 instance=ExtResource("3_54nej")]
+
+[node name="nobel_road50" parent="." unique_id=282554858 instance=ExtResource("3_54nej")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, -2)
 
 [node name="nobel_house3" parent="." unique_id=1868457646 instance=ExtResource("7_gbr7x")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 2)
@@ -371,7 +391,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 8)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 8)
 
 [node name="temple1" parent="." unique_id=2070639420 instance=ExtResource("10_qxong")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 12)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 14)
 
 [node name="tower2" parent="." unique_id=244700781 instance=ExtResource("11_c76hx")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
@@ -453,9 +473,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 12)
 
 [node name="grass12" parent="." unique_id=1644665172 instance=ExtResource("12_72yvy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 14)
-
-[node name="grass13" parent="." unique_id=851334842 instance=ExtResource("12_72yvy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 14)
 
 [node name="grass14" parent="." unique_id=825534469 instance=ExtResource("12_72yvy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 14)
@@ -657,16 +674,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -8)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -6)
 
 [node name="tree9" parent="decor" unique_id=520659320 instance=ExtResource("15_3morc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 16)
 
 [node name="tree18" parent="decor" unique_id=24602 instance=ExtResource("15_3morc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 14)
 
 [node name="tree10" parent="decor" unique_id=1473157825 instance=ExtResource("15_3morc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 16)
 
 [node name="tree11" parent="decor" unique_id=2087274448 instance=ExtResource("15_3morc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 16)
 
 [node name="tree12" parent="decor" unique_id=1295028417 instance=ExtResource("15_3morc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 16)
@@ -808,4 +825,4 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0
 spawn_id = &"entrance"
 
 [editable path="nobel_road26"]
-[editable path="nobel_road13"]
+[editable path="nobel_road54"]
