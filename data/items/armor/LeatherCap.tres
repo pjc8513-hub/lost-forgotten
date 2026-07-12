@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_eamnn")
-armor_class = 1
+armor_class = -1
 name = "LeatherCap"
 sell_value = 10
 equip_slot = 5

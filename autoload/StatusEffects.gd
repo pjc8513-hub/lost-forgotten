@@ -34,7 +34,7 @@ enum Effect {
 	REGENERATE,     # HP per round
 	HASTE,          # +initiative, +dexterity
 	BLESS,          # +accuracy, +willpower saves
-	STONE_SKIN,     # +AC
+	STONE_SKIN,     # AC bonus ( negative AC system low AC = good )
 }
 
 # Canonical lifetime for timed effects. Effects omitted from this table persist
@@ -94,7 +94,7 @@ const DEFINITIONS: Dictionary = {
 		"description": "Fire damage each round. Reduces armor.",
 		"is_negative": true,
 		"dot_damage": 5,
-		"stat_deltas": { "armor_class": -2 },
+		"stat_deltas": { "armor_class": 2 },
 		"blocks_action": false,
 		"blocks_healing": false,
 		"blocks_move": false,
@@ -119,7 +119,7 @@ const DEFINITIONS: Dictionary = {
 	},
 	Effect.DECAY: {
 		"label": "Decay",
-		"description": "Drains magical resistance and Wisdom. Blocks healing effects",
+		"description": "Drains magical power and Wisdom. Blocks healing effects",
 		"is_negative": true,
 		"dot_damage": 0,
 		"stat_deltas": { "wisdom": -5, "magic_amp": -2 },
@@ -136,7 +136,7 @@ const DEFINITIONS: Dictionary = {
 		"description": "Cannot act or move this round.",
 		"is_negative": true,
 		"dot_damage": 0,
-		"stat_deltas": { "initiative": -10, "armor_class": -2 },
+		"stat_deltas": { "initiative": -10, "armor_class": 2 },
 		"blocks_action": true,
 		"blocks_healing": false,
 		"blocks_move": true,
@@ -150,7 +150,7 @@ const DEFINITIONS: Dictionary = {
 		"description": "Cannot act. Breaks on damage.",
 		"is_negative": true,
 		"dot_damage": 0,
-		"stat_deltas": { "initiative": -10, "armor_class": -4 },
+		"stat_deltas": { "initiative": -10, "armor_class": 4 },
 		"blocks_action": true,
 		"blocks_healing": false,
 		"blocks_move": true,
@@ -164,7 +164,7 @@ const DEFINITIONS: Dictionary = {
 		"description": "Completely immobile.",
 		"is_negative": true,
 		"dot_damage": 0,
-		"stat_deltas": { "initiative": -10, "armor_class": -4, "dexterity": -4 },
+		"stat_deltas": { "initiative": -10, "armor_class": 4, "dexterity": -4 },
 		"blocks_action": true,
 		"blocks_healing": false,
 		"blocks_move": true,
@@ -275,7 +275,7 @@ const DEFINITIONS: Dictionary = {
 		"description": "Cannot receive healing. Strength and Willpower penalty",
 		"is_negative": true,
 		"dot_damage": 0,
-		"stat_deltas": { "willpower": -1, "strength": -1 },
+		"stat_deltas": { "willpower": -2, "strength": -2, "armor_class": 2 },
 		"blocks_action": false,
 		"blocks_healing": true,
 		"blocks_move": false,
@@ -328,10 +328,10 @@ const DEFINITIONS: Dictionary = {
 	},
 	Effect.STONE_SKIN: {
 		"label": "Stone Skin",
-		"description": "Hardens AC. +2 AC",
+		"description": "Hardens AC. -2 AC",
 		"is_negative": false,
 		"dot_damage": 0,
-		"stat_deltas": { "armor_class": 2 },
+		"stat_deltas": { "armor_class": -2 },
 		"blocks_action": false,
 		"blocks_healing": false,
 		"blocks_move": false,

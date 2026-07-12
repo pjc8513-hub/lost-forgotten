@@ -5,10 +5,10 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_178iw")
-armor_class = 2
+armor_class = -2
 armor_type = 2
 item_id = "RustyPlate"
 name = "Rusty Plate"
-sell_value = 17
+sell_value = 67
 equip_slot = 3
 metadata/_custom_type_script = "uid://crtybou8lcskx"

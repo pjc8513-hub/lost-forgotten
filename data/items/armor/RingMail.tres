@@ -5,10 +5,10 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_gcdug")
-armor_class = 2
+armor_class = -2
 armor_type = 1
 item_id = "RingMail"
 name = "Ring Mail"
-sell_value = 15
+sell_value = 45
 equip_slot = 3
 metadata/_custom_type_script = "uid://crtybou8lcskx"

@@ -5,7 +5,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_5uo3h")
-armor_class = 1
+armor_class = -1
 item_id = "LeatherArmor"
 name = "Leather Armor"
 sell_value = 10

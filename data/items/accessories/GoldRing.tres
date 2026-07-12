@@ -10,5 +10,5 @@ item_id = "GoldRing"
 name = "Gold Ring"
 sell_value = 50
 equip_slot = 8
-description = "A ring of gold\\n+1 AC"
+description = "A ring of gold\\n-1 AC"
 metadata/_custom_type_script = "uid://bv675ladojo1j"
