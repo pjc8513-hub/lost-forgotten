@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://bdqcgt4m6qv1f"]
+
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="1_o1xcd"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="2_cgd5o"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="3_t62jj"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="4_ah6x8"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="5_x0qwn"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="6_sg4ve"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="7_oobv0"]
+
+[sub_resource type="Resource" id="Resource_sgq28"]
+script = ExtResource("1_o1xcd")
+text = "I don't know anything of value, except how to make a fine ale!"
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_yuws4"]
+script = ExtResource("2_cgd5o")
+choice_string = "Rumors"
+next_node = SubResource("Resource_sgq28")
+metadata/_custom_type_script = "uid://crjpwo8no2r4u"
+
+[sub_resource type="Resource" id="Resource_y4tfy"]
+script = ExtResource("1_o1xcd")
+text = "Looking for a room, a hot meal, or an ale? 
+Well you've come to the right place. X marks the spot! We have the fewest rats of any inn and tavern in all of Nobel!"
+choices = Array[ExtResource("2_cgd5o")]([SubResource("Resource_yuws4")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("6_sg4ve")
+npc_name = "Carl"
+dialogue_nodes = Array[ExtResource("1_o1xcd")]([SubResource("Resource_y4tfy")])
+shop_type = 2
+shop_name = "Nobel Inn"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"

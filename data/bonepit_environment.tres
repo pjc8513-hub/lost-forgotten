@@ -1,6 +1,10 @@
 [gd_resource type="Environment" format=3 uid="uid://cv7posx2uelkc"]
 
 [ext_resource type="Shader" uid="uid://bf8avyue6rmnu" path="res://scripts/shaders/dark_sky.gdshader" id="1_7d1pb"]
+[ext_resource type="Curve" uid="uid://c0jnfvp6tmh3k" path="res://nobel_color_curve.tres" id="1_apnx1"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_c1pmp"]
+curve = ExtResource("1_apnx1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y1ayg"]
 shader = ExtResource("1_7d1pb")
@@ -21,3 +25,6 @@ ssao_enabled = true
 glow_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0.35606432, 0.35606432, 0.35606432, 1)
+adjustment_enabled = true
+adjustment_contrast = 0.75
+adjustment_color_correction = SubResource("CurveTexture_c1pmp")

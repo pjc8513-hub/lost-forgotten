@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://jxmlaj3taoro" path="res://scripts/shaders/day_sky.gdshader" id="1_ornp4"]
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_t0kxk"]
+[ext_resource type="Curve" uid="uid://c0jnfvp6tmh3k" path="res://nobel_color_curve.tres" id="2_k5fv7"]
 [ext_resource type="PackedScene" uid="uid://c35lx4au86vvv" path="res://scenes/grid/nobel_city/nobel_road_2.tscn" id="3_54nej"]
 [ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="4_qt0u2"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="4_t0kxk"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dxbnq6q1rin3" path="res://scenes/grid/nobel_city/nobel_house_3.tscn" id="7_gbr7x"]
 [ext_resource type="Resource" uid="uid://dilxfreh3khjs" path="res://data/dialogue/nobel/temple/Temple_Kira.tres" id="7_kira"]
 [ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="7_odlrn"]
+[ext_resource type="Resource" uid="uid://bdqcgt4m6qv1f" path="res://data/dialogue/nobel/inn/InnCarl.tres" id="7_wld13"]
 [ext_resource type="PackedScene" uid="uid://bfl2653067t3" path="res://scenes/grid/nobel_city/nobel_house_5.tscn" id="8_26rvf"]
 [ext_resource type="Resource" uid="uid://bgajy6p4q2pw4" path="res://data/dialogue/nobel/temple/TempleBasement.tres" id="8_i6hlf"]
 [ext_resource type="Resource" uid="uid://c0psowp0x87lg" path="res://data/dialogue/nobel/temple/TemplePortia.tres" id="8_k5fv7"]
@@ -33,12 +35,8 @@
 [ext_resource type="PackedScene" uid="uid://b3ebpvigt3qbw" path="res://scenes/grid/nobel_city/wall_castle_2.tscn" id="20_10ubw"]
 [ext_resource type="PackedScene" uid="uid://cwphdwqqt832y" path="res://scenes/grid/nobel_city/mountain.tscn" id="21_yl67k"]
 
-[sub_resource type="Curve" id="Curve_i6hlf"]
-_data = [Vector2(0.009259254, 0.0625), 0.0, 0.16463417, 0, 0, Vector2(0.39814815, 0.23214293), 0.0, 0.0, 0, 0, Vector2(0.75, 0.7589286), 0.0, 0.0, 0, 0, Vector2(1, 0.16071439), 0.0, 0.0, 0, 0]
-point_count = 4
-
 [sub_resource type="CurveTexture" id="CurveTexture_4ex8l"]
-curve = SubResource("Curve_i6hlf")
+curve = ExtResource("2_k5fv7")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gyyt5"]
 shader = ExtResource("1_ornp4")
@@ -71,7 +69,7 @@ volumetric_fog_density = 0.04
 volumetric_fog_albedo = Color(0.6509804, 0.74509805, 0.9137255, 1)
 adjustment_enabled = true
 adjustment_contrast = 0.815
-adjustment_saturation = 0.91
+adjustment_saturation = 1.31
 adjustment_color_correction = SubResource("CurveTexture_4ex8l")
 
 [sub_resource type="Resource" id="Resource_281l5"]
@@ -108,6 +106,8 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0
 
 [node name="nobel_road26" parent="." unique_id=554007846 instance=ExtResource("3_54nej")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 6)
+script = ExtResource("6_ktwdp")
+NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("7_wld13")])
 
 [node name="InteractableComponent" type="Node" parent="nobel_road26" unique_id=1510878304]
 script = ExtResource("5_ktwdp")

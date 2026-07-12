@@ -277,8 +277,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 14)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
 [node name="DoorComponent" parent="stone_door_1" index="3" unique_id=820589636]
-local_edge = Vector3i(-1, 0, 0)
 door_id = &"bonepit.stone_door_1"
+local_edge = Vector3i(-1, 0, 0)
 
 [node name="stone_lift1" parent="." unique_id=1795187880 instance=ExtResource("14_wthsc")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 0, 0)

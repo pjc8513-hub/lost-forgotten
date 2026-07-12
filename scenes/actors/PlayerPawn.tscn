@@ -24,6 +24,7 @@ light_color = Color(1, 0.8017515, 0.7049051, 1)
 light_volumetric_fog_energy = 0.7
 distance_fade_enabled = true
 script = ExtResource("2_qei0e")
+base_energy = 1.8
 
 [node name="GridMovementController" type="Node" parent="." unique_id=449141799]
 script = ExtResource("1_ekj7e")
