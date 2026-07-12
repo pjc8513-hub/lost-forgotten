@@ -14,6 +14,7 @@ const CAST_TARGET_CONTROL_CURSOR := Control.CURSOR_HELP
 const NORMAL_PARTY_CARD_CURSOR := Control.CURSOR_POINTING_HAND
 const MAP_TRANSITION_FADE_TIME := 0.3
 const MAP_TRANSITION_HOLD_TIME := 0.08
+const INN_WAKE_TIME_SECONDS := 9 * 60 * 60
 
 @export var initial_map: PackedScene
 @export var initial_spawn_id: StringName = &"entrance"
@@ -44,6 +45,7 @@ var travel_menu: TravelMenu
 var _pending_target_skill: SkillData
 var _pending_target_caster: PartyMember
 var _map_transition_running := false
+var _inn_rest_running := false
 
 func _ready() -> void:
 	blackout.visible = false
@@ -56,6 +58,7 @@ func _ready() -> void:
 	MapManager.dialogue_requested.connect(_on_dialogue_requested)
 	MapManager.travel_menu_requested.connect(_on_travel_menu_requested)
 	MapManager.map_transition_requested.connect(_on_map_transition_requested)
+	MapManager.inn_rest_requested.connect(_on_inn_rest_requested)
 	inventory_menu = INVENTORY_SCENE.instantiate() as InventoryMenu
 	character_menu = CHARACTER_SCENE.instantiate() as CharacterMenu
 	camp_menu = CAMP_SCENE.instantiate()as CampMenu
@@ -134,6 +137,11 @@ func _on_map_transition_requested(map_path: String, spawn_id: StringName) -> voi
 		return
 	_run_map_transition(map_path, spawn_id)
 
+func _on_inn_rest_requested() -> void:
+	if _inn_rest_running:
+		return
+	_run_inn_rest_transition()
+
 func _run_map_transition(map_path: String, spawn_id: StringName) -> void:
 	_map_transition_running = true
 	blackout.visible = true
@@ -152,6 +160,54 @@ func _run_map_transition(map_path: String, spawn_id: StringName) -> void:
 
 	blackout.visible = false
 	_map_transition_running = false
+
+func _run_inn_rest_transition() -> void:
+	_inn_rest_running = true
+	blackout.visible = true
+	blackout.color.a = 0.0
+
+	var fade_out := create_tween()
+	fade_out.tween_property(blackout, "color:a", 1.0, MAP_TRANSITION_FADE_TIME)
+	await fade_out.finished
+
+	for member in PartyManager.party:
+		_rest_member(member)
+	WorldManager.set_time_of_day_seconds(INN_WAKE_TIME_SECONDS)
+	await get_tree().create_timer(MAP_TRANSITION_HOLD_TIME).timeout
+
+	var fade_in := create_tween()
+	fade_in.tween_property(blackout, "color:a", 0.0, MAP_TRANSITION_FADE_TIME)
+	await fade_in.finished
+
+	blackout.visible = false
+	_inn_rest_running = false
+	MapManager.notify_inn_rest_finished()
+
+func _rest_member(member: PartyMember) -> void:
+	if member == null:
+		return
+	var was_dead := not member.is_alive()
+	var healing_blocked := _has_healing_blocker(member)
+	var diseased := member.active_status_effects.has(StatusEffects.Effect.DISEASED)
+	var effects_to_clear: Array[int] = []
+	if not was_dead:
+		member.reset_daily_skill_uses()
+	for effect_id in member.active_status_effects:
+		if StatusEffects.clears_on_rest(int(effect_id)):
+			effects_to_clear.append(int(effect_id))
+	for effect_id in effects_to_clear:
+		member.active_status_effects.erase(effect_id)
+	StatCalculator.recalculate(member)
+	if not healing_blocked:
+		member.current_hp = member.max_hp
+	if not was_dead and not diseased:
+		member.current_stamina = member.max_stamina
+
+func _has_healing_blocker(member: PartyMember) -> bool:
+	for effect_id in member.active_status_effects:
+		if StatusEffects.blocks_healing(int(effect_id)):
+			return true
+	return false
 
 
 func _on_selected_party_member_changed(index: int, _member: PartyMember) -> void:

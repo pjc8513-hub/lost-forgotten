@@ -1,5 +1,7 @@
 extends Control
 const TEMPLE_MEMBER_COST_CAP := 2000
+const MAX_FOOD_RATIONS := 5
+const FOOD_RATION_COST := 10
 
 @onready var options_container: VBoxContainer = $VBoxContainer/HBoxContainer/OptionsPanel/MarginContainer/OptionsContainer
 @onready var npc_list: ItemList = $VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/NPCListContainer/NPCList
@@ -10,12 +12,15 @@ var _source_tile: NPC_Tile_Component
 var _selected_npc: NPCComponent
 var _current_node: DialogueNode
 var _is_temple_shop_open := false
+var _is_inn_shop_open := false
+var _is_inn_resting := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hide()
 	npc_list.item_selected.connect(_on_npc_selected)
 	PartyManager.selected_party_member_changed.connect(_on_party_member_selected)
+	MapManager.inn_rest_finished.connect(_on_inn_rest_finished)
 
 func open(npcs: Array[NPCComponent], source_tile: NPC_Tile_Component = null) -> void:
 	_npcs = npcs
@@ -23,6 +28,8 @@ func open(npcs: Array[NPCComponent], source_tile: NPC_Tile_Component = null) -> 
 	_selected_npc = null
 	_current_node = null
 	_is_temple_shop_open = false
+	_is_inn_shop_open = false
+	_is_inn_resting = false
 	npc_list.clear()
 	_clear_options()
 	dialogue_label.clear()
@@ -37,6 +44,8 @@ func close() -> void:
 	_selected_npc = null
 	_current_node = null
 	_is_temple_shop_open = false
+	_is_inn_shop_open = false
+	_is_inn_resting = false
 	npc_list.clear()
 	_clear_options()
 	dialogue_label.clear()
@@ -44,6 +53,11 @@ func close() -> void:
 func _on_party_member_selected(_index: int, _member: PartyMember) -> void:
 	if visible and _is_temple_shop_open:
 		_open_temple_shop()
+
+func _on_inn_rest_finished() -> void:
+	_is_inn_resting = false
+	if visible and _is_inn_shop_open:
+		_open_inn_shop()
 
 func _on_npc_selected(index: int) -> void:
 	var selected_npc := _npcs[index] if index >= 0 and index < _npcs.size() else null
@@ -56,11 +70,15 @@ func _select_npc(index: int) -> void:
 	_selected_npc = _npcs[index]
 	_current_node = null
 	_is_temple_shop_open = false
+	_is_inn_shop_open = false
+	_is_inn_resting = false
 	dialogue_label.text = _selected_npc.npc_name
 	_show_npc_actions()
 
 func _show_npc_actions() -> void:
 	_is_temple_shop_open = false
+	_is_inn_shop_open = false
+	_is_inn_resting = false
 	_clear_options()
 	if _selected_npc == null:
 		return
@@ -90,6 +108,7 @@ func _start_dialogue() -> void:
 
 func _show_dialogue_node(node: DialogueNode) -> void:
 	_is_temple_shop_open = false
+	_is_inn_shop_open = false
 	_current_node = node
 	_clear_options()
 
@@ -144,6 +163,9 @@ func _open_shop() -> void:
 	if _selected_npc != null and _selected_npc.shop_type == NPCComponent.Shop_Type.TEMPLE:
 		_open_temple_shop()
 		return
+	if _selected_npc != null and _selected_npc.shop_type == NPCComponent.Shop_Type.INN:
+		_open_inn_shop()
+		return
 
 	var shop_label := _selected_npc.shop_name if _selected_npc != null else "Shop"
 	if shop_label.is_empty():
@@ -167,6 +189,25 @@ func _open_temple_shop() -> void:
 
 	_add_option("Return", _start_dialogue)
 	_add_option("Leave", close)
+
+func _open_inn_shop() -> void:
+	_is_inn_shop_open = true
+	_clear_options()
+	var fill_cost := _get_food_fill_cost()
+	dialogue_label.text = _get_inn_status_text(fill_cost)
+	if _is_inn_resting:
+		dialogue_label.text += "\nResting..."
+
+	var rest_button := _add_option("Rest", _rest_at_inn)
+	rest_button.disabled = _is_inn_resting
+
+	var fill_button := _add_option("Fill food rations (%d gold)" % fill_cost, _fill_food_rations)
+	fill_button.disabled = _get_missing_food_rations() <= 0 or PartyManager.gold < fill_cost or _is_inn_resting
+
+	var return_button := _add_option("Return", _start_dialogue)
+	return_button.disabled = _is_inn_resting
+	var leave_button := _add_option("Leave", close)
+	leave_button.disabled = _is_inn_resting
 
 func _trigger_npc_travel() -> void:
 	var npc := _selected_npc
@@ -200,6 +241,25 @@ func _cure_party() -> void:
 	for member in PartyManager.party:
 		_cure_member(member)
 	_open_temple_shop()
+
+func _rest_at_inn() -> void:
+	if _is_inn_resting:
+		return
+	_is_inn_resting = true
+	_open_inn_shop()
+	MapManager.request_inn_rest()
+
+func _fill_food_rations() -> void:
+	var missing := _get_missing_food_rations()
+	var cost := missing * FOOD_RATION_COST
+	if missing <= 0:
+		_open_inn_shop()
+		return
+	if not PartyManager.spend_gold(cost):
+		_open_inn_shop()
+		return
+	PartyManager.add_food(missing)
+	_open_inn_shop()
 
 func _add_option(label: String, callback: Callable) -> Button:
 	var button := Button.new()
@@ -254,6 +314,24 @@ func _get_temple_status_text(member: PartyMember, member_cost: int, party_cost: 
 		member_cost,
 		party_cost,
 	]
+
+func _get_inn_status_text(fill_cost: int) -> String:
+	var shop_label := _selected_npc.shop_name if _selected_npc != null else "Inn"
+	if shop_label.is_empty():
+		shop_label = "Inn"
+	return "%s\nGold: %d\nFood: %d/%d\nFill rations: %d gold" % [
+		shop_label,
+		PartyManager.gold,
+		mini(PartyManager.food, MAX_FOOD_RATIONS),
+		MAX_FOOD_RATIONS,
+		fill_cost,
+	]
+
+func _get_missing_food_rations() -> int:
+	return maxi(MAX_FOOD_RATIONS - PartyManager.food, 0)
+
+func _get_food_fill_cost() -> int:
+	return _get_missing_food_rations() * FOOD_RATION_COST
 
 func _get_member_cure_cost(member: PartyMember) -> int:
 	if member == null:

@@ -6,6 +6,7 @@ signal stamina_cost_due(amount: int)
 
 const STEPS_PER_STAMINA: int = 10
 const SECONDS_PER_STEP: int = 60
+const SECONDS_PER_DAY: int = 24 * 60 * 60
 const DUNGEON_START_TIME_SECONDS: int = 9 * 60 * 60
 
 var dungeon_elapsed_time: int = 0
@@ -40,6 +41,16 @@ func advance_time(seconds: int) -> void:
 	if seconds <= 0:
 		return
 	dungeon_elapsed_time += seconds
+	dungeon_time_changed.emit(dungeon_elapsed_time)
+
+func set_time_of_day_seconds(time_of_day_seconds: int, advance_only: bool = true) -> void:
+	var clamped_time := clampi(time_of_day_seconds, 0, SECONDS_PER_DAY - 1)
+	var current_absolute := DUNGEON_START_TIME_SECONDS + dungeon_elapsed_time
+	var day_start := floori(float(current_absolute) / float(SECONDS_PER_DAY)) * SECONDS_PER_DAY
+	var target_absolute := day_start + clamped_time
+	if advance_only and target_absolute <= current_absolute:
+		target_absolute += SECONDS_PER_DAY
+	dungeon_elapsed_time = maxi(target_absolute - DUNGEON_START_TIME_SECONDS, 0)
 	dungeon_time_changed.emit(dungeon_elapsed_time)
 
 

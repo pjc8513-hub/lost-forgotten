@@ -6,6 +6,8 @@ signal alert_requested(message: String)
 signal dialogue_requested(npcs: Array, source_tile: Node)
 signal travel_menu_requested
 signal map_transition_requested(map_path: String, spawn_id: StringName)
+signal inn_rest_requested
+signal inn_rest_finished
 
 func request_alert(message: String) -> void:
 	alert_requested.emit(message)
@@ -18,6 +20,12 @@ func request_travel_menu() -> void:
 
 func request_map_transition(map_path: String, spawn_id: StringName) -> void:
 	map_transition_requested.emit(map_path, spawn_id)
+
+func request_inn_rest() -> void:
+	inn_rest_requested.emit()
+
+func notify_inn_rest_finished() -> void:
+	inn_rest_finished.emit()
 
 var grid: Dictionary = {}
 var actors: Dictionary = {}
