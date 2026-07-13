@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://gtp30eywbk8q"]
+
+[ext_resource type="PackedScene" uid="uid://bkvgcgfccakqg" path="res://assets/models/nobel/shop1.glb" id="1_2876t"]
+
+[node name="shop1" unique_id=77270836 instance=ExtResource("1_2876t")]

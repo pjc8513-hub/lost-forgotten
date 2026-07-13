@@ -35,10 +35,12 @@
 [ext_resource type="PackedScene" uid="uid://cmdb7mnvmevaw" path="res://scenes/grid/nobel_city/moat_bridge_1.tscn" id="18_4766a"]
 [ext_resource type="Script" uid="uid://dqne8i3vgw0vo" path="res://scenes/grid/nobel_city/gate_tile.gd" id="19_i6hlf"]
 [ext_resource type="PackedScene" uid="uid://b3ebpvigt3qbw" path="res://scenes/grid/nobel_city/wall_castle_2.tscn" id="20_10ubw"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="20_c1pmp"]
 [ext_resource type="Resource" uid="uid://d4d3lt534u22" path="res://data/dialogue/nobel/houses/OldJim.tres" id="21_ae1so"]
 [ext_resource type="PackedScene" uid="uid://cwphdwqqt832y" path="res://scenes/grid/nobel_city/mountain.tscn" id="21_yl67k"]
 [ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="22_c1pmp"]
 [ext_resource type="PackedScene" uid="uid://bm7pcqg5euhra" path="res://scenes/grid/nobel_city/training_2.tscn" id="31_t6sru"]
+[ext_resource type="PackedScene" uid="uid://gtp30eywbk8q" path="res://scenes/grid/nobel_city/shop_1.tscn" id="40_c1pmp"]
 
 [sub_resource type="CurveTexture" id="CurveTexture_4ex8l"]
 curve = ExtResource("2_k5fv7")
@@ -84,6 +86,9 @@ dialogue_nodes = Array[ExtResource("7_odlrn")]([ExtResource("8_k5fv7")])
 shop_type = 3
 shop_name = "Temple of Noble"
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
+size = Vector3(1.1108398, 1.1833496, 1)
 
 [node name="Nobel" type="Node3D" unique_id=1819116379]
 script = ExtResource("1_t0kxk")
@@ -212,6 +217,11 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 
 
 [node name="nobel_road17" parent="." unique_id=1662486605 instance=ExtResource("3_54nej")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10, 0.66, 8)
+script = ExtResource("6_ktwdp")
+
+[node name="InteractableComponent" type="Node" parent="nobel_road17" unique_id=1739703238]
+script = ExtResource("5_ktwdp")
+metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
 
 [node name="nobel_road29" parent="." unique_id=1466288703 instance=ExtResource("3_54nej")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10, 0.66, 10)
@@ -281,15 +291,28 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0
 
 [node name="nobel_house16" parent="." unique_id=1007348421 instance=ExtResource("7_gbr7x")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0, -2)
+script = ExtResource("6_ktwdp")
+NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("21_ae1so")])
+
+[node name="BlockerComponent" type="Node" parent="nobel_house16" unique_id=1253385856]
+script = ExtResource("22_c1pmp")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="GridElement" type="Node3D" parent="nobel_house16" unique_id=1551985254]
+script = ExtResource("20_c1pmp")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="Area3D" type="Area3D" parent="nobel_house16" unique_id=1619342337]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="nobel_house16/Area3D" unique_id=1218113550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.055419922, -0.2845459, 0.9039769)
+shape = SubResource("BoxShape3D_xa8nu")
 
 [node name="nobel_house15" parent="." unique_id=1458172728 instance=ExtResource("7_gbr7x")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0, -4)
 
 [node name="nobel_house4" parent="." unique_id=1564877828 instance=ExtResource("7_gbr7x")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0, 2)
-
-[node name="nobel_house8" parent="." unique_id=1536911241 instance=ExtResource("7_gbr7x")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0, 6)
 
 [node name="nobel_house9" parent="." unique_id=1551290073 instance=ExtResource("7_gbr7x")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -8, 0, 12)
@@ -326,8 +349,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
 
 [node name="dirt39" parent="." unique_id=930495246 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
-script = ExtResource("6_ktwdp")
-NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("21_ae1so")])
 
 [node name="dirt40" parent="." unique_id=2055834113 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
@@ -428,9 +449,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 
 [node name="dirt9" parent="." unique_id=1835072708 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 4)
-
-[node name="dirt15" parent="." unique_id=724760547 instance=ExtResource("9_raqe6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
 
 [node name="dirt16" parent="." unique_id=1488888636 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 8)
@@ -893,13 +911,20 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16,
 [node name="moat_bridge1" parent="." unique_id=1336274816 instance=ExtResource("18_4766a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 4)
 
+[node name="shop1" parent="." unique_id=77270836 instance=ExtResource("40_c1pmp")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -8, 0, 8)
+
 [node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("4_t0kxk")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 4)
 spawn_id = &"entrance"
 
+[connection signal="input_event" from="nobel_house16/Area3D" to="nobel_house16" method="_on_area_3d_input_event"]
+
 [editable path="nobel_road26"]
+[editable path="nobel_road17"]
 [editable path="nobel_road54"]
 [editable path="nobel_road22"]
+[editable path="nobel_house16"]
 [editable path="dirt5"]
 [editable path="walls/wall15"]
 [editable path="walls/wall16"]

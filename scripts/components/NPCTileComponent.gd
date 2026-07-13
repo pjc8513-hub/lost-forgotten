@@ -16,3 +16,12 @@ func interact(_actor: Node) -> void:
 		MapManager.request_alert("No one is available.")
 		return
 	MapManager.request_dialogue(active_npcs, self)
+
+
+func _on_area_3d_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
+		var active_npcs := get_active_npcs()
+		if active_npcs.is_empty():
+			MapManager.request_alert("No one is available.")
+			return
+		MapManager.request_dialogue(active_npcs, self)
