@@ -2,7 +2,7 @@ class_name DoorComponent
 extends Node3D
 
 @export var door_id: StringName
-@export var local_edge := Vector3i(0, 0, -1)
+@export var local_edge := Vector3i(-1, 0, 0)
 @export var starts_locked := false
 @export var starts_open := false
 @export var starts_discovered := false

@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_kg0s0"]
 script = ExtResource("4_pswlu")
 type = 6
-destination_map = "uid://dkaw7nic8abj8"
+destination_map = "uid://dw8jt4aayh105"
 destination_spawn_id = &"entrance"
 metadata/_custom_type_script = "uid://boy0c7bryv6tm"
 

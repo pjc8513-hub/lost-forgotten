@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://8wi2o2we72rx"]
+
+[ext_resource type="PackedScene" uid="uid://c0pt461ubokj" path="res://assets/models/nobel/stone_exit4.glb" id="1_k2ggr"]
+[ext_resource type="Script" uid="uid://d3memun0m0avi" path="res://scripts/components/NPCTileComponent.gd" id="2_k0y41"]
+[ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="3_4u0pq"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="4_280sd"]
+
+[node name="stone_exit4" unique_id=133908069 instance=ExtResource("1_k2ggr")]
+script = ExtResource("2_k0y41")
+
+[node name="BlockerComponent" type="Node" parent="." index="3" unique_id=867633286]
+script = ExtResource("3_4u0pq")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="GridElement" type="Node3D" parent="." index="4" unique_id=1653527215]
+script = ExtResource("4_280sd")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"

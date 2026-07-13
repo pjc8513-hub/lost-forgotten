@@ -921,6 +921,10 @@ NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("16_g6jm8"), ExtResource("
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 4)
 spawn_id = &"entrance"
 
+[node name="MapSpawnPoint2" parent="." unique_id=704066731 instance=ExtResource("4_t0kxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 10)
+spawn_id = &"temple"
+
 [connection signal="input_event" from="nobel_house16/Area3D" to="nobel_house16" method="_on_area_3d_input_event"]
 [connection signal="input_event" from="temple1/Area3D" to="temple1" method="_on_area_3d_input_event"]
 [connection signal="input_event" from="inn5/Area3D" to="inn5" method="_on_area_3d_input_event"]
