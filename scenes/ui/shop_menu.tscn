@@ -20,7 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
+theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
@@ -53,6 +53,8 @@ metadata/_tab_index = 1
 
 [node name="InventoryList" type="ItemList" parent="MarginContainer/PanelContainer/HBoxContainer/TabContainer/Inventory" unique_id=2076874806]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="OptionsContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/HBoxContainer" unique_id=1871676752]
 layout_mode = 2
@@ -76,3 +78,16 @@ text = "Buy"
 [node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer/OptionsContainer/MarginContainer/VBoxContainer" unique_id=118518365]
 layout_mode = 2
 text = "Close"
+
+[node name="NextButton" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer/OptionsContainer/MarginContainer/VBoxContainer" unique_id=1825205281]
+layout_mode = 2
+text = "Next"
+
+[node name="PreviousButton" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer/OptionsContainer/MarginContainer/VBoxContainer" unique_id=1120262430]
+layout_mode = 2
+text = "Previous"
+
+[node name="CharacterName" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/OptionsContainer/MarginContainer" unique_id=1981140986]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Character"

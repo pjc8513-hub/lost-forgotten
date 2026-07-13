@@ -5,6 +5,7 @@ signal navigation_changed
 signal alert_requested(message: String)
 signal dialogue_requested(npcs: Array, source_tile: Node)
 signal dialogue_close_requested
+signal shop_requested(npc: NPCComponent)
 signal travel_menu_requested
 signal map_transition_requested(map_path: String, spawn_id: StringName)
 signal inn_rest_requested
@@ -18,6 +19,9 @@ func request_dialogue(npcs: Array, source_tile: Node = null) -> void:
 
 func request_dialogue_close() -> void:
 	dialogue_close_requested.emit()
+
+func request_shop(npc: NPCComponent) -> void:
+	shop_requested.emit(npc)
 
 func request_travel_menu() -> void:
 	travel_menu_requested.emit()

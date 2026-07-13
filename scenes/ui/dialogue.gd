@@ -188,6 +188,14 @@ func _open_shop() -> void:
 	if _selected_npc != null and _selected_npc.shop_type == NPCComponent.Shop_Type.TEACHER:
 		_open_teacher_shop()
 		return
+	if _selected_npc != null and _selected_npc.shop_type in [
+		NPCComponent.Shop_Type.EQUIPMENT_SHOP,
+		NPCComponent.Shop_Type.CONSUMABLE_SHOP,
+	]:
+		var npc := _selected_npc
+		close()
+		MapManager.request_shop(npc)
+		return
 
 	var shop_label := _selected_npc.shop_name if _selected_npc != null else "Shop"
 	if shop_label.is_empty():

@@ -8,6 +8,7 @@ const SKILL_SCENE := preload("res://scenes/ui/skill_menu.tscn")
 const QUEST_SCENE := preload("res://scenes/ui/QuestMenu.tscn")
 const TRAVEL_SCENE := preload("res://scenes/ui/travel_menu.tscn")
 const DIALOGUE_SCENE := preload("res://scenes/ui/dialogue.tscn")
+const SHOP_SCENE := preload("res://scenes/ui/shop_menu.tscn")
 const CAST_TARGET_INPUT_CURSOR := Input.CURSOR_HELP
 const NORMAL_INPUT_CURSOR := Input.CURSOR_ARROW
 const CAST_TARGET_CONTROL_CURSOR := Control.CURSOR_HELP
@@ -40,6 +41,7 @@ var character_menu: CharacterMenu
 var camp_menu: CampMenu
 var skill_menu: skill_menu
 var dialogue_menu: Control
+var shop_menu: ShopMenu
 var quest_menu: QuestMenu
 var travel_menu: TravelMenu
 var _pending_target_skill: SkillData
@@ -57,6 +59,7 @@ func _ready() -> void:
 	MapManager.alert_requested.connect(alert.show_message)
 	MapManager.dialogue_requested.connect(_on_dialogue_requested)
 	MapManager.dialogue_close_requested.connect(_on_dialogue_close_requested)
+	MapManager.shop_requested.connect(_on_shop_requested)
 	MapManager.travel_menu_requested.connect(_on_travel_menu_requested)
 	MapManager.map_transition_requested.connect(_on_map_transition_requested)
 	MapManager.inn_rest_requested.connect(_on_inn_rest_requested)
@@ -67,6 +70,7 @@ func _ready() -> void:
 	quest_menu = QUEST_SCENE.instantiate()as QuestMenu
 	travel_menu = TRAVEL_SCENE.instantiate() as TravelMenu
 	dialogue_menu = DIALOGUE_SCENE.instantiate() as Control
+	shop_menu = SHOP_SCENE.instantiate() as ShopMenu
 	$HudLayer/HudRoot/CanvasLayer.add_child(inventory_menu)
 	$HudLayer/HudRoot/CanvasLayer.add_child(character_menu)
 	$HudLayer/HudRoot/CanvasLayer.add_child(camp_menu)
@@ -74,6 +78,7 @@ func _ready() -> void:
 	$HudLayer/HudRoot/CanvasLayer.add_child(quest_menu)
 	$HudLayer/HudRoot/CanvasLayer.add_child(travel_menu)
 	$HudLayer/HudRoot/CanvasLayer.add_child(dialogue_menu)
+	$HudLayer/HudRoot/CanvasLayer.add_child(shop_menu)
 	inventory_button.pressed.connect(inventory_menu.open)
 	character_button.pressed.connect(character_menu.open)
 	camp_button.pressed.connect(camp_menu.open_dialogue)
@@ -132,6 +137,10 @@ func _on_dialogue_requested(npcs: Array[NPCComponent], source_tile: NPC_Tile_Com
 func _on_dialogue_close_requested() -> void:
 	if dialogue_menu != null and dialogue_menu.has_method("close"):
 		dialogue_menu.call("close")
+
+func _on_shop_requested(npc: NPCComponent) -> void:
+	if shop_menu != null:
+		shop_menu.open(npc)
 
 func _on_travel_menu_requested() -> void:
 	if travel_menu != null:
