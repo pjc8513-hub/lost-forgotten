@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://d4d3lt534u22"]
+
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="1_7jgdu"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="2_x4bjx"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="3_47bad"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="4_4qulq"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="5_cnyed"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="6_srtak"]
+[ext_resource type="Resource" uid="uid://bi3mn71pglxc3" path="res://data/quests/WellBottom.tres" id="6_x4bjx"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="7_gt1rh"]
+
+[sub_resource type="Resource" id="Resource_ae1so"]
+script = ExtResource("1_7jgdu")
+text = "Have you spoken to the Queen yet?"
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("6_srtak")
+npc_name = "Old Jim"
+dialogue_nodes = Array[ExtResource("1_7jgdu")]([SubResource("Resource_ae1so")])
+quests_offered = Array[ExtResource("5_cnyed")]([ExtResource("6_x4bjx")])
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
