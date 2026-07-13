@@ -1,5 +1,19 @@
 [gd_scene format=3 uid="uid://dyi63mi8rdwj0"]
 
 [ext_resource type="PackedScene" uid="uid://bsq2ek0mqwx7x" path="res://assets/models/nobel/inn5.glb" id="1_c2jxg"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_638fy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
+size = Vector3(0.4584961, 1.7494507, 1)
 
 [node name="inn5" unique_id=1061531617 instance=ExtResource("1_c2jxg")]
+
+[node name="GridElement" type="Node3D" parent="." index="14" unique_id=865979644]
+script = ExtResource("2_638fy")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="Area3D" type="Area3D" parent="." index="15" unique_id=624124430]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=1965301052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0694495, 0.09194946, 0)
+shape = SubResource("BoxShape3D_xa8nu")

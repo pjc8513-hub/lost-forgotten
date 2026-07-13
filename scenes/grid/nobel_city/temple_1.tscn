@@ -1,5 +1,24 @@
 [gd_scene format=3 uid="uid://bg8obfevnelp8"]
 
 [ext_resource type="PackedScene" uid="uid://bwkvjw6f8m8lq" path="res://assets/models/nobel/temple1.glb" id="1_m03h4"]
+[ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="2_u6rpl"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="3_6u6iy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
+size = Vector3(0.35180664, 1.7321777, 1.2348633)
 
 [node name="temple1" unique_id=2070639420 instance=ExtResource("1_m03h4")]
+
+[node name="BlockerComponent" type="Node" parent="." index="1" unique_id=225262485]
+script = ExtResource("2_u6rpl")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="GridElement" type="Node3D" parent="." index="2" unique_id=713372566]
+script = ExtResource("3_6u6iy")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="Area3D" type="Area3D" parent="." index="3" unique_id=104054194]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=1505775412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.89443815, -0.13244629, 0.0075683594)
+shape = SubResource("BoxShape3D_xa8nu")

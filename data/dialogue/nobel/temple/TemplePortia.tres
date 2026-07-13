@@ -1,11 +1,22 @@
-[gd_resource type="Resource" script_class="DialogueNode" format=3 uid="uid://c0psowp0x87lg"]
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://c0psowp0x87lg"]
 
 [ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="1_5savj"]
 [ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="2_bxr6k"]
 [ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="3_3uq8b"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="3_bxr6k"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="4_3uq8b"]
 [ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="4_aw8rv"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="5_aw8rv"]
 
-[resource]
+[sub_resource type="Resource" id="Resource_aw8rv"]
 script = ExtResource("4_aw8rv")
 text = "Do you require assistance?"
 metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("4_3uq8b")
+npc_name = "Portia"
+dialogue_nodes = Array[ExtResource("4_aw8rv")]([SubResource("Resource_aw8rv")])
+shop_type = 3
+shop_name = "Temple of Noble"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
