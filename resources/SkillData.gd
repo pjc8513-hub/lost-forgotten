@@ -48,6 +48,7 @@ enum Status_effect {
 @export var archetype: Archetype = Archetype.UNKNOWN
 @export var element: Element = Element.NONE
 
+@export var learn_cost: int = 200
 @export var starting_rank: int = 1
 @export var maximum_rank: int = 10
 

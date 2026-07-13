@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://dut5g57fqk1me"]
+
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="1_dfx7h"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="2_nsbq2"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="3_c4vu3"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="4_a3txd"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="5_mjlm2"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="6_r03us"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="7_tg05y"]
+
+[sub_resource type="Resource" id="Resource_g28q7"]
+script = ExtResource("1_dfx7h")
+text = "I've been teaching adventurers like yourself how to improve their skills my whole life! When you have the coin, come see me."
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("6_r03us")
+npc_name = "Saul"
+dialogue_nodes = Array[ExtResource("1_dfx7h")]([SubResource("Resource_g28q7")])
+shop_type = 5
+shop_name = "Saul's Skills"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"

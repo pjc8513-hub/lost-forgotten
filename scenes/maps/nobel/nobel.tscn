@@ -28,9 +28,9 @@
 [ext_resource type="PackedScene" uid="uid://co81duxjlu76s" path="res://scenes/grid/nobel_city/gate_3.tscn" id="14_oyxdf"]
 [ext_resource type="PackedScene" uid="uid://dmge8mm2unmb0" path="res://scenes/grid/nobel_city/tree_2.tscn" id="15_3morc"]
 [ext_resource type="PackedScene" uid="uid://b2fjhjvv0wnqc" path="res://scenes/grid/nobel_city/moat_1.tscn" id="16_0xi3f"]
-[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="16_g6jm8"]
+[ext_resource type="Resource" uid="uid://s517uq4us8a1" path="res://data/dialogue/nobel/training/TrainerDee.tres" id="16_g6jm8"]
 [ext_resource type="PackedScene" uid="uid://b50pl125e0e61" path="res://scenes/grid/nobel_city/well_2.tscn" id="16_i5yg6"]
-[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="17_2m8eg"]
+[ext_resource type="Resource" uid="uid://dut5g57fqk1me" path="res://data/dialogue/nobel/training/TeacherSaul.tres" id="17_2m8eg"]
 [ext_resource type="PackedScene" uid="uid://nkv24ao2eb0v" path="res://scenes/grid/nobel_city/moat_corner_1.tscn" id="18_3fuu0"]
 [ext_resource type="PackedScene" uid="uid://cmdb7mnvmevaw" path="res://scenes/grid/nobel_city/moat_bridge_1.tscn" id="18_4766a"]
 [ext_resource type="Script" uid="uid://dqne8i3vgw0vo" path="res://scenes/grid/nobel_city/gate_tile.gd" id="19_i6hlf"]
@@ -81,19 +81,6 @@ npc_name = "Portia"
 dialogue_nodes = Array[ExtResource("7_odlrn")]([ExtResource("8_k5fv7")])
 shop_type = 3
 shop_name = "Temple of Noble"
-metadata/_custom_type_script = "uid://djewvwy2k0t3x"
-
-[sub_resource type="Resource" id="Resource_iaq1w"]
-script = ExtResource("7_odlrn")
-text = "You look like you could use some training."
-metadata/_custom_type_script = "uid://bu2iii31o0rrx"
-
-[sub_resource type="Resource" id="Resource_t6sru"]
-script = ExtResource("4_qt0u2")
-npc_name = "Dee"
-dialogue_nodes = Array[ExtResource("7_odlrn")]([SubResource("Resource_iaq1w")])
-shop_type = 4
-shop_name = "Dee's Training"
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
 [node name="Nobel" type="Node3D" unique_id=1819116379]
@@ -252,13 +239,10 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -10,
 [node name="nobel_road6" parent="." unique_id=1948610631 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2, 0.66, -2)
 
-[node name="nobel_road28" parent="." unique_id=8605160 instance=ExtResource("3_54nej")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.66, -2)
-
 [node name="nobel_road22" parent="." unique_id=1143982925 instance=ExtResource("3_54nej")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0.66, -2)
 script = ExtResource("6_ktwdp")
-NPC_List = Array[ExtResource("4_qt0u2")]([SubResource("Resource_t6sru")])
+NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("16_g6jm8"), ExtResource("17_2m8eg")])
 
 [node name="InteractableComponent" type="Node" parent="nobel_road22" unique_id=1929869864]
 script = ExtResource("5_ktwdp")
@@ -276,10 +260,11 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -10,
 [node name="nobel_road7" parent="." unique_id=576874590 instance=ExtResource("3_54nej")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 2)
 
-[node name="nobel_road27" parent="." unique_id=1977125076 instance=ExtResource("3_54nej")]
+[node name="nobel_road11" parent="." unique_id=1857806010 instance=ExtResource("3_54nej")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6600001, 0)
 
-[node name="nobel_road50" parent="." unique_id=282554858 instance=ExtResource("3_54nej")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, -2)
+[node name="nobel_road12" parent="." unique_id=731575257 instance=ExtResource("3_54nej")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.6600001, -2)
 
 [node name="nobel_house3" parent="." unique_id=1868457646 instance=ExtResource("7_gbr7x")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 2)
@@ -306,10 +291,10 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -8, 
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2, 0, 12)
 
 [node name="nobel_house5" parent="." unique_id=971472596 instance=ExtResource("8_26rvf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
 
 [node name="nobel_house7" parent="." unique_id=2011862418 instance=ExtResource("8_26rvf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
 
 [node name="nobel_house6" parent="." unique_id=87138680 instance=ExtResource("8_26rvf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
@@ -512,8 +497,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 2)
 [node name="grass16" parent="." unique_id=713411135 instance=ExtResource("12_72yvy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
 
+[node name="grass24" parent="." unique_id=7535773 instance=ExtResource("12_72yvy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -4)
+
 [node name="grass17" parent="." unique_id=427348974 instance=ExtResource("12_72yvy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+
+[node name="grass21" parent="." unique_id=1137623102 instance=ExtResource("12_72yvy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
 
 [node name="grass8" parent="." unique_id=877990458 instance=ExtResource("12_72yvy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
@@ -631,8 +622,14 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2, 
 [node name="wall15" parent="walls" unique_id=1613691400 instance=ExtResource("12_oyxdf")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0, -8)
 
+[node name="GridElement" parent="walls/wall15" index="1" unique_id=46859394]
+tile_size = 0.0
+
 [node name="wall16" parent="walls" unique_id=1566569695 instance=ExtResource("12_oyxdf")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0, -8)
+
+[node name="GridElement" parent="walls/wall16" index="1" unique_id=46859394]
+tile_size = 0.0
 
 [node name="wall17" parent="walls" unique_id=1441514811 instance=ExtResource("12_oyxdf")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6, 0, -8)
@@ -720,7 +717,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -8)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
 
 [node name="tree6" parent="decor" unique_id=1936086447 instance=ExtResource("15_3morc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -8)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6, 0, -8)
 
 [node name="tree7" parent="decor" unique_id=263002467 instance=ExtResource("15_3morc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -8)
@@ -889,4 +886,6 @@ spawn_id = &"entrance"
 [editable path="nobel_road54"]
 [editable path="nobel_road22"]
 [editable path="dirt5"]
+[editable path="walls/wall15"]
+[editable path="walls/wall16"]
 [editable path="gate3"]

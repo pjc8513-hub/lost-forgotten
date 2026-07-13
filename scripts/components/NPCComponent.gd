@@ -7,7 +7,8 @@ enum Shop_Type {
 	CONSUMABLE_SHOP = 1,
 	INN = 2,
 	TEMPLE = 3,
-	TRAINER = 4
+	TRAINER = 4,
+	TEACHER = 5,
 }
 
 @export_category("Dialogue")

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://s517uq4us8a1"]
+
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="1_j2ero"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="2_n8tc7"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="3_m5f4i"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="4_fe1tw"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="5_73atp"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="6_naci2"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="7_5lnfy"]
+
+[sub_resource type="Resource" id="Resource_iaq1w"]
+script = ExtResource("1_j2ero")
+text = "You look like you could use some training."
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("6_naci2")
+npc_name = "Dee"
+dialogue_nodes = Array[ExtResource("1_j2ero")]([SubResource("Resource_iaq1w")])
+shop_type = 4
+shop_name = "Dee's Training"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
