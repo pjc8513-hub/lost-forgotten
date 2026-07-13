@@ -8,6 +8,7 @@ extends Control
 @onready var row_option: OptionButton = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer/RowOption
 @onready var status_container: VBoxContainer = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer/ScrollContainer/StatusContainer
 @onready var race_label: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer/RaceLabel
+@onready var xp_label: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer/XPLabel
 
 # Stats container
 @onready var strength_label: Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/StatsPanel/MarginContainer/StatsContainer/StrengthLabel
