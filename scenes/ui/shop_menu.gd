@@ -26,6 +26,8 @@ func _ready() -> void:
 	inventory_list.item_activated.connect(_on_inventory_item_activated)
 	buy_sell_button.pressed.connect(_on_buy_sell_pressed)
 	close_button.pressed.connect(close)
+	next_button.pressed.connect(_on_next_pressed)
+	previous_button.pressed.connect(_on_previous_pressed)
 	PartyManager.selected_party_member_changed.connect(_on_selected_party_member_changed)
 	PartyManager.gold_changed.connect(_on_gold_changed)
 
@@ -59,9 +61,17 @@ func _input(event: InputEvent) -> void:
 			return
 
 func _refresh() -> void:
+	_refresh_character_controls()
 	_refresh_shop_list()
 	_refresh_inventory_list()
 	_update_action_button()
+
+func _refresh_character_controls() -> void:
+	var member := PartyManager.selected_party_member
+	character_name.text = member.member_name if member != null else "No character"
+	var multiple_members := PartyManager.party.size() > 1
+	next_button.disabled = not multiple_members
+	previous_button.disabled = not multiple_members
 
 func _refresh_shop_list() -> void:
 	_shop_items.clear()
@@ -247,6 +257,20 @@ func _on_shop_item_activated(_index: int) -> void:
 func _on_inventory_item_activated(_index: int) -> void:
 	if tab_container.current_tab == INVENTORY_TAB and not buy_sell_button.disabled:
 		_sell_selected_item()
+
+func _on_next_pressed() -> void:
+	_select_relative_member(1)
+
+func _on_previous_pressed() -> void:
+	_select_relative_member(-1)
+
+func _select_relative_member(offset: int) -> void:
+	var party_size := PartyManager.party.size()
+	if party_size <= 0:
+		return
+	var next_index := wrapi(PartyManager.selected_party_member_index + offset, 0, party_size)
+	if not PartyManager.select_party_member(next_index):
+		_refresh()
 
 func _on_selected_party_member_changed(_index: int, _member: PartyMember) -> void:
 	if visible:
