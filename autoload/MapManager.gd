@@ -4,6 +4,7 @@ extends Node
 signal navigation_changed
 signal alert_requested(message: String)
 signal dialogue_requested(npcs: Array, source_tile: Node)
+signal dialogue_close_requested
 signal travel_menu_requested
 signal map_transition_requested(map_path: String, spawn_id: StringName)
 signal inn_rest_requested
@@ -14,6 +15,9 @@ func request_alert(message: String) -> void:
 
 func request_dialogue(npcs: Array, source_tile: Node = null) -> void:
 	dialogue_requested.emit(npcs, source_tile)
+
+func request_dialogue_close() -> void:
+	dialogue_close_requested.emit()
 
 func request_travel_menu() -> void:
 	travel_menu_requested.emit()

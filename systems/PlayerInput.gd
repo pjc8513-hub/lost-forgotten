@@ -68,6 +68,7 @@ func _queue_player_move() -> void:
 	if CommandQueue.is_busy() or movement == null:
 		return
 
+	MapManager.request_dialogue_close()
 	var cmd := MoveForwardCommand.new()
 	cmd.actor = actor
 	cmd.movement = movement

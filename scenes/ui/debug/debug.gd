@@ -6,6 +6,12 @@ extends Control
 @onready var line_edit: LineEdit = $PanelContainer/VBoxContainer/HBoxContainer/LineEdit
 
 const MAX_SWITCH_DEBUG_LINES := 8
+const GRID_DEBUG_DIRECTIONS: Array[Dictionary] = [
+	{"label": "N", "value": Vector3i(0, 0, -1)},
+	{"label": "E", "value": Vector3i(1, 0, 0)},
+	{"label": "S", "value": Vector3i(0, 0, 1)},
+	{"label": "W", "value": Vector3i(-1, 0, 0)},
+]
 const STAT_FIELDS: Array[Dictionary] = [
 	{"label": "Strength", "rolled": &"rolled_strength", "class": &"base_strength", "race": &"bonus_strength"},
 	{"label": "Endurance", "rolled": &"rolled_endurance", "class": &"base_endurance", "race": &"bonus_endurance"},
@@ -15,8 +21,12 @@ const STAT_FIELDS: Array[Dictionary] = [
 	{"label": "Willpower", "rolled": &"rolled_willpower", "class": &"base_willpower", "race": &"bonus_willpower"},
 ]
 
+@export var grid_debug_enabled := false
+
 var switch_debug_lines: Array[String] = []
 var console_log: Array[String] = []
+var inspected_grid_pos := Vector3i.ZERO
+var _movement_debug_source: GridMovementController
 
 func _ready() -> void:
 	messages.bbcode_enabled = true
@@ -115,6 +125,7 @@ func _refresh(member: PartyMember) -> void:
 	lines.append("Class starting skills: %s" % _format_skills(class_data.starting_skills if class_data != null else []))
 	lines.append("Race starting skills: %s" % _format_skills(race_data.starting_skills if race_data != null else []))
 	lines.append("Learned skills: %s" % _format_learned_skills(member.learned_skills))
+	_append_grid_debug(lines)
 	_append_switch_debug(lines)
 	_append_console_log(lines)
 	messages.text = "\n".join(lines)
@@ -189,6 +200,148 @@ func _append_console_log(lines: Array[String]) -> void:
 	lines.append("Console Log:")
 	lines.append_array(console_log)
 
+func _append_grid_debug(lines: Array[String]) -> void:
+	if not grid_debug_enabled:
+		return
+
+	lines.append("")
+	lines.append("Grid Debug")
+	var player := _get_player()
+	if player == null:
+		lines.append("Player: <not registered>")
+		lines.append_array(_format_cell_inspection(inspected_grid_pos, "Inspect"))
+		return
+
+	var movement := player.get_node_or_null("GridMovementController") as GridMovementController
+	if movement == null:
+		lines.append("GridMovementController: <missing>")
+		lines.append_array(_format_cell_inspection(inspected_grid_pos, "Inspect"))
+		return
+
+	_watch_movement(movement)
+	var forward_target := movement.grid_pos + movement.facing
+	lines.append("Player grid: %s  world: %s" % [_format_grid_pos(movement.grid_pos), _format_world_pos(player.global_position)])
+	lines.append("Facing: %s %s" % [_direction_label(movement.facing), _format_grid_pos(movement.facing)])
+	lines.append("Forward edge blocked: %s" % MapManager.is_edge_blocked(movement.grid_pos, movement.facing))
+	lines.append("Forward target blocked: %s" % movement.is_blocked(forward_target))
+	lines.append_array(_format_cell_inspection(movement.grid_pos, "Current"))
+	lines.append_array(_format_cell_inspection(forward_target, "Forward"))
+	lines.append_array(_format_cell_inspection(inspected_grid_pos, "Inspect"))
+
+func _watch_movement(movement: GridMovementController) -> void:
+	if _movement_debug_source == movement:
+		return
+	if _movement_debug_source != null and _movement_debug_source.grid_state_changed.is_connected(_on_grid_state_changed):
+		_movement_debug_source.grid_state_changed.disconnect(_on_grid_state_changed)
+	_movement_debug_source = movement
+	if not _movement_debug_source.grid_state_changed.is_connected(_on_grid_state_changed):
+		_movement_debug_source.grid_state_changed.connect(_on_grid_state_changed)
+
+func _on_grid_state_changed(_grid_pos: Vector3i, _facing: Vector3i) -> void:
+	if grid_debug_enabled:
+		_refresh(PartyManager.selected_party_member)
+
+func _format_cell_inspection(pos: Vector3i, label: String) -> Array[String]:
+	var lines: Array[String] = []
+	var elements := MapManager.get_elements(pos)
+	var actor := MapManager.get_actor(pos)
+	lines.append("%s cell %s: elements=%d actor=%s" % [
+		label,
+		_format_grid_pos(pos),
+		elements.size(),
+		actor.get_path() if actor != null else "None",
+	])
+	lines.append("%s edges: %s" % [label, _format_edge_summary(pos)])
+
+	if elements.is_empty():
+		lines.append("%s element: <none>" % label)
+		return lines
+
+	for element in elements:
+		lines.append("%s element: %s" % [label, _format_grid_element(element)])
+		var tile = element.get_parent()
+		if tile != null:
+			var blockers := _format_blockers(tile)
+			if not blockers.is_empty():
+				lines.append("%s blockers: %s" % [label, blockers])
+			var doors := _format_doors(tile)
+			if not doors.is_empty():
+				lines.append("%s doors: %s" % [label, doors])
+	return lines
+
+func _format_edge_summary(pos: Vector3i) -> String:
+	var parts: Array[String] = []
+	for direction_data in GRID_DEBUG_DIRECTIONS:
+		var direction: Vector3i = direction_data.value
+		var blocked := MapManager.is_edge_blocked(pos, direction)
+		var door = MapManager.get_door_on_edge(pos, direction)
+		var detail := "door %s" % _format_door_state(door) if door != null else "static"
+		parts.append("%s=%s (%s)" % [direction_data.label, "blocked" if blocked else "open", detail])
+	return ", ".join(parts)
+
+func _format_grid_element(element: Node) -> String:
+	var grid_element := element as GridElement
+	var tile := element.get_parent()
+	var tile_path := tile.get_path() if tile != null else element.get_path()
+	if grid_element == null:
+		return "%s via %s" % [tile_path, element.get_path()]
+
+	var shape_name = GridElement.CellShape.keys()[grid_element.cell_shape]
+	var blocked_edges: Array[String] = []
+	for direction_data in GRID_DEBUG_DIRECTIONS:
+		var direction: Vector3i = direction_data.value
+		if grid_element.blocks_edge(direction):
+			blocked_edges.append(direction_data.label)
+	return "%s shape=%s registered=%s y_rot=%.1f blocked_edges=%s" % [
+		tile_path,
+		shape_name,
+		_format_grid_pos(grid_element.grid_pos),
+		rad_to_deg(grid_element.global_rotation.y),
+		", ".join(blocked_edges) if not blocked_edges.is_empty() else "None",
+	]
+
+func _format_blockers(tile: Node) -> String:
+	var blockers: Array[String] = []
+	for component in tile.get_children():
+		if component is BlockerComponent:
+			blockers.append("%s blocks=%s open=%s" % [
+				String(component.blocker_ID) if not component.blocker_ID.is_empty() else component.name,
+				component.blocks_movement,
+				component.is_open,
+			])
+	return "; ".join(blockers)
+
+func _format_doors(tile: Node) -> String:
+	var doors: Array[String] = []
+	for component in tile.get_children():
+		if component is DoorComponent:
+			doors.append("%s edge=%s state=%s" % [
+				String(component.door_id) if not component.door_id.is_empty() else component.name,
+				_direction_label(component.get_world_edge()),
+				_format_door_state(component),
+			])
+	return "; ".join(doors)
+
+func _format_door_state(door: DoorComponent) -> String:
+	return "%s locked=%s open=%s blocks=%s" % [
+		String(door.door_id) if not door.door_id.is_empty() else door.name,
+		door.is_locked,
+		door.is_open,
+		door.blocks_movement(),
+	]
+
+func _format_grid_pos(pos: Vector3i) -> String:
+	return "(%d, %d, %d)" % [pos.x, pos.y, pos.z]
+
+func _format_world_pos(pos: Vector3) -> String:
+	return "(%.2f, %.2f, %.2f)" % [pos.x, pos.y, pos.z]
+
+func _direction_label(direction: Vector3i) -> String:
+	for direction_data in GRID_DEBUG_DIRECTIONS:
+		if direction_data.value == direction:
+			return direction_data.label
+	return "?"
+
 func _log_message(msg: String) -> void:
 	console_log.append(msg)
 	if console_log.size() > 10:
@@ -218,7 +371,29 @@ func _execute_command(input: String) -> void:
 	
 	match cmd:
 		"help":
-			_log_message("Commands: help, gold <amt>, food <amt>, xp [all] <amt>, heal [all], stamina [all/full] <amt>, damage [all] <amt>, kill [all], status <status>, additem <id>, tp <x> <z>")
+			_log_message("Commands: help, gold <amt>, food <amt>, xp [all] <amt>, heal [all], stamina [all/full] <amt>, damage [all] <amt>, kill [all], status <status>, additem <id>, tp <x> <z>, griddebug [on/off], cell <x> <z>")
+		"griddebug":
+			if args.is_empty():
+				grid_debug_enabled = not grid_debug_enabled
+			else:
+				var value := args[0].to_lower()
+				if value in ["on", "true", "1", "yes"]:
+					grid_debug_enabled = true
+				elif value in ["off", "false", "0", "no"]:
+					grid_debug_enabled = false
+				else:
+					_log_message("Error: griddebug expects on or off.")
+					return
+			_log_message("Grid debug %s." % ("enabled" if grid_debug_enabled else "disabled"))
+			_refresh(PartyManager.selected_party_member)
+		"cell":
+			if args.size() < 2:
+				_log_message("Error: cell requires x and z coordinates (e.g. cell 0 0)")
+				return
+			inspected_grid_pos = Vector3i(int(args[0]), 0, int(args[1]))
+			grid_debug_enabled = true
+			_log_message("Inspecting grid cell %s." % _format_grid_pos(inspected_grid_pos))
+			_refresh(PartyManager.selected_party_member)
 		"gold":
 			if args.is_empty():
 				_log_message("Error: gold requires an amount (e.g. gold 100)")

@@ -56,6 +56,7 @@ func _ready() -> void:
 	SkillSystem.execution_requested.connect(_on_skill_execution_requested)
 	MapManager.alert_requested.connect(alert.show_message)
 	MapManager.dialogue_requested.connect(_on_dialogue_requested)
+	MapManager.dialogue_close_requested.connect(_on_dialogue_close_requested)
 	MapManager.travel_menu_requested.connect(_on_travel_menu_requested)
 	MapManager.map_transition_requested.connect(_on_map_transition_requested)
 	MapManager.inn_rest_requested.connect(_on_inn_rest_requested)
@@ -127,6 +128,10 @@ func _on_map_changed(_map_path: String, _spawn_id: StringName) -> void:
 func _on_dialogue_requested(npcs: Array[NPCComponent], source_tile: NPC_Tile_Component) -> void:
 	if dialogue_menu != null and dialogue_menu.has_method("open"):
 		dialogue_menu.call("open", npcs, source_tile)
+
+func _on_dialogue_close_requested() -> void:
+	if dialogue_menu != null and dialogue_menu.has_method("close"):
+		dialogue_menu.call("close")
 
 func _on_travel_menu_requested() -> void:
 	if travel_menu != null:
