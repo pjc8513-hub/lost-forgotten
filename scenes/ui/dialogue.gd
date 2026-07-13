@@ -13,6 +13,8 @@ var _selected_npc: NPCComponent
 var _current_node: DialogueNode
 var _is_temple_shop_open := false
 var _is_inn_shop_open := false
+var _is_trainer_shop_open := false
+var _is_teacher_shop_open := false
 var _is_inn_resting := false
 
 # Called when the node enters the scene tree for the first time.
@@ -29,6 +31,8 @@ func open(npcs: Array[NPCComponent], source_tile: NPC_Tile_Component = null) -> 
 	_current_node = null
 	_is_temple_shop_open = false
 	_is_inn_shop_open = false
+	_is_trainer_shop_open = false
+	_is_teacher_shop_open = false
 	_is_inn_resting = false
 	npc_list.clear()
 	_clear_options()
@@ -45,6 +49,8 @@ func close() -> void:
 	_current_node = null
 	_is_temple_shop_open = false
 	_is_inn_shop_open = false
+	_is_trainer_shop_open = false
+	_is_teacher_shop_open = false
 	_is_inn_resting = false
 	npc_list.clear()
 	_clear_options()
@@ -53,6 +59,10 @@ func close() -> void:
 func _on_party_member_selected(_index: int, _member: PartyMember) -> void:
 	if visible and _is_temple_shop_open:
 		_open_temple_shop()
+	elif visible and _is_trainer_shop_open:
+		_open_trainer_shop()
+	elif visible and _is_teacher_shop_open:
+		_open_teacher_shop()
 
 func _on_inn_rest_finished() -> void:
 	_is_inn_resting = false
@@ -71,6 +81,8 @@ func _select_npc(index: int) -> void:
 	_current_node = null
 	_is_temple_shop_open = false
 	_is_inn_shop_open = false
+	_is_trainer_shop_open = false
+	_is_teacher_shop_open = false
 	_is_inn_resting = false
 	dialogue_label.text = _selected_npc.npc_name
 	_show_npc_actions()
@@ -78,6 +90,8 @@ func _select_npc(index: int) -> void:
 func _show_npc_actions() -> void:
 	_is_temple_shop_open = false
 	_is_inn_shop_open = false
+	_is_trainer_shop_open = false
+	_is_teacher_shop_open = false
 	_is_inn_resting = false
 	_clear_options()
 	if _selected_npc == null:
@@ -109,6 +123,8 @@ func _start_dialogue() -> void:
 func _show_dialogue_node(node: DialogueNode) -> void:
 	_is_temple_shop_open = false
 	_is_inn_shop_open = false
+	_is_trainer_shop_open = false
+	_is_teacher_shop_open = false
 	_current_node = node
 	_clear_options()
 
@@ -166,6 +182,12 @@ func _open_shop() -> void:
 	if _selected_npc != null and _selected_npc.shop_type == NPCComponent.Shop_Type.INN:
 		_open_inn_shop()
 		return
+	if _selected_npc != null and _selected_npc.shop_type == NPCComponent.Shop_Type.TRAINER:
+		_open_trainer_shop()
+		return
+	if _selected_npc != null and _selected_npc.shop_type == NPCComponent.Shop_Type.TEACHER:
+		_open_teacher_shop()
+		return
 
 	var shop_label := _selected_npc.shop_name if _selected_npc != null else "Shop"
 	if shop_label.is_empty():
@@ -175,6 +197,9 @@ func _open_shop() -> void:
 
 func _open_temple_shop() -> void:
 	_is_temple_shop_open = true
+	_is_inn_shop_open = false
+	_is_trainer_shop_open = false
+	_is_teacher_shop_open = false
 	_clear_options()
 	var member := PartyManager.selected_party_member
 	var member_cost := _get_member_cure_cost(member)
@@ -192,6 +217,9 @@ func _open_temple_shop() -> void:
 
 func _open_inn_shop() -> void:
 	_is_inn_shop_open = true
+	_is_temple_shop_open = false
+	_is_trainer_shop_open = false
+	_is_teacher_shop_open = false
 	_clear_options()
 	var fill_cost := _get_food_fill_cost()
 	dialogue_label.text = _get_inn_status_text(fill_cost)
@@ -208,6 +236,53 @@ func _open_inn_shop() -> void:
 	return_button.disabled = _is_inn_resting
 	var leave_button := _add_option("Leave", close)
 	leave_button.disabled = _is_inn_resting
+
+func _open_trainer_shop() -> void:
+	_is_trainer_shop_open = true
+	_is_temple_shop_open = false
+	_is_inn_shop_open = false
+	_is_teacher_shop_open = false
+	_clear_options()
+	var member := PartyManager.selected_party_member
+	var cost := 0
+	if member != null:
+		cost = member.get_training_gold_cost()
+	dialogue_label.text = _get_trainer_status_text(member, cost)
+
+	var train_button := _add_option("Train Level (%d gold)" % cost, _train_selected_member)
+	train_button.disabled = member == null or not member.can_level_up() or PartyManager.gold < cost
+
+	_add_option("Return", _start_dialogue)
+	_add_option("Leave", close)
+
+func _open_teacher_shop() -> void:
+	_is_teacher_shop_open = true
+	_is_temple_shop_open = false
+	_is_inn_shop_open = false
+	_is_trainer_shop_open = false
+	_clear_options()
+	var member := PartyManager.selected_party_member
+	dialogue_label.text = _get_teacher_status_text(member)
+	if member == null:
+		var no_member_button := _add_option("No member selected", _noop)
+		no_member_button.disabled = true
+	else:
+		var skills := SkillSystem.get_teacher_skills(member)
+		if skills.is_empty():
+			var empty_button := _add_option("No skills available", _noop)
+			empty_button.disabled = true
+		for skill in skills:
+			var skill_ref := skill
+			var rank := SkillSystem.get_character_skill_rank(member, skill_ref)
+			if rank <= 0:
+				var learn_button := _add_option("Learn %s (%d gold)" % [skill_ref.display_name, skill_ref.learn_cost], func(): _learn_selected_member_skill(skill_ref))
+				learn_button.disabled = PartyManager.gold < skill_ref.learn_cost
+			else:
+				var improve_button := _add_option("Improve %s (%d/%d, 1 SP)" % [skill_ref.display_name, rank, skill_ref.maximum_rank], func(): _improve_selected_member_skill(skill_ref))
+				improve_button.disabled = member.available_skill_points <= 0
+
+	_add_option("Return", _start_dialogue)
+	_add_option("Leave", close)
 
 func _trigger_npc_travel() -> void:
 	var npc := _selected_npc
@@ -261,6 +336,39 @@ func _fill_food_rations() -> void:
 	PartyManager.add_food(missing)
 	_open_inn_shop()
 
+func _train_selected_member() -> void:
+	var member := PartyManager.selected_party_member
+	if member == null or not member.can_level_up():
+		_open_trainer_shop()
+		return
+	var cost := member.get_training_gold_cost()
+	if not PartyManager.spend_gold(cost):
+		_open_trainer_shop()
+		return
+	if not member.level_up():
+		PartyManager.add_gold(cost)
+	_open_trainer_shop()
+
+func _learn_selected_member_skill(skill: SkillData) -> void:
+	var member := PartyManager.selected_party_member
+	if member == null or skill == null or not SkillSystem.can_learn_skill(member, skill):
+		_open_teacher_shop()
+		return
+	if not PartyManager.spend_gold(skill.learn_cost):
+		_open_teacher_shop()
+		return
+	if not SkillSystem.learn_skill(member, skill):
+		PartyManager.add_gold(skill.learn_cost)
+	_open_teacher_shop()
+
+func _improve_selected_member_skill(skill: SkillData) -> void:
+	var member := PartyManager.selected_party_member
+	if member == null or skill == null:
+		_open_teacher_shop()
+		return
+	SkillSystem.improve_skill(member, skill)
+	_open_teacher_shop()
+
 func _add_option(label: String, callback: Callable) -> Button:
 	var button := Button.new()
 	button.text = label
@@ -268,6 +376,9 @@ func _add_option(label: String, callback: Callable) -> Button:
 	button.pressed.connect(callback)
 	options_container.add_child(button)
 	return button
+
+func _noop() -> void:
+	pass
 
 func _refresh_npc_list(preferred_npc: NPCComponent = null, update_selection_view: bool = true) -> int:
 	if _source_tile != null:
@@ -325,6 +436,42 @@ func _get_inn_status_text(fill_cost: int) -> String:
 		mini(PartyManager.food, MAX_FOOD_RATIONS),
 		MAX_FOOD_RATIONS,
 		fill_cost,
+	]
+
+func _get_trainer_status_text(member: PartyMember, cost: int) -> String:
+	var shop_label := _selected_npc.shop_name if _selected_npc != null else "Trainer"
+	if shop_label.is_empty():
+		shop_label = "Trainer"
+	var member_name := "No member selected"
+	var level_text := "-"
+	var xp_text := "-"
+	if member != null:
+		member_name = member.member_name
+		level_text = str(member.level)
+		xp_text = "%d / %d" % [member.xp, member.xp_to_next_level]
+	return "%s\nSelected: %s\nLevel: %s\nXP: %s\nGold: %d\nTraining: %d gold" % [
+		shop_label,
+		member_name,
+		level_text,
+		xp_text,
+		PartyManager.gold,
+		cost,
+	]
+
+func _get_teacher_status_text(member: PartyMember) -> String:
+	var shop_label := _selected_npc.shop_name if _selected_npc != null else "Teacher"
+	if shop_label.is_empty():
+		shop_label = "Teacher"
+	var member_name := "No member selected"
+	var skill_points := 0
+	if member != null:
+		member_name = member.member_name
+		skill_points = member.available_skill_points
+	return "%s\nSelected: %s\nGold: %d\nSkill points: %d" % [
+		shop_label,
+		member_name,
+		PartyManager.gold,
+		skill_points,
 	]
 
 func _get_missing_food_rations() -> int:

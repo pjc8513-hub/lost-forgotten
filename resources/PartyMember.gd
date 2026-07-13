@@ -16,6 +16,9 @@ enum CombatRow {
 	BACK,
 }
 
+const TRAINING_BASE_GOLD_COST := 100
+const TRAINING_LEVEL_GOLD_STEP := 50
+
 @export_group("Identity")
 @export var member_name: String = ""
 @export var portrait: Texture2D
@@ -236,6 +239,9 @@ func add_xp(amount: int) -> bool:
 
 func can_level_up() -> bool:
 	return xp >= xp_to_next_level
+
+func get_training_gold_cost() -> int:
+	return TRAINING_BASE_GOLD_COST + (maxi(level, 1) - 1) * TRAINING_LEVEL_GOLD_STEP
 
 func level_up() -> bool:
 	if not can_level_up():
