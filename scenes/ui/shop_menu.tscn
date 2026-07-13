@@ -91,3 +91,6 @@ text = "Previous"
 layout_mode = 2
 size_flags_vertical = 0
 text = "Character"
+
+[connection signal="item_activated" from="MarginContainer/PanelContainer/HBoxContainer/TabContainer/Shop/ShopList" to="." method="_on_shop_list_item_activated"]
+[connection signal="item_activated" from="MarginContainer/PanelContainer/HBoxContainer/TabContainer/Inventory/InventoryList" to="." method="_on_inventory_list_item_activated"]

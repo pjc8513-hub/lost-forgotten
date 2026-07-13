@@ -21,9 +21,7 @@ func _ready() -> void:
 	hide()
 	tab_container.tab_changed.connect(_on_tab_changed)
 	shop_list.item_selected.connect(_on_shop_item_selected)
-	shop_list.item_activated.connect(_on_shop_item_activated)
 	inventory_list.item_selected.connect(_on_inventory_item_selected)
-	inventory_list.item_activated.connect(_on_inventory_item_activated)
 	buy_sell_button.pressed.connect(_on_buy_sell_pressed)
 	close_button.pressed.connect(close)
 	next_button.pressed.connect(_on_next_pressed)
@@ -250,11 +248,11 @@ func _on_shop_item_selected(_index: int) -> void:
 func _on_inventory_item_selected(_index: int) -> void:
 	_update_action_button()
 
-func _on_shop_item_activated(_index: int) -> void:
+func _on_shop_list_item_activated(_index: int) -> void:
 	if tab_container.current_tab == SHOP_TAB and not buy_sell_button.disabled:
 		_buy_selected_item()
 
-func _on_inventory_item_activated(_index: int) -> void:
+func _on_inventory_list_item_activated(_index: int) -> void:
 	if tab_container.current_tab == INVENTORY_TAB and not buy_sell_button.disabled:
 		_sell_selected_item()
 
