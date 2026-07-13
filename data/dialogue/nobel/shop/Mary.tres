@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://dslkl36jpy6a8"]
+
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="1_haobr"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="2_ygf4e"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="3_7sc7s"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="4_v258e"]
+[ext_resource type="Resource" uid="uid://bayotej6bsodo" path="res://data/dialogue/nobel/shop/QueenEdge.tres" id="5_u8wms"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="6_x21he"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="7_s8s2i"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="8_y215m"]
+
+[sub_resource type="Resource" id="Resource_dcy7f"]
+script = ExtResource("2_ygf4e")
+choice_string = "The Queen"
+next_node = ExtResource("5_u8wms")
+metadata/_custom_type_script = "uid://crjpwo8no2r4u"
+
+[sub_resource type="Resource" id="Resource_to0se"]
+script = ExtResource("1_haobr")
+text = "One stop shop!"
+choices = Array[ExtResource("2_ygf4e")]([SubResource("Resource_dcy7f")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("7_s8s2i")
+npc_name = "Mary"
+dialogue_nodes = Array[ExtResource("1_haobr")]([SubResource("Resource_to0se")])
+shop_type = 0
+shop_name = "Mary's Gear"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"

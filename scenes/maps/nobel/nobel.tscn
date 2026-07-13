@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://cwphdwqqt832y" path="res://scenes/grid/nobel_city/mountain.tscn" id="21_yl67k"]
 [ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="22_c1pmp"]
 [ext_resource type="PackedScene" uid="uid://bm7pcqg5euhra" path="res://scenes/grid/nobel_city/training_2.tscn" id="31_t6sru"]
+[ext_resource type="Resource" uid="uid://dslkl36jpy6a8" path="res://data/dialogue/nobel/shop/Mary.tres" id="34_2m8eg"]
 [ext_resource type="PackedScene" uid="uid://gtp30eywbk8q" path="res://scenes/grid/nobel_city/shop_1.tscn" id="40_c1pmp"]
 
 [sub_resource type="CurveTexture" id="CurveTexture_4ex8l"]
@@ -433,6 +434,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 
 [node name="dirt9" parent="." unique_id=1835072708 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 4)
+
+[node name="dirt10" parent="." unique_id=545915980 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 6)
+
+[node name="BlockerComponent" type="Node" parent="dirt10" unique_id=1366753486]
+script = ExtResource("22_c1pmp")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="dirt11" parent="." unique_id=1836339615 instance=ExtResource("9_raqe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
+
+[node name="BlockerComponent" type="Node" parent="dirt11" unique_id=1062346434]
+script = ExtResource("22_c1pmp")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
 
 [node name="dirt16" parent="." unique_id=1488888636 instance=ExtResource("9_raqe6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 8)
@@ -898,6 +913,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 4)
 
 [node name="shop1" parent="." unique_id=77270836 instance=ExtResource("40_c1pmp")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -8, 0, 8)
+script = ExtResource("6_ktwdp")
+NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("34_2m8eg")])
 
 [node name="training2" parent="." unique_id=1400019208 instance=ExtResource("31_t6sru")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
@@ -911,6 +928,7 @@ spawn_id = &"entrance"
 [connection signal="input_event" from="nobel_house16/Area3D" to="nobel_house16" method="_on_area_3d_input_event"]
 [connection signal="input_event" from="temple1/Area3D" to="temple1" method="_on_area_3d_input_event"]
 [connection signal="input_event" from="inn5/Area3D" to="inn5" method="_on_area_3d_input_event"]
+[connection signal="input_event" from="shop1/Area3D" to="shop1" method="_on_area_3d_input_event"]
 [connection signal="input_event" from="training2/Area3D" to="training2" method="_on_area_3d_input_event"]
 
 [editable path="nobel_road17"]
@@ -918,9 +936,12 @@ spawn_id = &"entrance"
 [editable path="dirt4"]
 [editable path="dirt7"]
 [editable path="dirt5"]
+[editable path="dirt10"]
+[editable path="dirt11"]
 [editable path="temple1"]
 [editable path="inn5"]
 [editable path="walls/wall15"]
 [editable path="walls/wall16"]
 [editable path="gate3"]
+[editable path="shop1"]
 [editable path="training2"]
