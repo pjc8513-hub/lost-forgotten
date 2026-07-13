@@ -3,7 +3,7 @@ const TEMPLE_MEMBER_COST_CAP := 2000
 const MAX_FOOD_RATIONS := 5
 const FOOD_RATION_COST := 10
 
-@onready var options_container: VBoxContainer = $VBoxContainer/HBoxContainer/OptionsPanel/MarginContainer/OptionsContainer
+@onready var options_container: VBoxContainer = $VBoxContainer/HBoxContainer/OptionsPanel/MarginContainer/ScrollContainer/OptionsContainer
 @onready var npc_list: ItemList = $VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/NPCListContainer/NPCList
 @onready var dialogue_label: RichTextLabel = $VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/DialogueLabel
 

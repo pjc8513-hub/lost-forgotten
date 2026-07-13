@@ -61,7 +61,7 @@ size_flags_vertical = 3
 [node name="OptionsPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer" unique_id=619856630]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.3
+size_flags_stretch_ratio = 0.39
 theme_override_styles/panel = ExtResource("1_84wqv")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/OptionsPanel" unique_id=1879599142]
@@ -70,5 +70,10 @@ theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1
 
-[node name="OptionsContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/OptionsPanel/MarginContainer" unique_id=1597701559]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/OptionsPanel/MarginContainer" unique_id=1466491668]
 layout_mode = 2
+
+[node name="OptionsContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/OptionsPanel/MarginContainer/ScrollContainer" unique_id=1597701559]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
