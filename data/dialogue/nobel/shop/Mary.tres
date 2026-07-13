@@ -8,6 +8,12 @@
 [ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="6_x21he"]
 [ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="7_s8s2i"]
 [ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="8_y215m"]
+[ext_resource type="Resource" uid="uid://cbggp5cth2p4" path="res://data/items/weapons/HandAxe.tres" id="9_s8s2i"]
+[ext_resource type="Resource" uid="uid://c4erxv1txepdu" path="res://data/items/weapons/Club.tres" id="10_y215m"]
+[ext_resource type="Resource" uid="uid://36xm8c6557iu" path="res://data/items/armor/ClothRobe.tres" id="11_xmndo"]
+[ext_resource type="Resource" uid="uid://jgyywgdpyoc0" path="res://data/items/armor/LeatherCap.tres" id="12_8woqt"]
+[ext_resource type="Resource" uid="uid://brot0mgb7gogm" path="res://data/items/weapons/RustyDagger.tres" id="13_3til5"]
+[ext_resource type="Resource" uid="uid://rffuwe6hykv4" path="res://data/items/weapons/Staff.tres" id="14_qvccr"]
 
 [sub_resource type="Resource" id="Resource_dcy7f"]
 script = ExtResource("2_ygf4e")
@@ -27,4 +33,5 @@ npc_name = "Mary"
 dialogue_nodes = Array[ExtResource("1_haobr")]([SubResource("Resource_to0se")])
 shop_type = 0
 shop_name = "Mary's Gear"
+shop_items = Array[ExtResource("8_y215m")]([ExtResource("9_s8s2i"), ExtResource("10_y215m"), ExtResource("11_xmndo"), ExtResource("12_8woqt"), ExtResource("13_3til5"), ExtResource("14_qvccr")])
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"

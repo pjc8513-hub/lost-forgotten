@@ -42,6 +42,7 @@ layout_mode = 2
 [node name="TabContainer" type="TabContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1697693535]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/tab_separation = 5
 current_tab = 0
 
 [node name="InProgress" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/TabContainer" unique_id=552620145]

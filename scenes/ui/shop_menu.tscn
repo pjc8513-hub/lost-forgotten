@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dsltkqju2u86o"]
 
 [ext_resource type="StyleBox" uid="uid://c0viesgilwm4w" path="res://interfacePanel.tres" id="1_8w5fe"]
+[ext_resource type="Script" uid="uid://b886vkug1r77s" path="res://scenes/ui/shop_menu.gd" id="1_rnndp"]
 
 [node name="Control" type="Control" unique_id=422867754]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_rnndp")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1633561590]
 layout_mode = 1
@@ -26,5 +28,51 @@ theme_override_constants/margin_bottom = 2
 layout_mode = 2
 theme_override_styles/panel = ExtResource("1_8w5fe")
 
-[node name="TabContainer" type="TabContainer" parent="MarginContainer/PanelContainer" unique_id=1660930424]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer" unique_id=838342903]
 layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/PanelContainer/HBoxContainer" unique_id=1660930424]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/tab_separation = 10
+current_tab = 0
+
+[node name="Shop" type="ScrollContainer" parent="MarginContainer/PanelContainer/HBoxContainer/TabContainer" unique_id=924098445]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ShopList" type="ItemList" parent="MarginContainer/PanelContainer/HBoxContainer/TabContainer/Shop" unique_id=719496272]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Inventory" type="ScrollContainer" parent="MarginContainer/PanelContainer/HBoxContainer/TabContainer" unique_id=1129172804]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="InventoryList" type="ItemList" parent="MarginContainer/PanelContainer/HBoxContainer/TabContainer/Inventory" unique_id=2076874806]
+layout_mode = 2
+
+[node name="OptionsContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/HBoxContainer" unique_id=1871676752]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/HBoxContainer/OptionsContainer" unique_id=1616650117]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/HBoxContainer/OptionsContainer/MarginContainer" unique_id=2133528527]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="BuySellButton" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer/OptionsContainer/MarginContainer/VBoxContainer" unique_id=1863864726]
+layout_mode = 2
+text = "Buy"
+
+[node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer/OptionsContainer/MarginContainer/VBoxContainer" unique_id=118518365]
+layout_mode = 2
+text = "Close"

@@ -26,6 +26,7 @@ enum Shop_Type {
 @export var shop_type: Shop_Type = Shop_Type.NONE
 @export var shop_name: String = ""
 @export var shop_items: Array[ItemData] = []
+@export var price_markup: float = 0.10
 @export var shop_conditions: Array[DialogueCondition] = []
 
 @export_category("MapExit")

@@ -37,6 +37,7 @@
 [ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="22_c1pmp"]
 [ext_resource type="PackedScene" uid="uid://bm7pcqg5euhra" path="res://scenes/grid/nobel_city/training_2.tscn" id="31_t6sru"]
 [ext_resource type="Resource" uid="uid://dslkl36jpy6a8" path="res://data/dialogue/nobel/shop/Mary.tres" id="34_2m8eg"]
+[ext_resource type="Resource" uid="uid://b3pdgl4c2yodv" path="res://data/dialogue/nobel/shop/Jo.tres" id="35_ae1so"]
 [ext_resource type="PackedScene" uid="uid://gtp30eywbk8q" path="res://scenes/grid/nobel_city/shop_1.tscn" id="40_c1pmp"]
 
 [sub_resource type="CurveTexture" id="CurveTexture_4ex8l"]
@@ -200,11 +201,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 
 
 [node name="nobel_road17" parent="." unique_id=1662486605 instance=ExtResource("3_54nej")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10, 0.66, 8)
-script = ExtResource("6_ktwdp")
-
-[node name="InteractableComponent" type="Node" parent="nobel_road17" unique_id=1739703238]
-script = ExtResource("5_ktwdp")
-metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
 
 [node name="nobel_road29" parent="." unique_id=1466288703 instance=ExtResource("3_54nej")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10, 0.66, 10)
@@ -914,7 +910,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 4)
 [node name="shop1" parent="." unique_id=77270836 instance=ExtResource("40_c1pmp")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -8, 0, 8)
 script = ExtResource("6_ktwdp")
-NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("34_2m8eg")])
+NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("34_2m8eg"), ExtResource("35_ae1so")])
 
 [node name="training2" parent="." unique_id=1400019208 instance=ExtResource("31_t6sru")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
@@ -931,7 +927,6 @@ spawn_id = &"entrance"
 [connection signal="input_event" from="shop1/Area3D" to="shop1" method="_on_area_3d_input_event"]
 [connection signal="input_event" from="training2/Area3D" to="training2" method="_on_area_3d_input_event"]
 
-[editable path="nobel_road17"]
 [editable path="nobel_house16"]
 [editable path="dirt4"]
 [editable path="dirt7"]
