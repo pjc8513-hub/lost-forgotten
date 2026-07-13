@@ -48,9 +48,7 @@ func give_reward() -> void:
 				push_error("Error: Could not find item %s in party inventory to remove." % target_id)
 		RewardType.ADD_EXP:
 			for member in PartyManager.party:
-				var leveled_up = member.add_xp(value)
-				if leveled_up:
-					MapManager.request_alert("%s leveled up to %d!" % [member.member_name, member.level])
+				member.add_xp(value)
 			MapManager.request_alert("Party gained %d experience points." % value)
 		RewardType.SET_QUEST_STAGE:
 			QuestManager.set_quest_stage(target_id, value)

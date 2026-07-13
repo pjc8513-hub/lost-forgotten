@@ -67,6 +67,7 @@ func _refresh(member: PartyMember) -> void:
 		class_name_text = member.class_data.get_display_name_for(member.class_data.class_id)
 	description_label.text = "Level %d %s" % [member.level, class_name_text]
 	race_label.text = "Race: %s" % member.get_race_display_name()
+	_refresh_xp_label(member)
 	row_option.select(int(member.row))
 	strength_label.text = "Strength: %d" % StatCalculator.get_strength(member)
 	endurance_label.text = "Endurance: %d" % StatCalculator.get_endurance(member)
@@ -84,6 +85,16 @@ func _refresh(member: PartyMember) -> void:
 
 func _refresh_displayed_member() -> void:
 	_refresh(_displayed_member)
+
+func _format_xp_text(member: PartyMember) -> String:
+	return "XP: %d / %d" % [member.xp, member.xp_to_next_level]
+
+func _refresh_xp_label(member: PartyMember) -> void:
+	xp_label.text = _format_xp_text(member)
+	if member.can_level_up():
+		xp_label.add_theme_color_override("font_color", Color.GOLD)
+	else:
+		xp_label.remove_theme_color_override("font_color")
 
 func _refresh_derived_stats(member: PartyMember) -> void:
 	var damage := StatCalculator.get_damage_profile(member)

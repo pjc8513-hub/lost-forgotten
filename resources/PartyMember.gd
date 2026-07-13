@@ -9,6 +9,7 @@ signal stats_changed
 signal inventory_changed
 signal died
 signal leveled_up(new_level: int)
+signal xp_changed(total_xp: int)
 
 enum CombatRow {
 	FRONT,
@@ -225,14 +226,25 @@ func spend_stat_point(stat: String) -> bool:
 	return true
 
 func add_xp(amount: int) -> bool:
-	xp += maxi(amount, 0)
-	if xp < xp_to_next_level:
+	var gained := maxi(amount, 0)
+	if gained <= 0:
 		return false
-	xp -= xp_to_next_level
+	xp += gained
+	xp_changed.emit(xp)
+	stats_changed.emit()
+	return can_level_up()
+
+func can_level_up() -> bool:
+	return xp >= xp_to_next_level
+
+func level_up() -> bool:
+	if not can_level_up():
+		return false
 	level += 1
-	xp_to_next_level = int(round(xp_to_next_level * 1.35))
+	xp_to_next_level += maxi(int(round(xp_to_next_level * 1.35)), 1)
 	available_stat_points += randi_range(1, 3)
 	available_skill_points += 1
+	StatCalculator.recalculate(self)
 	leveled_up.emit(level)
 	return true
 

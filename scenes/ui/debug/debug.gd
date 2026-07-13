@@ -91,6 +91,12 @@ func _refresh(member: PartyMember) -> void:
 		"Name: %s" % member.member_name,
 		"Row: %s (%d)" % [member.get_row_display_name(), member.row],
 		"Class: %s" % _class_name(class_data),
+		"Level: %d" % member.level,
+		"XP: %d / %d%s" % [
+			member.xp,
+			member.xp_to_next_level,
+			" (ready to train)" if member.can_level_up() else "",
+		],
 		"Class resource: %s" % (class_data.resource_path if class_data != null else "<null>"),
 		"Race: %s" % member.get_race_display_name(),
 		"Race resource: %s" % (race_data.resource_path if race_data != null else "<null>"),
@@ -272,7 +278,8 @@ func _execute_command(input: String) -> void:
 					_log_message("Error: No selected party member.")
 				else:
 					member.add_xp(amt)
-					_log_message("Added %d XP to %s. Total: %d" % [amt, member.member_name, member.xp])
+					var ready_text := " Ready to train." if member.can_level_up() else ""
+					_log_message("Added %d XP to %s. Total: %d.%s" % [amt, member.member_name, member.xp, ready_text])
 		"heal":
 			var is_all := false
 			if not args.is_empty() and args[0].to_lower() == "all":
