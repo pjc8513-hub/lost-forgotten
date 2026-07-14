@@ -25,6 +25,7 @@ const INN_WAKE_TIME_SECONDS := 9 * 60 * 60
 @onready var level_root: Node = $World/LevelRoot
 @onready var entity_root: Node = $World/EntityRoot
 @onready var effect_root: Node = $World/EffectRoot
+@onready var screen_filter: ColorRect = $HudLayer/HudRoot/CanvasLayer/ScreenFilter
 @onready var automap: Automap = $HudLayer/HudRoot/CanvasLayer/AutomapControl
 @onready var party_cards: VBoxContainer = $HudLayer/HudRoot/MarginContainer/PartyCards
 @onready var alert: Control = $HudLayer/HudRoot/Alert
@@ -48,10 +49,14 @@ var _pending_target_skill: SkillData
 var _pending_target_caster: PartyMember
 var _map_transition_running := false
 var _inn_rest_running := false
+var _main_shader_defaults: Dictionary = {}
 
 func _ready() -> void:
 	blackout.visible = false
 	blackout.color.a = 0.0
+	if screen_filter.material != null:
+		screen_filter.material = screen_filter.material.duplicate() as Material
+		_cache_main_shader_defaults()
 	PartyManager.party_changed.connect(_rebuild_party_cards)
 	PartyManager.selected_party_member_changed.connect(_on_selected_party_member_changed)
 	WorldManager.stamina_cost_due.connect(PartyManager.spend_party_stamina)
@@ -123,12 +128,50 @@ func _on_map_changed(_map_path: String, _spawn_id: StringName) -> void:
 	var current_level = StageManager.current_level
 	if current_level is MapData:
 		enable_torch = current_level.enable_torch
+		_apply_main_shader_settings(current_level)
+	else:
+		_apply_main_shader_settings(null)
 
 	var player = StageManager.player
 	if player != null and player.has_node("OmniLight3D"):
 		var torch = player.get_node("OmniLight3D")
 		if torch.has_method("set_torch_enabled"):
 			torch.set_torch_enabled(enable_torch)
+
+func _apply_main_shader_settings(map_data: MapData) -> void:
+	if screen_filter == null:
+		return
+	screen_filter.visible = map_data == null or map_data.main_screen_filter_visible
+
+	var shader_material := screen_filter.material as ShaderMaterial
+	if shader_material == null:
+		return
+	if map_data == null:
+		_apply_default_main_shader_settings(shader_material)
+		return
+
+	var palette_texture: Texture2D = map_data.main_shader_palette_texture
+	if palette_texture == null:
+		palette_texture = _main_shader_defaults.get("palette_texture", null) as Texture2D
+	shader_material.set_shader_parameter("palette_texture", palette_texture)
+	shader_material.set_shader_parameter("pixel_size", map_data.main_shader_pixel_size)
+	shader_material.set_shader_parameter("dither_strength", map_data.main_shader_dither_strength)
+	shader_material.set_shader_parameter("contrast", map_data.main_shader_contrast)
+
+func _cache_main_shader_defaults() -> void:
+	var shader_material := screen_filter.material as ShaderMaterial
+	if shader_material == null:
+		return
+	_main_shader_defaults = {
+		"palette_texture": shader_material.get_shader_parameter("palette_texture"),
+		"pixel_size": shader_material.get_shader_parameter("pixel_size"),
+		"dither_strength": shader_material.get_shader_parameter("dither_strength"),
+		"contrast": shader_material.get_shader_parameter("contrast"),
+	}
+
+func _apply_default_main_shader_settings(shader_material: ShaderMaterial) -> void:
+	for parameter_name in _main_shader_defaults:
+		shader_material.set_shader_parameter(parameter_name, _main_shader_defaults[parameter_name])
 
 func _on_dialogue_requested(npcs: Array[NPCComponent], source_tile: NPC_Tile_Component) -> void:
 	if dialogue_menu != null and dialogue_menu.has_method("open"):

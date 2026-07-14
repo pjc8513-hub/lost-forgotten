@@ -8,7 +8,7 @@
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="1" unique_id=109918779]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6533099, 0.54028213, 0.019769669)
 light_color = Color(1, 0.8, 0.7058824, 1)
-light_volumetric_fog_energy = 3.0
+light_volumetric_fog_energy = 2.0
 script = ExtResource("2_veig6")
 flicker_amount = 0.45
 noise_speed = 1.7
