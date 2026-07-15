@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://dl1goq48trvq1"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_hg6bk"]
+
+[resource]
+script = ExtResource("1_hg6bk")
+skill_id = &"BreatheWater"
+display_name = "Breathe Water"
+description = "Breathe underwater"
+available_classes = Array[int]([5, 4])
+archetype = 4
+element = 3
+learn_cost = 400
+maximum_rank = 3
+is_AOE = true
+uses_per_day = 2
+remove_effect = Array[String](["DROWNING"])
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

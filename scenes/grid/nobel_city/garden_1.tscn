@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://d3ol8knkqgj2x"]
+
+[ext_resource type="Shader" uid="uid://bi5tt5knmp0mg" path="res://garden.gdshader" id="1_sls7a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nyer6"]
+render_priority = 0
+shader = ExtResource("1_sls7a")
+shader_parameter/garden_bounds = Vector4(-10, -10, 0.1, 1)
+shader_parameter/flora_density = 1.50000007055148
+shader_parameter/ground_color = Color(0.08, 0.05, 0.03, 1)
+shader_parameter/leaf_color = Color(0.1, 0.5, 0.1, 1)
+shader_parameter/leaf_color_2 = Color(0.2, 0.6, 0.2, 1)
+shader_parameter/wind_strength = 0.010000000475
+shader_parameter/wind_speed = 0.400000019
+shader_parameter/wind_scale = 0.35
+shader_parameter/wind_variation = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_0avfp"]
+material = SubResource("ShaderMaterial_nyer6")
+size = Vector3(1, 0.001, 1)
+subdivide_width = 4
+subdivide_height = 4
+subdivide_depth = 4
+
+[node name="Garden" type="Node3D" unique_id=1041259088]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1001323034]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1, -0.9, 0)
+mesh = SubResource("BoxMesh_0avfp")

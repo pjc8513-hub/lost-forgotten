@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://d11tk6i3ejgbc"]
+
+[ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_jsgqk"]
+[ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="2_y1csy"]
+[ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="3_pb2m2"]
+[ext_resource type="Environment" uid="uid://db7hgmwm2sxnn" path="res://scenes/grid/nobel_city/underwater.tres" id="4_r7jlk"]
+[ext_resource type="PackedScene" uid="uid://urwlv585wae5" path="res://scenes/grid/castle/stone_corner_2.tscn" id="5_7txra"]
+[ext_resource type="PackedScene" uid="uid://dapuyqeqivxm8" path="res://scenes/grid/castle/stone_floor_2.tscn" id="6_pd2td"]
+[ext_resource type="PackedScene" uid="uid://8wi2o2we72rx" path="res://scenes/grid/castle/stone_exit_4.tscn" id="7_5i5xm"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="8_pufju"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="9_upmha"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="10_ccn8m"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="11_kns4j"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="12_nyilm"]
+[ext_resource type="PackedScene" uid="uid://dgr6tc7bsd26x" path="res://scenes/grid/castle/torch_1.tscn" id="13_7rq4a"]
+[ext_resource type="PackedScene" uid="uid://cc8otyxgp7ygu" path="res://scenes/grid/castle/stone_wall_pillar.tscn" id="14_25rm4"]
+[ext_resource type="PackedScene" uid="uid://dajpl27a3y52a" path="res://scenes/grid/castle/stone_wall_2.tscn" id="15_n338w"]
+[ext_resource type="PackedScene" uid="uid://daxubdx6y7a05" path="res://scenes/grid/castle/stone_hall_3.tscn" id="16_7s8fo"]
+
+[sub_resource type="Resource" id="Resource_730w8"]
+script = ExtResource("8_pufju")
+npc_name = "Exit Basement"
+destination_map = "uid://8kb8suvcftn"
+destination_spawn_id = &"nobel.well"
+destination_label = "Exit"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
+
+[node name="Well1" type="Node3D" unique_id=597078485]
+script = ExtResource("1_jsgqk")
+main_shader_palette_texture = ExtResource("2_y1csy")
+
+[node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("3_pb2m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+spawn_id = &"entrance"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1641946271]
+environment = ExtResource("4_r7jlk")
+
+[node name="stone_exit4" parent="." unique_id=133908069 instance=ExtResource("7_5i5xm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+NPC_List = Array[ExtResource("8_pufju")]([SubResource("Resource_730w8")])
+
+[node name="cells" type="Node" parent="." unique_id=750635527]
+
+[node name="stone_corner2" parent="cells" unique_id=1870512281 instance=ExtResource("5_7txra")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+
+[node name="stone_corner3" parent="cells" unique_id=737109191 instance=ExtResource("5_7txra")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 2)
+
+[node name="stone_floor2" parent="cells" unique_id=807525150 instance=ExtResource("6_pd2td")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="stone_floor3" parent="cells" unique_id=441293928 instance=ExtResource("6_pd2td")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+
+[node name="stone_wall_pillar" parent="cells" unique_id=321652682 instance=ExtResource("14_25rm4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
+
+[node name="stone_wall2" parent="cells" unique_id=659127570 instance=ExtResource("15_n338w")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 4)
+
+[node name="stone_wall3" parent="cells" unique_id=1066551046 instance=ExtResource("15_n338w")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 6)
+
+[node name="stone_wall4" parent="cells" unique_id=331217143 instance=ExtResource("15_n338w")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 6)
+
+[node name="stone_wall5" parent="cells" unique_id=1497660404 instance=ExtResource("15_n338w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="stone_hall3" parent="cells" unique_id=813386216 instance=ExtResource("16_7s8fo")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, 6)
+
+[node name="chests" type="Node" parent="." unique_id=661036299]
+
+[node name="torches" type="Node" parent="." unique_id=78244225]
+
+[node name="torch1" parent="torches" unique_id=179294296 instance=ExtResource("13_7rq4a")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 2)
+
+[node name="torch2" parent="torches" unique_id=118343541 instance=ExtResource("13_7rq4a")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 2)

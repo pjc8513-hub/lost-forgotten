@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://x5kyyslryhw4" path="res://scenes/grid/castle/stone_wall_3_door.tscn" id="5_mgy60"]
 [ext_resource type="Texture2D" uid="uid://26d0nva8usjm" path="res://assets/models/rooms/stone_lift1_temple_stone_blend.png" id="6_mgy60"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="6_rg7xy"]
+[ext_resource type="Resource" uid="uid://ct3sbbiyqxvgt" path="res://data/dungeonexit.tres" id="7_ey63t"]
 [ext_resource type="Texture2D" uid="uid://c2tephrn5a07d" path="res://assets/models/rooms/stone_lift1_temple_stone_normal.png" id="7_rg7xy"]
 [ext_resource type="Texture2D" uid="uid://1e3flnphw81c" path="res://assets/models/rooms/stone_lift1_broken_brick_blend.png" id="8_e8ge0"]
 [ext_resource type="Texture2D" uid="uid://4lfg118x650w" path="res://assets/models/rooms/stone_lift1_broken_brick_normal.png" id="9_d02fq"]
@@ -19,20 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://dk3pu5ssng2p2" path="res://scenes/grid/castle/chest_3.tscn" id="15_weupc"]
 [ext_resource type="PackedScene" uid="uid://8wi2o2we72rx" path="res://scenes/grid/castle/stone_exit_4.tscn" id="16_bcjav"]
 [ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="17_r0ogk"]
-[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="18_ey63t"]
-[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="19_g3vtn"]
-[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="20_jkqy8"]
-[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="21_qjw8g"]
 [ext_resource type="PackedScene" uid="uid://dgr6tc7bsd26x" path="res://scenes/grid/castle/torch_1.tscn" id="22_ey63t"]
 [ext_resource type="PackedScene" uid="uid://yoaii84iw34x" path="res://scenes/grid/castle/crate_1.tscn" id="24_qjw8g"]
-
-[sub_resource type="Resource" id="Resource_latc4"]
-script = ExtResource("17_r0ogk")
-npc_name = "Exit Basement"
-destination_map = "uid://8kb8suvcftn"
-destination_spawn_id = &"temple"
-destination_label = "Exit"
-metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6688"]
 resource_local_to_scene = true
@@ -95,7 +84,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 spawn_id = &"entrance"
 
 [node name="stone_exit4" parent="." unique_id=133908069 instance=ExtResource("16_bcjav")]
-NPC_List = Array[ExtResource("17_r0ogk")]([SubResource("Resource_latc4")])
+NPC_List = Array[ExtResource("17_r0ogk")]([ExtResource("7_ey63t")])
 
 [node name="cells" type="Node" parent="." unique_id=1436002232]
 

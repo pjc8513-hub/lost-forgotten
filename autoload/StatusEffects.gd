@@ -30,6 +30,7 @@ enum Effect {
 	BLIND,          # -Accuracy / -Dexterity
 	CURSE,          # -Willpower saves / -Dexterity / Cannot cast
 	DISEASED,		# Cannot gain HP from healing or resting
+	DROWNING,       # Underwater level debuff
 	DEAD,           # Member is dead
 	# Positive
 	REGENERATE,     # HP per round
@@ -284,6 +285,20 @@ const DEFINITIONS: Dictionary = {
 		"end_of_combat": false,
 		"clear_on_rest": false,
 		"cost_to_remove": 70,
+	},
+	Effect.DROWNING: {
+		"label": "Drowning",
+		"description": "Drowning",
+		"is_negative": true,
+		"dot_damage": 1,
+		"stat_deltas": {},
+		"blocks_action": false,
+		"blocks_healing": false,
+		"blocks_move": false,
+		"blocks_casting": true,
+		"end_of_combat": false,
+		"clear_on_rest": false,
+		"cost_to_remove": 0,
 	},
 	Effect.DEAD: {
 		"label": "Dead",

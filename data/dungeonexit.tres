@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://ct3sbbiyqxvgt"]
+
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="1_tc0b3"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="2_dqey0"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="3_r051k"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="4_7u2eu"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="5_telgg"]
+
+[resource]
+script = ExtResource("4_7u2eu")
+npc_name = "Exit Basement"
+destination_map = "uid://8kb8suvcftn"
+destination_spawn_id = &"temple"
+destination_label = "Exit"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"

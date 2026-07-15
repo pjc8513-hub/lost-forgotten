@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://b2k8humik75au"]
+
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="1_wa4d2"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="2_yvogt"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="3_bjm2i"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="4_x6qc6"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="5_wgnjm"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="6_8sk0g"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="7_scdsu"]
+
+[sub_resource type="Resource" id="Resource_g6688"]
+script = ExtResource("1_wa4d2")
+text = "You  make a wish."
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_qjw8g"]
+script = ExtResource("2_yvogt")
+choice_string = "Wish"
+next_node = SubResource("Resource_g6688")
+metadata/_custom_type_script = "uid://crjpwo8no2r4u"
+
+[sub_resource type="Resource" id="Resource_wabqw"]
+script = ExtResource("3_bjm2i")
+type = 6
+destination_map = "uid://d11tk6i3ejgbc"
+destination_spawn_id = &"entrance"
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_5x5aa"]
+script = ExtResource("1_wa4d2")
+text = "Enter the well?"
+immediate_rewards = Array[ExtResource("3_bjm2i")]([SubResource("Resource_wabqw")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_bhaol"]
+script = ExtResource("2_yvogt")
+choice_string = "Enter"
+next_node = SubResource("Resource_5x5aa")
+metadata/_custom_type_script = "uid://crjpwo8no2r4u"
+
+[sub_resource type="Resource" id="Resource_jkqy8"]
+script = ExtResource("1_wa4d2")
+choices = Array[ExtResource("2_yvogt")]([SubResource("Resource_qjw8g"), SubResource("Resource_bhaol")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("6_8sk0g")
+npc_name = "Well"
+dialogue_nodes = Array[ExtResource("1_wa4d2")]([SubResource("Resource_jkqy8")])
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
