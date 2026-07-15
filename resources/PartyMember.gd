@@ -183,7 +183,14 @@ func trade_inventory_item(item: ItemInstance, recipient: PartyMember) -> bool:
 func get_skill_uses_remaining(skill: SkillData) -> int:
 	if skill == null or skill.uses_per_day < 0:
 		return -1
-	return maxi(skill.uses_per_day - int(daily_skill_uses_spent.get(skill.skill_id, 0)), 0)
+	return maxi(get_skill_uses_per_day(skill) - int(daily_skill_uses_spent.get(skill.skill_id, 0)), 0)
+
+func get_skill_uses_per_day(skill: SkillData) -> int:
+	if skill == null or skill.uses_per_day < 0:
+		return -1
+	var rank := maxi(int(learned_skills.get(skill.skill_id, skill.starting_rank)), skill.starting_rank)
+	var bonus_ranks := maxi(rank - skill.starting_rank, 0)
+	return skill.uses_per_day + bonus_ranks * maxi(skill.bonus_uses_per_rank, 0)
 
 func consume_skill_use(skill: SkillData) -> bool:
 	if skill == null:

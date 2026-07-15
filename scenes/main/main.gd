@@ -106,6 +106,7 @@ func _ready() -> void:
 		player_movement = movement
 		movement.step_taken.connect(WorldManager.record_step)
 		movement.step_taken.connect(alert.dismiss)
+		movement.step_taken.connect(_on_player_step_taken)
 		automap.setup(movement)
 
 
@@ -300,6 +301,12 @@ func _on_skill_execution_requested(caster: PartyMember, skill: SkillData) -> voi
 				alert.show_message(DisarmTrapSkill.execute(caster, skill, player_movement.grid_pos))
 		&"minor_heal":
 			_begin_targeted_cast(caster, skill)
+		_:
+			if not skill.remove_effect.is_empty():
+				if skill.is_AOE:
+					alert.show_message(StatusRemovalSkill.execute(caster, skill, PartyManager.party))
+				else:
+					_begin_targeted_cast(caster, skill)
 
 
 func _begin_targeted_cast(caster: PartyMember, skill: SkillData) -> void:
@@ -319,6 +326,9 @@ func _execute_pending_target_skill(target_index: int) -> void:
 	match skill.skill_id:
 		&"minor_heal":
 			alert.show_message(MinorHealSkill.execute(caster, skill, target))
+		_:
+			if not skill.remove_effect.is_empty():
+				alert.show_message(StatusRemovalSkill.execute(caster, skill, [target]))
 
 
 func _cancel_pending_cast() -> void:
@@ -341,3 +351,14 @@ func _refresh_targeting_cursor() -> void:
 		var card := child as Control
 		if card != null:
 			card.mouse_default_cursor_shape = control_cursor_shape
+
+func _on_player_step_taken() -> void:
+	var map_data := StageManager.current_level as MapData
+	if map_data == null or not map_data.is_underwater:
+		return
+	var damage := StatusEffects.dot_damage(StatusEffects.Effect.DROWNING)
+	if damage <= 0:
+		return
+	for member in PartyManager.party:
+		if member != null and member.active_status_effects.has(StatusEffects.Effect.DROWNING):
+			member.take_damage(damage)

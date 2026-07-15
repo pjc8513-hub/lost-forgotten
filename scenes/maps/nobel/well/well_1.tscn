@@ -27,6 +27,7 @@ metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
 [node name="Well1" type="Node3D" unique_id=597078485]
 script = ExtResource("1_jsgqk")
+is_underwater = true
 main_shader_palette_texture = ExtResource("2_y1csy")
 
 [node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("3_pb2m2")]

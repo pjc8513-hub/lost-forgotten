@@ -54,6 +54,7 @@ func load_map_scene(map_scene: PackedScene, spawn_id: StringName) -> bool:
 		movement.sync_to_actor()
 
 	TurnManager.set_state(TurnManager.State.EXPLORATION)
+	_sync_underwater_status()
 	map_changed.emit(current_map_path, spawn_id)
 	return true
 
@@ -75,3 +76,20 @@ func _find_spawn_point(node: Node, spawn_id: StringName):
 		if result != null:
 			return result
 	return null
+
+func _sync_underwater_status() -> void:
+	var map_data := current_level as MapData
+	var is_underwater := map_data != null and map_data.is_underwater
+	for member in PartyManager.party:
+		if member == null:
+			continue
+		if is_underwater:
+			if not member.active_status_effects.has(StatusEffects.Effect.DROWNING):
+				member.active_status_effects[StatusEffects.Effect.DROWNING] = {
+					"remaining_rounds": StatusEffects.duration_rounds(StatusEffects.Effect.DROWNING),
+					"save_dc": 0,
+					"source": "Underwater",
+				}
+				StatCalculator.recalculate(member)
+		elif member.active_status_effects.erase(StatusEffects.Effect.DROWNING):
+			StatCalculator.recalculate(member)

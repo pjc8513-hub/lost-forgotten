@@ -81,7 +81,7 @@ const DEFINITIONS: Dictionary = {
 		"label": "Poison",
 		"description": "Deals damage each round. Willpower may resist.",
 		"is_negative": true,
-		"dot_damage": 4,
+		"dot_damage": 1,
 		"stat_deltas": { "endurance": -1 },
 		"blocks_action": false,
 		"blocks_healing": false,
@@ -429,6 +429,7 @@ func normalize_id(effect_name: String) -> int:
 	match key:
 		"PARALYZE": key = "PARALYSIS"
 		"CONFUSION": key = "CONFUSE"
+		"WEAK": key = "WEAKEN"
 		"WEAKNESS": key = "WEAKEN"
 	return int(Effect.get(key, Effect.NONE))
 

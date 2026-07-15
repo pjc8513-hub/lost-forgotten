@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://b4dtgi5vqf4oo"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_60wuu"]
+
+[resource]
+script = ExtResource("1_60wuu")
+skill_id = &"PartyHeal"
+display_name = "Party Heal"
+description = "A small heal for the whole party"
+available_classes = Array[int]([3, 6])
+archetype = 4
+element = 5
+maximum_rank = 4
+is_AOE = true
+stamina_cost = 5
+uses_per_day = 4
+bonus_uses_per_rank = 1
+heal_amount_dice = 2
+heal_amount_sides = 8
+metadata/_custom_type_script = "uid://bfe0w1owguy30"
