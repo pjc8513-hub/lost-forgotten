@@ -33,15 +33,32 @@ size_flags_horizontal = 3
 expand_mode = 1
 stretch_mode = 5
 
-[node name="combatFX" type="Node" parent="HBoxContainer/Portrait" unique_id=1144866210]
+[node name="combatFX" type="Control" parent="HBoxContainer/Portrait" unique_id=1144866210]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="StatusOverlay" type="TextureRect" parent="HBoxContainer/Portrait/combatFX" unique_id=1273237881]
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="DamageLabel" type="Label" parent="HBoxContainer/Portrait/combatFX" unique_id=1189328727]
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1112364791]
 layout_mode = 2

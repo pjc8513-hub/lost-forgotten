@@ -4,6 +4,11 @@ extends PanelContainer
 signal selection_requested(index: int)
 signal skill_requested(member: PartyMember, skill_id: StringName)
 
+const HEALING_FEEDBACK_COLOR := Color(0.25, 1.0, 0.35, 1.0)
+const DOT_FEEDBACK_COLOR := Color(0.68, 0.34, 1.0, 1.0)
+const FEEDBACK_DISPLAY_TIME := 0.55
+const FEEDBACK_FADE_TIME := 0.45
+
 @onready var portrait: TextureRect = $HBoxContainer/Portrait
 @onready var status_overlay: TextureRect = $HBoxContainer/Portrait/combatFX/StatusOverlay
 @onready var damage_label: Label = $HBoxContainer/Portrait/combatFX/DamageLabel
@@ -17,11 +22,14 @@ var member: PartyMember
 
 var _selected_style := StyleBoxFlat.new()
 var _popup_skill_ids: Array[StringName] = []
+var _feedback_tween: Tween
 
 func _ready() -> void:
 	_selected_style.bg_color = Color(0.2128, 0.1945, 0.1405, 0.84)
 	_selected_style.border_color = Color(0.95, 0.76, 0.28)
 	_selected_style.set_border_width_all(2)
+	damage_label.visible = false
+	damage_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	popup_menu.id_pressed.connect(_on_popup_menu_id_pressed)
 	refresh()
 
@@ -29,9 +37,12 @@ func _ready() -> void:
 func setup(member_data: PartyMember, index: int) -> void:
 	if member != null and member.stats_changed.is_connected(refresh):
 		member.stats_changed.disconnect(refresh)
+	if member != null and member.health_changed.is_connected(_on_member_health_changed):
+		member.health_changed.disconnect(_on_member_health_changed)
 	member = member_data
 	party_index = index
 	member.stats_changed.connect(refresh)
+	member.health_changed.connect(_on_member_health_changed)
 	refresh()
 
 
@@ -92,3 +103,24 @@ func _show_skill_menu() -> void:
 func _on_popup_menu_id_pressed(item_id: int) -> void:
 	if item_id >= 0 and item_id < _popup_skill_ids.size():
 		skill_requested.emit(member, _popup_skill_ids[item_id])
+
+func _on_member_health_changed(amount: int, feedback_type: StringName) -> void:
+	if amount <= 0:
+		return
+	match feedback_type:
+		&"healing":
+			_show_health_feedback("+%d" % amount, HEALING_FEEDBACK_COLOR)
+		&"dot":
+			_show_health_feedback("-%d" % amount, DOT_FEEDBACK_COLOR)
+
+func _show_health_feedback(text: String, color: Color) -> void:
+	if _feedback_tween != null and _feedback_tween.is_valid():
+		_feedback_tween.kill()
+	damage_label.text = text
+	damage_label.add_theme_color_override("font_color", color)
+	damage_label.modulate.a = 1.0
+	damage_label.visible = true
+	_feedback_tween = create_tween()
+	_feedback_tween.tween_interval(FEEDBACK_DISPLAY_TIME)
+	_feedback_tween.tween_property(damage_label, "modulate:a", 0.0, FEEDBACK_FADE_TIME)
+	_feedback_tween.tween_callback(damage_label.hide)

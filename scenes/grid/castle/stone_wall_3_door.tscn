@@ -1,31 +1,67 @@
 [gd_scene format=3 uid="uid://x5kyyslryhw4"]
 
 [ext_resource type="PackedScene" uid="uid://bb4lv4qpjsuu3" path="res://assets/models/rooms/stone_wall3_door.glb" id="1_6uh1y"]
-[ext_resource type="Material" uid="uid://xlxo11jp27n0" path="res://assets/models/rooms/wall.tres" id="2_7pau4"]
+[ext_resource type="Texture2D" uid="uid://26d0nva8usjm" path="res://assets/models/rooms/stone_lift1_temple_stone_blend.png" id="2_i1110"]
 [ext_resource type="Material" uid="uid://d3ferhc0s4ik6" path="res://assets/models/rooms/wood.tres" id="3_i1110"]
-[ext_resource type="Material" uid="uid://dc06kmp2r5g57" path="res://assets/models/rooms/floor.tres" id="4_iqsyl"]
+[ext_resource type="Texture2D" uid="uid://c2tephrn5a07d" path="res://assets/models/rooms/stone_lift1_temple_stone_normal.png" id="3_iqsyl"]
 [ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="5_1ptlr"]
+[ext_resource type="Texture2D" uid="uid://1e3flnphw81c" path="res://assets/models/rooms/stone_lift1_broken_brick_blend.png" id="5_ckha8"]
+[ext_resource type="Texture2D" uid="uid://4lfg118x650w" path="res://assets/models/rooms/stone_lift1_broken_brick_normal.png" id="6_703vo"]
 [ext_resource type="Script" uid="uid://31xg5h6wio64" path="res://scripts/components/DoorComponent.gd" id="6_ckha8"]
 [ext_resource type="Animation" uid="uid://djmamdfmblcjq" path="res://assets/animations/open.res" id="7_7pau4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_de0ng"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("2_i1110")
+normal_enabled = true
+normal_texture = ExtResource("3_iqsyl")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ra81x"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("5_ckha8")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("6_703vo")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
 size = Vector3(0.1048584, 1.7204895, 1.0775757)
 
+[sub_resource type="Animation" id="Animation_iqsyl"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7pau4"]
 _data = {
+&"RESET": SubResource("Animation_iqsyl"),
 &"open": ExtResource("7_7pau4")
 }
 
 [node name="stone_wall3_door" unique_id=141663307 instance=ExtResource("1_6uh1y")]
 
-[node name="wall" parent="." index="0" unique_id=1285790314]
-surface_material_override/0 = ExtResource("2_7pau4")
+[node name="wall" parent="." index="0" unique_id=524815201]
+surface_material_override/0 = SubResource("StandardMaterial3D_de0ng")
 
-[node name="door" parent="." index="1" unique_id=27495278]
+[node name="door" parent="." index="1" unique_id=893429260]
 surface_material_override/0 = ExtResource("3_i1110")
 
-[node name="floor" parent="." index="2" unique_id=1369459373]
-surface_material_override/0 = ExtResource("4_iqsyl")
+[node name="floor" parent="." index="2" unique_id=1029300820]
+surface_material_override/0 = SubResource("StandardMaterial3D_ra81x")
 
 [node name="GridElement" type="Node3D" parent="." index="3" unique_id=1886403208]
 script = ExtResource("5_1ptlr")
@@ -41,6 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.97494197, -0.10719299, -0.
 shape = SubResource("BoxShape3D_xa8nu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6" unique_id=1618487145]
+root_motion_local = true
 libraries/ = SubResource("AnimationLibrary_7pau4")
 
 [connection signal="input_event" from="Area3D" to="DoorComponent" method="_on_area_3d_input_event"]

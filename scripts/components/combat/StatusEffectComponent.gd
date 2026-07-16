@@ -77,11 +77,11 @@ func tick_effects() -> int:
 		if dot != 0:
 			if dot > 0:
 				# Damage — respect resistance (future: pass through HealthComponent)
-				character_state.current_hp -= dot
+				character_state.take_damage(dot, &"dot")
 				total_dot += dot
 			else:
 				# Healing
-				character_state.current_hp -= dot   # subtracting negative = adding
+				character_state.heal(-dot)
 			effect_ticked.emit(effect_id, dot)
 
 		# --- Willpower save to shake negative effects ---

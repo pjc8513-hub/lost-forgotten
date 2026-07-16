@@ -112,7 +112,7 @@ func tick_exploration_status_effects() -> void:
 		for effect_id in member.active_status_effects.keys():
 			var damage := StatusEffects.dot_damage(int(effect_id))
 			if damage > 0 and StatusEffects.is_negative(int(effect_id)):
-				member.take_damage(damage)
+				member.take_damage(damage, &"dot")
 
 func add_gold(amount: int) -> void:
 	if amount <= 0:

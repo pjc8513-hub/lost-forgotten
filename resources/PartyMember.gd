@@ -6,6 +6,7 @@ extends Resource
 ## belong to this resource.
 
 signal stats_changed
+signal health_changed(amount: int, feedback_type: StringName)
 signal inventory_changed
 signal died
 signal leveled_up(new_level: int)
@@ -90,11 +91,19 @@ func is_alive() -> bool:
 func is_conscious() -> bool:
 	return current_hp > 0
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, feedback_type: StringName = &"damage") -> void:
+	var hp_before := current_hp
 	current_hp -= maxi(amount, 0)
+	var damage_taken := hp_before - current_hp
+	if damage_taken > 0:
+		health_changed.emit(damage_taken, feedback_type)
 
-func heal(amount: int) -> void:
+func heal(amount: int, feedback_type: StringName = &"healing") -> void:
+	var hp_before := current_hp
 	current_hp += maxi(amount, 0)
+	var recovered := current_hp - hp_before
+	if recovered > 0:
+		health_changed.emit(recovered, feedback_type)
 
 func spend_stamina(amount: int) -> bool:
 	if amount <= 0:

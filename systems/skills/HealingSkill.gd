@@ -23,7 +23,7 @@ static func execute(caster: PartyMember, skill: SkillData, targets: Array) -> St
 	var healed_entries: Array[String] = []
 	for target in heal_targets:
 		var hp_before := target.current_hp
-		target.heal(heal_amount)
+		target.heal(heal_amount, &"healing")
 		var recovered := target.current_hp - hp_before
 		if recovered > 0:
 			healed_entries.append("%s for %d HP" % [target.member_name, recovered])
