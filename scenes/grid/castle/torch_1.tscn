@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bbnqrmg0d3juv" path="res://scenes/actors/omni_light_3d.gd" id="2_veig6"]
 [ext_resource type="Shader" uid="uid://cg6n5fhaynoku" path="res://scenes/grid/castle/torch_1.gdshader" id="3_veig6"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ci3n"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ed5yw"]
 render_priority = 0
 shader = ExtResource("3_veig6")
 shader_parameter/hot_color = Color(1, 0.85, 0.25, 1)
@@ -17,12 +17,11 @@ shader_parameter/pulse_speed = 8.0
 shader_parameter/alpha_cutoff = 0.1
 shader_parameter/emission_strength = 2.5
 
-[sub_resource type="PrismMesh" id="PrismMesh_4jmsq"]
-material = SubResource("ShaderMaterial_8ci3n")
-size = Vector3(0.2, 0.25, 0.1)
-subdivide_width = 2
-subdivide_height = 2
-subdivide_depth = 1
+[sub_resource type="SphereMesh" id="SphereMesh_xa8nu"]
+material = SubResource("ShaderMaterial_ed5yw")
+radius = 0.155
+height = 0.255
+radial_segments = 66
 
 [node name="torch1" unique_id=179294296 instance=ExtResource("1_lihvk")]
 
@@ -35,6 +34,6 @@ flicker_amount = 0.45
 noise_speed = 1.7
 noise_scale = 0.9
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=264888464]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7143735, 0.563655, -0.01808247)
-mesh = SubResource("PrismMesh_4jmsq")
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." index="2" unique_id=641132209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.70665586, 0.570672, 0)
+mesh = SubResource("SphereMesh_xa8nu")

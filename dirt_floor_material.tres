@@ -1,0 +1,42 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cj6liape2wijv"]
+
+[ext_resource type="Gradient" uid="uid://si0k1afjc02t" path="res://dirt_gradient.tres" id="1_iti8x"]
+
+[sub_resource type="Gradient" id="Gradient_dv6ns"]
+offsets = PackedFloat32Array(0.21098267, 0.6734104)
+colors = PackedColorArray(0.16470444, 0.10417158, 0.007811573, 1, 0.5037367, 0.41952553, 0.36387157, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gyyt5"]
+gradient = SubResource("Gradient_dv6ns")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0avfp"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8t0nk"]
+noise = SubResource("FastNoiseLite_0avfp")
+in_3d_space = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nyer6"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eelcm"]
+noise = SubResource("FastNoiseLite_nyer6")
+color_ramp = ExtResource("1_iti8x")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hhrfr"]
+noise_type = 3
+domain_warp_enabled = true
+domain_warp_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ed5yw"]
+noise = SubResource("FastNoiseLite_hhrfr")
+color_ramp = ExtResource("1_iti8x")
+in_3d_space = true
+as_normal_map = true
+
+[resource]
+albedo_texture = SubResource("GradientTexture2D_gyyt5")
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_ed5yw")
+ao_enabled = true
+ao_texture = SubResource("NoiseTexture2D_8t0nk")
+heightmap_enabled = true
+heightmap_texture = SubResource("NoiseTexture2D_eelcm")

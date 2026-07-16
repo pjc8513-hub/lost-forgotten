@@ -1,37 +1,40 @@
 [gd_resource type="Environment" format=3 uid="uid://db7hgmwm2sxnn"]
 
-[ext_resource type="Shader" uid="uid://bf8avyue6rmnu" path="res://scripts/shaders/dark_sky.gdshader" id="1_tihhl"]
+[sub_resource type="Curve" id="Curve_xca6j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="Curve" id="Curve_nqyfo"]
-_data = [Vector2(0, 0), 0.0, 1.4382567, 0, 1, Vector2(0.27314815, 0.3928572), 1.4382567, -1.6679536, 1, 1, Vector2(0.44444445, 0.107142925), -1.6679536, 1.338192, 1, 1, Vector2(0.67129636, 0.41071433), 1.338192, -1.8055542, 1, 0, Vector2(1, 0.7678572), 1.0865194, 0.0, 1, 0]
-point_count = 5
-metadata/_snap_count = 2
+[sub_resource type="CurveTexture" id="CurveTexture_ecqwp"]
+curve = SubResource("Curve_xca6j")
 
-[sub_resource type="CurveTexture" id="CurveTexture_hgk2k"]
-curve = SubResource("Curve_nqyfo")
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_pb2m2"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gyyt5"]
-shader = ExtResource("1_tihhl")
-shader_parameter/zenith_color = Color(0.1, 0.1, 0.2, 1)
-shader_parameter/horizon_color = Color(0.42251372, 0.27118626, 0.5923618, 1)
-shader_parameter/horizon_blur = 0.5
-
-[sub_resource type="Sky" id="Sky_vvxho"]
-sky_material = SubResource("ShaderMaterial_gyyt5")
+[sub_resource type="Sky" id="Sky_y1csy"]
+sky_material = SubResource("PhysicalSkyMaterial_pb2m2")
 
 [resource]
-background_mode = 2
-sky = SubResource("Sky_vvxho")
-ambient_light_source = 3
+background_mode = 1
+sky = SubResource("Sky_y1csy")
+ambient_light_source = 2
+ambient_light_color = Color(0.050980393, 0.16862746, 0.22745098, 1)
 reflected_light_source = 2
+tonemap_mode = 3
 ssao_enabled = true
 glow_enabled = true
+glow_intensity = 0.4
+glow_strength = 0.6
+glow_bloom = 0.6
+fog_enabled = true
+fog_light_color = Color(0.18519497, 0.61488837, 0.6701695, 1)
+fog_height = 1.0
+fog_height_density = 0.5
 volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0, 0.61960787, 0.87058824, 1)
+volumetric_fog_gi_inject = 0.63
 volumetric_fog_anisotropy = -0.36
 volumetric_fog_detail_spread = 3.2153199
 volumetric_fog_sky_affect = 0.128
 adjustment_enabled = true
-adjustment_contrast = 1.115
+adjustment_contrast = 1.105
 adjustment_saturation = 1.47
-adjustment_color_correction = SubResource("CurveTexture_hgk2k")
+adjustment_color_correction = SubResource("CurveTexture_ecqwp")

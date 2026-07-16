@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://cc8otyxgp7ygu" path="res://scenes/grid/castle/stone_wall_pillar.tscn" id="14_25rm4"]
 [ext_resource type="PackedScene" uid="uid://dajpl27a3y52a" path="res://scenes/grid/castle/stone_wall_2.tscn" id="15_n338w"]
 [ext_resource type="PackedScene" uid="uid://daxubdx6y7a05" path="res://scenes/grid/castle/stone_hall_3.tscn" id="16_7s8fo"]
+[ext_resource type="PackedScene" uid="uid://cjijg1qrqe1aj" path="res://scenes/grid/cave/cave_wall.tscn" id="17_y1csy"]
+[ext_resource type="Shader" uid="uid://diios7afe87l4" path="res://scenes/maps/nobel/well/underwater.gdshader" id="18_pb2m2"]
 
 [sub_resource type="Resource" id="Resource_730w8"]
 script = ExtResource("8_pufju")
@@ -25,8 +27,16 @@ destination_spawn_id = &"nobel.well"
 destination_label = "Exit"
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xa8nu"]
+shader = ExtResource("18_pb2m2")
+shader_parameter/scroll_speed = 0.06
+shader_parameter/scale = 12.0
+shader_parameter/intensity = 0.15
+shader_parameter/caustic_color = Color(0.6, 0.9, 0.85, 1)
+
 [node name="Well1" type="Node3D" unique_id=597078485]
 script = ExtResource("1_jsgqk")
+main_screen_filter_visible = false
 is_underwater = true
 main_shader_palette_texture = ExtResource("2_y1csy")
 
@@ -40,6 +50,18 @@ environment = ExtResource("4_r7jlk")
 [node name="stone_exit4" parent="." unique_id=133908069 instance=ExtResource("7_5i5xm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 NPC_List = Array[ExtResource("8_pufju")]([SubResource("Resource_730w8")])
+
+[node name="canvaslayer" type="Node" parent="." unique_id=1475192350]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="canvaslayer" unique_id=2095945371]
+
+[node name="ColorRect" type="ColorRect" parent="canvaslayer/CanvasLayer" unique_id=653393058]
+material = SubResource("ShaderMaterial_xa8nu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="cells" type="Node" parent="." unique_id=750635527]
 
@@ -82,3 +104,24 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 
 
 [node name="torch2" parent="torches" unique_id=118343541 instance=ExtResource("13_7rq4a")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 2)
+
+[node name="torch3" parent="torches" unique_id=1528881002 instance=ExtResource("13_7rq4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="torch4" parent="torches" unique_id=1901075721 instance=ExtResource("13_7rq4a")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 14)
+
+[node name="CaveWall" parent="." unique_id=376560664 instance=ExtResource("17_y1csy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="CaveWall2" parent="." unique_id=2129247499 instance=ExtResource("17_y1csy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="CaveWall3" parent="." unique_id=832772626 instance=ExtResource("17_y1csy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="CaveWall4" parent="." unique_id=1208313495 instance=ExtResource("17_y1csy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
+
+[node name="CaveWall5" parent="." unique_id=578814321 instance=ExtResource("17_y1csy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
