@@ -52,8 +52,8 @@ func show_health_feedback(current_hp: int, max_hp: int, amount: int, hit: bool) 
 	damage_label.text = str(amount) if hit else "MISS"
 	damage_label.add_theme_color_override("font_color", Color.WHITE if hit else Color(1.0, 0.86, 0.25, 1.0))
 
-	_feedback_tween = create_tween()
 	if hit:
+		_feedback_tween = create_tween()
 		_feedback_tween.tween_property(health_bar, "value", current_hp, HEALTH_TWEEN_TIME)
 	var feedback_duration := FEEDBACK_DISPLAY_TIME + (HEALTH_TWEEN_TIME if hit else 0.0)
 	await get_tree().create_timer(feedback_duration).timeout
