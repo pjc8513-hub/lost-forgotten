@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cblk1gb73wnc8"]
 
 [ext_resource type="Script" uid="uid://bbtw0ikdkb245" path="res://scenes/actors/enemies/enemy_scene.gd" id="1_jnd0t"]
+[ext_resource type="Texture2D" uid="uid://coubhm1fu28qf" path="res://assets/sprites/combat/hit.png" id="2_bu5sb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvxho"]
 bg_color = Color(0.73333335, 0.05490196, 0.0627451, 1)
@@ -14,12 +15,14 @@ offset = Vector2(0, -2)
 pixel_size = 0.0025
 billboard = 2
 
+[node name="UIAnchor" type="Marker3D" parent="." unique_id=1172551363]
+
 [node name="Node" type="Node" parent="." unique_id=1426459998]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Node" unique_id=175793063]
 visible = false
 
-[node name="ProgressBar" type="ProgressBar" parent="Node/CanvasLayer" unique_id=2001778963]
+[node name="HealthBar" type="ProgressBar" parent="Node/CanvasLayer" unique_id=2001778963]
 custom_minimum_size = Vector2(100, 0)
 offset_right = 4.0
 offset_bottom = 27.0
@@ -28,14 +31,11 @@ theme_override_styles/background = SubResource("StyleBoxFlat_vvxho")
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="HitAnimation" type="ColorRect" parent="Node/CanvasLayer" unique_id=530890858]
-offset_right = 64.0
-offset_bottom = 64.0
-color = Color(1, 1, 1, 0)
+[node name="HitAnimation" type="Sprite2D" parent="Node/CanvasLayer" unique_id=603132464]
+texture = ExtResource("2_bu5sb")
 metadata/_edit_use_anchors_ = true
 
 [node name="DamageLabel" type="Label" parent="Node/CanvasLayer/HitAnimation" unique_id=1903688885]
-layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 metadata/_edit_use_anchors_ = true
