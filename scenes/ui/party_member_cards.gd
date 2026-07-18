@@ -23,6 +23,7 @@ var member: PartyMember
 var _selected_style := StyleBoxFlat.new()
 var _popup_skill_ids: Array[StringName] = []
 var _feedback_tween: Tween
+var _skill_menu_enabled := true
 
 func _ready() -> void:
 	_selected_style.bg_color = Color(0.2128, 0.1945, 0.1405, 0.84)
@@ -74,6 +75,13 @@ func set_selected(is_selected: bool) -> void:
 		remove_theme_stylebox_override("panel")
 
 
+func set_skill_menu_enabled(enabled: bool) -> void:
+	_skill_menu_enabled = enabled
+	if not enabled:
+		popup_menu.hide()
+		_popup_skill_ids.clear()
+
+
 func _on_gui_input(event: InputEvent) -> void:
 	if not event is InputEventMouseButton or not event.pressed:
 		return
@@ -81,6 +89,9 @@ func _on_gui_input(event: InputEvent) -> void:
 		selection_requested.emit(party_index)
 		accept_event()
 	elif event.button_index == MOUSE_BUTTON_RIGHT:
+		if not _skill_menu_enabled:
+			accept_event()
+			return
 		_show_skill_menu()
 		accept_event()
 
@@ -101,6 +112,8 @@ func _show_skill_menu() -> void:
 	popup_menu.popup()
 
 func _on_popup_menu_id_pressed(item_id: int) -> void:
+	if not _skill_menu_enabled:
+		return
 	if item_id >= 0 and item_id < _popup_skill_ids.size():
 		skill_requested.emit(member, _popup_skill_ids[item_id])
 

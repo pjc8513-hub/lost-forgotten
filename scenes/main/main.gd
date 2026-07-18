@@ -52,6 +52,7 @@ var _pending_target_caster: PartyMember
 var _map_transition_running := false
 var _inn_rest_running := false
 var _combat_transition_running := false
+var _combat_active := false
 var _main_shader_defaults: Dictionary = {}
 var combat_presenter: CombatPresenter
 
@@ -134,6 +135,7 @@ func _rebuild_party_cards() -> void:
 		card.selection_requested.connect(_on_party_member_card_selection_requested)
 		card.skill_requested.connect(SkillSystem.request_execution)
 		card.set_selected(index == PartyManager.selected_party_member_index)
+		card.set_skill_menu_enabled(not _combat_active)
 	_refresh_targeting_cursor()
 
 
@@ -305,6 +307,8 @@ func _on_party_member_card_selection_requested(index: int) -> void:
 
 
 func _on_skill_execution_requested(caster: PartyMember, skill: SkillData) -> void:
+	if _combat_active or _combat_transition_running:
+		return
 	match skill.skill_id:
 		&"search":
 			if player_movement != null:
@@ -350,10 +354,10 @@ func _run_combat_entry(encounter: CombatEncounter) -> void:
 	CommandQueue.clear_queue()
 	await _fade_blackout(1.0)
 	alert.dismiss()
-	side_menu_container.hide()
+	_set_exploration_hud_enabled(false)
 	if not combat_presenter.start_encounter(encounter):
 		EncounterManager.complete_encounter()
-		side_menu_container.show()
+		_set_exploration_hud_enabled(true)
 		await _fade_blackout(0.0)
 		blackout.visible = false
 		_combat_transition_running = false
@@ -370,7 +374,7 @@ func _run_combat_exit(outcome: StringName, rewards: Dictionary) -> void:
 	TurnManager.set_state(TurnManager.State.TRANSITION)
 	await _fade_blackout(1.0)
 	combat_presenter.close_encounter(outcome)
-	side_menu_container.show()
+	_set_exploration_hud_enabled(true)
 	_apply_main_shader_settings(StageManager.current_level as MapData)
 	var reward_message := _apply_combat_rewards(outcome, rewards)
 	EncounterManager.complete_encounter()
@@ -381,6 +385,31 @@ func _run_combat_exit(outcome: StringName, rewards: Dictionary) -> void:
 	TurnManager.set_state(TurnManager.State.PAUSED if outcome == &"defeat" else TurnManager.State.EXPLORATION)
 	alert.dismiss()
 	alert.show_message(reward_message)
+
+func _set_exploration_hud_enabled(enabled: bool) -> void:
+	_combat_active = not enabled
+	_clear_pending_cast()
+	_close_exploration_menus()
+	side_menu_container.visible = enabled
+	automap.visible = enabled
+	for child in party_cards.get_children():
+		var card := child as PartyMemberCard
+		if card != null:
+			card.set_skill_menu_enabled(enabled)
+
+func _close_exploration_menus() -> void:
+	for menu in [
+		inventory_menu,
+		character_menu,
+		camp_menu,
+		skill_menu,
+		quest_menu,
+		travel_menu,
+		dialogue_menu,
+		shop_menu,
+	]:
+		if menu != null and menu.has_method("close"):
+			menu.call("close")
 
 func _fade_blackout(target_alpha: float) -> void:
 	blackout.visible = true

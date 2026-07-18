@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://b6g5b6do4iyuk"]
+
+[ext_resource type="Script" uid="uid://caupq4inh7x82" path="res://scenes/ui/combat/battle_log_control.gd" id="1_ou3b6"]
+[ext_resource type="FontFile" uid="uid://ihsvbv62yy72" path="res://assets/font/Pixel Game.otf" id="1_wol4x"]
+
+[node name="BattleLogControl" type="Control" unique_id=2062449148]
+layout_mode = 3
+anchor_left = 0.836
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.959961
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_ou3b6")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=771540367]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 25
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=661448028]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer" unique_id=2117541730]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/ScrollContainer" unique_id=1912331435]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("1_wol4x")
+theme_override_fonts/bold_font = ExtResource("1_wol4x")
+theme_override_fonts/bold_italics_font = ExtResource("1_wol4x")
+theme_override_fonts/italics_font = ExtResource("1_wol4x")
+theme_override_fonts/mono_font = ExtResource("1_wol4x")
+theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/bold_font_size = 18
+theme_override_font_sizes/bold_italics_font_size = 18
+theme_override_font_sizes/italics_font_size = 18
+theme_override_font_sizes/mono_font_size = 18
+text = "Battle Log
+"

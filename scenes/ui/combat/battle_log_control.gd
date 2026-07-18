@@ -1,0 +1,7 @@
+extends Control
+@onready var rich_text_label: RichTextLabel = $MarginContainer/PanelContainer/ScrollContainer/RichTextLabel
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.

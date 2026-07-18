@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dh138fqkjysk" path="res://assets/icons/camp.png" id="13_tck0d"]
 [ext_resource type="Texture2D" uid="uid://coi2d7nnsxixd" path="res://assets/icons/quest.png" id="14_tck0d"]
 [ext_resource type="PackedScene" uid="uid://cbfwuhibesl27" path="res://scenes/ui/combat/combat_menu.tscn" id="15_u8lgh"]
+[ext_resource type="PackedScene" uid="uid://b6g5b6do4iyuk" path="res://scenes/ui/combat/battle_log_control.tscn" id="16_hjnkw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_screen_filter"]
 shader = ExtResource("4_filter_shader")
@@ -131,6 +132,8 @@ texture_normal = ExtResource("14_tck0d")
 
 [node name="CombatBar" parent="HudLayer/HudRoot" unique_id=508091528 instance=ExtResource("15_u8lgh")]
 visible = false
+
+[node name="BattleLogControl" parent="HudLayer/HudRoot" unique_id=2062449148 instance=ExtResource("16_hjnkw")]
 
 [node name="PauseLayer" type="Node" parent="." unique_id=192665520]
 
