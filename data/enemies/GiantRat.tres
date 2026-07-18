@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://fiuuswn30mtc"]
+
+[ext_resource type="PackedScene" uid="uid://c2rpamax4liq5" path="res://scenes/actors/enemies/GiantRat.tscn" id="1_2fquy"]
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_34kfw"]
+[ext_resource type="Texture2D" uid="uid://coiw6wm366cb6" path="res://assets/sprites/enemies/giantRat.webp" id="2_beanw"]
+
+[resource]
+script = ExtResource("1_34kfw")
+enemy_id = &"GiantRat"
+display_name = "Giant Rat"
+sprite_texture = ExtResource("2_beanw")
+enemytype = 0
+enemy_scene = ExtResource("1_2fquy")
+ac_bonus = 3
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dkaw7nic8abj8"]
 
 [ext_resource type="Environment" uid="uid://cv7posx2uelkc" path="res://data/bonepit_environment.tres" id="1_vxqbn"]
+[ext_resource type="Script" path="res://resources/MapData.gd" id="encounter_map_data"]
+[ext_resource type="PackedScene" path="res://scenes/combat/castle_combat.tscn" id="encounter_arena"]
 [ext_resource type="PackedScene" uid="uid://urwlv585wae5" path="res://scenes/grid/castle/stone_corner_2.tscn" id="2_wthsc"]
 [ext_resource type="PackedScene" uid="uid://dapuyqeqivxm8" path="res://scenes/grid/castle/stone_floor_2.tscn" id="3_gix0e"]
 [ext_resource type="PackedScene" uid="uid://cbau51dhr66ax" path="res://scenes/grid/castle/stone_dead_3.tscn" id="4_035c6"]
@@ -71,6 +73,10 @@ texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
 [node name="Bonepit1" type="Node3D" unique_id=648665917]
+script = ExtResource("encounter_map_data")
+encounters_enabled = true
+combat_scene = ExtResource("encounter_arena")
+enemy_ids = Array[StringName]([&"GiantRat"])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1650998190]
 environment = ExtResource("1_vxqbn")

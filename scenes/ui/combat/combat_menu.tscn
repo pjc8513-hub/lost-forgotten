@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cbfwuhibesl27"]
+
+[ext_resource type="Script" uid="uid://c4opwqrp4vd4v" path="res://scenes/ui/combat/combat_menu.gd" id="1_k0l4q"]
+
+[node name="CombatBar" type="Control" unique_id=508091528]
+layout_mode = 3
+anchor_top = 0.81000006
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.1999817
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_k0l4q")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1624547849]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1579584333]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="AttackButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=199350890]
+layout_mode = 2
+text = "Attack"
+
+[node name="DefendButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1985304618]
+layout_mode = 2
+text = "Defend"
+
+[node name="CastButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1987761299]
+layout_mode = 2
+text = "Cast"
+
+[node name="ItemButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=62968093]
+layout_mode = 2
+text = "Item"
+
+[node name="WaitButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1644831626]
+layout_mode = 2
+text = "Wait"
+
+[node name="RunButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=439091118]
+layout_mode = 2
+text = "Run"

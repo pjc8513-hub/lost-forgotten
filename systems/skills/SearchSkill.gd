@@ -7,6 +7,7 @@ const NO_STAMINA_MESSAGE := "Not enough Stamina"
 static func execute(caster: PartyMember, skill: SkillData, origin: Vector3i) -> String:
 	if caster == null or skill == null:
 		return FAILURE_MESSAGE
+	EncounterManager.add_search_threat()
 	if not caster.spend_stamina(skill.stamina_cost):
 		return NO_STAMINA_MESSAGE
 

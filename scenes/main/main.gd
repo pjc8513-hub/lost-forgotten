@@ -34,6 +34,7 @@ const INN_WAKE_TIME_SECONDS := 9 * 60 * 60
 @onready var camp_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/CampButton
 @onready var skills_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/SkillsButton
 @onready var quest_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/QuestButton
+@onready var combat_menu: CombatMenu = $HudLayer/HudRoot/CombatBar
 
 
 var player_movement: GridMovementController
@@ -50,6 +51,7 @@ var _pending_target_caster: PartyMember
 var _map_transition_running := false
 var _inn_rest_running := false
 var _main_shader_defaults: Dictionary = {}
+var combat_presenter: CombatPresenter
 
 func _ready() -> void:
 	blackout.visible = false
@@ -68,6 +70,8 @@ func _ready() -> void:
 	MapManager.travel_menu_requested.connect(_on_travel_menu_requested)
 	MapManager.map_transition_requested.connect(_on_map_transition_requested)
 	MapManager.inn_rest_requested.connect(_on_inn_rest_requested)
+	MapManager.door_opened.connect(_on_door_opened)
+	EncounterManager.encounter_requested.connect(_on_encounter_requested)
 	inventory_menu = INVENTORY_SCENE.instantiate() as InventoryMenu
 	character_menu = CHARACTER_SCENE.instantiate() as CharacterMenu
 	camp_menu = CAMP_SCENE.instantiate()as CampMenu
@@ -97,6 +101,11 @@ func _ready() -> void:
 
 	var player := player_scene.instantiate() as Node3D
 	entity_root.add_child(player)
+	combat_presenter = CombatPresenter.new()
+	$Systems.add_child(combat_presenter)
+	combat_presenter.configure(level_root, player, combat_menu)
+	combat_presenter.message_requested.connect(alert.show_message)
+	combat_presenter.combat_closed.connect(_on_combat_closed)
 	StageManager.configure(level_root, entity_root, effect_root, player)
 	WorldManager.begin_dungeon()
 	StageManager.map_changed.connect(_on_map_changed)
@@ -107,6 +116,7 @@ func _ready() -> void:
 		movement.step_taken.connect(WorldManager.record_step)
 		movement.step_taken.connect(alert.dismiss)
 		movement.step_taken.connect(PartyManager.tick_exploration_status_effects)
+		movement.step_taken.connect(_on_exploration_step)
 		automap.setup(movement)
 
 
@@ -130,8 +140,10 @@ func _on_map_changed(_map_path: String, _spawn_id: StringName) -> void:
 	if current_level is MapData:
 		enable_torch = current_level.enable_torch
 		_apply_main_shader_settings(current_level)
+		EncounterManager.configure_map(current_level)
 	else:
 		_apply_main_shader_settings(null)
+		EncounterManager.configure_map(null)
 
 	var player = StageManager.player
 	if player != null and player.has_node("OmniLight3D"):
@@ -310,6 +322,21 @@ func _on_skill_execution_requested(caster: PartyMember, skill: SkillData) -> voi
 					alert.show_message(StatusRemovalSkill.execute(caster, skill, PartyManager.party))
 				else:
 					_begin_targeted_cast(caster, skill)
+
+func _on_exploration_step() -> void:
+	# Tile effects finish in GridMovementController after step_taken is emitted.
+	EncounterManager.call_deferred("on_party_step")
+
+func _on_door_opened(_door_id: StringName) -> void:
+	EncounterManager.add_door_threat()
+
+func _on_encounter_requested(encounter: CombatEncounter) -> void:
+	if combat_presenter == null or not combat_presenter.start_encounter(encounter):
+		EncounterManager.complete_encounter()
+
+func _on_combat_closed(outcome: StringName) -> void:
+	EncounterManager.complete_encounter()
+	alert.show_message("Combat won." if outcome == &"victory" else ("The party escaped." if outcome == &"fled" else "The party was defeated."))
 
 
 func _begin_targeted_cast(caster: PartyMember, skill: SkillData) -> void:

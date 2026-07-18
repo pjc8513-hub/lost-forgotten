@@ -1,5 +1,5 @@
 # StatusEffectComponent.gd  (components/combat/status_effect_component.gd)
-# Responsibility: Apply, tick, and clear status effects on one PartyMember.
+# Responsibility: Apply, tick, and clear status effects on one combat actor.
 # Reads effect definitions from the StatusEffects autoload.
 # Emits signals so UI and audio can react — never touches them directly.
 # One instance lives on each PartyMember node.
@@ -20,7 +20,7 @@ signal all_effects_cleared
 # References
 # ---------------------------------------------------------------------------
 
-@export var character_state: PartyMember   # Injected by parent PartyMember
+@export var character_state: Resource
 
 # ---------------------------------------------------------------------------
 # Internal state structure stored in PartyMember.active_status_effects:
@@ -54,7 +54,7 @@ func apply_effect(effect_id: int, save_dc: int = 0, source: String = "") -> void
 	}
 	character_state.active_status_effects[effect_id] = entry
 	effect_applied.emit(effect_id, entry)
-	StatCalculator.recalculate(character_state)
+	_recalculate_if_party_member()
 
 # ---------------------------------------------------------------------------
 # Tick — call once per combat round for this character
@@ -86,8 +86,8 @@ func tick_effects() -> int:
 
 		# --- Willpower save to shake negative effects ---
 		if StatusEffects.is_negative(effect_id) and entry.get("save_dc", 0) > 0:
-			var wp := _get_willpower()
-			var roll := randi_range(1, 20) + wp
+			var wp := CombatStats.ability_modifier(_get_willpower())
+			var roll := DiceRoller.d20(wp).total
 			if roll >= entry["save_dc"]:
 				to_clear.append(effect_id)
 				continue
@@ -115,7 +115,7 @@ func clear_effect(effect_id: int) -> void:
 		return
 	if character_state.active_status_effects.erase(effect_id):
 		effect_cleared.emit(effect_id)
-		StatCalculator.recalculate(character_state)
+		_recalculate_if_party_member()
 
 ## Remove all effects matching a condition string.
 ## Condition options: "all", "negative", "positive", "dot", "cc"
@@ -207,7 +207,8 @@ func get_active_labels() -> Array[String]:
 # ---------------------------------------------------------------------------
 
 func _get_willpower() -> int:
-	if not Engine.has_singleton("StatCalculator"):
-		push_warning("StatusEffectComponent: StatCalculator autoload not found")
-		return StatCalculator.get_willpower(character_state)
-	return StatCalculator.get_willpower(character_state)
+	return CombatStats.willpower(character_state)
+
+func _recalculate_if_party_member() -> void:
+	if character_state is PartyMember:
+		StatCalculator.recalculate(character_state)

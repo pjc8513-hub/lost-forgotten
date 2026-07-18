@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bhwhmj61exxxl"]
 
 [ext_resource type="Script" uid="uid://d1k4ph8wv4vu1" path="res://scenes/main/main.gd" id="1_u1xfj"]
-[ext_resource type="PackedScene" uid="uid://8kb8suvcftn" path="res://scenes/maps/nobel/nobel.tscn" id="2_jsdfw"]
+[ext_resource type="PackedScene" uid="uid://8kb8suvcftn" path="res://scenes/maps/nobel/nobel.tscn" id="2_u8lgh"]
 [ext_resource type="PackedScene" uid="uid://c1buyprn7xxw4" path="res://scenes/actors/PlayerPawn.tscn" id="3_player"]
 [ext_resource type="Shader" uid="uid://8a25oser5fpm" path="res://scripts/shaders/Main_shader.gdshader" id="4_filter_shader"]
 [ext_resource type="PackedScene" uid="uid://d1tm0lvlq8wf5" path="res://systems/MusicManager.tscn" id="4_ko0rf"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bybp4rkefm0hv" path="res://scenes/ui/debug/debug.tscn" id="12_p5fgu"]
 [ext_resource type="Texture2D" uid="uid://dh138fqkjysk" path="res://assets/icons/camp.png" id="13_tck0d"]
 [ext_resource type="Texture2D" uid="uid://coi2d7nnsxixd" path="res://assets/icons/quest.png" id="14_tck0d"]
+[ext_resource type="PackedScene" uid="uid://cbfwuhibesl27" path="res://scenes/ui/combat/combat_menu.tscn" id="15_u8lgh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_screen_filter"]
 shader = ExtResource("4_filter_shader")
@@ -25,7 +26,7 @@ shader_parameter/contrast = 0.950000021375
 
 [node name="Main" type="Node3D" unique_id=1214640721]
 script = ExtResource("1_u1xfj")
-initial_map = ExtResource("2_jsdfw")
+initial_map = ExtResource("2_u8lgh")
 player_scene = ExtResource("3_player")
 
 [node name="Systems" type="Node" parent="." unique_id=1153812703]
@@ -127,6 +128,9 @@ texture_focused = ExtResource("13_tck0d")
 [node name="QuestButton" type="TextureButton" parent="HudLayer/HudRoot/MarginContainer2/VBoxContainer" unique_id=125361620]
 layout_mode = 2
 texture_normal = ExtResource("14_tck0d")
+
+[node name="CombatBar" parent="HudLayer/HudRoot" unique_id=508091528 instance=ExtResource("15_u8lgh")]
+visible = false
 
 [node name="PauseLayer" type="Node" parent="." unique_id=192665520]
 

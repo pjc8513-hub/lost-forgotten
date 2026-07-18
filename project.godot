@@ -37,6 +37,7 @@ MusicManager="*uid://d1tm0lvlq8wf5"
 LootManager="*uid://sadpetgxjlng"
 LootDistributor="*res://autoload/LootDistributor.gd"
 QuestManager="*res://autoload/QuestManager.gd"
+EncounterManager="*res://autoload/EncounterManager.gd"
 
 [display]
 

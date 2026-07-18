@@ -10,6 +10,7 @@ signal travel_menu_requested
 signal map_transition_requested(map_path: String, spawn_id: StringName)
 signal inn_rest_requested
 signal inn_rest_finished
+signal door_opened(door_id: StringName)
 
 func request_alert(message: String) -> void:
 	alert_requested.emit(message)
@@ -141,8 +142,11 @@ func open_door(door_id: StringName) -> bool:
 	if not door_states.has(door_id) or door_states[door_id].get("is_locked", false):
 		return false
 	var state: Dictionary = door_states[door_id].duplicate()
+	var was_open := bool(state.get("is_open", false))
 	state["is_open"] = true
 	_set_door_state(door_id, state)
+	if not was_open:
+		door_opened.emit(door_id)
 	return true
 
 func close_door(door_id: StringName) -> bool:

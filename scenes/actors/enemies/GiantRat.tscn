@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c2rpamax4liq5"]
+
+[ext_resource type="Texture2D" uid="uid://coiw6wm366cb6" path="res://assets/sprites/enemies/giantRat.webp" id="1_q1ca4"]
+
+[node name="GiantRat" type="Node3D" unique_id=219445405]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=2136075449]
+billboard = 2
+texture = ExtResource("1_q1ca4")

@@ -1,0 +1,31 @@
+[gd_resource type="Environment" format=3 uid="uid://bc3oq0crlyidp"]
+
+[ext_resource type="Curve" uid="uid://c0jnfvp6tmh3k" path="res://nobel_color_curve.tres" id="1_31ccm"]
+[ext_resource type="Shader" uid="uid://bf8avyue6rmnu" path="res://scripts/shaders/dark_sky.gdshader" id="2_2dj48"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_c1pmp"]
+curve = ExtResource("1_31ccm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y1ayg"]
+shader = ExtResource("2_2dj48")
+shader_parameter/zenith_color = Color(0.1, 0.1, 0.2, 1)
+shader_parameter/horizon_color = Color(0.5, 0.3, 0.2, 1)
+shader_parameter/horizon_blur = 0.5
+
+[sub_resource type="Sky" id="Sky_yqopg"]
+sky_material = SubResource("ShaderMaterial_y1ayg")
+
+[resource]
+background_mode = 2
+background_color = Color(0.35606432, 0.35606432, 0.35606432, 1)
+sky = SubResource("Sky_yqopg")
+ambient_light_color = Color(0.35606432, 0.35606432, 0.35606432, 1)
+tonemap_mode = 1
+ssao_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0001
+volumetric_fog_albedo = Color(0.4568525, 0.45685214, 0.45685208, 1)
+volumetric_fog_emission_energy = 0.5
+volumetric_fog_gi_inject = 0.5
+adjustment_contrast = 0.75
+adjustment_color_correction = SubResource("CurveTexture_c1pmp")
