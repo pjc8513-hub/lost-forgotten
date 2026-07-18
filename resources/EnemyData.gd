@@ -55,6 +55,7 @@ enum EnemyType {
 @export_group("skills and behavior")
 @export var skills: Array[StringName] #skill ids
 @export var flee_chance: float = 0.05 # starts at 5%
+@export var has_reach: bool = false
 
 @export_group("Starting Status Effects")
 @export var starting_status_effects: Array[int]

@@ -2,12 +2,18 @@ class_name CombatMenu
 extends Control
 
 signal action_requested(action: StringName)
-@onready var attack_button: Button = $MarginContainer/HBoxContainer/AttackButton
-@onready var defend_button: Button = $MarginContainer/HBoxContainer/DefendButton
-@onready var cast_button: Button = $MarginContainer/HBoxContainer/CastButton
-@onready var item_button: Button = $MarginContainer/HBoxContainer/ItemButton
-@onready var wait_button: Button = $MarginContainer/HBoxContainer/WaitButton
-@onready var run_button: Button = $MarginContainer/HBoxContainer/RunButton
+@onready var attack_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/AttackButton
+@onready var defend_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/DefendButton
+@onready var cast_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/CastButton
+@onready var item_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/ItemButton
+@onready var wait_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/WaitButton
+@onready var run_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/RunButton
+
+# row targeting
+@onready var row_container: HBoxContainer = $MarginContainer/VBoxContainer/RowContainer
+@onready var first_row_button: Button = $MarginContainer/VBoxContainer/HBoxContainer2/FirstRowButton
+@onready var second_row_button: Button = $MarginContainer/VBoxContainer/HBoxContainer2/SecondRowButton
+@onready var third_row_button: Button = $MarginContainer/VBoxContainer/HBoxContainer2/ThirdRowButton
 
 
 

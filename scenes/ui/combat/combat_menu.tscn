@@ -23,31 +23,54 @@ theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_bottom = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1579584333]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=897686067]
 layout_mode = 2
+
+[node name="RowContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1761999963]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+alignment = 1
+
+[node name="FirstRowButton" type="Button" parent="MarginContainer/VBoxContainer/RowContainer" unique_id=124965014]
+layout_mode = 2
+text = "Row 1"
+
+[node name="SecondRowButton" type="Button" parent="MarginContainer/VBoxContainer/RowContainer" unique_id=1403371178]
+layout_mode = 2
+text = "Row 2"
+
+[node name="ThirdRowButton" type="Button" parent="MarginContainer/VBoxContainer/RowContainer" unique_id=700227899]
+layout_mode = 2
+text = "Row 3"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1579584333]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="AttackButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=199350890]
+[node name="AttackButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=199350890]
 layout_mode = 2
 text = "Attack"
 
-[node name="DefendButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1985304618]
+[node name="DefendButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1985304618]
 layout_mode = 2
 text = "Defend"
 
-[node name="CastButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1987761299]
+[node name="CastButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1987761299]
 layout_mode = 2
 text = "Cast"
 
-[node name="ItemButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=62968093]
+[node name="ItemButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=62968093]
 layout_mode = 2
 text = "Item"
 
-[node name="WaitButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1644831626]
+[node name="WaitButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1644831626]
 layout_mode = 2
 text = "Wait"
 
-[node name="RunButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=439091118]
+[node name="RunButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=439091118]
 layout_mode = 2
 text = "Run"
