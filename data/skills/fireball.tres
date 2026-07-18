@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://buwlis33ghk23"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_g1th6"]
+
+[resource]
+script = ExtResource("1_g1th6")
+skill_id = &"fireball"
+display_name = "Fireball"
+description = "Deals light fire damage to a row of enemies"
+available_classes = Array[int]([4, 5])
+archetype = 2
+element = 0
+is_AOE = true
+stamina_cost = 2
+uses_per_day = 5
+bonus_uses_per_rank = 1
+damage_amount_dice = 1
+damage_amount_rolls = 12
+status_effect = 3
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

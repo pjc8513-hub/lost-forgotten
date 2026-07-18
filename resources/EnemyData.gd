@@ -53,7 +53,8 @@ enum EnemyType {
 @export var resist_spirit: bool = false
 
 @export_group("skills and behavior")
-@export var skills: Array[StringName] #skill ids
+#@export var skills: Array[StringName] #skill ids
+@export var skills: Dictionary [StringName, float] # Skill_ID, chance to use example 0.10 10%
 @export var flee_chance: float = 0.05 # starts at 5%
 @export var has_reach: bool = false
 

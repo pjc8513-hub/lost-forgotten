@@ -3,6 +3,43 @@
 [ext_resource type="PackedScene" uid="uid://cblk1gb73wnc8" path="res://scenes/actors/enemies/EnemyScene.tscn" id="1_veec3"]
 [ext_resource type="Texture2D" uid="uid://c2bda6qh3m3i0" path="res://assets/sprites/enemies/red_jelly.png" id="2_5fouq"]
 
+[sub_resource type="Animation" id="Animation_5fouq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5erqv"]
+resource_name = "attack"
+length = 1.6333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.1666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_66lvb"]
+_data = {
+&"RESET": SubResource("Animation_5fouq"),
+&"attack": SubResource("Animation_5erqv")
+}
+
 [node name="EnemyScene" unique_id=502711961 instance=ExtResource("1_veec3")]
 
 [node name="EnemySprite" parent="." index="0" unique_id=2097108720]
@@ -11,3 +48,7 @@ pixel_size = 0.0035
 texture = ExtResource("2_5fouq")
 hframes = 2
 vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=1169306695]
+root_motion_local = true
+libraries/ = SubResource("AnimationLibrary_66lvb")

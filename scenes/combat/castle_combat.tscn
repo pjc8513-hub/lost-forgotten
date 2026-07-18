@@ -11,6 +11,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xa8nu"]
 shader = ExtResource("8_jl0jg")
+shader_parameter/effect_progress = 1.0
+shader_parameter/effect_strength = 0.0
+shader_parameter/critical_strength = 0.0
+shader_parameter/damage_color = Color(0.75, 0.015, 0.025, 1)
+shader_parameter/critical_color = Color(1, 0.62, 0.18, 1)
 
 [node name="Node3D" type="Node3D" unique_id=736917976]
 script = ExtResource("1_4r7jo")
