@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bpaar2wmwn36f"]
 
-[ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_4r7jo"]
+[ext_resource type="Script" path="res://scenes/combat/CombatArena.gd" id="1_4r7jo"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="2_eycy8"]
 [ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="2_w6qqa"]
 [ext_resource type="Environment" uid="uid://bc3oq0crlyidp" path="res://data/castle_combat.tres" id="3_w6qqa"]
@@ -18,6 +18,10 @@ main_shader_contrast = 1.3599999999999999
 [node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("2_eycy8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
 spawn_id = &"entrance"
+
+[node name="BattleCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2.4)
+fov = 37.849285
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1948999522]
 environment = ExtResource("3_w6qqa")

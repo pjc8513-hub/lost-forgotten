@@ -35,6 +35,7 @@ const INN_WAKE_TIME_SECONDS := 9 * 60 * 60
 @onready var skills_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/SkillsButton
 @onready var quest_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/QuestButton
 @onready var combat_menu: CombatMenu = $HudLayer/HudRoot/CombatBar
+@onready var side_menu_container: VBoxContainer = $HudLayer/HudRoot/MarginContainer2/VBoxContainer
 
 
 var player_movement: GridMovementController
@@ -50,6 +51,7 @@ var _pending_target_skill: SkillData
 var _pending_target_caster: PartyMember
 var _map_transition_running := false
 var _inn_rest_running := false
+var _combat_transition_running := false
 var _main_shader_defaults: Dictionary = {}
 var combat_presenter: CombatPresenter
 
@@ -105,7 +107,8 @@ func _ready() -> void:
 	$Systems.add_child(combat_presenter)
 	combat_presenter.configure(level_root, player, combat_menu)
 	combat_presenter.message_requested.connect(alert.show_message)
-	combat_presenter.combat_closed.connect(_on_combat_closed)
+	combat_presenter.clear_messages_requested.connect(alert.dismiss)
+	combat_presenter.combat_ended.connect(_on_combat_ended)
 	StageManager.configure(level_root, entity_root, effect_root, player)
 	WorldManager.begin_dungeon()
 	StageManager.map_changed.connect(_on_map_changed)
@@ -331,12 +334,96 @@ func _on_door_opened(_door_id: StringName) -> void:
 	EncounterManager.add_door_threat()
 
 func _on_encounter_requested(encounter: CombatEncounter) -> void:
-	if combat_presenter == null or not combat_presenter.start_encounter(encounter):
+	if combat_presenter == null or _map_transition_running or _inn_rest_running or _combat_transition_running:
 		EncounterManager.complete_encounter()
+		return
+	_run_combat_entry(encounter)
 
-func _on_combat_closed(outcome: StringName) -> void:
+func _on_combat_ended(outcome: StringName, rewards: Dictionary) -> void:
+	if _combat_transition_running:
+		return
+	_run_combat_exit(outcome, rewards)
+
+func _run_combat_entry(encounter: CombatEncounter) -> void:
+	_combat_transition_running = true
+	TurnManager.set_state(TurnManager.State.TRANSITION)
+	CommandQueue.clear_queue()
+	await _fade_blackout(1.0)
+	alert.dismiss()
+	side_menu_container.hide()
+	if not combat_presenter.start_encounter(encounter):
+		EncounterManager.complete_encounter()
+		side_menu_container.show()
+		await _fade_blackout(0.0)
+		blackout.visible = false
+		_combat_transition_running = false
+		TurnManager.set_state(TurnManager.State.EXPLORATION)
+		return
+	_apply_main_shader_settings(combat_presenter.get_arena_map_data())
+	await get_tree().create_timer(MAP_TRANSITION_HOLD_TIME).timeout
+	await _fade_blackout(0.0)
+	blackout.visible = false
+	_combat_transition_running = false
+
+func _run_combat_exit(outcome: StringName, rewards: Dictionary) -> void:
+	_combat_transition_running = true
+	TurnManager.set_state(TurnManager.State.TRANSITION)
+	await _fade_blackout(1.0)
+	combat_presenter.close_encounter(outcome)
+	side_menu_container.show()
+	_apply_main_shader_settings(StageManager.current_level as MapData)
+	var reward_message := _apply_combat_rewards(outcome, rewards)
 	EncounterManager.complete_encounter()
-	alert.show_message("Combat won." if outcome == &"victory" else ("The party escaped." if outcome == &"fled" else "The party was defeated."))
+	await get_tree().create_timer(MAP_TRANSITION_HOLD_TIME).timeout
+	await _fade_blackout(0.0)
+	blackout.visible = false
+	_combat_transition_running = false
+	TurnManager.set_state(TurnManager.State.PAUSED if outcome == &"defeat" else TurnManager.State.EXPLORATION)
+	alert.dismiss()
+	alert.show_message(reward_message)
+
+func _fade_blackout(target_alpha: float) -> void:
+	blackout.visible = true
+	var tween := create_tween()
+	tween.tween_property(blackout, "color:a", target_alpha, MAP_TRANSITION_FADE_TIME)
+	await tween.finished
+
+func _apply_combat_rewards(outcome: StringName, rewards: Dictionary) -> String:
+	if outcome == &"fled":
+		return "The party escaped. No rewards were gained."
+	if outcome == &"defeat":
+		return "The party was defeated."
+
+	var xp := maxi(int(rewards.get("xp", 0)), 0)
+	var gold := maxi(int(rewards.get("gold", 0)), 0)
+	if xp > 0:
+		for member in PartyManager.party:
+			if member != null:
+				member.add_xp(xp)
+	if gold > 0:
+		PartyManager.add_gold(gold)
+
+	var reward_items: Array[ItemInstance] = []
+	for value in rewards.get("items", []):
+		var item := value as ItemInstance
+		if item != null:
+			reward_items.append(item)
+	var recipient := PartyManager.selected_party_member
+	if recipient == null and not PartyManager.party.is_empty():
+		recipient = PartyManager.party[0]
+	var received_items := LootDistributor.distribute({"items": reward_items}, recipient)
+
+	var lines: Array[String] = ["Victory!"]
+	lines.append("Party gained %d experience." % xp)
+	lines.append("Found %d gold." % gold)
+	if received_items.is_empty():
+		lines.append("No loot was found.")
+	else:
+		var item_names: Array[String] = []
+		for item in received_items:
+			item_names.append(item.get_display_name())
+		lines.append("Loot: %s" % ", ".join(item_names))
+	return "\n".join(lines)
 
 
 func _begin_targeted_cast(caster: PartyMember, skill: SkillData) -> void:

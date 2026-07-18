@@ -21,6 +21,7 @@ var active_status_effects: Dictionary = {}
 var active_combat_buffs: Dictionary = {}
 var formation_row := 0
 var formation_slot := 0
+var has_fled := false
 
 static func create(template: EnemyData, row: int, slot: int) -> EnemyInstance:
 	var instance := EnemyInstance.new()
@@ -74,3 +75,10 @@ func spend_stamina(amount: int) -> bool:
 		return false
 	current_stamina -= maxi(amount, 0)
 	return true
+
+func get_current_flee_chance() -> float:
+	if enemy_data == null or max_hp <= 0:
+		return 0.0
+	var base_chance := clampf(enemy_data.flee_chance, 0.0, 1.0)
+	var missing_health_ratio := 1.0 - float(current_hp) / float(max_hp)
+	return clampf(base_chance + missing_health_ratio * 0.5, 0.0, 0.95)
