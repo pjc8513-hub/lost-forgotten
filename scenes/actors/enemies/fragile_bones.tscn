@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://qy5iwhtvqd5b"]
+
+[ext_resource type="PackedScene" uid="uid://cblk1gb73wnc8" path="res://scenes/actors/enemies/EnemyScene.tscn" id="1_d8afu"]
+[ext_resource type="Texture2D" uid="uid://cw3i3e07xsca4" path="res://assets/sprites/enemies/Fragile Bones.png" id="2_76xf1"]
+
+[node name="EnemyScene" unique_id=502711961 instance=ExtResource("1_d8afu")]
+
+[node name="EnemySprite" parent="." index="0" unique_id=2097108720]
+offset = Vector2(0, -1)
+texture = ExtResource("2_76xf1")
+vframes = 2

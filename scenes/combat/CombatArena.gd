@@ -54,6 +54,7 @@ func focus_camera_on_enemy(visual: Node3D) -> Tween:
 		_camera_focus_fov = battle_camera.fov
 		_camera_is_focused = true
 	battle_camera.look_at(visual.global_position + Vector3.UP * 0.4, Vector3.UP)
+	battle_camera.rotate_object_local(Vector3.RIGHT, deg_to_rad(-10))
 	if _camera_tween != null and _camera_tween.is_valid():
 		_camera_tween.kill()
 	_camera_tween = create_tween()

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://y8c83ufu6ces"]
+
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_lbxeq"]
+[ext_resource type="PackedScene" uid="uid://qy5iwhtvqd5b" path="res://scenes/actors/enemies/fragile_bones.tscn" id="1_p20ms"]
+[ext_resource type="Texture2D" uid="uid://cw3i3e07xsca4" path="res://assets/sprites/enemies/Fragile Bones.png" id="3_px1n7"]
+
+[resource]
+script = ExtResource("1_lbxeq")
+enemy_id = &"FragileBones"
+display_name = "Fragile Bones"
+sprite_texture = ExtResource("3_px1n7")
+enemy_scene = ExtResource("1_p20ms")
+loot_probability = 0.1
+loot_table = 0
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"
