@@ -234,6 +234,8 @@ func _on_action_resolved(result: Dictionary) -> void:
 		_hide_enemy_visual(target)
 	if result.get("kind", &"") == &"enemy_fled" and actor is EnemyInstance:
 		_hide_enemy_visual(actor)
+	if _arena != null and _session != null:
+		_arena.compact_enemy_rows(_session.enemies, _enemy_visuals)
 
 func _on_combat_finished(outcome: StringName, rewards: Dictionary) -> void:
 	_menu.set_interactable(false)
