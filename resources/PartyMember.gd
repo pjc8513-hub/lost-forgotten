@@ -93,14 +93,14 @@ func is_conscious() -> bool:
 
 func take_damage(amount: int, feedback_type: StringName = &"damage") -> void:
 	var hp_before := current_hp
-	current_hp -= maxi(amount, 0)
+	current_hp = clampi(current_hp - maxi(amount, 0), 0, max_hp)
 	var damage_taken := hp_before - current_hp
 	if damage_taken > 0:
 		health_changed.emit(damage_taken, feedback_type)
 
 func heal(amount: int, feedback_type: StringName = &"healing") -> void:
 	var hp_before := current_hp
-	current_hp += maxi(amount, 0)
+	current_hp = clampi(current_hp + maxi(amount, 0), 0, max_hp)
 	var recovered := current_hp - hp_before
 	if recovered > 0:
 		health_changed.emit(recovered, feedback_type)
@@ -114,7 +114,7 @@ func spend_stamina(amount: int) -> bool:
 	return true
 
 func restore_stamina(amount: int) -> void:
-	current_stamina += maxi(amount, 0)
+	current_stamina = clampi(current_stamina + maxi(amount, 0), 0, max_stamina)
 
 func add_inventory_item(item: ItemInstance) -> bool:
 	if item == null or item.item_data == null:

@@ -408,6 +408,10 @@ func blocks_move(effect_id: int) -> bool:
 	var def: Dictionary = DEFINITIONS.get(effect_id, {})
 	return bool(def.get("blocks_move", false))
 
+func blocks_casting(effect_id: int) -> bool:
+	var def: Dictionary = DEFINITIONS.get(effect_id, {})
+	return bool(def.get("blocks_casting", false))
+
 ## Returns true if Willpower saves can potentially resist or end this effect.
 func is_negative(effect_id: int) -> bool:
 	var def: Dictionary = DEFINITIONS.get(effect_id, {})

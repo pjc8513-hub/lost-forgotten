@@ -107,7 +107,7 @@ func _ready() -> void:
 	entity_root.add_child(player)
 	combat_presenter = CombatPresenter.new()
 	$Systems.add_child(combat_presenter)
-	combat_presenter.configure(level_root, player, combat_menu)
+	combat_presenter.configure(level_root, player, combat_menu, skill_menu)
 	combat_presenter.message_requested.connect(alert.show_message)
 	combat_presenter.clear_messages_requested.connect(alert.dismiss)
 	combat_presenter.battle_log_requested.connect(battle_log_control.add_message)
@@ -304,6 +304,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_party_member_card_selection_requested(index: int) -> void:
 	if _pending_target_skill != null:
 		_execute_pending_target_skill(index)
+		return
+	if _combat_active and combat_presenter != null and combat_presenter.select_party_target(index):
 		return
 	PartyManager.select_party_member(index)
 

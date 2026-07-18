@@ -54,6 +54,7 @@ enum Status_effect {
 
 @export var target_self: bool = false
 @export var is_AOE: bool = false
+@export var has_reach: bool = true
 
 # cost
 @export var stamina_cost: int = 0

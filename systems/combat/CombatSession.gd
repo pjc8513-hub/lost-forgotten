@@ -58,8 +58,17 @@ func get_targetable_enemy_rows(attacker: Resource) -> Array[int]:
 func get_enemy_targets_in_row(attacker: Resource, row: int) -> Array[EnemyInstance]:
 	return CombatTargeting.enemies_in_row(attacker, enemies, row)
 
+func get_targetable_enemy_rows_for_skill(skill: SkillData) -> Array[int]:
+	return CombatTargeting.enemy_rows_for_skill(skill, enemies)
+
+func get_enemy_targets_in_row_for_skill(skill: SkillData, row: int) -> Array[EnemyInstance]:
+	return CombatTargeting.enemies_in_row_for_skill(skill, enemies, row)
+
 func get_party_targets_for(attacker: Resource) -> Array[PartyMember]:
 	return CombatTargeting.party_targets_for(attacker, party)
+
+func get_party_targets_for_skill(skill: SkillData) -> Array[PartyMember]:
+	return CombatTargeting.party_targets_for_skill(skill, party)
 
 func perform_enemy_attack(target: PartyMember) -> void:
 	if not _can_enemy_act():
@@ -77,13 +86,14 @@ func perform_enemy_skill(skill: SkillData, target: PartyMember) -> void:
 	if not _can_enemy_act():
 		_finish_current_turn({"kind": &"skipped", "actor": current_actor, "message": "No valid target."})
 		return
-	var valid_targets := get_party_targets_for(current_actor)
+	var valid_targets := get_party_targets_for_skill(skill)
 	if target not in valid_targets:
 		if valid_targets.is_empty():
 			_finish_current_turn({"kind": &"skipped", "actor": current_actor, "message": "No valid target."})
 			return
 		target = valid_targets.pick_random()
-	_finish_current_turn(CombatRules.use_skill(current_actor, target, skill))
+	var skill_targets: Array = valid_targets if skill.is_AOE else [target]
+	_finish_current_turn(CombatRules.use_skill(current_actor, skill_targets, skill))
 
 func perform_enemy_wait() -> void:
 	if _can_enemy_act():
@@ -154,7 +164,14 @@ func _advance_resolution() -> void:
 		actor.active_combat_buffs.erase("armor_class")
 		current_actor = actor
 		if not CombatRules.can_act(actor):
-			action_resolved.emit({"kind": &"skipped", "actor": actor, "message": "%s cannot act." % CombatStats.display_name(actor)})
+			var blocking_effects := CombatRules.consume_blocked_turn(actor)
+			var reason := ""
+			if not blocking_effects.is_empty():
+				var labels: Array[String] = []
+				for effect_id in blocking_effects:
+					labels.append(StatusEffects.get_label(effect_id))
+				reason = " (%s)" % ", ".join(labels)
+			action_resolved.emit({"kind": &"skipped", "actor": actor, "message": "%s cannot act%s." % [CombatStats.display_name(actor), reason]})
 			current_actor = null
 			continue
 		if actor is PartyMember:
@@ -200,9 +217,9 @@ func _execute_player_command(command: CombatCommand) -> void:
 			command.actor.active_combat_buffs["armor_class"] = {"value": -2, "expires": &"next_turn"}
 			result = {"kind": &"defend", "actor": command.actor}
 		CombatCommand.CAST:
-			var spell_target := _resolve_enemy_target(command.actor, command.target, command.target_row)
-			if spell_target != null and command.skill != null:
-				result = CombatRules.use_skill(command.actor, spell_target, command.skill)
+			var spell_targets := _resolve_skill_targets(command)
+			if not spell_targets.is_empty() and command.skill != null:
+				result = CombatRules.use_skill(command.actor, spell_targets, command.skill)
 			else:
 				result = _invalid_command_result(command, "The spell target is no longer available.")
 		CombatCommand.ITEM:
@@ -293,6 +310,27 @@ func _resolve_enemy_target(
 		return null
 	var targets := get_enemy_targets_in_row(attacker, legal_rows[0])
 	return null if targets.is_empty() else targets.pick_random()
+
+func _resolve_skill_targets(command: CombatCommand) -> Array:
+	if command.skill == null:
+		return []
+	if command.skill.archetype == SkillData.Archetype.PARTY_SPELL:
+		if command.skill.is_AOE:
+			return _living_party()
+		if command.skill.target_self:
+			return [command.actor] if command.actor.is_alive() else []
+		if command.target is PartyMember and command.target in _living_party():
+			return [command.target]
+		return []
+	var legal_rows := get_targetable_enemy_rows_for_skill(command.skill)
+	if command.target_row not in legal_rows:
+		return []
+	var row_targets := get_enemy_targets_in_row_for_skill(command.skill, command.target_row)
+	if command.skill.is_AOE:
+		return row_targets
+	if command.target in row_targets:
+		return [command.target]
+	return [] if row_targets.is_empty() else [row_targets.pick_random()]
 
 func _invalid_command_result(command: CombatCommand, message: String) -> Dictionary:
 	return {"kind": &"skipped", "actor": command.actor, "message": message}

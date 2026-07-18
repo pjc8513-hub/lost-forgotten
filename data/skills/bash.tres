@@ -11,6 +11,7 @@ available_classes = Array[int]([1])
 archetype = 2
 element = 4
 maximum_rank = 1
+has_reach = false
 stamina_cost = 5
 charge_turns = 1
 damage_amount_dice = 2

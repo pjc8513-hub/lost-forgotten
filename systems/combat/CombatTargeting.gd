@@ -12,6 +12,12 @@ static func has_reach(actor: Resource) -> bool:
 	return false
 
 static func enemy_rows_for(attacker: Resource, enemies: Array[EnemyInstance]) -> Array[int]:
+	return enemy_rows_for_reach(has_reach(attacker), enemies)
+
+static func enemy_rows_for_skill(skill: SkillData, enemies: Array[EnemyInstance]) -> Array[int]:
+	return enemy_rows_for_reach(skill != null and skill.has_reach, enemies)
+
+static func enemy_rows_for_reach(can_reach: bool, enemies: Array[EnemyInstance]) -> Array[int]:
 	var occupied_rows: Array[int] = []
 	for enemy in enemies:
 		if enemy == null or not enemy.is_alive() or enemy.has_fled:
@@ -19,7 +25,7 @@ static func enemy_rows_for(attacker: Resource, enemies: Array[EnemyInstance]) ->
 		if enemy.formation_row not in occupied_rows:
 			occupied_rows.append(enemy.formation_row)
 	occupied_rows.sort()
-	if occupied_rows.is_empty() or has_reach(attacker):
+	if occupied_rows.is_empty() or can_reach:
 		return occupied_rows
 	return [occupied_rows[0]]
 
@@ -36,8 +42,33 @@ static func enemies_in_row(
 			result.append(enemy)
 	return result
 
+static func enemies_in_row_for_skill(
+	skill: SkillData,
+	enemies: Array[EnemyInstance],
+	row: int
+) -> Array[EnemyInstance]:
+	var result: Array[EnemyInstance] = []
+	if row not in enemy_rows_for_skill(skill, enemies):
+		return result
+	for enemy in enemies:
+		if enemy != null and enemy.is_alive() and not enemy.has_fled and enemy.formation_row == row:
+			result.append(enemy)
+	return result
+
 static func party_targets_for(
 	attacker: Resource,
+	party: Array[PartyMember]
+) -> Array[PartyMember]:
+	return party_targets_for_reach(has_reach(attacker), party)
+
+static func party_targets_for_skill(
+	skill: SkillData,
+	party: Array[PartyMember]
+) -> Array[PartyMember]:
+	return party_targets_for_reach(skill != null and skill.has_reach, party)
+
+static func party_targets_for_reach(
+	can_reach: bool,
 	party: Array[PartyMember]
 ) -> Array[PartyMember]:
 	var front: Array[PartyMember] = []
@@ -49,7 +80,7 @@ static func party_targets_for(
 			front.append(member)
 		else:
 			back.append(member)
-	if has_reach(attacker):
+	if can_reach:
 		front.append_array(back)
 		return front
 	return front if not front.is_empty() else back

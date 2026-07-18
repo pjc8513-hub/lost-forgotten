@@ -38,7 +38,7 @@ func _process(_delta: float) -> void:
 	health_bar.position = screen_position + Vector2(-50.0, -42.0)
 	hit_animation.position = screen_position + Vector2(0.0, -10.0)
 
-func show_health_feedback(current_hp: int, max_hp: int, amount: int, hit: bool) -> void:
+func show_health_feedback(current_hp: int, max_hp: int, amount: int, hit: bool, feedback_text: String = "") -> void:
 	if _feedback_tween != null and _feedback_tween.is_valid():
 		_feedback_tween.kill()
 	_feedback_generation += 1
@@ -51,7 +51,7 @@ func show_health_feedback(current_hp: int, max_hp: int, amount: int, hit: bool) 
 	health_bar.value = displayed_hp
 	hit_animation.show()
 	damage_label.show()
-	damage_label.text = str(amount) if hit else "MISS"
+	damage_label.text = feedback_text if not feedback_text.is_empty() else (str(amount) if hit else "MISS")
 	damage_label.add_theme_color_override("font_color", Color.WHITE if hit else Color(1.0, 0.86, 0.25, 1.0))
 
 	if hit:
