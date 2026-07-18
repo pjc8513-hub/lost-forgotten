@@ -10,10 +10,12 @@ const FEEDBACK_DISPLAY_TIME := 0.7
 const HEALTH_TWEEN_TIME := 0.22
 
 var _feedback_tween: Tween
+var _feedback_generation := 0
 
 func _exit_tree() -> void:
 	if _feedback_tween != null and _feedback_tween.is_valid():
 		_feedback_tween.kill()
+	_feedback_generation += 1
 	_feedback_tween = null
 
 func _ready() -> void:
@@ -37,6 +39,8 @@ func _process(_delta: float) -> void:
 func show_health_feedback(current_hp: int, max_hp: int, amount: int, hit: bool) -> void:
 	if _feedback_tween != null and _feedback_tween.is_valid():
 		_feedback_tween.kill()
+	_feedback_generation += 1
+	var feedback_generation := _feedback_generation
 
 	canvas_layer.show()
 	health_bar.show()
@@ -51,9 +55,10 @@ func show_health_feedback(current_hp: int, max_hp: int, amount: int, hit: bool) 
 	_feedback_tween = create_tween()
 	if hit:
 		_feedback_tween.tween_property(health_bar, "value", current_hp, HEALTH_TWEEN_TIME)
-	_feedback_tween.tween_interval(FEEDBACK_DISPLAY_TIME)
-	_feedback_tween.tween_callback(_hide_health_feedback)
-	await _feedback_tween.finished
+	var feedback_duration := FEEDBACK_DISPLAY_TIME + (HEALTH_TWEEN_TIME if hit else 0.0)
+	await get_tree().create_timer(feedback_duration).timeout
+	if feedback_generation == _feedback_generation:
+		_hide_health_feedback()
 
 func _hide_health_feedback() -> void:
 	hit_animation.hide()
