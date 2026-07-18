@@ -95,7 +95,10 @@ func _refresh(member_index: int, member: PartyMember) -> void:
 
 
 func _get_ordered_skills(member: PartyMember) -> Array[SkillData]:
-	var skills := SkillSystem.get_learned_skills(member, COMBAT_ARCHETYPES if _mode == Mode.COMBAT else [])
+	var archetypes: Array[SkillData.Archetype] = []
+	if _mode == Mode.COMBAT:
+		archetypes.assign(COMBAT_ARCHETYPES)
+	var skills := SkillSystem.get_learned_skills(member, archetypes)
 	skills.sort_custom(_sort_skills)
 	return skills
 
