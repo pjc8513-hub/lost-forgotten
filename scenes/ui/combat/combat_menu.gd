@@ -7,7 +7,7 @@ signal row_requested(row: int)
 @onready var defend_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/DefendButton
 @onready var cast_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/CastButton
 @onready var item_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/ItemButton
-@onready var wait_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/WaitButton
+@onready var auto_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/AutoButton
 @onready var run_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/RunButton
 
 # row targeting
@@ -23,7 +23,7 @@ func _ready() -> void:
 	defend_button.pressed.connect(action_requested.emit.bind(&"defend"))
 	cast_button.pressed.connect(action_requested.emit.bind(&"cast"))
 	item_button.pressed.connect(action_requested.emit.bind(&"item"))
-	wait_button.pressed.connect(action_requested.emit.bind(&"wait"))
+	auto_button.pressed.connect(action_requested.emit.bind(&"auto"))
 	run_button.pressed.connect(action_requested.emit.bind(&"run"))
 	first_row_button.pressed.connect(row_requested.emit.bind(0))
 	second_row_button.pressed.connect(row_requested.emit.bind(1))
@@ -31,14 +31,14 @@ func _ready() -> void:
 	hide_row_targeting()
 
 func set_interactable(enabled: bool) -> void:
-	for button in [attack_button, defend_button, cast_button, item_button, wait_button, run_button]:
+	for button in [attack_button, defend_button, cast_button, item_button, auto_button, run_button]:
 		button.disabled = not enabled
 	if not enabled:
 		hide_row_targeting()
 
 func show_row_targeting(available_rows: Array[int]) -> void:
 	row_container.show()
-	for button in [attack_button, defend_button, cast_button, item_button, wait_button, run_button]:
+	for button in [attack_button, defend_button, cast_button, item_button, auto_button, run_button]:
 		button.disabled = true
 	var row_buttons: Array[Button] = [first_row_button, second_row_button, third_row_button]
 	for row in row_buttons.size():

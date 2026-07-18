@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://ihsvbv62yy72" path="res://assets/font/Pixel Game.otf" id="1_wol4x"]
 
 [node name="BattleLogControl" type="Control" unique_id=2062449148]
+visible = false
 layout_mode = 3
 anchor_left = 0.836
 anchor_right = 1.0

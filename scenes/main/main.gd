@@ -36,6 +36,7 @@ const INN_WAKE_TIME_SECONDS := 9 * 60 * 60
 @onready var quest_button: TextureButton = $HudLayer/HudRoot/MarginContainer2/VBoxContainer/QuestButton
 @onready var combat_menu: CombatMenu = $HudLayer/HudRoot/CombatBar
 @onready var side_menu_container: VBoxContainer = $HudLayer/HudRoot/MarginContainer2/VBoxContainer
+@onready var battle_log_control: BattleLogControl = $HudLayer/HudRoot/BattleLogControl
 
 
 var player_movement: GridMovementController
@@ -109,6 +110,7 @@ func _ready() -> void:
 	combat_presenter.configure(level_root, player, combat_menu)
 	combat_presenter.message_requested.connect(alert.show_message)
 	combat_presenter.clear_messages_requested.connect(alert.dismiss)
+	combat_presenter.battle_log_requested.connect(battle_log_control.add_message)
 	combat_presenter.combat_ended.connect(_on_combat_ended)
 	StageManager.configure(level_root, entity_root, effect_root, player)
 	WorldManager.begin_dungeon()
@@ -355,8 +357,11 @@ func _run_combat_entry(encounter: CombatEncounter) -> void:
 	await _fade_blackout(1.0)
 	alert.dismiss()
 	_set_exploration_hud_enabled(false)
+	battle_log_control.clear()
+	battle_log_control.open()
 	if not combat_presenter.start_encounter(encounter):
 		EncounterManager.complete_encounter()
+		battle_log_control.close()
 		_set_exploration_hud_enabled(true)
 		await _fade_blackout(0.0)
 		blackout.visible = false
@@ -374,6 +379,7 @@ func _run_combat_exit(outcome: StringName, rewards: Dictionary) -> void:
 	TurnManager.set_state(TurnManager.State.TRANSITION)
 	await _fade_blackout(1.0)
 	combat_presenter.close_encounter(outcome)
+	battle_log_control.close()
 	_set_exploration_hud_enabled(true)
 	_apply_main_shader_settings(StageManager.current_level as MapData)
 	var reward_message := _apply_combat_rewards(outcome, rewards)

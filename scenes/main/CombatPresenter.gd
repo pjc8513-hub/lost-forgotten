@@ -3,6 +3,7 @@ extends Node
 
 signal message_requested(message: String)
 signal clear_messages_requested
+signal battle_log_requested(message: String)
 signal combat_ended(outcome: StringName, rewards: Dictionary)
 
 var _level_root: Node
@@ -116,7 +117,7 @@ func _on_resolution_started() -> void:
 	_clear_row_targeting()
 	TurnManager.set_state(TurnManager.State.TRANSITION)
 	_menu.set_interactable(false)
-	message_requested.emit("Commands locked. Resolving initiative.")
+	battle_log_requested.emit("Commands locked. Resolving initiative.")
 
 func _on_turn_started(actor: Resource) -> void:
 	if not actor is EnemyInstance:
@@ -207,21 +208,21 @@ func _on_action_resolved(result: Dictionary) -> void:
 	match result.get("kind", &""):
 		&"attack":
 			if result.get("hit", false):
-				message_requested.emit("%s hits %s for %d." % [CombatStats.display_name(actor), CombatStats.display_name(target), result.get("damage", 0)])
+				battle_log_requested.emit("%s hits %s for %d." % [CombatStats.display_name(actor), CombatStats.display_name(target), result.get("damage", 0)])
 			else:
-				message_requested.emit("%s misses %s." % [CombatStats.display_name(actor), CombatStats.display_name(target)])
+				battle_log_requested.emit("%s misses %s." % [CombatStats.display_name(actor), CombatStats.display_name(target)])
 		&"skill":
 			if result.get("resisted", false):
-				message_requested.emit("%s resists %s." % [CombatStats.display_name(target), result.skill.display_name])
+				battle_log_requested.emit("%s resists %s." % [CombatStats.display_name(target), result.skill.display_name])
 			elif result.get("success", false):
-				message_requested.emit("%s uses %s." % [CombatStats.display_name(actor), result.skill.display_name])
+				battle_log_requested.emit("%s uses %s." % [CombatStats.display_name(actor), result.skill.display_name])
 			else:
-				message_requested.emit(result.get("message", "The skill failed."))
-		&"defend": message_requested.emit("%s defends." % CombatStats.display_name(actor))
-		&"item": message_requested.emit("%s uses %s." % [CombatStats.display_name(actor), result.get("item_name", "an item")])
-		&"run": message_requested.emit("The party escapes!" if result.get("success", false) else "%s fails to escape." % CombatStats.display_name(actor))
-		&"enemy_fled": message_requested.emit("%s flees from battle!" % CombatStats.display_name(actor))
-		&"skipped": message_requested.emit(result.get("message", "%s cannot act." % CombatStats.display_name(actor)))
+				battle_log_requested.emit(result.get("message", "The skill failed."))
+		&"defend": battle_log_requested.emit("%s defends." % CombatStats.display_name(actor))
+		&"item": battle_log_requested.emit("%s uses %s." % [CombatStats.display_name(actor), result.get("item_name", "an item")])
+		&"run": battle_log_requested.emit("The party escapes!" if result.get("success", false) else "%s fails to escape." % CombatStats.display_name(actor))
+		&"enemy_fled": battle_log_requested.emit("%s flees from battle!" % CombatStats.display_name(actor))
+		&"skipped": battle_log_requested.emit(result.get("message", "%s cannot act." % CombatStats.display_name(actor)))
 	if target is EnemyInstance and not target.is_alive():
 		_hide_enemy_visual(target)
 	if result.get("kind", &"") == &"enemy_fled" and actor is EnemyInstance:

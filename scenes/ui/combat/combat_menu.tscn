@@ -67,9 +67,9 @@ text = "Cast"
 layout_mode = 2
 text = "Item"
 
-[node name="WaitButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1644831626]
+[node name="AutoButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1644831626]
 layout_mode = 2
-text = "Wait"
+text = "Auto"
 
 [node name="RunButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=439091118]
 layout_mode = 2
