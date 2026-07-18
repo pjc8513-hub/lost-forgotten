@@ -250,7 +250,12 @@ func _present_action(result: Dictionary) -> void:
 		var animation_duration := 0.0
 		if attacker_visual != null and attacker_visual.has_method("play_attack_animation"):
 			animation_duration = attacker_visual.play_attack_animation()
-		await get_tree().create_timer(maxf(animation_duration, ENEMY_ATTACK_FEEDBACK_TIME)).timeout
+		var damage_effect_duration := 0.0
+		if result.get("hit", false) and _arena != null:
+			damage_effect_duration = _arena.play_party_damage_effect(bool(result.get("critical", false)))
+		var presentation_duration := maxf(animation_duration, ENEMY_ATTACK_FEEDBACK_TIME)
+		presentation_duration = maxf(presentation_duration, damage_effect_duration)
+		await get_tree().create_timer(presentation_duration).timeout
 
 	if focused_enemy != null:
 		var restore_tween := _arena.restore_camera()

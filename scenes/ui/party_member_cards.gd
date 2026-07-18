@@ -32,7 +32,12 @@ func _ready() -> void:
 	_selected_style.border_color = Color(0.95, 0.76, 0.28)
 	_selected_style.set_border_width_all(2)
 	damage_label.visible = false
+	damage_label.z_index = 10
 	damage_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	damage_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	damage_label.add_theme_font_size_override("font_size", 20)
+	damage_label.add_theme_constant_override("outline_size", 4)
+	damage_label.add_theme_color_override("font_outline_color", Color.BLACK)
 	popup_menu.id_pressed.connect(_on_popup_menu_id_pressed)
 	refresh()
 
@@ -137,11 +142,11 @@ func _show_health_feedback(text: String, color: Color, darken_portrait := false)
 	damage_label.add_theme_color_override("font_color", color)
 	damage_label.modulate.a = 1.0
 	damage_label.visible = true
-	portrait.modulate = ATTACK_PORTRAIT_MODULATION if darken_portrait else Color.WHITE
+	portrait.self_modulate = ATTACK_PORTRAIT_MODULATION if darken_portrait else Color.WHITE
 	_feedback_tween = create_tween()
 	_feedback_tween.tween_interval(FEEDBACK_DISPLAY_TIME)
 	_feedback_tween.set_parallel(true)
 	_feedback_tween.tween_property(damage_label, "modulate:a", 0.0, FEEDBACK_FADE_TIME)
-	_feedback_tween.tween_property(portrait, "modulate", Color.WHITE, FEEDBACK_FADE_TIME)
+	_feedback_tween.tween_property(portrait, "self_modulate", Color.WHITE, FEEDBACK_FADE_TIME)
 	_feedback_tween.set_parallel(false)
 	_feedback_tween.tween_callback(damage_label.hide)

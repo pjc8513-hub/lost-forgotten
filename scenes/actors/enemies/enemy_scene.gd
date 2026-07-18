@@ -25,8 +25,8 @@ func _ready() -> void:
 	health_bar.size = Vector2(100.0, 18.0)
 	health_bar.position = Vector2(-50.0, -42.0)
 	hit_animation.hide()
-	damage_label.position = Vector2(-20.0, -12.0)
-	damage_label.size = Vector2(40.0, 24.0)
+	damage_label.position = Vector2(-45.0, -14.0)
+	damage_label.size = Vector2(90.0, 28.0)
 	damage_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	damage_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 
@@ -77,7 +77,7 @@ func show_flee_feedback() -> void:
 
 	canvas_layer.show()
 	health_bar.hide()
-	hit_animation.hide()
+	hit_animation.show()
 	damage_label.show()
 	damage_label.text = "Flees!"
 	damage_label.add_theme_color_override("font_color", Color(1.0, 0.86, 0.25, 1.0))

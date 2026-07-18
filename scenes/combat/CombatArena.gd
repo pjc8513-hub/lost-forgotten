@@ -2,11 +2,14 @@ class_name CombatArena
 extends MapData
 
 @onready var battle_camera: Camera3D = $BattleCamera
+@onready var party_damage_overlay := get_node_or_null("canvaslayer/CanvasLayer/ColorRect") as ColorRect
 
 const ROW_PIXEL_SIZES := [0.0035, 0.0045, 0.0055]
 const ROW_FADE_DURATION := 0.18
 const CAMERA_ZOOM_FOV := 33.0
 const CAMERA_TWEEN_DURATION := 0.16
+const PARTY_DAMAGE_EFFECT_TIME := 0.42
+const PARTY_CRITICAL_EFFECT_TIME := 0.62
 
 var _enemy_row_tween: Tween
 var _enemy_row_transition_id := 0
@@ -14,6 +17,14 @@ var _camera_focus_transform: Transform3D
 var _camera_focus_fov := 0.0
 var _camera_is_focused := false
 var _camera_tween: Tween
+var _party_damage_material: ShaderMaterial
+var _party_damage_tween: Tween
+
+func _ready() -> void:
+	if party_damage_overlay != null and party_damage_overlay.material is ShaderMaterial:
+		party_damage_overlay.material = party_damage_overlay.material.duplicate() as Material
+		_party_damage_material = party_damage_overlay.material as ShaderMaterial
+		_party_damage_material.set_shader_parameter("effect_strength", 0.0)
 
 func _exit_tree() -> void:
 	if _enemy_row_tween != null and _enemy_row_tween.is_valid():
@@ -22,6 +33,11 @@ func _exit_tree() -> void:
 	if _camera_tween != null and _camera_tween.is_valid():
 		_camera_tween.kill()
 	_camera_tween = null
+	if _party_damage_tween != null and _party_damage_tween.is_valid():
+		_party_damage_tween.kill()
+	_party_damage_tween = null
+	if _party_damage_material != null:
+		_party_damage_material.set_shader_parameter("effect_strength", 0.0)
 
 func activate_camera() -> bool:
 	if battle_camera == null:
@@ -79,6 +95,32 @@ func _clear_camera_focus(tween: Tween) -> void:
 		return
 	_camera_tween = null
 	_camera_is_focused = false
+
+func play_party_damage_effect(critical: bool) -> float:
+	if _party_damage_material == null:
+		return 0.0
+	if _party_damage_tween != null and _party_damage_tween.is_valid():
+		_party_damage_tween.kill()
+	var duration := PARTY_CRITICAL_EFFECT_TIME if critical else PARTY_DAMAGE_EFFECT_TIME
+	_party_damage_material.set_shader_parameter("effect_progress", 0.0)
+	_party_damage_material.set_shader_parameter("effect_strength", 1.0)
+	_party_damage_material.set_shader_parameter("critical_strength", 1.0 if critical else 0.0)
+	_party_damage_tween = create_tween()
+	_party_damage_tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	_party_damage_tween.tween_method(_set_party_damage_effect_progress, 0.0, 1.0, duration)
+	_party_damage_tween.finished.connect(_clear_party_damage_effect.bind(_party_damage_tween))
+	return duration
+
+func _set_party_damage_effect_progress(progress: float) -> void:
+	if _party_damage_material != null:
+		_party_damage_material.set_shader_parameter("effect_progress", progress)
+
+func _clear_party_damage_effect(tween: Tween) -> void:
+	if _party_damage_tween != tween:
+		return
+	_party_damage_tween = null
+	if _party_damage_material != null:
+		_party_damage_material.set_shader_parameter("effect_strength", 0.0)
 
 ## Removes empty gaps in the enemy formation after a row has been defeated.
 ## The EnemyInstance rows are updated before the visual transition starts so

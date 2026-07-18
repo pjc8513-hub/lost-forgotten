@@ -8,6 +8,7 @@ static func basic_attack(attacker: Resource, target: Resource) -> Dictionary:
 	# Descending AC: lower AC raises the number the attacker must reach.
 	var target_number := 20 - CombatStats.armor_class(target)
 	var hit := attack_roll.total >= target_number
+	var critical := hit and not attack_roll.rolls.is_empty() and attack_roll.rolls[0] == 20
 	var damage := 0
 	if hit:
 		var profile := CombatStats.damage_profile(attacker)
@@ -15,7 +16,7 @@ static func basic_attack(attacker: Resource, target: Resource) -> Dictionary:
 		var sides := maxi(int(profile.get("dice_sides", 0)), 1)
 		damage = maxi(DiceRoller.roll(count, sides, int(profile.get("bonus", 0))).total, 1)
 		target.take_damage(damage)
-	return {"kind": &"attack", "actor": attacker, "target": target, "roll": attack_roll.total, "target_number": target_number, "hit": hit, "damage": damage}
+	return {"kind": &"attack", "actor": attacker, "target": target, "roll": attack_roll.total, "target_number": target_number, "hit": hit, "critical": critical, "damage": damage}
 
 static func use_skill(caster: Resource, target: Resource, skill: SkillData) -> Dictionary:
 	if skill == null or not caster.learned_skills.has(skill.skill_id):
