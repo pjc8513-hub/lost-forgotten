@@ -146,6 +146,13 @@ func _on_action_requested(action: StringName) -> void:
 	var actor := _session.planning_actor
 	var command := CombatCommand.create(actor, action)
 	match action:
+		CombatCommand.AUTO:
+			var queued_count := _session.queue_auto_attack_commands()
+			if queued_count <= 0:
+				message_requested.emit("No party members are eligible to auto attack.")
+			else:
+				battle_log_requested.emit("Auto queued attacks for %d party member%s." % [queued_count, "" if queued_count == 1 else "s"])
+			return
 		CombatCommand.ATTACK:
 			_begin_row_targeting(actor, action)
 			return

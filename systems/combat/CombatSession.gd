@@ -37,6 +37,20 @@ func queue_player_command(command: CombatCommand) -> bool:
 	_request_next_command()
 	return true
 
+func queue_auto_attack_commands() -> int:
+	if _finished or planning_actor == null:
+		return 0
+	var queued_count := 0
+	while _planning_index < _eligible_party.size():
+		var actor := _eligible_party[_planning_index]
+		if actor != null and actor.is_alive() and CombatRules.can_act(actor):
+			_planned_commands[actor] = _create_auto_attack_command(actor)
+			queued_count += 1
+		_planning_index += 1
+	planning_actor = null
+	_request_next_command()
+	return queued_count
+
 func get_targetable_enemy_rows(attacker: Resource) -> Array[int]:
 	return CombatTargeting.enemy_rows_for(attacker, enemies)
 
@@ -189,7 +203,7 @@ func _execute_player_command(command: CombatCommand) -> void:
 				_end(&"fled")
 				return
 		_:
-			result = {"kind": &"wait", "actor": command.actor}
+			result = _invalid_command_result(command, "That command is no longer available.")
 	action_resolved.emit(result)
 
 func _finish_current_turn(result: Dictionary) -> void:
@@ -262,11 +276,24 @@ func _resolve_enemy_target(
 func _invalid_command_result(command: CombatCommand, message: String) -> Dictionary:
 	return {"kind": &"skipped", "actor": command.actor, "message": message}
 
+func _create_auto_attack_command(actor: PartyMember) -> CombatCommand:
+	var rows := get_targetable_enemy_rows(actor)
+	var target: EnemyInstance = null
+	var target_row := -1
+	if not rows.is_empty():
+		target_row = rows[0]
+		var targets := get_enemy_targets_in_row(actor, target_row)
+		if not targets.is_empty():
+			target = targets[0]
+	var command := CombatCommand.create(actor, CombatCommand.ATTACK, target)
+	command.target_row = target_row
+	return command
+
 func _can_enemy_act() -> bool:
 	return not _finished and current_actor is EnemyInstance and current_actor.is_alive() and not current_actor.has_fled
 
 func _is_supported_action(action: StringName) -> bool:
-	return action in [CombatCommand.ATTACK, CombatCommand.DEFEND, CombatCommand.CAST, CombatCommand.ITEM, CombatCommand.WAIT, CombatCommand.RUN]
+	return action in [CombatCommand.ATTACK, CombatCommand.DEFEND, CombatCommand.CAST, CombatCommand.ITEM, CombatCommand.RUN]
 
 func _living_party() -> Array[PartyMember]:
 	var result: Array[PartyMember] = []

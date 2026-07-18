@@ -5,7 +5,7 @@ const ATTACK := &"attack"
 const DEFEND := &"defend"
 const CAST := &"cast"
 const ITEM := &"item"
-const WAIT := &"wait"
+const AUTO := &"auto"
 const RUN := &"run"
 
 var actor: Resource
