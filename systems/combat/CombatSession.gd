@@ -37,16 +37,37 @@ func queue_player_command(command: CombatCommand) -> bool:
 	_request_next_command()
 	return true
 
+func get_targetable_enemy_rows(attacker: Resource) -> Array[int]:
+	return CombatTargeting.enemy_rows_for(attacker, enemies)
+
+func get_enemy_targets_in_row(attacker: Resource, row: int) -> Array[EnemyInstance]:
+	return CombatTargeting.enemies_in_row(attacker, enemies, row)
+
+func get_party_targets_for(attacker: Resource) -> Array[PartyMember]:
+	return CombatTargeting.party_targets_for(attacker, party)
+
 func perform_enemy_attack(target: PartyMember) -> void:
-	if not _can_enemy_act() or target == null or not target.is_alive():
+	if not _can_enemy_act():
 		_finish_current_turn({"kind": &"skipped", "actor": current_actor, "message": "No valid target."})
 		return
+	var valid_targets := get_party_targets_for(current_actor)
+	if target not in valid_targets:
+		if valid_targets.is_empty():
+			_finish_current_turn({"kind": &"skipped", "actor": current_actor, "message": "No valid target."})
+			return
+		target = valid_targets.pick_random()
 	_finish_current_turn(CombatRules.basic_attack(current_actor, target))
 
 func perform_enemy_skill(skill: SkillData, target: PartyMember) -> void:
-	if not _can_enemy_act() or target == null or not target.is_alive():
+	if not _can_enemy_act():
 		_finish_current_turn({"kind": &"skipped", "actor": current_actor, "message": "No valid target."})
 		return
+	var valid_targets := get_party_targets_for(current_actor)
+	if target not in valid_targets:
+		if valid_targets.is_empty():
+			_finish_current_turn({"kind": &"skipped", "actor": current_actor, "message": "No valid target."})
+			return
+		target = valid_targets.pick_random()
 	_finish_current_turn(CombatRules.use_skill(current_actor, target, skill))
 
 func perform_enemy_wait() -> void:
@@ -140,7 +161,7 @@ func _execute_player_command(command: CombatCommand) -> void:
 	var result: Dictionary
 	match command.action:
 		CombatCommand.ATTACK:
-			var attack_target := _resolve_enemy_target(command.target)
+			var attack_target := _resolve_enemy_target(command.actor, command.target, command.target_row)
 			if attack_target != null:
 				result = CombatRules.basic_attack(command.actor, attack_target)
 			else:
@@ -149,7 +170,7 @@ func _execute_player_command(command: CombatCommand) -> void:
 			command.actor.active_combat_buffs["armor_class"] = {"value": -2, "expires": &"next_turn"}
 			result = {"kind": &"defend", "actor": command.actor}
 		CombatCommand.CAST:
-			var spell_target := _resolve_enemy_target(command.target)
+			var spell_target := _resolve_enemy_target(command.actor, command.target, command.target_row)
 			if spell_target != null and command.skill != null:
 				result = CombatRules.use_skill(command.actor, spell_target, command.skill)
 			else:
@@ -219,11 +240,24 @@ func _empty_rewards() -> Dictionary:
 func _is_valid_enemy_target(target: Resource) -> bool:
 	return target is EnemyInstance and target.is_alive() and not target.has_fled
 
-func _resolve_enemy_target(preferred_target: Resource) -> EnemyInstance:
-	if _is_valid_enemy_target(preferred_target):
+func _resolve_enemy_target(
+	attacker: Resource,
+	preferred_target: Resource,
+	preferred_row: int
+) -> EnemyInstance:
+	var legal_rows := get_targetable_enemy_rows(attacker)
+	if preferred_row in legal_rows:
+		var preferred_row_targets := get_enemy_targets_in_row(attacker, preferred_row)
+		if preferred_target in preferred_row_targets:
+			return preferred_target as EnemyInstance
+		if not preferred_row_targets.is_empty():
+			return preferred_row_targets[0]
+	if _is_valid_enemy_target(preferred_target) and preferred_target.formation_row in legal_rows:
 		return preferred_target as EnemyInstance
-	var active := _active_enemies()
-	return null if active.is_empty() else active[0]
+	if legal_rows.is_empty():
+		return null
+	var targets := get_enemy_targets_in_row(attacker, legal_rows[0])
+	return null if targets.is_empty() else targets[0]
 
 func _invalid_command_result(command: CombatCommand, message: String) -> Dictionary:
 	return {"kind": &"skipped", "actor": command.actor, "message": message}

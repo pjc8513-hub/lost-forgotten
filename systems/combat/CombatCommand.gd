@@ -11,6 +11,7 @@ const RUN := &"run"
 var actor: Resource
 var action: StringName
 var target: Resource
+var target_row: int = -1
 var skill: SkillData
 var item: ItemInstance
 

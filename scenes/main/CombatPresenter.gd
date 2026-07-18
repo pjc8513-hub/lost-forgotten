@@ -13,6 +13,9 @@ var _exploration_camera: Camera3D
 var _arena: CombatArena
 var _session: CombatSession
 var _enemy_visuals: Dictionary = {}
+var _pending_row_actor: PartyMember
+var _pending_row_action: StringName
+var _pending_row_skill: SkillData
 
 func configure(level_root: Node, player: Node3D, menu: CombatMenu) -> void:
 	_level_root = level_root
@@ -20,6 +23,8 @@ func configure(level_root: Node, player: Node3D, menu: CombatMenu) -> void:
 	_menu = menu
 	if not _menu.action_requested.is_connected(_on_action_requested):
 		_menu.action_requested.connect(_on_action_requested)
+	if not _menu.row_requested.is_connected(_on_row_requested):
+		_menu.row_requested.connect(_on_row_requested)
 
 func start_encounter(encounter: CombatEncounter) -> bool:
 	if encounter == null or encounter.combat_scene == null or _session != null:
@@ -62,6 +67,7 @@ func start_encounter(encounter: CombatEncounter) -> bool:
 	return true
 
 func close_encounter(_outcome: StringName) -> void:
+	_clear_row_targeting()
 	_menu.visible = false
 	_menu.set_interactable(false)
 	if _arena != null:
@@ -98,6 +104,7 @@ func _on_planning_started(eligible_actors: Array[PartyMember]) -> void:
 		_menu.set_interactable(false)
 
 func _on_command_requested(actor: PartyMember, command_index: int, command_count: int) -> void:
+	_clear_row_targeting()
 	TurnManager.set_state(TurnManager.State.COMBAT_MENU)
 	_menu.set_interactable(true)
 	var party_index := PartyManager.party.find(actor)
@@ -106,6 +113,7 @@ func _on_command_requested(actor: PartyMember, command_index: int, command_count
 	message_requested.emit("Choose %s's command (%d/%d)." % [actor.member_name, command_index + 1, command_count])
 
 func _on_resolution_started() -> void:
+	_clear_row_targeting()
 	TurnManager.set_state(TurnManager.State.TRANSITION)
 	_menu.set_interactable(false)
 	message_requested.emit("Commands locked. Resolving initiative.")
@@ -119,10 +127,7 @@ func _on_turn_started(actor: Resource) -> void:
 func _perform_enemy_turn(enemy: EnemyInstance) -> void:
 	if _session == null or enemy != _session.current_actor:
 		return
-	var targets: Array[PartyMember] = []
-	for member in PartyManager.get_active_party():
-		if member != null and member.is_alive():
-			targets.append(member)
+	var targets := _session.get_party_targets_for(enemy)
 	if targets.is_empty():
 		_session.perform_enemy_wait()
 		return
@@ -141,13 +146,15 @@ func _on_action_requested(action: StringName) -> void:
 	var command := CombatCommand.create(actor, action)
 	match action:
 		CombatCommand.ATTACK:
-			command.target = _first_active_enemy()
+			_begin_row_targeting(actor, action)
+			return
 		CombatCommand.CAST:
 			command.skill = _first_combat_skill(actor)
-			command.target = _first_active_enemy()
-			if command.skill == null or command.target == null:
-				message_requested.emit("No usable combat skill or target is available.")
+			if command.skill == null:
+				message_requested.emit("No usable combat skill is available.")
 				return
+			_begin_row_targeting(actor, action, command.skill)
+			return
 		CombatCommand.ITEM:
 			command.item = _first_usable_item(actor)
 			if command.item == null:
@@ -155,6 +162,44 @@ func _on_action_requested(action: StringName) -> void:
 				return
 	if not _session.queue_player_command(command):
 		message_requested.emit("That command could not be queued.")
+
+func _begin_row_targeting(
+	actor: PartyMember,
+	action: StringName,
+	skill: SkillData = null
+) -> void:
+	var rows := _session.get_targetable_enemy_rows(actor)
+	if rows.is_empty():
+		message_requested.emit("There are no eligible enemy rows.")
+		return
+	_pending_row_actor = actor
+	_pending_row_action = action
+	_pending_row_skill = skill
+	_menu.show_row_targeting(rows)
+	message_requested.emit("Choose a row for %s." % actor.member_name)
+
+func _on_row_requested(row: int) -> void:
+	clear_messages_requested.emit()
+	if _session == null or _pending_row_actor == null or _session.planning_actor != _pending_row_actor:
+		return
+	var targets := _session.get_enemy_targets_in_row(_pending_row_actor, row)
+	if targets.is_empty():
+		message_requested.emit("That row is not a legal target.")
+		return
+	var command := CombatCommand.create(_pending_row_actor, _pending_row_action, targets[0])
+	command.target_row = row
+	command.skill = _pending_row_skill
+	_clear_row_targeting()
+	if not _session.queue_player_command(command):
+		message_requested.emit("That command could not be queued.")
+		_menu.set_interactable(true)
+
+func _clear_row_targeting() -> void:
+	_pending_row_actor = null
+	_pending_row_action = &""
+	_pending_row_skill = null
+	if _menu != null:
+		_menu.hide_row_targeting()
 
 func _on_action_resolved(result: Dictionary) -> void:
 	var actor := result.get("actor") as Resource
@@ -190,14 +235,6 @@ func _hide_enemy_visual(enemy: EnemyInstance) -> void:
 	var visual := _enemy_visuals.get(enemy) as Node3D
 	if visual != null:
 		visual.visible = false
-
-func _first_active_enemy() -> EnemyInstance:
-	if _session == null:
-		return null
-	for enemy in _session.enemies:
-		if enemy.is_alive() and not enemy.has_fled:
-			return enemy
-	return null
 
 func _first_combat_skill(actor: Resource) -> SkillData:
 	for skill_id in actor.learned_skills:
