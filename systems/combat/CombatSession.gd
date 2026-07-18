@@ -191,7 +191,7 @@ func _execute_player_command(command: CombatCommand) -> void:
 	var result: Dictionary
 	match command.action:
 		CombatCommand.ATTACK:
-			var attack_target := _resolve_enemy_target(command.actor, command.target, command.target_row)
+			var attack_target := _resolve_enemy_target(command.actor, command.target, command.target_row, true)
 			if attack_target != null:
 				result = CombatRules.basic_attack(command.actor, attack_target)
 			else:
@@ -275,35 +275,34 @@ func _is_valid_enemy_target(target: Resource) -> bool:
 func _resolve_enemy_target(
 	attacker: Resource,
 	preferred_target: Resource,
-	preferred_row: int
+	preferred_row: int,
+	randomize_row_target: bool = false
 ) -> EnemyInstance:
 	var legal_rows := get_targetable_enemy_rows(attacker)
 	if preferred_row in legal_rows:
 		var preferred_row_targets := get_enemy_targets_in_row(attacker, preferred_row)
+		if randomize_row_target and not preferred_row_targets.is_empty():
+			return preferred_row_targets.pick_random()
 		if preferred_target in preferred_row_targets:
 			return preferred_target as EnemyInstance
 		if not preferred_row_targets.is_empty():
-			return preferred_row_targets[0]
+			return preferred_row_targets.pick_random()
 	if _is_valid_enemy_target(preferred_target) and preferred_target.formation_row in legal_rows:
 		return preferred_target as EnemyInstance
 	if legal_rows.is_empty():
 		return null
 	var targets := get_enemy_targets_in_row(attacker, legal_rows[0])
-	return null if targets.is_empty() else targets[0]
+	return null if targets.is_empty() else targets.pick_random()
 
 func _invalid_command_result(command: CombatCommand, message: String) -> Dictionary:
 	return {"kind": &"skipped", "actor": command.actor, "message": message}
 
 func _create_auto_attack_command(actor: PartyMember) -> CombatCommand:
 	var rows := get_targetable_enemy_rows(actor)
-	var target: EnemyInstance = null
 	var target_row := -1
 	if not rows.is_empty():
 		target_row = rows[0]
-		var targets := get_enemy_targets_in_row(actor, target_row)
-		if not targets.is_empty():
-			target = targets[0]
-	var command := CombatCommand.create(actor, CombatCommand.ATTACK, target)
+	var command := CombatCommand.create(actor, CombatCommand.ATTACK)
 	command.target_row = target_row
 	return command
 
