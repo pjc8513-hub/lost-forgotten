@@ -18,6 +18,8 @@ var _pending_row_actor: PartyMember
 var _pending_row_action: StringName
 var _pending_row_skill: SkillData
 
+const ENEMY_ATTACK_FEEDBACK_TIME := 1.0
+
 func configure(level_root: Node, player: Node3D, menu: CombatMenu) -> void:
 	_level_root = level_root
 	_player = player
@@ -210,6 +212,50 @@ func _clear_row_targeting() -> void:
 		_menu.hide_row_targeting()
 
 func _on_action_resolved(result: Dictionary) -> void:
+	if _requires_action_presentation(result):
+		_session.hold_action_resolution()
+		call_deferred("_present_action", result)
+		return
+	_finish_action_presentation(result)
+
+func _requires_action_presentation(result: Dictionary) -> bool:
+	var kind: StringName = result.get("kind", &"")
+	return kind == &"attack"
+
+func _present_action(result: Dictionary) -> void:
+	if _session == null:
+		return
+	var actor := result.get("actor") as Resource
+	var target := result.get("target") as Resource
+	var kind: StringName = result.get("kind", &"")
+	var is_enemy_attack := actor is EnemyInstance and target is PartyMember
+
+	if target is EnemyInstance:
+		var enemy_target := target as EnemyInstance
+		var target_visual := _enemy_visuals.get(enemy_target) as Node3D
+		if target_visual != null and is_instance_valid(target_visual):
+			var camera_tween := _arena.focus_camera_on_enemy(target_visual)
+			if camera_tween != null:
+				await camera_tween.finished
+			if target_visual.has_method("show_health_feedback"):
+				var damage := int(result.get("damage", 0))
+				var hit = result.get("hit", false)
+				await target_visual.show_health_feedback(enemy_target.current_hp, enemy_target.max_hp, damage, hit)
+	elif is_enemy_attack:
+		var attacker_visual := _enemy_visuals.get(actor) as Node3D
+		var animation_duration := 0.0
+		if attacker_visual != null and attacker_visual.has_method("play_attack_animation"):
+			animation_duration = attacker_visual.play_attack_animation()
+		await get_tree().create_timer(maxf(animation_duration, ENEMY_ATTACK_FEEDBACK_TIME)).timeout
+
+	if target is EnemyInstance:
+		var restore_tween := _arena.restore_camera()
+		if restore_tween != null:
+			await restore_tween.finished
+
+	_finish_action_presentation(result)
+
+func _finish_action_presentation(result: Dictionary) -> void:
 	var actor := result.get("actor") as Resource
 	var target := result.get("target") as Resource
 	match result.get("kind", &""):
@@ -236,6 +282,8 @@ func _on_action_resolved(result: Dictionary) -> void:
 		_hide_enemy_visual(actor)
 	if _arena != null and _session != null:
 		_arena.compact_enemy_rows(_session.enemies, _enemy_visuals)
+	if _session != null:
+		_session.resume_action_resolution()
 
 func _on_combat_finished(outcome: StringName, rewards: Dictionary) -> void:
 	_menu.set_interactable(false)

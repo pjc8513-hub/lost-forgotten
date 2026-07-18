@@ -18,6 +18,7 @@ var _planned_commands: Dictionary = {}
 var _planning_index := 0
 var _turn_queue: Array[Resource] = []
 var _finished := false
+var _action_resolution_held := false
 
 func _init(party_members: Array[PartyMember], enemy_members: Array[EnemyInstance]) -> void:
 	party.assign(party_members)
@@ -88,6 +89,17 @@ func perform_enemy_wait() -> void:
 	if _can_enemy_act():
 		_finish_current_turn({"kind": &"wait", "actor": current_actor})
 
+func hold_action_resolution() -> void:
+	_action_resolution_held = true
+
+func resume_action_resolution() -> void:
+	if not _action_resolution_held:
+		return
+	_action_resolution_held = false
+	current_actor = null
+	if not _check_finished():
+		_advance_resolution()
+
 func _begin_round() -> void:
 	if _check_finished():
 		return
@@ -152,6 +164,8 @@ func _advance_resolution() -> void:
 				current_actor = null
 				continue
 			_execute_player_command(command)
+			if _action_resolution_held:
+				return
 			if _finished:
 				return
 			current_actor = null
@@ -210,6 +224,8 @@ func _finish_current_turn(result: Dictionary) -> void:
 	if current_actor == null:
 		return
 	action_resolved.emit(result)
+	if _action_resolution_held:
+		return
 	current_actor = null
 	if not _check_finished():
 		_advance_resolution()

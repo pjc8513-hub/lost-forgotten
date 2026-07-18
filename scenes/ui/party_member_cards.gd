@@ -6,6 +6,8 @@ signal skill_requested(member: PartyMember, skill_id: StringName)
 
 const HEALING_FEEDBACK_COLOR := Color(0.25, 1.0, 0.35, 1.0)
 const DOT_FEEDBACK_COLOR := Color(0.68, 0.34, 1.0, 1.0)
+const ATTACK_DAMAGE_COLOR := Color(1.0, 0.18, 0.18, 1.0)
+const ATTACK_PORTRAIT_MODULATION := Color(0.45, 0.45, 0.45, 1.0)
 const FEEDBACK_DISPLAY_TIME := 0.55
 const FEEDBACK_FADE_TIME := 0.45
 
@@ -125,15 +127,21 @@ func _on_member_health_changed(amount: int, feedback_type: StringName) -> void:
 			_show_health_feedback("+%d" % amount, HEALING_FEEDBACK_COLOR)
 		&"dot":
 			_show_health_feedback("-%d" % amount, DOT_FEEDBACK_COLOR)
+		&"damage":
+			_show_health_feedback("-%d" % amount, ATTACK_DAMAGE_COLOR, true)
 
-func _show_health_feedback(text: String, color: Color) -> void:
+func _show_health_feedback(text: String, color: Color, darken_portrait := false) -> void:
 	if _feedback_tween != null and _feedback_tween.is_valid():
 		_feedback_tween.kill()
 	damage_label.text = text
 	damage_label.add_theme_color_override("font_color", color)
 	damage_label.modulate.a = 1.0
 	damage_label.visible = true
+	portrait.modulate = ATTACK_PORTRAIT_MODULATION if darken_portrait else Color.WHITE
 	_feedback_tween = create_tween()
 	_feedback_tween.tween_interval(FEEDBACK_DISPLAY_TIME)
+	_feedback_tween.set_parallel(true)
 	_feedback_tween.tween_property(damage_label, "modulate:a", 0.0, FEEDBACK_FADE_TIME)
+	_feedback_tween.tween_property(portrait, "modulate", Color.WHITE, FEEDBACK_FADE_TIME)
+	_feedback_tween.set_parallel(false)
 	_feedback_tween.tween_callback(damage_label.hide)

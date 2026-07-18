@@ -5,14 +5,23 @@ extends MapData
 
 const ROW_PIXEL_SIZES := [0.0035, 0.0045, 0.0055]
 const ROW_FADE_DURATION := 0.18
+const CAMERA_ZOOM_FOV := 33.0
+const CAMERA_TWEEN_DURATION := 0.16
 
 var _enemy_row_tween: Tween
 var _enemy_row_transition_id := 0
+var _camera_focus_transform: Transform3D
+var _camera_focus_fov := 0.0
+var _camera_is_focused := false
+var _camera_tween: Tween
 
 func _exit_tree() -> void:
 	if _enemy_row_tween != null and _enemy_row_tween.is_valid():
 		_enemy_row_tween.kill()
 	_enemy_row_tween = null
+	if _camera_tween != null and _camera_tween.is_valid():
+		_camera_tween.kill()
+	_camera_tween = null
 
 func activate_camera() -> bool:
 	if battle_camera == null:
@@ -36,6 +45,39 @@ func spawn_enemy(enemy: EnemyInstance) -> Node3D:
 	visual.transform = Transform3D.IDENTITY
 	_apply_row_pixel_size(visual, enemy.formation_row)
 	return visual
+
+func focus_camera_on_enemy(visual: Node3D) -> Tween:
+	if battle_camera == null or visual == null or not is_instance_valid(visual):
+		return null
+	if not _camera_is_focused:
+		_camera_focus_transform = battle_camera.global_transform
+		_camera_focus_fov = battle_camera.fov
+		_camera_is_focused = true
+	battle_camera.look_at(visual.global_position + Vector3.UP * 0.4, Vector3.UP)
+	if _camera_tween != null and _camera_tween.is_valid():
+		_camera_tween.kill()
+	_camera_tween = create_tween()
+	_camera_tween.tween_property(battle_camera, "fov", CAMERA_ZOOM_FOV, CAMERA_TWEEN_DURATION)
+	return _camera_tween
+
+func restore_camera() -> Tween:
+	if battle_camera == null or not _camera_is_focused:
+		return null
+	if _camera_tween != null and _camera_tween.is_valid():
+		_camera_tween.kill()
+	_camera_tween = create_tween()
+	_camera_tween.set_parallel(true)
+	_camera_tween.tween_property(battle_camera, "global_transform", _camera_focus_transform, CAMERA_TWEEN_DURATION)
+	_camera_tween.tween_property(battle_camera, "fov", _camera_focus_fov, CAMERA_TWEEN_DURATION)
+	_camera_tween.set_parallel(false)
+	_camera_tween.finished.connect(_clear_camera_focus.bind(_camera_tween))
+	return _camera_tween
+
+func _clear_camera_focus(tween: Tween) -> void:
+	if _camera_tween != tween:
+		return
+	_camera_tween = null
+	_camera_is_focused = false
 
 ## Removes empty gaps in the enemy formation after a row has been defeated.
 ## The EnemyInstance rows are updated before the visual transition starts so
