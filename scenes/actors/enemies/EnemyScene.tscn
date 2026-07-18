@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://cblk1gb73wnc8"]
 
 [ext_resource type="Script" uid="uid://bbtw0ikdkb245" path="res://scenes/actors/enemies/enemy_scene.gd" id="1_jnd0t"]
-[ext_resource type="Texture2D" uid="uid://coubhm1fu28qf" path="res://assets/sprites/combat/hit.png" id="2_bu5sb"]
+[ext_resource type="Texture2D" uid="uid://e0b0xbi6msfk" path="res://assets/sprites/combat/hit24.png" id="2_bu5sb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvxho"]
 bg_color = Color(0.73333335, 0.05490196, 0.0627451, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j3pel"]
+font_size = 22
 
 [node name="EnemyScene" type="Node3D" unique_id=502711961]
 script = ExtResource("1_jnd0t")
@@ -33,10 +36,12 @@ show_percentage = false
 metadata/_edit_use_anchors_ = true
 
 [node name="HitAnimation" type="Sprite2D" parent="Node/CanvasLayer" unique_id=603132464]
+scale = Vector2(1.25, 1.25)
 texture = ExtResource("2_bu5sb")
 metadata/_edit_use_anchors_ = true
 
 [node name="DamageLabel" type="Label" parent="Node/CanvasLayer/HitAnimation" unique_id=1903688885]
 offset_right = 40.0
 offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_j3pel")
 metadata/_edit_use_anchors_ = true

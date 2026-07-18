@@ -8,6 +8,8 @@ extends Node3D
 
 const FEEDBACK_DISPLAY_TIME := 0.7
 const HEALTH_TWEEN_TIME := 0.22
+const FLEE_DISPLAY_TIME := 0.18
+const FLEE_FADE_TIME := 0.45
 
 var _feedback_tween: Tween
 var _feedback_generation := 0
@@ -66,6 +68,32 @@ func _hide_health_feedback() -> void:
 	health_bar.hide()
 	canvas_layer.hide()
 	_feedback_tween = null
+
+func show_flee_feedback() -> void:
+	if _feedback_tween != null and _feedback_tween.is_valid():
+		_feedback_tween.kill()
+	_feedback_generation += 1
+	var feedback_generation := _feedback_generation
+
+	canvas_layer.show()
+	health_bar.hide()
+	hit_animation.hide()
+	damage_label.show()
+	damage_label.text = "Flees!"
+	damage_label.add_theme_color_override("font_color", Color(1.0, 0.86, 0.25, 1.0))
+	damage_label.modulate.a = 1.0
+	enemy_sprite.transparency = 0.0
+
+	_feedback_tween = create_tween()
+	_feedback_tween.tween_interval(FLEE_DISPLAY_TIME)
+	_feedback_tween.set_parallel(true)
+	_feedback_tween.tween_property(enemy_sprite, "transparency", 1.0, FLEE_FADE_TIME)
+	_feedback_tween.tween_property(damage_label, "modulate:a", 0.0, FLEE_FADE_TIME)
+	_feedback_tween.set_parallel(false)
+	await get_tree().create_timer(FLEE_DISPLAY_TIME + FLEE_FADE_TIME).timeout
+	if feedback_generation == _feedback_generation:
+		canvas_layer.hide()
+		_feedback_tween = null
 
 func play_attack_animation() -> float:
 	var animation_player := find_child("AnimationPlayer", true, false) as AnimationPlayer

@@ -220,7 +220,7 @@ func _on_action_resolved(result: Dictionary) -> void:
 
 func _requires_action_presentation(result: Dictionary) -> bool:
 	var kind: StringName = result.get("kind", &"")
-	return kind == &"attack"
+	return kind == &"attack" or kind == &"enemy_fled"
 
 func _present_action(result: Dictionary) -> void:
 	if _session == null:
@@ -229,18 +229,22 @@ func _present_action(result: Dictionary) -> void:
 	var target := result.get("target") as Resource
 	var kind: StringName = result.get("kind", &"")
 	var is_enemy_attack := actor is EnemyInstance and target is PartyMember
+	var focused_enemy := target as EnemyInstance
+	if kind == &"enemy_fled":
+		focused_enemy = actor as EnemyInstance
 
-	if target is EnemyInstance:
-		var enemy_target := target as EnemyInstance
-		var target_visual := _enemy_visuals.get(enemy_target) as Node3D
+	if focused_enemy != null:
+		var target_visual := _enemy_visuals.get(focused_enemy) as Node3D
 		if target_visual != null and is_instance_valid(target_visual):
 			var camera_tween := _arena.focus_camera_on_enemy(target_visual)
 			if camera_tween != null:
 				await camera_tween.finished
-			if target_visual.has_method("show_health_feedback"):
+			if kind == &"enemy_fled" and target_visual.has_method("show_flee_feedback"):
+				await target_visual.show_flee_feedback()
+			elif target_visual.has_method("show_health_feedback"):
 				var damage := int(result.get("damage", 0))
 				var hit = result.get("hit", false)
-				await target_visual.show_health_feedback(enemy_target.current_hp, enemy_target.max_hp, damage, hit)
+				await target_visual.show_health_feedback(focused_enemy.current_hp, focused_enemy.max_hp, damage, hit)
 	elif is_enemy_attack:
 		var attacker_visual := _enemy_visuals.get(actor) as Node3D
 		var animation_duration := 0.0
@@ -248,7 +252,7 @@ func _present_action(result: Dictionary) -> void:
 			animation_duration = attacker_visual.play_attack_animation()
 		await get_tree().create_timer(maxf(animation_duration, ENEMY_ATTACK_FEEDBACK_TIME)).timeout
 
-	if target is EnemyInstance:
+	if focused_enemy != null:
 		var restore_tween := _arena.restore_camera()
 		if restore_tween != null:
 			await restore_tween.finished
@@ -279,7 +283,7 @@ func _finish_action_presentation(result: Dictionary) -> void:
 	if target is EnemyInstance and not target.is_alive():
 		_hide_enemy_visual(target)
 	if result.get("kind", &"") == &"enemy_fled" and actor is EnemyInstance:
-		_hide_enemy_visual(actor)
+		_remove_enemy_visual(actor)
 	if _arena != null and _session != null:
 		_arena.compact_enemy_rows(_session.enemies, _enemy_visuals)
 	if _session != null:
@@ -293,6 +297,12 @@ func _hide_enemy_visual(enemy: EnemyInstance) -> void:
 	var visual := _enemy_visuals.get(enemy) as Node3D
 	if visual != null:
 		visual.visible = false
+
+func _remove_enemy_visual(enemy: EnemyInstance) -> void:
+	var visual := _enemy_visuals.get(enemy) as Node3D
+	_enemy_visuals.erase(enemy)
+	if visual != null and is_instance_valid(visual):
+		visual.queue_free()
 
 func _first_combat_skill(actor: Resource) -> SkillData:
 	for skill_id in actor.learned_skills:

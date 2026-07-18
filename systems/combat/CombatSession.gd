@@ -177,6 +177,8 @@ func _advance_resolution() -> void:
 		if _enemy_flees(enemy):
 			enemy.has_fled = true
 			action_resolved.emit({"kind": &"enemy_fled", "actor": enemy})
+			if _action_resolution_held:
+				return
 			current_actor = null
 			if _check_finished():
 				return
