@@ -14,6 +14,7 @@ enum EnemyType {
 @export_group("Identity")
 @export var enemy_id: StringName = ""
 @export var display_name: String = ""
+@export var enemy_level: int = 1
 @export var sprite_texture: Texture2D
 @export var enemytype: EnemyType = EnemyType.NONE
 @export var enemy_scene: PackedScene

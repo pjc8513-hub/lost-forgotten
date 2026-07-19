@@ -155,6 +155,8 @@ main_shader_contrast = 1.2
 encounters_enabled = true
 combat_scene = ExtResource("encounter_arena")
 enemy_ids = Array[StringName]([&"GiantRat", &"RedJelly", &"FragileBones"])
+threat_per_step = 2.0
+maximum_enemy_rows = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1845918778]
 environment = ExtResource("1_n3cpb")
