@@ -34,7 +34,13 @@ func add_message(message: String) -> void:
 		return
 	if not visible:
 		show()
-	rich_text_label.append_text("%s\n" % _escape_bbcode(message))
+		
+	# Escape the raw message first, THEN wrap it in BBCode tags or dividers
+	var formatted_message = _escape_bbcode(message)
+	
+	# Example: Adding an extra newline and a subtle divider line
+	rich_text_label.append_text("%s\n[color=gray]---------------[/color]\n" % formatted_message)
+	
 	rich_text_label.scroll_to_line(rich_text_label.get_line_count())
 
 

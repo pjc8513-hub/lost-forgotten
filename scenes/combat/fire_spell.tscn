@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://dif71nli4wyhm"]
+
+[ext_resource type="Shader" uid="uid://cg6n5fhaynoku" path="res://scenes/grid/castle/torch_1.gdshader" id="1_gv6b6"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x6ior"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8klx8"]
+noise = SubResource("FastNoiseLite_x6ior")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvxho"]
+render_priority = 2
+shader = ExtResource("1_gv6b6")
+shader_parameter/flame_texture = SubResource("NoiseTexture2D_8klx8")
+shader_parameter/hot_color = Color(1, 0.85, 0.25, 1)
+shader_parameter/middle_color = Color(1, 0.25, 0.02, 1)
+shader_parameter/outer_color = Color(0.35, 0, 0, 1)
+shader_parameter/sway_amount = 0.0
+shader_parameter/sway_speed = 0.0
+shader_parameter/flutter_strength = 0.0
+shader_parameter/pulse_speed = 13.0000006175
+shader_parameter/alpha_cutoff = 0.846000040185
+shader_parameter/emission_strength = 4.8790002317525
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xa8nu"]
+material = SubResource("ShaderMaterial_vvxho")
+height = 0.1
+rings = 8
+
+[sub_resource type="Animation" id="Animation_5dktm"]
+length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1.0000001, 1, 1.0000001)
+
+[sub_resource type="Animation" id="Animation_gv6b6"]
+resource_name = "cast"
+length = 0.26666668
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1.0000001, 1, 1.0000001, 0.23333333, 1, 1, 10, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8klx8"]
+_data = {
+&"RESET": SubResource("Animation_5dktm"),
+&"cast": SubResource("Animation_gv6b6")
+}
+
+[node name="Node3D" type="Node3D" unique_id=1507943485]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1979710674]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
+mesh = SubResource("CylinderMesh_xa8nu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=816740531]
+root_motion_local = true
+libraries/ = SubResource("AnimationLibrary_8klx8")

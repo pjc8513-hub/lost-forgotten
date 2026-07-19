@@ -46,17 +46,37 @@ static func accuracy(actor: Resource) -> int:
 	var enemy := actor as EnemyInstance
 	return enemy.enemy_data.accuracy_bonus + ability_modifier(dexterity(enemy)) + _status_bonus(enemy, "accuracy") + _buff(enemy, "accuracy")
 
+static func level(actor: Resource) -> int:
+	if actor is PartyMember:
+		return maxi(actor.level, 1)
+	var enemy := actor as EnemyInstance
+	return maxi(enemy.enemy_data.enemy_level, 1)
+
+static func level_accuracy_modifier(attacker: Resource, target: Resource) -> int:
+	return clampi(level(attacker) - level(target), -5, 5)
+
 static func initiative(actor: Resource) -> int:
 	if actor is PartyMember:
 		return StatCalculator.get_initiative(actor)
 	var enemy := actor as EnemyInstance
 	return enemy.enemy_data.initiative_bonus + ability_modifier(dexterity(enemy)) + _status_bonus(enemy, "initiative")
 
-static func damage_profile(actor: Resource) -> Dictionary:
+static func damage_profile(actor: Resource, target: Resource = null) -> Dictionary:
 	if actor is PartyMember:
-		return StatCalculator.get_damage_profile(actor)
+		var profile := StatCalculator.get_damage_profile(actor)
+		profile["bonus"] = int(profile.get("bonus", 0)) + _arms_master_bonus(actor, target)
+		return profile
 	var enemy := actor as EnemyInstance
 	return {"dice_rolls": enemy.enemy_data.damage_dice_rolls, "dice_sides": enemy.enemy_data.damage_dice_sides, "bonus": enemy.enemy_data.bonus_damage_base + ability_modifier(strength(enemy))}
+
+static func _arms_master_bonus(attacker: PartyMember, target: Resource) -> int:
+	if target is not EnemyInstance or target.enemy_data == null:
+		return 0
+	var rank := int(attacker.learned_skills.get(&"ArmsMaster", 0))
+	if rank <= 0:
+		return 0
+	var level_bonus := maxi(level(attacker) - level(target) + 1, 0)
+	return mini(level_bonus, rank)
 
 static func has_resistance(actor: Resource, element: String) -> bool:
 	if actor is PartyMember:

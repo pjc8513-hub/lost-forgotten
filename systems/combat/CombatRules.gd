@@ -4,14 +4,14 @@ extends RefCounted
 const RESISTANCE_DC := 12
 
 static func basic_attack(attacker: Resource, target: Resource) -> Dictionary:
-	var attack_roll := DiceRoller.d20(CombatStats.accuracy(attacker))
+	var attack_roll := DiceRoller.d20(CombatStats.accuracy(attacker) + CombatStats.level_accuracy_modifier(attacker, target))
 	# Descending AC: lower AC raises the number the attacker must reach.
 	var target_number := 20 - CombatStats.armor_class(target)
 	var hit := attack_roll.total >= target_number
 	var critical := hit and not attack_roll.rolls.is_empty() and attack_roll.rolls[0] == 20
 	var damage := 0
 	if hit:
-		var profile := CombatStats.damage_profile(attacker)
+		var profile := CombatStats.damage_profile(attacker, target)
 		var count := maxi(int(profile.get("dice_rolls", 0)), 0)
 		var sides := maxi(int(profile.get("dice_sides", 0)), 1)
 		damage = maxi(DiceRoller.roll(count, sides, int(profile.get("bonus", 0))).total, 1)
