@@ -55,7 +55,7 @@ _data = {
 &"cast": SubResource("Animation_8klx8")
 }
 
-[node name="SpellAnimationFire" type="Node3D" unique_id=1507943485]
+[node name="SpellAnimationSpirit" type="Node3D" unique_id=1507943485]
 script = ExtResource("1_632q2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1979710674]

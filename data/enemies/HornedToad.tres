@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://dyokxy4p2jo80"]
+
+[ext_resource type="PackedScene" uid="uid://62s56u5iaw7t" path="res://scenes/actors/enemies/HornedToad.tscn" id="1_fs3pg"]
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_i43j6"]
+[ext_resource type="Texture2D" uid="uid://r24sqaxrimaa" path="res://assets/sprites/enemies/horned_toad.png" id="3_cxmpk"]
+
+[resource]
+script = ExtResource("1_i43j6")
+enemy_id = &"HornedToad"
+display_name = "Horned Toad"
+sprite_texture = ExtResource("3_cxmpk")
+enemytype = 0
+enemy_scene = ExtResource("1_fs3pg")
+loot_probability = 0.06
+loot_table = 1
+flee_chance = 0.02
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

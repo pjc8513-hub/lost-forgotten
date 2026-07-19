@@ -348,6 +348,8 @@ func _present_action(result: Dictionary) -> void:
 
 func _present_skill_action(result: Dictionary) -> void:
 	var actor := result.get("actor") as Resource
+	var skill := result.get("skill") as SkillData
+	var party_skill_presented := false
 	if actor is EnemyInstance:
 		var caster_visual := _enemy_visuals.get(actor) as Node3D
 		if caster_visual != null and caster_visual.has_method("play_attack_animation"):
@@ -364,6 +366,7 @@ func _present_skill_action(result: Dictionary) -> void:
 			var camera_tween := _arena.focus_camera_on_enemy(target_visual)
 			if camera_tween != null:
 				await camera_tween.finished
+			await _await_skill_presentation(skill, target_visual)
 			var feedback_text := "RESIST" if outcome.get("resisted", false) else ""
 			if feedback_text.is_empty() and outcome.get("status_resisted", false) and int(outcome.get("damage", 0)) <= 0:
 				feedback_text = "SAVE"
@@ -382,11 +385,21 @@ func _present_skill_action(result: Dictionary) -> void:
 			if restore_tween != null:
 				await restore_tween.finished
 		elif target is PartyMember:
+			if not party_skill_presented:
+				await _await_skill_presentation(skill)
+				party_skill_presented = true
 			if int(outcome.get("damage", 0)) > 0 and _arena != null:
 				var duration := _arena.play_party_damage_effect(false)
 				await get_tree().create_timer(maxf(duration, ENEMY_ATTACK_FEEDBACK_TIME)).timeout
 			else:
 				await get_tree().create_timer(0.35).timeout
+
+func _await_skill_presentation(skill: SkillData, target_visual: Node3D = null) -> void:
+	if _arena == null or skill == null:
+		return
+	var duration := _arena.play_skill_presentation(skill, target_visual)
+	if duration > 0.0:
+		await get_tree().create_timer(duration).timeout
 
 func _finish_action_presentation(result: Dictionary) -> void:
 	var actor := result.get("actor") as Resource

@@ -19,6 +19,10 @@ var _camera_is_focused := false
 var _camera_tween: Tween
 var _party_damage_material: ShaderMaterial
 var _party_damage_tween: Tween
+var _camera_shake_tween: Tween
+var _camera_shake_base_h_offset := 0.0
+var _camera_shake_base_v_offset := 0.0
+var _camera_shake_intensity := 0.0
 
 func _ready() -> void:
 	if party_damage_overlay != null and party_damage_overlay.material is ShaderMaterial:
@@ -36,6 +40,12 @@ func _exit_tree() -> void:
 	if _party_damage_tween != null and _party_damage_tween.is_valid():
 		_party_damage_tween.kill()
 	_party_damage_tween = null
+	if _camera_shake_tween != null and _camera_shake_tween.is_valid():
+		_camera_shake_tween.kill()
+		_camera_shake_tween = null
+	if battle_camera != null:
+		battle_camera.h_offset = _camera_shake_base_h_offset
+		battle_camera.v_offset = _camera_shake_base_v_offset
 	if _party_damage_material != null:
 		_party_damage_material.set_shader_parameter("effect_strength", 0.0)
 
@@ -121,6 +131,77 @@ func _clear_party_damage_effect(tween: Tween) -> void:
 	_party_damage_tween = null
 	if _party_damage_material != null:
 		_party_damage_material.set_shader_parameter("effect_strength", 0.0)
+
+func play_skill_presentation(skill: SkillData, target_visual: Node3D = null) -> float:
+	if skill == null:
+		return 0.0
+	var effect_duration := _play_skill_effect(skill, target_visual)
+	var shake_duration := play_screen_shake(skill.shake_intensity, skill.shake_decay) \
+			if skill.shake_screen else 0.0
+	return maxf(effect_duration, shake_duration)
+
+func _play_skill_effect(skill: SkillData, target_visual: Node3D) -> float:
+	if skill.AnimationScene == null:
+		return 0.0
+	var effect := skill.AnimationScene.instantiate() as Node3D
+	if effect == null:
+		return 0.0
+	add_child(effect)
+	if target_visual != null and is_instance_valid(target_visual):
+		effect.global_position = target_visual.global_position
+	elif battle_camera != null:
+		effect.global_position = battle_camera.global_position - battle_camera.global_basis.z * 1.5
+
+	var animation_player := effect.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if animation_player == null:
+		effect.queue_free()
+		return 0.0
+	var animation_name: StringName = &"cast" if animation_player.has_animation(&"cast") else &""
+	if animation_name.is_empty():
+		for candidate in animation_player.get_animation_list():
+			if candidate != &"RESET":
+				animation_name = candidate
+				break
+	if animation_name.is_empty():
+		effect.queue_free()
+		return 0.0
+	var animation := animation_player.get_animation(animation_name)
+	var duration := animation.length if animation != null else 0.0
+	animation_player.play(animation_name)
+	if duration > 0.0:
+		get_tree().create_timer(duration).timeout.connect(effect.queue_free)
+	else:
+		effect.queue_free()
+	return duration
+
+func play_screen_shake(intensity: float, decay: float) -> float:
+	if battle_camera == null or intensity <= 0.0:
+		return 0.0
+	if _camera_shake_tween != null and _camera_shake_tween.is_valid():
+		_camera_shake_tween.kill()
+	_camera_shake_base_h_offset = battle_camera.h_offset
+	_camera_shake_base_v_offset = battle_camera.v_offset
+	_camera_shake_intensity = intensity
+	var duration := maxf(0.1, 1.0 / maxf(decay, 0.1))
+	_camera_shake_tween = create_tween()
+	_camera_shake_tween.tween_method(_set_camera_shake, 0.0, 1.0, duration)
+	_camera_shake_tween.finished.connect(_clear_camera_shake.bind(_camera_shake_tween))
+	return duration
+
+func _set_camera_shake(progress: float) -> void:
+	if battle_camera == null:
+		return
+	var fade := pow(1.0 - progress, 2.0)
+	battle_camera.h_offset = _camera_shake_base_h_offset + randf_range(-1.0, 1.0) * _camera_shake_intensity * fade
+	battle_camera.v_offset = _camera_shake_base_v_offset + randf_range(-1.0, 1.0) * _camera_shake_intensity * fade
+
+func _clear_camera_shake(tween: Tween) -> void:
+	if _camera_shake_tween != tween:
+		return
+	_camera_shake_tween = null
+	if battle_camera != null:
+		battle_camera.h_offset = _camera_shake_base_h_offset
+		battle_camera.v_offset = _camera_shake_base_v_offset
 
 ## Removes empty gaps in the enemy formation after a row has been defeated.
 ## The EnemyInstance rows are updated before the visual transition starts so

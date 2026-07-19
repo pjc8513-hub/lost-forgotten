@@ -33,7 +33,7 @@ spawn_id = &"entrance"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2.4)
 fov = 37.849285
 
-[node name="SpellAnimationFire" parent="BattleCamera" unique_id=1507943485 instance=ExtResource("4_o5t58")]
+[node name="SpellAnimationSpirt" parent="BattleCamera" unique_id=1507943485 instance=ExtResource("4_o5t58")]
 visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1948999522]
@@ -153,6 +153,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[editable path="BattleCamera/SpellAnimationFire"]
+[editable path="BattleCamera/SpellAnimationSpirt"]
 [editable path="torch/torch1"]
 [editable path="torch/torch2"]
