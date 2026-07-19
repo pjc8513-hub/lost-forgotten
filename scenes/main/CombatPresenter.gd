@@ -150,7 +150,7 @@ func _perform_enemy_turn(enemy: EnemyInstance) -> void:
 		_session.perform_enemy_wait()
 		return
 	var target: PartyMember = targets.pick_random()
-	var skill := _first_combat_skill(enemy)
+	var skill := _choose_enemy_skill(enemy)
 	if skill != null:
 		_session.perform_enemy_skill(skill, target)
 	else:
@@ -482,10 +482,18 @@ func _remove_enemy_visual(enemy: EnemyInstance) -> void:
 	if visual != null and is_instance_valid(visual):
 		visual.queue_free()
 
-func _first_combat_skill(actor: Resource) -> SkillData:
-	for skill_id in actor.learned_skills:
-		var skill := SkillSystem.get_skill(StringName(skill_id))
-		if skill != null and skill.archetype == SkillData.Archetype.COMBAT_ACTIVE:
+func _choose_enemy_skill(enemy: EnemyInstance) -> SkillData:
+	if enemy == null or enemy.enemy_data == null:
+		return null
+	for raw_skill_id in enemy.enemy_data.skills:
+		var skill_id := StringName(raw_skill_id)
+		var skill := SkillSystem.get_skill(skill_id)
+		if skill == null or skill.archetype != SkillData.Archetype.COMBAT_ACTIVE:
+			continue
+		if not enemy.learned_skills.has(skill_id) or enemy.current_stamina < skill.stamina_cost:
+			continue
+		var use_chance := clampf(float(enemy.enemy_data.skills[raw_skill_id]), 0.0, 1.0)
+		if randf() < use_chance:
 			return skill
 	return null
 
