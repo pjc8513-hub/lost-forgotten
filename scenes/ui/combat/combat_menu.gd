@@ -3,6 +3,8 @@ extends Control
 
 signal action_requested(action: StringName)
 signal row_requested(row: int)
+signal row_preview_requested(row: int)
+signal row_preview_cleared
 @onready var attack_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/AttackButton
 @onready var defend_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/DefendButton
 @onready var cast_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/CastButton
@@ -28,6 +30,15 @@ func _ready() -> void:
 	first_row_button.pressed.connect(row_requested.emit.bind(0))
 	second_row_button.pressed.connect(row_requested.emit.bind(1))
 	third_row_button.pressed.connect(row_requested.emit.bind(2))
+	first_row_button.mouse_entered.connect(row_preview_requested.emit.bind(0))
+	second_row_button.mouse_entered.connect(row_preview_requested.emit.bind(1))
+	third_row_button.mouse_entered.connect(row_preview_requested.emit.bind(2))
+	first_row_button.mouse_exited.connect(row_preview_cleared.emit)
+	second_row_button.mouse_exited.connect(row_preview_cleared.emit)
+	third_row_button.mouse_exited.connect(row_preview_cleared.emit)
+	first_row_button.pressed.connect(row_preview_cleared.emit)
+	second_row_button.pressed.connect(row_preview_cleared.emit)
+	third_row_button.pressed.connect(row_preview_cleared.emit)
 	hide_row_targeting()
 
 func set_interactable(enabled: bool) -> void:
@@ -45,4 +56,5 @@ func show_row_targeting(available_rows: Array[int]) -> void:
 		row_buttons[row].disabled = row not in available_rows
 
 func hide_row_targeting() -> void:
+	row_preview_cleared.emit()
 	row_container.hide()

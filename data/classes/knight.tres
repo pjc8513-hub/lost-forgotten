@@ -20,4 +20,5 @@ ac_bonus = -3
 accuracy_base = 2
 initiative_base = 2
 allowed_armor_types = Array[int]([0, 1, 2])
+starting_skills = Array[String](["ArmsMaster"])
 metadata/_custom_type_script = "uid://diy5ybgx3dj85"

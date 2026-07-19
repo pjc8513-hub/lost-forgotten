@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://dpboplhxbd2w4"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_ljdyg"]
+
+[resource]
+script = ExtResource("1_ljdyg")
+skill_id = &"ArmsMaster"
+display_name = "Arms Master"
+description = "Bonus attack damage to equal and lower level enemies"
+available_classes = Array[int]([0, 1, 2])
+archetype = 1
+maximum_rank = 5
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

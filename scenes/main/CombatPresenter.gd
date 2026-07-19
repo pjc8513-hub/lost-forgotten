@@ -32,6 +32,10 @@ func configure(level_root: Node, player: Node3D, menu: CombatMenu, skill_selecti
 		_menu.action_requested.connect(_on_action_requested)
 	if not _menu.row_requested.is_connected(_on_row_requested):
 		_menu.row_requested.connect(_on_row_requested)
+	if not _menu.row_preview_requested.is_connected(_on_row_preview_requested):
+		_menu.row_preview_requested.connect(_on_row_preview_requested)
+	if not _menu.row_preview_cleared.is_connected(_restore_enemy_row_visibility):
+		_menu.row_preview_cleared.connect(_restore_enemy_row_visibility)
 	if not _skill_menu.combat_skill_selected.is_connected(_on_combat_skill_selected):
 		_skill_menu.combat_skill_selected.connect(_on_combat_skill_selected)
 	if not _skill_menu.combat_skill_cancelled.is_connected(_on_combat_skill_cancelled):
@@ -214,6 +218,22 @@ func _on_row_requested(row: int) -> void:
 	if not _session.queue_player_command(command):
 		message_requested.emit("That command could not be queued.")
 		_menu.set_interactable(true)
+
+func _on_row_preview_requested(row: int) -> void:
+	if _arena == null:
+		return
+	for enemy in _enemy_visuals:
+		var visual := _enemy_visuals[enemy] as Node3D
+		if visual == null or not is_instance_valid(visual):
+			continue
+		visual.visible = enemy.is_alive() and not enemy.has_fled and enemy.formation_row == row
+
+func _restore_enemy_row_visibility() -> void:
+	for enemy in _enemy_visuals:
+		var visual := _enemy_visuals[enemy] as Node3D
+		if visual == null or not is_instance_valid(visual):
+			continue
+		visual.visible = enemy.is_alive() and not enemy.has_fled
 
 func _on_combat_skill_selected(skill: SkillData) -> void:
 	if _session == null or _session.planning_actor == null or skill == null:
