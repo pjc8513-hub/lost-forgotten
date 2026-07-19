@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dimfx3lxksn7v"]
+
+[ext_resource type="Script" uid="uid://bjt4xr07js3mx" path="res://scenes/combat/animations/spell_animatin.gd" id="1_632q2"]
+[ext_resource type="Shader" uid="uid://cwwwkp1vxj7tc" path="res://scenes/combat/animations/fire_spell.gdshader" id="2_y0n5p"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g28q7"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j3pel"]
+noise = SubResource("FastNoiseLite_g28q7")
+seamless = true
+in_3d_space = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvxho"]
+render_priority = 2
+shader = ExtResource("2_y0n5p")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_j3pel")
+shader_parameter/fire_color = Color(0.9503179, 0.7672106, 0, 1)
+shader_parameter/core_color = Color(1, 1, 0.8, 1)
+shader_parameter/speed = 2.0
+shader_parameter/noise_scale = Vector2(1, 2)
+shader_parameter/distortion_strength = 0.1
+shader_parameter/pillar_growth = 1.0
+shader_parameter/edge_softness = 1.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xa8nu"]
+material = SubResource("ShaderMaterial_vvxho")
+height = 1.0
+rings = 8
+
+[sub_resource type="Animation" id="Animation_gv6b6"]
+length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1.0000001, 1, 1.0000001)
+
+[sub_resource type="Animation" id="Animation_8klx8"]
+resource_name = "cast"
+length = 0.23333333
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.033333335, 1, 1, 0, 1, 0.2, 1, 1.0000001, 1, 1.0000001)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x6ior"]
+_data = {
+&"RESET": SubResource("Animation_gv6b6"),
+&"cast": SubResource("Animation_8klx8")
+}
+
+[node name="SpellAnimationFire" type="Node3D" unique_id=1507943485]
+script = ExtResource("1_632q2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1979710674]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
+mesh = SubResource("CylinderMesh_xa8nu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=101507376]
+root_motion_local = true
+libraries/ = SubResource("AnimationLibrary_x6ior")

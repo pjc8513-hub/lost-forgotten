@@ -86,3 +86,10 @@ enum Status_effect {
 
 @export var bonus_damage_per_rank: int = 0
 @export var grants_crit: bool = false
+
+# presentation
+@export_group("presentation")
+@export var AnimationScene: PackedScene
+@export var shake_screen: bool = false
+@export var shake_intensity: float = 0.08
+@export var shake_decay: float = 5.0

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="2_w6qqa"]
 [ext_resource type="Environment" uid="uid://bc3oq0crlyidp" path="res://data/castle_combat.tres" id="3_w6qqa"]
 [ext_resource type="PackedScene" uid="uid://dajpl27a3y52a" path="res://scenes/grid/castle/stone_wall_2.tscn" id="3_yw3o5"]
+[ext_resource type="PackedScene" uid="uid://dimfx3lxksn7v" path="res://scenes/combat/animations/spirit_spell.tscn" id="4_o5t58"]
 [ext_resource type="PackedScene" uid="uid://urwlv585wae5" path="res://scenes/grid/castle/stone_corner_2.tscn" id="4_w6qqa"]
 [ext_resource type="PackedScene" uid="uid://dgr6tc7bsd26x" path="res://scenes/grid/castle/torch_1.tscn" id="5_eycy8"]
 [ext_resource type="Shader" uid="uid://j3cxcog1fvhk" path="res://scenes/combat/castle_combat.gdshader" id="8_jl0jg"]
@@ -31,6 +32,9 @@ spawn_id = &"entrance"
 [node name="BattleCamera" type="Camera3D" parent="." unique_id=1400540082]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2.4)
 fov = 37.849285
+
+[node name="SpellAnimationFire" parent="BattleCamera" unique_id=1507943485 instance=ExtResource("4_o5t58")]
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1948999522]
 environment = ExtResource("3_w6qqa")
@@ -149,5 +153,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[editable path="BattleCamera/SpellAnimationFire"]
 [editable path="torch/torch1"]
 [editable path="torch/torch2"]

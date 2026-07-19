@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://q7bqd3rhksx5"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_v0jry"]
+
+[resource]
+script = ExtResource("1_v0jry")
+skill_id = &"earthquake"
+display_name = "Earthquake"
+description = "A powerful earthquake shakes the battlefield"
+available_classes = Array[int]([5])
+archetype = 2
+element = 1
+maximum_rank = 5
+is_AOE = true
+stamina_cost = 5
+uses_per_day = 3
+damage_amount_dice = 2
+damage_amount_rolls = 8
+status_effect = 0
+shake_screen = true
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

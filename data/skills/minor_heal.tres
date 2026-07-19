@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://cws5whvnhcdh3"]
 
+[ext_resource type="PackedScene" uid="uid://dimfx3lxksn7v" path="res://scenes/combat/animations/spirit_spell.tscn" id="1_densv"]
 [ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_fxavp"]
 
 [resource]
@@ -15,4 +16,5 @@ uses_per_day = 5
 dc_base = 0
 heal_amount_dice = 1
 heal_amount_sides = 6
+AnimationScene = ExtResource("1_densv")
 metadata/_custom_type_script = "uid://bfe0w1owguy30"
