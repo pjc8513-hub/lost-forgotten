@@ -32,6 +32,8 @@ func configure(level_root: Node, player: Node3D, menu: CombatMenu, skill_selecti
 		_menu.action_requested.connect(_on_action_requested)
 	if not _menu.row_requested.is_connected(_on_row_requested):
 		_menu.row_requested.connect(_on_row_requested)
+	if not _menu.cancel_requested.is_connected(_on_cancel_requested):
+		_menu.cancel_requested.connect(_on_cancel_requested)
 	if not _menu.row_preview_requested.is_connected(_on_row_preview_requested):
 		_menu.row_preview_requested.connect(_on_row_preview_requested)
 	if not _menu.row_preview_cleared.is_connected(_restore_enemy_row_visibility):
@@ -125,10 +127,18 @@ func _on_command_requested(actor: PartyMember, command_index: int, command_count
 	_clear_party_targeting()
 	TurnManager.set_state(TurnManager.State.COMBAT_MENU)
 	_menu.set_interactable(true)
+	_menu.set_cancel_enabled(command_index > 0 and command_index < command_count)
 	var party_index := PartyManager.party.find(actor)
 	if party_index >= 0:
 		PartyManager.select_party_member(party_index)
 	message_requested.emit("Choose %s's command (%d/%d)." % [actor.member_name, command_index + 1, command_count])
+
+func _on_cancel_requested() -> void:
+	if _session == null or not _session.cancel_command_queue():
+		return
+	_clear_row_targeting()
+	_clear_party_targeting()
+	message_requested.emit("Commands cleared. Start the round over.")
 
 func _on_resolution_started() -> void:
 	_clear_row_targeting()

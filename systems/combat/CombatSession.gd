@@ -52,6 +52,16 @@ func queue_auto_attack_commands() -> int:
 	_request_next_command()
 	return queued_count
 
+func cancel_command_queue() -> bool:
+	if _finished or _planning_index <= 0 or planning_actor == null:
+		return false
+	_planned_commands.clear()
+	_turn_queue.clear()
+	planning_actor = null
+	_planning_index = 0
+	_request_next_command()
+	return true
+
 func get_targetable_enemy_rows(attacker: Resource) -> Array[int]:
 	return CombatTargeting.enemy_rows_for(attacker, enemies)
 

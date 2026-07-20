@@ -77,7 +77,7 @@ func spend_stamina(amount: int) -> bool:
 	return true
 
 func get_current_flee_chance() -> float:
-	if enemy_data == null or max_hp <= 0:
+	if enemy_data == null or not enemy_data.can_flee or max_hp <= 0:
 		return 0.0
 	var base_chance := clampf(enemy_data.flee_chance, 0.0, 1.0)
 	var missing_health_ratio := 1.0 - float(current_hp) / float(max_hp)

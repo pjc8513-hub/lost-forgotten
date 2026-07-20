@@ -3,6 +3,7 @@ extends Control
 
 signal action_requested(action: StringName)
 signal row_requested(row: int)
+signal cancel_requested
 signal row_preview_requested(row: int)
 signal row_preview_cleared
 @onready var attack_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/AttackButton
@@ -31,6 +32,7 @@ func _ready() -> void:
 	first_row_button.pressed.connect(row_requested.emit.bind(0))
 	second_row_button.pressed.connect(row_requested.emit.bind(1))
 	third_row_button.pressed.connect(row_requested.emit.bind(2))
+	cancel_button.pressed.connect(cancel_requested.emit)
 	first_row_button.mouse_entered.connect(row_preview_requested.emit.bind(0))
 	second_row_button.mouse_entered.connect(row_preview_requested.emit.bind(1))
 	third_row_button.mouse_entered.connect(row_preview_requested.emit.bind(2))
@@ -45,8 +47,12 @@ func _ready() -> void:
 func set_interactable(enabled: bool) -> void:
 	for button in [attack_button, defend_button, cast_button, item_button, auto_button, run_button]:
 		button.disabled = not enabled
+	cancel_button.disabled = true
 	if not enabled:
 		hide_row_targeting()
+
+func set_cancel_enabled(enabled: bool) -> void:
+	cancel_button.disabled = not enabled
 
 func show_row_targeting(available_rows: Array[int]) -> void:
 	row_container.show()
