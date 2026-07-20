@@ -71,6 +71,11 @@ text = "Item"
 layout_mode = 2
 text = "Auto"
 
+[node name="CancelButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=278694281]
+layout_mode = 2
+disabled = true
+text = "Cancel"
+
 [node name="RunButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=439091118]
 layout_mode = 2
 text = "Run"

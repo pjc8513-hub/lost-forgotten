@@ -9,6 +9,7 @@ script = ExtResource("1_lbxeq")
 enemy_id = &"FragileBones"
 display_name = "Fragile Bones"
 sprite_texture = ExtResource("3_px1n7")
+enemytype = 2
 enemy_scene = ExtResource("1_p20ms")
 loot_probability = 0.1
 loot_table = 0

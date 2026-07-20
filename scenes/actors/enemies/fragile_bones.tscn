@@ -7,5 +7,6 @@
 
 [node name="EnemySprite" parent="." index="0" unique_id=2097108720]
 offset = Vector2(0, -1)
+pixel_size = 0.02
 texture = ExtResource("2_76xf1")
 vframes = 2

@@ -11,6 +11,7 @@ signal row_preview_cleared
 @onready var item_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/ItemButton
 @onready var auto_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/AutoButton
 @onready var run_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/RunButton
+@onready var cancel_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/CancelButton
 
 # row targeting
 @onready var row_container: HBoxContainer = $MarginContainer/VBoxContainer/RowContainer

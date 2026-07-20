@@ -20,4 +20,5 @@ initiative_bonus = -1
 resist_water = true
 resist_physical = true
 flee_chance = 0.03
+can_flee = false
 metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

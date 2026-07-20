@@ -58,6 +58,7 @@ enum EnemyType {
 @export var skills: Dictionary [StringName, float] # Skill_ID, chance to use example 0.10 10%
 @export var flee_chance: float = 0.05 # starts at 5%
 @export var has_reach: bool = false
+@export var can_flee: bool = true
 
 @export_group("Starting Status Effects")
 @export var starting_status_effects: Array[int]

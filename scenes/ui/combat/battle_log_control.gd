@@ -18,6 +18,8 @@ func open() -> void:
 
 
 func close() -> void:
+	rich_text_label.clear()
+	rich_text_label.text = HEADER_TEXT
 	hide()
 
 
