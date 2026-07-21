@@ -38,7 +38,7 @@ static func create(template: EnemyData, row: int, slot: int) -> EnemyInstance:
 	for skill_id in template.skills:
 		instance.learned_skills[skill_id] = 1
 	for effect_id in template.starting_status_effects:
-		instance.active_status_effects[effect_id] = {"remaining_rounds": StatusEffects.duration_rounds(effect_id), "save_dc": 0, "source": template.display_name}
+		instance.active_status_effects[effect_id] = {"remaining_rounds": StatusEffects.duration_rounds(-1), "save_dc": 0, "source": template.display_name}
 	instance.max_hp = maxi(template.hp_base + CombatStats.ability_modifier(CombatStats.endurance(instance)), 1)
 	instance.current_hp = instance.max_hp
 	instance.max_stamina = maxi(10 + CombatStats.ability_modifier(CombatStats.endurance(instance)), 1)

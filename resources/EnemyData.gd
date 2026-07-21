@@ -61,7 +61,7 @@ enum EnemyType {
 @export var can_flee: bool = true
 
 @export_group("Starting Status Effects")
-@export var starting_status_effects: Array[int]
+@export var starting_status_effects: Array[StringName]
 
 
 # helper functions

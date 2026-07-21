@@ -73,6 +73,7 @@ const DURATION_ROUNDS: Dictionary = {
 #	blocks_casting - true = character cannot cast this round
 #	end_of_comnbat - true = clears at end of combat
 #	clear_on_rest  - true = clears when party rests
+#	dispelled		- true = can be removed by spell dispell
 #	cost_to_remove - Cost to remove status at temple
 # ---------------------------------------------------------------------------
 
@@ -89,6 +90,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"dispelled": false,
 		"cost_to_remove": 50,
 	},
 	Effect.BURN: {
@@ -103,6 +105,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": true,
+		"dispelled": false,
 		"cost_to_remove": 30,
 	},
 	Effect.BLEED: {
@@ -117,6 +120,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": true,
+		"dispelled": false,
 		"cost_to_remove": 20,
 	},
 	Effect.DECAY: {
@@ -131,6 +135,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": true,
+		"dispelled": false,
 		"cost_to_remove": 60,
 	},
 	Effect.STUN: {
@@ -145,6 +150,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"dispelled": false,
 		"cost_to_remove": 0,
 	},
 	Effect.SLEEP: {
@@ -159,6 +165,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"dispelled": false,
 		"cost_to_remove": 10,
 	},
 	Effect.PARALYSIS: {
@@ -173,6 +180,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"dispelled": false,
 		"cost_to_remove": 70,
 	},
 	Effect.FREEZE: {
@@ -187,6 +195,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"dispelled": false,
 		"cost_to_remove": 50,
 	},
 	Effect.CONFUSE: {
@@ -201,6 +210,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": true,
+		"dispelled": false,
 		"cost_to_remove": 60,
 	},
 	Effect.FEAR: {
@@ -214,6 +224,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_move": false,
 		"end_of_combat": true,
 		"clear_on_rest": true,
+		"dispelled": false,
 		"cost_to_remove": 40,
 	},
 	Effect.WEAKEN: {
@@ -228,6 +239,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": true,
+		"dispelled": false,
 		"cost_to_remove": 20,
 	},
 	Effect.SLOW: {
@@ -242,6 +254,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": true,
 		"clear_on_rest": true,
+		"dispelled": false,
 		"cost_to_remove": 20,
 	},
 	Effect.BLIND: {
@@ -256,6 +269,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"dispelled": false,
 		"cost_to_remove": 40,
 	},
 	Effect.CURSE: {
@@ -270,6 +284,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"dispelled": false,
 		"cost_to_remove": 50,
 	},
 	Effect.DISEASED: {
@@ -284,6 +299,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"dispelled": false,
 		"cost_to_remove": 70,
 	},
 	Effect.DROWNING: {
@@ -298,6 +314,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"dispelled": false,
 		"cost_to_remove": 0,
 	},
 	Effect.DEAD: {
@@ -312,13 +329,14 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"dispelled": false,
 		"cost_to_remove": 50,
 	},
 	Effect.REGENERATE: {
 		"label": "Regenerate",
 		"description": "Recovers HP each round.",
 		"is_negative": false,
-		"dot_damage": -4,    # Negative = healing
+		"dot_damage": -1,    # Negative = healing per rank
 		"stat_deltas": {},
 		"blocks_action": false,
 		"blocks_healing": false,
@@ -326,6 +344,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"dispelled": true,
 		"cost_to_remove": 0,
 	},
 	Effect.HASTE: {
@@ -340,6 +359,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"dispelled": true,
 		"cost_to_remove": 0,
 	},
 	Effect.BLESS: {
@@ -354,6 +374,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"dispelled": true,
 		"cost_to_remove": 0,
 	},
 	Effect.STONE_SKIN: {
@@ -368,6 +389,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"dispelled": true,
 		"cost_to_remove": 0,
 	},
 }
