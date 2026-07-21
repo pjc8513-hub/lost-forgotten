@@ -372,7 +372,7 @@ func _execute_command(input: String) -> void:
 	
 	match cmd:
 		"help":
-			_log_message("Commands: help, battle <enemy_id>[, <enemy_id>...], gold <amt>, food <amt>, xp [all] <amt>, heal [all], stamina [all/full] <amt>, damage [all] <amt>, kill [all], status <status>, additem <id>, tp <x> <z>, griddebug [on/off], cell <x> <z>")
+			_log_message("Commands: help, battle <enemy_id> [count][, <enemy_id> [count]...], gold <amt>, food <amt>, xp [all] <amt>, heal [all], stamina [all/full] <amt>, damage [all] <amt>, kill [all], status <status>, additem <id>, tp <x> <z>, griddebug [on/off], cell <x> <z>")
 		"battle":
 			_start_debug_battle(args)
 		"griddebug":
@@ -619,19 +619,36 @@ func _execute_command(input: String) -> void:
 
 func _start_debug_battle(args: Array[String]) -> void:
 	if args.is_empty():
-		_log_message("Error: battle requires 1 to 3 comma-separated enemy IDs (e.g. battle GiantRat, RedJelly)")
+		_log_message("Error: battle requires 1 to 3 enemy rows (e.g. battle GiantRat 3, RedJelly)")
 		return
 
 	var enemy_id_text := " ".join(args)
 	var enemy_ids: Array[StringName] = []
 	var enemy_labels: Array[String] = []
+	var enemy_counts: Array[int] = []
 	for raw_id in enemy_id_text.split(","):
-		var enemy_id := raw_id.strip_edges()
-		if enemy_id.is_empty():
+		var row_parts := raw_id.strip_edges().split(" ", false)
+		if row_parts.is_empty():
 			_log_message("Error: battle contains an empty enemy ID.")
 			return
+		if row_parts.size() > 2:
+			_log_message("Error: each battle row accepts an enemy ID and an optional count (1-3).")
+			return
+
+		var enemy_id: String = row_parts[0]
+		var enemy_count := 1
+		if row_parts.size() == 2:
+			if not row_parts[1].is_valid_int():
+				_log_message("Error: enemy count for '%s' must be a whole number from 1 to 3." % enemy_id)
+				return
+			enemy_count = int(row_parts[1])
+		if enemy_count < 1 or enemy_count > 3:
+			_log_message("Error: enemy count for '%s' must be from 1 to 3." % enemy_id)
+			return
+
 		enemy_ids.append(StringName(enemy_id))
-		enemy_labels.append(enemy_id)
+		enemy_counts.append(enemy_count)
+		enemy_labels.append("%s x%d" % [enemy_id, enemy_count])
 
 	if enemy_ids.size() > 3:
 		_log_message("Error: battle supports at most 3 enemy rows.")
@@ -645,7 +662,10 @@ func _start_debug_battle(args: Array[String]) -> void:
 		if enemy_data == null:
 			_log_message("Error: Unknown enemy ID '%s'." % enemy_ids[row_index])
 			return
-		encounter.enemy_rows.append([EnemyInstance.create(enemy_data, row_index, 0)])
+		var row: Array[EnemyInstance] = []
+		for slot_index in enemy_counts[row_index]:
+			row.append(EnemyInstance.create(enemy_data, row_index, slot_index))
+		encounter.enemy_rows.append(row)
 
 	var main_scene := get_tree().current_scene
 	if main_scene == null or not main_scene.has_method("_on_encounter_requested"):
