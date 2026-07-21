@@ -20,7 +20,7 @@ accuracy_bonus = 2
 initiative_bonus = 1
 bonus_damage_base = 2
 skills = Dictionary[StringName, float]({
-&"MinorHeal": 0.8
+&"minor_heal": 0.8
 })
 can_flee = false
 metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

@@ -36,6 +36,8 @@ static func create(template: EnemyData, row: int, slot: int) -> EnemyInstance:
 	instance.rolled_piety = int(rolls.get("piety", 0))
 	instance.rolled_willpower = int(rolls.get("willpower", 0))
 	for skill_id in template.skills:
+		if SkillSystem.get_skill(StringName(skill_id)) == null:
+			push_warning("Unknown skill ID '%s' for %s." % [skill_id, template.display_name])
 		instance.learned_skills[skill_id] = 1
 	for effect_name in template.starting_status_effects:
 		var effect_id := StatusEffects.normalize_id(String(effect_name))
