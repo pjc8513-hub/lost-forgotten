@@ -69,6 +69,8 @@ func spawn_enemy(enemy: EnemyInstance) -> Node3D:
 		return null
 	marker.add_child(visual)
 	visual.transform = Transform3D.IDENTITY
+	if visual.has_method("set_enemy_instance"):
+		visual.set_enemy_instance(enemy)
 	_apply_row_pixel_size(visual, enemy.formation_row)
 	return visual
 

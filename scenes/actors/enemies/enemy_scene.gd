@@ -5,6 +5,7 @@ extends Node3D
 @onready var hit_animation: Sprite2D = $Node/CanvasLayer/HitAnimation
 @onready var health_bar: ProgressBar = $Node/CanvasLayer/HealthBar
 @onready var ui_anchor: Marker3D = $UIAnchor
+@onready var hover_target: Control = $Node/TooltipLayer/HoverTarget
 
 const FEEDBACK_DISPLAY_TIME := 0.7
 const HEALTH_TWEEN_TIME := 0.22
@@ -13,6 +14,7 @@ const FLEE_FADE_TIME := 0.45
 
 var _feedback_tween: Tween
 var _feedback_generation := 0
+var enemy_instance: EnemyInstance
 
 func _exit_tree() -> void:
 	if _feedback_tween != null and _feedback_tween.is_valid():
@@ -22,6 +24,7 @@ func _exit_tree() -> void:
 
 func _ready() -> void:
 	canvas_layer.hide()
+	hover_target.size = Vector2(100.0, 100.0)
 	health_bar.size = Vector2(100.0, 18.0)
 	health_bar.position = Vector2(-50.0, -42.0)
 	hit_animation.hide()
@@ -32,11 +35,35 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	var camera := get_viewport().get_camera_3d()
-	if camera == null or not canvas_layer.visible:
+	if camera == null:
 		return
 	var screen_position := camera.unproject_position(ui_anchor.global_position)
-	health_bar.position = screen_position + Vector2(-50.0, -42.0)
-	hit_animation.position = screen_position + Vector2(0.0, -10.0)
+	if canvas_layer.visible:
+		health_bar.position = screen_position + Vector2(-50.0, -42.0)
+		hit_animation.position = screen_position + Vector2(0.0, -10.0)
+	hover_target.position = screen_position - hover_target.size * 0.5
+	hover_target.visible = visible and enemy_instance != null and enemy_instance.is_alive() and not enemy_instance.has_fled
+	if hover_target.visible:
+		hover_target.tooltip_text = _tooltip_text()
+
+func set_enemy_instance(instance: EnemyInstance) -> void:
+	enemy_instance = instance
+	hover_target.tooltip_text = _tooltip_text()
+
+func _tooltip_text() -> String:
+	if enemy_instance == null:
+		return ""
+	var text := "%s\nHP: %d / %d" % [
+		enemy_instance.get_display_name(),
+		enemy_instance.current_hp,
+		enemy_instance.max_hp,
+	]
+	if enemy_instance.active_status_effects.is_empty():
+		return text + "\nStatus Effects: None"
+	var labels: Array[String] = []
+	for raw_effect_id in enemy_instance.active_status_effects:
+		labels.append(StatusEffects.get_label(int(raw_effect_id)))
+	return text + "\nStatus Effects: " + ", ".join(labels)
 
 func show_health_feedback(current_hp: int, max_hp: int, amount: int, hit: bool, feedback_text: String = "") -> void:
 	if _feedback_tween != null and _feedback_tween.is_valid():

@@ -45,3 +45,11 @@ offset_right = 40.0
 offset_bottom = 23.0
 label_settings = SubResource("LabelSettings_j3pel")
 metadata/_edit_use_anchors_ = true
+
+[node name="TooltipLayer" type="CanvasLayer" parent="Node" unique_id=208302145]
+layer = 20
+
+[node name="HoverTarget" type="Control" parent="Node/TooltipLayer" unique_id=208302146]
+offset_right = 100.0
+offset_bottom = 100.0
+mouse_filter = 0

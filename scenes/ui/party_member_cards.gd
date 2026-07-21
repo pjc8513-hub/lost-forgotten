@@ -61,18 +61,30 @@ func refresh() -> void:
 	member_name.text = member.member_name
 	h_pbar.max_value = member.max_hp
 	h_pbar.value = member.current_hp
-	h_pbar.tooltip_text = "HP: %d / %d" % [member.current_hp, member.max_hp]
+	var status_tooltip := _status_tooltip_text()
+	h_pbar.tooltip_text = "HP: %d / %d\n%s" % [member.current_hp, member.max_hp, status_tooltip]
 	stamina_bar.max_value = member.max_stamina
 	stamina_bar.value = member.current_stamina
 	stamina_bar.tooltip_text = "Stamina: %d / %d" % [
 		member.current_stamina,
 		member.max_stamina,
 	]
-	tooltip_text = "%d: %s (%s)" % [
+	tooltip_text = "%d: %s (%s)\nHP: %d / %d\n%s" % [
 		party_index + 1,
 		member.member_name,
 		ClassData.get_display_name_for(member.class_data.class_id),
+		member.current_hp,
+		member.max_hp,
+		status_tooltip,
 	]
+
+func _status_tooltip_text() -> String:
+	if member == null or member.active_status_effects.is_empty():
+		return "Status Effects: None"
+	var labels: Array[String] = []
+	for raw_effect_id in member.active_status_effects:
+		labels.append(StatusEffects.get_label(int(raw_effect_id)))
+	return "Status Effects: " + ", ".join(labels)
 
 
 func set_selected(is_selected: bool) -> void:
