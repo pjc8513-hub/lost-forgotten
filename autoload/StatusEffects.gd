@@ -425,6 +425,10 @@ func clears_on_rest(effect_id: int) -> bool:
 	var def: Dictionary = DEFINITIONS.get(effect_id, {})
 	return bool(def.get("clear_on_rest", false))
 
+func clears_at_end_of_combat(effect_id: int) -> bool:
+	var def: Dictionary = DEFINITIONS.get(effect_id, {})
+	return bool(def.get("end_of_combat", false))
+
 ## Returns true if this effect prevents movement.
 func blocks_move(effect_id: int) -> bool:
 	var def: Dictionary = DEFINITIONS.get(effect_id, {})

@@ -77,6 +77,7 @@ func start_encounter(encounter: CombatEncounter) -> bool:
 	_session.resolution_started.connect(_on_resolution_started)
 	_session.turn_started.connect(_on_turn_started)
 	_session.action_resolved.connect(_on_action_resolved)
+	_session.status_effects_ticked.connect(_on_status_effects_ticked)
 	_session.combat_finished.connect(_on_combat_finished)
 	_menu.visible = true
 	_menu.set_interactable(false)
@@ -155,16 +156,16 @@ func _on_turn_started(actor: Resource) -> void:
 func _perform_enemy_turn(enemy: EnemyInstance) -> void:
 	if _session == null or enemy != _session.current_actor:
 		return
+	var skill := _choose_enemy_skill(enemy)
+	if skill != null:
+		_session.perform_enemy_skill(skill)
+		return
 	var targets := _session.get_party_targets_for(enemy)
 	if targets.is_empty():
 		_session.perform_enemy_wait()
 		return
 	var target: PartyMember = targets.pick_random()
-	var skill := _choose_enemy_skill(enemy)
-	if skill != null:
-		_session.perform_enemy_skill(skill, target)
-	else:
-		_session.perform_enemy_attack(target)
+	_session.perform_enemy_attack(target)
 
 func _on_action_requested(action: StringName) -> void:
 	clear_messages_requested.emit()
@@ -305,6 +306,21 @@ func _on_action_resolved(result: Dictionary) -> void:
 		return
 	_finish_action_presentation(result)
 
+func _on_status_effects_ticked(actor: Resource, results: Array[Dictionary]) -> void:
+	var actor_name := CombatStats.display_name(actor)
+	for result in results:
+		var effect_name := StatusEffects.get_label(int(result.get("effect_id", StatusEffects.Effect.NONE)))
+		var damage := int(result.get("damage", 0))
+		var healing := int(result.get("healing", 0))
+		if damage > 0:
+			battle_log_requested.emit("%s takes %d damage from %s." % [actor_name, damage, effect_name])
+		if healing > 0:
+			battle_log_requested.emit("%s recovers %d HP from %s." % [actor_name, healing, effect_name])
+		if result.get("saved", false):
+			battle_log_requested.emit("%s shakes off %s." % [actor_name, effect_name])
+		if result.get("expired", false):
+			battle_log_requested.emit("%s's %s ends." % [actor_name, effect_name])
+
 func _requires_action_presentation(result: Dictionary) -> bool:
 	var kind: StringName = result.get("kind", &"")
 	return kind == &"attack" or kind == &"enemy_fled" \
@@ -380,14 +396,18 @@ func _present_skill_action(result: Dictionary) -> void:
 			var feedback_text := "RESIST" if outcome.get("resisted", false) else ""
 			if feedback_text.is_empty() and outcome.get("status_resisted", false) and int(outcome.get("damage", 0)) <= 0:
 				feedback_text = "SAVE"
-			if feedback_text.is_empty() and int(outcome.get("damage", 0)) <= 0:
+			var damage := int(outcome.get("damage", 0))
+			var healing := int(outcome.get("healing", 0))
+			if feedback_text.is_empty() and healing > 0:
+				feedback_text = "+%d" % healing
+			if feedback_text.is_empty() and damage <= 0:
 				var effect_id := int(outcome.get("status_applied", StatusEffects.Effect.NONE))
 				feedback_text = StatusEffects.get_label(effect_id) if effect_id != StatusEffects.Effect.NONE else "HIT"
 			if target_visual.has_method("show_health_feedback"):
 				await target_visual.show_health_feedback(
 					target.current_hp,
 					target.max_hp,
-					int(outcome.get("damage", 0)),
+					damage if damage > 0 else -healing,
 					not outcome.get("resisted", false),
 					feedback_text
 				)
@@ -498,9 +518,12 @@ func _choose_enemy_skill(enemy: EnemyInstance) -> SkillData:
 	for raw_skill_id in enemy.enemy_data.skills:
 		var skill_id := StringName(raw_skill_id)
 		var skill := SkillSystem.get_skill(skill_id)
-		if skill == null or skill.archetype != SkillData.Archetype.COMBAT_ACTIVE:
+		if skill == null or skill.archetype not in [SkillData.Archetype.COMBAT_ACTIVE, SkillData.Archetype.PARTY_SPELL]:
 			continue
 		if not enemy.learned_skills.has(skill_id) or enemy.current_stamina < skill.stamina_cost:
+			continue
+		if skill.archetype == SkillData.Archetype.PARTY_SPELL \
+				and (_session == null or _session.get_enemy_allies_for_skill(skill).is_empty()):
 			continue
 		var use_chance := clampf(float(enemy.enemy_data.skills[raw_skill_id]), 0.0, 1.0)
 		if randf() < use_chance:

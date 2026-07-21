@@ -36,7 +36,19 @@ enum Status_effect {
 	PARALYZE,
 	BLIND,
 	WEAK,
-	SILENCE
+	SILENCE,
+	BLEED,
+	DECAY,
+	SLEEP,
+	CONFUSE,
+	SLOW,
+	CURSE,
+	DISEASED,
+	DROWNING,
+	REGENERATE,
+	HASTE,
+	BLESS,
+	STONE_SKIN
 }
 
 # identity

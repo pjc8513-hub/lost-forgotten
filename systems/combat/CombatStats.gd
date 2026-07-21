@@ -67,7 +67,7 @@ static func damage_profile(actor: Resource, target: Resource = null) -> Dictiona
 		profile["bonus"] = int(profile.get("bonus", 0)) + _arms_master_bonus(actor, target)
 		return profile
 	var enemy := actor as EnemyInstance
-	return {"dice_rolls": enemy.enemy_data.damage_dice_rolls, "dice_sides": enemy.enemy_data.damage_dice_sides, "bonus": enemy.enemy_data.bonus_damage_base + ability_modifier(strength(enemy))}
+	return {"dice_rolls": enemy.enemy_data.damage_dice_rolls, "dice_sides": enemy.enemy_data.damage_dice_sides, "bonus": enemy.enemy_data.bonus_damage_base + ability_modifier(strength(enemy)) + _status_bonus(enemy, "bonus_damage")}
 
 static func _arms_master_bonus(attacker: PartyMember, target: Resource) -> int:
 	if target is not EnemyInstance or target.enemy_data == null:

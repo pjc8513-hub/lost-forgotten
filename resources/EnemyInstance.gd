@@ -37,8 +37,17 @@ static func create(template: EnemyData, row: int, slot: int) -> EnemyInstance:
 	instance.rolled_willpower = int(rolls.get("willpower", 0))
 	for skill_id in template.skills:
 		instance.learned_skills[skill_id] = 1
-	for effect_id in template.starting_status_effects:
-		instance.active_status_effects[effect_id] = {"remaining_rounds": StatusEffects.duration_rounds(-1), "save_dc": 0, "source": template.display_name}
+	for effect_name in template.starting_status_effects:
+		var effect_id := StatusEffects.normalize_id(String(effect_name))
+		if effect_id == StatusEffects.Effect.NONE:
+			push_warning("Unknown starting status effect '%s' for %s." % [effect_name, template.display_name])
+			continue
+		instance.active_status_effects[effect_id] = {
+			"remaining_rounds": StatusEffects.duration_rounds(effect_id),
+			"save_dc": 0,
+			"source": template.display_name,
+			"awaiting_blocked_turn": StatusEffects.blocks_action(effect_id),
+		}
 	instance.max_hp = maxi(template.hp_base + CombatStats.ability_modifier(CombatStats.endurance(instance)), 1)
 	instance.current_hp = instance.max_hp
 	instance.max_stamina = maxi(10 + CombatStats.ability_modifier(CombatStats.endurance(instance)), 1)
@@ -60,8 +69,14 @@ func take_damage(amount: int, feedback_type: StringName = &"damage") -> void:
 	if before != current_hp:
 		health_changed.emit(before - current_hp, feedback_type)
 		stats_changed.emit()
+		_clear_statuses_broken_by_damage()
 	if current_hp == 0:
 		died.emit()
+
+func _clear_statuses_broken_by_damage() -> void:
+	for raw_effect_id in active_status_effects.keys():
+		if StatusEffects.breaks_on_damage(int(raw_effect_id)):
+			active_status_effects.erase(raw_effect_id)
 
 func heal(amount: int, feedback_type: StringName = &"healing") -> void:
 	var before := current_hp

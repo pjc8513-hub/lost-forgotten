@@ -12,4 +12,5 @@ sprite_texture = ExtResource("2_beanw")
 enemytype = 0
 enemy_scene = ExtResource("1_2fquy")
 ac_bonus = 1
+starting_status_effects = Array[StringName]([&"poison"])
 metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

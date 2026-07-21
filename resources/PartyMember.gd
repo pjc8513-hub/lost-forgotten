@@ -97,6 +97,13 @@ func take_damage(amount: int, feedback_type: StringName = &"damage") -> void:
 	var damage_taken := hp_before - current_hp
 	if damage_taken > 0:
 		health_changed.emit(damage_taken, feedback_type)
+		var status_cleared := false
+		for raw_effect_id in active_status_effects.keys():
+			if StatusEffects.breaks_on_damage(int(raw_effect_id)):
+				active_status_effects.erase(raw_effect_id)
+				status_cleared = true
+		if status_cleared:
+			StatCalculator.recalculate(self)
 
 func heal(amount: int, feedback_type: StringName = &"healing") -> void:
 	var hp_before := current_hp

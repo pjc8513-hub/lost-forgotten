@@ -95,9 +95,17 @@ static func tick_statuses(actor: Resource) -> Array[Dictionary]:
 			entry.awaiting_blocked_turn = true
 		var dot := StatusEffects.dot_damage(effect_id)
 		if dot > 0:
+			var hp_before: int = actor.current_hp
 			actor.take_damage(dot, &"dot")
-		elif dot < 0:
+			var damage_dealt := hp_before - int(actor.current_hp)
+			if damage_dealt > 0:
+				results.append({"effect_id": effect_id, "damage": damage_dealt})
+		elif dot < 0 and not _has_healing_blocker(actor):
+			var healing_hp_before: int = actor.current_hp
 			actor.heal(-dot)
+			var healing_done := int(actor.current_hp) - healing_hp_before
+			if healing_done > 0:
+				results.append({"effect_id": effect_id, "healing": healing_done})
 		# A new action blocker cannot expire before denying its promised turn.
 		if bool(entry.get("awaiting_blocked_turn", false)):
 			continue
@@ -112,6 +120,7 @@ static func tick_statuses(actor: Resource) -> Array[Dictionary]:
 			entry.remaining_rounds = rounds - 1
 			if entry.remaining_rounds == 0:
 				to_clear.append(effect_id)
+				results.append({"effect_id": effect_id, "expired": true})
 	for effect_id in to_clear:
 		actor.active_status_effects.erase(effect_id)
 	if actor is PartyMember and not to_clear.is_empty():
@@ -157,7 +166,7 @@ static func _apply_skill_to_target(caster: Resource, target: Resource, skill: Sk
 	if skill.damage_amount_rolls > 0 and skill.damage_amount_dice > 0:
 		outcome.damage = maxi(DiceRoller.roll(skill.damage_amount_dice, skill.damage_amount_rolls).total, 0)
 		target.take_damage(outcome.damage, StringName(element if not element.is_empty() else "damage"))
-	if shared_heal > 0 and target is PartyMember and target.is_alive() and not _has_healing_blocker(target):
+	if shared_heal > 0 and target.has_method("heal") and target.is_alive() and not _has_healing_blocker(target):
 		var hp_before: int = target.current_hp
 		target.heal(shared_heal, &"healing")
 		outcome.healing = target.current_hp - hp_before
@@ -173,9 +182,11 @@ static func _apply_skill_to_target(caster: Resource, target: Resource, skill: Sk
 		StatCalculator.recalculate(target)
 	var applied_effect := _status_effect_id(skill.status_effect)
 	if applied_effect != StatusEffects.Effect.NONE and target.is_alive():
-		if StatusEffects.is_negative(applied_effect) and skill.dc_base > 0:
-			outcome.status_save_roll = DiceRoller.d20(CombatStats.ability_modifier(CombatStats.willpower(target))).total
-			outcome.status_resisted = outcome.status_save_roll >= skill.dc_base
+		if StatusEffects.is_negative(applied_effect):
+			outcome.status_resisted = _has_status_resistance(target, skill.status_effect)
+			if not outcome.status_resisted and skill.dc_base > 0:
+				outcome.status_save_roll = DiceRoller.d20(CombatStats.ability_modifier(CombatStats.willpower(target))).total
+				outcome.status_resisted = outcome.status_save_roll >= skill.dc_base
 		if not outcome.status_resisted and apply_status(target, applied_effect, skill.dc_base, CombatStats.display_name(caster)):
 			outcome.status_applied = applied_effect
 	return outcome
@@ -192,8 +203,9 @@ static func _is_healing_skill(skill: SkillData) -> bool:
 	return skill.heal_amount_dice > 0 and skill.heal_amount_sides > 0
 
 static func _is_hostile_skill(skill: SkillData) -> bool:
+	var status_id := _status_effect_id(skill.status_effect)
 	return skill.damage_amount_dice > 0 \
-			or _status_effect_id(skill.status_effect) != StatusEffects.Effect.NONE
+			or (status_id != StatusEffects.Effect.NONE and StatusEffects.is_negative(status_id))
 
 static func _roll_heal(skill: SkillData, caster: Resource) -> int:
 	return DiceRoller.roll(skill.heal_amount_dice, skill.heal_amount_sides).total + skill.bonus_res_per_rank * _skill_rank(caster, skill)
@@ -204,13 +216,20 @@ static func _skill_rank(caster: Resource, skill: SkillData) -> int:
 static func _healable_targets(targets: Array[Resource]) -> Array[Resource]:
 	var result: Array[Resource] = []
 	for target in targets:
-		if target is PartyMember and target.current_hp < target.max_hp and not _has_healing_blocker(target):
+		if target.has_method("heal") and target.current_hp < target.max_hp and not _has_healing_blocker(target):
 			result.append(target)
 	return result
 
 static func _has_healing_blocker(target: Resource) -> bool:
 	for effect_id in target.active_status_effects:
 		if StatusEffects.blocks_healing(int(effect_id)):
+			return true
+	return false
+
+static func _has_status_resistance(target: Resource, status_effect: SkillData.Status_effect) -> bool:
+	for skill_id in target.learned_skills:
+		var known_skill := SkillSystem.get_skill(StringName(skill_id))
+		if known_skill != null and known_skill.resist_status == status_effect:
 			return true
 	return false
 
@@ -254,4 +273,16 @@ static func _status_effect_id(effect: SkillData.Status_effect) -> int:
 		SkillData.Status_effect.PARALYZE: return StatusEffects.Effect.PARALYSIS
 		SkillData.Status_effect.BLIND: return StatusEffects.Effect.BLIND
 		SkillData.Status_effect.WEAK: return StatusEffects.Effect.WEAKEN
+		SkillData.Status_effect.BLEED: return StatusEffects.Effect.BLEED
+		SkillData.Status_effect.DECAY: return StatusEffects.Effect.DECAY
+		SkillData.Status_effect.SLEEP: return StatusEffects.Effect.SLEEP
+		SkillData.Status_effect.CONFUSE: return StatusEffects.Effect.CONFUSE
+		SkillData.Status_effect.SLOW: return StatusEffects.Effect.SLOW
+		SkillData.Status_effect.CURSE: return StatusEffects.Effect.CURSE
+		SkillData.Status_effect.DISEASED: return StatusEffects.Effect.DISEASED
+		SkillData.Status_effect.DROWNING: return StatusEffects.Effect.DROWNING
+		SkillData.Status_effect.REGENERATE: return StatusEffects.Effect.REGENERATE
+		SkillData.Status_effect.HASTE: return StatusEffects.Effect.HASTE
+		SkillData.Status_effect.BLESS: return StatusEffects.Effect.BLESS
+		SkillData.Status_effect.STONE_SKIN: return StatusEffects.Effect.STONE_SKIN
 	return StatusEffects.Effect.NONE

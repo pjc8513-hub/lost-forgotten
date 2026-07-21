@@ -7,6 +7,7 @@ signal resolution_started
 signal turn_started(actor: Resource)
 signal action_resolved(result: Dictionary)
 signal combat_finished(outcome: StringName, rewards: Dictionary)
+signal status_effects_ticked(actor: Resource, results: Array[Dictionary])
 
 var party: Array[PartyMember] = []
 var enemies: Array[EnemyInstance] = []
@@ -80,6 +81,14 @@ func get_party_targets_for(attacker: Resource) -> Array[PartyMember]:
 func get_party_targets_for_skill(skill: SkillData) -> Array[PartyMember]:
 	return CombatTargeting.party_targets_for_skill(skill, party)
 
+func get_enemy_allies_for_skill(skill: SkillData) -> Array[EnemyInstance]:
+	var result: Array[EnemyInstance] = []
+	var requires_injury := skill != null and skill.heal_amount_dice > 0 and skill.heal_amount_sides > 0
+	for enemy in _active_enemies():
+		if not requires_injury or enemy.current_hp < enemy.max_hp:
+			result.append(enemy)
+	return result
+
 func perform_enemy_attack(target: PartyMember) -> void:
 	if not _can_enemy_act():
 		_finish_current_turn({"kind": &"skipped", "actor": current_actor, "message": "No valid target."})
@@ -92,11 +101,13 @@ func perform_enemy_attack(target: PartyMember) -> void:
 		target = valid_targets.pick_random()
 	_finish_current_turn(CombatRules.basic_attack(current_actor, target))
 
-func perform_enemy_skill(skill: SkillData, target: PartyMember) -> void:
+func perform_enemy_skill(skill: SkillData, target: Resource = null) -> void:
 	if not _can_enemy_act():
 		_finish_current_turn({"kind": &"skipped", "actor": current_actor, "message": "No valid target."})
 		return
-	var valid_targets := get_party_targets_for_skill(skill)
+	var valid_targets: Array = get_enemy_allies_for_skill(skill) \
+			if skill != null and skill.archetype == SkillData.Archetype.PARTY_SPELL \
+			else get_party_targets_for_skill(skill)
 	if target not in valid_targets:
 		if valid_targets.is_empty():
 			_finish_current_turn({"kind": &"skipped", "actor": current_actor, "message": "No valid target."})
@@ -131,11 +142,15 @@ func _begin_round() -> void:
 	_planning_index = 0
 
 	for actor in _living_party():
-		CombatRules.tick_statuses(actor)
+		var party_status_results := CombatRules.tick_statuses(actor)
+		if not party_status_results.is_empty():
+			status_effects_ticked.emit(actor, party_status_results)
 		if CombatRules.can_act(actor):
 			_eligible_party.append(actor)
 	for actor in _active_enemies():
-		CombatRules.tick_statuses(actor)
+		var enemy_status_results := CombatRules.tick_statuses(actor)
+		if not enemy_status_results.is_empty():
+			status_effects_ticked.emit(actor, enemy_status_results)
 
 	if _check_finished():
 		return
@@ -278,7 +293,25 @@ func _end(outcome: StringName) -> void:
 	_finished = true
 	planning_actor = null
 	current_actor = null
+	_clear_end_of_combat_statuses()
 	combat_finished.emit(outcome, _build_rewards() if outcome == &"victory" else _empty_rewards())
+
+func _clear_end_of_combat_statuses() -> void:
+	for actor in party:
+		_clear_end_of_combat_statuses_for(actor)
+	for actor in enemies:
+		_clear_end_of_combat_statuses_for(actor)
+
+func _clear_end_of_combat_statuses_for(actor: Resource) -> void:
+	if actor == null:
+		return
+	var removed := false
+	for raw_effect_id in actor.active_status_effects.keys():
+		if StatusEffects.clears_at_end_of_combat(int(raw_effect_id)):
+			actor.active_status_effects.erase(raw_effect_id)
+			removed = true
+	if removed and actor is PartyMember:
+		StatCalculator.recalculate(actor)
 
 func _build_rewards() -> Dictionary:
 	var rewards := _empty_rewards()
