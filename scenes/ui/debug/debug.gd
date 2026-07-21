@@ -20,6 +20,7 @@ const STAT_FIELDS: Array[Dictionary] = [
 	{"label": "Piety", "rolled": &"rolled_piety", "class": &"base_piety", "race": &"bonus_piety"},
 	{"label": "Willpower", "rolled": &"rolled_willpower", "class": &"base_willpower", "race": &"bonus_willpower"},
 ]
+const CASTLE_COMBAT_SCENE: PackedScene = preload("res://scenes/combat/castle_combat.tscn")
 
 @export var grid_debug_enabled := false
 
@@ -371,7 +372,9 @@ func _execute_command(input: String) -> void:
 	
 	match cmd:
 		"help":
-			_log_message("Commands: help, gold <amt>, food <amt>, xp [all] <amt>, heal [all], stamina [all/full] <amt>, damage [all] <amt>, kill [all], status <status>, additem <id>, tp <x> <z>, griddebug [on/off], cell <x> <z>")
+			_log_message("Commands: help, battle <enemy_id>[, <enemy_id>...], gold <amt>, food <amt>, xp [all] <amt>, heal [all], stamina [all/full] <amt>, damage [all] <amt>, kill [all], status <status>, additem <id>, tp <x> <z>, griddebug [on/off], cell <x> <z>")
+		"battle":
+			_start_debug_battle(args)
 		"griddebug":
 			if args.is_empty():
 				grid_debug_enabled = not grid_debug_enabled
@@ -613,3 +616,40 @@ func _execute_command(input: String) -> void:
 			_log_message("Teleported player to (%d, 0, %d)." % [x, z])
 		_:
 			_log_message("Unknown command: %s. Type 'help' for options." % cmd)
+
+func _start_debug_battle(args: Array[String]) -> void:
+	if args.is_empty():
+		_log_message("Error: battle requires 1 to 3 comma-separated enemy IDs (e.g. battle GiantRat, RedJelly)")
+		return
+
+	var enemy_id_text := " ".join(args)
+	var enemy_ids: Array[StringName] = []
+	var enemy_labels: Array[String] = []
+	for raw_id in enemy_id_text.split(","):
+		var enemy_id := raw_id.strip_edges()
+		if enemy_id.is_empty():
+			_log_message("Error: battle contains an empty enemy ID.")
+			return
+		enemy_ids.append(StringName(enemy_id))
+		enemy_labels.append(enemy_id)
+
+	if enemy_ids.size() > 3:
+		_log_message("Error: battle supports at most 3 enemy rows.")
+		return
+
+	var catalog := EnemyCatalog.new()
+	var encounter := CombatEncounter.new()
+	encounter.combat_scene = CASTLE_COMBAT_SCENE
+	for row_index in enemy_ids.size():
+		var enemy_data := catalog.get_enemy(enemy_ids[row_index])
+		if enemy_data == null:
+			_log_message("Error: Unknown enemy ID '%s'." % enemy_ids[row_index])
+			return
+		encounter.enemy_rows.append([EnemyInstance.create(enemy_data, row_index, 0)])
+
+	var main_scene := get_tree().current_scene
+	if main_scene == null or not main_scene.has_method("_on_encounter_requested"):
+		_log_message("Error: Main scene is not ready for combat.")
+		return
+	main_scene.call("_on_encounter_requested", encounter)
+	_log_message("Started debug battle: %s." % ", ".join(enemy_labels))
