@@ -25,4 +25,5 @@ metadata/_custom_type_script = "uid://bu2iii31o0rrx"
 script = ExtResource("6_1ipdj")
 npc_name = "Brother Patrick"
 dialogue_nodes = Array[ExtResource("1_wit1h")]([SubResource("Resource_vvxho")])
+dialogue_label = "Inspect"
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"

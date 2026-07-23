@@ -520,6 +520,12 @@ transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -24,
 [node name="SwitchComponent" parent="buttons/button" index="3" unique_id=1763643439]
 target_door_ids = Array[StringName]([&"templebasement_2"])
 
+[node name="button2" parent="buttons" unique_id=1256994709 instance=ExtResource("14_i7mby")]
+transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, -26, 0, 12)
+
+[node name="SwitchComponent" parent="buttons/button2" index="3" unique_id=1763643439]
+target_door_ids = Array[StringName]([&"templebasement.door_6"])
+
 [node name="stone_wall3_door" parent="." unique_id=329020861 instance=ExtResource("5_mgy60")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 4)
 
@@ -657,12 +663,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_kbw27")
 door_id = &"templebasement.door_6"
 starts_locked = true
 
-[node name="button" parent="stone_wall3_door3" unique_id=1256994709 instance=ExtResource("14_i7mby")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -7.999999, 0, 12.000001)
-
-[node name="SwitchComponent" parent="stone_wall3_door3/button" index="3" unique_id=1763643439]
-target_door_ids = Array[StringName]([&"templebasement.door_6"])
-
 [node name="bonepile1" parent="." unique_id=346089655 instance=ExtResource("24_jkqy8")]
 transform = Transform3D(1.1040288, 0, 0, 0, 0.735767, 0, 0, 0, 1, -14, 0.2703172, 24)
 script = ExtResource("25_r7k2p")
@@ -681,6 +681,7 @@ metadata/_custom_type_script = "uid://cpd6aclgammco"
 [editable path="cells/crate2"]
 [editable path="cells/crate3"]
 [editable path="buttons/button"]
+[editable path="buttons/button2"]
 [editable path="stone_wall3_door"]
 [editable path="chests/chest4"]
 [editable path="chests/chest3"]
@@ -690,5 +691,4 @@ metadata/_custom_type_script = "uid://cpd6aclgammco"
 [editable path="stone_secret3_door"]
 [editable path="crate1"]
 [editable path="stone_wall3_door3"]
-[editable path="stone_wall3_door3/button"]
 [editable path="bonepile1"]

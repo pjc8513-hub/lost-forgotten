@@ -6,6 +6,8 @@ const FOOD_RATION_COST := 10
 @onready var options_container: VBoxContainer = $VBoxContainer/HBoxContainer/OptionsPanel/MarginContainer/ScrollContainer/OptionsContainer
 @onready var npc_list: ItemList = $VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/NPCListContainer/NPCList
 @onready var dialogue_label: RichTextLabel = $VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/DialogueLabel
+@onready var options_panel: PanelContainer = $VBoxContainer/HBoxContainer/OptionsPanel
+
 
 var _npcs: Array[NPCComponent] = []
 var _source_tile: NPC_Tile_Component
@@ -54,6 +56,7 @@ func close() -> void:
 	_is_inn_resting = false
 	npc_list.clear()
 	_clear_options()
+	options_panel.size_flags_stretch_ratio = 0.39
 	dialogue_label.clear()
 
 func _on_party_member_selected(_index: int, _member: PartyMember) -> void:
@@ -96,7 +99,7 @@ func _show_npc_actions() -> void:
 	_clear_options()
 	if _selected_npc == null:
 		return
-
+	options_panel.size_flags_stretch_ratio = 0.39
 	_add_option(_get_dialogue_action_label(_selected_npc), _start_dialogue)
 
 	for quest in _selected_npc.quests_offered:
@@ -117,11 +120,12 @@ func _show_npc_actions() -> void:
 	if _selected_npc.is_travel_available():
 		_add_option(_selected_npc.destination_label, _trigger_npc_travel)
 
-	_add_option("Leave", close)
+	_add_option("Close", close)
 
 func _start_dialogue() -> void:
 	if _selected_npc == null:
 		return
+	options_panel.size_flags_stretch_ratio = 0.39
 	var available_nodes: Array[DialogueNode] = []
 	for node in _selected_npc.dialogue_nodes:
 		if node != null and node.is_available():
@@ -252,7 +256,7 @@ func _open_temple_shop() -> void:
 	party_button.disabled = not _party_has_curable_effects() or PartyManager.gold < party_cost
 
 	_add_option("Return", _start_dialogue)
-	_add_option("Leave", close)
+	_add_option("Close", close)
 
 func _open_inn_shop() -> void:
 	_is_inn_shop_open = true
@@ -273,7 +277,7 @@ func _open_inn_shop() -> void:
 
 	var return_button := _add_option("Return", _start_dialogue)
 	return_button.disabled = _is_inn_resting
-	var leave_button := _add_option("Leave", close)
+	var leave_button := _add_option("Close", close)
 	leave_button.disabled = _is_inn_resting
 
 func _open_trainer_shop() -> void:
@@ -292,7 +296,7 @@ func _open_trainer_shop() -> void:
 	train_button.disabled = member == null or not member.can_level_up() or PartyManager.gold < cost
 
 	_add_option("Return", _start_dialogue)
-	_add_option("Leave", close)
+	_add_option("Close", close)
 
 func _open_teacher_shop() -> void:
 	_is_teacher_shop_open = true
@@ -319,9 +323,9 @@ func _open_teacher_shop() -> void:
 			else:
 				var improve_button := _add_option("Improve %s (%d/%d, 1 SP)" % [skill_ref.display_name, rank, skill_ref.maximum_rank], func(): _improve_selected_member_skill(skill_ref))
 				improve_button.disabled = member.available_skill_points <= 0
-
+	options_panel.size_flags_stretch_ratio = 0.75
 	_add_option("Return", _start_dialogue)
-	_add_option("Leave", close)
+	_add_option("Close", close)
 
 func _trigger_npc_travel() -> void:
 	var npc := _selected_npc

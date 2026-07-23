@@ -29,7 +29,7 @@ func activate() -> void:
 	var signal_result := emit_signal(&"activated", self, exported_data, results, success)
 	
 	# Send an alert via MapManager (main listens to MapManager.alert_requested)
-	var message: String = "The switch clicks and something happens." if success else "The switch doesn't seem to do anything."
+	var message: String = "The button clicks." if success else "The button doesn't seem to do anything."
 	MapManager.request_alert(message)
 	
 	_report_debug_interaction(exported_data, results, success, signal_result, signal_exists, signal_connection_count)
