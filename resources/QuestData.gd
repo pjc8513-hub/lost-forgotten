@@ -13,6 +13,14 @@ class_name Quest extends Resource
 	3: "Quest Completed"
 }
 
+# Dialogue shown by the quest action for each current quest stage.
+# Keys are stage numbers and values are DialogueNode resources.
+@export var stage_dialogue: Dictionary = {}
+
+func get_stage_dialogue(stage: int) -> DialogueNode:
+	var node = stage_dialogue.get(stage, stage_dialogue.get(str(stage), null))
+	return node as DialogueNode
+
 @export_group("Quest Description")
 # information to be used in the quest log
 @export var quest_giver: String = ""

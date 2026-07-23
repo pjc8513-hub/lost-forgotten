@@ -8,6 +8,7 @@
 
 [resource]
 script = ExtResource("5_8xvju")
+choice_string = "General greeting"
 text = "Walk in the light.
 How may we assist you?"
 choices = Array[ExtResource("1_5x3n4")]([ExtResource("2_gki6f")])

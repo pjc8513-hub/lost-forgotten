@@ -15,5 +15,6 @@ metadata/_custom_type_script = "uid://biwbs1n6b7tyr"
 [resource]
 script = ExtResource("4_w0l27")
 text = "We are very concerned for Brother Patrick. You don't think that something... bad happened to him, do you?"
+choice_string = "Ask about Brother Patrick"
 conditions = Array[ExtResource("2_bibyb")]([SubResource("Resource_fbl83")])
 metadata/_custom_type_script = "uid://bu2iii31o0rrx"

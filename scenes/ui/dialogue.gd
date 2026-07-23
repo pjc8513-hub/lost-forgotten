@@ -100,9 +100,13 @@ func _show_npc_actions() -> void:
 	_add_option(_get_dialogue_action_label(_selected_npc), _start_dialogue)
 
 	for quest in _selected_npc.quests_offered:
-		if quest != null and QuestManager.get_quest_stage(quest.quest_id) == 0:
+		if quest != null:
 			var quest_ref := quest
-			_add_option("Quest: %s" % quest.quest_name, func(): _accept_quest(quest_ref))
+			var stage := QuestManager.get_quest_stage(quest.quest_id)
+			if stage == 0:
+				_add_option("Quest: %s" % quest.quest_name, func(): _accept_quest(quest_ref))
+			else:
+				_add_option("Quest: %s" % quest.quest_name, func(): _show_quest_dialogue(quest_ref))
 
 	if _selected_npc.is_shop_available():
 		var label := _selected_npc.shop_name
@@ -118,7 +122,25 @@ func _show_npc_actions() -> void:
 func _start_dialogue() -> void:
 	if _selected_npc == null:
 		return
-	_show_dialogue_node(_selected_npc.get_current_dialogue_node())
+	var available_nodes: Array[DialogueNode] = []
+	for node in _selected_npc.dialogue_nodes:
+		if node != null and node.is_available():
+			available_nodes.append(node)
+	if available_nodes.size() > 1:
+		_show_dialogue_entry_options(available_nodes)
+	else:
+		_show_dialogue_node(available_nodes[0] if not available_nodes.is_empty() else _selected_npc.default_dialogue)
+
+func _show_dialogue_entry_options(nodes: Array[DialogueNode]) -> void:
+	_clear_options()
+	dialogue_label.text = _selected_npc.npc_name
+	for node in nodes:
+		var node_ref := node
+		var label := node.choice_string
+		if label.strip_edges().is_empty():
+			label = node.text.split("\n")[0]
+		_add_option(label, func(): _show_dialogue_node(node_ref))
+	_add_option("Back", _show_npc_actions)
 
 func _show_dialogue_node(node: DialogueNode) -> void:
 	_is_temple_shop_open = false
@@ -171,9 +193,18 @@ func _choose_dialogue_edge(edge: DialogueEdge) -> void:
 func _accept_quest(quest: Quest) -> void:
 	QuestManager.quest_db[quest.quest_id] = quest
 	QuestManager.set_quest_stage(quest.quest_id, 1)
-	dialogue_label.text = quest.description
 	_refresh_npc_list(_selected_npc, false)
-	_show_npc_actions()
+	_show_quest_dialogue(quest)
+
+func _show_quest_dialogue(quest: Quest) -> void:
+	if quest == null:
+		return
+	var node := quest.get_stage_dialogue(QuestManager.get_quest_stage(quest.quest_id))
+	if node != null:
+		_show_dialogue_node(node)
+	else:
+		dialogue_label.text = quest.description
+		_show_npc_actions()
 
 func _open_shop() -> void:
 	if _selected_npc != null and _selected_npc.shop_type == NPCComponent.Shop_Type.TEMPLE:

@@ -2,11 +2,42 @@
 
 [ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="1_q17j5"]
 [ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="2_ckvh8"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="3_dialogue"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="3_icwrm"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="4_boe0u"]
 
 [sub_resource type="Resource" id="Resource_ly515"]
 script = ExtResource("1_q17j5")
 value = 1000
 metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_stage_1"]
+script = ExtResource("3_dialogue")
+text = "Please search the Temple basement for any sign of Brother Patrick. If you learn what happened to him, come back and tell me."
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_pcoyk"]
+script = ExtResource("1_q17j5")
+type = 5
+target_id = "BrotherPatrick"
+value = 3
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_icwrm"]
+script = ExtResource("1_q17j5")
+value = 1000
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_qpad0"]
+script = ExtResource("3_dialogue")
+text = "You found him? Please, tell me what happened to Brother Patrick."
+immediate_rewards = Array[ExtResource("1_q17j5")]([SubResource("Resource_pcoyk"), SubResource("Resource_icwrm")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_rc0ap"]
+script = ExtResource("3_dialogue")
+text = "The rats really picked his bones clean? Awful."
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
 
 [resource]
 script = ExtResource("2_ckvh8")
@@ -20,6 +51,11 @@ stage_descriptions = {
 1: "Find what happened to Brother Patrick in the Temple basement.",
 2: "Return with information about Brother Patrick.",
 3: "Quest Completed"
+}
+stage_dialogue = {
+1: SubResource("Resource_stage_1"),
+2: SubResource("Resource_qpad0"),
+3: SubResource("Resource_rc0ap")
 }
 quest_giver = "Kira"
 return_location = "Temple in Nobel"
