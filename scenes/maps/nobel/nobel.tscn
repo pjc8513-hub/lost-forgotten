@@ -2,7 +2,6 @@
 
 [ext_resource type="Shader" uid="uid://jxmlaj3taoro" path="res://scripts/shaders/day_sky.gdshader" id="1_ornp4"]
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_t0kxk"]
-[ext_resource type="Curve" uid="uid://c0jnfvp6tmh3k" path="res://nobel_color_curve.tres" id="2_k5fv7"]
 [ext_resource type="PackedScene" uid="uid://c35lx4au86vvv" path="res://scenes/grid/nobel_city/nobel_road_2.tscn" id="3_54nej"]
 [ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="4_qt0u2"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="4_t0kxk"]
@@ -40,11 +39,14 @@
 [ext_resource type="Resource" uid="uid://dslkl36jpy6a8" path="res://data/dialogue/nobel/shop/Mary.tres" id="34_2m8eg"]
 [ext_resource type="Resource" uid="uid://b3pdgl4c2yodv" path="res://data/dialogue/nobel/shop/Jo.tres" id="35_ae1so"]
 [ext_resource type="PackedScene" uid="uid://gtp30eywbk8q" path="res://scenes/grid/nobel_city/shop_1.tscn" id="40_c1pmp"]
-[ext_resource type="PackedScene" uid="uid://d3ol8knkqgj2x" path="res://scenes/grid/nobel_city/garden_1.tscn" id="40_mywnk"]
 [ext_resource type="PackedScene" uid="uid://yoaii84iw34x" path="res://scenes/grid/castle/crate_1.tscn" id="41_mywnk"]
 
-[sub_resource type="CurveTexture" id="CurveTexture_4ex8l"]
-curve = ExtResource("2_k5fv7")
+[sub_resource type="Curve" id="Curve_hgk2k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mywnk"]
+curve = SubResource("Curve_hgk2k")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gyyt5"]
 shader = ExtResource("1_ornp4")
@@ -78,7 +80,7 @@ volumetric_fog_albedo = Color(0.6509804, 0.74509805, 0.9137255, 1)
 adjustment_enabled = true
 adjustment_contrast = 0.815
 adjustment_saturation = 1.31
-adjustment_color_correction = SubResource("CurveTexture_4ex8l")
+adjustment_color_correction = SubResource("CurveTexture_mywnk")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
 size = Vector3(1.1108398, 1.1833496, 1)
@@ -941,18 +943,6 @@ NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("34_2m8eg"), ExtResource("
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
 script = ExtResource("6_ktwdp")
 NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("16_g6jm8"), ExtResource("17_2m8eg")])
-
-[node name="Garden1" parent="." unique_id=1041259088 instance=ExtResource("40_mywnk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 12)
-
-[node name="Garden2" parent="." unique_id=1026602551 instance=ExtResource("40_mywnk")]
-transform = Transform3D(-1, 0, -4.2917713e-07, 0, 1, 0, 4.2917713e-07, 0, -1, -4, 0, 2)
-
-[node name="Garden3" parent="." unique_id=859531361 instance=ExtResource("40_mywnk")]
-transform = Transform3D(-3.8546574e-07, 0, 1, 0, 1, 0, -1, 0, -3.8546574e-07, -16, 0, 8)
-
-[node name="Garden4" parent="." unique_id=1680128472 instance=ExtResource("40_mywnk")]
-transform = Transform3D(-3.8546574e-07, 0, 1, 0, 1, 0, -1, 0, -3.8546574e-07, -16, 0, 2)
 
 [node name="crate1" parent="." unique_id=1210711141 instance=ExtResource("41_mywnk")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -4, 0, 8)

@@ -3,6 +3,7 @@
 [ext_resource type="Resource" uid="uid://cluunrbyyq57x" path="res://data/dialogue/nobel/temple/TempleGreeting.tres" id="1_5m116"]
 [ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="1_k153n"]
 [ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="2_5m116"]
+[ext_resource type="Resource" uid="uid://bdfff7lki0hdh" path="res://data/dialogue/nobel/temple/concerned.tres" id="3_5j7h0"]
 [ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="3_ly515"]
 [ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="4_5j7h0"]
 [ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="5_f1pne"]
@@ -11,7 +12,7 @@
 [resource]
 script = ExtResource("4_5j7h0")
 npc_name = "Kira"
-dialogue_nodes = Array[ExtResource("1_k153n")]([ExtResource("1_5m116")])
+dialogue_nodes = Array[ExtResource("1_k153n")]([ExtResource("1_5m116"), ExtResource("3_5j7h0")])
 default_dialogue = ExtResource("1_5m116")
 quests_offered = Array[ExtResource("3_ly515")]([ExtResource("5_ly515")])
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"

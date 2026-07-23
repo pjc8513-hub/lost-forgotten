@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://c8b20d6fvkgtk"]
+
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_wmpsq"]
+[ext_resource type="PackedScene" uid="uid://bud440ps2r6pa" path="res://scenes/actors/enemies/RatBrute.tscn" id="1_yro5g"]
+[ext_resource type="Texture2D" uid="uid://cb3pvncvgwfk6" path="res://assets/sprites/enemies/RatBrute2.png" id="3_2ycyx"]
+
+[resource]
+script = ExtResource("1_wmpsq")
+enemy_id = &"RatBrute"
+display_name = "Rat Brute"
+enemy_level = 7
+sprite_texture = ExtResource("3_2ycyx")
+enemytype = 1
+enemy_scene = ExtResource("1_yro5g")
+xp = 31
+gold = 40
+loot_probability = 0.8
+loot_table = 1
+base_strength = 6
+base_endurance = 6
+base_wisdom = 1
+base_dexterity = 1
+base_willpower = 1
+damage_dice_sides = 12
+hp_base = 10
+ac_bonus = 1
+accuracy_bonus = 2
+initiative_bonus = 1
+bonus_damage_base = 2
+resist_earth = true
+resist_dark = true
+skills = Dictionary[StringName, float]({
+&"bash": 0.2
+})
+flee_chance = 0.02
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

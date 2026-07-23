@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DialogueNode" format=3 uid="uid://bdfff7lki0hdh"]
+
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="1_ln3hq"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="2_bibyb"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="3_5yk53"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="4_w0l27"]
+
+[sub_resource type="Resource" id="Resource_fbl83"]
+script = ExtResource("2_bibyb")
+type = 2
+target_id = "BrotherPatrick"
+target_value = 1
+metadata/_custom_type_script = "uid://biwbs1n6b7tyr"
+
+[resource]
+script = ExtResource("4_w0l27")
+text = "We are very concerned for Brother Patrick. You don't think that something... bad happened to him, do you?"
+conditions = Array[ExtResource("2_bibyb")]([SubResource("Resource_fbl83")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
