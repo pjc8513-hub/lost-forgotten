@@ -140,6 +140,7 @@ func unlock_door(door_id: StringName) -> bool:
 
 func open_door(door_id: StringName) -> bool:
 	if not door_states.has(door_id) or door_states[door_id].get("is_locked", false):
+		MapManager.request_alert("Door won't budge!")
 		return false
 	var state: Dictionary = door_states[door_id].duplicate()
 	var was_open := bool(state.get("is_open", false))
