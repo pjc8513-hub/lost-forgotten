@@ -27,6 +27,11 @@ func activate() -> void:
 	var signal_exists := has_signal(&"activated")
 	var signal_connection_count := get_signal_connection_list(&"activated").size() if signal_exists else 0
 	var signal_result := emit_signal(&"activated", self, exported_data, results, success)
+	
+	# Send an alert via MapManager (main listens to MapManager.alert_requested)
+	var message: String = "The switch clicks and something happens." if success else "The switch doesn't seem to do anything."
+	MapManager.request_alert(message)
+	
 	_report_debug_interaction(exported_data, results, success, signal_result, signal_exists, signal_connection_count)
 
 func can_interact(player_grid_pos: Vector3i) -> bool:

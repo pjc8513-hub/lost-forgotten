@@ -67,10 +67,11 @@ func set_quest_stage(quest_id: String, stage: int) -> void:
 		MapManager.request_alert("Started Quest: %s" % get_quest_name(quest_id))
 	
 	quest_stage_changed.emit(quest_id, stage)
+	MapManager.request_alert("Quest %s updated" % get_quest_name(quest_id))
 	
 	if is_quest_completed(quest_id):
 		quest_completed.emit(quest_id)
-		MapManager.request_alert("Completed Quest: %s" % get_quest_name(quest_id))
+		MapManager.request_alert(_get_quest_completed_alert(quest_id))
 
 # Checks if a quest is active (started and not completed)
 func is_quest_active(quest_id: String) -> bool:
@@ -95,6 +96,26 @@ func get_quest_name(quest_id: String) -> String:
 	if quest != null:
 		return quest.quest_name
 	return quest_id
+
+func _get_quest_completed_alert(quest_id: String) -> String:
+	var alert := "Completed Quest: %s" % get_quest_name(quest_id)
+	var quest := quest_db.get(quest_id) as Quest
+	if quest == null or quest.quest_rewards == null:
+		return alert
+
+	var reward := quest.quest_rewards
+	var reward_text := ""
+	match reward.type:
+		DialogueReward.RewardType.ADD_GOLD:
+			reward_text = "%d gold" % reward.value
+		DialogueReward.RewardType.ADD_ITEM:
+			reward_text = reward.target_id
+		DialogueReward.RewardType.ADD_EXP:
+			reward_text = "%d XP" % reward.value
+
+	if not reward_text.is_empty():
+		alert += "\nReward: %s" % reward_text
+	return alert
 
 func unlock_quest_travel_destination(quest_id: String) -> bool:
 	var quest := quest_db.get(quest_id) as Quest
