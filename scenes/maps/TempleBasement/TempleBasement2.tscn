@@ -111,7 +111,7 @@ destination_spawn_id = &"templebasement1.lift1"
 animation_name = &"ascend"
 player_travel_offset = Vector3(0, 2, 0)
 
-[node name="cells" type="Node" parent="." unique_id=256105419]
+[node name="cells" type="Node3D" parent="." unique_id=1341576396]
 
 [node name="stone_corner2" parent="cells" unique_id=1870512281 instance=ExtResource("4_pholp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
@@ -262,7 +262,7 @@ starts_locked = true
 [node name="AnimationPlayer" parent="cells/stone_wall3_door3" index="6" unique_id=1618487145]
 root_node = NodePath("../../stone_wall3_door3")
 
-[node name="torches" type="Node" parent="." unique_id=131135373]
+[node name="torches" type="Node3D" parent="." unique_id=1184816102]
 
 [node name="torch1" parent="torches" unique_id=179294296 instance=ExtResource("6_mrm1j")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 2)
@@ -282,9 +282,9 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0
 [node name="torch6" parent="torches" unique_id=1662950588 instance=ExtResource("6_mrm1j")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 2)
 
-[node name="decor" type="Node" parent="." unique_id=1318614960]
+[node name="decor" type="Node3D" parent="." unique_id=1637824571]
 
-[node name="chests" type="Node" parent="." unique_id=1843395937]
+[node name="chests" type="Node3D" parent="." unique_id=1610249054]
 
 [node name="chest3" parent="chests" unique_id=1001326355 instance=ExtResource("19_1kk8w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)

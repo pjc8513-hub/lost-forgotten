@@ -568,7 +568,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 12)
 [node name="grass10" parent="." unique_id=158685830 instance=ExtResource("12_72yvy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 6)
 
-[node name="walls" type="Node" parent="." unique_id=612358972]
+[node name="walls" type="Node3D" parent="." unique_id=243721390]
 
 [node name="wall1" parent="walls" unique_id=243243673 instance=ExtResource("12_oyxdf")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 16)
@@ -745,7 +745,7 @@ metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
 [node name="gate4" parent="." unique_id=1120782456 instance=ExtResource("14_oyxdf")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -16, 0, 4)
 
-[node name="decor" type="Node" parent="." unique_id=1384272380]
+[node name="decor" type="Node3D" parent="." unique_id=1109713801]
 
 [node name="tree2" parent="decor" unique_id=1830953628 instance=ExtResource("15_3morc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6)

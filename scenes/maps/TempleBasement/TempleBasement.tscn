@@ -173,7 +173,7 @@ spawn_id = &"templebasement1.lift1"
 [node name="stone_exit4" parent="." unique_id=133908069 instance=ExtResource("16_bcjav")]
 NPC_List = Array[ExtResource("17_r0ogk")]([ExtResource("7_ey63t")])
 
-[node name="cells" type="Node" parent="." unique_id=1436002232]
+[node name="cells" type="Node3D" parent="." unique_id=1222643922]
 
 [node name="stone_corner2" parent="cells" unique_id=1870512281 instance=ExtResource("11_d02fq")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 0, 8)
@@ -532,7 +532,7 @@ chest_ID = &"templebasement.crate_12"
 loot_table = 3
 is_empty = true
 
-[node name="buttons" type="Node" parent="." unique_id=1806271610]
+[node name="buttons" type="Node3D" parent="." unique_id=214616892]
 
 [node name="button" parent="buttons" unique_id=1618898909 instance=ExtResource("14_i7mby")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -24, 0, 4)
@@ -559,7 +559,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_7avbs")
 door_id = &"templebasement_2"
 starts_locked = true
 
-[node name="chests" type="Node" parent="." unique_id=200966401]
+[node name="chests" type="Node3D" parent="." unique_id=1093169717]
 
 [node name="chest4" parent="chests" unique_id=1001326355 instance=ExtResource("15_weupc")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -34, 0, 4)
@@ -591,7 +591,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -14,
 chest_ID = &"basement.crate_2"
 is_empty = true
 
-[node name="torches" type="Node" parent="." unique_id=2098372014]
+[node name="torches" type="Node3D" parent="." unique_id=534343070]
 
 [node name="torch11" parent="torches" unique_id=179294296 instance=ExtResource("22_ey63t")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, 18)
