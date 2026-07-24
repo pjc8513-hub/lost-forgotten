@@ -47,4 +47,5 @@ metadata/_custom_type_script = "uid://bu2iii31o0rrx"
 script = ExtResource("6_8sk0g")
 npc_name = "Well"
 dialogue_nodes = Array[ExtResource("1_wa4d2")]([SubResource("Resource_jkqy8")])
+dialogue_label = "Inspect"
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"

@@ -114,6 +114,7 @@ func _spawn_enemy_visuals(encounter: CombatEncounter) -> void:
 		var visual := _arena.spawn_enemy(enemy)
 		if visual != null:
 			_enemy_visuals[enemy] = visual
+	_arena.layout_enemy_rows(encounter.get_enemies(), _enemy_visuals)
 
 func _on_planning_started(eligible_actors: Array[PartyMember]) -> void:
 	TurnManager.set_state(TurnManager.State.COMBAT_MENU)
@@ -233,13 +234,11 @@ func _on_row_requested(row: int) -> void:
 func _on_row_preview_requested(row: int) -> void:
 	if _arena == null:
 		return
-	for enemy in _enemy_visuals:
-		var visual := _enemy_visuals[enemy] as Node3D
-		if visual == null or not is_instance_valid(visual):
-			continue
-		visual.visible = enemy.is_alive() and not enemy.has_fled and enemy.formation_row == row
+	_arena.preview_enemy_row(row, _enemy_visuals)
 
 func _restore_enemy_row_visibility() -> void:
+	if _arena != null:
+		_arena.clear_enemy_row_preview(_enemy_visuals)
 	for enemy in _enemy_visuals:
 		var visual := _enemy_visuals[enemy] as Node3D
 		if visual == null or not is_instance_valid(visual):

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cw3i3e07xsca4" path="res://assets/sprites/enemies/Fragile Bones.png" id="2_76xf1"]
 
 [node name="EnemyScene" unique_id=502711961 instance=ExtResource("1_d8afu")]
+combat_size_multiplier = 1.1
 
 [node name="EnemySprite" parent="." index="0" unique_id=2097108720]
 offset = Vector2(0, -1)

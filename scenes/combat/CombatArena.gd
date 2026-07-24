@@ -4,15 +4,15 @@ extends MapData
 @onready var battle_camera: Camera3D = $BattleCamera
 @onready var party_damage_overlay := get_node_or_null("canvaslayer/CanvasLayer/ColorRect") as ColorRect
 
-const ROW_PIXEL_SIZES := [0.0035, 0.0045, 0.0055]
-const ROW_FADE_DURATION := 0.18
+const ROW_PIXEL_SIZES := [0.0044, 0.0045, 0.0045]
+const ROW_SPACING := [1.2, 0.95, 0.8]
+const ROW_ADVANCE_DURATION := 0.32
 const CAMERA_ZOOM_FOV := 33.0
 const CAMERA_TWEEN_DURATION := 0.16
 const PARTY_DAMAGE_EFFECT_TIME := 0.42
 const PARTY_CRITICAL_EFFECT_TIME := 0.62
 
 var _enemy_row_tween: Tween
-var _enemy_row_transition_id := 0
 var _camera_focus_transform: Transform3D
 var _camera_focus_fov := 0.0
 var _camera_is_focused := false
@@ -71,8 +71,109 @@ func spawn_enemy(enemy: EnemyInstance) -> Node3D:
 	visual.transform = Transform3D.IDENTITY
 	if visual.has_method("set_enemy_instance"):
 		visual.set_enemy_instance(enemy)
-	_apply_row_pixel_size(visual, enemy.formation_row)
+	_apply_row_scale(visual, enemy.formation_row)
 	return visual
+
+## Centers each occupied row independently and gives the front row the widest
+## silhouette. Logical formation slots are left untouched.
+func layout_enemy_rows(
+	enemies: Array[EnemyInstance],
+	enemy_visuals: Dictionary,
+	animate := false
+) -> void:
+	if _enemy_row_tween != null and _enemy_row_tween.is_valid():
+		_enemy_row_tween.kill()
+	_enemy_row_tween = null
+
+	var enemies_by_row: Dictionary = {}
+	for enemy in enemies:
+		if enemy == null or not enemy.is_alive() or enemy.has_fled:
+			continue
+		if not enemies_by_row.has(enemy.formation_row):
+			enemies_by_row[enemy.formation_row] = []
+		(enemies_by_row[enemy.formation_row] as Array).append(enemy)
+
+	var targets: Dictionary = {}
+	for raw_row in enemies_by_row:
+		var row := int(raw_row)
+		var row_enemies: Array = enemies_by_row[raw_row]
+		row_enemies.sort_custom(_sort_enemies_by_formation_slot)
+		var origin := _get_row_origin(row)
+		var spacing: float = ROW_SPACING[clampi(row, 0, ROW_SPACING.size() - 1)]
+		var midpoint := float(row_enemies.size() - 1) * 0.5
+		for index in row_enemies.size():
+			var enemy := row_enemies[index] as EnemyInstance
+			var visual := enemy_visuals.get(enemy) as Node3D
+			if visual == null or not is_instance_valid(visual):
+				continue
+			var horizontal_offset := (float(index) - midpoint) * spacing
+			targets[visual] = origin + Vector3(-horizontal_offset, 0.0, 0.0)
+			_apply_row_scale(visual, row, animate)
+
+	if not animate:
+		for visual in targets:
+			(visual as Node3D).global_position = targets[visual]
+		return
+
+	_enemy_row_tween = create_tween()
+	_enemy_row_tween.set_parallel(true)
+	_enemy_row_tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	for visual in targets:
+		_enemy_row_tween.tween_property(
+			visual,
+			"global_position",
+			targets[visual],
+			ROW_ADVANCE_DURATION
+		)
+	_enemy_row_tween.set_parallel(false)
+	_enemy_row_tween.finished.connect(_clear_enemy_row_tween.bind(_enemy_row_tween))
+
+func _sort_enemies_by_formation_slot(left: EnemyInstance, right: EnemyInstance) -> bool:
+	return left.formation_slot < right.formation_slot
+
+func _get_row_origin(row: int) -> Vector3:
+	var origin := Vector3.ZERO
+	var marker_count := 0
+	for slot in 3:
+		var marker := get_enemy_slot(row, slot)
+		if marker == null:
+			continue
+		origin += marker.global_position
+		marker_count += 1
+	return origin / float(marker_count) if marker_count > 0 else global_position
+
+func preview_enemy_row(row: int, enemy_visuals: Dictionary) -> void:
+	for raw_enemy in enemy_visuals:
+		var enemy := raw_enemy as EnemyInstance
+		var visual := enemy_visuals[raw_enemy] as Node3D
+		if enemy == null or visual == null or not is_instance_valid(visual):
+			continue
+		if not enemy.is_alive() or enemy.has_fled:
+			continue
+		_set_visual_row_preview(visual, enemy.formation_row == row, true)
+
+func clear_enemy_row_preview(enemy_visuals: Dictionary) -> void:
+	for visual_value in enemy_visuals.values():
+		var visual := visual_value as Node3D
+		if visual != null and is_instance_valid(visual):
+			_set_visual_row_preview(visual, false, false)
+
+func _set_visual_row_preview(visual: Node3D, selected: bool, preview_active: bool) -> void:
+	if visual.has_method("set_row_preview"):
+		visual.set_row_preview(selected, preview_active)
+		return
+	_set_sprite_modulate(
+		visual,
+		Color(1.0, 0.9, 0.7, 1.0) if selected else (
+			Color(0.42, 0.44, 0.5, 1.0) if preview_active else Color.WHITE
+		)
+	)
+
+func _set_sprite_modulate(node: Node, color: Color) -> void:
+	if node is Sprite3D:
+		(node as Sprite3D).modulate = color
+	for child in node.get_children():
+		_set_sprite_modulate(child, color)
 
 func focus_camera_on_enemy(visual: Node3D) -> Tween:
 	if battle_camera == null or visual == null or not is_instance_valid(visual):
@@ -219,8 +320,6 @@ func compact_enemy_rows(enemies: Array[EnemyInstance], enemy_visuals: Dictionary
 	for new_row in occupied_rows.size():
 		row_map[occupied_rows[new_row]] = new_row
 
-	var shifted_enemies: Array[EnemyInstance] = []
-	var shifted_visuals: Array[Node3D] = []
 	for enemy in enemies:
 		if enemy == null or not enemy.is_alive() or enemy.has_fled:
 			continue
@@ -230,84 +329,33 @@ func compact_enemy_rows(enemies: Array[EnemyInstance], enemy_visuals: Dictionary
 		enemy.formation_row = new_row
 		var visual := enemy_visuals.get(enemy) as Node3D
 		if visual != null and is_instance_valid(visual):
-			shifted_enemies.append(enemy)
-			shifted_visuals.append(visual)
+			var marker := get_enemy_slot(enemy.formation_row, enemy.formation_slot)
+			if marker != null:
+				visual.reparent(marker, true)
 
-	if shifted_enemies.is_empty():
-		return
-
-	_enemy_row_transition_id += 1
-	if _enemy_row_tween != null and _enemy_row_tween.is_valid():
-		_enemy_row_tween.kill()
-
-	var transition_id := _enemy_row_transition_id
-	var fade_out := create_tween()
-	_enemy_row_tween = fade_out
-	fade_out.set_parallel(true)
-	for visual in shifted_visuals:
-		_set_visual_transparency(visual, 0.0)
-		fade_out.tween_method(_set_visual_transparency_for_tween.bind(visual), 0.0, 1.0, ROW_FADE_DURATION)
-	fade_out.set_parallel(false)
-	fade_out.tween_callback(_complete_enemy_row_transition.bind(transition_id, shifted_enemies, shifted_visuals))
-
-func _complete_enemy_row_transition(
-	transition_id: int,
-	shifted_enemies: Array[EnemyInstance],
-	shifted_visuals: Array[Node3D]
-) -> void:
-	if transition_id != _enemy_row_transition_id:
-		return
-	_enemy_row_tween = null
-	for index in shifted_enemies.size():
-		var enemy := shifted_enemies[index]
-		var visual := shifted_visuals[index] if index < shifted_visuals.size() else null
-		if visual == null or not is_instance_valid(visual):
-			continue
-		var marker := get_enemy_slot(enemy.formation_row, enemy.formation_slot)
-		if marker == null:
-			continue
-		visual.reparent(marker, false)
-		visual.transform = Transform3D.IDENTITY
-		visual.visible = true
-		_apply_row_pixel_size(visual, enemy.formation_row)
-		_set_visual_transparency(visual, 1.0)
-
-	var fade_in := create_tween()
-	_enemy_row_tween = fade_in
-	fade_in.set_parallel(true)
-	for visual in shifted_visuals:
-		if visual != null and is_instance_valid(visual):
-			fade_in.tween_method(_set_visual_transparency_for_tween.bind(visual), 1.0, 0.0, ROW_FADE_DURATION)
-	fade_in.set_parallel(false)
-	fade_in.finished.connect(_clear_enemy_row_tween.bind(fade_in))
+	# Layout runs even when no row shifted so survivors close gaps left by a
+	# defeated or fleeing enemy.
+	layout_enemy_rows(enemies, enemy_visuals, true)
 
 func _clear_enemy_row_tween(tween: Tween) -> void:
 	if _enemy_row_tween == tween:
 		_enemy_row_tween = null
 
-func _apply_row_pixel_size(visual: Node3D, row: int) -> void:
-	var pixel_size: float = ROW_PIXEL_SIZES[clampi(row, 0, ROW_PIXEL_SIZES.size() - 1)]
-	_set_sprite_pixel_size(visual, pixel_size)
-
-func _set_sprite_pixel_size(node: Node, pixel_size: float) -> void:
-	if node is Sprite3D:
-		(node as Sprite3D).pixel_size = pixel_size
-	for child in node.get_children():
-		_set_sprite_pixel_size(child, pixel_size)
-
-func _set_visual_transparency(visual: Node3D, transparency: float) -> void:
-	if visual == null or not is_instance_valid(visual):
+func _apply_row_scale(visual: Node3D, row: int, animate := false) -> void:
+	var row_pixel_size: float = ROW_PIXEL_SIZES[
+		clampi(row, 0, ROW_PIXEL_SIZES.size() - 1)
+	]
+	if visual.has_method("apply_formation_size"):
+		visual.apply_formation_size(row_pixel_size, animate, ROW_ADVANCE_DURATION)
 		return
-	_set_node_transparency(visual, transparency)
+	_apply_fallback_row_scale(visual, row_pixel_size)
 
-func _set_visual_transparency_for_tween(transparency: float, visual: Node3D) -> void:
-	_set_visual_transparency(visual, transparency)
-
-func _set_node_transparency(node: Node, transparency: float) -> void:
-	if node is GeometryInstance3D:
-		(node as GeometryInstance3D).transparency = transparency
+func _apply_fallback_row_scale(node: Node, row_pixel_size: float) -> void:
+	if node is Sprite3D:
+		var sprite := node as Sprite3D
+		sprite.pixel_size = row_pixel_size
 	for child in node.get_children():
-		_set_node_transparency(child, transparency)
+		_apply_fallback_row_scale(child, row_pixel_size)
 
 func get_enemy_slot(row: int, slot: int) -> Marker3D:
 	var marker_number := row * 3 + slot + 1

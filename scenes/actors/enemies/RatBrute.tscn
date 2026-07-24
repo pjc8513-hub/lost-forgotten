@@ -41,6 +41,7 @@ _data = {
 }
 
 [node name="EnemyScene" unique_id=502711961 instance=ExtResource("1_syjtl")]
+combat_size_multiplier = 1.35
 
 [node name="EnemySprite" parent="." index="0" unique_id=2097108720]
 pixel_size = 0.025

@@ -154,7 +154,6 @@ metadata/_gltf_primary_texture_coord = 0
 script = ExtResource("1_jkqy8")
 main_shader_palette_texture = ExtResource("2_qjw8g")
 main_shader_contrast = 1.2
-encounters_enabled = true
 combat_scene = ExtResource("encounter_arena")
 enemy_ids = Array[StringName]([&"GiantRat", &"RedJelly"])
 threat_per_step = 2.0
