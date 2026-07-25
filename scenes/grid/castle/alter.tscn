@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cka43rudxd55s"]
+
+[ext_resource type="PackedScene" uid="uid://bfgw2i4kx0xau" path="res://assets/models/objects/alter.glb" id="1_to5so"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_utitb"]
+[ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="3_2twhc"]
+[ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="4_utitb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
+size = Vector3(1.5927734, 1.409668, 1.8276978)
+
+[node name="alter" unique_id=501966841 instance=ExtResource("1_to5so")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=292983722]
+script = ExtResource("2_utitb")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="InteractableComponent" type="Node" parent="." index="2" unique_id=1179019566]
+script = ExtResource("3_2twhc")
+metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
+
+[node name="Area3D" type="Area3D" parent="." index="3" unique_id=207924997]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=153436136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29638672, -0.20483398, -0.06997681)
+shape = SubResource("BoxShape3D_xa8nu")
+
+[node name="BlockerComponent" type="Node" parent="." index="4" unique_id=2068839353]
+script = ExtResource("4_utitb")
+blocker_ID = &"templebasement2.move1"
+metadata/_custom_type_script = "uid://cpd6aclgammco"

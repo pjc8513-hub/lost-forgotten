@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://bdo6wu1e570w8"]
+
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="1_04w6w"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="2_1odwf"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="3_4swub"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="4_53oal"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="5_raclq"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="6_qwbvw"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="7_2aw71"]
+
+[sub_resource type="Resource" id="Resource_nqmo3"]
+script = ExtResource("2_1odwf")
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_bwk3l"]
+script = ExtResource("4_53oal")
+text = "The Rat Deity is not pleased!"
+immediate_rewards = Array[ExtResource("2_1odwf")]([SubResource("Resource_nqmo3")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_dv6ns"]
+script = ExtResource("1_04w6w")
+choice_string = "Trash Alter"
+next_node = SubResource("Resource_bwk3l")
+choice_rewards = Array[ExtResource("2_1odwf")]([null])
+metadata/_custom_type_script = "uid://crjpwo8no2r4u"
+
+[sub_resource type="Resource" id="Resource_iti8x"]
+script = ExtResource("4_53oal")
+text = "An old, stained alter covered with scratches and small gnaw markings."
+choice_string = "Interact"
+choices = Array[ExtResource("1_04w6w")]([SubResource("Resource_dv6ns")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("6_qwbvw")
+npc_name = "Rat Alter"
+default_dialogue = SubResource("Resource_iti8x")
+dialogue_label = "Inspect"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"

@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://jxmlaj3taoro" path="res://scripts/shaders/day_sky.gdshader" id="1_ornp4"]
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_t0kxk"]
+[ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_mywnk"]
 [ext_resource type="PackedScene" uid="uid://c35lx4au86vvv" path="res://scenes/grid/nobel_city/nobel_road_2.tscn" id="3_54nej"]
 [ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="4_qt0u2"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="4_t0kxk"]
@@ -88,6 +89,7 @@ size = Vector3(1.1108398, 1.1833496, 1)
 [node name="Nobel" type="Node3D" unique_id=1819116379]
 script = ExtResource("1_t0kxk")
 enable_torch = false
+main_shader_palette_texture = ExtResource("2_mywnk")
 main_shader_dither_strength = 0.08
 main_shader_contrast = 1.3
 

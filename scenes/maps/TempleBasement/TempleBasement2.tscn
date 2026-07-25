@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://01n5dspa6ydj"]
 
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_v3llr"]
-[ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="2_u2aih"]
+[ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_puoal"]
 [ext_resource type="PackedScene" uid="uid://bpaar2wmwn36f" path="res://scenes/combat/castle_combat.tscn" id="3_pholp"]
 [ext_resource type="PackedScene" uid="uid://udlcxn1d6b7a" path="res://scenes/grid/castle/stone_lift_2.tscn" id="3_rmd2c"]
 [ext_resource type="Environment" uid="uid://cv7posx2uelkc" path="res://data/bonepit_environment.tres" id="4_1kk8w"]
@@ -28,52 +28,10 @@
 [ext_resource type="PackedScene" uid="uid://cw51gvstk7ps2" path="res://scenes/maps/bonepit/doors/button_1.tscn" id="24_mo3rd"]
 [ext_resource type="PackedScene" uid="uid://yoaii84iw34x" path="res://scenes/grid/castle/crate_1.tscn" id="27_52fsd"]
 [ext_resource type="Resource" uid="uid://dd5a150sn26i3" path="res://data/traps/poison.tres" id="28_lhegc"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxpyv"]
-resource_local_to_scene = true
-resource_name = "wall"
-cull_mode = 2
-albedo_texture = ExtResource("14_tvfyp")
-normal_enabled = true
-normal_texture = ExtResource("15_6s3sj")
-uv1_triplanar = true
-uv1_world_triplanar = true
-uv2_triplanar = true
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_52fsd"]
-resource_local_to_scene = true
-resource_name = "floor"
-cull_mode = 2
-albedo_texture = ExtResource("16_1kk8w")
-emission_enabled = true
-normal_enabled = true
-normal_texture = ExtResource("17_ew6js")
-texture_filter = 2
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhegc"]
-resource_local_to_scene = true
-resource_name = "wall"
-cull_mode = 2
-albedo_texture = ExtResource("14_tvfyp")
-normal_enabled = true
-normal_texture = ExtResource("15_6s3sj")
-uv1_triplanar = true
-uv1_world_triplanar = true
-uv2_triplanar = true
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_puoal"]
-resource_local_to_scene = true
-resource_name = "floor"
-cull_mode = 2
-albedo_texture = ExtResource("16_1kk8w")
-emission_enabled = true
-normal_enabled = true
-normal_texture = ExtResource("17_ew6js")
-texture_filter = 2
-metadata/_gltf_primary_texture_coord = 0
+[ext_resource type="PackedScene" uid="uid://cka43rudxd55s" path="res://scenes/grid/castle/alter.tscn" id="29_puoal"]
+[ext_resource type="Script" uid="uid://d3memun0m0avi" path="res://scripts/components/NPCTileComponent.gd" id="30_sj722"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="31_l73ix"]
+[ext_resource type="Resource" uid="uid://bdo6wu1e570w8" path="res://data/dialogue/nobel/temple/RatAlter.tres" id="32_6merb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n48gf"]
 resource_local_to_scene = true
@@ -154,7 +112,6 @@ normal_texture = ExtResource("15_6s3sj")
 uv1_triplanar = true
 uv1_world_triplanar = true
 uv2_triplanar = true
-texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1v3wc"]
@@ -191,9 +148,56 @@ normal_texture = ExtResource("17_ew6js")
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxs0c"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("14_tvfyp")
+normal_enabled = true
+normal_texture = ExtResource("15_6s3sj")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvvkg"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("16_1kk8w")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("17_ew6js")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uix2h"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("14_tvfyp")
+normal_enabled = true
+normal_texture = ExtResource("15_6s3sj")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucnnu"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("16_1kk8w")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("17_ew6js")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
 [node name="Node3D" type="Node3D" unique_id=429006948]
 script = ExtResource("1_v3llr")
-main_shader_palette_texture = ExtResource("2_u2aih")
+main_shader_palette_texture = ExtResource("2_puoal")
 main_shader_dither_strength = 0.08
 main_shader_contrast = 1.3
 combat_scene = ExtResource("3_pholp")
@@ -516,10 +520,10 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -6, 
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, 8)
 
 [node name="wall" parent="cells/stone_wall3_door" index="0" unique_id=524815201]
-surface_material_override/0 = SubResource("StandardMaterial3D_lxpyv")
+surface_material_override/0 = SubResource("StandardMaterial3D_n48gf")
 
 [node name="floor" parent="cells/stone_wall3_door" index="2" unique_id=1029300820]
-surface_material_override/0 = SubResource("StandardMaterial3D_52fsd")
+surface_material_override/0 = SubResource("StandardMaterial3D_y6phc")
 
 [node name="DoorComponent" parent="cells/stone_wall3_door" index="4" unique_id=534338047]
 door_id = &"templebasement2.door1"
@@ -528,10 +532,10 @@ door_id = &"templebasement2.door1"
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6, 0, 2)
 
 [node name="wall" parent="cells/stone_wall3_door2" index="0" unique_id=524815201]
-surface_material_override/0 = SubResource("StandardMaterial3D_lhegc")
+surface_material_override/0 = SubResource("StandardMaterial3D_6merb")
 
 [node name="floor" parent="cells/stone_wall3_door2" index="2" unique_id=1029300820]
-surface_material_override/0 = SubResource("StandardMaterial3D_puoal")
+surface_material_override/0 = SubResource("StandardMaterial3D_kyybh")
 
 [node name="DoorComponent" parent="cells/stone_wall3_door2" index="4" unique_id=534338047]
 door_id = &"templebasement2.door2"
@@ -541,10 +545,10 @@ starts_locked = true
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 8)
 
 [node name="wall" parent="cells/stone_wall3_door3" index="0" unique_id=524815201]
-surface_material_override/0 = SubResource("StandardMaterial3D_n48gf")
+surface_material_override/0 = SubResource("StandardMaterial3D_24w43")
 
 [node name="floor" parent="cells/stone_wall3_door3" index="2" unique_id=1029300820]
-surface_material_override/0 = SubResource("StandardMaterial3D_y6phc")
+surface_material_override/0 = SubResource("StandardMaterial3D_sj722")
 
 [node name="DoorComponent" parent="cells/stone_wall3_door3" index="4" unique_id=534338047]
 door_id = &"templebasement2.door3"
@@ -557,10 +561,10 @@ root_node = NodePath("../../stone_wall3_door3")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, 16)
 
 [node name="wall" parent="cells/stone_wall3_door4" index="0" unique_id=524815201]
-surface_material_override/0 = SubResource("StandardMaterial3D_6merb")
+surface_material_override/0 = SubResource("StandardMaterial3D_l73ix")
 
 [node name="floor" parent="cells/stone_wall3_door4" index="2" unique_id=1029300820]
-surface_material_override/0 = SubResource("StandardMaterial3D_kyybh")
+surface_material_override/0 = SubResource("StandardMaterial3D_1v3wc")
 
 [node name="DoorComponent" parent="cells/stone_wall3_door4" index="4" unique_id=534338047]
 door_id = &"templebasement2.door4"
@@ -570,10 +574,10 @@ starts_locked = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 4)
 
 [node name="wall" parent="cells/stone_wall3_door5" index="0" unique_id=524815201]
-surface_material_override/0 = SubResource("StandardMaterial3D_24w43")
+surface_material_override/0 = SubResource("StandardMaterial3D_j3fbc")
 
 [node name="floor" parent="cells/stone_wall3_door5" index="2" unique_id=1029300820]
-surface_material_override/0 = SubResource("StandardMaterial3D_sj722")
+surface_material_override/0 = SubResource("StandardMaterial3D_ii7pv")
 
 [node name="DoorComponent" parent="cells/stone_wall3_door5" index="4" unique_id=534338047]
 door_id = &"templebasement2.door5"
@@ -640,26 +644,26 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -18,
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16, 0, 6)
 
 [node name="wall" parent="cells/stone_hall3_trap" index="0" unique_id=1337457531]
-surface_material_override/0 = SubResource("StandardMaterial3D_l73ix")
+surface_material_override/0 = SubResource("StandardMaterial3D_jxs0c")
 
 [node name="trap" parent="cells/stone_hall3_trap" index="1" unique_id=1006758298]
-surface_material_override/0 = SubResource("StandardMaterial3D_1v3wc")
+surface_material_override/0 = SubResource("StandardMaterial3D_lvvkg")
 
 [node name="TrapComponent" parent="cells/stone_hall3_trap/trap" index="1" unique_id=1882980845]
 trap_id = &"templebasement2.trap1"
 trap_type = ExtResource("20_ew6js")
 
 [node name="celing" parent="cells/stone_hall3_trap" index="2" unique_id=1808366261]
-surface_material_override/0 = SubResource("StandardMaterial3D_1v3wc")
+surface_material_override/0 = SubResource("StandardMaterial3D_lvvkg")
 
 [node name="stone_wall3_door6" parent="cells" unique_id=1535856417 instance=ExtResource("13_uu0aa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 6)
 
 [node name="wall" parent="cells/stone_wall3_door6" index="0" unique_id=524815201]
-surface_material_override/0 = SubResource("StandardMaterial3D_j3fbc")
+surface_material_override/0 = SubResource("StandardMaterial3D_uix2h")
 
 [node name="floor" parent="cells/stone_wall3_door6" index="2" unique_id=1029300820]
-surface_material_override/0 = SubResource("StandardMaterial3D_ii7pv")
+surface_material_override/0 = SubResource("StandardMaterial3D_ucnnu")
 
 [node name="DoorComponent" parent="cells/stone_wall3_door6" index="4" unique_id=534338047]
 door_id = &"templebasement2.door6"
@@ -803,6 +807,11 @@ transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -2.0
 [node name="ChestComponent" parent="crate1/chest4" index="4" unique_id=971460780]
 chest_ID = &"templebasement2.chest4"
 loot_table = 3
+
+[node name="alter" parent="." unique_id=501966841 instance=ExtResource("29_puoal")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 26)
+script = ExtResource("30_sj722")
+NPC_List = Array[ExtResource("31_l73ix")]([ExtResource("32_6merb")])
 
 [editable path="cells/stone_wall27"]
 [editable path="cells/stone_wall3_door"]

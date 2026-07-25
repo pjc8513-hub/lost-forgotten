@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dtujqy3ay80p4" path="res://scenes/combat/CombatArena.gd" id="1_4r7jo"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="2_eycy8"]
-[ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="2_w6qqa"]
+[ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_o5t58"]
 [ext_resource type="Environment" uid="uid://bc3oq0crlyidp" path="res://data/castle_combat.tres" id="3_w6qqa"]
 [ext_resource type="PackedScene" uid="uid://dajpl27a3y52a" path="res://scenes/grid/castle/stone_wall_2.tscn" id="3_yw3o5"]
 [ext_resource type="PackedScene" uid="uid://dimfx3lxksn7v" path="res://scenes/combat/animations/spirit_spell.tscn" id="4_o5t58"]
@@ -20,7 +20,7 @@ shader_parameter/critical_color = Color(1, 0.62, 0.18, 1)
 
 [node name="Node3D" type="Node3D" unique_id=736917976]
 script = ExtResource("1_4r7jo")
-main_shader_palette_texture = ExtResource("2_w6qqa")
+main_shader_palette_texture = ExtResource("2_o5t58")
 main_shader_pixel_size = 3.0
 main_shader_dither_strength = 0.06
 main_shader_contrast = 1.36

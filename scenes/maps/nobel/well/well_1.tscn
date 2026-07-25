@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d11tk6i3ejgbc"]
 
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_jsgqk"]
-[ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="2_y1csy"]
+[ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_pb2m2"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="3_pb2m2"]
 [ext_resource type="Environment" uid="uid://db7hgmwm2sxnn" path="res://scenes/grid/nobel_city/underwater.tres" id="4_r7jlk"]
 [ext_resource type="PackedScene" uid="uid://urwlv585wae5" path="res://scenes/grid/castle/stone_corner_2.tscn" id="5_7txra"]
@@ -22,6 +22,7 @@
 [sub_resource type="Resource" id="Resource_730w8"]
 script = ExtResource("8_pufju")
 npc_name = "Exit Basement"
+dialogue_label = "Inspect"
 destination_map = "uid://8kb8suvcftn"
 destination_spawn_id = &"nobel.well"
 destination_label = "Exit"
@@ -37,7 +38,7 @@ shader_parameter/caustic_color = Color(0.6, 0.9, 0.85, 1)
 [node name="Well1" type="Node3D" unique_id=597078485]
 script = ExtResource("1_jsgqk")
 is_underwater = true
-main_shader_palette_texture = ExtResource("2_y1csy")
+main_shader_palette_texture = ExtResource("2_pb2m2")
 main_shader_dither_strength = 0.08
 main_shader_contrast = 1.3
 

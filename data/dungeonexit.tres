@@ -9,6 +9,7 @@
 [resource]
 script = ExtResource("4_7u2eu")
 npc_name = "Exit Basement"
+dialogue_label = "Inspect"
 destination_map = "uid://8kb8suvcftn"
 destination_spawn_id = &"temple"
 destination_label = "Exit"
