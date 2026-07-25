@@ -37,18 +37,20 @@ player_scene = ExtResource("3_player")
 [node name="World" type="Node" parent="." unique_id=1108621967]
 
 [node name="ExplorationContainer" type="SubViewportContainer" parent="World" unique_id=1127806905]
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
+stretch_shrink = 3
 
 [node name="ExplorationViewport" type="SubViewport" parent="World/ExplorationContainer" unique_id=1755751339]
 own_world_3d = true
-handle_input_locally = true
+handle_input_locally = false
 physics_object_picking = true
-size = Vector2i(640, 480)
+size = Vector2i(213, 160)
 render_target_update_mode = 4
 
 [node name="ExplorationWorld" type="Node3D" parent="World/ExplorationContainer/ExplorationViewport" unique_id=2008409560]
@@ -70,7 +72,7 @@ stretch = true
 
 [node name="CombatViewport" type="SubViewport" parent="World/CombatContainer" unique_id=2111772228]
 own_world_3d = true
-handle_input_locally = true
+handle_input_locally = false
 physics_object_picking = true
 size = Vector2i(640, 480)
 render_target_update_mode = 0
