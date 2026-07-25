@@ -22,9 +22,16 @@ const INN_WAKE_TIME_SECONDS := 9 * 60 * 60
 @export var player_scene: PackedScene
 @onready var blackout: ColorRect = $TransitionLayer/TransitionRoot/TransitionCanvas/Blackout
 
-@onready var level_root: Node = $World/LevelRoot
-@onready var entity_root: Node = $World/EntityRoot
-@onready var effect_root: Node = $World/EffectRoot
+@onready var exploration_container: SubViewportContainer = $World/ExplorationContainer
+@onready var exploration_viewport: SubViewport = $World/ExplorationContainer/ExplorationViewport
+@onready var exploration_world: Node3D = $World/ExplorationContainer/ExplorationViewport/ExplorationWorld
+@onready var level_root: Node = $World/ExplorationContainer/ExplorationViewport/ExplorationWorld/LevelRoot
+@onready var entity_root: Node = $World/ExplorationContainer/ExplorationViewport/ExplorationWorld/EntityRoot
+@onready var effect_root: Node = $World/ExplorationContainer/ExplorationViewport/ExplorationWorld/EffectRoot
+@onready var combat_container: SubViewportContainer = $World/CombatContainer
+@onready var combat_viewport: SubViewport = $World/CombatContainer/CombatViewport
+@onready var combat_world: Node3D = $World/CombatContainer/CombatViewport/CombatWorld
+@onready var combat_arena_root: Node3D = $World/CombatContainer/CombatViewport/CombatWorld/CombatArena
 @onready var screen_filter: ColorRect = $HudLayer/HudRoot/CanvasLayer/ScreenFilter
 @onready var automap: Automap = $HudLayer/HudRoot/CanvasLayer/AutomapControl
 @onready var party_cards: VBoxContainer = $HudLayer/HudRoot/MarginContainer/PartyCards
@@ -58,6 +65,7 @@ var _main_shader_defaults: Dictionary = {}
 var combat_presenter: CombatPresenter
 
 func _ready() -> void:
+	_set_combat_world_active(false)
 	blackout.visible = false
 	blackout.color.a = 0.0
 	if screen_filter.material != null:
@@ -107,7 +115,7 @@ func _ready() -> void:
 	entity_root.add_child(player)
 	combat_presenter = CombatPresenter.new()
 	$Systems.add_child(combat_presenter)
-	combat_presenter.configure(level_root, player, combat_menu, skill_menu)
+	combat_presenter.configure(combat_arena_root, combat_menu, skill_menu)
 	combat_presenter.message_requested.connect(alert.show_message)
 	combat_presenter.clear_messages_requested.connect(alert.dismiss)
 	combat_presenter.battle_log_requested.connect(battle_log_control.add_message)
@@ -361,7 +369,9 @@ func _run_combat_entry(encounter: CombatEncounter) -> void:
 	_set_exploration_hud_enabled(false)
 	battle_log_control.clear()
 	battle_log_control.open()
+	_set_combat_world_active(true)
 	if not combat_presenter.start_encounter(encounter):
+		_set_combat_world_active(false)
 		EncounterManager.complete_encounter()
 		battle_log_control.close()
 		_set_exploration_hud_enabled(true)
@@ -381,6 +391,7 @@ func _run_combat_exit(outcome: StringName, rewards: Dictionary) -> void:
 	TurnManager.set_state(TurnManager.State.TRANSITION)
 	await _fade_blackout(1.0)
 	combat_presenter.close_encounter(outcome)
+	_set_combat_world_active(false)
 	battle_log_control.close()
 	_set_exploration_hud_enabled(true)
 	_apply_main_shader_settings(StageManager.current_level as MapData)
@@ -404,6 +415,22 @@ func _set_exploration_hud_enabled(enabled: bool) -> void:
 		var card := child as PartyMemberCard
 		if card != null:
 			card.set_skill_menu_enabled(enabled)
+
+func _set_combat_world_active(active: bool) -> void:
+	combat_container.visible = active
+	exploration_container.visible = not active
+	combat_viewport.render_target_update_mode = (
+		SubViewport.UPDATE_ALWAYS if active else SubViewport.UPDATE_DISABLED
+	)
+	exploration_viewport.render_target_update_mode = (
+		SubViewport.UPDATE_DISABLED if active else SubViewport.UPDATE_ALWAYS
+	)
+	combat_world.process_mode = (
+		Node.PROCESS_MODE_INHERIT if active else Node.PROCESS_MODE_DISABLED
+	)
+	exploration_world.process_mode = (
+		Node.PROCESS_MODE_DISABLED if active else Node.PROCESS_MODE_INHERIT
+	)
 
 func _close_exploration_menus() -> void:
 	for menu in [

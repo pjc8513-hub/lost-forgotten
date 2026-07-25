@@ -6,12 +6,9 @@ signal clear_messages_requested
 signal battle_log_requested(message: String)
 signal combat_ended(outcome: StringName, rewards: Dictionary)
 
-var _level_root: Node
-var _player: Node3D
+var _combat_arena_root: Node3D
 var _menu: CombatMenu
 var _skill_menu: skill_menu
-var _exploration_level: Node3D
-var _exploration_camera: Camera3D
 var _arena: CombatArena
 var _session: CombatSession
 var _enemy_visuals: Dictionary = {}
@@ -23,9 +20,8 @@ var _pending_party_skill: SkillData
 
 const ENEMY_ATTACK_FEEDBACK_TIME := 1.0
 
-func configure(level_root: Node, player: Node3D, menu: CombatMenu, skill_selection_menu: skill_menu) -> void:
-	_level_root = level_root
-	_player = player
+func configure(combat_arena_root: Node3D, menu: CombatMenu, skill_selection_menu: skill_menu) -> void:
+	_combat_arena_root = combat_arena_root
 	_menu = menu
 	_skill_menu = skill_selection_menu
 	if not _menu.action_requested.is_connected(_on_action_requested):
@@ -52,22 +48,17 @@ func start_encounter(encounter: CombatEncounter) -> bool:
 		arena_instance.queue_free()
 		return false
 
-	_exploration_level = StageManager.current_level as Node3D
-	_exploration_camera = get_viewport().get_camera_3d()
 	_arena = arena_instance as CombatArena
-	if _exploration_level != null:
-		_exploration_level.visible = false
-	if _player != null:
-		_player.visible = false
-	_level_root.add_child(_arena)
-	if not _arena.activate_camera():
-		_level_root.remove_child(_arena)
+	if _combat_arena_root == null:
+		push_error("CombatPresenter requires a combat arena root.")
 		_arena.queue_free()
 		_arena = null
-		if _exploration_level != null:
-			_exploration_level.visible = true
-		if _player != null:
-			_player.visible = true
+		return false
+	_combat_arena_root.add_child(_arena)
+	if not _arena.activate_camera():
+		_combat_arena_root.remove_child(_arena)
+		_arena.queue_free()
+		_arena = null
 		return false
 	_spawn_enemy_visuals(encounter)
 
@@ -91,18 +82,10 @@ func close_encounter(_outcome: StringName) -> void:
 	_menu.visible = false
 	_menu.set_interactable(false)
 	if _arena != null:
-		_level_root.remove_child(_arena)
+		_combat_arena_root.remove_child(_arena)
 		_arena.queue_free()
-	if _exploration_level != null:
-		_exploration_level.visible = true
-	if _player != null:
-		_player.visible = true
-	if _exploration_camera != null and is_instance_valid(_exploration_camera):
-		_exploration_camera.make_current()
 	_session = null
 	_arena = null
-	_exploration_level = null
-	_exploration_camera = null
 	_enemy_visuals.clear()
 
 func get_arena_map_data() -> MapData:

@@ -36,11 +36,46 @@ player_scene = ExtResource("3_player")
 
 [node name="World" type="Node" parent="." unique_id=1108621967]
 
-[node name="LevelRoot" type="Node3D" parent="World" unique_id=1493889937]
+[node name="ExplorationContainer" type="SubViewportContainer" parent="World" unique_id=1127806905]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
 
-[node name="EntityRoot" type="Node3D" parent="World" unique_id=673285383]
+[node name="ExplorationViewport" type="SubViewport" parent="World/ExplorationContainer" unique_id=1755751339]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(640, 480)
+render_target_update_mode = 4
 
-[node name="EffectRoot" type="Node3D" parent="World" unique_id=1592745982]
+[node name="ExplorationWorld" type="Node3D" parent="World/ExplorationContainer/ExplorationViewport" unique_id=2008409560]
+
+[node name="LevelRoot" type="Node3D" parent="World/ExplorationContainer/ExplorationViewport/ExplorationWorld" unique_id=1493889937]
+
+[node name="EntityRoot" type="Node3D" parent="World/ExplorationContainer/ExplorationViewport/ExplorationWorld" unique_id=673285383]
+
+[node name="EffectRoot" type="Node3D" parent="World/ExplorationContainer/ExplorationViewport/ExplorationWorld" unique_id=1592745982]
+
+[node name="CombatContainer" type="SubViewportContainer" parent="World" unique_id=2032741326]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="CombatViewport" type="SubViewport" parent="World/CombatContainer" unique_id=2111772228]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(640, 480)
+render_target_update_mode = 0
+
+[node name="CombatWorld" type="Node3D" parent="World/CombatContainer/CombatViewport" unique_id=573132149]
+
+[node name="CombatArena" type="Node3D" parent="World/CombatContainer/CombatViewport/CombatWorld" unique_id=33778990]
 
 [node name="HudLayer" type="Node" parent="." unique_id=306252378]
 

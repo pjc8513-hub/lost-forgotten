@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="2_u2aih"]
 [ext_resource type="PackedScene" uid="uid://bpaar2wmwn36f" path="res://scenes/combat/castle_combat.tscn" id="3_pholp"]
 [ext_resource type="PackedScene" uid="uid://udlcxn1d6b7a" path="res://scenes/grid/castle/stone_lift_2.tscn" id="3_rmd2c"]
-[ext_resource type="Environment" uid="uid://bc3oq0crlyidp" path="res://data/castle_combat.tres" id="4_mi5sa"]
+[ext_resource type="Environment" uid="uid://cv7posx2uelkc" path="res://data/bonepit_environment.tres" id="4_1kk8w"]
 [ext_resource type="PackedScene" uid="uid://urwlv585wae5" path="res://scenes/grid/castle/stone_corner_2.tscn" id="4_pholp"]
 [ext_resource type="PackedScene" uid="uid://dapuyqeqivxm8" path="res://scenes/grid/castle/stone_floor_2.tscn" id="5_mi5sa"]
 [ext_resource type="PackedScene" uid="uid://dgr6tc7bsd26x" path="res://scenes/grid/castle/torch_1.tscn" id="6_mrm1j"]
@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://dk3pu5ssng2p2" path="res://scenes/grid/castle/chest_3.tscn" id="19_1kk8w"]
 [ext_resource type="Resource" uid="uid://dfc5or6svg7no" path="res://data/traps/thorns.tres" id="20_ew6js"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1kk8w"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ew6js"]
 resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
@@ -31,21 +31,21 @@ normal_texture = ExtResource("15_6s3sj")
 uv1_triplanar = true
 uv1_world_triplanar = true
 uv2_triplanar = true
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ew6js"]
-resource_local_to_scene = true
-resource_name = "floor"
-cull_mode = 2
-albedo_texture = ExtResource("16_1kk8w")
-emission_enabled = true
-normal_enabled = true
-normal_texture = ExtResource("17_ew6js")
-texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ghwm"]
 resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("16_1kk8w")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("17_ew6js")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ynsm"]
+resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
 albedo_texture = ExtResource("14_tvfyp")
@@ -56,7 +56,7 @@ uv1_world_triplanar = true
 uv2_triplanar = true
 metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ynsm"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cb881"]
 resource_local_to_scene = true
 resource_name = "floor"
 cull_mode = 2
@@ -67,7 +67,7 @@ normal_texture = ExtResource("17_ew6js")
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cb881"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mo3rd"]
 resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
@@ -79,7 +79,7 @@ uv1_world_triplanar = true
 uv2_triplanar = true
 metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mo3rd"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxpyv"]
 resource_local_to_scene = true
 resource_name = "floor"
 cull_mode = 2
@@ -98,7 +98,7 @@ combat_scene = ExtResource("3_pholp")
 enemy_ids = Array[StringName]([&"monk", &"RatBrute", &"GiantRat"])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1834856093]
-environment = ExtResource("4_mi5sa")
+environment = ExtResource("4_1kk8w")
 
 [node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("7_u2aih")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 2)
@@ -225,10 +225,10 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -6, 
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, 8)
 
 [node name="wall" parent="cells/stone_wall3_door" index="0" unique_id=524815201]
-surface_material_override/0 = SubResource("StandardMaterial3D_1kk8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_ew6js")
 
 [node name="floor" parent="cells/stone_wall3_door" index="2" unique_id=1029300820]
-surface_material_override/0 = SubResource("StandardMaterial3D_ew6js")
+surface_material_override/0 = SubResource("StandardMaterial3D_2ghwm")
 
 [node name="DoorComponent" parent="cells/stone_wall3_door" index="4" unique_id=534338047]
 door_id = &"templebasement2.door1"
@@ -237,10 +237,10 @@ door_id = &"templebasement2.door1"
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6, 0, 2)
 
 [node name="wall" parent="cells/stone_wall3_door2" index="0" unique_id=524815201]
-surface_material_override/0 = SubResource("StandardMaterial3D_2ghwm")
+surface_material_override/0 = SubResource("StandardMaterial3D_0ynsm")
 
 [node name="floor" parent="cells/stone_wall3_door2" index="2" unique_id=1029300820]
-surface_material_override/0 = SubResource("StandardMaterial3D_0ynsm")
+surface_material_override/0 = SubResource("StandardMaterial3D_cb881")
 
 [node name="DoorComponent" parent="cells/stone_wall3_door2" index="4" unique_id=534338047]
 door_id = &"templebasement2.door2"
@@ -250,10 +250,10 @@ starts_locked = true
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 8)
 
 [node name="wall" parent="cells/stone_wall3_door3" index="0" unique_id=524815201]
-surface_material_override/0 = SubResource("StandardMaterial3D_cb881")
+surface_material_override/0 = SubResource("StandardMaterial3D_mo3rd")
 
 [node name="floor" parent="cells/stone_wall3_door3" index="2" unique_id=1029300820]
-surface_material_override/0 = SubResource("StandardMaterial3D_mo3rd")
+surface_material_override/0 = SubResource("StandardMaterial3D_lxpyv")
 
 [node name="DoorComponent" parent="cells/stone_wall3_door3" index="4" unique_id=534338047]
 door_id = &"templebasement2.door3"

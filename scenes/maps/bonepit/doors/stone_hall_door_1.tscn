@@ -45,6 +45,7 @@ script = ExtResource("3_knehd")
 local_edge = Vector3i(0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=1299333250]
+root_motion_local = true
 libraries/ = SubResource("AnimationLibrary_r27je")
 
 [node name="Area3D" type="Area3D" parent="." index="5" unique_id=1217630804]
