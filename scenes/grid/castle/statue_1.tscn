@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://fcy5b625v5e"]
+
+[ext_resource type="PackedScene" uid="uid://5ypaxh6q5uqg" path="res://assets/models/objects/Statue1.glb" id="1_8mecy"]
+[ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="2_0hp70"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="3_iv6o7"]
+[ext_resource type="Script" uid="uid://djjsn4ekohuqd" path="res://scripts/components/StatueComponent.gd" id="4_0hp70"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
+size = Vector3(1, 1.0765381, 1)
+
+[node name="Statue1" unique_id=342878761 instance=ExtResource("1_8mecy")]
+
+[node name="InteractableComponent" type="Node" parent="." index="1" unique_id=136429659]
+script = ExtResource("2_0hp70")
+metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
+
+[node name="GridElement" type="Node3D" parent="." index="2" unique_id=1889392166]
+script = ExtResource("3_iv6o7")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="StatueComponent" type="Node3D" parent="." index="3" unique_id=106496731]
+script = ExtResource("4_0hp70")
+metadata/_custom_type_script = "uid://djjsn4ekohuqd"
+
+[node name="Area3D" type="Area3D" parent="." index="4" unique_id=1550147495]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=1461358389]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4446411, 0)
+shape = SubResource("BoxShape3D_xa8nu")
+
+[connection signal="input_event" from="Area3D" to="InteractableComponent" method="_on_area_3d_input_event"]
