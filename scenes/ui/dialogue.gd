@@ -160,12 +160,13 @@ func _show_dialogue_node(node: DialogueNode) -> void:
 		return
 
 	dialogue_label.text = node.text
+	var reward_context := _get_reward_context()
 	var will_teleport := _rewards_will_teleport(node.immediate_rewards)
 	if will_teleport:
 		close()
 	for reward in node.immediate_rewards:
 		if reward != null:
-			reward.give_reward()
+			reward.give_reward(reward_context)
 	if will_teleport:
 		return
 	_refresh_npc_list(_selected_npc, false)
@@ -183,16 +184,23 @@ func _show_dialogue_node(node: DialogueNode) -> void:
 	_add_option("Back", _show_npc_actions)
 
 func _choose_dialogue_edge(edge: DialogueEdge) -> void:
+	var reward_context := _get_reward_context()
 	var will_teleport := _rewards_will_teleport(edge.choice_rewards)
 	if will_teleport:
 		close()
 	for reward in edge.choice_rewards:
 		if reward != null:
-			reward.give_reward()
+			reward.give_reward(reward_context)
 	if will_teleport:
 		return
 	_refresh_npc_list(_selected_npc, false)
 	_show_dialogue_node(edge.next_node)
+
+func _get_reward_context() -> Dictionary:
+	return {
+		"source_tile": _source_tile,
+		"source_npc": _selected_npc,
+	}
 
 func _accept_quest(quest: Quest) -> void:
 	QuestManager.quest_db[quest.quest_id] = quest

@@ -49,6 +49,8 @@ var traps: Dictionary = {}
 var trap_states: Dictionary = {}
 var chests: Dictionary = {}
 var chest_states: Dictionary = {}
+var npc_tiles: Dictionary = {}
+var npc_states: Dictionary = {}
 
 func clear_grid() -> void:
 	grid.clear()
@@ -59,6 +61,7 @@ func clear_grid() -> void:
 	secrets.clear()
 	traps.clear()
 	chests.clear()
+	npc_tiles.clear()
 
 func _exit_tree() -> void:
 	clear_grid()
@@ -264,6 +267,36 @@ func set_chest_state(chest_id: StringName, is_open: bool, is_empty: bool) -> voi
 	if chest != null:
 		chest.apply_state(chest_states[chest_id])
 
+func register_npc_tile(tile: NPC_Tile_Component) -> void:
+	if tile.npc_tile_id.is_empty():
+		return
+	if npc_tiles.has(tile.npc_tile_id) and npc_tiles[tile.npc_tile_id] != tile:
+		push_error("Duplicate npc_tile_id registered: %s" % tile.npc_tile_id)
+		return
+	npc_tiles[tile.npc_tile_id] = tile
+	if not npc_states.has(tile.npc_tile_id):
+		npc_states[tile.npc_tile_id] = {"removed_npc_ids": []}
+	tile.apply_persistent_state(npc_states[tile.npc_tile_id])
+
+func unregister_npc_tile(tile: NPC_Tile_Component) -> void:
+	if npc_tiles.get(tile.npc_tile_id) == tile:
+		npc_tiles.erase(tile.npc_tile_id)
+
+func remove_npc(tile_id: StringName, npc_id: StringName) -> bool:
+	if tile_id.is_empty() or npc_id.is_empty():
+		return false
+	var state: Dictionary = npc_states.get(tile_id, {"removed_npc_ids": []}).duplicate(true)
+	var removed_ids: Array = state.get("removed_npc_ids", [])
+	if npc_id in removed_ids:
+		return false
+	removed_ids.append(npc_id)
+	state["removed_npc_ids"] = removed_ids
+	npc_states[tile_id] = state
+	var tile := npc_tiles.get(tile_id) as NPC_Tile_Component
+	if tile != null:
+		tile.apply_persistent_state(state)
+	return true
+
 func get_persistent_state() -> Dictionary:
 	return {
 		"doors": door_states.duplicate(true),
@@ -271,6 +304,7 @@ func get_persistent_state() -> Dictionary:
 		"secrets": secret_states.duplicate(true),
 		"traps": trap_states.duplicate(true),
 		"chests": chest_states.duplicate(true),
+		"npcs": npc_states.duplicate(true),
 	}
 
 func load_persistent_state(data: Dictionary) -> void:
@@ -279,6 +313,7 @@ func load_persistent_state(data: Dictionary) -> void:
 	secret_states.assign(data.get("secrets", {}))
 	trap_states.assign(data.get("traps", {}))
 	chest_states.assign(data.get("chests", {}))
+	npc_states.assign(data.get("npcs", {}))
 	for door_id in doors:
 		if door_states.has(door_id):
 			doors[door_id].apply_state(door_states[door_id], true)
@@ -294,6 +329,9 @@ func load_persistent_state(data: Dictionary) -> void:
 	for chest_id in chests:
 		if chest_states.has(chest_id):
 			chests[chest_id].apply_state(chest_states[chest_id], true)
+	for tile_id in npc_tiles:
+		if npc_states.has(tile_id):
+			npc_tiles[tile_id].apply_persistent_state(npc_states[tile_id])
 
 func reset_persistent_state() -> void:
 	door_states.clear()
@@ -301,6 +339,7 @@ func reset_persistent_state() -> void:
 	secret_states.clear()
 	trap_states.clear()
 	chest_states.clear()
+	npc_states.clear()
 
 func _set_door_state(door_id: StringName, state: Dictionary) -> void:
 	door_states[door_id] = state

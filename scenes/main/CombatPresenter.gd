@@ -106,6 +106,9 @@ func get_encounter_rewards(outcome: StringName) -> Array[DialogueReward]:
 			return _encounter.flee_rewards
 	return []
 
+func get_encounter_reward_context() -> Dictionary:
+	return _encounter.reward_context if _encounter != null else {}
+
 func _spawn_enemy_visuals(encounter: CombatEncounter) -> void:
 	_enemy_visuals.clear()
 	for enemy in encounter.get_enemies():

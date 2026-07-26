@@ -6,6 +6,7 @@ var enemy_rows: Array[Array] = []
 var victory_rewards: Array[DialogueReward] = []
 var defeat_rewards: Array[DialogueReward] = []
 var flee_rewards: Array[DialogueReward] = []
+var reward_context: Dictionary = {}
 
 func get_enemies() -> Array[EnemyInstance]:
 	var result: Array[EnemyInstance] = []

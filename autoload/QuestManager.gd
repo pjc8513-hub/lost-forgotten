@@ -73,6 +73,12 @@ func set_quest_stage(quest_id: String, stage: int) -> void:
 		quest_completed.emit(quest_id)
 		MapManager.request_alert(_get_quest_completed_alert(quest_id))
 
+func advance_quest_stage(quest_id: String, amount: int = 1) -> void:
+	if amount <= 0:
+		push_error("Quest stage advance amount must be positive.")
+		return
+	set_quest_stage(quest_id, get_quest_stage(quest_id) + amount)
+
 # Checks if a quest is active (started and not completed)
 func is_quest_active(quest_id: String) -> bool:
 	var stage = get_quest_stage(quest_id)

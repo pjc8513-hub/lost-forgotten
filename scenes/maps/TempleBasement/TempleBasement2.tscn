@@ -839,9 +839,33 @@ loot_table = 3
 [node name="alter" parent="." unique_id=501966841 instance=ExtResource("29_puoal")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 26)
 script = ExtResource("30_sj722")
+npc_tile_id = &"templebasement2.rat_altar_1"
 NPC_List = Array[ExtResource("31_l73ix")]([ExtResource("32_6merb")])
 
+[node name="BlockerComponent" parent="alter" index="4" unique_id=2068839353]
+blocker_ID = &"templebasement2.rat_altar_blocker_1"
+
+[node name="alter2" parent="." unique_id=1399841903 instance=ExtResource("29_puoal")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -10, 0, 20)
+script = ExtResource("30_sj722")
+npc_tile_id = &"templebasement2.rat_altar_2"
+NPC_List = Array[ExtResource("31_l73ix")]([ExtResource("32_6merb")])
+
+[node name="BlockerComponent" parent="alter2" index="4" unique_id=2068839353]
+blocker_ID = &"templebasement2.rat_altar_blocker_2"
+
+[node name="alter3" parent="." unique_id=141167566 instance=ExtResource("29_puoal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 26)
+script = ExtResource("30_sj722")
+npc_tile_id = &"templebasement2.rat_altar_3"
+NPC_List = Array[ExtResource("31_l73ix")]([ExtResource("32_6merb")])
+
+[node name="BlockerComponent" parent="alter3" index="4" unique_id=2068839353]
+blocker_ID = &"templebasement2.rat_altar_blocker_3"
+
 [connection signal="input_event" from="alter/Area3D" to="alter" method="_on_area_3d_input_event"]
+[connection signal="input_event" from="alter2/Area3D" to="alter2" method="_on_area_3d_input_event"]
+[connection signal="input_event" from="alter3/Area3D" to="alter3" method="_on_area_3d_input_event"]
 
 [editable path="cells/stone_corner19"]
 [editable path="cells/stone_wall29"]
@@ -867,3 +891,5 @@ NPC_List = Array[ExtResource("31_l73ix")]([ExtResource("32_6merb")])
 [editable path="crate1/chest3"]
 [editable path="crate1/chest4"]
 [editable path="alter"]
+[editable path="alter2"]
+[editable path="alter3"]

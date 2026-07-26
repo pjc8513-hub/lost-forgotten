@@ -114,6 +114,8 @@ func layout_enemy_rows(
 		for visual in targets:
 			(visual as Node3D).global_position = targets[visual]
 		return
+	if targets.is_empty():
+		return
 
 	_enemy_row_tween = create_tween()
 	_enemy_row_tween.set_parallel(true)

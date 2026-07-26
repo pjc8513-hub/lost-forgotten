@@ -12,6 +12,7 @@ enum Shop_Type {
 }
 
 @export_category("Dialogue")
+@export var persistent_id: StringName
 @export var npc_name: String = "NPC"
 @export var dialogue_nodes: Array[DialogueNode] = []
 @export var default_dialogue: DialogueNode
@@ -74,3 +75,10 @@ func trigger_travel() -> void:
 		push_error("Error: Cannot travel to destination, requirements not met or destination empty.")
 		return
 	MapManager.request_map_transition(destination_map, destination_spawn_id)
+
+func get_persistent_id() -> StringName:
+	if not persistent_id.is_empty():
+		return persistent_id
+	if not resource_path.is_empty():
+		return StringName(resource_path)
+	return StringName(npc_name)

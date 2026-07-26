@@ -1,14 +1,35 @@
 class_name NPC_Tile_Component
 extends Node3D
 
+@export var npc_tile_id: StringName
 @export var NPC_List: Array[NPCComponent] = [] # array of NPCs available from the tile
+var _removed_npc_ids: Dictionary = {}
+
+func _ready() -> void:
+	MapManager.register_npc_tile(self)
+
+func _exit_tree() -> void:
+	MapManager.unregister_npc_tile(self)
 
 func get_active_npcs() -> Array[NPCComponent]:
 	var active_npcs: Array[NPCComponent] = []
 	for npc in NPC_List:
-		if npc != null and npc.is_npc_active():
+		if npc != null and not _removed_npc_ids.has(npc.get_persistent_id()) and npc.is_npc_active():
 			active_npcs.append(npc)
 	return active_npcs
+
+func remove_npc(npc: NPCComponent) -> bool:
+	if npc == null or npc_tile_id.is_empty():
+		push_error("NPC removal requires both an NPC and a persistent npc_tile_id.")
+		return false
+	return MapManager.remove_npc(npc_tile_id, npc.get_persistent_id())
+
+func apply_persistent_state(state: Dictionary) -> void:
+	_removed_npc_ids.clear()
+	for npc_id in state.get("removed_npc_ids", []):
+		_removed_npc_ids[StringName(npc_id)] = true
+	if not NPC_List.is_empty() and _removed_npc_ids.size() >= NPC_List.size():
+		queue_free()
 
 func interact(_actor: Node) -> void:
 	var active_npcs := get_active_npcs()

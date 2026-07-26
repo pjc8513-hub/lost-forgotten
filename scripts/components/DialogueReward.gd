@@ -1,6 +1,6 @@
 class_name DialogueReward extends Resource
 
-enum RewardType { ADD_GOLD, REMOVE_GOLD, ADD_ITEM, REMOVE_ITEM, ADD_EXP, SET_QUEST_STAGE, TELEPORT, START_COMBAT }
+enum RewardType { ADD_GOLD, REMOVE_GOLD, ADD_ITEM, REMOVE_ITEM, ADD_EXP, SET_QUEST_STAGE, TELEPORT, START_COMBAT, ADVANCE_QUEST_STAGE, REMOVE_SOURCE_NPC }
 
 @export var type: RewardType
 @export var target_id: String # item_id or quest_id
@@ -18,7 +18,7 @@ enum RewardType { ADD_GOLD, REMOVE_GOLD, ADD_ITEM, REMOVE_ITEM, ADD_EXP, SET_QUE
 @export_file("*.tscn") var destination_map: String
 @export var destination_spawn_id: StringName
 
-func give_reward() -> void:
+func give_reward(context: Dictionary = {}) -> void:
 	var message: String
 	match type:
 		RewardType.ADD_GOLD:
@@ -66,9 +66,18 @@ func give_reward() -> void:
 				return
 			MapManager.request_map_transition(destination_map, destination_spawn_id)
 		RewardType.START_COMBAT:
-			_start_combat()
+			_start_combat(context)
+		RewardType.ADVANCE_QUEST_STAGE:
+			QuestManager.advance_quest_stage(target_id, value if value > 0 else 1)
+		RewardType.REMOVE_SOURCE_NPC:
+			var source_tile := context.get("source_tile") as NPC_Tile_Component
+			var source_npc := context.get("source_npc") as NPCComponent
+			if source_tile == null or source_npc == null:
+				push_error("Error: Remove-source-NPC reward requires dialogue source context.")
+				return
+			source_tile.remove_npc(source_npc)
 
-func _start_combat() -> void:
+func _start_combat(context: Dictionary) -> void:
 	if combat_scene == null:
 		push_error("Error: Dialogue combat scene is empty.")
 		return
@@ -85,6 +94,7 @@ func _start_combat() -> void:
 	encounter.victory_rewards = victory_rewards.duplicate()
 	encounter.defeat_rewards = defeat_rewards.duplicate()
 	encounter.flee_rewards = flee_rewards.duplicate()
+	encounter.reward_context = context.duplicate()
 
 	for row_index in enemy_ids.size():
 		var enemy_id := enemy_ids[row_index]
