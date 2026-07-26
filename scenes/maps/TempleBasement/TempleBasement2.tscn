@@ -841,6 +841,8 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 
 script = ExtResource("30_sj722")
 NPC_List = Array[ExtResource("31_l73ix")]([ExtResource("32_6merb")])
 
+[connection signal="input_event" from="alter/Area3D" to="alter" method="_on_area_3d_input_event"]
+
 [editable path="cells/stone_corner19"]
 [editable path="cells/stone_wall29"]
 [editable path="cells/stone_wall27"]
@@ -864,3 +866,4 @@ NPC_List = Array[ExtResource("31_l73ix")]([ExtResource("32_6merb")])
 [editable path="crate1"]
 [editable path="crate1/chest3"]
 [editable path="crate1/chest4"]
+[editable path="alter"]

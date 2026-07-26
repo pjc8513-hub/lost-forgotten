@@ -145,7 +145,7 @@ func interact_forward() -> bool:
 			if component is NPC_Tile_Component:
 				component.interact(actor)
 				return true
-			if component is SwitchComponent and component.can_interact(grid_pos):
+			if component is SwitchComponent and component.can_interact(grid_pos, facing):
 				component.activate()
 				return true
 			if component is InteractableComponent:

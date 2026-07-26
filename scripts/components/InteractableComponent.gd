@@ -8,6 +8,30 @@ signal interacted(actor)
 func interact(actor: Node) -> void:
 	interacted.emit(actor)
 
+static func find_interacting_movement(grid_pos: Vector3i) -> GridMovementController:
+	var player := MapManager.get_actor(grid_pos)
+	var movement := _get_movement(player)
+	if movement != null:
+		return movement
+
+	for direction in [
+		Vector3i(0, 0, -1),
+		Vector3i(1, 0, 0),
+		Vector3i(0, 0, 1),
+		Vector3i(-1, 0, 0),
+	]:
+		player = MapManager.get_actor(grid_pos - direction)
+		movement = _get_movement(player)
+		if movement != null and movement.facing == direction:
+			return movement
+
+	return null
+
+static func _get_movement(player: Node3D) -> GridMovementController:
+	if player == null:
+		return null
+	return player.get_node_or_null("GridMovementController") as GridMovementController
+
 func _on_area_3d_input_event(
 	_camera: Node,
 	event: InputEvent,
@@ -24,14 +48,11 @@ func _on_area_3d_input_event(
 	if grid_element == null:
 		return
 	var grid_pos := grid_element.world_to_grid(grid_element.global_position)
-	var player = MapManager.get_actor(grid_pos)
-	if player == null:
-		return
-	var movement := player.get_node_or_null("GridMovementController") as GridMovementController
+	var movement := find_interacting_movement(grid_pos)
 	if movement == null:
 		return
 
 	var cmd := InteractCommand.new()
-	cmd.actor = player
+	cmd.actor = movement.actor
 	cmd.movement = movement
 	CommandQueue.add_command(cmd)

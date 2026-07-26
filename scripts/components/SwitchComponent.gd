@@ -34,8 +34,11 @@ func activate() -> void:
 	
 	_report_debug_interaction(exported_data, results, success, signal_result, signal_exists, signal_connection_count)
 
-func can_interact(player_grid_pos: Vector3i) -> bool:
-	return player_grid_pos == get_grid_pos()
+func can_interact(player_grid_pos: Vector3i, player_facing := Vector3i.ZERO) -> bool:
+	var switch_grid_pos := get_grid_pos()
+	if player_grid_pos == switch_grid_pos:
+		return true
+	return player_grid_pos + player_facing == switch_grid_pos
 
 func get_grid_pos() -> Vector3i:
 	var grid_element := get_parent().get_node_or_null("GridElement") as GridElement
@@ -49,15 +52,12 @@ func _on_area_3d_input_event(_camera: Node, event: InputEvent, _event_position: 
 	if CommandQueue.is_busy():
 		return
 
-	var player := MapManager.get_actor(get_grid_pos())
-	if player == null:
-		return
-	var movement := player.get_node_or_null("GridMovementController") as GridMovementController
-	if movement == null or not can_interact(movement.grid_pos):
+	var movement := InteractableComponent.find_interacting_movement(get_grid_pos())
+	if movement == null or not can_interact(movement.grid_pos, movement.facing):
 		return
 
 	var cmd := InteractCommand.new()
-	cmd.actor = player
+	cmd.actor = movement.actor
 	cmd.movement = movement
 	CommandQueue.add_command(cmd)
 

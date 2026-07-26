@@ -80,7 +80,10 @@ func can_interact(player_grid_pos: Vector3i, player_facing: Vector3i) -> bool:
 	var secret := get_parent().get_node_or_null("SecretComponent") as SecretComponent
 	if secret != null and secret.is_secret:
 		return false
-	return player_grid_pos == get_grid_pos() and player_facing == get_world_edge()
+	var door_grid_pos := get_grid_pos()
+	if player_grid_pos == door_grid_pos:
+		return player_facing == get_world_edge()
+	return player_grid_pos + player_facing == door_grid_pos
 
 func discover_door() -> void:
 	if blink_tween != null and blink_tween.is_valid():
@@ -118,14 +121,11 @@ func _on_area_3d_input_event(_camera: Node, event: InputEvent, _event_position: 
 	if CommandQueue.is_busy():
 		return
 
-	var player := MapManager.get_actor(get_grid_pos())
-	if player == null:
-		return
-	var movement := player.get_node_or_null("GridMovementController") as GridMovementController
+	var movement := InteractableComponent.find_interacting_movement(get_grid_pos())
 	if movement == null or not can_interact(movement.grid_pos, movement.facing):
 		return
 
 	var cmd := InteractCommand.new()
-	cmd.actor = player
+	cmd.actor = movement.actor
 	cmd.movement = movement
 	CommandQueue.add_command(cmd)
