@@ -107,6 +107,8 @@ func _show_npc_actions() -> void:
 			var quest_ref := quest
 			var stage := QuestManager.get_quest_stage(quest.quest_id)
 			if stage == 0:
+				if not quest.is_available():
+					continue
 				_add_option("Quest: %s" % quest.quest_name, func(): _accept_quest(quest_ref))
 			else:
 				_add_option("Quest: %s" % quest.quest_name, func(): _show_quest_dialogue(quest_ref))

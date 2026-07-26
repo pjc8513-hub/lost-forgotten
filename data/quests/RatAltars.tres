@@ -10,6 +10,12 @@
 script = ExtResource("1_reward")
 value = 1000
 
+[sub_resource type="Resource" id="Condition_brother_patrick_complete"]
+script = ExtResource("4_f5awj")
+type = 2
+target_id = "BrotherPatrick"
+target_value = 3
+
 [sub_resource type="Resource" id="Dialogue_stage_1"]
 script = ExtResource("3_dialogue")
 text = "Three profane altars in the Temple basement are feeding the rat infestation. Destroy all three and return to me."
@@ -35,13 +41,14 @@ immediate_rewards = Array[ExtResource("1_reward")]([SubResource("Reward_complete
 
 [sub_resource type="Resource" id="Dialogue_stage_5"]
 script = ExtResource("3_dialogue")
-text = "You have already cleansed the Temple basement of the rat altars."
+text = "We are seeking out more Rat Alters in areas around Nobel. You will help us eliminate them all, won't you?"
 
 [resource]
 script = ExtResource("2_quest")
 quest_id = "RatAltars"
 quest_name = "Altars of the Rat"
 description = "Destroy the three profane rat altars hidden in the Temple basement."
+availability_conditions = Array[ExtResource("4_f5awj")]([SubResource("Condition_brother_patrick_complete")])
 stage_descriptions = {
 0: "Not Started",
 1: "Rat altars destroyed: 0/3.",
