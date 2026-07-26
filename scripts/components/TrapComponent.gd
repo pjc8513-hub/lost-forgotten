@@ -9,6 +9,7 @@ var triggered: bool = false
 var disarmed: bool = false
 var blink_tween: Tween
 var blink_material: StandardMaterial3D
+var original_material: Material
 
 func _ready() -> void:
 	MapManager.register_trap(self)
@@ -28,6 +29,7 @@ func discover_trap() -> void:
 	if source_material == null:
 		push_warning("Trap mesh has no StandardMaterial3D to animate.")
 		return
+	original_material = source_material
 	# Trap floors commonly share floor.tres. A local duplicate prevents every
 	# floor using that resource from pulsing when this trap is discovered.
 	blink_material = source_material.duplicate() as StandardMaterial3D
@@ -46,8 +48,8 @@ func stop_blinking() -> void:
 		blink_tween.kill()
 	blink_tween = null
 	var trap_mesh := get_parent() as MeshInstance3D
-	if trap_mesh != null:
-		trap_mesh.set_surface_override_material(0, null)
+	if trap_mesh != null and original_material != null:
+		trap_mesh.set_surface_override_material(0, original_material)
 	if blink_material != null:
 		blink_material.emission = Color.BLACK
 		blink_material = null
@@ -61,6 +63,7 @@ func disarm() -> bool:
 		return false
 	if trap_id.is_empty():
 		disarmed = true
+		stop_blinking()
 	else:
 		MapManager.set_trap_state(trap_id, true, triggered)
 	return true
