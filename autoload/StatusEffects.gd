@@ -73,6 +73,7 @@ const DURATION_ROUNDS: Dictionary = {
 #	blocks_casting - true = character cannot cast this round
 #	end_of_comnbat - true = clears at end of combat
 #	clear_on_rest  - true = clears when party rests
+#	shaken_off		- true = periodic roll to remove
 #	dispelled		- true = can be removed by spell dispell
 #	cost_to_remove - Cost to remove status at temple
 # ---------------------------------------------------------------------------
@@ -90,6 +91,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"shaken_off": false,
 		"dispelled": false,
 		"cost_to_remove": 50,
 	},
@@ -105,6 +107,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": true,
+		"shaken_off": false,
 		"dispelled": false,
 		"cost_to_remove": 30,
 	},
@@ -120,6 +123,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": true,
+		"shaken_off": false,
 		"dispelled": false,
 		"cost_to_remove": 20,
 	},
@@ -135,6 +139,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": true,
+		"shaken_off": false,
 		"dispelled": false,
 		"cost_to_remove": 60,
 	},
@@ -150,6 +155,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"shaken_off": false,
 		"dispelled": false,
 		"cost_to_remove": 0,
 	},
@@ -165,6 +171,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"shaken_off": false,
 		"dispelled": false,
 		"cost_to_remove": 10,
 	},
@@ -180,6 +187,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"shaken_off": false,
 		"dispelled": false,
 		"cost_to_remove": 70,
 	},
@@ -195,6 +203,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"shaken_off": true,
 		"dispelled": false,
 		"cost_to_remove": 50,
 	},
@@ -210,6 +219,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": true,
+		"shaken_off": true,
 		"dispelled": false,
 		"cost_to_remove": 60,
 	},
@@ -224,6 +234,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_move": false,
 		"end_of_combat": true,
 		"clear_on_rest": true,
+		"shaken_off": true,
 		"dispelled": false,
 		"cost_to_remove": 40,
 	},
@@ -239,6 +250,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": true,
+		"shaken_off": false,
 		"dispelled": false,
 		"cost_to_remove": 20,
 	},
@@ -254,6 +266,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": true,
 		"clear_on_rest": true,
+		"shaken_off": false,
 		"dispelled": false,
 		"cost_to_remove": 20,
 	},
@@ -269,6 +282,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"shaken_off": false,
 		"dispelled": false,
 		"cost_to_remove": 40,
 	},
@@ -284,6 +298,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"shaken_off": false,
 		"dispelled": false,
 		"cost_to_remove": 50,
 	},
@@ -299,6 +314,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"shaken_off": false,
 		"dispelled": false,
 		"cost_to_remove": 70,
 	},
@@ -314,6 +330,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"shaken_off": false,
 		"dispelled": false,
 		"cost_to_remove": 0,
 	},
@@ -329,6 +346,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": true,
 		"end_of_combat": false,
 		"clear_on_rest": false,
+		"shaken_off": false,
 		"dispelled": false,
 		"cost_to_remove": 50,
 	},
@@ -344,6 +362,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"shaken_off": false,
 		"dispelled": true,
 		"cost_to_remove": 0,
 	},
@@ -359,6 +378,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"shaken_off": false,
 		"dispelled": true,
 		"cost_to_remove": 0,
 	},
@@ -374,6 +394,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"shaken_off": false,
 		"dispelled": true,
 		"cost_to_remove": 0,
 	},
@@ -389,6 +410,7 @@ const DEFINITIONS: Dictionary = {
 		"blocks_casting": false,
 		"end_of_combat": true,
 		"clear_on_rest": false,
+		"shaken_off": false,
 		"dispelled": true,
 		"cost_to_remove": 0,
 	},
@@ -442,6 +464,11 @@ func blocks_casting(effect_id: int) -> bool:
 func is_negative(effect_id: int) -> bool:
 	var def: Dictionary = DEFINITIONS.get(effect_id, {})
 	return bool(def.get("is_negative", false))
+
+## Returns true if a periodic Willpower save can remove this effect.
+func can_be_shaken_off(effect_id: int) -> bool:
+	var def: Dictionary = DEFINITIONS.get(effect_id, {})
+	return bool(def.get("shaken_off", false))
 
 ## Returns the display label for an effect ID.
 func get_label(effect_id: int) -> String:

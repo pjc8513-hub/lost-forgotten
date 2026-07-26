@@ -85,7 +85,7 @@ func tick_effects() -> int:
 			effect_ticked.emit(effect_id, dot)
 
 		# --- Willpower save to shake negative effects ---
-		if StatusEffects.is_negative(effect_id) and entry.get("save_dc", 0) > 0:
+		if StatusEffects.can_be_shaken_off(effect_id) and entry.get("save_dc", 0) > 0:
 			var wp := CombatStats.ability_modifier(_get_willpower())
 			var roll := DiceRoller.d20(wp).total
 			if roll >= entry["save_dc"]:

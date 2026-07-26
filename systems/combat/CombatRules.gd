@@ -109,7 +109,7 @@ static func tick_statuses(actor: Resource) -> Array[Dictionary]:
 		# A new action blocker cannot expire before denying its promised turn.
 		if bool(entry.get("awaiting_blocked_turn", false)):
 			continue
-		if StatusEffects.is_negative(effect_id) and int(entry.get("save_dc", 0)) > 0:
+		if StatusEffects.can_be_shaken_off(effect_id) and int(entry.get("save_dc", 0)) > 0:
 			var save := DiceRoller.d20(CombatStats.ability_modifier(CombatStats.willpower(actor))).total
 			if save >= int(entry.save_dc):
 				to_clear.append(effect_id)
