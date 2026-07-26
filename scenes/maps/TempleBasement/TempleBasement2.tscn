@@ -272,6 +272,13 @@ transform = Transform3D(1, 0, -5.5636264e-08, 0, 1, 0, 5.5636264e-08, 0, 1, -18,
 [node name="stone_corner19" parent="cells" unique_id=1276578680 instance=ExtResource("4_pholp")]
 transform = Transform3D(1.1924875e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924875e-08, -20, 0, 4)
 
+[node name="BlockerComponent" type="Node" parent="cells/stone_corner19" unique_id=1901380080]
+script = ExtResource("13_lxpyv")
+blocker_ID = &"templebasement2.vision4"
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
 [node name="stone_corner20" parent="cells" unique_id=78037512 instance=ExtResource("4_pholp")]
 transform = Transform3D(1, 0, -5.5636264e-08, 0, 1, 0, 5.5636264e-08, 0, 1, -20, 0, -2)
 
@@ -482,6 +489,13 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -14,
 [node name="stone_wall29" parent="cells" unique_id=654122359 instance=ExtResource("11_nbgcq")]
 transform = Transform3D(-2.1855695e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855695e-07, -18, 0, 4)
 
+[node name="BlockerComponent" type="Node" parent="cells/stone_wall29" unique_id=607183176]
+script = ExtResource("13_lxpyv")
+blocker_ID = &"templebasement2.vision3"
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
 [node name="stone_wall27" parent="cells" unique_id=565630040 instance=ExtResource("11_nbgcq")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -14, 0, 4)
 
@@ -494,6 +508,13 @@ metadata/_custom_type_script = "uid://cpd6aclgammco"
 
 [node name="stone_wall28" parent="cells" unique_id=1884554859 instance=ExtResource("11_nbgcq")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -16, 0, 4)
+
+[node name="BlockerComponent" type="Node" parent="cells/stone_wall28" unique_id=1058585393]
+script = ExtResource("13_lxpyv")
+blocker_ID = &"templebasement2.vision2"
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
 
 [node name="stone_wall16" parent="cells" unique_id=1071518526 instance=ExtResource("11_nbgcq")]
 transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 6, 0, 4)
@@ -639,6 +660,13 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16,
 
 [node name="stone_hall7" parent="cells" unique_id=487744051 instance=ExtResource("12_dxtt7")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -18, 0, 2)
+
+[node name="BlockerComponent" type="Node" parent="cells/stone_hall7" unique_id=1968905917]
+script = ExtResource("13_lxpyv")
+blocker_ID = &"templebasement2.vision5"
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
 
 [node name="stone_hall3_trap" parent="cells" unique_id=1009563942 instance=ExtResource("19_mo3rd")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16, 0, 6)
@@ -813,12 +841,16 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 
 script = ExtResource("30_sj722")
 NPC_List = Array[ExtResource("31_l73ix")]([ExtResource("32_6merb")])
 
+[editable path="cells/stone_corner19"]
+[editable path="cells/stone_wall29"]
 [editable path="cells/stone_wall27"]
+[editable path="cells/stone_wall28"]
 [editable path="cells/stone_wall3_door"]
 [editable path="cells/stone_wall3_door2"]
 [editable path="cells/stone_wall3_door3"]
 [editable path="cells/stone_wall3_door4"]
 [editable path="cells/stone_wall3_door5"]
+[editable path="cells/stone_hall7"]
 [editable path="cells/stone_hall3_trap"]
 [editable path="cells/stone_wall3_door6"]
 [editable path="decor/Statue3"]
