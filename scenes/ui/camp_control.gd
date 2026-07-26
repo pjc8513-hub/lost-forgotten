@@ -2,6 +2,7 @@ class_name CampMenu
 extends Control
 
 const REST_DURATION_SECONDS: int = 6 * 60 * 60
+const WAIT_DURATION_SECONDS: int = 4 * 60 * 60
 const FADE_DURATION_SECONDS: float = 0.5
 const BLACKOUT_HOLD_SECONDS: float = 0.25
 
@@ -14,6 +15,7 @@ signal camp_cancelled
 @onready var food_label: Label = $DialogBox/PaperPanel/VBoxContainer/FoodLabel
 @onready var camp_button: Button = $DialogBox/PaperPanel/VBoxContainer/HBoxContainer/CampButton
 @onready var close_button: Button = $DialogBox/PaperPanel/VBoxContainer/HBoxContainer/CloseButton
+@onready var wait_button: Button = $DialogBox/PaperPanel/VBoxContainer/HBoxContainer/WaitButton
 
 var _is_transitioning: bool = false
 
@@ -23,6 +25,7 @@ func _ready() -> void:
 	
 	# Connect button signals
 	camp_button.pressed.connect(_on_camp_pressed)
+	wait_button.pressed.connect(_on_wait_pressed)
 	close_button.pressed.connect(_on_close_pressed)
 	PartyManager.food_changed.connect(_on_food_changed)
 	
@@ -71,6 +74,12 @@ func _on_camp_pressed() -> void:
 	close_button.disabled = false
 	_is_transitioning = false
 	_refresh_food_display()
+
+
+func _on_wait_pressed() -> void:
+	if _is_transitioning:
+		return
+	WorldManager.advance_time(WAIT_DURATION_SECONDS)
 
 func _input(_event: InputEvent) -> void:
 	if _is_transitioning:

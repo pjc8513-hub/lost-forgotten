@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://rin8kglxq8yj" path="res://assets/models/objects/outside_torch.glb" id="1_4uyrh"]
 [ext_resource type="Script" uid="uid://bc3pk5xlu3252" path="res://outside_torch.gd" id="2_h8li0"]
+[ext_resource type="Script" uid="uid://bbnqrmg0d3juv" path="res://scenes/actors/omni_light_3d.gd" id="3_h8li0"]
 [ext_resource type="Shader" uid="uid://cg6n5fhaynoku" path="res://scenes/grid/castle/torch_1.gdshader" id="3_wewko"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_o5t58"]
@@ -38,6 +39,10 @@ script = ExtResource("2_h8li0")
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="2" unique_id=1342125154]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37729722, -0.51594925)
 visible = false
+light_color = Color(0.99999994, 0.91161126, 0.806013, 1)
+distance_fade_enabled = true
+omni_attenuation = 0.75
+script = ExtResource("3_h8li0")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="." index="3" unique_id=164178118]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06600869, 0.4653706, -0.4775675)

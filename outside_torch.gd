@@ -1,7 +1,7 @@
 extends Node3D
 
 const LIGHTS_ON_TIME_SECONDS := 17 * 60 * 60
-const LIGHTS_OFF_TIME_SECONDS := 6 * 60 * 60
+const LIGHTS_OFF_TIME_SECONDS := 7 * 60 * 60
 
 @onready var omni_light_3d: OmniLight3D = $OmniLight3D
 @onready var mesh_instance_3d_3: MeshInstance3D = $MeshInstance3D3

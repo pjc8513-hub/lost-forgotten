@@ -14,17 +14,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6ve0j")
 
-[node name="TransitionCanvas" type="CanvasLayer" parent="."]
+[node name="TransitionCanvas" type="CanvasLayer" parent="." unique_id=641949715]
 layer = 100
 
-[node name="Blackout" type="ColorRect" parent="TransitionCanvas"]
+[node name="Blackout" type="ColorRect" parent="TransitionCanvas" unique_id=1348447343]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
 color = Color(0, 0, 0, 0)
 
 [node name="DialogBox" type="PanelContainer" parent="." unique_id=544207212]
@@ -63,6 +62,10 @@ layout_mode = 2
 [node name="CampButton" type="Button" parent="DialogBox/PaperPanel/VBoxContainer/HBoxContainer" unique_id=1027334171]
 layout_mode = 2
 text = "Camp"
+
+[node name="WaitButton" type="Button" parent="DialogBox/PaperPanel/VBoxContainer/HBoxContainer" unique_id=1002407477]
+layout_mode = 2
+text = "Wait"
 
 [node name="CloseButton" type="Button" parent="DialogBox/PaperPanel/VBoxContainer/HBoxContainer" unique_id=165534062]
 layout_mode = 2
