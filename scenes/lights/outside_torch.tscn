@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://4jsf368dwp7"]
+
+[ext_resource type="PackedScene" uid="uid://rin8kglxq8yj" path="res://assets/models/objects/outside_torch.glb" id="1_4uyrh"]
+[ext_resource type="Script" uid="uid://bc3pk5xlu3252" path="res://outside_torch.gd" id="2_h8li0"]
+[ext_resource type="Shader" uid="uid://cg6n5fhaynoku" path="res://scenes/grid/castle/torch_1.gdshader" id="3_wewko"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o5t58"]
+seed = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1qndp"]
+noise = SubResource("FastNoiseLite_o5t58")
+seamless = true
+in_3d_space = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ed5yw"]
+render_priority = 0
+shader = ExtResource("3_wewko")
+shader_parameter/flame_texture = SubResource("NoiseTexture2D_1qndp")
+shader_parameter/hot_color = Color(1, 0.85, 0.25, 1)
+shader_parameter/middle_color = Color(1, 0.25, 0.02, 1)
+shader_parameter/outer_color = Color(0.35, 0, 0, 1)
+shader_parameter/sway_amount = 0.035
+shader_parameter/sway_speed = 5.0
+shader_parameter/flutter_strength = 0.018
+shader_parameter/pulse_speed = 8.0
+shader_parameter/alpha_cutoff = 0.1
+shader_parameter/emission_strength = 2.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_u1ttx"]
+material = SubResource("ShaderMaterial_ed5yw")
+radius = 0.155
+height = 0.255
+radial_segments = 66
+
+[node name="outside_torch" unique_id=1948652118 instance=ExtResource("1_4uyrh")]
+script = ExtResource("2_h8li0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="2" unique_id=1342125154]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37729722, -0.51594925)
+visible = false
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." index="3" unique_id=164178118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06600869, 0.4653706, -0.4775675)
+visible = false
+mesh = SubResource("SphereMesh_u1ttx")

@@ -9,6 +9,7 @@ uniform float horizon_blur : hint_range(0.0, 1.0) = 0.3;
 uniform vec3 sun_color : source_color = vec3(1.0, 0.95, 0.8);
 uniform float sun_size : hint_range(0.01, 0.5) = 0.05;
 uniform float sun_blur : hint_range(0.0, 0.1) = 0.01; // Low blur creates great retro pixel artifacts
+uniform float sun_visibility : hint_range(0.0, 1.0) = 1.0;
 
 void sky() {
     // 1. Base Sky Gradient
@@ -22,7 +23,7 @@ void sky() {
     float sun_dot = dot(EYEDIR, LIGHT0_DIRECTION);
     
     // Calculate the sun shape based on the angle to the light source
-    float sun_factor = smoothstep(1.0 - sun_size - sun_blur, 1.0 - sun_size, sun_dot);
+    float sun_factor = smoothstep(1.0 - sun_size - sun_blur, 1.0 - sun_size, sun_dot) * sun_visibility;
     vec3 sun_disk = sun_color * sun_factor;
     
     // 3. Combine them

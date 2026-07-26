@@ -41,6 +41,7 @@
 [ext_resource type="Resource" uid="uid://b3pdgl4c2yodv" path="res://data/dialogue/nobel/shop/Jo.tres" id="35_ae1so"]
 [ext_resource type="PackedScene" uid="uid://gtp30eywbk8q" path="res://scenes/grid/nobel_city/shop_1.tscn" id="40_c1pmp"]
 [ext_resource type="PackedScene" uid="uid://yoaii84iw34x" path="res://scenes/grid/castle/crate_1.tscn" id="41_mywnk"]
+[ext_resource type="PackedScene" uid="uid://4jsf368dwp7" path="res://scenes/lights/outside_torch.tscn" id="42_hgk2k"]
 
 [sub_resource type="Curve" id="Curve_hgk2k"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -57,6 +58,7 @@ shader_parameter/horizon_blur = 1.0
 shader_parameter/sun_color = Color(1, 0.95, 0.8, 1)
 shader_parameter/sun_size = 0.00999999977648
 shader_parameter/sun_blur = 0.01
+shader_parameter/sun_visibility = 1.0
 
 [sub_resource type="Sky" id="Sky_vvxho"]
 resource_local_to_scene = true
@@ -969,6 +971,45 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 
 
 [node name="ChestComponent" parent="crate3" index="3" unique_id=1267731204]
 chest_ID = &"nobel.crate_3"
+
+[node name="outside_torch" parent="." unique_id=1948652118 instance=ExtResource("42_hgk2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 6)
+
+[node name="outside_torch3" parent="." unique_id=382517155 instance=ExtResource("42_hgk2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 14)
+
+[node name="outside_torch4" parent="." unique_id=2020861285 instance=ExtResource("42_hgk2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 12)
+
+[node name="outside_torch5" parent="." unique_id=1881567799 instance=ExtResource("42_hgk2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 12)
+
+[node name="outside_torch6" parent="." unique_id=527828972 instance=ExtResource("42_hgk2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 6)
+
+[node name="outside_torch12" parent="." unique_id=51435198 instance=ExtResource("42_hgk2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 8)
+
+[node name="outside_torch13" parent="." unique_id=1243493560 instance=ExtResource("42_hgk2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
+
+[node name="outside_torch7" parent="." unique_id=879624991 instance=ExtResource("42_hgk2k")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -12, 0, -4)
+
+[node name="outside_torch8" parent="." unique_id=1377052138 instance=ExtResource("42_hgk2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="outside_torch9" parent="." unique_id=1722049627 instance=ExtResource("42_hgk2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="outside_torch10" parent="." unique_id=2100107989 instance=ExtResource("42_hgk2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+
+[node name="outside_torch11" parent="." unique_id=200702876 instance=ExtResource("42_hgk2k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2, 0, 4)
+
+[node name="outside_torch2" parent="." unique_id=500735493 instance=ExtResource("42_hgk2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 2)
 
 [connection signal="input_event" from="nobel_house16/Area3D" to="nobel_house16" method="_on_area_3d_input_event"]
 [connection signal="input_event" from="temple1/Area3D" to="temple1" method="_on_area_3d_input_event"]
