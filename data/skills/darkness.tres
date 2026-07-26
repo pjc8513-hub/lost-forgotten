@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://b2140r7k6ye4m"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_uqshg"]
+
+[resource]
+script = ExtResource("1_uqshg")
+skill_id = &"darkness"
+display_name = "Darkness"
+description = "Attempts to lowers accuracy"
+available_classes = Array[int]([6, 2])
+archetype = 2
+element = 7
+maximum_rank = 3
+is_AOE = true
+stamina_cost = 5
+uses_per_day = 3
+bonus_uses_per_rank = 1
+status_effect = 6
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

@@ -13,11 +13,14 @@ const HEALTH_TWEEN_TIME := 0.22
 const FLEE_DISPLAY_TIME := 0.18
 const FLEE_FADE_TIME := 0.45
 const FORMATION_PREVIEW_TIME := 0.12
+const FALLBACK_ATTACK_FLASH_COUNT := 3
+const FALLBACK_ATTACK_FLASH_TIME := 0.08
 
 var _feedback_tween: Tween
 var _feedback_generation := 0
 var _formation_scale_tween: Tween
 var _formation_preview_tween: Tween
+var _attack_tween: Tween
 var _authored_sprite_scale := Vector3.ONE
 var enemy_instance: EnemyInstance
 
@@ -28,10 +31,13 @@ func _exit_tree() -> void:
 		_formation_scale_tween.kill()
 	if _formation_preview_tween != null and _formation_preview_tween.is_valid():
 		_formation_preview_tween.kill()
+	if _attack_tween != null and _attack_tween.is_valid():
+		_attack_tween.kill()
 	_feedback_generation += 1
 	_feedback_tween = null
 	_formation_scale_tween = null
 	_formation_preview_tween = null
+	_attack_tween = null
 
 func _ready() -> void:
 	_authored_sprite_scale = enemy_sprite.scale
@@ -193,9 +199,27 @@ func show_flee_feedback() -> void:
 
 func play_attack_animation() -> float:
 	var animation_player := find_child("AnimationPlayer", true, false) as AnimationPlayer
-	if animation_player == null or not animation_player.has_animation(&"attack"):
-		return 0.0
-	var animation := animation_player.get_animation(&"attack")
-	var duration := animation.length if animation != null else 0.0
-	animation_player.play(&"attack")
-	return duration
+	if animation_player != null and animation_player.has_animation(&"attack"):
+		var animation := animation_player.get_animation(&"attack")
+		var duration := animation.length if animation != null else 0.0
+		animation_player.play(&"attack")
+		return duration
+	return _play_fallback_attack_animation()
+
+func _play_fallback_attack_animation() -> float:
+	if _attack_tween != null and _attack_tween.is_valid():
+		_attack_tween.kill()
+
+	var base_modulate := enemy_sprite.modulate
+	var attack_modulate := Color(1.0, 0.1, 0.1, base_modulate.a)
+	var total_duration := FALLBACK_ATTACK_FLASH_COUNT * FALLBACK_ATTACK_FLASH_TIME * 2.0
+	_attack_tween = create_tween()
+	for _flash_index in FALLBACK_ATTACK_FLASH_COUNT:
+		_attack_tween.tween_property(enemy_sprite, "modulate", attack_modulate, FALLBACK_ATTACK_FLASH_TIME)
+		_attack_tween.tween_property(enemy_sprite, "modulate", base_modulate, FALLBACK_ATTACK_FLASH_TIME)
+	_attack_tween.finished.connect(_clear_attack_tween.bind(_attack_tween))
+	return total_duration
+
+func _clear_attack_tween(tween: Tween) -> void:
+	if _attack_tween == tween:
+		_attack_tween = null

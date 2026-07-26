@@ -306,6 +306,12 @@ func _clear_end_of_combat_statuses_for(actor: Resource) -> void:
 	if actor == null:
 		return
 	var removed := false
+	if actor.active_combat_buffs.has("armor_class"):
+		# Defend normally expires when the actor's next turn starts. Combat can
+		# end before that happens, including when the actor dies, so clean it up
+		# explicitly for every combat participant here.
+		actor.active_combat_buffs.erase("armor_class")
+		removed = true
 	for raw_effect_id in actor.active_status_effects.keys():
 		if StatusEffects.clears_at_end_of_combat(int(raw_effect_id)):
 			actor.active_status_effects.erase(raw_effect_id)

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://bhpebkspe7vke"]
+
+[ext_resource type="PackedScene" uid="uid://crk71prq45d4b" path="res://scenes/actors/enemies/RatPriest.tscn" id="1_56o72"]
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_m2rh4"]
+[ext_resource type="Texture2D" uid="uid://csql3qxsxxbux" path="res://assets/sprites/enemies/RatPriest2.png" id="2_liq85"]
+
+[resource]
+script = ExtResource("1_m2rh4")
+enemy_id = &"RatPriest"
+display_name = "Rat Priest"
+enemy_level = 6
+sprite_texture = ExtResource("2_liq85")
+enemytype = 0
+enemy_scene = ExtResource("1_56o72")
+xp = 65
+gold = 75
+loot_probability = 0.2
+loot_table = 1
+base_strength = 4
+base_endurance = 4
+base_wisdom = 5
+base_dexterity = 4
+base_piety = 2
+base_willpower = 1
+damage_dice_rolls = 3
+damage_dice_sides = 4
+hp_base = 10
+skills = Dictionary[StringName, float]({
+&"darkness": 0.2
+})
+flee_chance = 0.0
+can_flee = false
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"
