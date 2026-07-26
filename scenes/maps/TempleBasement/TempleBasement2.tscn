@@ -407,6 +407,12 @@ metadata/_custom_type_script = "uid://cpd6aclgammco"
 [node name="stone_corner20" parent="cells" unique_id=78037512 instance=ExtResource("4_pholp")]
 transform = Transform3D(1, 0, -5.5636264e-08, 0, 1, 0, 5.5636264e-08, 0, 1, -20, 0, -2)
 
+[node name="stone_corner36" parent="cells" unique_id=93338811 instance=ExtResource("4_pholp")]
+transform = Transform3D(1, 0, -5.5636264e-08, 0, 1, 0, 5.5636264e-08, 0, 1, -10, 0, -14)
+
+[node name="stone_corner37" parent="cells" unique_id=416177630 instance=ExtResource("4_pholp")]
+transform = Transform3D(-9.934765e-08, 0, -1, 0, 1, 0, 1, 0, -9.934765e-08, -6, 0, -14)
+
 [node name="stone_corner33" parent="cells" unique_id=170451145 instance=ExtResource("4_pholp")]
 transform = Transform3D(1, 0, -5.5636264e-08, 0, 1, 0, 5.5636264e-08, 0, 1, -10, 0, -4)
 
@@ -460,6 +466,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 14)
 
 [node name="stone_floor25" parent="cells" unique_id=1966270242 instance=ExtResource("5_mi5sa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 24)
+
+[node name="stone_floor32" parent="cells" unique_id=268991817 instance=ExtResource("5_mi5sa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+
+[node name="stone_floor33" parent="cells" unique_id=214653205 instance=ExtResource("5_mi5sa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -10)
+
+[node name="stone_floor34" parent="cells" unique_id=1588663295 instance=ExtResource("5_mi5sa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -12)
 
 [node name="stone_floor26" parent="cells" unique_id=413635071 instance=ExtResource("5_mi5sa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 24)
@@ -643,6 +658,27 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -18,
 
 [node name="stone_wall35" parent="cells" unique_id=569100176 instance=ExtResource("11_nbgcq")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -16, 0, -2)
+
+[node name="stone_wall63" parent="cells" unique_id=173235293 instance=ExtResource("11_nbgcq")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -10, 0, -8)
+
+[node name="stone_wall64" parent="cells" unique_id=319353718 instance=ExtResource("11_nbgcq")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -10, 0, -10)
+
+[node name="stone_wall65" parent="cells" unique_id=1700400533 instance=ExtResource("11_nbgcq")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -10, 0, -12)
+
+[node name="stone_wall66" parent="cells" unique_id=203195243 instance=ExtResource("11_nbgcq")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6, 0, -12)
+
+[node name="stone_wall69" parent="cells" unique_id=1180713088 instance=ExtResource("11_nbgcq")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -8, 0, -14)
+
+[node name="stone_wall67" parent="cells" unique_id=503330603 instance=ExtResource("11_nbgcq")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6, 0, -10)
+
+[node name="stone_wall68" parent="cells" unique_id=1343366091 instance=ExtResource("11_nbgcq")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6, 0, -8)
 
 [node name="stone_wall36" parent="cells" unique_id=1499327541 instance=ExtResource("11_nbgcq")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -14, 0, -2)
@@ -955,6 +991,12 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -8, 
 [node name="torch26" parent="torches" unique_id=1936226408 instance=ExtResource("6_mrm1j")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -8, 0, -4)
 
+[node name="torch28" parent="torches" unique_id=952849286 instance=ExtResource("6_mrm1j")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -6, 0, -12)
+
+[node name="torch29" parent="torches" unique_id=1653701139 instance=ExtResource("6_mrm1j")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -10, 0, -12)
+
 [node name="torch27" parent="torches" unique_id=1433553051 instance=ExtResource("6_mrm1j")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, -4)
 
@@ -1118,7 +1160,7 @@ NPC_List = Array[ExtResource("31_l73ix")]([ExtResource("32_6merb")])
 blocker_ID = &"templebasement2.rat_altar_blocker_1"
 
 [node name="alter2" parent="." unique_id=1399841903 instance=ExtResource("29_puoal")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -10, 0, 20)
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -8, 0, -14)
 script = ExtResource("30_sj722")
 npc_tile_id = &"templebasement2.rat_altar_2"
 NPC_List = Array[ExtResource("31_l73ix")]([ExtResource("32_6merb")])
