@@ -390,12 +390,14 @@ func _run_combat_exit(outcome: StringName, rewards: Dictionary) -> void:
 	_combat_transition_running = true
 	TurnManager.set_state(TurnManager.State.TRANSITION)
 	await _fade_blackout(1.0)
+	var dialogue_combat_rewards := combat_presenter.get_encounter_rewards(outcome)
 	combat_presenter.close_encounter(outcome)
 	_set_combat_world_active(false)
 	battle_log_control.close()
 	_set_exploration_hud_enabled(true)
 	_apply_main_shader_settings(StageManager.current_level as MapData)
 	var reward_message := _apply_combat_rewards(outcome, rewards)
+	_apply_dialogue_combat_rewards(dialogue_combat_rewards)
 	EncounterManager.complete_encounter()
 	await get_tree().create_timer(MAP_TRANSITION_HOLD_TIME).timeout
 	await _fade_blackout(0.0)
@@ -404,6 +406,11 @@ func _run_combat_exit(outcome: StringName, rewards: Dictionary) -> void:
 	TurnManager.set_state(TurnManager.State.PAUSED if outcome == &"defeat" else TurnManager.State.EXPLORATION)
 	alert.dismiss()
 	alert.show_message(reward_message)
+
+func _apply_dialogue_combat_rewards(rewards: Array[DialogueReward]) -> void:
+	for reward in rewards:
+		if reward != null:
+			reward.give_reward()
 
 func _set_exploration_hud_enabled(enabled: bool) -> void:
 	_combat_active = not enabled

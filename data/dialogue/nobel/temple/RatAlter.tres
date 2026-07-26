@@ -4,12 +4,41 @@
 [ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="2_1odwf"]
 [ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="3_4swub"]
 [ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="4_53oal"]
+[ext_resource type="PackedScene" uid="uid://bpaar2wmwn36f" path="res://scenes/combat/castle_combat.tscn" id="5_4swub"]
 [ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="5_raclq"]
 [ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="6_qwbvw"]
 [ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="7_2aw71"]
+[ext_resource type="Script" uid="uid://dtujqy3ay80p4" path="res://scenes/combat/CombatArena.gd" id="8_combat"]
+
+[sub_resource type="Resource" id="Resource_quest_victory"]
+script = ExtResource("2_1odwf")
+type = 5
+target_id = "BrotherPatrick"
+value = 2
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_rat_combat"]
+script = ExtResource("2_1odwf")
+type = 7
+combat_scene = ExtResource("8_combat")
+enemy_ids = Array[StringName]([&"RatBrute"])
+enemy_counts = Array[int]([1])
+victory_rewards = Array[ExtResource("2_1odwf")]([SubResource("Resource_quest_victory")])
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_quest_stage_one"]
+script = ExtResource("3_4swub")
+type = 2
+target_id = "BrotherPatrick"
+target_value = 1
+metadata/_custom_type_script = "uid://biwbs1n6b7tyr"
 
 [sub_resource type="Resource" id="Resource_nqmo3"]
 script = ExtResource("2_1odwf")
+type = 7
+combat_scene = ExtResource("5_4swub")
+enemy_ids = Array[StringName]([&"RatBrute", &"GiantRat"])
+enemy_counts = Array[int]([2, 1])
 metadata/_custom_type_script = "uid://boy0c7bryv6tm"
 
 [sub_resource type="Resource" id="Resource_bwk3l"]
@@ -22,7 +51,9 @@ metadata/_custom_type_script = "uid://bu2iii31o0rrx"
 script = ExtResource("1_04w6w")
 choice_string = "Trash Alter"
 next_node = SubResource("Resource_bwk3l")
-choice_rewards = Array[ExtResource("2_1odwf")]([null])
+hide_if_locked = true
+conditions = Array[ExtResource("3_4swub")]([SubResource("Resource_quest_stage_one")])
+choice_rewards = Array[ExtResource("2_1odwf")]([SubResource("Resource_rat_combat")])
 metadata/_custom_type_script = "uid://crjpwo8no2r4u"
 
 [sub_resource type="Resource" id="Resource_iti8x"]

@@ -11,6 +11,7 @@ var _menu: CombatMenu
 var _skill_menu: skill_menu
 var _arena: CombatArena
 var _session: CombatSession
+var _encounter: CombatEncounter
 var _enemy_visuals: Dictionary = {}
 var _pending_row_actor: PartyMember
 var _pending_row_action: StringName
@@ -49,6 +50,7 @@ func start_encounter(encounter: CombatEncounter) -> bool:
 		return false
 
 	_arena = arena_instance as CombatArena
+	_encounter = encounter
 	if _combat_arena_root == null:
 		push_error("CombatPresenter requires a combat arena root.")
 		_arena.queue_free()
@@ -86,10 +88,23 @@ func close_encounter(_outcome: StringName) -> void:
 		_arena.queue_free()
 	_session = null
 	_arena = null
+	_encounter = null
 	_enemy_visuals.clear()
 
 func get_arena_map_data() -> MapData:
 	return _arena
+
+func get_encounter_rewards(outcome: StringName) -> Array[DialogueReward]:
+	if _encounter == null:
+		return []
+	match outcome:
+		&"victory":
+			return _encounter.victory_rewards
+		&"defeat":
+			return _encounter.defeat_rewards
+		&"fled":
+			return _encounter.flee_rewards
+	return []
 
 func _spawn_enemy_visuals(encounter: CombatEncounter) -> void:
 	_enemy_visuals.clear()

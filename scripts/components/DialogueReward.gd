@@ -1,10 +1,18 @@
 class_name DialogueReward extends Resource
 
-enum RewardType { ADD_GOLD, REMOVE_GOLD, ADD_ITEM, REMOVE_ITEM, ADD_EXP, SET_QUEST_STAGE, TELEPORT }
+enum RewardType { ADD_GOLD, REMOVE_GOLD, ADD_ITEM, REMOVE_ITEM, ADD_EXP, SET_QUEST_STAGE, TELEPORT, START_COMBAT }
 
 @export var type: RewardType
 @export var target_id: String # item_id or quest_id
 @export var value: int       # amount of gold, exp, or quest stage
+
+@export_group("Combat Options")
+@export var combat_scene: PackedScene
+@export var enemy_ids: Array[StringName] = []
+@export var enemy_counts: Array[int] = []
+@export var victory_rewards: Array[DialogueReward] = []
+@export var defeat_rewards: Array[DialogueReward] = []
+@export var flee_rewards: Array[DialogueReward] = []
 
 @export_group("Teleportation Options")
 @export_file("*.tscn") var destination_map: String
@@ -57,3 +65,49 @@ func give_reward() -> void:
 				push_error("Error: Teleport destination map is empty.")
 				return
 			MapManager.request_map_transition(destination_map, destination_spawn_id)
+		RewardType.START_COMBAT:
+			_start_combat()
+
+func _start_combat() -> void:
+	if combat_scene == null:
+		push_error("Error: Dialogue combat scene is empty.")
+		return
+	if enemy_ids.is_empty():
+		push_error("Error: Dialogue combat has no enemies configured.")
+		return
+	if enemy_ids.size() > 3:
+		push_error("Error: Dialogue combat supports at most 3 enemy rows.")
+		return
+
+	var catalog := EnemyCatalog.new()
+	var encounter := CombatEncounter.new()
+	encounter.combat_scene = combat_scene
+	encounter.victory_rewards = victory_rewards.duplicate()
+	encounter.defeat_rewards = defeat_rewards.duplicate()
+	encounter.flee_rewards = flee_rewards.duplicate()
+
+	for row_index in enemy_ids.size():
+		var enemy_id := enemy_ids[row_index]
+		var enemy_data := catalog.get_enemy(enemy_id)
+		if enemy_data == null:
+			push_error("Error: Unknown dialogue combat enemy ID '%s'." % enemy_id)
+			return
+
+		var enemy_count := 1
+		if row_index < enemy_counts.size():
+			enemy_count = enemy_counts[row_index]
+		if enemy_count < 1 or enemy_count > 3:
+			push_error("Error: Dialogue combat enemy count for '%s' must be from 1 to 3." % enemy_id)
+			return
+
+		var row: Array[EnemyInstance] = []
+		for slot_index in enemy_count:
+			row.append(EnemyInstance.create(enemy_data, row_index, slot_index))
+		encounter.enemy_rows.append(row)
+
+	var scene_tree := Engine.get_main_loop() as SceneTree
+	var main_scene := scene_tree.current_scene if scene_tree != null else null
+	if main_scene == null or not main_scene.has_method("_on_encounter_requested"):
+		push_error("Error: Main scene is not ready for dialogue combat.")
+		return
+	main_scene.call("_on_encounter_requested", encounter)
