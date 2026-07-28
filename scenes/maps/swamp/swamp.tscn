@@ -110,6 +110,9 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 
 [node name="cyprus" parent="." unique_id=2094232523 instance=ExtResource("7_ebx5d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
 
+[node name="cyprus4" parent="." unique_id=1876583353 instance=ExtResource("7_ebx5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8)
+
 [node name="cyprus2" parent="." unique_id=1105550491 instance=ExtResource("7_ebx5d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
 
