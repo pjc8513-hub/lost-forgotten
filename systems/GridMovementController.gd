@@ -50,7 +50,11 @@ func try_move(direction: Vector3i) -> bool:
 
 	var target := grid_pos + direction
 
-	if MapManager.is_edge_blocked(grid_pos, direction) or is_blocked(target):
+	if MapManager.is_edge_blocked(grid_pos, direction):
+		trigger_bump(direction)
+		return false
+
+	if is_blocked(target):
 		return false
 
 	# Update grid state immediately
@@ -188,6 +192,33 @@ func trigger_tile_effects(pos: Vector3i) -> void:
 			var trap := component as TrapComponent
 			if trap != null and trap.trigger_on_step:
 				trap.trigger(actor)
+
+func trigger_bump(direction: Vector3i) -> bool:
+	var triggered := false
+	var triggered_components: Array[Node] = []
+	var target := grid_pos + direction
+
+	# A wall can be represented by either side of the blocked edge. This also
+	# supports map boundaries where the target cell does not exist.
+	for element in MapManager.get_elements(grid_pos):
+		if element.blocks_edge(direction):
+			triggered = _trigger_bump_components(element.get_parent(), direction, triggered_components) or triggered
+
+	for element in MapManager.get_elements(target):
+		if element.blocks_edge(-direction):
+			triggered = _trigger_bump_components(element.get_parent(), direction, triggered_components) or triggered
+
+	return triggered
+
+func _trigger_bump_components(tile: Node, direction: Vector3i, triggered_components: Array[Node]) -> bool:
+	var triggered := false
+	for component in tile.find_children("*", "BumpComponent", true, false):
+		if component in triggered_components:
+			continue
+		triggered_components.append(component)
+		(component as BumpComponent).bump(actor, direction)
+		triggered = true
+	return triggered
 
 func world_to_grid(world_pos: Vector3) -> Vector3i:
 	return Vector3i(

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dhb8ssi7tr3p2" path="res://scenes/grid/swamp/cyprus.tscn" id="7_ebx5d"]
 [ext_resource type="PackedScene" uid="uid://cbwtrnwpdofmq" path="res://scenes/grid/swamp/swamp_rock.tscn" id="8_c63wj"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="9_ncf1r"]
+[ext_resource type="PackedScene" uid="uid://db6rb0pald2ri" path="res://scenes/grid/swamp/swamp_bump_floor.tscn" id="10_ncf1r"]
 
 [node name="Node3D" type="Node3D" unique_id=350231839]
 script = ExtResource("1_80038")
@@ -54,8 +55,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 [node name="swamp_wall" parent="." unique_id=1498614796 instance=ExtResource("5_ebx5d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
-[node name="swamp_wall4" parent="." unique_id=2108011775 instance=ExtResource("5_ebx5d")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 6)
+[node name="swamp_wall4" parent="." unique_id=32741106 instance=ExtResource("5_ebx5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="swamp_wall8" parent="." unique_id=942789276 instance=ExtResource("5_ebx5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8)
 
 [node name="swamp_wall6" parent="." unique_id=1550384064 instance=ExtResource("5_ebx5d")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -2)
@@ -96,3 +100,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0
 [node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("9_ncf1r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 spawn_id = &"entrance"
+
+[node name="swamp_floor10" parent="." unique_id=813225403 instance=ExtResource("10_ncf1r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 6)

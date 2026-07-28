@@ -8,6 +8,13 @@ extends Control
 
 var _destinations: Array[Dictionary] = []
 
+const NOBEL_DESTINATION := {
+	"display_name": "Nobel",
+	"map": "res://scenes/maps/nobel/nobel.tscn",
+	"map_id": &"Nobel",
+	"spawn_id": &"entrance",
+}
+
 func _ready() -> void:
 	hide()
 	travel_button.pressed.connect(_on_travel_pressed)
@@ -27,7 +34,7 @@ func close() -> void:
 
 
 func _refresh() -> void:
-	_destinations = QuestManager.get_travel_destinations()
+	_destinations = _get_available_destinations()
 	destination_list.clear()
 	travel_button.disabled = true
 
@@ -38,6 +45,48 @@ func _refresh() -> void:
 
 	for destination in _destinations:
 		destination_list.add_item(str(destination.get("display_name", "Unknown Destination")))
+
+
+func _get_available_destinations() -> Array[Dictionary]:
+	var current_map_id := _get_current_map_id()
+	var destinations: Array[Dictionary] = [NOBEL_DESTINATION.duplicate()]
+	destinations.append_array(QuestManager.get_travel_destinations())
+
+	var filtered: Array[Dictionary] = []
+	var seen_maps: Dictionary = {}
+	for destination in destinations:
+		var map_path := str(destination.get("map", ""))
+		if map_path.is_empty():
+			continue
+		var map_id := StringName(destination.get("map_id", &""))
+		if map_id.is_empty():
+			map_id = _get_map_id(map_path)
+		if map_id == current_map_id or seen_maps.has(map_id):
+			continue
+		seen_maps[map_id] = true
+		destination["map_id"] = map_id
+		filtered.append(destination)
+
+	filtered.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		return str(a.get("display_name", "")).naturalnocasecmp_to(str(b.get("display_name", ""))) < 0
+	)
+	return filtered
+
+
+func _get_current_map_id() -> StringName:
+	var current_map := StageManager.current_level as MapData
+	return current_map.Map_ID if current_map != null else StringName()
+
+
+func _get_map_id(map_path: String) -> StringName:
+	var map_scene := load(map_path) as PackedScene
+	if map_scene == null:
+		return StringName(map_path)
+	var map_instance := map_scene.instantiate()
+	var map_data := map_instance as MapData
+	var map_id := map_data.Map_ID if map_data != null else StringName(map_path)
+	map_instance.free()
+	return map_id
 
 
 func _on_destination_list_item_activated(index: int) -> void:
