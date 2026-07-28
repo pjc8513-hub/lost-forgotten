@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://ungfb04ujreb"]
 
 [ext_resource type="Script" uid="uid://sb6lgub0pk2o" path="res://scenes/ui/automap.gd" id="1_c8hn6"]
+[ext_resource type="Script" uid="uid://i02bvkuu4qlv" path="res://scripts/components/AutomapComponent.gd" id="2_86oh8"]
 
 [node name="AutomapControl" type="Control" unique_id=140842024]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -14,16 +16,17 @@ offset_top = -150.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
-clip_contents = true
 script = ExtResource("1_c8hn6")
 
-[node name="Compass" type="Label" parent="."]
+[node name="Compass" type="Label" parent="." unique_id=110854301]
 layout_mode = 0
-anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -24.0
+text = "N"
 horizontal_alignment = 1
 vertical_alignment = 1
-text = "N"
+
+[node name="AutomapComponent" type="Node" parent="." unique_id=1212267702]
+script = ExtResource("2_86oh8")
