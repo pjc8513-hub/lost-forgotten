@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cbwtrnwpdofmq" path="res://scenes/grid/swamp/swamp_rock.tscn" id="8_c63wj"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="9_ncf1r"]
 [ext_resource type="PackedScene" uid="uid://db6rb0pald2ri" path="res://scenes/grid/swamp/swamp_bump_floor.tscn" id="10_ncf1r"]
+[ext_resource type="PackedScene" uid="uid://4jsf368dwp7" path="res://scenes/lights/outside_torch.tscn" id="11_uk4ql"]
 
 [node name="Node3D" type="Node3D" unique_id=350231839]
 script = ExtResource("1_80038")
@@ -103,3 +104,9 @@ spawn_id = &"entrance"
 
 [node name="swamp_floor10" parent="." unique_id=813225403 instance=ExtResource("10_ncf1r")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 6)
+
+[node name="outside_torch" parent="." unique_id=1948652118 instance=ExtResource("11_uk4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+
+[node name="outside_torch2" parent="." unique_id=1358564880 instance=ExtResource("11_uk4ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
