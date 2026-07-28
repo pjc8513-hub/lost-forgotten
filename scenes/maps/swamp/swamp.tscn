@@ -47,6 +47,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 [node name="swamp_floor8" parent="." unique_id=2069155913 instance=ExtResource("4_71a2u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
 
+[node name="swamp_floor11" parent="." unique_id=1986783580 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 2)
+
+[node name="swamp_floor12" parent="." unique_id=998292945 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 2)
+
+[node name="swamp_floor13" parent="." unique_id=768776236 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 2)
+
+[node name="swamp_floor14" parent="." unique_id=1954038813 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 2)
+
+[node name="swamp_floor15" parent="." unique_id=557630646 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="swamp_floor16" parent="." unique_id=1156738991 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="swamp_floor17" parent="." unique_id=1037670143 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="swamp_floor18" parent="." unique_id=847489390 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+
 [node name="swamp_floor9" parent="." unique_id=1463635656 instance=ExtResource("4_71a2u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
