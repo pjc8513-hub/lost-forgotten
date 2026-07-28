@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://c26bkafrx8vdp"]
+
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="1_hnn22"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="2_5vmie"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="3_i1wif"]
+
+[sub_resource type="Resource" id="Resource_tfufr"]
+script = ExtResource("2_5vmie")
+value = 1
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[resource]
+script = ExtResource("3_i1wif")
+quest_id = "BonePit"
+quest_name = "Bone Pit"
+is_main_quest = true
+description = "There are rumors of necromancy being performed in the Bone Pit!
+
+The Bone Pit is a very old fortress in the swamp to the south. It hasn't been used as a fortress since the Olden Days, instead it has been used as a place of honorable burial for warriors born in the Swamp. The thought of someone using that foul and twisted black art on the bones of their ancestors has raised ire among the swamp-folk.
+
+Would you go and see if the rumors are true."
+display_name = "Swamp"
+destination_map = "uid://cvlmtn24nm6e"
+quest_rewards = SubResource("Resource_tfufr")
+metadata/_custom_type_script = "uid://phuimf2skp05"

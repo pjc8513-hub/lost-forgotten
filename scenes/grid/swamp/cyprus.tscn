@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dhb8ssi7tr3p2"]
+
+[ext_resource type="PackedScene" uid="uid://boyarc27m6xjd" path="res://assets/models/swamp/cyprus.glb" id="1_gijy0"]
+
+[node name="cyprus" unique_id=2094232523 instance=ExtResource("1_gijy0")]

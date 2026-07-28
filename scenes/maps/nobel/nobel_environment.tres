@@ -1,0 +1,45 @@
+[gd_resource type="Environment" format=3 uid="uid://i64ewy3e6ok2"]
+
+[ext_resource type="Shader" uid="uid://jxmlaj3taoro" path="res://scripts/shaders/day_sky.gdshader" id="1_sivqk"]
+
+[sub_resource type="Curve" id="Curve_hgk2k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mywnk"]
+curve = SubResource("Curve_hgk2k")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gyyt5"]
+shader = ExtResource("1_sivqk")
+shader_parameter/zenith_color = Color(0.2, 0.45, 0.85, 1)
+shader_parameter/horizon_color = Color(0.55, 0.75, 0.9, 1)
+shader_parameter/horizon_blur = 1.0
+shader_parameter/sun_color = Color(1, 0.95, 0.8, 1)
+shader_parameter/sun_size = 0.00999999977648
+shader_parameter/sun_blur = 0.01
+shader_parameter/sun_visibility = 1.0
+
+[sub_resource type="Sky" id="Sky_vvxho"]
+resource_local_to_scene = true
+sky_material = SubResource("ShaderMaterial_gyyt5")
+radiance_size = 4
+
+[resource]
+resource_local_to_scene = true
+background_mode = 2
+background_color = Color(0.6923535, 0.783633, 0.9097625, 1)
+sky = SubResource("Sky_vvxho")
+ambient_light_source = 3
+ambient_light_color = Color(0.6523966, 0.74503434, 0.9136144, 1)
+tonemap_mode = 3
+tonemap_exposure = 1.12
+tonemap_white = 5.0
+ssao_enabled = true
+fog_light_color = Color(0.38511264, 0.5775074, 0.6945993, 1)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.04
+volumetric_fog_albedo = Color(0.6509804, 0.74509805, 0.9137255, 1)
+adjustment_enabled = true
+adjustment_contrast = 0.815
+adjustment_saturation = 1.31
+adjustment_color_correction = SubResource("CurveTexture_mywnk")

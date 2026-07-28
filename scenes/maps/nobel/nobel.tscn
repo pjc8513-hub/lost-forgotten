@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://8kb8suvcftn"]
 
-[ext_resource type="Shader" uid="uid://jxmlaj3taoro" path="res://scripts/shaders/day_sky.gdshader" id="1_ornp4"]
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_t0kxk"]
 [ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_mywnk"]
 [ext_resource type="PackedScene" uid="uid://c35lx4au86vvv" path="res://scenes/grid/nobel_city/nobel_road_2.tscn" id="3_54nej"]
+[ext_resource type="Environment" uid="uid://i64ewy3e6ok2" path="res://scenes/maps/nobel/nobel_environment.tres" id="4_hgk2k"]
 [ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="4_qt0u2"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="4_t0kxk"]
 [ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="5_ktwdp"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://nkv24ao2eb0v" path="res://scenes/grid/nobel_city/moat_corner_1.tscn" id="18_3fuu0"]
 [ext_resource type="PackedScene" uid="uid://cmdb7mnvmevaw" path="res://scenes/grid/nobel_city/moat_bridge_1.tscn" id="18_4766a"]
 [ext_resource type="Script" uid="uid://dqne8i3vgw0vo" path="res://scenes/grid/nobel_city/gate_tile.gd" id="19_i6hlf"]
+[ext_resource type="Resource" uid="uid://ddp6v6rx2yy3j" path="res://data/dialogue/nobel/swampwizard/swampwizard.tres" id="19_nqyfo"]
 [ext_resource type="PackedScene" uid="uid://b3ebpvigt3qbw" path="res://scenes/grid/nobel_city/wall_castle_2.tscn" id="20_10ubw"]
 [ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="20_c1pmp"]
 [ext_resource type="Resource" uid="uid://d4d3lt534u22" path="res://data/dialogue/nobel/houses/OldJim.tres" id="21_ae1so"]
@@ -42,48 +43,6 @@
 [ext_resource type="PackedScene" uid="uid://gtp30eywbk8q" path="res://scenes/grid/nobel_city/shop_1.tscn" id="40_c1pmp"]
 [ext_resource type="PackedScene" uid="uid://yoaii84iw34x" path="res://scenes/grid/castle/crate_1.tscn" id="41_mywnk"]
 [ext_resource type="PackedScene" uid="uid://4jsf368dwp7" path="res://scenes/lights/outside_torch.tscn" id="42_hgk2k"]
-
-[sub_resource type="Curve" id="Curve_hgk2k"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_mywnk"]
-curve = SubResource("Curve_hgk2k")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gyyt5"]
-shader = ExtResource("1_ornp4")
-shader_parameter/zenith_color = Color(0.2, 0.45, 0.85, 1)
-shader_parameter/horizon_color = Color(0.55, 0.75, 0.9, 1)
-shader_parameter/horizon_blur = 1.0
-shader_parameter/sun_color = Color(1, 0.95, 0.8, 1)
-shader_parameter/sun_size = 0.00999999977648
-shader_parameter/sun_blur = 0.01
-shader_parameter/sun_visibility = 1.0
-
-[sub_resource type="Sky" id="Sky_vvxho"]
-resource_local_to_scene = true
-sky_material = SubResource("ShaderMaterial_gyyt5")
-radiance_size = 4
-
-[sub_resource type="Environment" id="Environment_xa8nu"]
-resource_local_to_scene = true
-background_mode = 2
-background_color = Color(0.6923535, 0.783633, 0.9097625, 1)
-sky = SubResource("Sky_vvxho")
-ambient_light_source = 3
-ambient_light_color = Color(0.6523966, 0.74503434, 0.9136144, 1)
-tonemap_mode = 3
-tonemap_exposure = 1.12
-tonemap_white = 5.0
-ssao_enabled = true
-fog_light_color = Color(0.38511264, 0.5775074, 0.6945993, 1)
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.04
-volumetric_fog_albedo = Color(0.6509804, 0.74509805, 0.9137255, 1)
-adjustment_enabled = true
-adjustment_contrast = 0.815
-adjustment_saturation = 1.31
-adjustment_color_correction = SubResource("CurveTexture_mywnk")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
 size = Vector3(1.1108398, 1.1833496, 1)
@@ -113,7 +72,7 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1313216306]
-environment = SubResource("Environment_xa8nu")
+environment = ExtResource("4_hgk2k")
 
 [node name="nobel_road3" parent="." unique_id=613991737 instance=ExtResource("3_54nej")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 4)
@@ -484,6 +443,18 @@ NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("8_k5fv7"), ExtResource("7
 
 [node name="tower2" parent="." unique_id=244700781 instance=ExtResource("11_c76hx")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
+script = ExtResource("6_ktwdp")
+npc_tile_id = &"Tower2"
+NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("19_nqyfo")])
+
+[node name="GridElement" type="Node3D" parent="tower2" unique_id=2118460305]
+script = ExtResource("20_c1pmp")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="BlockerComponent" type="Node" parent="tower2" unique_id=1729526103]
+script = ExtResource("22_c1pmp")
+blocker_ID = &"tower2block"
+metadata/_custom_type_script = "uid://cpd6aclgammco"
 
 [node name="tower5" parent="." unique_id=1759105276 instance=ExtResource("11_c76hx")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18, 0, 0)
@@ -1042,6 +1013,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -4)
 [editable path="dirt10"]
 [editable path="dirt11"]
 [editable path="temple1"]
+[editable path="tower2"]
 [editable path="inn5"]
 [editable path="walls/wall15"]
 [editable path="walls/wall16"]

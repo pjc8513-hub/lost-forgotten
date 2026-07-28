@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://ddp6v6rx2yy3j"]
+
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="1_s8dra"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="2_ar6gd"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="3_7rvu2"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="4_l067o"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="5_7mp8f"]
+[ext_resource type="Resource" uid="uid://c26bkafrx8vdp" path="res://data/quests/BonePit.tres" id="6_eqb1f"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="7_svxsw"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="8_nbjxw"]
+
+[sub_resource type="Resource" id="Resource_ncf1r"]
+script = ExtResource("1_s8dra")
+text = "I must speak with the Queen as soon as she is available..."
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("7_svxsw")
+persistent_id = &"SwampWizard"
+npc_name = "Swamp Wizard"
+dialogue_nodes = Array[ExtResource("1_s8dra")]([SubResource("Resource_ncf1r")])
+quests_offered = Array[ExtResource("5_7mp8f")]([ExtResource("6_eqb1f")])
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"

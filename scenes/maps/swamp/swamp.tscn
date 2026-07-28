@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://cvlmtn24nm6e"]
+
+[ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_80038"]
+[ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_40d55"]
+[ext_resource type="Environment" uid="uid://i64ewy3e6ok2" path="res://scenes/maps/nobel/nobel_environment.tres" id="3_a6v5c"]
+[ext_resource type="PackedScene" uid="uid://77vipw5qko72" path="res://scenes/grid/swamp/swamp_floor.tscn" id="4_71a2u"]
+[ext_resource type="PackedScene" uid="uid://dxuxr2lrejaup" path="res://scenes/grid/swamp/swamp_wall.tscn" id="5_ebx5d"]
+[ext_resource type="PackedScene" uid="uid://gox6a237de6o" path="res://scenes/grid/swamp/swamp_corner.tscn" id="6_xnq40"]
+[ext_resource type="PackedScene" uid="uid://dhb8ssi7tr3p2" path="res://scenes/grid/swamp/cyprus.tscn" id="7_ebx5d"]
+[ext_resource type="PackedScene" uid="uid://cbwtrnwpdofmq" path="res://scenes/grid/swamp/swamp_rock.tscn" id="8_c63wj"]
+[ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="9_ncf1r"]
+
+[node name="Node3D" type="Node3D" unique_id=350231839]
+script = ExtResource("1_80038")
+has_daynight = true
+main_shader_palette_texture = ExtResource("2_40d55")
+main_shader_dither_strength = 0.08
+main_shader_contrast = 1.3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=453711792]
+environment = ExtResource("3_a6v5c")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1610068779]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 12, 0)
+shadow_enabled = true
+
+[node name="swamp_floor" parent="." unique_id=393519886 instance=ExtResource("4_71a2u")]
+
+[node name="swamp_floor2" parent="." unique_id=1157571086 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="swamp_floor3" parent="." unique_id=1293130858 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="swamp_floor4" parent="." unique_id=1419574006 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="swamp_floor5" parent="." unique_id=1685536876 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="swamp_floor6" parent="." unique_id=680683880 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="swamp_floor8" parent="." unique_id=2069155913 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+
+[node name="swamp_floor9" parent="." unique_id=1463635656 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="swamp_floor7" parent="." unique_id=1786967059 instance=ExtResource("4_71a2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+
+[node name="swamp_wall" parent="." unique_id=1498614796 instance=ExtResource("5_ebx5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+
+[node name="swamp_wall4" parent="." unique_id=2108011775 instance=ExtResource("5_ebx5d")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 6)
+
+[node name="swamp_wall6" parent="." unique_id=1550384064 instance=ExtResource("5_ebx5d")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -2)
+
+[node name="swamp_wall7" parent="." unique_id=1818594034 instance=ExtResource("5_ebx5d")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0, -2)
+
+[node name="swamp_wall5" parent="." unique_id=695475105 instance=ExtResource("5_ebx5d")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 6)
+
+[node name="swamp_wall2" parent="." unique_id=1123744552 instance=ExtResource("5_ebx5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="swamp_wall3" parent="." unique_id=1331832553 instance=ExtResource("5_ebx5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="swamp_corner" parent="." unique_id=998880046 instance=ExtResource("6_xnq40")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="swamp_corner2" parent="." unique_id=2115293760 instance=ExtResource("6_xnq40")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 6)
+
+[node name="cyprus" parent="." unique_id=2094232523 instance=ExtResource("7_ebx5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="cyprus2" parent="." unique_id=1105550491 instance=ExtResource("7_ebx5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
+
+[node name="cyprus3" parent="." unique_id=580317259 instance=ExtResource("7_ebx5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+
+[node name="swamp_rock" parent="." unique_id=1371264812 instance=ExtResource("8_c63wj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="swamp_rock2" parent="." unique_id=884322860 instance=ExtResource("8_c63wj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, 0)
+
+[node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("9_ncf1r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+spawn_id = &"entrance"

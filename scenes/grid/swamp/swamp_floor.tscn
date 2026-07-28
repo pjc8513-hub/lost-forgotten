@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://77vipw5qko72"]
+
+[ext_resource type="PackedScene" uid="uid://dqab6w1s8u0s3" path="res://assets/models/swamp/swamp_floor.glb" id="1_6qk1a"]
+[ext_resource type="Shader" uid="uid://b35xcwltr7cfx" path="res://scenes/grid/swamp/swamp_floor.gdshader" id="2_b64mu"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="3_mascv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nqdy7"]
+render_priority = 0
+shader = ExtResource("2_b64mu")
+shader_parameter/mud_dark = Color(0.075, 0.085, 0.045, 1)
+shader_parameter/mud_light = Color(0.2, 0.22, 0.1, 1)
+shader_parameter/moss_dark = Color(0.11, 0.18, 0.07, 1)
+shader_parameter/moss_light = Color(0.3, 0.38, 0.12, 1)
+shader_parameter/water_dark = Color(0.025, 0.075, 0.065, 1)
+shader_parameter/water_highlight = Color(0.15, 0.27, 0.2, 1)
+shader_parameter/pattern_scale = 7.17400032889
+shader_parameter/puddle_amount = 0.5030000238925
+shader_parameter/puddle_softness = 0.10000000405148
+shader_parameter/moss_amount = 0.722000034295
+shader_parameter/moss_detail = 9.0
+shader_parameter/roughness_mud = 0.88
+shader_parameter/roughness_water = 0.13600000646
+shader_parameter/ripple_strength = 0.035
+shader_parameter/ripple_speed = 0.22
+shader_parameter/normal_strength = 0.55
+
+[node name="swamp_floor" unique_id=393519886 instance=ExtResource("1_6qk1a")]
+
+[node name="ground" parent="." index="0" unique_id=110768233]
+surface_material_override/0 = SubResource("ShaderMaterial_nqdy7")
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=1211094125]
+script = ExtResource("3_mascv")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
