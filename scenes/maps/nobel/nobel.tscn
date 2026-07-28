@@ -49,6 +49,7 @@ size = Vector3(1.1108398, 1.1833496, 1)
 
 [node name="Nobel" type="Node3D" unique_id=1819116379]
 script = ExtResource("1_t0kxk")
+Map_ID = &"Nobel"
 has_daynight = true
 enable_torch = false
 main_shader_palette_texture = ExtResource("2_mywnk")

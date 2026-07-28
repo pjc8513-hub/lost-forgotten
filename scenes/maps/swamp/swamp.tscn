@@ -12,6 +12,7 @@
 
 [node name="Node3D" type="Node3D" unique_id=350231839]
 script = ExtResource("1_80038")
+Map_ID = &"swamp"
 has_daynight = true
 main_shader_palette_texture = ExtResource("2_40d55")
 main_shader_dither_strength = 0.08

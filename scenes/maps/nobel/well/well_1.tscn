@@ -37,6 +37,7 @@ shader_parameter/caustic_color = Color(0.6, 0.9, 0.85, 1)
 
 [node name="Well1" type="Node3D" unique_id=597078485]
 script = ExtResource("1_jsgqk")
+Map_ID = &"well"
 is_underwater = true
 main_shader_palette_texture = ExtResource("2_pb2m2")
 main_shader_dither_strength = 0.08
