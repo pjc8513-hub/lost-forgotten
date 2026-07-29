@@ -4,9 +4,24 @@
 [ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_1ddux"]
 [ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="3_8vc0j"]
 [ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="4_1ddux"]
+[ext_resource type="Script" uid="uid://1647msnthsql" path="res://scripts/components/OrganComponent.gd" id="5_organ"]
+[ext_resource type="Script" uid="uid://skqqra00dm50" path="res://resources/OrganData.gd" id="6_organ_data"]
+[ext_resource type="Script" uid="uid://bxtqnuf3yjqvy" path="res://resources/MelodyData.gd" id="7_melody_data"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
 size = Vector3(0.6798096, 1.3267822, 1.0354004)
+
+[sub_resource type="Resource" id="Resource_sanctuary_melody"]
+script = ExtResource("7_melody_data")
+melodyID = &"sanctuary"
+display_name = "Sanctuary"
+notes = "C D E G E D C"
+
+[sub_resource type="Resource" id="Resource_organ_data"]
+script = ExtResource("6_organ_data")
+organID = &"organ_3"
+display_name = "Sanctuary Pipe Organ"
+accepted_melody = SubResource("Resource_sanctuary_melody")
 
 [node name="organ3" unique_id=1549283848 instance=ExtResource("1_0hu4j")]
 
@@ -28,3 +43,7 @@ shape = SubResource("BoxShape3D_xa8nu")
 script = ExtResource("4_1ddux")
 blocker_ID = &"ogranblocker"
 metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="OrganComponent" type="Node" parent="." index="7"]
+script = ExtResource("5_organ")
+organ_data = SubResource("Resource_organ_data")
