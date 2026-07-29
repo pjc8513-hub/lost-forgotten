@@ -2,6 +2,7 @@ extends Control
 const TEMPLE_MEMBER_COST_CAP := 2000
 const MAX_FOOD_RATIONS := 5
 const FOOD_RATION_COST := 10
+const INN_ORGAN_DATA := preload("res://data/Organ/InnOrgan.tres")
 
 @onready var options_container: VBoxContainer = $VBoxContainer/HBoxContainer/OptionsPanel/MarginContainer/ScrollContainer/OptionsContainer
 @onready var npc_list: ItemList = $VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/NPCListContainer/NPCList
@@ -285,6 +286,9 @@ func _open_inn_shop() -> void:
 	var fill_button := _add_option("Fill food rations (%d gold)" % fill_cost, _fill_food_rations)
 	fill_button.disabled = _get_missing_food_rations() <= 0 or PartyManager.gold < fill_cost or _is_inn_resting
 
+	var organ_button := _add_option("Play Inn Organ", _play_inn_organ)
+	organ_button.disabled = _is_inn_resting
+
 	var return_button := _add_option("Return", _start_dialogue)
 	return_button.disabled = _is_inn_resting
 	var leave_button := _add_option("Close", close)
@@ -388,6 +392,15 @@ func _fill_food_rations() -> void:
 		return
 	PartyManager.add_food(missing)
 	_open_inn_shop()
+
+
+func _play_inn_organ() -> void:
+	if _is_inn_resting:
+		return
+	close()
+	var organ := OrganComponent.new()
+	get_tree().root.add_child(organ)
+	organ.open_for_data(INN_ORGAN_DATA)
 
 func _train_selected_member() -> void:
 	var member := PartyManager.selected_party_member

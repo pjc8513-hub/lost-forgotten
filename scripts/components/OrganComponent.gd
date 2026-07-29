@@ -19,15 +19,14 @@ var _voices: Dictionary = {}
 var _played_notes := PackedStringArray()
 var _melody_pending := false
 var _pending_melody_name := ""
+var _remove_on_close := false
 
 
 func _ready() -> void:
 	var interactable := get_parent().get_node_or_null("InteractableComponent") as InteractableComponent
-	if interactable == null:
-		push_warning("OrganComponent requires an InteractableComponent sibling.")
-		return
-	interactable.interaction_text = "Play organ"
-	interactable.interacted.connect(_on_interacted)
+	if interactable != null:
+		interactable.interaction_text = "Play organ"
+		interactable.interacted.connect(_on_interacted)
 	_setup_audio()
 	set_process_unhandled_input(false)
 	set_process(false)
@@ -78,6 +77,20 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_interacted(_actor: Node) -> void:
 	if _active or organ_data == null:
 		return
+	_open_interface()
+
+
+func open_for_data(data: OrganData, remove_on_close: bool = true) -> void:
+	if _active or data == null:
+		return
+	organ_data = data
+	_remove_on_close = remove_on_close
+	if _audio_player == null:
+		_setup_audio()
+	_open_interface()
+
+
+func _open_interface() -> void:
 	_active = true
 	_melody_pending = false
 	_pending_melody_name = ""
@@ -107,6 +120,8 @@ func _close_interface() -> void:
 		_interface = null
 	if TurnManager.state == TurnManager.State.PAUSED:
 		TurnManager.set_state(_previous_turn_state)
+	if _remove_on_close:
+		queue_free()
 
 
 func _start_note(key: String, note: String) -> void:

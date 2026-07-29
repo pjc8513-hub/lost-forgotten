@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://cpd2u1n42opyt"]
 
 [ext_resource type="Script" uid="uid://b0ojisxlkpyrd" path="res://scenes/ui/organ_interface.gd" id="1_script"]
 
@@ -16,20 +16,19 @@ corner_radius_bottom_left = 6
 shadow_color = Color(0, 0, 0, 0.65)
 shadow_size = 12
 
-[node name="OrganInterface" type="CanvasLayer"]
+[node name="OrganInterface" type="CanvasLayer" unique_id=908511863]
 layer = 80
 script = ExtResource("1_script")
 
-[node name="Root" type="ColorRect" parent="."]
+[node name="Root" type="ColorRect" parent="." unique_id=1963952328]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.015, 0.01, 0.012, 0.72)
-mouse_filter = 0
 
-[node name="Center" type="CenterContainer" parent="Root"]
+[node name="Center" type="CenterContainer" parent="Root" unique_id=1645177321]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,36 +36,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="PanelContainer" parent="Root/Center"]
+[node name="Panel" type="PanelContainer" parent="Root/Center" unique_id=1075821434]
 custom_minimum_size = Vector2(560, 310)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBox_panel")
 
-[node name="Margin" type="MarginContainer" parent="Root/Center/Panel"]
+[node name="Margin" type="MarginContainer" parent="Root/Center/Panel" unique_id=2003266838]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 18
 
-[node name="Content" type="VBoxContainer" parent="Root/Center/Panel/Margin"]
+[node name="Content" type="VBoxContainer" parent="Root/Center/Panel/Margin" unique_id=1024323619]
 layout_mode = 2
 theme_override_constants/separation = 9
 
-[node name="Title" type="Label" parent="Root/Center/Panel/Margin/Content"]
+[node name="Title" type="Label" parent="Root/Center/Panel/Margin/Content" unique_id=693686218]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.91, 0.76, 0.46, 1)
 theme_override_font_sizes/font_size = 26
 text = "Pipe Organ"
 horizontal_alignment = 1
 
-[node name="Instruction" type="Label" parent="Root/Center/Panel/Margin/Content"]
+[node name="Instruction" type="Label" parent="Root/Center/Panel/Margin/Content" unique_id=716651319]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.65, 0.61, 0.53, 1)
 text = "Play the melody. Release each key between notes."
 horizontal_alignment = 1
 
-[node name="CurrentKey" type="Label" parent="Root/Center/Panel/Margin/Content"]
+[node name="CurrentKey" type="Label" parent="Root/Center/Panel/Margin/Content" unique_id=1757127780]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.98, 0.88, 0.65, 1)
@@ -75,20 +74,20 @@ text = "Press a key"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sequence" type="Label" parent="Root/Center/Panel/Margin/Content"]
+[node name="Sequence" type="Label" parent="Root/Center/Panel/Margin/Content" unique_id=2070625047]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.72, 0.65, 0.51, 1)
 text = "Melody: —"
 horizontal_alignment = 1
 
-[node name="KeyGrid" type="GridContainer" parent="Root/Center/Panel/Margin/Content"]
+[node name="KeyGrid" type="GridContainer" parent="Root/Center/Panel/Margin/Content" unique_id=1436854579]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 columns = 6
 
-[node name="Close" type="Button" parent="Root/Center/Panel/Margin/Content"]
+[node name="Close" type="Button" parent="Root/Center/Panel/Margin/Content" unique_id=880998362]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "Leave Organ  [Esc]"

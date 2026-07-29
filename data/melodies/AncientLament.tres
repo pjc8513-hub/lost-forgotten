@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MelodyData" format=3 uid="uid://cjw3li60qxjte"]
+
+[ext_resource type="Script" uid="uid://bxtqnuf3yjqvy" path="res://resources/MelodyData.gd" id="1_gq5jr"]
+
+[resource]
+script = ExtResource("1_gq5jr")
+melodyID = &"AncientLament"
+display_name = "Ancient Lament"
+notes = "D,F,A,C#,D,C#,A,F"
+metadata/_custom_type_script = "uid://bxtqnuf3yjqvy"

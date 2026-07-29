@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="OrganData" format=3 uid="uid://g3gemata7yk1"]
+
+[ext_resource type="Script" uid="uid://skqqra00dm50" path="res://resources/OrganData.gd" id="1_2sl2h"]
+
+[resource]
+script = ExtResource("1_2sl2h")
+organID = &"InnOrgan"
+display_name = "Inn Organ"
+key_notes = {
+"a": "C2",
+"b": "D2",
+"c": "F#2",
+"d": "F2",
+"e": "E2",
+"f": "G2",
+"h": "A2",
+"j": "B2",
+"n": "A#2",
+"v": "G#2",
+"x": "D#2",
+"z": "C#2"
+}
+metadata/_custom_type_script = "uid://skqqra00dm50"
