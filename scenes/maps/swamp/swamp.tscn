@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="9_ncf1r"]
 [ext_resource type="PackedScene" uid="uid://db6rb0pald2ri" path="res://scenes/grid/swamp/swamp_bump_floor.tscn" id="10_ncf1r"]
 [ext_resource type="PackedScene" uid="uid://4jsf368dwp7" path="res://scenes/lights/outside_torch.tscn" id="11_uk4ql"]
+[ext_resource type="PackedScene" uid="uid://djwanvroj1i8j" path="res://scenes/grid/organ_3.tscn" id="12_fsefh"]
 
 [node name="Node3D" type="Node3D" unique_id=350231839]
 script = ExtResource("1_80038")
@@ -137,3 +138,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 
 [node name="outside_torch2" parent="." unique_id=1358564880 instance=ExtResource("11_uk4ql")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="organ3" parent="." unique_id=1549283848 instance=ExtResource("12_fsefh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 10, 0, 2)

@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://sfr4817foel2" path="res://assets/models/objects/organ3.glb" id="1_0hu4j"]
 [ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_1ddux"]
 [ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="3_8vc0j"]
+[ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="4_1ddux"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
 size = Vector3(0.6798096, 1.3267822, 1.0354004)
@@ -22,3 +23,8 @@ metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=1655904768]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5960699, -0.31658936, -0.017700195)
 shape = SubResource("BoxShape3D_xa8nu")
+
+[node name="BlockerComponent" type="Node" parent="." index="6" unique_id=1329109893]
+script = ExtResource("4_1ddux")
+blocker_ID = &"ogranblocker"
+metadata/_custom_type_script = "uid://cpd6aclgammco"

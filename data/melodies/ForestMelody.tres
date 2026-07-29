@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MelodyData" format=3 uid="uid://d325l1jlv2ebq"]
+
+[ext_resource type="Script" uid="uid://bxtqnuf3yjqvy" path="res://resources/MelodyData.gd" id="1_umqeg"]
+
+[resource]
+script = ExtResource("1_umqeg")
+melodyID = &"ForestMelody"
+notes = "C,E,G,C,E,G,D,F,E"
+metadata/_custom_type_script = "uid://bxtqnuf3yjqvy"
