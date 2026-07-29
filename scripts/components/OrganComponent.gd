@@ -4,7 +4,8 @@ extends Node
 const ORGAN_INTERFACE_SCENE := preload("res://scenes/ui/organ_interface.tscn")
 const MIX_RATE := 44100.0
 const TAU_FLOAT := TAU
-const MAX_SEQUENCE_NOTES := 24
+const MAX_SEQUENCE_NOTES := 16
+const MELODY_SUCCESS_DELAY := 0.75
 
 @export var organ_data: OrganData
 
@@ -16,6 +17,8 @@ var _generator_playback: AudioStreamGeneratorPlayback
 var _bus_name: StringName
 var _voices: Dictionary = {}
 var _played_notes := PackedStringArray()
+var _melody_pending := false
+var _pending_melody_name := ""
 
 
 func _ready() -> void:
@@ -55,6 +58,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		_close_interface()
 		get_viewport().set_input_as_handled()
 		return
+	if _melody_pending:
+		get_viewport().set_input_as_handled()
+		return
 
 	var key := _event_key(key_event)
 	var note := organ_data.get_note_for_key(key) if organ_data != null else ""
@@ -73,6 +79,8 @@ func _on_interacted(_actor: Node) -> void:
 	if _active or organ_data == null:
 		return
 	_active = true
+	_melody_pending = false
+	_pending_melody_name = ""
 	_previous_turn_state = TurnManager.state
 	TurnManager.set_state(TurnManager.State.PAUSED)
 	_played_notes.clear()
@@ -87,6 +95,8 @@ func _close_interface() -> void:
 	if not _active and _interface == null:
 		return
 	_active = false
+	_melody_pending = false
+	_pending_melody_name = ""
 	set_process_unhandled_input(false)
 	for key in _voices:
 		var voice: Dictionary = _voices[key]
@@ -112,14 +122,14 @@ func _start_note(key: String, note: String) -> void:
 
 	var normalized_note := MelodyData.normalize_note(note)
 	_played_notes.append(normalized_note)
-	var sequence_limit := MAX_SEQUENCE_NOTES
-	if organ_data.accepted_melody != null:
-		sequence_limit = maxi(sequence_limit, organ_data.accepted_melody.get_notes().size())
-	while _played_notes.size() > sequence_limit:
-		_played_notes.remove_at(0)
 	if _interface != null:
 		_interface.show_sequence(_played_notes)
-	_check_melody()
+	if _check_melody():
+		return
+	if _played_notes.size() >= MAX_SEQUENCE_NOTES:
+		_played_notes.clear()
+		if _interface != null:
+			_interface.show_sequence(_played_notes)
 
 
 func _release_note(key: String, note: String) -> void:
@@ -131,13 +141,22 @@ func _release_note(key: String, note: String) -> void:
 		_interface.show_key(key, note, false)
 
 
-func _check_melody() -> void:
+func _check_melody() -> bool:
 	var melody := organ_data.accepted_melody
 	if melody == null or not melody.matches(_played_notes):
+		return false
+	_pending_melody_name = melody.display_name
+	if _pending_melody_name.is_empty():
+		_pending_melody_name = str(melody.melodyID)
+	_melody_pending = true
+	get_tree().create_timer(MELODY_SUCCESS_DELAY).timeout.connect(_complete_melody, CONNECT_ONE_SHOT)
+	return true
+
+
+func _complete_melody() -> void:
+	if not _melody_pending:
 		return
-	var melody_name := melody.display_name
-	if melody_name.is_empty():
-		melody_name = str(melody.melodyID)
+	var melody_name := _pending_melody_name
 	_close_interface()
 	MapManager.request_alert("You played the %s melody" % melody_name)
 
