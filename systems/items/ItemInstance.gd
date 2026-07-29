@@ -7,7 +7,8 @@ extends Resource
 @export var tags: Array[String] = []
 @export var rolled_bonuses: Dictionary = {}
 @export var resistances: Dictionary = {}
-@export var status_immunities: Array[String] = []
+# Status effects are stored by their canonical enum ID throughout combat.
+@export var status_immunities: Array[int] = []
 
 func add_tag(tag_name: String) -> void:
 	if not tag_name.is_empty() and not tags.has(tag_name):
