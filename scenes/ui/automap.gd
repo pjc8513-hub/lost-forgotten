@@ -106,7 +106,9 @@ func _draw() -> void:
 		var tile_rect := Rect2(tile_center - Vector2.ONE * cell_pixels * 0.5, Vector2.ONE * cell_pixels)
 		if not map_rect.intersects(tile_rect):
 			continue
-		draw_rect(tile_rect.grow(-1.0), visited_color, true)
+		# Fill the entire cell so adjacent floor tiles form one continuous map
+		# surface. Wall lines are drawn afterward on top of this fill.
+		draw_rect(tile_rect, visited_color, true)
 		_draw_walls(tile_rect, visited[pos], rot)
 
 	_draw_player_marker(center, rot)
