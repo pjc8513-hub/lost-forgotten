@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MelodyData" format=3 uid="uid://nq0gmgun252y"]
+
+[ext_resource type="Script" uid="uid://bxtqnuf3yjqvy" path="res://resources/MelodyData.gd" id="1_xi2to"]
+
+[resource]
+script = ExtResource("1_xi2to")
+melodyID = &"sanctuary"
+display_name = "Sanctuary"
+notes = "C D E G E D C"

@@ -7,17 +7,17 @@ script = ExtResource("1_2sl2h")
 organID = &"InnOrgan"
 display_name = "Inn Organ"
 key_notes = {
-"a": "C2",
-"b": "D2",
-"c": "F#2",
-"d": "F2",
-"e": "E2",
-"f": "G2",
-"h": "A2",
-"j": "B2",
-"n": "A#2",
-"v": "G#2",
-"x": "D#2",
-"z": "C#2"
+"a": "C3",
+"d": "E3",
+"e": "F#3",
+"f": "F3",
+"g": "G3",
+"h": "A3",
+"j": "B3",
+"q": "C#3",
+"r": "G#3",
+"s": "D3",
+"w": "D#3",
+"z": "A#3"
 }
 metadata/_custom_type_script = "uid://skqqra00dm50"

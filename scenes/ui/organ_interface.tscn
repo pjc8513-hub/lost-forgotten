@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cpd2u1n42opyt"]
 
 [ext_resource type="Script" uid="uid://b0ojisxlkpyrd" path="res://scenes/ui/organ_interface.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://4ec537qqp8to" path="res://scenes/ui/key_board.gd" id="2_8qimf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBox_panel"]
 bg_color = Color(0.075, 0.052, 0.047, 0.98)
@@ -80,12 +81,10 @@ theme_override_colors/font_color = Color(0.72, 0.65, 0.51, 1)
 text = "Melody: —"
 horizontal_alignment = 1
 
-[node name="KeyGrid" type="GridContainer" parent="Root/Center/Panel/Margin/Content" unique_id=1436854579]
+[node name="KeyBoard" type="Control" parent="Root/Center/Panel/Margin/Content" unique_id=113443457]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/h_separation = 8
-theme_override_constants/v_separation = 8
-columns = 6
+script = ExtResource("2_8qimf")
 
 [node name="Close" type="Button" parent="Root/Center/Panel/Margin/Content" unique_id=880998362]
 custom_minimum_size = Vector2(0, 30)

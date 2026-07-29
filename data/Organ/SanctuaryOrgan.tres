@@ -1,16 +1,10 @@
 [gd_resource type="Resource" script_class="OrganData" format=3 uid="uid://d08rjvqb4gjh8"]
 
-[ext_resource type="Script" uid="uid://bxtqnuf3yjqvy" path="res://resources/MelodyData.gd" id="1_epqy0"]
+[ext_resource type="Resource" uid="uid://nq0gmgun252y" path="res://data/melodies/SanctuaryMelody.tres" id="1_epqy0"]
 [ext_resource type="Script" uid="uid://skqqra00dm50" path="res://resources/OrganData.gd" id="2_ex8ht"]
-
-[sub_resource type="Resource" id="Resource_sanctuary_melody"]
-script = ExtResource("1_epqy0")
-melodyID = &"sanctuary"
-display_name = "Sanctuary"
-notes = "C D E G E D C"
 
 [resource]
 script = ExtResource("2_ex8ht")
 organID = &"organ_3"
 display_name = "Sanctuary Pipe Organ"
-accepted_melody = SubResource("Resource_sanctuary_melody")
+accepted_melody = ExtResource("1_epqy0")

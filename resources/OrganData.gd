@@ -8,17 +8,17 @@ extends Resource
 @export_group("Keyboard")
 @export var key_notes: Dictionary = {
 	"a": "C4",
-	"b": "D4",
-	"e": "E4",
-	"d": "F4",
-	"f": "G4",
+	"s": "D4",
+	"d": "E4",
+	"f": "F4",
+	"g": "G4",
 	"h": "A4",
 	"j": "B4",
-	"z": "C#4",
-	"x": "D#4",
-	"c": "F#4",
-	"v": "G#4",
-	"n": "A#4",
+	"q": "C#4",
+	"w": "D#4",
+	"e": "F#4",
+	"r": "G#4",
+	"t": "A#4",
 }
 
 @export_group("Pipe Tone")
