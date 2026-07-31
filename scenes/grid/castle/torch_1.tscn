@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dgr6tc7bsd26x"]
 
-[ext_resource type="PackedScene" uid="uid://c3rsxdhid8qgr" path="res://scenes/lights/torch1.glb" id="1_lihvk"]
+[ext_resource type="PackedScene" uid="uid://c3rsxdhid8qgr" path="res://assets/models/objects/torch1.glb" id="1_lihvk"]
 [ext_resource type="Script" uid="uid://bbnqrmg0d3juv" path="res://scenes/actors/omni_light_3d.gd" id="2_veig6"]
 [ext_resource type="Shader" uid="uid://cg6n5fhaynoku" path="res://scenes/grid/castle/torch_1.gdshader" id="3_veig6"]
 
