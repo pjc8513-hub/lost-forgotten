@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cqedipcbot1fi"]
+
+[ext_resource type="PackedScene" uid="uid://cvdkol8ihkx7c" path="res://assets/models/mountains/MountainCorner1.glb" id="1_0rnei"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_ehcyg"]
+
+[node name="MountainCorner1" unique_id=1909943920 instance=ExtResource("1_0rnei")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=275089984]
+script = ExtResource("2_ehcyg")
+cell_shape = 3
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"

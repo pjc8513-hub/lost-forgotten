@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://cmdb7mnvmevaw" path="res://scenes/grid/nobel_city/moat_bridge_1.tscn" id="18_4766a"]
 [ext_resource type="Script" uid="uid://dqne8i3vgw0vo" path="res://scenes/grid/nobel_city/gate_tile.gd" id="19_i6hlf"]
 [ext_resource type="Resource" uid="uid://ddp6v6rx2yy3j" path="res://data/dialogue/nobel/swampwizard/swampwizard.tres" id="19_nqyfo"]
+[ext_resource type="Resource" uid="uid://bgqnstag74af5" path="res://data/dialogue/nobel/mountainwizard/mountainwizard.tres" id="20_0wmrl"]
 [ext_resource type="PackedScene" uid="uid://b3ebpvigt3qbw" path="res://scenes/grid/nobel_city/wall_castle_2.tscn" id="20_10ubw"]
 [ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="20_c1pmp"]
 [ext_resource type="Resource" uid="uid://d4d3lt534u22" path="res://data/dialogue/nobel/houses/OldJim.tres" id="21_ae1so"]
@@ -468,6 +469,18 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0
 
 [node name="tower4" parent="." unique_id=602124116 instance=ExtResource("11_c76hx")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 8, 0, -8)
+script = ExtResource("6_ktwdp")
+npc_tile_id = &"MountainWizardTower"
+NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("20_0wmrl")])
+
+[node name="GridElement" type="Node3D" parent="tower4" unique_id=920121867]
+script = ExtResource("20_c1pmp")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="BlockerComponent" type="Node" parent="tower4" unique_id=1502862563]
+script = ExtResource("22_c1pmp")
+blocker_ID = &"tower2"
+metadata/_custom_type_script = "uid://cpd6aclgammco"
 
 [node name="inn5" parent="." unique_id=1061531617 instance=ExtResource("12_sycog")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.17738879, 6)
@@ -1015,6 +1028,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -4)
 [editable path="dirt11"]
 [editable path="temple1"]
 [editable path="tower2"]
+[editable path="tower4"]
 [editable path="inn5"]
 [editable path="walls/wall15"]
 [editable path="walls/wall16"]

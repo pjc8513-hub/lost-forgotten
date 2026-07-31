@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://d0teisng6e7ln"]
+
+[ext_resource type="PackedScene" uid="uid://bmgjdhh8ga6w5" path="res://assets/models/mountains/MountainFloor1.glb" id="1_wa0k6"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_k82d4"]
+
+[node name="MountainFloor1" unique_id=1732927692 instance=ExtResource("1_wa0k6")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=1267540123]
+script = ExtResource("2_k82d4")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"

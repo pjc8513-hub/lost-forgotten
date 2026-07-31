@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b0ba8ohaeqly4"]
+
+[ext_resource type="PackedScene" uid="uid://cmyat7kbm2qlm" path="res://assets/models/mountains/MountainEdge2.glb" id="1_y8pa7"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_qy6mx"]
+
+[node name="MountainEdge2" unique_id=1707740576 instance=ExtResource("1_y8pa7")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=18931106]
+script = ExtResource("2_qy6mx")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"

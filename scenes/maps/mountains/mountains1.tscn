@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://b13pb46j8ie33"]
+
+[ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_1ry1g"]
+[ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_4naqu"]
+[ext_resource type="Environment" uid="uid://scu1xnln8b1r" path="res://mountain_environment_1.tres" id="3_md3nt"]
+[ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="4_2dwgv"]
+[ext_resource type="PackedScene" uid="uid://3syqlsk4d6tg" path="res://scenes/grid/mountain/mountain_edge_1.tscn" id="5_tdnt6"]
+[ext_resource type="PackedScene" uid="uid://wkb5p6y00jts" path="res://scenes/grid/mountain/mountain_wall_1.tscn" id="6_i8dwt"]
+[ext_resource type="PackedScene" uid="uid://cqedipcbot1fi" path="res://scenes/grid/mountain/mountain_corner_1.tscn" id="7_fjw7m"]
+[ext_resource type="PackedScene" uid="uid://d0teisng6e7ln" path="res://scenes/grid/mountain/mountain_floor_1.tscn" id="8_i8dwt"]
+[ext_resource type="Script" uid="uid://c1lus734wl56v" path="res://scripts/components/BumpComponent.gd" id="9_fjw7m"]
+[ext_resource type="PackedScene" uid="uid://b0ba8ohaeqly4" path="res://scenes/grid/mountain/mountain_edge_2.tscn" id="10_fjw7m"]
+[ext_resource type="PackedScene" uid="uid://qr3o17e8tjhj" path="res://scenes/grid/mountain/mountain_peak_1.tscn" id="11_md3nt"]
+[ext_resource type="PackedScene" uid="uid://dk3pu5ssng2p2" path="res://scenes/grid/castle/chest_3.tscn" id="12_i1jbs"]
+[ext_resource type="Resource" uid="uid://brxb8l6ciajxm" path="res://data/traps/ice.tres" id="13_27ieb"]
+
+[node name="Mountains1" type="Node3D" unique_id=50737060]
+script = ExtResource("1_1ry1g")
+Map_ID = &"mountains1"
+has_daynight = true
+main_shader_palette_texture = ExtResource("2_4naqu")
+main_shader_dither_strength = 0.08
+main_shader_contrast = 1.3
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=26400923]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 12, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1833300590]
+environment = ExtResource("3_md3nt")
+
+[node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("4_2dwgv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+spawn_id = &"entrance"
+
+[node name="MountainEdge1" parent="." unique_id=1307248116 instance=ExtResource("5_tdnt6")]
+
+[node name="MountainEdge4" parent="." unique_id=1570542407 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
+
+[node name="MountainEdge2" parent="." unique_id=1971839144 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="MountainEdge10" parent="." unique_id=1209973698 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 2)
+
+[node name="MountainEdge11" parent="." unique_id=1685044064 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 4)
+
+[node name="MountainEdge12" parent="." unique_id=736295793 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -14, 0, 4)
+
+[node name="MountainEdge13" parent="." unique_id=828036770 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -14, 0, 2)
+
+[node name="MountainEdge14" parent="." unique_id=1045327024 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -14, 0, 0)
+
+[node name="MountainEdge7" parent="." unique_id=1952115927 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="MountainEdge8" parent="." unique_id=856865844 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="MountainWall2" parent="." unique_id=1245610298 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, 4)
+
+[node name="MountainWall4" parent="." unique_id=361105516 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 2, 0, 4)
+
+[node name="MountainWall3" parent="." unique_id=1821335955 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -2, 0, 4)
+
+[node name="MountainWall7" parent="." unique_id=1542453773 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -16, 0, 2)
+
+[node name="MountainWall8" parent="." unique_id=1775466707 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -16, 0, 4)
+
+[node name="MountainWall5" parent="." unique_id=1655340105 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 6, 0, 0)
+
+[node name="MountainWall6" parent="." unique_id=361132586 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 8, 0, 0)
+
+[node name="MountainCorner1" parent="." unique_id=1909943920 instance=ExtResource("7_fjw7m")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 0, 2)
+
+[node name="MountainCorner3" parent="." unique_id=1523222683 instance=ExtResource("7_fjw7m")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -4, 0, 4)
+
+[node name="MountainCorner4" parent="." unique_id=1721770714 instance=ExtResource("7_fjw7m")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -16, 0, 0)
+
+[node name="MountainCorner2" parent="." unique_id=451134236 instance=ExtResource("7_fjw7m")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10, 0, 0)
+
+[node name="MountainFloor1" parent="." unique_id=1732927692 instance=ExtResource("8_i8dwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="MountainFloor3" parent="." unique_id=698530925 instance=ExtResource("8_i8dwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="MountainFloor4" parent="." unique_id=395856654 instance=ExtResource("8_i8dwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="MountainFloor5" parent="." unique_id=1927332334 instance=ExtResource("8_i8dwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="MountainFloor6" parent="." unique_id=1683148111 instance=ExtResource("8_i8dwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+
+[node name="MountainFloor7" parent="." unique_id=1153773324 instance=ExtResource("8_i8dwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 2)
+
+[node name="MountainFloor8" parent="." unique_id=969841423 instance=ExtResource("8_i8dwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
+
+[node name="MountainFloor2" parent="." unique_id=1208831782 instance=ExtResource("8_i8dwt")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 2)
+
+[node name="GridElement" parent="MountainFloor2" index="1" unique_id=1267540123]
+cell_shape = 1
+
+[node name="BumpComponent" type="Node" parent="MountainFloor2" unique_id=343853212]
+script = ExtResource("9_fjw7m")
+metadata/_custom_type_script = "uid://c1lus734wl56v"
+
+[node name="MountainEdge3" parent="." unique_id=1707740576 instance=ExtResource("10_fjw7m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, -2)
+
+[node name="MountainEdge9" parent="." unique_id=872466203 instance=ExtResource("10_fjw7m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
+
+[node name="MountainEdge5" parent="." unique_id=318032609 instance=ExtResource("10_fjw7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -2)
+
+[node name="MountainEdge6" parent="." unique_id=1845008960 instance=ExtResource("10_fjw7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -2)
+
+[node name="MountainPeak1" parent="." unique_id=1083259678 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -11)
+
+[node name="MountainPeak4" parent="." unique_id=487715196 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -13)
+
+[node name="MountainPeak5" parent="." unique_id=615565652 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -11)
+
+[node name="MountainPeak2" parent="." unique_id=630074662 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -12)
+
+[node name="MountainPeak3" parent="." unique_id=605840722 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -12)
+
+[node name="MountainPeak6" parent="." unique_id=985909931 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -11)
+
+[node name="MountainPeak7" parent="." unique_id=977736123 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -10)
+
+[node name="chest3" parent="." unique_id=1001326355 instance=ExtResource("12_i1jbs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 2)
+
+[node name="ChestComponent" parent="chest3" index="4" unique_id=971460780]
+chest_ID = &"mountain.chest1"
+gold_roll_dice = 3
+loot_table = 1
+trap_type = ExtResource("13_27ieb")
+
+[editable path="MountainFloor2"]
+[editable path="chest3"]
