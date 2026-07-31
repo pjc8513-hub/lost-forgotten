@@ -58,6 +58,7 @@ var travel_menu: TravelMenu
 var _pending_target_skill: SkillData
 var _pending_target_caster: PartyMember
 var _map_transition_running := false
+var _teleport_transition_running := false
 var _inn_rest_running := false
 var _combat_transition_running := false
 var _combat_active := false
@@ -245,6 +246,30 @@ func _run_map_transition(map_path: String, spawn_id: StringName) -> void:
 
 	blackout.visible = false
 	_map_transition_running = false
+
+func run_teleport_transition(destination: Transform3D) -> void:
+	if _map_transition_running or _teleport_transition_running:
+		return
+	_teleport_transition_running = true
+	TurnManager.set_state(TurnManager.State.TRANSITION)
+	blackout.visible = true
+	blackout.color.a = 0.0
+
+	await _fade_blackout(1.0)
+
+	var player := StageManager.player
+	if player != null:
+		player.global_transform = destination
+		var movement := player.get_node_or_null("GridMovementController") as GridMovementController
+		if movement != null:
+			movement.sync_to_actor()
+
+	await get_tree().create_timer(MAP_TRANSITION_HOLD_TIME).timeout
+	await _fade_blackout(0.0)
+
+	blackout.visible = false
+	_teleport_transition_running = false
+	TurnManager.set_state(TurnManager.State.EXPLORATION)
 
 func _run_inn_rest_transition() -> void:
 	_inn_rest_running = true

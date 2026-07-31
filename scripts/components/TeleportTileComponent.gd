@@ -23,8 +23,12 @@ func trigger(actor: Node) -> void:
 		push_error("TeleportTileComponent requires the player to have a GridMovementController.")
 		return
 
-	actor_3d.global_transform = destination.global_transform
-	movement.sync_to_actor()
+	var main := get_tree().current_scene
+	if main != null and main.has_method("run_teleport_transition"):
+		await main.run_teleport_transition(destination.global_transform)
+	else:
+		actor_3d.global_transform = destination.global_transform
+		movement.sync_to_actor()
 
 func _get_matching_spawn_points() -> Array[MapSpawnPoint]:
 	var matches: Array[MapSpawnPoint] = []

@@ -45,7 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -8)
 spawn_id = &"teleport.1"
 
 [node name="MapSpawnPoint3" parent="." unique_id=744187989 instance=ExtResource("4_2dwgv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 2)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -16, 0, 2)
 spawn_id = &"teleport.2"
 
 [node name="outside_torch" parent="." unique_id=1948652118 instance=ExtResource("5_8vlij")]
