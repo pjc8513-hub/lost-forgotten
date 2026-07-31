@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d0teisng6e7ln" path="res://scenes/grid/mountain/mountain_floor_1.tscn" id="8_i8dwt"]
 [ext_resource type="Script" uid="uid://c1lus734wl56v" path="res://scripts/components/BumpComponent.gd" id="9_fjw7m"]
 [ext_resource type="PackedScene" uid="uid://b0ba8ohaeqly4" path="res://scenes/grid/mountain/mountain_edge_2.tscn" id="10_fjw7m"]
+[ext_resource type="Script" uid="uid://ip1ql2nqap5m" path="res://scripts/components/TeleportTileComponent.gd" id="11_j8fxe"]
 [ext_resource type="PackedScene" uid="uid://qr3o17e8tjhj" path="res://scenes/grid/mountain/mountain_peak_1.tscn" id="11_md3nt"]
 [ext_resource type="PackedScene" uid="uid://dk3pu5ssng2p2" path="res://scenes/grid/castle/chest_3.tscn" id="12_i1jbs"]
 [ext_resource type="Resource" uid="uid://brxb8l6ciajxm" path="res://data/traps/ice.tres" id="13_27ieb"]
@@ -45,7 +46,7 @@ spawn_id = &"teleport.1"
 
 [node name="MapSpawnPoint3" parent="." unique_id=744187989 instance=ExtResource("4_2dwgv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 2)
-spawn_id = &"teleport.1"
+spawn_id = &"teleport.2"
 
 [node name="outside_torch" parent="." unique_id=1948652118 instance=ExtResource("5_8vlij")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, -10)
@@ -127,6 +128,29 @@ cell_shape = 1
 [node name="BumpComponent" type="Node" parent="MountainFloor2" unique_id=343853212]
 script = ExtResource("9_fjw7m")
 metadata/_custom_type_script = "uid://c1lus734wl56v"
+
+[node name="TeleportFloor34" parent="." unique_id=1372099038 instance=ExtResource("8_i8dwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -10)
+
+[node name="TeleportComponent" type="Node" parent="TeleportFloor34" unique_id=106736133]
+script = ExtResource("11_j8fxe")
+spawn_location_ids = Array[StringName]([&"teleport.1", &"teleport.2"])
+
+[node name="TeleportFloor14" parent="." unique_id=1730486994 instance=ExtResource("8_i8dwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -20)
+
+[node name="TeleportTileComponent" type="Node" parent="TeleportFloor14" unique_id=1265081601]
+script = ExtResource("11_j8fxe")
+spawn_location_ids = Array[StringName]([&"entrance"])
+metadata/_custom_type_script = "uid://ip1ql2nqap5m"
+
+[node name="TeleportEdge20" parent="." unique_id=2000580586 instance=ExtResource("10_fjw7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 6)
+
+[node name="TeleportTileComponent" type="Node" parent="TeleportEdge20" unique_id=1069223785]
+script = ExtResource("11_j8fxe")
+spawn_location_ids = Array[StringName]([&"entrance"])
+metadata/_custom_type_script = "uid://ip1ql2nqap5m"
 
 [node name="MountainEdge1" parent="." unique_id=1307248116 instance=ExtResource("5_tdnt6")]
 
@@ -274,9 +298,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -16)
 [node name="MountainFloor13" parent="." unique_id=1543769175 instance=ExtResource("8_i8dwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -18)
 
-[node name="MountainFloor14" parent="." unique_id=1730486994 instance=ExtResource("8_i8dwt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -20)
-
 [node name="MountainFloor15" parent="." unique_id=1860988869 instance=ExtResource("8_i8dwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 
@@ -312,9 +333,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -6)
 
 [node name="MountainFloor33" parent="." unique_id=983097891 instance=ExtResource("8_i8dwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -4)
-
-[node name="MountainFloor34" parent="." unique_id=1372099038 instance=ExtResource("8_i8dwt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -10)
 
 [node name="MountainFloor35" parent="." unique_id=1922382415 instance=ExtResource("8_i8dwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -12)
@@ -412,9 +430,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -13)
 [node name="MountainPeak7" parent="." unique_id=977736123 instance=ExtResource("11_md3nt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -14)
 
-[node name="MountainEdge20" parent="." unique_id=2000580586 instance=ExtResource("10_fjw7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 6)
-
 [node name="MountainEdge21" parent="." unique_id=2110632505 instance=ExtResource("5_tdnt6")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12, 0, 8)
 
@@ -436,3 +451,6 @@ transform = Transform3D(-2.1855692e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855692e-07, 20
 [editable path="chest3"]
 [editable path="chest4"]
 [editable path="MountainFloor2"]
+[editable path="TeleportFloor34"]
+[editable path="TeleportFloor14"]
+[editable path="TeleportEdge20"]

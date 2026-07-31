@@ -188,6 +188,10 @@ func is_blocked(pos: Vector3i) -> bool:
 
 func trigger_tile_effects(pos: Vector3i) -> void:
 	for element in MapManager.get_elements(pos):
+		for component in element.get_parent().find_children("*", "TeleportTileComponent", true, false):
+			var teleport := component as TeleportTileComponent
+			if teleport != null:
+				teleport.trigger(actor)
 		for component in element.get_parent().find_children("*", "TrapComponent", true, false):
 			var trap := component as TrapComponent
 			if trap != null and trap.trigger_on_step:
