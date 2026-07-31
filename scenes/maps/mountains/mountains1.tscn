@@ -24,6 +24,15 @@ has_daynight = true
 main_shader_palette_texture = ExtResource("2_4naqu")
 main_shader_dither_strength = 0.08
 main_shader_contrast = 1.3
+night_ambient_energy = 0.55
+night_directional_energy = 0.2
+night_ambient_color = Color(0.2, 0.27, 0.48, 1)
+night_fog_color = Color(0.18, 0.25, 0.4, 1)
+night_volumetric_fog_albedo = Color(0.26, 0.34, 0.52, 1)
+night_volumetric_fog_density = 0.035
+night_volumetric_fog_emission_energy = 0.32
+night_sky_zenith_color = Color(0.06, 0.1, 0.24, 1)
+night_sky_horizon_color = Color(0.16, 0.22, 0.4, 1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=26400923]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 12, 0)

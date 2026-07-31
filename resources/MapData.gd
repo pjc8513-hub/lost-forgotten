@@ -11,6 +11,18 @@ class_name MapData
 @export_range(0.0, 1.0, 0.001) var main_shader_dither_strength: float = 0.001
 @export_range(0.5, 3.0, 0.01) var main_shader_contrast: float = 0.95
 
+@export_group("Day/Night Cycle")
+@export_range(0.0, 2.0, 0.01) var night_ambient_energy: float = 0.4
+@export_range(0.0, 2.0, 0.01) var night_directional_energy: float = 0.12
+@export var night_ambient_color: Color = Color(0.16, 0.22, 0.42)
+@export var night_directional_color: Color = Color(0.52, 0.65, 1.0)
+@export var night_fog_color: Color = Color(0.12, 0.17, 0.32)
+@export var night_volumetric_fog_albedo: Color = Color(0.2, 0.26, 0.46)
+@export_range(0.0, 1.0, 0.001) var night_volumetric_fog_density: float = 0.04
+@export_range(0.0, 2.0, 0.01) var night_volumetric_fog_emission_energy: float = 0.25
+@export var night_sky_zenith_color: Color = Color(0.045, 0.075, 0.2)
+@export var night_sky_horizon_color: Color = Color(0.12, 0.16, 0.34)
+
 const SECONDS_PER_DAY := 24.0 * 60.0 * 60.0
 const DAY_START_SECONDS := 6.0 * 60.0 * 60.0
 
@@ -18,6 +30,17 @@ const DAY_START_SECONDS := 6.0 * 60.0 * 60.0
 @onready var _daynight_world_environment: WorldEnvironment = get_node_or_null("WorldEnvironment") as WorldEnvironment
 
 var _daynight_sky_material: ShaderMaterial
+var _day_directional_energy: float
+var _day_directional_color: Color
+var _day_ambient_energy: float
+var _day_ambient_color: Color
+var _day_fog_color: Color
+var _day_volumetric_fog_albedo: Color
+var _day_volumetric_fog_density: float
+var _day_volumetric_fog_emission_energy: float
+var _day_sky_zenith_color: Color = Color(0.2, 0.45, 0.85)
+var _day_sky_horizon_color: Color = Color(0.55, 0.75, 0.9)
+var _day_sun_color: Color = Color(1.0, 0.95, 0.8)
 
 
 func _ready() -> void:
@@ -31,6 +54,7 @@ func _ready() -> void:
 	if _daynight_world_environment.environment != null and _daynight_world_environment.environment.sky != null:
 		_daynight_sky_material = _daynight_world_environment.environment.sky.sky_material as ShaderMaterial
 
+	_cache_daynight_day_values()
 	WorldManager.dungeon_time_changed.connect(_on_daynight_time_changed)
 	_on_daynight_time_changed(WorldManager.dungeon_elapsed_time)
 
@@ -38,6 +62,31 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	if WorldManager.dungeon_time_changed.is_connected(_on_daynight_time_changed):
 		WorldManager.dungeon_time_changed.disconnect(_on_daynight_time_changed)
+
+
+func _cache_daynight_day_values() -> void:
+	_day_directional_energy = _daynight_light.light_energy
+	_day_directional_color = _daynight_light.light_color
+
+	var environment := _daynight_world_environment.environment
+	_day_ambient_energy = environment.ambient_light_energy
+	_day_ambient_color = environment.ambient_light_color
+	_day_fog_color = environment.fog_light_color
+	_day_volumetric_fog_albedo = environment.volumetric_fog_albedo
+	_day_volumetric_fog_density = environment.volumetric_fog_density
+	_day_volumetric_fog_emission_energy = environment.volumetric_fog_emission_energy
+
+	if _daynight_sky_material == null:
+		return
+	var zenith_color = _daynight_sky_material.get_shader_parameter("zenith_color")
+	var horizon_color = _daynight_sky_material.get_shader_parameter("horizon_color")
+	var sun_color = _daynight_sky_material.get_shader_parameter("sun_color")
+	if zenith_color is Color:
+		_day_sky_zenith_color = zenith_color
+	if horizon_color is Color:
+		_day_sky_horizon_color = horizon_color
+	if sun_color is Color:
+		_day_sun_color = sun_color
 
 
 func _on_daynight_time_changed(elapsed_seconds: int) -> void:
@@ -52,21 +101,29 @@ func _on_daynight_time_changed(elapsed_seconds: int) -> void:
 	# Keep the light moving continuously, while dimming it below the horizon.
 	var elevation := rad_to_deg(asin(clampf(sun_height, -1.0, 1.0)))
 	_daynight_light.rotation_degrees = Vector3(-elevation, -35.0, 0.0)
-	_daynight_light.light_energy = lerpf(0.04, 1.15, daylight)
-	_daynight_light.light_color = Color(0.52, 0.65, 1.0).lerp(Color(1.0, 0.91, 0.72), daylight)
+	_daynight_light.light_energy = lerpf(night_directional_energy, _day_directional_energy, daylight)
+	_daynight_light.light_color = night_directional_color.lerp(_day_directional_color, daylight)
 
 	var environment := _daynight_world_environment.environment
-	environment.ambient_light_color = Color(0.08, 0.12, 0.28).lerp(Color(0.65, 0.75, 0.91), daylight)
-	environment.ambient_light_energy = lerpf(0.18, 1.0, daylight)
-	environment.fog_light_color = Color(0.08, 0.12, 0.26).lerp(Color(0.39, 0.58, 0.69), daylight)
-	environment.volumetric_fog_albedo = Color(0.16, 0.2, 0.38).lerp(Color(0.65, 0.75, 0.91), daylight)
-	environment.volumetric_fog_emission_energy = lerpf(0.12, 0.5, daylight)
-	environment.volumetric_fog_density = lerpf(0.055, 0.04, daylight) + twilight * 0.012
+	environment.ambient_light_color = night_ambient_color.lerp(_day_ambient_color, daylight)
+	environment.ambient_light_energy = lerpf(night_ambient_energy, _day_ambient_energy, daylight)
+	environment.fog_light_color = night_fog_color.lerp(_day_fog_color, daylight)
+	environment.volumetric_fog_albedo = night_volumetric_fog_albedo.lerp(_day_volumetric_fog_albedo, daylight)
+	environment.volumetric_fog_emission_energy = lerpf(
+		night_volumetric_fog_emission_energy,
+		_day_volumetric_fog_emission_energy,
+		daylight
+	)
+	environment.volumetric_fog_density = lerpf(
+		night_volumetric_fog_density,
+		_day_volumetric_fog_density,
+		daylight
+	) + twilight * 0.012
 
 	if _daynight_sky_material != null:
-		_daynight_sky_material.set_shader_parameter("zenith_color", Color(0.025, 0.045, 0.14).lerp(Color(0.2, 0.45, 0.85), daylight))
-		_daynight_sky_material.set_shader_parameter("horizon_color", Color(0.08, 0.1, 0.24).lerp(Color(0.55, 0.75, 0.9), daylight))
-		_daynight_sky_material.set_shader_parameter("sun_color", Color(0.3, 0.42, 0.85).lerp(Color(1.0, 0.95, 0.8), twilight))
+		_daynight_sky_material.set_shader_parameter("zenith_color", night_sky_zenith_color.lerp(_day_sky_zenith_color, daylight))
+		_daynight_sky_material.set_shader_parameter("horizon_color", night_sky_horizon_color.lerp(_day_sky_horizon_color, daylight))
+		_daynight_sky_material.set_shader_parameter("sun_color", _day_sun_color.lerp(Color(1.0, 0.5, 0.28), twilight))
 		_daynight_sky_material.set_shader_parameter("sun_visibility", smoothstep(-0.08, 0.05, sun_height))
 
 @export_group("Encounter Options")
