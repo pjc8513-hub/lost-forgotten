@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://ct6mngy6esulj"]
+
+[ext_resource type="PackedScene" uid="uid://detlcpekip53e" path="res://assets/models/mountains/MountainBridge.glb" id="1_kb65d"]
+
+[node name="MountainBridge" unique_id=1594766019 instance=ExtResource("1_kb65d")]
