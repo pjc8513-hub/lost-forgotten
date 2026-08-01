@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="DungeonMusicStyle" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/dungeon_synth/dungeon_music_style.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+style_id = &"castle_dungeon"
+display_name = "Castle Dungeon"
+description = "Maximal drone, minimal movement, and cavernous decay."
+root_pitch = 40
+mode = "locrian"
+tempo_min = 45
+tempo_max = 58
+drone_density = 0.95
+melody_density = 0.1
+arp_density = 0.05
+percussion_density = 0.05
+rest_probability = 0.6
+leap_probability = 0.1
+drone_program = 19
+melody_program = 52
+arp_program = 14
+percussion_program = 48
+percussion_notes = PackedInt32Array(41, 49)
+reverb = 0.68
+chorus = 0.12
+

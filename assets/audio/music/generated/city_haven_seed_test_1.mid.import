@@ -1,0 +1,14 @@
+[remap]
+
+importer="clef"
+type="MidiResource"
+uid="uid://dvdwodn4nkbnj"
+path="res://.godot/imported/city_haven_seed_test_1.mid-8e24af6f248bef1e1933c40f7711da6a.tres"
+
+[deps]
+
+source_file="res://assets/audio/music/generated/city_haven_seed_test_1.mid"
+dest_files=["res://.godot/imported/city_haven_seed_test_1.mid-8e24af6f248bef1e1933c40f7711da6a.tres"]
+
+[params]
+

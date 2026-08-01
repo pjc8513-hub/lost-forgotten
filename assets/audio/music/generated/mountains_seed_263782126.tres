@@ -1,0 +1,351 @@
+[gd_resource type="Resource" script_class="DungeonSong" format=3 uid="uid://cjh3tvr5woeha"]
+
+[ext_resource type="Script" uid="uid://dj2hvjkcnaedj" path="res://addons/dungeon_synth/dungeon_song.gd" id="1_b8qcj"]
+
+[resource]
+script = ExtResource("1_b8qcj")
+title = "Mountains"
+style_id = &"mountains"
+seed = 263782126
+tempo = 58
+root_pitch = 41
+layer_programs = {
+"arp": 74,
+"drone": 48,
+"melody": 60,
+"percussion": 48
+}
+soundfont_path = "C:/Users/pjc85/Documents/lost-and-forgotten-game/assets/audio/music/Arachno SoundFont - Version 1.0.sf2"
+midi_json = "{
+  \"format_version\": \"2.0\",
+  \"tempo\": 58,
+  \"timebase\": 480,
+  \"title\": \"Mountains\",
+  \"tracks\": [
+    {
+      \"cc_events\": [
+        {
+          \"controller\": 7,
+          \"time\": 0.0,
+          \"value\": 78
+        },
+        {
+          \"controller\": 10,
+          \"time\": 0.0,
+          \"value\": 54
+        },
+        {
+          \"controller\": 91,
+          \"time\": 0.0,
+          \"value\": 79
+        },
+        {
+          \"controller\": 93,
+          \"time\": 0.0,
+          \"value\": 15
+        }
+      ],
+      \"channel\": 0,
+      \"instrument\": 48,
+      \"name\": \"Drone\",
+      \"notes\": [
+        {
+          \"duration\": 8.25,
+          \"pitch\": 41,
+          \"start\": 0.0,
+          \"velocity\": 60
+        },
+        {
+          \"duration\": 8.25,
+          \"pitch\": 48,
+          \"start\": 0.0,
+          \"velocity\": 59
+        },
+        {
+          \"duration\": 8.25,
+          \"pitch\": 56,
+          \"start\": 0.0,
+          \"velocity\": 46
+        },
+        {
+          \"duration\": 8.25,
+          \"pitch\": 41,
+          \"start\": 8.0,
+          \"velocity\": 62
+        },
+        {
+          \"duration\": 8.25,
+          \"pitch\": 48,
+          \"start\": 8.0,
+          \"velocity\": 50
+        },
+        {
+          \"duration\": 8.25,
+          \"pitch\": 56,
+          \"start\": 8.0,
+          \"velocity\": 52
+        },
+        {
+          \"duration\": 8.25,
+          \"pitch\": 41,
+          \"start\": 16.0,
+          \"velocity\": 55
+        },
+        {
+          \"duration\": 8.25,
+          \"pitch\": 48,
+          \"start\": 16.0,
+          \"velocity\": 50
+        },
+        {
+          \"duration\": 8.25,
+          \"pitch\": 41,
+          \"start\": 32.0,
+          \"velocity\": 56
+        },
+        {
+          \"duration\": 8.25,
+          \"pitch\": 48,
+          \"start\": 32.0,
+          \"velocity\": 53
+        },
+        {
+          \"duration\": 8.25,
+          \"pitch\": 41,
+          \"start\": 40.0,
+          \"velocity\": 59
+        },
+        {
+          \"duration\": 8.25,
+          \"pitch\": 48,
+          \"start\": 40.0,
+          \"velocity\": 57
+        },
+        {
+          \"duration\": 8.25,
+          \"pitch\": 41,
+          \"start\": 48.0,
+          \"velocity\": 51
+        },
+        {
+          \"duration\": 8.25,
+          \"pitch\": 48,
+          \"start\": 48.0,
+          \"velocity\": 60
+        },
+        {
+          \"duration\": 8.0,
+          \"pitch\": 41,
+          \"start\": 56.0,
+          \"velocity\": 51
+        },
+        {
+          \"duration\": 8.0,
+          \"pitch\": 48,
+          \"start\": 56.0,
+          \"velocity\": 50
+        },
+        {
+          \"duration\": 8.0,
+          \"pitch\": 56,
+          \"start\": 56.0,
+          \"velocity\": 41
+        }
+      ]
+    },
+    {
+      \"cc_events\": [
+        {
+          \"controller\": 7,
+          \"time\": 0.0,
+          \"value\": 104
+        },
+        {
+          \"controller\": 10,
+          \"time\": 0.0,
+          \"value\": 74
+        },
+        {
+          \"controller\": 91,
+          \"time\": 0.0,
+          \"value\": 79
+        },
+        {
+          \"controller\": 93,
+          \"time\": 0.0,
+          \"value\": 15
+        }
+      ],
+      \"channel\": 1,
+      \"instrument\": 60,
+      \"name\": \"Melody\",
+      \"notes\": [
+        {
+          \"duration\": 2.0,
+          \"pitch\": 60,
+          \"start\": 14.0,
+          \"velocity\": 86
+        },
+        {
+          \"duration\": 0.5,
+          \"pitch\": 58,
+          \"start\": 24.0,
+          \"velocity\": 83
+        },
+        {
+          \"duration\": 0.5,
+          \"pitch\": 56,
+          \"start\": 29.0,
+          \"velocity\": 89
+        },
+        {
+          \"duration\": 0.5,
+          \"pitch\": 55,
+          \"start\": 33.0,
+          \"velocity\": 77
+        },
+        {
+          \"duration\": 1.0,
+          \"pitch\": 53,
+          \"start\": 41.0,
+          \"velocity\": 87
+        },
+        {
+          \"duration\": 0.5,
+          \"pitch\": 51,
+          \"start\": 43.0,
+          \"velocity\": 108
+        },
+        {
+          \"duration\": 0.5,
+          \"pitch\": 55,
+          \"start\": 44.0,
+          \"velocity\": 108
+        },
+        {
+          \"duration\": 1.9,
+          \"pitch\": 53,
+          \"start\": 62.0,
+          \"velocity\": 82
+        }
+      ]
+    },
+    {
+      \"cc_events\": [
+        {
+          \"controller\": 7,
+          \"time\": 0.0,
+          \"value\": 82
+        },
+        {
+          \"controller\": 10,
+          \"time\": 0.0,
+          \"value\": 44
+        },
+        {
+          \"controller\": 91,
+          \"time\": 0.0,
+          \"value\": 79
+        },
+        {
+          \"controller\": 93,
+          \"time\": 0.0,
+          \"value\": 15
+        }
+      ],
+      \"channel\": 2,
+      \"instrument\": 74,
+      \"name\": \"Arpeggio\",
+      \"notes\": [
+        {
+          \"duration\": 0.22,
+          \"pitch\": 53,
+          \"start\": 8.0,
+          \"velocity\": 59
+        },
+        {
+          \"duration\": 0.22,
+          \"pitch\": 56,
+          \"start\": 24.5,
+          \"velocity\": 56
+        },
+        {
+          \"duration\": 0.22,
+          \"pitch\": 60,
+          \"start\": 25.0,
+          \"velocity\": 74
+        },
+        {
+          \"duration\": 0.22,
+          \"pitch\": 65,
+          \"start\": 36.5,
+          \"velocity\": 49
+        },
+        {
+          \"duration\": 0.22,
+          \"pitch\": 53,
+          \"start\": 41.0,
+          \"velocity\": 61
+        },
+        {
+          \"duration\": 0.22,
+          \"pitch\": 56,
+          \"start\": 45.5,
+          \"velocity\": 49
+        },
+        {
+          \"duration\": 0.22,
+          \"pitch\": 60,
+          \"start\": 50.0,
+          \"velocity\": 61
+        },
+        {
+          \"duration\": 0.22,
+          \"pitch\": 65,
+          \"start\": 51.5,
+          \"velocity\": 62
+        },
+        {
+          \"duration\": 0.22,
+          \"pitch\": 53,
+          \"start\": 52.5,
+          \"velocity\": 72
+        },
+        {
+          \"duration\": 0.22,
+          \"pitch\": 56,
+          \"start\": 63.0,
+          \"velocity\": 73
+        }
+      ]
+    },
+    {
+      \"cc_events\": [
+        {
+          \"controller\": 7,
+          \"time\": 0.0,
+          \"value\": 88
+        },
+        {
+          \"controller\": 10,
+          \"time\": 0.0,
+          \"value\": 64
+        },
+        {
+          \"controller\": 91,
+          \"time\": 0.0,
+          \"value\": 79
+        },
+        {
+          \"controller\": 93,
+          \"time\": 0.0,
+          \"value\": 15
+        }
+      ],
+      \"channel\": 9,
+      \"instrument\": 48,
+      \"name\": \"Percussion\",
+      \"notes\": []
+    }
+  ]
+}"

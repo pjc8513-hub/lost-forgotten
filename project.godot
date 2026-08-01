@@ -39,6 +39,10 @@ LootDistributor="*res://autoload/LootDistributor.gd"
 QuestManager="*res://autoload/QuestManager.gd"
 EncounterManager="*res://autoload/EncounterManager.gd"
 
+[clef]
+
+default_soundfont="C:/Users/pjc85/Documents/lost-and-forgotten-game/assets/audio/music/Arachno SoundFont - Version 1.0.sf2"
+
 [display]
 
 window/size/viewport_width=640
@@ -50,7 +54,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/clef/plugin.cfg")
+enabled=PackedStringArray("res://addons/clef/plugin.cfg", "res://addons/dungeon_synth/plugin.cfg")
 
 [input]
 

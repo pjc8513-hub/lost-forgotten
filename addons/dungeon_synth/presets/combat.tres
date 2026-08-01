@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="DungeonMusicStyle" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/dungeon_synth/dungeon_music_style.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+style_id = &"combat"
+display_name = "Combat"
+description = "Rhythm-driven, tense, and melodically sparse."
+root_pitch = 43
+mode = "phrygian"
+tempo_min = 95
+tempo_max = 120
+drone_density = 0.5
+melody_density = 0.15
+arp_density = 0.2
+percussion_density = 0.8
+rest_probability = 0.5
+leap_probability = 0.3
+drone_program = 44
+melody_program = 60
+arp_program = 47
+percussion_program = 48
+percussion_notes = PackedInt32Array(36, 38, 41, 45, 49)
+reverb = 0.2
+chorus = 0.04
+

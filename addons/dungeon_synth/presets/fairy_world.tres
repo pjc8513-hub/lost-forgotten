@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="DungeonMusicStyle" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/dungeon_synth/dungeon_music_style.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+style_id = &"fairy_world"
+display_name = "Fairy World"
+description = "Unresolved, weightless, and rich with long tails."
+root_pitch = 55
+mode = "lydian"
+tempo_min = 55
+tempo_max = 70
+drone_density = 0.6
+melody_density = 0.25
+arp_density = 0.7
+percussion_density = 0.0
+rest_probability = 0.45
+leap_probability = 0.2
+drone_program = 89
+melody_program = 73
+arp_program = 8
+percussion_program = 0
+percussion_notes = PackedInt32Array(81)
+reverb = 0.58
+chorus = 0.24
+

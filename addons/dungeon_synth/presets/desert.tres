@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="DungeonMusicStyle" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/dungeon_synth/dungeon_music_style.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+style_id = &"desert"
+display_name = "Desert"
+description = "Open fourths and fifths with wide, sparse gestures."
+root_pitch = 45
+mode = "mixolydian"
+tempo_min = 60
+tempo_max = 75
+drone_density = 0.5
+melody_density = 0.35
+arp_density = 0.15
+percussion_density = 0.1
+rest_probability = 0.4
+leap_probability = 0.25
+drone_program = 104
+melody_program = 111
+arp_program = 15
+percussion_program = 0
+percussion_notes = PackedInt32Array(36, 42, 45)
+reverb = 0.36
+chorus = 0.06
+

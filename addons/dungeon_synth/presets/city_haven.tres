@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="DungeonMusicStyle" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/dungeon_synth/dungeon_music_style.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+style_id = &"city_haven"
+display_name = "City / Haven"
+description = "Safe, human, and gently rhythmic."
+root_pitch = 48
+mode = "dorian"
+tempo_min = 65
+tempo_max = 80
+drone_density = 0.8
+melody_density = 0.35
+arp_density = 0.4
+percussion_density = 0.15
+rest_probability = 0.3
+leap_probability = 0.15
+drone_program = 20
+melody_program = 21
+arp_program = 15
+percussion_program = 40
+percussion_notes = PackedInt32Array(36, 42, 38)
+reverb = 0.3
+chorus = 0.08
+

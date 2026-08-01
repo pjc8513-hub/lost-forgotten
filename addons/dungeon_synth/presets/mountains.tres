@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="DungeonMusicStyle" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/dungeon_synth/dungeon_music_style.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+style_id = &"mountains"
+display_name = "Mountains"
+description = "Huge space and very slow harmonic movement."
+root_pitch = 41
+mode = "dorian"
+tempo_min = 50
+tempo_max = 65
+drone_density = 0.75
+melody_density = 0.2
+arp_density = 0.1
+percussion_density = 0.0
+rest_probability = 0.5
+leap_probability = 0.1
+drone_program = 48
+melody_program = 60
+arp_program = 74
+percussion_program = 48
+percussion_notes = PackedInt32Array(47)
+reverb = 0.62
+chorus = 0.12
+

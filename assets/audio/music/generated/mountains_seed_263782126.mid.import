@@ -1,0 +1,14 @@
+[remap]
+
+importer="clef"
+type="MidiResource"
+uid="uid://c728mdxu61w8d"
+path="res://.godot/imported/mountains_seed_263782126.mid-b77bee53e5ec11776a4e4cb30526b18c.tres"
+
+[deps]
+
+source_file="res://assets/audio/music/generated/mountains_seed_263782126.mid"
+dest_files=["res://.godot/imported/mountains_seed_263782126.mid-b77bee53e5ec11776a4e4cb30526b18c.tres"]
+
+[params]
+
