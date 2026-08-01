@@ -18,4 +18,3 @@ The `.tres` recipe stores the seed and the exact generated MIDI document, so sav
 - Set `clef/default_soundfont` or use the SoundFont field in the panel.
 - FluidSynth must resolve from `PATH`, or `dungeon_synth/fluidsynth_path` must point to `fluidsynth.exe`.
 - The default generated soundtrack folder is `res://assets/audio/music/generated`.
-

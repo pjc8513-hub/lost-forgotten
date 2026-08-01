@@ -61,6 +61,10 @@ spawn_id = &"teleport.1"
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -16, 0, 2)
 spawn_id = &"teleport.2"
 
+[node name="MapSpawnPoint4" parent="." unique_id=626550405 instance=ExtResource("4_2dwgv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 34)
+spawn_id = &"teleport.3"
+
 [node name="outside_torch" parent="." unique_id=1948652118 instance=ExtResource("5_8vlij")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.6634591, 0, -11.408404)
 
@@ -138,8 +142,29 @@ chest_ID = &"mountain.chest2"
 gold_roll_dice = 2
 loot_table = 3
 
+[node name="chest5" parent="." unique_id=1081747722 instance=ExtResource("12_i1jbs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 24)
+
+[node name="ChestComponent" parent="chest5" index="4" unique_id=971460780]
+chest_ID = &"mountain.chest3"
+gold_roll_dice = 2
+loot_table = 1
+trap_type = ExtResource("13_27ieb")
+
 [node name="MountainBridge3" parent="." unique_id=1594766019 instance=ExtResource("19_w66h7")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 26, 0, -2)
+
+[node name="Cube" parent="MountainBridge3" index="0" unique_id=313676599]
+transform = Transform3D(1, 0, 0, 0, 0.99791676, 0.02141243, 0, -0.064515285, 0.3312056, 0.81101847, -1.2927861, -0.11222267)
+
+[node name="Cube_001" parent="MountainBridge3" index="1" unique_id=1465585066]
+transform = Transform3D(0.99999964, -0.00014749495, -0.00027651104, 0.00014542782, 0.9999969, -0.0008300997, 0.0008334864, 0.002500955, 0.33189586, 0.81101847, -1.2381227, 0.4663868)
+
+[node name="Cube_002" parent="MountainBridge3" index="2" unique_id=1558098233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.19913821, 0.81101847, -1.1694783, -0.965786)
+
+[node name="Cube_003" parent="MountainBridge3" index="3" unique_id=449754629]
+transform = Transform3D(1, 0, 0, 0, 0.9944245, -0.020999322, 0, 0.10545099, 0.19802792, 0.81101847, -1.234592, -0.52861214)
 
 [node name="GridElement" type="Node3D" parent="MountainBridge3" unique_id=2119712938]
 script = ExtResource("10_xbe28")
@@ -149,6 +174,18 @@ metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
 [node name="MountainBridge4" parent="." unique_id=1862022984 instance=ExtResource("19_w66h7")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 28, 0, -2)
 
+[node name="Cube" parent="MountainBridge4" index="0" unique_id=313676599]
+transform = Transform3D(1, 0, 0, 0, 0.99791676, 0.02141243, 0, -0.064515285, 0.3312056, 0.81101847, -1.1023614, -0.11222267)
+
+[node name="Cube_001" parent="MountainBridge4" index="1" unique_id=1465585066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.33189702, 0.81101847, -1.0902004, 0.4663868)
+
+[node name="Cube_002" parent="MountainBridge4" index="2" unique_id=1558098233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.19913821, 0.81101847, -1.2049255, -0.965786)
+
+[node name="Cube_003" parent="MountainBridge4" index="3" unique_id=449754629]
+transform = Transform3D(1, 0, 0, 0, 0.9944245, -0.020999322, 0, 0.10545099, 0.19802792, 0.81101847, -1.1581231, -0.52861214)
+
 [node name="GridElement" type="Node3D" parent="MountainBridge4" unique_id=1560768936]
 script = ExtResource("10_xbe28")
 cell_shape = 2
@@ -157,6 +194,18 @@ metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
 [node name="MountainBridge5" parent="." unique_id=191669763 instance=ExtResource("19_w66h7")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 30, 0, -2)
 
+[node name="Cube" parent="MountainBridge5" index="0" unique_id=313676599]
+transform = Transform3D(1, 0, 0, 0, 0.99791676, 0.02141243, 0, -0.064515285, 0.3312056, 0.8110186, -1.0726575, -0.11222267)
+
+[node name="Cube_001" parent="MountainBridge5" index="1" unique_id=1465585066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.33189702, 0.81101835, -1.0571752, 0.4663868)
+
+[node name="Cube_002" parent="MountainBridge5" index="2" unique_id=1558098233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.19913821, 0.8110186, -1.0908799, -0.965786)
+
+[node name="Cube_003" parent="MountainBridge5" index="3" unique_id=449754629]
+transform = Transform3D(1, 0, 0, 0, 0.9944245, -0.020999322, 0, 0.10545099, 0.19802792, 0.8110186, -1.0491447, -0.52861214)
+
 [node name="GridElement" type="Node3D" parent="MountainBridge5" unique_id=1182727271]
 script = ExtResource("10_xbe28")
 cell_shape = 2
@@ -164,6 +213,18 @@ metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
 
 [node name="MountainBridge6" parent="." unique_id=467431759 instance=ExtResource("19_w66h7")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 32, 0, -2)
+
+[node name="Cube" parent="MountainBridge6" index="0" unique_id=313676599]
+transform = Transform3D(1, 0, 0, 0, 0.99791676, 0.02141243, 0, -0.064515285, 0.3312056, 0.81101847, -1.2324317, -0.11222267)
+
+[node name="Cube_001" parent="MountainBridge6" index="1" unique_id=1465585066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.33189702, 0.81101847, -1.2377639, 0.4663887)
+
+[node name="Cube_002" parent="MountainBridge6" index="2" unique_id=1558098233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.19913821, 0.81101847, -1.1131964, -0.965786)
+
+[node name="Cube_003" parent="MountainBridge6" index="3" unique_id=449754629]
+transform = Transform3D(1, 0, 0, 0, 0.9944245, -0.020999322, 0, 0.10545099, 0.19802792, 0.81101847, -1.144614, -0.52861214)
 
 [node name="GridElement" type="Node3D" parent="MountainBridge6" unique_id=1982024129]
 script = ExtResource("10_xbe28")
@@ -185,7 +246,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -10)
 
 [node name="TeleportComponent" type="Node" parent="TeleportFloor34" unique_id=106736133]
 script = ExtResource("11_j8fxe")
-spawn_location_ids = Array[StringName]([&"teleport.2"])
+spawn_location_ids = Array[StringName]([&"teleport.2", &"teleport.3"])
 
 [node name="TeleportTile" parent="TeleportFloor34" unique_id=453829681 instance=ExtResource("13_v3w5d")]
 
@@ -209,7 +270,18 @@ metadata/_custom_type_script = "uid://ip1ql2nqap5m"
 
 [node name="TeleportTile" parent="TeleportEdge20" unique_id=26886339 instance=ExtResource("13_v3w5d")]
 
-[node name="MountainEdge1" parent="." unique_id=1307248116 instance=ExtResource("5_tdnt6")]
+[node name="TeleportEdge56" parent="." unique_id=1307248116 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -4, 0, 34)
+
+[node name="TeleportTileComponent" type="Node" parent="TeleportEdge56" unique_id=59351063]
+script = ExtResource("11_j8fxe")
+spawn_location_ids = Array[StringName]([&"entrance"])
+metadata/_custom_type_script = "uid://ip1ql2nqap5m"
+
+[node name="TeleportTile" parent="TeleportEdge56" unique_id=1543789210 instance=ExtResource("13_v3w5d")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0, 0, 0)
+
+[node name="MountainEdge1" parent="." unique_id=871521343 instance=ExtResource("5_tdnt6")]
 
 [node name="MountainEdge4" parent="." unique_id=1570542407 instance=ExtResource("5_tdnt6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
@@ -231,6 +303,48 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 
 
 [node name="MountainEdge11" parent="." unique_id=1685044064 instance=ExtResource("5_tdnt6")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 4)
+
+[node name="MountainEdge49" parent="." unique_id=300701695 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 24)
+
+[node name="MountainEdge50" parent="." unique_id=1694317135 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 26)
+
+[node name="MountainEdge35" parent="." unique_id=729431135 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6, 0, 14)
+
+[node name="MountainEdge36" parent="." unique_id=243630791 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 0, 14)
+
+[node name="MountainEdge46" parent="." unique_id=1116735247 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, 24)
+
+[node name="MountainEdge47" parent="." unique_id=1588756390 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, 26)
+
+[node name="MountainEdge54" parent="." unique_id=124976683 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, 36)
+
+[node name="MountainEdge55" parent="." unique_id=1284214121 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2, 0, 34)
+
+[node name="MountainEdge39" parent="." unique_id=359972727 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 20)
+
+[node name="MountainEdge44" parent="." unique_id=1821318237 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2, 0, 20)
+
+[node name="MountainEdge40" parent="." unique_id=785388358 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 20)
+
+[node name="MountainEdge45" parent="." unique_id=369410047 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0, 20)
+
+[node name="MountainEdge41" parent="." unique_id=441125765 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 20)
+
+[node name="MountainEdge37" parent="." unique_id=1288021423 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2, 0, 14)
 
 [node name="MountainEdge12" parent="." unique_id=736295793 instance=ExtResource("5_tdnt6")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -14, 0, 4)
@@ -258,6 +372,33 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 2, 0
 
 [node name="MountainWall3" parent="." unique_id=1821335955 instance=ExtResource("6_i8dwt")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -2, 0, 4)
+
+[node name="MountainWall26" parent="." unique_id=92771186 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -6, 0, 6)
+
+[node name="MountainWall28" parent="." unique_id=1913796047 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -6, 0, 22)
+
+[node name="MountainWall32" parent="." unique_id=1725429982 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, -6, 0, 24)
+
+[node name="MountainWall33" parent="." unique_id=213077077 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, -6, 0, 26)
+
+[node name="MountainWall29" parent="." unique_id=1070334667 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -4, 0, 22)
+
+[node name="MountainWall31" parent="." unique_id=1513187711 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -2, 0, 26)
+
+[node name="MountainWall34" parent="." unique_id=2024012055 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 0, 0, 38)
+
+[node name="MountainWall30" parent="." unique_id=897510974 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -2, 0, 22)
+
+[node name="MountainWall27" parent="." unique_id=1358676163 instance=ExtResource("6_i8dwt")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -6, 0, 8)
 
 [node name="MountainWall16" parent="." unique_id=556240981 instance=ExtResource("6_i8dwt")]
 transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, -2, 0, -18)
@@ -324,6 +465,21 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 0
 
 [node name="MountainCorner3" parent="." unique_id=1523222683 instance=ExtResource("7_fjw7m")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -4, 0, 4)
+
+[node name="MountainCorner15" parent="." unique_id=399906231 instance=ExtResource("7_fjw7m")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -4, 0, 10)
+
+[node name="MountainCorner16" parent="." unique_id=1125546611 instance=ExtResource("7_fjw7m")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -2, 0, 10)
+
+[node name="MountainCorner17" parent="." unique_id=575692411 instance=ExtResource("7_fjw7m")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -2, 0, 24)
+
+[node name="MountainCorner18" parent="." unique_id=1165267269 instance=ExtResource("7_fjw7m")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -2, 0, 28)
+
+[node name="MountainCorner19" parent="." unique_id=2003344361 instance=ExtResource("7_fjw7m")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -2, 0, 36)
 
 [node name="MountainCorner7" parent="." unique_id=539987801 instance=ExtResource("7_fjw7m")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -16, 0, 6)
@@ -409,6 +565,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
 [node name="MountainFloor7" parent="." unique_id=1153773324 instance=ExtResource("8_i8dwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 2)
 
+[node name="MountainFloor14" parent="." unique_id=1640688181 instance=ExtResource("8_i8dwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 10)
+
+[node name="MountainFloor16" parent="." unique_id=1995560452 instance=ExtResource("8_i8dwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 12)
+
+[node name="MountainFloor31" parent="." unique_id=1501680504 instance=ExtResource("8_i8dwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 12)
+
+[node name="MountainFloor33" parent="." unique_id=1354066312 instance=ExtResource("8_i8dwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 12)
+
 [node name="MountainFloor8" parent="." unique_id=969841423 instance=ExtResource("8_i8dwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
 
@@ -432,6 +600,27 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0
 
 [node name="MountainEdge9" parent="." unique_id=872466203 instance=ExtResource("10_fjw7m")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
+
+[node name="MountainEdge38" parent="." unique_id=956338001 instance=ExtResource("10_fjw7m")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 0, 6)
+
+[node name="MountainEdge42" parent="." unique_id=803877178 instance=ExtResource("10_fjw7m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 22)
+
+[node name="MountainEdge43" parent="." unique_id=759224340 instance=ExtResource("10_fjw7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22)
+
+[node name="MountainEdge48" parent="." unique_id=532938272 instance=ExtResource("10_fjw7m")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 28)
+
+[node name="MountainEdge53" parent="." unique_id=1400561570 instance=ExtResource("10_fjw7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 34)
+
+[node name="MountainEdge51" parent="." unique_id=661811114 instance=ExtResource("10_fjw7m")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -8, 0, 28)
+
+[node name="MountainEdge52" parent="." unique_id=796774099 instance=ExtResource("10_fjw7m")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6, 0, 28)
 
 [node name="MountainEdge5" parent="." unique_id=318032609 instance=ExtResource("10_fjw7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -2)
@@ -532,6 +721,24 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 [node name="SnowDrift8" parent="." unique_id=1698923234 instance=ExtResource("18_w66h7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
 
+[node name="SnowDrift15" parent="." unique_id=1600262861 instance=ExtResource("18_w66h7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 10)
+
+[node name="SnowDrift16" parent="." unique_id=570822103 instance=ExtResource("18_w66h7")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -2, 0, 14)
+
+[node name="SnowDrift17" parent="." unique_id=962385624 instance=ExtResource("18_w66h7")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -2, 0, 20)
+
+[node name="SnowDrift18" parent="." unique_id=1780710331 instance=ExtResource("18_w66h7")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -6, 0, 22)
+
+[node name="SnowDrift19" parent="." unique_id=1882890325 instance=ExtResource("18_w66h7")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -2.4690895, 0, 26)
+
+[node name="SnowDrift20" parent="." unique_id=704148288 instance=ExtResource("18_w66h7")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -2.4690895, 0, 27.80612)
+
 [node name="SnowDrift9" parent="." unique_id=268806981 instance=ExtResource("18_w66h7")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20, 0, 4)
 
@@ -613,14 +820,112 @@ transform = Transform3D(1, 0, 0, 0, 1.8, 0, 0, 0, 1, 32, 0, 12)
 [node name="MountainPeak20" parent="." unique_id=670877513 instance=ExtResource("11_md3nt")]
 transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, 24, 0, 12)
 
+[node name="MountainPeak21" parent="." unique_id=1845338962 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, 8, 0, 12)
+
+[node name="MountainPeak22" parent="." unique_id=781983687 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, 6, 0, 14)
+
+[node name="MountainPeak23" parent="." unique_id=831717260 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, 8, 0, 16)
+
+[node name="MountainPeak24" parent="." unique_id=873116737 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, 8, 0, 22)
+
+[node name="MountainPeak25" parent="." unique_id=1545557260 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, 8, 0, 26)
+
+[node name="MountainPeak26" parent="." unique_id=1125923756 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, 12, 0, 30)
+
+[node name="MountainPeak27" parent="." unique_id=864978030 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, 12, 0, 38)
+
+[node name="MountainPeak28" parent="." unique_id=98612054 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, 8, 0, 42)
+
+[node name="MountainPeak29" parent="." unique_id=445408395 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, -16, 0, 42)
+
+[node name="MountainPeak36" parent="." unique_id=1675751154 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, -10, 0, 46)
+
+[node name="MountainPeak37" parent="." unique_id=395098720 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, -6, 0, 52)
+
+[node name="MountainPeak38" parent="." unique_id=362928768 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, -2, 0, 48)
+
+[node name="MountainPeak39" parent="." unique_id=1418038033 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, 6, 0, 48)
+
+[node name="MountainPeak30" parent="." unique_id=2029821221 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, -16, 0, 34)
+
+[node name="MountainPeak31" parent="." unique_id=1987264398 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, -20, 0, 30)
+
+[node name="MountainPeak32" parent="." unique_id=1525361628 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, -20, 0, 22)
+
+[node name="MountainPeak35" parent="." unique_id=1193772182 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, -24, 0, 26)
+
+[node name="MountainPeak33" parent="." unique_id=1325294791 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, -16, 0, 16)
+
+[node name="MountainPeak34" parent="." unique_id=1374320799 instance=ExtResource("11_md3nt")]
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, -12, 0, 12)
+
 [node name="MountainPeak16" parent="." unique_id=133932855 instance=ExtResource("11_md3nt")]
 transform = Transform3D(1, 0, 0, 0, 1.7, 0, 0, 0, 1, 38, 0, 8)
 
 [node name="MountainPeak17" parent="." unique_id=1527417027 instance=ExtResource("11_md3nt")]
 transform = Transform3D(1, 0, 0, 0, 1.7, 0, 0, 0, 1, 42, 0, 8)
 
+[node name="MountainBridge7" parent="." unique_id=224416342 instance=ExtResource("19_w66h7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.2593271, 16)
+
+[node name="GridElement" type="Node3D" parent="MountainBridge7" unique_id=54555089]
+script = ExtResource("10_xbe28")
+cell_shape = 2
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="MountainBridge8" parent="." unique_id=510579273 instance=ExtResource("19_w66h7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.2593271, 18)
+
+[node name="GridElement" type="Node3D" parent="MountainBridge8" unique_id=1586635437]
+script = ExtResource("10_xbe28")
+cell_shape = 2
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="torch14" parent="." unique_id=1807068335 instance=ExtResource("14_27ieb")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -2, 0, 34)
+
+[node name="torch15" parent="." unique_id=1888364327 instance=ExtResource("14_27ieb")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 0, 0, 26)
+
+[node name="torch16" parent="." unique_id=454696253 instance=ExtResource("14_27ieb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6)
+
+[node name="outside_torch8" parent="." unique_id=771580854 instance=ExtResource("5_8vlij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 20)
+
+[node name="outside_torch9" parent="." unique_id=2011745001 instance=ExtResource("5_8vlij")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, 14)
+
+[node name="torch17" parent="." unique_id=960814169 instance=ExtResource("14_27ieb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 26)
+
+[node name="torch18" parent="." unique_id=1166273745 instance=ExtResource("14_27ieb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 18)
+
+[node name="torch19" parent="." unique_id=2119796847 instance=ExtResource("14_27ieb")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -20, 0, 28)
+
 [editable path="chest3"]
 [editable path="chest4"]
+[editable path="chest5"]
 [editable path="MountainBridge3"]
 [editable path="MountainBridge4"]
 [editable path="MountainBridge5"]
@@ -629,3 +934,6 @@ transform = Transform3D(1, 0, 0, 0, 1.7, 0, 0, 0, 1, 42, 0, 8)
 [editable path="TeleportFloor34"]
 [editable path="TeleportFloor14"]
 [editable path="TeleportEdge20"]
+[editable path="TeleportEdge56"]
+[editable path="MountainBridge7"]
+[editable path="MountainBridge8"]
