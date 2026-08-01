@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://74gbfrl3nxiq"]
+
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="1_ipmig"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="2_s0kd2"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="3_dp7p8"]
+
+[sub_resource type="Resource" id="Resource_gc7sk"]
+script = ExtResource("2_s0kd2")
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[resource]
+script = ExtResource("3_dp7p8")
+quest_id = "MountainOrb"
+quest_name = "Mountain Orb"
+is_main_quest = true
+description = "The dwarves left the mountains in too much of a hurry. We left behind the great Orb of the Mountain Wizard.
+
+If we are going to see a clear way out of this growing calamity then you will need to retrieve the orb and bring it back to me.
+
+Unfortanately, we had to blow the bridge behind us on our retreat from the mountains. This means that you will have to find another way into Halls. That shouldn't be a problem, though, there are teleporters in the mountain that will take you right to our front gate... if you are well uhh.. lucky... that is."
+display_name = "Mountains"
+destination_map = "uid://b13pb46j8ie33"
+quest_rewards = SubResource("Resource_gc7sk")
+metadata/_custom_type_script = "uid://phuimf2skp05"

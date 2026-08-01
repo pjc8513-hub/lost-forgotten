@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cdcdrl03jc84f"]
+
+[ext_resource type="PackedScene" uid="uid://dso1lh0he12ep" path="res://assets/models/mountains/TeleportTile.glb" id="1_oayqn"]
+
+[node name="TeleportTile" unique_id=453829681 instance=ExtResource("1_oayqn")]

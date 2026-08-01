@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://jbgflgqv6cpa"]
+
+[ext_resource type="PackedScene" uid="uid://bffxcfoi2ghvt" path="res://assets/models/mountains/SnowDrift1.glb" id="1_se0na"]
+
+[node name="SnowDrift1" unique_id=1821525215 instance=ExtResource("1_se0na")]
