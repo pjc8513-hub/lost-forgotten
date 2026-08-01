@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bvbtv08wys4p2"]
+
+[ext_resource type="PackedScene" uid="uid://dmrfuqvxwyejr" path="res://assets/models/mountains/MountainCave2.glb" id="1_ivmtr"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_dlmi3"]
+
+[node name="MountainCave2" unique_id=1305868361 instance=ExtResource("1_ivmtr")]
+
+[node name="GridElement" type="Node3D" parent="." index="3" unique_id=444191583]
+script = ExtResource("2_dlmi3")
+cell_shape = 1
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
