@@ -1,0 +1,14 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/maps/mountains/tunnel1/tunnel_cave_wall.tscn" id="1_base"]
+
+[node name="CaveWall" instance=ExtResource("1_base")]
+
+[node name="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="MeshInstance3D2" parent="." index="1"]
+visible = false
+
+[node name="GridElement" parent="." index="2"]
+cell_shape = 1

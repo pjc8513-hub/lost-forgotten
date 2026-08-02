@@ -1,0 +1,64 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://scenes/maps/mountains/tunnel1/tunnel_cave_wall.gdshader" id="1_shader"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_grid"]
+[ext_resource type="Material" uid="uid://cj6liape2wijv" path="res://dirt_floor_material.tres" id="3_floor"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_height"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_height"]
+noise = SubResource("FastNoiseLite_height")
+seamless = true
+in_3d_space = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_normal"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_normal"]
+noise = SubResource("FastNoiseLite_normal")
+seamless = true
+in_3d_space = true
+as_normal_map = true
+bump_strength = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wall"]
+shader = ExtResource("1_shader")
+shader_parameter/noise = SubResource("NoiseTexture2D_height")
+shader_parameter/normalmap = SubResource("NoiseTexture2D_normal")
+shader_parameter/triplanar_scale = 0.5
+shader_parameter/height_scale = 0.22
+shader_parameter/normal_strength = 0.35
+shader_parameter/albedo_color = Color(0.605062, 0.556169, 0.536664, 1)
+shader_parameter/roughness = 0.88
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall"]
+material = SubResource("ShaderMaterial_wall")
+size = Vector3(0.468509, 2, 2)
+subdivide_width = 30
+subdivide_height = 30
+subdivide_depth = 30
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_floor"]
+material = ExtResource("3_floor")
+
+[node name="CaveWall" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.244, 0, 0)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2726943, 0, 0)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="GridElement" type="Node3D" parent="."]
+script = ExtResource("2_grid")
+cell_shape = 2
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("PlaneMesh_floor")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("PlaneMesh_floor")
