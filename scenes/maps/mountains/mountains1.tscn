@@ -18,19 +18,25 @@
 [ext_resource type="PackedScene" uid="uid://dk3pu5ssng2p2" path="res://scenes/grid/castle/chest_3.tscn" id="12_i1jbs"]
 [ext_resource type="Resource" uid="uid://brxb8l6ciajxm" path="res://data/traps/ice.tres" id="13_27ieb"]
 [ext_resource type="PackedScene" uid="uid://cdcdrl03jc84f" path="res://scenes/grid/mountain/teleport_tile.tscn" id="13_v3w5d"]
-[ext_resource type="PackedScene" uid="uid://dgr6tc7bsd26x" path="res://scenes/grid/castle/torch_1.tscn" id="14_27ieb"]
 [ext_resource type="PackedScene" uid="uid://jbgflgqv6cpa" path="res://scenes/grid/mountain/snow_drift_1.tscn" id="18_w66h7"]
 [ext_resource type="PackedScene" uid="uid://ct6mngy6esulj" path="res://scenes/grid/mountain/mountain_bridge.tscn" id="19_w66h7"]
 [ext_resource type="PackedScene" uid="uid://bvbtv08wys4p2" path="res://scenes/grid/mountain/mountain_cave_2.tscn" id="21_2ftqi"]
 [ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="22_l6kkp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ed5yw"]
+albedo_color = Color(0.14622876, 0.14622876, 0.14622873, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vvxho"]
+material = SubResource("StandardMaterial3D_ed5yw")
+size = Vector3(84.439, 0.79517186, 81.40231)
 
 [node name="Mountains1" type="Node3D" unique_id=50737060]
 script = ExtResource("1_1ry1g")
 Map_ID = &"mountains1"
 has_daynight = true
 main_shader_palette_texture = ExtResource("2_4naqu")
-main_shader_dither_strength = 0.08
-main_shader_contrast = 1.3
+main_shader_dither_strength = 0.065
+main_shader_contrast = 1.05
 night_ambient_energy = 0.55
 night_directional_energy = 0.2
 night_ambient_color = Color(0.2, 0.27, 0.48, 1)
@@ -44,7 +50,7 @@ night_sky_horizon_color = Color(0.16, 0.22, 0.4, 1)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=26400923]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 12, 0)
 light_color = Color(0.82, 0.9, 1, 1)
-light_energy = 0.78
+light_energy = 0.62
 shadow_enabled = true
 directional_shadow_fade_start = 0.7
 directional_shadow_max_distance = 80.0
@@ -80,6 +86,9 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.66
 [node name="outside_torch4" parent="." unique_id=1440005907 instance=ExtResource("5_8vlij")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 10, 0, -4)
 
+[node name="outside_torch15" parent="." unique_id=1051453427 instance=ExtResource("5_8vlij")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0, 0, 0)
+
 [node name="outside_torch5" parent="." unique_id=104181232 instance=ExtResource("5_8vlij")]
 transform = Transform3D(-1.6292067e-07, 0, -1, 0, 1, 0, 1, 0, -1.6292067e-07, 19.514454, 0, 2.11917)
 
@@ -94,12 +103,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0
 
 [node name="outside_torch3" parent="." unique_id=1816199921 instance=ExtResource("5_8vlij")]
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -2, 0, -22)
-
-[node name="torch6" parent="." unique_id=267297134 instance=ExtResource("14_27ieb")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2, 0, -20)
-
-[node name="torch7" parent="." unique_id=1009381907 instance=ExtResource("14_27ieb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -20)
 
 [node name="chest3" parent="." unique_id=1001326355 instance=ExtResource("12_i1jbs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 2)
@@ -883,6 +886,9 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 22, 
 [node name="MountainEdge24" parent="." unique_id=849485107 instance=ExtResource("10_fjw7m")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 24, 0, -2)
 
+[node name="MountainEdge83" parent="." unique_id=417704664 instance=ExtResource("10_fjw7m")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26, 0, -8)
+
 [node name="MountainEdge27" parent="." unique_id=169403982 instance=ExtResource("10_fjw7m")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 34, 0, -2)
 
@@ -921,6 +927,12 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 34, 
 
 [node name="MountainEdge26" parent="." unique_id=1549808263 instance=ExtResource("5_tdnt6")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 24, 0, -6)
+
+[node name="MountainEdge81" parent="." unique_id=1000306564 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26, 0, -10)
+
+[node name="MountainEdge82" parent="." unique_id=372901793 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26, 0, -12)
 
 [node name="MountainPeak13" parent="." unique_id=811479658 instance=ExtResource("11_md3nt")]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 32, 0, -10)
@@ -1030,12 +1042,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.2593271, 18)
 script = ExtResource("10_xbe28")
 cell_shape = 2
 metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
-
-[node name="torch14" parent="." unique_id=1807068335 instance=ExtResource("14_27ieb")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -2, 0, 34)
-
-[node name="torch16" parent="." unique_id=454696253 instance=ExtResource("14_27ieb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6)
 
 [node name="outside_torch8" parent="." unique_id=771580854 instance=ExtResource("5_8vlij")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 20)
@@ -1250,6 +1256,10 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 28, 
 
 [node name="outside_torch14" parent="." unique_id=919948327 instance=ExtResource("5_8vlij")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 28, 0, 26)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=248299908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.798302, -6.237302, 15.614273)
+mesh = SubResource("BoxMesh_vvxho")
 
 [editable path="button"]
 [editable path="chest3"]
