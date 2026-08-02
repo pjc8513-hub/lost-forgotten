@@ -5,6 +5,7 @@ signal activated(switch: SwitchComponent, exported_data: Dictionary, results: Ar
 
 @export var target_door_ids: Array[StringName]
 @export var target_blocker_ids: Array[StringName]
+@export var target_teleporter_ids: Array[StringName]
 
 func activate() -> void:
 	var results: Array[String] = []

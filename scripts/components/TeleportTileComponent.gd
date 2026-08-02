@@ -3,7 +3,9 @@ extends Node
 
 ## Teleports the player to one of the configured spawn points on the current map
 ## when the tile is stepped on.
+@export var teleport_id: StringName
 @export var spawn_location_ids: Array[StringName] = []
+@export var is_activated: bool = true
 
 func trigger(actor: Node) -> void:
 	if actor == null or actor != StageManager.player:
