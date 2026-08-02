@@ -2,8 +2,7 @@ shader_type spatial;
 
 render_mode unshaded,
 			cull_disabled,
-			depth_draw_opaque,
-			blend_mix;
+			depth_draw_opaque;
 
 uniform sampler2D flame_texture : source_color, filter_nearest;
 
@@ -50,8 +49,11 @@ void vertex() {
 
 void fragment() {
 	vec4 texture_color = texture(flame_texture, UV);
+	// NoiseTexture2D provides the useful flame shape in its grayscale
+	// channels; its alpha channel is not a reliable mask for this material.
+	float flame_alpha = texture_color.r;
 
-	if (texture_color.a < alpha_cutoff) {
+	if (flame_alpha < alpha_cutoff) {
 		discard;
 	}
 
@@ -78,7 +80,8 @@ void fragment() {
 		+ sin(TIME * pulse_speed) * 0.07
 		+ sin(TIME * 17.0) * 0.03;
 
-	ALBEDO = flame_color * texture_color.rgb * pulse;
+	ALBEDO = flame_color * pulse;
 	EMISSION = flame_color * emission_strength * pulse;
-	ALPHA = texture_color.a;
+	// Keep this as an opaque cutout. Writing ALPHA would move the material
+	// into the transparent pipeline and can sort incorrectly against the sky.
 }
