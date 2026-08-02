@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://46akkm006pd"]
+
+[ext_resource type="Script" uid="uid://d3memun0m0avi" path="res://scripts/components/NPCTileComponent.gd" id="1_5n1an"]
+[ext_resource type="Texture2D" uid="uid://cfvbbk544xkua" path="res://assets/sprites/objects/flame.png" id="2_wo0ou"]
+[ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="3_o216x"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="4_ketcf"]
+
+[node name="Mysterious" type="Node3D" unique_id=1524911491]
+script = ExtResource("1_5n1an")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=118916732]
+light_color = Color(5.2943824e-07, 0.18884462, 0.19128251, 1)
+light_projector = ExtResource("2_wo0ou")
+shadow_enabled = true
+omni_range = 0.25
+omni_attenuation = 6.0
+omni_shadow_mode = 0
+
+[node name="BlockerComponent" type="Node" parent="." unique_id=1826681172]
+script = ExtResource("3_o216x")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="GridElement" type="Node3D" parent="." unique_id=1047679573]
+script = ExtResource("4_ketcf")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"

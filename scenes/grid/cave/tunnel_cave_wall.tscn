@@ -1,6 +1,6 @@
 [gd_scene format=3]
 
-[ext_resource type="Shader" path="res://scenes/maps/mountains/tunnel1/tunnel_cave_wall.gdshader" id="1_shader"]
+[ext_resource type="Shader" uid="uid://b4a6reg2xjrhi" path="res://scenes/grid/cave/tunnel_cave_wall.gdshader" id="1_shader"]
 [ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_grid"]
 [ext_resource type="Material" uid="uid://cj6liape2wijv" path="res://dirt_floor_material.tres" id="3_floor"]
 

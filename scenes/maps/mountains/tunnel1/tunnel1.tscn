@@ -3,29 +3,129 @@
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_rdf4x"]
 [ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_baf5k"]
 [ext_resource type="Environment" uid="uid://c8mtos8qqcatq" path="res://scenes/maps/mountains/tunnel1/tunnel_environment.tres" id="3_1rhvx"]
-[ext_resource type="PackedScene" path="res://scenes/maps/mountains/tunnel1/tunnel_cave_corner2.tscn" id="4_yqq06"]
-[ext_resource type="PackedScene" path="res://scenes/maps/mountains/tunnel1/tunnel_cave_wall2.tscn" id="5_vhval"]
-[ext_resource type="PackedScene" path="res://scenes/maps/mountains/tunnel1/tunnel_cave_wall.tscn" id="6_cv1he"]
+[ext_resource type="PackedScene" path="res://scenes/grid/cave/tunnel_cave_corner2.tscn" id="4_yqq06"]
+[ext_resource type="PackedScene" uid="uid://o4qof71bxj3x" path="res://scenes/grid/cave/tunnel_exit_4.tscn" id="5_jesio"]
+[ext_resource type="PackedScene" path="res://scenes/grid/cave/tunnel_cave_wall2.tscn" id="5_vhval"]
+[ext_resource type="PackedScene" path="res://scenes/grid/cave/tunnel_cave_wall.tscn" id="6_cv1he"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="6_w8v8m"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="7_1ue0g"]
 [ext_resource type="PackedScene" uid="uid://dgr6tc7bsd26x" path="res://scenes/grid/castle/torch_1.tscn" id="7_074d5"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="8_2im8b"]
 [ext_resource type="PackedScene" uid="uid://dkc3s7ctxge3" path="res://scenes/grid/cave/cave_floor.tscn" id="8_vhval"]
-[ext_resource type="Script" uid="uid://c1lus734wl56v" path="res://scripts/components/BumpComponent.gd" id="9_074d5"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="9_cv1he"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="9_or7pg"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="10_hwqfj"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="11_bmu5g"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="12_yuna5"]
+[ext_resource type="PackedScene" uid="uid://dk3pu5ssng2p2" path="res://scenes/grid/castle/chest_3.tscn" id="13_bmu5g"]
+[ext_resource type="Resource" uid="uid://dd5a150sn26i3" path="res://data/traps/poison.tres" id="14_yuna5"]
+[ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="19_bmu5g"]
+[ext_resource type="PackedScene" uid="uid://cjijg1qrqe1aj" path="res://scenes/grid/cave/cave_wall.tscn" id="20_q7fox"]
+[ext_resource type="PackedScene" uid="uid://3g2uyrrit8mw" path="res://scenes/grid/cave/cave_pillar2.tscn" id="21_8gfax"]
+[ext_resource type="PackedScene" uid="uid://f33bbchmgqhy" path="res://scenes/grid/cave/cave_dead2.tscn" id="22_d7fnt"]
+[ext_resource type="PackedScene" uid="uid://46akkm006pd" path="res://scenes/actors/npc/mysterious_creature.tscn" id="23_hwqfj"]
+
+[sub_resource type="Resource" id="Resource_5n1an"]
+script = ExtResource("6_w8v8m")
+persistent_id = &"mysterious2"
+npc_name = "Mysterious Entity"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
+
+[sub_resource type="Resource" id="Resource_17y4e"]
+script = ExtResource("10_hwqfj")
+type = 6
+target_id = "tunnel1.entrance"
+destination_map = "uid://b13pb46j8ie33"
+destination_spawn_id = &"tunnel1.entrance"
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_2dj48"]
+script = ExtResource("7_1ue0g")
+text = "Exit tunnel."
+immediate_rewards = Array[ExtResource("10_hwqfj")]([SubResource("Resource_17y4e")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_31ccm"]
+script = ExtResource("6_w8v8m")
+persistent_id = &"Tunnel1Entrance"
+npc_name = "Tunnel Exit"
+dialogue_nodes = Array[ExtResource("7_1ue0g")]([SubResource("Resource_2dj48")])
+dialogue_label = "Exit"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
+
+[sub_resource type="Resource" id="Resource_7yg34"]
+script = ExtResource("10_hwqfj")
+type = 6
+target_id = "tunnel1.exit"
+destination_map = "uid://b13pb46j8ie33"
+destination_spawn_id = &"tunnel1.exit"
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_jvya7"]
+script = ExtResource("7_1ue0g")
+text = "Exit the cave"
+immediate_rewards = Array[ExtResource("10_hwqfj")]([SubResource("Resource_7yg34")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_7ov23"]
+script = ExtResource("6_w8v8m")
+persistent_id = &"MountainTunnelExit2"
+npc_name = "Tunnel Exit"
+dialogue_nodes = Array[ExtResource("7_1ue0g")]([SubResource("Resource_jvya7")])
+dialogue_label = "Exit"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
 [node name="Tunnel1" type="Node3D" unique_id=1830676828]
 script = ExtResource("1_rdf4x")
 Map_ID = &"MountainTunnel1"
+main_screen_filter_visible = false
 main_shader_palette_texture = ExtResource("2_baf5k")
 main_shader_dither_strength = 0.04
 main_shader_contrast = 1.1
+
+[node name="Mysterious" parent="." unique_id=1524911491 instance=ExtResource("23_hwqfj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -10)
+npc_tile_id = &"mysterious1"
+NPC_List = Array[ExtResource("6_w8v8m")]([SubResource("Resource_5n1an")])
+
+[node name="Mysterious2" parent="." unique_id=436345158 instance=ExtResource("23_hwqfj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -12)
+npc_tile_id = &"mysterious2"
+NPC_List = Array[ExtResource("6_w8v8m")]([SubResource("Resource_5n1an")])
 
 [node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("9_cv1he")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 spawn_id = &"entrance"
 
+[node name="MapSpawnPoint2" parent="." unique_id=1688285265 instance=ExtResource("9_cv1he")]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 6, 0, -22.000004)
+spawn_id = &"exit"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=304772058]
 environment = ExtResource("3_1rhvx")
 
+[node name="tunnel_entrance" parent="." unique_id=133908069 instance=ExtResource("5_jesio")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 2, 0, 8)
+npc_tile_id = &"Tunnel1Entrance"
+NPC_List = Array[ExtResource("6_w8v8m")]([SubResource("Resource_31ccm")])
+
+[node name="chest3" parent="." unique_id=1001326355 instance=ExtResource("13_bmu5g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 2)
+
+[node name="ChestComponent" parent="chest3" index="4" unique_id=971460780]
+chest_ID = &"tunnel1.chest1"
+gold_roll_dice = 2
+loot_table = 1
+is_trapped = true
+trap_type = ExtResource("14_yuna5")
+
 [node name="CaveWall" parent="." unique_id=376560664 instance=ExtResource("4_yqq06")]
+
+[node name="CaveWall16" parent="." unique_id=863808674 instance=ExtResource("4_yqq06")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="CaveWall17" parent="." unique_id=949799658 instance=ExtResource("4_yqq06")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0, -2)
 
 [node name="CaveWall9" parent="." unique_id=1578522518 instance=ExtResource("4_yqq06")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0, 0)
@@ -35,6 +135,9 @@ transform = Transform3D(1.1924882e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924882e-08, 0, 0
 
 [node name="CaveWall7" parent="." unique_id=1807503028 instance=ExtResource("4_yqq06")]
 transform = Transform3D(-1, 0, -3.1786506e-08, 0, 1, 0, 3.1786506e-08, 0, -1, 6, 0, 4)
+
+[node name="CaveWall27" parent="." unique_id=332482032 instance=ExtResource("4_yqq06")]
+transform = Transform3D(-1, 0, -3.1786506e-08, 0, 1, 0, 3.1786506e-08, 0, -1, 12, 0, 2)
 
 [node name="CaveWall2" parent="." unique_id=1314168483 instance=ExtResource("5_vhval")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
@@ -49,7 +152,127 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0
 transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 6, 0, 2)
 
 [node name="CaveWall11" parent="." unique_id=1305237510 instance=ExtResource("5_vhval")]
-transform = Transform3D(7.549789e-08, 0, -1, 0, 1, 0, 1, 0, 7.549789e-08, 4, 0, 0)
+transform = Transform3D(7.549789e-08, 0, -1, 0, 1, 0, 1, 0, 7.549789e-08, 8, 0, -4)
+
+[node name="CaveWall24" parent="." unique_id=1474073644 instance=ExtResource("5_vhval")]
+transform = Transform3D(7.549789e-08, 0, -1, 0, 1, 0, 1, 0, 7.549789e-08, 10, 0, -4)
+
+[node name="CaveWall28" parent="." unique_id=1801525594 instance=ExtResource("5_vhval")]
+transform = Transform3D(-1, 0, -3.17865e-08, 0, 1, 0, 3.17865e-08, 0, -1, 12, 0, -4)
+
+[node name="CaveWall31" parent="." unique_id=452756859 instance=ExtResource("5_vhval")]
+transform = Transform3D(-1, 0, -3.17865e-08, 0, 1, 0, 3.17865e-08, 0, -1, 12, 0, -6)
+
+[node name="CaveWall32" parent="." unique_id=1861489707 instance=ExtResource("5_vhval")]
+transform = Transform3D(-1, 0, -3.17865e-08, 0, 1, 0, 3.17865e-08, 0, -1, 12, 0, -8)
+
+[node name="CaveWall33" parent="." unique_id=280290833 instance=ExtResource("5_vhval")]
+transform = Transform3D(-1, 0, -3.17865e-08, 0, 1, 0, 3.17865e-08, 0, -1, 12, 0, -10)
+
+[node name="CaveWall35" parent="." unique_id=1899237966 instance=ExtResource("5_vhval")]
+transform = Transform3D(7.549789e-08, 0, -1, 0, 1, 0, 1, 0, 7.549789e-08, 10, 0, -12)
+
+[node name="CaveWall36" parent="." unique_id=726025935 instance=ExtResource("5_vhval")]
+transform = Transform3D(7.549789e-08, 0, -1, 0, 1, 0, 1, 0, 7.549789e-08, 8, 0, -12)
+
+[node name="CaveWall57" parent="." unique_id=665576256 instance=ExtResource("5_vhval")]
+transform = Transform3D(-1, 0, -3.17865e-08, 0, 1, 0, 3.17865e-08, 0, -1, 8, 0, -14)
+
+[node name="BlockerComponent" type="Node" parent="CaveWall57" unique_id=1353105351]
+script = ExtResource("19_bmu5g")
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="CaveWall58" parent="." unique_id=1734897618 instance=ExtResource("5_vhval")]
+transform = Transform3D(-1, 0, -3.17865e-08, 0, 1, 0, 3.17865e-08, 0, -1, 8, 0, -16)
+
+[node name="BlockerComponent" type="Node" parent="CaveWall58" unique_id=282442218]
+script = ExtResource("19_bmu5g")
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="CaveWall59" parent="." unique_id=929748218 instance=ExtResource("5_vhval")]
+transform = Transform3D(-1, 0, -3.17865e-08, 0, 1, 0, 3.17865e-08, 0, -1, 8, 0, -18)
+
+[node name="BlockerComponent" type="Node" parent="CaveWall59" unique_id=45735964]
+script = ExtResource("19_bmu5g")
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="CaveWall60" parent="." unique_id=232458555 instance=ExtResource("5_vhval")]
+transform = Transform3D(-1, 0, -3.17865e-08, 0, 1, 0, 3.17865e-08, 0, -1, 8, 0, -20)
+
+[node name="BlockerComponent" type="Node" parent="CaveWall60" unique_id=758264692]
+script = ExtResource("19_bmu5g")
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="CaveWall38" parent="." unique_id=1679449676 instance=ExtResource("5_vhval")]
+transform = Transform3D(1, 0, 1.19209275e-07, 0, 1, 0, -1.19209275e-07, 0, 1, 6, 0, -10)
+
+[node name="CaveWall39" parent="." unique_id=1133845311 instance=ExtResource("5_vhval")]
+transform = Transform3D(1, 0, 1.19209275e-07, 0, 1, 0, -1.19209275e-07, 0, 1, 6, 0, -8)
+
+[node name="CaveWall44" parent="." unique_id=646957683 instance=ExtResource("5_vhval")]
+transform = Transform3D(1, 0, 1.19209275e-07, 0, 1, 0, -1.19209275e-07, 0, 1, 4, 0, -8)
+
+[node name="CaveWall45" parent="." unique_id=982838387 instance=ExtResource("5_vhval")]
+transform = Transform3D(1, 0, 1.19209275e-07, 0, 1, 0, -1.19209275e-07, 0, 1, 4, 0, -10)
+
+[node name="CaveWall47" parent="." unique_id=1746774832 instance=ExtResource("5_vhval")]
+transform = Transform3D(-1.6292066e-07, 0, 1, 0, 1, 0, -1, 0, -1.6292066e-07, 2, 0, -10)
+
+[node name="CaveWall48" parent="." unique_id=1132240209 instance=ExtResource("5_vhval")]
+transform = Transform3D(-1.6292066e-07, 0, 1, 0, 1, 0, -1, 0, -1.6292066e-07, 0, 0, -10)
+
+[node name="CaveWall50" parent="." unique_id=316419526 instance=ExtResource("5_vhval")]
+transform = Transform3D(1, 0, 1.1920927e-07, 0, 1, 0, -1.1920927e-07, 0, 1, -2, 0, -14)
+
+[node name="CaveWall54" parent="." unique_id=1010154182 instance=ExtResource("5_vhval")]
+transform = Transform3D(1, 0, 1.1920927e-07, 0, 1, 0, -1.1920927e-07, 0, 1, 2, 0, -18)
+
+[node name="BlockerComponent" type="Node" parent="CaveWall54" unique_id=1369383524]
+script = ExtResource("19_bmu5g")
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="CaveWall55" parent="." unique_id=1422380680 instance=ExtResource("5_vhval")]
+transform = Transform3D(1, 0, 1.1920927e-07, 0, 1, 0, -1.1920927e-07, 0, 1, 2, 0, -20)
+
+[node name="BlockerComponent" type="Node" parent="CaveWall55" unique_id=225606219]
+script = ExtResource("19_bmu5g")
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="CaveWall56" parent="." unique_id=13689087 instance=ExtResource("5_vhval")]
+transform = Transform3D(7.549788e-08, 0, -1, 0, 1, 0, 1, 0, 7.549788e-08, 4, 0, -22)
+
+[node name="CaveWall51" parent="." unique_id=560650017 instance=ExtResource("5_vhval")]
+transform = Transform3D(1, 0, 1.1920927e-07, 0, 1, 0, -1.1920927e-07, 0, 1, -2, 0, -12)
+
+[node name="CaveWall29" parent="." unique_id=444612108 instance=ExtResource("5_vhval")]
+transform = Transform3D(-1, 0, -3.17865e-08, 0, 1, 0, 3.17865e-08, 0, -1, 12, 0, -2)
+
+[node name="CaveWall40" parent="." unique_id=1703968950 instance=ExtResource("5_vhval")]
+transform = Transform3D(1.19248895e-08, 0, 1, 0, 1, 0, -1, 0, 1.19248895e-08, 10, 0, -2)
+
+[node name="CaveWall42" parent="." unique_id=503553236 instance=ExtResource("5_vhval")]
+transform = Transform3D(1.19248895e-08, 0, 1, 0, 1, 0, -1, 0, 1.19248895e-08, 10, 0, 2)
+
+[node name="CaveWall43" parent="." unique_id=1619514685 instance=ExtResource("5_vhval")]
+transform = Transform3D(1.19248895e-08, 0, 1, 0, 1, 0, -1, 0, 1.19248895e-08, 8, 0, 2)
+
+[node name="CaveWall41" parent="." unique_id=854784167 instance=ExtResource("5_vhval")]
+transform = Transform3D(1.19248895e-08, 0, 1, 0, 1, 0, -1, 0, 1.19248895e-08, 8, 0, -2)
+
+[node name="CaveWall30" parent="." unique_id=35851248 instance=ExtResource("5_vhval")]
+transform = Transform3D(-1, 0, -3.17865e-08, 0, 1, 0, 3.17865e-08, 0, -1, 12, 0, 0)
 
 [node name="CaveWall12" parent="." unique_id=715393453 instance=ExtResource("5_vhval")]
 transform = Transform3D(7.549789e-08, 0, -1, 0, 1, 0, 1, 0, 7.549789e-08, 2, 0, 0)
@@ -64,6 +287,18 @@ shadow_enabled = true
 omni_range = 3.5
 
 [node name="MeshInstance3D3" parent="torch2" index="2" unique_id=641132209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.706656, 0.570672, 0)
+
+[node name="torch3" parent="." unique_id=179294296 instance=ExtResource("7_074d5")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 8.929747, 0, 0.58340657)
+
+[node name="OmniLight3D" parent="torch3" index="1" unique_id=109918779]
+light_energy = 0.75
+light_volumetric_fog_energy = 0.5
+shadow_enabled = true
+omni_range = 3.5
+
+[node name="MeshInstance3D3" parent="torch3" index="2" unique_id=641132209]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.706656, 0.570672, 0)
 
 [node name="torch4" parent="." unique_id=114712456 instance=ExtResource("7_074d5")]
@@ -81,20 +316,194 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0
 [node name="CaveWall3" parent="." unique_id=493790269 instance=ExtResource("8_vhval")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 2)
 
-[node name="CaveBump1" parent="." unique_id=1125276579 instance=ExtResource("8_vhval")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 8)
-
-[node name="GridElement" parent="CaveBump1" index="0" unique_id=533846842]
-transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 0, 0, 0)
-cell_shape = 1
-
-[node name="BumpComponent" type="Node" parent="CaveBump1" unique_id=984392982]
-script = ExtResource("9_074d5")
-metadata/_custom_type_script = "uid://c1lus734wl56v"
-
 [node name="CaveWall8" parent="." unique_id=247284013 instance=ExtResource("8_vhval")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 2)
 
+[node name="CaveWall15" parent="." unique_id=726429523 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 0)
+
+[node name="CaveWall20" parent="." unique_id=1057937824 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, -4)
+
+[node name="CaveWall23" parent="." unique_id=1903928937 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, -6)
+
+[node name="CaveWall21" parent="." unique_id=1462800114 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, -4)
+
+[node name="CaveWall22" parent="." unique_id=1601738520 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, -4)
+
+[node name="CaveWall14" parent="." unique_id=371295501 instance=ExtResource("20_q7fox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
+
+[node name="CavePillar" parent="." unique_id=651399033 instance=ExtResource("21_8gfax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -6)
+
+[node name="CavePillar2" parent="." unique_id=1413182 instance=ExtResource("21_8gfax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -6)
+
+[node name="CaveDead" parent="." unique_id=1078031177 instance=ExtResource("22_d7fnt")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -4)
+
+[node name="CaveFloor" parent="." unique_id=702879172 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 0)
+
+[node name="CaveFloor2" parent="." unique_id=182149042 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 0, 0)
+
+[node name="CaveWall34" parent="." unique_id=580222677 instance=ExtResource("4_yqq06")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 12, 0, -12)
+
+[node name="CaveWall61" parent="." unique_id=708988755 instance=ExtResource("4_yqq06")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 8, 0, -22)
+
+[node name="BlockerComponent" type="Node" parent="CaveWall61" unique_id=2008872074]
+script = ExtResource("19_bmu5g")
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="CaveWall62" parent="." unique_id=1032658178 instance=ExtResource("4_yqq06")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 2, 0, -22)
+
+[node name="BlockerComponent" type="Node" parent="CaveWall62" unique_id=1605899250]
+script = ExtResource("19_bmu5g")
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="CaveWall37" parent="." unique_id=1706428801 instance=ExtResource("4_yqq06")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 6, 0, -12)
+
+[node name="CaveWall46" parent="." unique_id=779237071 instance=ExtResource("4_yqq06")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 2, 0, -12)
+
+[node name="CaveWall52" parent="." unique_id=1277962179 instance=ExtResource("4_yqq06")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2, 0, -16)
+
+[node name="CaveWall53" parent="." unique_id=1927725022 instance=ExtResource("4_yqq06")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, -16)
+
+[node name="CaveWall49" parent="." unique_id=151031720 instance=ExtResource("4_yqq06")]
+transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, -2, 0, -10)
+
+[node name="CaveFloor3" parent="." unique_id=1228469386 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 0, -6)
+
+[node name="CaveFloor4" parent="." unique_id=1088564408 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 0, -8)
+
+[node name="CaveFloor5" parent="." unique_id=555322167 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 0, -10)
+
+[node name="CaveFloor6" parent="." unique_id=1143443726 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, -10)
+
+[node name="CaveFloor18" parent="." unique_id=636666933 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, -12)
+
+[node name="CaveFloor7" parent="." unique_id=1148648696 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, -8)
+
+[node name="CaveFloor8" parent="." unique_id=1761455299 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, -6)
+
+[node name="CaveFloor9" parent="." unique_id=1351408074 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, -16)
+
+[node name="BlockerComponent" type="Node" parent="CaveFloor9" unique_id=258222103]
+script = ExtResource("19_bmu5g")
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="CaveFloor10" parent="." unique_id=1356788296 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, -14)
+
+[node name="BlockerComponent" type="Node" parent="CaveFloor10" unique_id=1930379551]
+script = ExtResource("19_bmu5g")
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="CaveFloor11" parent="." unique_id=1414658051 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, -16)
+
+[node name="BlockerComponent" type="Node" parent="CaveFloor11" unique_id=126320576]
+script = ExtResource("19_bmu5g")
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="CaveFloor12" parent="." unique_id=697751645 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, -16)
+
+[node name="BlockerComponent" type="Node" parent="CaveFloor12" unique_id=466143324]
+script = ExtResource("19_bmu5g")
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="CaveFloor13" parent="." unique_id=1204226446 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, -14)
+
+[node name="BlockerComponent" type="Node" parent="CaveFloor13" unique_id=1053395551]
+script = ExtResource("19_bmu5g")
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="CaveFloor14" parent="." unique_id=957137488 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, -14)
+
+[node name="BlockerComponent" type="Node" parent="CaveFloor14" unique_id=787447639]
+script = ExtResource("19_bmu5g")
+blocks_movement = false
+blocks_vision = true
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
+[node name="CaveFloor15" parent="." unique_id=877584701 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -14)
+
+[node name="CaveFloor16" parent="." unique_id=1983743220 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -12)
+
+[node name="CavePillar3" parent="." unique_id=1429548325 instance=ExtResource("21_8gfax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -18)
+
+[node name="CavePillar4" parent="." unique_id=616821490 instance=ExtResource("21_8gfax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -18)
+
+[node name="CavePillar5" parent="." unique_id=997189178 instance=ExtResource("21_8gfax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -20)
+
+[node name="CavePillar6" parent="." unique_id=2007772818 instance=ExtResource("21_8gfax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -20)
+
+[node name="CaveFloor17" parent="." unique_id=513543016 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, -22)
+
+[node name="tunnel_exit4" parent="." unique_id=1349459147 instance=ExtResource("5_jesio")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0, -24)
+npc_tile_id = &"MountainTunnel.exit2"
+NPC_List = Array[ExtResource("6_w8v8m")]([SubResource("Resource_7ov23")])
+
+[editable path="tunnel_entrance"]
+[editable path="chest3"]
+[editable path="CaveWall57"]
+[editable path="CaveWall58"]
+[editable path="CaveWall59"]
+[editable path="CaveWall60"]
+[editable path="CaveWall54"]
+[editable path="CaveWall55"]
 [editable path="torch2"]
+[editable path="torch3"]
 [editable path="torch4"]
-[editable path="CaveBump1"]
+[editable path="CaveWall61"]
+[editable path="CaveWall62"]
+[editable path="CaveFloor9"]
+[editable path="CaveFloor10"]
+[editable path="CaveFloor11"]
+[editable path="CaveFloor13"]
+[editable path="CaveFloor14"]

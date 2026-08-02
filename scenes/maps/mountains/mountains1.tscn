@@ -50,7 +50,29 @@ script = ExtResource("24_jvya7")
 persistent_id = &"TunnelEntrance1"
 npc_name = "Tunnel Entrance"
 dialogue_nodes = Array[ExtResource("25_7yg34")]([SubResource("Resource_vvxho")])
-dialogue_label = "Inspect"
+dialogue_label = "Enter"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
+
+[sub_resource type="Resource" id="Resource_7ov23"]
+script = ExtResource("28_jpd0h")
+type = 6
+target_id = "exit"
+destination_map = "uid://sttl0bxl3wn6"
+destination_spawn_id = &"exit"
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_jvya7"]
+script = ExtResource("25_7yg34")
+text = "Enter tunnel"
+immediate_rewards = Array[ExtResource("28_jpd0h")]([SubResource("Resource_7ov23")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_7yg34"]
+script = ExtResource("24_jvya7")
+persistent_id = &"mountaintunnelexit"
+npc_name = "Tunnel Entrance"
+dialogue_nodes = Array[ExtResource("25_7yg34")]([SubResource("Resource_jvya7")])
+dialogue_label = "Enter"
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ed5yw"]
@@ -110,8 +132,16 @@ spawn_id = &"teleport.3"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -12)
 spawn_id = &"teleport.4"
 
+[node name="MapSpawnPoint6" parent="." unique_id=1287743324 instance=ExtResource("4_2dwgv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 2)
+spawn_id = &"tunnel1.entrance"
+
+[node name="MapSpawnPoint7" parent="." unique_id=13489214 instance=ExtResource("4_2dwgv")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 30, 0, 20)
+spawn_id = &"tunnel1.exit"
+
 [node name="button" parent="." unique_id=1618898909 instance=ExtResource("5_l6kkp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 20)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 24, 0, 20)
 
 [node name="SwitchComponent" parent="button" index="3" unique_id=1763643439]
 target_teleporter_ids = Array[StringName]([&"mountain.teleport.1"])
@@ -1270,6 +1300,14 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32, 
 
 [node name="MountainCave5" parent="." unique_id=1351865950 instance=ExtResource("21_2ftqi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 18)
+script = ExtResource("23_7ov23")
+npc_tile_id = &"mountaintunnelexit"
+NPC_List = Array[ExtResource("24_jvya7")]([SubResource("Resource_7yg34")])
+
+[node name="BlockerComponent" type="Node" parent="MountainCave5" unique_id=599571221]
+script = ExtResource("22_l6kkp")
+blocker_ID = &"tunnelexitblock"
+metadata/_custom_type_script = "uid://cpd6aclgammco"
 
 [node name="MountainEdge69" parent="." unique_id=1441995108 instance=ExtResource("5_tdnt6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, 24)
@@ -1468,6 +1506,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12,
 [editable path="MountainCave2"]
 [editable path="MountainCave4"]
 [editable path="TeleportWall61"]
+[editable path="MountainCave5"]
 [editable path="TeleportEdge85"]
 [editable path="chest9"]
 [editable path="button2"]
