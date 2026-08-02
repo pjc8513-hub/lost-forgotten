@@ -54,6 +54,6 @@ volumetric_fog_length = 48.0
 volumetric_fog_detail_spread = 1.8
 volumetric_fog_sky_affect = 0.7
 adjustment_enabled = true
-adjustment_contrast = 0.82
+adjustment_contrast = 0.75
 adjustment_saturation = 0.72
 adjustment_color_correction = SubResource("CurveTexture_mywnk")

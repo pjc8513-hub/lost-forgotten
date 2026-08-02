@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cx3wstmy23xhl"]
+
+[ext_resource type="PackedScene" uid="uid://bvn8dv1ybxuu1" path="res://assets/models/mountains/MountainRange2.glb" id="1_qpjs8"]
+
+[node name="MountainRange2" unique_id=1581050580 instance=ExtResource("1_qpjs8")]
