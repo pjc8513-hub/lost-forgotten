@@ -46,6 +46,7 @@ script = ExtResource("2_h8li0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cube_001" parent_id_path=PackedInt32Array(1119485855) index="0" unique_id=899023523]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.037719738, 2.034768, -2.490003)
+visible = false
 mesh = SubResource("BoxMesh_xa8nu")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="2" unique_id=1342125154]

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dkc3s7ctxge3"]
+
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_w0ek7"]
+[ext_resource type="Material" uid="uid://cj6liape2wijv" path="res://dirt_floor_material.tres" id="3_fnvro"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xa8nu"]
+material = ExtResource("3_fnvro")
+
+[node name="CaveFloor" type="Node3D" unique_id=376560664]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="GridElement" type="Node3D" parent="." unique_id=533846842]
+script = ExtResource("2_w0ek7")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1073056902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("PlaneMesh_xa8nu")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=38553376]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("PlaneMesh_xa8nu")

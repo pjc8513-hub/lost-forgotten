@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://ceb6n7rwhp5ny"]
+
+[ext_resource type="Shader" uid="uid://cxhf8ndj6kvxo" path="res://scenes/grid/cave/cave_wall.gdshader" id="1_tbxqi"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_oj3ip"]
+[ext_resource type="Material" uid="uid://cj6liape2wijv" path="res://dirt_floor_material.tres" id="3_r36k3"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hhrfr"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ed5yw"]
+noise = SubResource("FastNoiseLite_hhrfr")
+seamless = true
+in_3d_space = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0avfp"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8t0nk"]
+noise = SubResource("FastNoiseLite_0avfp")
+seamless = true
+in_3d_space = true
+as_normal_map = true
+bump_strength = 9.9
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gyyt5"]
+render_priority = 0
+shader = ExtResource("1_tbxqi")
+shader_parameter/noise = SubResource("NoiseTexture2D_ed5yw")
+shader_parameter/normalmap = SubResource("NoiseTexture2D_8t0nk")
+shader_parameter/triplanar_scale = 0.5
+shader_parameter/height_scale = 0.3
+shader_parameter/albedo_color = Color(0.605062, 0.55616885, 0.53666407, 1)
+shader_parameter/roughness = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_xa8nu"]
+material = SubResource("ShaderMaterial_gyyt5")
+size = Vector3(0.46850878, 2, 2)
+subdivide_width = 30
+subdivide_height = 30
+subdivide_depth = 30
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xa8nu"]
+material = ExtResource("3_r36k3")
+
+[node name="CaveWall" type="Node3D" unique_id=376560664]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1491502984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+mesh = SubResource("BoxMesh_xa8nu")
+
+[node name="GridElement" type="Node3D" parent="." unique_id=533846842]
+script = ExtResource("2_oj3ip")
+cell_shape = 1
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1073056902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("PlaneMesh_xa8nu")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=38553376]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("PlaneMesh_xa8nu")

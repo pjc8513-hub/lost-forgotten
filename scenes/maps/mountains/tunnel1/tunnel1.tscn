@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://sttl0bxl3wn6"]
+
+[ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_rdf4x"]
+[ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_baf5k"]
+[ext_resource type="Environment" uid="uid://cv7posx2uelkc" path="res://data/bonepit_environment.tres" id="3_1rhvx"]
+[ext_resource type="PackedScene" uid="uid://choo5xi1jr4qr" path="res://scenes/grid/cave/cave_corner2.tscn" id="4_yqq06"]
+[ext_resource type="PackedScene" uid="uid://ceb6n7rwhp5ny" path="res://scenes/grid/cave/cave_wall2.tscn" id="5_vhval"]
+[ext_resource type="PackedScene" uid="uid://cjijg1qrqe1aj" path="res://scenes/grid/cave/cave_wall.tscn" id="6_cv1he"]
+[ext_resource type="PackedScene" uid="uid://dgr6tc7bsd26x" path="res://scenes/grid/castle/torch_1.tscn" id="7_074d5"]
+[ext_resource type="PackedScene" uid="uid://dkc3s7ctxge3" path="res://scenes/grid/cave/cave_floor.tscn" id="8_vhval"]
+[ext_resource type="Script" uid="uid://c1lus734wl56v" path="res://scripts/components/BumpComponent.gd" id="9_074d5"]
+[ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="9_cv1he"]
+
+[node name="Tunnel1" type="Node3D" unique_id=1830676828]
+script = ExtResource("1_rdf4x")
+Map_ID = &"MountainTunnel1"
+main_shader_palette_texture = ExtResource("2_baf5k")
+main_shader_dither_strength = 0.08
+main_shader_contrast = 1.3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=304772058]
+environment = ExtResource("3_1rhvx")
+
+[node name="CaveWall" parent="." unique_id=376560664 instance=ExtResource("4_yqq06")]
+
+[node name="CaveWall9" parent="." unique_id=1578522518 instance=ExtResource("4_yqq06")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0, 0)
+
+[node name="CaveWall4" parent="." unique_id=799308883 instance=ExtResource("4_yqq06")]
+transform = Transform3D(1.1924882e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924882e-08, 0, 0, 4)
+
+[node name="CaveWall7" parent="." unique_id=1807503028 instance=ExtResource("4_yqq06")]
+transform = Transform3D(-1, 0, -3.1786506e-08, 0, 1, 0, 3.1786506e-08, 0, -1, 6, 0, 4)
+
+[node name="CaveWall2" parent="." unique_id=1314168483 instance=ExtResource("5_vhval")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="CaveWall5" parent="." unique_id=1828272550 instance=ExtResource("6_cv1he")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="CaveWall6" parent="." unique_id=32853634 instance=ExtResource("5_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 4)
+
+[node name="CaveWall10" parent="." unique_id=90061295 instance=ExtResource("5_vhval")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 6, 0, 2)
+
+[node name="CaveWall11" parent="." unique_id=1305237510 instance=ExtResource("5_vhval")]
+transform = Transform3D(7.549789e-08, 0, -1, 0, 1, 0, 1, 0, 7.549789e-08, 4, 0, 0)
+
+[node name="CaveWall12" parent="." unique_id=715393453 instance=ExtResource("5_vhval")]
+transform = Transform3D(7.549789e-08, 0, -1, 0, 1, 0, 1, 0, 7.549789e-08, 2, 0, 0)
+
+[node name="torch2" parent="." unique_id=145136520 instance=ExtResource("7_074d5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 2)
+
+[node name="torch4" parent="." unique_id=114712456 instance=ExtResource("7_074d5")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 2)
+
+[node name="CaveWall13" parent="." unique_id=1195983202 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 4)
+
+[node name="CaveWall3" parent="." unique_id=493790269 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 2)
+
+[node name="CaveBump1" parent="." unique_id=1125276579 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 8)
+
+[node name="GridElement" parent="CaveBump1" index="0" unique_id=533846842]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 0, 0, 0)
+cell_shape = 1
+
+[node name="BumpComponent" type="Node" parent="CaveBump1" unique_id=984392982]
+script = ExtResource("9_074d5")
+metadata/_custom_type_script = "uid://c1lus734wl56v"
+
+[node name="CaveWall8" parent="." unique_id=247284013 instance=ExtResource("8_vhval")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 2)
+
+[node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("9_cv1he")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+spawn_id = &"entrance"
+
+[editable path="CaveBump1"]

@@ -25,16 +25,16 @@ shader_parameter/ripple_strength = 0.035
 shader_parameter/ripple_speed = 0.22
 shader_parameter/normal_strength = 0.55
 
-[node name="swamp_floor" unique_id=393519886 instance=ExtResource("1_24jdr")]
+[node name="swamp_bump" unique_id=393519886 instance=ExtResource("1_24jdr")]
 
-[node name="ground" parent="." index="0" unique_id=110768233]
+[node name="BumpComponent" type="Node" parent="." index="0" unique_id=2014704139]
+script = ExtResource("4_n2g4d")
+metadata/_custom_type_script = "uid://c1lus734wl56v"
+
+[node name="ground" parent="." index="1" unique_id=110768233]
 surface_material_override/0 = SubResource("ShaderMaterial_nqdy7")
 
-[node name="GridElement" type="Node3D" parent="." index="1" unique_id=1211094125]
+[node name="GridElement" type="Node3D" parent="." index="2" unique_id=1211094125]
 script = ExtResource("3_l5s2a")
 cell_shape = 1
 metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
-
-[node name="BumpComponent" type="Node" parent="GridElement" index="0" unique_id=2014704139]
-script = ExtResource("4_n2g4d")
-metadata/_custom_type_script = "uid://c1lus734wl56v"

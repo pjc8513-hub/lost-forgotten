@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cvlmtn24nm6e"]
 
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_80038"]
-[ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_40d55"]
+[ext_resource type="Texture2D" uid="uid://b2i6ttmsw8g28" path="res://assets/palettes/fantasy-24-1x.png" id="2_fsefh"]
 [ext_resource type="Environment" uid="uid://i64ewy3e6ok2" path="res://scenes/maps/nobel/nobel_environment.tres" id="3_a6v5c"]
 [ext_resource type="PackedScene" uid="uid://77vipw5qko72" path="res://scenes/grid/swamp/swamp_floor.tscn" id="4_71a2u"]
 [ext_resource type="PackedScene" uid="uid://dxuxr2lrejaup" path="res://scenes/grid/swamp/swamp_wall.tscn" id="5_ebx5d"]
@@ -17,7 +17,7 @@
 script = ExtResource("1_80038")
 Map_ID = &"swamp"
 has_daynight = true
-main_shader_palette_texture = ExtResource("2_40d55")
+main_shader_palette_texture = ExtResource("2_fsefh")
 main_shader_dither_strength = 0.08
 main_shader_contrast = 1.3
 
@@ -130,7 +130,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 spawn_id = &"entrance"
 
-[node name="swamp_floor10" parent="." unique_id=813225403 instance=ExtResource("10_ncf1r")]
+[node name="swamp_bump1" parent="." unique_id=813225403 instance=ExtResource("10_ncf1r")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 6)
 
 [node name="outside_torch" parent="." unique_id=1948652118 instance=ExtResource("11_uk4ql")]

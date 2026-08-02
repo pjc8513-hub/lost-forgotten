@@ -32,7 +32,7 @@
 [ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="33_7c1h1"]
 [ext_resource type="PackedScene" uid="uid://bpaar2wmwn36f" path="res://scenes/combat/castle_combat.tscn" id="encounter_arena"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7t7on"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l7c38"]
 resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
@@ -42,69 +42,69 @@ normal_texture = ExtResource("7_rg7xy")
 uv1_triplanar = true
 uv1_world_triplanar = true
 uv2_triplanar = true
-texture_filter = 2
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l7c38"]
-resource_local_to_scene = true
-resource_name = "floor"
-cull_mode = 2
-albedo_texture = ExtResource("8_e8ge0")
-emission_enabled = true
-normal_enabled = true
-normal_texture = ExtResource("9_d02fq")
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7k2p"]
 resource_local_to_scene = true
-resource_name = "wall"
+resource_name = "floor"
 cull_mode = 2
-albedo_texture = ExtResource("6_mgy60")
+albedo_texture = ExtResource("8_e8ge0")
+emission_enabled = true
 normal_enabled = true
-normal_texture = ExtResource("7_rg7xy")
-uv1_triplanar = true
-uv1_world_triplanar = true
-uv2_triplanar = true
+normal_texture = ExtResource("9_d02fq")
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7avbs"]
 resource_local_to_scene = true
-resource_name = "floor"
+resource_name = "wall"
 cull_mode = 2
-albedo_texture = ExtResource("8_e8ge0")
-emission_enabled = true
+albedo_texture = ExtResource("6_mgy60")
 normal_enabled = true
-normal_texture = ExtResource("9_d02fq")
+normal_texture = ExtResource("7_rg7xy")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x1vn6"]
 resource_local_to_scene = true
-resource_name = "wall"
+resource_name = "floor"
 cull_mode = 2
-albedo_texture = ExtResource("6_mgy60")
+albedo_texture = ExtResource("8_e8ge0")
+emission_enabled = true
 normal_enabled = true
-normal_texture = ExtResource("7_rg7xy")
-uv1_triplanar = true
-uv1_world_triplanar = true
-uv2_triplanar = true
+normal_texture = ExtResource("9_d02fq")
+texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g0x5m"]
 resource_local_to_scene = true
-resource_name = "floor"
+resource_name = "wall"
 cull_mode = 2
-albedo_texture = ExtResource("8_e8ge0")
-emission_enabled = true
+albedo_texture = ExtResource("6_mgy60")
 normal_enabled = true
-normal_texture = ExtResource("9_d02fq")
-texture_filter = 2
+normal_texture = ExtResource("7_rg7xy")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7o6y4"]
 resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("8_e8ge0")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("9_d02fq")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbw27"]
+resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
 albedo_texture = ExtResource("6_mgy60")
@@ -115,7 +115,7 @@ uv1_world_triplanar = true
 uv2_triplanar = true
 metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbw27"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2jvw"]
 resource_local_to_scene = true
 resource_name = "floor"
 cull_mode = 2
@@ -126,7 +126,7 @@ normal_texture = ExtResource("9_d02fq")
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2jvw"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d03vq"]
 resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
@@ -139,7 +139,7 @@ uv2_triplanar = true
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d03vq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7c1h1"]
 resource_local_to_scene = true
 resource_name = "floor"
 cull_mode = 2
@@ -648,13 +648,13 @@ player_travel_offset = Vector3(0, -1.5, 0)
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 8)
 
 [node name="wall" parent="stone_secret3_door" index="0" unique_id=524815201]
-surface_material_override/0 = SubResource("StandardMaterial3D_7t7on")
+surface_material_override/0 = SubResource("StandardMaterial3D_l7c38")
 
 [node name="door" parent="stone_secret3_door" index="1" unique_id=893429260]
-surface_material_override/0 = SubResource("StandardMaterial3D_7t7on")
+surface_material_override/0 = SubResource("StandardMaterial3D_l7c38")
 
 [node name="floor" parent="stone_secret3_door" index="2" unique_id=1029300820]
-surface_material_override/0 = SubResource("StandardMaterial3D_l7c38")
+surface_material_override/0 = SubResource("StandardMaterial3D_r7k2p")
 
 [node name="DoorComponent" parent="stone_secret3_door" index="4" unique_id=534338047]
 door_id = &"templebasement.secret_1"
@@ -670,10 +670,10 @@ root_motion_local = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 4)
 
 [node name="wall" parent="stone_wall3_door" index="0" unique_id=524815201]
-surface_material_override/0 = SubResource("StandardMaterial3D_r7k2p")
+surface_material_override/0 = SubResource("StandardMaterial3D_7avbs")
 
 [node name="floor" parent="stone_wall3_door" index="2" unique_id=1029300820]
-surface_material_override/0 = SubResource("StandardMaterial3D_7avbs")
+surface_material_override/0 = SubResource("StandardMaterial3D_x1vn6")
 
 [node name="DoorComponent" parent="stone_wall3_door" index="4" unique_id=534338047]
 door_id = &"templebasement_2"
@@ -683,10 +683,10 @@ starts_locked = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 10)
 
 [node name="wall" parent="stone_wall3_door2" index="0" unique_id=524815201]
-surface_material_override/0 = SubResource("StandardMaterial3D_x1vn6")
+surface_material_override/0 = SubResource("StandardMaterial3D_g0x5m")
 
 [node name="floor" parent="stone_wall3_door2" index="2" unique_id=1029300820]
-surface_material_override/0 = SubResource("StandardMaterial3D_g0x5m")
+surface_material_override/0 = SubResource("StandardMaterial3D_7o6y4")
 
 [node name="DoorComponent" parent="stone_wall3_door2" index="4" unique_id=534338047]
 door_id = &"templebasement.door_3"
@@ -695,10 +695,10 @@ door_id = &"templebasement.door_3"
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14, 0, 20)
 
 [node name="wall" parent="stone_wall3_door3" index="0" unique_id=524815201]
-surface_material_override/0 = SubResource("StandardMaterial3D_7o6y4")
+surface_material_override/0 = SubResource("StandardMaterial3D_kbw27")
 
 [node name="floor" parent="stone_wall3_door3" index="2" unique_id=1029300820]
-surface_material_override/0 = SubResource("StandardMaterial3D_kbw27")
+surface_material_override/0 = SubResource("StandardMaterial3D_g2jvw")
 
 [node name="DoorComponent" parent="stone_wall3_door3" index="4" unique_id=534338047]
 door_id = &"templebasement.door_6"
@@ -708,10 +708,10 @@ starts_locked = true
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, 4)
 
 [node name="wall" parent="stone_wall3_door4" index="0" unique_id=524815201]
-surface_material_override/0 = SubResource("StandardMaterial3D_g2jvw")
+surface_material_override/0 = SubResource("StandardMaterial3D_d03vq")
 
 [node name="floor" parent="stone_wall3_door4" index="2" unique_id=1029300820]
-surface_material_override/0 = SubResource("StandardMaterial3D_d03vq")
+surface_material_override/0 = SubResource("StandardMaterial3D_7c1h1")
 
 [node name="DoorComponent" parent="stone_wall3_door4" index="4" unique_id=534338047]
 door_id = &"templebasement_1"

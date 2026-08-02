@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b13pb46j8ie33"]
 
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_1ry1g"]
-[ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_4naqu"]
+[ext_resource type="Texture2D" uid="uid://deljl4uigw6s6" path="res://assets/palettes/florentine24-1x.png" id="2_2ftqi"]
 [ext_resource type="Environment" uid="uid://scu1xnln8b1r" path="res://mountain_environment_1.tres" id="3_md3nt"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="4_2dwgv"]
 [ext_resource type="PackedScene" uid="uid://4jsf368dwp7" path="res://scenes/lights/outside_torch.tscn" id="5_8vlij"]
@@ -22,6 +22,36 @@
 [ext_resource type="PackedScene" uid="uid://ct6mngy6esulj" path="res://scenes/grid/mountain/mountain_bridge.tscn" id="19_w66h7"]
 [ext_resource type="PackedScene" uid="uid://bvbtv08wys4p2" path="res://scenes/grid/mountain/mountain_cave_2.tscn" id="21_2ftqi"]
 [ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="22_l6kkp"]
+[ext_resource type="Script" uid="uid://d3memun0m0avi" path="res://scripts/components/NPCTileComponent.gd" id="23_7ov23"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="24_jvya7"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="25_7yg34"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="26_7ud3e"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="27_d43xy"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="28_jpd0h"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="29_0f2nl"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="30_2djbi"]
+
+[sub_resource type="Resource" id="Resource_gyyt5"]
+script = ExtResource("28_jpd0h")
+type = 6
+target_id = "MountainTunnel1"
+destination_map = "uid://sttl0bxl3wn6"
+destination_spawn_id = &"entrance"
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_vvxho"]
+script = ExtResource("25_7yg34")
+text = "Enter the tunnel?"
+immediate_rewards = Array[ExtResource("28_jpd0h")]([SubResource("Resource_gyyt5")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_xa8nu"]
+script = ExtResource("24_jvya7")
+persistent_id = &"TunnelEntrance1"
+npc_name = "Tunnel Entrance"
+dialogue_nodes = Array[ExtResource("25_7yg34")]([SubResource("Resource_vvxho")])
+dialogue_label = "Inspect"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ed5yw"]
 albedo_color = Color(0.14622876, 0.14622876, 0.14622873, 1)
@@ -35,9 +65,9 @@ script = ExtResource("1_1ry1g")
 Map_ID = &"mountains1"
 has_daynight = true
 main_screen_filter_visible = false
-main_shader_palette_texture = ExtResource("2_4naqu")
-main_shader_dither_strength = 0.035
-main_shader_contrast = 0.9
+main_shader_palette_texture = ExtResource("2_2ftqi")
+main_shader_dither_strength = 0.08
+main_shader_contrast = 1.3
 night_ambient_energy = 0.55
 night_directional_energy = 0.2
 night_ambient_color = Color(0.2, 0.27, 0.48, 1)
@@ -61,7 +91,7 @@ directional_shadow_max_distance = 80.0
 environment = ExtResource("3_md3nt")
 
 [node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("4_2dwgv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
 spawn_id = &"entrance"
 
 [node name="MapSpawnPoint2" parent="." unique_id=1373075688 instance=ExtResource("4_2dwgv")]
@@ -757,9 +787,6 @@ transform = Transform3D(1, 0, 0, 0, 1.8, 0, 0, 0, 1, 15, 0, -13)
 [node name="MountainPeak7" parent="." unique_id=977736123 instance=ExtResource("11_md3nt")]
 transform = Transform3D(1, 0, 0, 0, 1.6, 0, 0, 0, 1, 19, 0, -14)
 
-[node name="MountainEdge21" parent="." unique_id=2110632505 instance=ExtResource("5_tdnt6")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12, 0, 8)
-
 [node name="MountainCorner8" parent="." unique_id=2129453274 instance=ExtResource("7_fjw7m")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 18, 0, -6)
 
@@ -813,6 +840,12 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10, 
 
 [node name="SnowDrift2" parent="." unique_id=1495101753 instance=ExtResource("18_w66h7")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8, 0, 0)
+
+[node name="SnowDrift34" parent="." unique_id=1050678525 instance=ExtResource("18_w66h7")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.1920929e-07, 0, 2.0000007)
+
+[node name="SnowDrift35" parent="." unique_id=1024164841 instance=ExtResource("18_w66h7")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 0, 2.000001)
 
 [node name="SnowDrift3" parent="." unique_id=833530341 instance=ExtResource("18_w66h7")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -2, 0, -20)
@@ -1167,6 +1200,14 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 58, 
 
 [node name="MountainCave4" parent="." unique_id=1704902765 instance=ExtResource("21_2ftqi")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 22, 0, 4)
+script = ExtResource("23_7ov23")
+npc_tile_id = &"MountainTunnelEntrance1"
+NPC_List = Array[ExtResource("24_jvya7")]([SubResource("Resource_xa8nu")])
+
+[node name="BlockerComponent" type="Node" parent="MountainCave4" unique_id=7379472]
+script = ExtResource("22_l6kkp")
+blocker_ID = &"caveblocker2"
+metadata/_custom_type_script = "uid://cpd6aclgammco"
 
 [node name="MountainCorner13" parent="." unique_id=680296977 instance=ExtResource("7_fjw7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 18)
@@ -1315,9 +1356,6 @@ transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -20,
 [node name="MountainWall72" parent="." unique_id=127042004 instance=ExtResource("6_i8dwt")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -18, 0, -24)
 
-[node name="MountainWall73" parent="." unique_id=1332936494 instance=ExtResource("6_i8dwt")]
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -16, 0, -24)
-
 [node name="MountainWall68" parent="." unique_id=1236207754 instance=ExtResource("6_i8dwt")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -20, 0, -18)
 
@@ -1394,6 +1432,18 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 38, 
 [node name="SwitchComponent" parent="button2" index="3" unique_id=1763643439]
 target_teleporter_ids = Array[StringName]([&"mountain.teleport.8"])
 
+[node name="MountainCorner34" parent="." unique_id=1656608531 instance=ExtResource("7_fjw7m")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -4, 0, -18)
+
+[node name="MountainCorner35" parent="." unique_id=1544770171 instance=ExtResource("7_fjw7m")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -16, 0, -24)
+
+[node name="MountainCorner36" parent="." unique_id=871149540 instance=ExtResource("7_fjw7m")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 8)
+
+[node name="MountainEdge21" parent="." unique_id=1801686670 instance=ExtResource("10_fjw7m")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12, 0, 8)
+
 [editable path="button"]
 [editable path="chest3"]
 [editable path="chest4"]
@@ -1416,6 +1466,7 @@ target_teleporter_ids = Array[StringName]([&"mountain.teleport.8"])
 [editable path="MountainBridge7"]
 [editable path="MountainBridge8"]
 [editable path="MountainCave2"]
+[editable path="MountainCave4"]
 [editable path="TeleportWall61"]
 [editable path="TeleportEdge85"]
 [editable path="chest9"]
