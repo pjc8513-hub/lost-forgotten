@@ -20,10 +20,18 @@ func activate() -> void:
 		var opened := MapManager.open_blocker(blocker_id)
 		success = success or opened
 		results.append("blocker %s: open=%s" % [blocker_id, opened])
+	for teleporter_id in target_teleporter_ids:
+		var teleporter := _find_teleporter(StageManager.current_level, teleporter_id)
+		var activated := false
+		if teleporter != null:
+			activated = teleporter.activate()
+		success = success or activated
+		results.append("teleporter %s: activate=%s" % [teleporter_id, activated])
 
 	var exported_data := {
 		"target_door_ids": target_door_ids.duplicate(),
 		"target_blocker_ids": target_blocker_ids.duplicate(),
+		"target_teleporter_ids": target_teleporter_ids.duplicate(),
 	}
 	var signal_exists := has_signal(&"activated")
 	var signal_connection_count := get_signal_connection_list(&"activated").size() if signal_exists else 0
@@ -46,6 +54,17 @@ func get_grid_pos() -> Vector3i:
 	if grid_element != null:
 		return grid_element.world_to_grid(grid_element.global_position)
 	return Vector3i.ZERO
+
+func _find_teleporter(node: Node, teleporter_id: StringName) -> TeleportTileComponent:
+	if node == null:
+		return null
+	if node is TeleportTileComponent and node.teleport_id == teleporter_id:
+		return node as TeleportTileComponent
+	for child in node.get_children():
+		var result := _find_teleporter(child, teleporter_id)
+		if result != null:
+			return result
+	return null
 
 func _on_area_3d_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):

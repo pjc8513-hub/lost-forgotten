@@ -95,12 +95,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0
 [node name="outside_torch3" parent="." unique_id=1816199921 instance=ExtResource("5_8vlij")]
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -2, 0, -22)
 
-[node name="torch12" parent="." unique_id=1666826074 instance=ExtResource("14_27ieb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 24, 0, -8)
-
-[node name="torch24" parent="." unique_id=1198358098 instance=ExtResource("14_27ieb")]
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 40, 0, -8)
-
 [node name="torch6" parent="." unique_id=267297134 instance=ExtResource("14_27ieb")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2, 0, -20)
 
@@ -304,6 +298,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, 2)
 script = ExtResource("11_j8fxe")
 teleport_id = &"mountain.teleport.1"
 spawn_location_ids = Array[StringName]([&"teleport.1"])
+is_activated = false
 metadata/_custom_type_script = "uid://ip1ql2nqap5m"
 
 [node name="TeleportTile" parent="TeleportFloor40" unique_id=1141324853 instance=ExtResource("13_v3w5d")]

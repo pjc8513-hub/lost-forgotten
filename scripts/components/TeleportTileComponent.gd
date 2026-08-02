@@ -10,6 +10,9 @@ extends Node
 func trigger(actor: Node) -> void:
 	if actor == null or actor != StageManager.player:
 		return
+	if not is_activated:
+		MapManager.request_alert("Teleporter not active")
+		return
 	var actor_3d := actor as Node3D
 	if actor_3d == null:
 		return
@@ -31,6 +34,12 @@ func trigger(actor: Node) -> void:
 	else:
 		actor_3d.global_transform = destination.global_transform
 		movement.sync_to_actor()
+
+func activate() -> bool:
+	if is_activated:
+		return false
+	is_activated = true
+	return true
 
 func _get_matching_spawn_points() -> Array[MapSpawnPoint]:
 	var matches: Array[MapSpawnPoint] = []
