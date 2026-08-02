@@ -67,11 +67,13 @@ func add_switch_interaction(
 ) -> void:
 	var target_door_ids: Array = exported_data.get("target_door_ids", [])
 	var target_blocker_ids: Array = exported_data.get("target_blocker_ids", [])
+	var target_teleporter_ids: Array = exported_data.get("target_teleporter_ids", [])
 	var lines: Array[String] = [
 		"Switch: %s" % switch.get_path(),
-		"Targets: doors=%s blockers=%s" % [
+		"Targets: doors=%s blockers=%s teleporters=%s" % [
 			_format_string_names(target_door_ids),
 			_format_string_names(target_blocker_ids),
+			_format_string_names(target_teleporter_ids),
 		],
 		"Signal: %s, exists=%s, connections=%d" % [
 			_error_name(signal_result),

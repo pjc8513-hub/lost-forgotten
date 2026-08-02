@@ -98,7 +98,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 spawn_id = &"entrance"
 
 [node name="MapSpawnPoint2" parent="." unique_id=1688285265 instance=ExtResource("9_cv1he")]
-transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 6, 0, -22.000004)
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 6, 0, -22.000004)
 spawn_id = &"exit"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=304772058]
@@ -482,7 +482,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -20)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -20)
 
 [node name="CaveFloor17" parent="." unique_id=513543016 instance=ExtResource("8_vhval")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, -22)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -22)
 
 [node name="tunnel_exit4" parent="." unique_id=1349459147 instance=ExtResource("5_jesio")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0, -24)

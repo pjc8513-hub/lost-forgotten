@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cqedipcbot1fi" path="res://scenes/grid/mountain/mountain_corner_1.tscn" id="7_fjw7m"]
 [ext_resource type="PackedScene" uid="uid://d0teisng6e7ln" path="res://scenes/grid/mountain/mountain_floor_1.tscn" id="8_i8dwt"]
 [ext_resource type="Script" uid="uid://c1lus734wl56v" path="res://scripts/components/BumpComponent.gd" id="9_fjw7m"]
+[ext_resource type="Resource" uid="uid://cprqkatkl7hpc" path="res://data/traps/blades.tres" id="9_jvya7"]
 [ext_resource type="PackedScene" uid="uid://b0ba8ohaeqly4" path="res://scenes/grid/mountain/mountain_edge_2.tscn" id="10_fjw7m"]
 [ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="10_xbe28"]
 [ext_resource type="Script" uid="uid://ip1ql2nqap5m" path="res://scripts/components/TeleportTileComponent.gd" id="11_j8fxe"]
@@ -226,6 +227,16 @@ loot_table = 1
 is_trapped = true
 trap_type = ExtResource("13_27ieb")
 
+[node name="chest10" parent="." unique_id=957078517 instance=ExtResource("12_i1jbs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 24)
+
+[node name="ChestComponent" parent="chest10" index="4" unique_id=971460780]
+chest_ID = &"mountain.chest8"
+gold_roll_dice = 3
+loot_table = 1
+is_trapped = true
+trap_type = ExtResource("9_jvya7")
+
 [node name="MountainBridge3" parent="." unique_id=1594766019 instance=ExtResource("19_w66h7")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 26, 0, -2)
 
@@ -417,6 +428,9 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 
 
 [node name="MountainEdge50" parent="." unique_id=1694317135 instance=ExtResource("5_tdnt6")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 26)
+
+[node name="MountainEdge96" parent="." unique_id=1060631449 instance=ExtResource("5_tdnt6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.9999995, 0, 36)
 
 [node name="MountainEdge35" parent="." unique_id=729431135 instance=ExtResource("5_tdnt6")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6, 0, 14)
@@ -619,6 +633,9 @@ transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -2, 
 [node name="MountainCorner19" parent="." unique_id=2003344361 instance=ExtResource("7_fjw7m")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -2, 0, 36)
 
+[node name="MountainCorner37" parent="." unique_id=1156961899 instance=ExtResource("7_fjw7m")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -4, 0, 36)
+
 [node name="MountainCorner7" parent="." unique_id=539987801 instance=ExtResource("7_fjw7m")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -16, 0, 6)
 
@@ -765,6 +782,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 34)
 
 [node name="MountainEdge51" parent="." unique_id=661811114 instance=ExtResource("10_fjw7m")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -8, 0, 28)
+
+[node name="MountainEdge95" parent="." unique_id=1134517252 instance=ExtResource("10_fjw7m")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -6.000001, 0, 34)
 
 [node name="MountainEdge52" parent="." unique_id=796774099 instance=ExtResource("10_fjw7m")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6, 0, 28)
@@ -919,6 +939,9 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -2.4
 [node name="SnowDrift20" parent="." unique_id=704148288 instance=ExtResource("18_w66h7")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -2.4690895, 0, 27.80612)
 
+[node name="SnowDrift36" parent="." unique_id=2078662028 instance=ExtResource("18_w66h7")]
+transform = Transform3D(-0.86833787, 0, -2.6226832e-07, 0, 1, 0, 2.2773752e-07, 0, -1, -5.96377, -0.03650129, 35.824024)
+
 [node name="SnowDrift9" parent="." unique_id=268806981 instance=ExtResource("18_w66h7")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 20.271423, 0, 4)
 
@@ -1034,7 +1057,7 @@ transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, 24, 0, 12)
 transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, 20, 0, 18)
 
 [node name="MountainPeak43" parent="." unique_id=1604793109 instance=ExtResource("11_md3nt")]
-transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, 22, 0, 22)
+transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, 20, 0, 22)
 
 [node name="MountainPeak21" parent="." unique_id=1845338962 instance=ExtResource("11_md3nt")]
 transform = Transform3D(1, 0, 0, 0, 1.9200001, 0, 0, 0, 1, 8, 0, 12)
@@ -1482,6 +1505,24 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 [node name="MountainEdge21" parent="." unique_id=1801686670 instance=ExtResource("10_fjw7m")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12, 0, 8)
 
+[node name="SnowDrift37" parent="." unique_id=1503015159 instance=ExtResource("18_w66h7")]
+transform = Transform3D(-0.7876897, 0, 8.742278e-08, 0, 1.2427808, 0, -6.886202e-08, 0, -1, 24, 0.2642809, 26)
+
+[node name="SnowDrift38" parent="." unique_id=1589711537 instance=ExtResource("18_w66h7")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 26, 0, 26)
+
+[node name="SnowDrift42" parent="." unique_id=458521206 instance=ExtResource("18_w66h7")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 34, 0, 26)
+
+[node name="SnowDrift39" parent="." unique_id=1325917884 instance=ExtResource("18_w66h7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 18)
+
+[node name="SnowDrift40" parent="." unique_id=2070581894 instance=ExtResource("18_w66h7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 18)
+
+[node name="SnowDrift41" parent="." unique_id=299917174 instance=ExtResource("18_w66h7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0, 18)
+
 [editable path="button"]
 [editable path="chest3"]
 [editable path="chest4"]
@@ -1489,6 +1530,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12,
 [editable path="chest6"]
 [editable path="chest7"]
 [editable path="chest8"]
+[editable path="chest10"]
 [editable path="MountainBridge3"]
 [editable path="MountainBridge4"]
 [editable path="MountainBridge5"]

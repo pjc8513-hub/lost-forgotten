@@ -7,6 +7,12 @@ extends Node
 @export var spawn_location_ids: Array[StringName] = []
 @export var is_activated: bool = true
 
+func _ready() -> void:
+	MapManager.register_teleporter(self)
+
+func _exit_tree() -> void:
+	MapManager.unregister_teleporter(self)
+
 func trigger(actor: Node) -> void:
 	if actor == null or actor != StageManager.player:
 		return
@@ -36,10 +42,10 @@ func trigger(actor: Node) -> void:
 		movement.sync_to_actor()
 
 func activate() -> bool:
-	if is_activated:
-		return false
-	is_activated = true
-	return true
+	return MapManager.activate_teleporter(teleport_id)
+
+func apply_state(state: Dictionary) -> void:
+	is_activated = state.get("is_activated", is_activated)
 
 func _get_matching_spawn_points() -> Array[MapSpawnPoint]:
 	var matches: Array[MapSpawnPoint] = []
