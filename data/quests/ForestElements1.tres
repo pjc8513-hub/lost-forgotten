@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://pkmyj1h7rejt"]
+
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="1_cq2nk"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="2_kugg4"]
+
+[resource]
+script = ExtResource("2_kugg4")
+quest_id = "ForestElements"
+quest_name = "Forest Elements"
+is_main_quest = true
+description = "Those foolish druids in the center of the forest have spurred up the elements into an uncontrollable force!
+
+Someone needs to speak to the Head Druid and find out what they are up to!"
+display_name = "forest"
+destination_map = "uid://eya04obhcvrt"
+metadata/_custom_type_script = "uid://phuimf2skp05"

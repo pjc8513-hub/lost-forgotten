@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://c2g7g6iojymj1"]
+
+[ext_resource type="PackedScene" uid="uid://bk6niwjgs7n6l" path="res://assets/models/forest/forest cube2.glb" id="1_40amq"]
+
+[node name="forest cube2" unique_id=1566177377 instance=ExtResource("1_40amq")]

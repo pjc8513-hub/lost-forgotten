@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://drc5ytrh6qhmg"]
+
+[ext_resource type="PackedScene" uid="uid://briv66veh5gsk" path="res://assets/models/forest/forest tree3.glb" id="1_03rvj"]
+
+[node name="forest tree3" unique_id=769814180 instance=ExtResource("1_03rvj")]
+
+[node name="Cube" parent="." index="0" unique_id=1621018336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+
+[node name="Cube_001" parent="." index="1" unique_id=137040207]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)

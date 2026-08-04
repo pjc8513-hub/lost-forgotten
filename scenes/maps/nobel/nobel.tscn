@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c0qg7yyq6qd6l" path="res://scenes/grid/nobel_city/wall_1.tscn" id="12_oyxdf"]
 [ext_resource type="PackedScene" uid="uid://dyi63mi8rdwj0" path="res://scenes/grid/nobel_city/inn_5.tscn" id="12_sycog"]
 [ext_resource type="PackedScene" uid="uid://ds4am0k25g8q4" path="res://scenes/grid/nobel_city/wallcorner_1.tscn" id="13_72yvy"]
+[ext_resource type="Resource" uid="uid://dbanhfbvjpgcf" path="res://data/dialogue/nobel/forestwizard/ForestWizard.tres" id="13_hlvby"]
 [ext_resource type="PackedScene" uid="uid://co81duxjlu76s" path="res://scenes/grid/nobel_city/gate_3.tscn" id="14_oyxdf"]
 [ext_resource type="PackedScene" uid="uid://dmge8mm2unmb0" path="res://scenes/grid/nobel_city/tree_2.tscn" id="15_3morc"]
 [ext_resource type="PackedScene" uid="uid://b2fjhjvv0wnqc" path="res://scenes/grid/nobel_city/moat_1.tscn" id="16_0xi3f"]
@@ -276,6 +277,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
 
 [node name="nobel_house7" parent="." unique_id=2011862418 instance=ExtResource("8_26rvf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+script = ExtResource("6_ktwdp")
+npc_tile_id = &"ForestWizardHouse"
+NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("13_hlvby")])
+
+[node name="GridElement" type="Node3D" parent="nobel_house7" unique_id=1314797850]
+script = ExtResource("20_c1pmp")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="BlockerComponent" type="Node" parent="nobel_house7" unique_id=137876177]
+script = ExtResource("22_c1pmp")
+blocker_ID = &"forestquestguy1"
+metadata/_custom_type_script = "uid://cpd6aclgammco"
 
 [node name="nobel_house6" parent="." unique_id=87138680 instance=ExtResource("8_26rvf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
@@ -1021,6 +1034,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -4)
 [connection signal="input_event" from="training2/Area3D" to="training2" method="_on_area_3d_input_event"]
 
 [editable path="nobel_house16"]
+[editable path="nobel_house7"]
 [editable path="dirt4"]
 [editable path="dirt7"]
 [editable path="dirt5"]

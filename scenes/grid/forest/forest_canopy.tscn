@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://27ybkstq18rp"]
+
+[ext_resource type="Shader" uid="uid://b1pwn42odpt4o" path="res://scripts/shaders/forest_canopy.gdshader" id="1_js0rc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_27q51"]
+render_priority = 0
+shader = ExtResource("1_js0rc")
+shader_parameter/canopy_dark = Color(0.045, 0.085, 0.045, 1)
+shader_parameter/canopy_mid = Color(0.1, 0.18, 0.08, 1)
+shader_parameter/canopy_light = Color(0.24, 0.34, 0.14, 1)
+shader_parameter/canopy_scale = 1.4
+shader_parameter/detail_scale = 4.5
+shader_parameter/leaf_threshold = 0.47
+shader_parameter/edge_softness = 0.07
+shader_parameter/wind_speed = 0.08
+shader_parameter/wind_strength = 0.07200000342
+shader_parameter/gap_amount = 0.2470000117325
+shader_parameter/light_strength = 0.55
+shader_parameter/pixel_size = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_1shvf"]
+material = SubResource("ShaderMaterial_27q51")
+size = Vector3(2, 1, 2)
+
+[node name="canopy" type="Node3D" unique_id=2100037041]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1351339622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("BoxMesh_1shvf")
