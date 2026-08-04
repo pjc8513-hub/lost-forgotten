@@ -26,6 +26,7 @@ uniform float gap_amount : hint_range(0.0, 1.0) = 0.30;
 uniform float light_strength : hint_range(0.0, 2.0) = 0.55;
 
 uniform float pixel_size : hint_range(1.0, 32.0) = 5.0;
+uniform float alpha_cutoff : hint_range(0.0, 1.0) = 0.1;
 
 uniform sampler2D noise_texture;
 
@@ -155,6 +156,10 @@ void fragment()
 
 	leaf_mask *= 1.0 - gap;
 
+	if (leaf_mask < alpha_cutoff) {
+		discard;
+	}
+
 
 	// ------------------------------------------------
 	// Canopy color bands
@@ -224,6 +229,4 @@ void fragment()
 	// Small emission helps stop canopy becoming
 	// completely black in dark scenes.
 	EMISSION = color * 0.08;
-
-	ALPHA = leaf_mask;
 }
