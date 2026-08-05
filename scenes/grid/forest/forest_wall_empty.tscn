@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dx1qwq5m3s6uu"]
+
+[ext_resource type="PackedScene" uid="uid://cayop2s6orn67" path="res://assets/models/forest/forest wall empty.glb" id="1_3wt6f"]
+
+[node name="forest wall empty" unique_id=686328852 instance=ExtResource("1_3wt6f")]

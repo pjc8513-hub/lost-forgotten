@@ -13,9 +13,15 @@
 [ext_resource type="PackedScene" uid="uid://drc5ytrh6qhmg" path="res://scenes/grid/forest/forest_tree_3.tscn" id="7_ay085"]
 [ext_resource type="PackedScene" uid="uid://dduccnw0ncg6f" path="res://scenes/grid/forest/forest_trees_cube_3.tscn" id="10_xmyvr"]
 [ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="11_1shvf"]
+[ext_resource type="Script" uid="uid://ip1ql2nqap5m" path="res://scripts/components/TeleportTileComponent.gd" id="11_rvwwk"]
 [ext_resource type="PackedScene" uid="uid://bc5npu8vkvan5" path="res://scenes/grid/forest/forest_canopy_2.tscn" id="14_1quc5"]
 [ext_resource type="PackedScene" uid="uid://c8ce73liocfbc" path="res://scenes/grid/forest/stump.tscn" id="14_j7yqk"]
 [ext_resource type="PackedScene" uid="uid://dmge8mm2unmb0" path="res://scenes/grid/nobel_city/tree_2.tscn" id="15_j7yqk"]
+[ext_resource type="PackedScene" uid="uid://dup7njark81l" path="res://scenes/grid/forest/bush.tscn" id="17_27q51"]
+[ext_resource type="PackedScene" uid="uid://dgkvvfpw8ni22" path="res://scenes/grid/forest/fairy_tree_entrance.tscn" id="18_g8dfj"]
+[ext_resource type="PackedScene" uid="uid://c7ea3qogc8r82" path="res://scenes/grid/forest/pond.tscn" id="18_y7hk2"]
+[ext_resource type="PackedScene" uid="uid://dx1qwq5m3s6uu" path="res://scenes/grid/forest/forest_wall_empty.tscn" id="21_uythk"]
+[ext_resource type="PackedScene" uid="uid://cfnj3srrdhbek" path="res://scenes/grid/forest/forest_cube_empty.tscn" id="22_rc6nc"]
 
 [node name="forest" type="Node3D" unique_id=1556622436]
 script = ExtResource("1_tq4d2")
@@ -34,6 +40,19 @@ environment = ExtResource("3_cibvq")
 [node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("4_r4nvb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 spawn_id = &"entrance"
+
+[node name="teleport1" parent="." unique_id=361430475 instance=ExtResource("4_r4nvb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -12)
+spawn_id = &"forest.teleport1"
+
+[node name="forest floor29" parent="." unique_id=710177542 instance=ExtResource("6_d1kvm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -20)
+
+[node name="TeleportTileComponent" type="Node" parent="forest floor29" unique_id=1695898641]
+script = ExtResource("11_rvwwk")
+teleport_id = &"forest.TeleportTile1"
+spawn_location_ids = Array[StringName]([&"forest.teleport1"])
+metadata/_custom_type_script = "uid://ip1ql2nqap5m"
 
 [node name="forest_bump_entrance" parent="." unique_id=502341988 instance=ExtResource("6_d1kvm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
@@ -90,6 +109,45 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -20)
 
 [node name="forest wall28" parent="." unique_id=1780768572 instance=ExtResource("5_ay085")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -22)
+
+[node name="forest wall35" parent="." unique_id=730972414 instance=ExtResource("5_ay085")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -22)
+
+[node name="forest wall36" parent="." unique_id=889340326 instance=ExtResource("5_ay085")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -30)
+
+[node name="forest wall38" parent="." unique_id=763375217 instance=ExtResource("5_ay085")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0, -38)
+
+[node name="forest wall39" parent="." unique_id=1279644720 instance=ExtResource("5_ay085")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, 0, -38)
+
+[node name="forest wall41" parent="." unique_id=1122790654 instance=ExtResource("5_ay085")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20, 0, -38)
+
+[node name="forest wall42" parent="." unique_id=179889964 instance=ExtResource("5_ay085")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 22, 0, -38)
+
+[node name="forest wall43" parent="." unique_id=190031767 instance=ExtResource("5_ay085")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 24, 0, -38)
+
+[node name="forest wall44" parent="." unique_id=1478104140 instance=ExtResource("5_ay085")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 30, 0, -30)
+
+[node name="forest wall45" parent="." unique_id=110363471 instance=ExtResource("5_ay085")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 30, 0, -28)
+
+[node name="forest wall46" parent="." unique_id=2015625547 instance=ExtResource("5_ay085")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 30, 0, -26)
+
+[node name="forest wall47" parent="." unique_id=167562100 instance=ExtResource("5_ay085")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 30, 0, -24)
+
+[node name="forest wall40" parent="." unique_id=1212667032 instance=ExtResource("5_ay085")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16, 0, -38)
+
+[node name="forest wall37" parent="." unique_id=1394611955 instance=ExtResource("5_ay085")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -36)
 
 [node name="forest wall4" parent="." unique_id=1754449058 instance=ExtResource("5_ay085")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2, 0, 2)
@@ -239,9 +297,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -20)
 
 [node name="forest floor28" parent="." unique_id=632669087 instance=ExtResource("6_d1kvm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -20)
-
-[node name="forest floor29" parent="." unique_id=710177542 instance=ExtResource("6_d1kvm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -20)
 
 [node name="forest floor30" parent="." unique_id=126626136 instance=ExtResource("6_d1kvm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -20)
@@ -505,6 +560,73 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0
 [node name="tree3" parent="." unique_id=122842425 instance=ExtResource("15_j7yqk")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, 7.1973925)
 
+[node name="bush" parent="." unique_id=1745059148 instance=ExtResource("17_27q51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0953789, 0, -6.514006)
+
+[node name="bush2" parent="." unique_id=475535575 instance=ExtResource("17_27q51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.352735, 0, -6.514006)
+
+[node name="pond" parent="." unique_id=881330754 instance=ExtResource("18_y7hk2")]
+transform = Transform3D(18.711, 0, 0, 0, 1, 0, 0, 0, 9.152, 18, 0, -30)
+
+[node name="fairy_tree_entrance" parent="." unique_id=1459425100 instance=ExtResource("18_g8dfj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -2, -22)
+
+[node name="forest wall empty" parent="." unique_id=686328852 instance=ExtResource("21_uythk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -24)
+
+[node name="forest wall empty2" parent="." unique_id=769588217 instance=ExtResource("21_uythk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -26)
+
+[node name="forest wall empty3" parent="." unique_id=1571125054 instance=ExtResource("21_uythk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -28)
+
+[node name="forest wall empty4" parent="." unique_id=1223645609 instance=ExtResource("21_uythk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -32)
+
+[node name="forest wall empty5" parent="." unique_id=1183553228 instance=ExtResource("21_uythk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -34)
+
+[node name="forest wall empty6" parent="." unique_id=1621939756 instance=ExtResource("21_uythk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, -38)
+
+[node name="forest wall empty7" parent="." unique_id=1353099110 instance=ExtResource("21_uythk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, -38)
+
+[node name="forest wall empty8" parent="." unique_id=982530605 instance=ExtResource("21_uythk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10, 0, -38)
+
+[node name="forest wall empty10" parent="." unique_id=2064122278 instance=ExtResource("21_uythk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 18, 0, -38)
+
+[node name="forest wall empty11" parent="." unique_id=491898483 instance=ExtResource("21_uythk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26, 0, -38)
+
+[node name="forest wall empty12" parent="." unique_id=1751180462 instance=ExtResource("21_uythk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 28, 0, -38)
+
+[node name="forest wall empty13" parent="." unique_id=459685925 instance=ExtResource("21_uythk")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 30, 0, -36)
+
+[node name="forest wall empty14" parent="." unique_id=1371701000 instance=ExtResource("21_uythk")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 30, 0, -34)
+
+[node name="forest wall empty15" parent="." unique_id=1899601963 instance=ExtResource("21_uythk")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 30, 0, -32)
+
+[node name="forest wall empty9" parent="." unique_id=1115675566 instance=ExtResource("21_uythk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12, 0, -38)
+
+[node name="forest cube empty" parent="." unique_id=798390647 instance=ExtResource("22_rc6nc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -38)
+
+[node name="forest cube empty2" parent="." unique_id=2065425777 instance=ExtResource("22_rc6nc")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 30, 0, -38)
+
+[node name="forest cube empty3" parent="." unique_id=1097508228 instance=ExtResource("22_rc6nc")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 30, 0, -22)
+
+[editable path="forest floor29"]
 [editable path="forest_bump_entrance"]
 [editable path="chest3"]
 [editable path="forest floor100"]

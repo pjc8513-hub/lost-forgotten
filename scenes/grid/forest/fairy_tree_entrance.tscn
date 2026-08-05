@@ -1,0 +1,192 @@
+[gd_scene format=3 uid="uid://dgkvvfpw8ni22"]
+
+[ext_resource type="PackedScene" uid="uid://cv6laiu34sv6h" path="res://assets/models/forest/fairy_tree_entrance.glb" id="1_i33a3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egqub"]
+albedo_color = Color(0.4701109, 0.30539897, 0.009409177, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4pl4o"]
+albedo_color = Color(0.47058824, 0.30588236, 0.007843138, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8wo2"]
+albedo_color = Color(0.12845564, 0.08989587, 0.010082105, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5t1r3"]
+albedo_color = Color(0.20767775, 0.16973048, 0.0132009415, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hnxjo"]
+albedo_color = Color(0.18431373, 0.37254903, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3r1kf"]
+albedo_color = Color(0.18431373, 0.37254903, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tfch"]
+albedo_color = Color(0, 0.627451, 0.81960785, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sjxdv"]
+albedo_color = Color(0, 0.627451, 0.81960785, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cenje"]
+albedo_color = Color(0.12563476, 0.096704654, 0.0026653125, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dapn3"]
+albedo_color = Color(1.7206744e-06, 0.37002236, 0.18404952, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g28q7"]
+albedo_color = Color(0.183243, 0.37338915, 1.0588765e-06, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j3pel"]
+albedo_color = Color(0, 0.36862746, 0.18431373, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64be2"]
+albedo_color = Color(0.18431373, 0.37254903, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qa6uj"]
+albedo_color = Color(0.49019608, 1, 0.17254902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8dayn"]
+albedo_color = Color(6.545782e-06, 0.62940514, 0.8188981, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xx3a"]
+albedo_color = Color(0.18431373, 0.37254903, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2lqp5"]
+albedo_color = Color(0.30249536, 0.3024954, 0.3024954, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qku4a"]
+albedo_color = Color(0.33511627, 0.33511627, 0.33511627, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8t7n"]
+albedo_color = Color(0.5294118, 0.52156866, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nf0co"]
+albedo_color = Color(0.5292717, 0.5214994, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mq3o"]
+albedo_color = Color(0, 0.627451, 0.81960785, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2wrs"]
+albedo_color = Color(0, 0.627451, 0.81960785, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ro4dx"]
+albedo_color = Color(0, 0.627451, 0.81960785, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51bpa"]
+albedo_color = Color(0, 0.627451, 0.81960785, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqt2m"]
+albedo_color = Color(0.18456155, 0.10679179, 0.010461315, 1)
+
+[node name="fairy_tree_entrance" unique_id=1459425100 instance=ExtResource("1_i33a3")]
+
+[node name="world" parent="." index="0" unique_id=1826051563]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="trunk_left" parent="world" index="0" unique_id=143315601]
+surface_material_override/0 = SubResource("StandardMaterial3D_egqub")
+
+[node name="trunk_right" parent="world" index="1" unique_id=338311513]
+surface_material_override/0 = SubResource("StandardMaterial3D_4pl4o")
+
+[node name="arch_left" parent="world" index="2" unique_id=762224960]
+surface_material_override/0 = SubResource("StandardMaterial3D_n8wo2")
+
+[node name="arch_right" parent="world" index="3" unique_id=1635539590]
+surface_material_override/0 = SubResource("StandardMaterial3D_n8wo2")
+
+[node name="crown_trunk" parent="world" index="4" unique_id=1719792198]
+surface_material_override/0 = SubResource("StandardMaterial3D_5t1r3")
+
+[node name="root_0" parent="world" index="5" unique_id=596485354]
+surface_material_override/0 = SubResource("StandardMaterial3D_hnxjo")
+
+[node name="root_1" parent="world" index="6" unique_id=1726204138]
+surface_material_override/0 = SubResource("StandardMaterial3D_hnxjo")
+
+[node name="root_2" parent="world" index="7" unique_id=2017499856]
+surface_material_override/0 = SubResource("StandardMaterial3D_3r1kf")
+
+[node name="root_3" parent="world" index="8" unique_id=322672600]
+surface_material_override/0 = SubResource("StandardMaterial3D_hnxjo")
+
+[node name="root_4" parent="world" index="9" unique_id=1272802931]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tfch")
+
+[node name="root_5" parent="world" index="10" unique_id=2008634357]
+surface_material_override/0 = SubResource("StandardMaterial3D_sjxdv")
+
+[node name="branch_0" parent="world" index="11" unique_id=1963359593]
+surface_material_override/0 = SubResource("StandardMaterial3D_5t1r3")
+
+[node name="branch_1" parent="world" index="12" unique_id=1181986208]
+surface_material_override/0 = SubResource("StandardMaterial3D_5t1r3")
+
+[node name="branch_2" parent="world" index="13" unique_id=229911960]
+surface_material_override/0 = SubResource("StandardMaterial3D_5t1r3")
+
+[node name="branch_3" parent="world" index="14" unique_id=923919505]
+surface_material_override/0 = SubResource("StandardMaterial3D_cenje")
+
+[node name="leaf_0" parent="world" index="15" unique_id=29289922]
+surface_material_override/0 = SubResource("StandardMaterial3D_dapn3")
+
+[node name="leaf_1" parent="world" index="16" unique_id=1381209023]
+surface_material_override/0 = SubResource("StandardMaterial3D_g28q7")
+
+[node name="leaf_2" parent="world" index="17" unique_id=786443961]
+surface_material_override/0 = SubResource("StandardMaterial3D_g28q7")
+
+[node name="leaf_3" parent="world" index="18" unique_id=910995334]
+surface_material_override/0 = SubResource("StandardMaterial3D_g28q7")
+
+[node name="leaf_4" parent="world" index="19" unique_id=2052127548]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0005352497, -0.0022997854, -0.007311344)
+surface_material_override/0 = SubResource("StandardMaterial3D_j3pel")
+
+[node name="leaf_5" parent="world" index="20" unique_id=1133138839]
+surface_material_override/0 = SubResource("StandardMaterial3D_j3pel")
+
+[node name="moss_left" parent="world" index="21" unique_id=1483558948]
+surface_material_override/0 = SubResource("StandardMaterial3D_64be2")
+
+[node name="moss_right" parent="world" index="22" unique_id=216353300]
+surface_material_override/0 = SubResource("StandardMaterial3D_qa6uj")
+
+[node name="fae_portal" parent="world" index="23" unique_id=893214663]
+surface_material_override/0 = SubResource("StandardMaterial3D_8dayn")
+
+[node name="threshold" parent="world" index="24" unique_id=597667]
+surface_material_override/0 = SubResource("StandardMaterial3D_7xx3a")
+
+[node name="crystal_0" parent="world" index="25" unique_id=944385994]
+surface_material_override/0 = SubResource("StandardMaterial3D_2lqp5")
+
+[node name="crystal_1" parent="world" index="26" unique_id=1111385036]
+surface_material_override/0 = SubResource("StandardMaterial3D_2lqp5")
+
+[node name="mush_stem_0" parent="world" index="29" unique_id=1508221071]
+surface_material_override/0 = SubResource("StandardMaterial3D_qku4a")
+
+[node name="mush_cap_0" parent="world" index="30" unique_id=1821183948]
+surface_material_override/0 = SubResource("StandardMaterial3D_w8t7n")
+
+[node name="mush_stem_1" parent="world" index="31" unique_id=1810816111]
+surface_material_override/0 = SubResource("StandardMaterial3D_qku4a")
+
+[node name="mush_cap_1" parent="world" index="32" unique_id=1623738047]
+surface_material_override/0 = SubResource("StandardMaterial3D_nf0co")
+
+[node name="mush_cap_2" parent="world" index="34" unique_id=1344727060]
+surface_material_override/0 = SubResource("StandardMaterial3D_2mq3o")
+
+[node name="mote_0" parent="world" index="35" unique_id=1762784217]
+surface_material_override/0 = SubResource("StandardMaterial3D_e2wrs")
+
+[node name="mote_1" parent="world" index="36" unique_id=2139488932]
+surface_material_override/0 = SubResource("StandardMaterial3D_ro4dx")
+
+[node name="mote_2" parent="world" index="37" unique_id=483206784]
+surface_material_override/0 = SubResource("StandardMaterial3D_51bpa")
+
+[node name="mote_3" parent="world" index="38" unique_id=1715104287]
+surface_material_override/0 = SubResource("StandardMaterial3D_dqt2m")

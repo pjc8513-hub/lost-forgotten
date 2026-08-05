@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dkwd3qpvn4uik"]
+
+[ext_resource type="Texture2D" uid="uid://5421ffyupsjd" path="res://assets/models/forest/forest wall4_forest_backdrop.png" id="1_nvxfc"]
+
+[resource]
+resource_name = "Material.008"
+cull_mode = 2
+albedo_texture = ExtResource("1_nvxfc")
+metadata/_gltf_primary_texture_coord = 0
