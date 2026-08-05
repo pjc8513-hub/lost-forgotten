@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bc5npu8vkvan5"]
+
+[ext_resource type="Shader" uid="uid://b1pwn42odpt4o" path="res://scripts/shaders/forest_canopy.gdshader" id="1_op8nh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gyyt5"]
+render_priority = 0
+shader = ExtResource("1_op8nh")
+shader_parameter/canopy_dark = Color(0.045, 0.085, 0.045, 1)
+shader_parameter/canopy_mid = Color(0.1, 0.18, 0.08, 1)
+shader_parameter/canopy_light = Color(0.24, 0.34, 0.14, 1)
+shader_parameter/canopy_scale = 1.3000000584901201
+shader_parameter/detail_scale = 4.00000018674012
+shader_parameter/leaf_threshold = 0.430000020425
+shader_parameter/edge_softness = 0.07
+shader_parameter/wind_speed = 0.050000002375
+shader_parameter/wind_strength = 0.12
+shader_parameter/gap_amount = 0.250000011875
+shader_parameter/light_strength = 0.55
+shader_parameter/pixel_size = 5.0
+shader_parameter/alpha_cutoff = 0.1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vvxho"]
+material = SubResource("ShaderMaterial_gyyt5")
+size = Vector2(20, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvxho"]
+render_priority = 0
+shader = ExtResource("1_op8nh")
+shader_parameter/canopy_dark = Color(0.047058824, 0.08627451, 0.047058824, 1)
+shader_parameter/canopy_mid = Color(0.1, 0.18, 0.08, 1)
+shader_parameter/canopy_light = Color(0.24, 0.34, 0.14, 1)
+shader_parameter/canopy_scale = 0.10000000149012
+shader_parameter/detail_scale = 3.0000001392401203
+shader_parameter/leaf_threshold = 0.5200000247
+shader_parameter/edge_softness = 0.07
+shader_parameter/wind_speed = 0.250000011875
+shader_parameter/wind_strength = 0.12
+shader_parameter/gap_amount = 0.400000019
+shader_parameter/light_strength = 0.55
+shader_parameter/pixel_size = 5.0
+shader_parameter/alpha_cutoff = 0.1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xa8nu"]
+material = SubResource("ShaderMaterial_vvxho")
+size = Vector2(20, 20)
+
+[node name="forest_canopy2" type="Node3D" unique_id=1844099925]
+
+[node name="canopy_low" type="MeshInstance3D" parent="." unique_id=493242127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("PlaneMesh_vvxho")
+
+[node name="canopy_high" type="MeshInstance3D" parent="." unique_id=1276399854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+mesh = SubResource("PlaneMesh_xa8nu")

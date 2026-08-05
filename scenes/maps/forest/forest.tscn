@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://jrioh1et57iw" path="res://scenes/grid/forest/forest_floor_3.tscn" id="6_d1kvm"]
 [ext_resource type="PackedScene" uid="uid://drc5ytrh6qhmg" path="res://scenes/grid/forest/forest_tree_3.tscn" id="7_ay085"]
 [ext_resource type="PackedScene" uid="uid://dduccnw0ncg6f" path="res://scenes/grid/forest/forest_trees_cube_3.tscn" id="10_xmyvr"]
-[ext_resource type="PackedScene" uid="uid://27ybkstq18rp" path="res://scenes/grid/forest/forest_canopy.tscn" id="11_7s42n"]
+[ext_resource type="PackedScene" uid="uid://bc5npu8vkvan5" path="res://scenes/grid/forest/forest_canopy_2.tscn" id="14_1quc5"]
 
 [node name="forest" type="Node3D" unique_id=1556622436]
 script = ExtResource("1_tq4d2")
@@ -443,8 +443,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -18)
 [node name="forest wall26" parent="." unique_id=1231724626 instance=ExtResource("10_xmyvr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -18)
 
-[node name="canopy" parent="." unique_id=2100037041 instance=ExtResource("11_7s42n")]
-transform = Transform3D(3.094, 0, 0, 0, 0.5, 0, 0, 0, 3.42, 0, 0, 2)
+[node name="forest_canopy2" parent="." unique_id=1844099925 instance=ExtResource("14_1quc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -1.0794992, -12)
+
+[node name="forest_canopy3" parent="." unique_id=413159980 instance=ExtResource("14_1quc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -1.0788779, 8)
 
 [editable path="forest_bump_entrance"]
 [editable path="chest3"]
