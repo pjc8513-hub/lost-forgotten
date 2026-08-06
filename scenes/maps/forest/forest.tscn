@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://eya04obhcvrt"]
+[gd_scene format=4 uid="uid://eya04obhcvrt"]
 
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_tq4d2"]
 [ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_r4nvb"]
@@ -24,6 +24,8 @@
 [ext_resource type="PackedScene" uid="uid://bc5npu8vkvan5" path="res://scenes/grid/forest/forest_canopy_2.tscn" id="14_1quc5"]
 [ext_resource type="PackedScene" uid="uid://c8ce73liocfbc" path="res://scenes/grid/forest/stump.tscn" id="14_j7yqk"]
 [ext_resource type="PackedScene" uid="uid://dmge8mm2unmb0" path="res://scenes/grid/nobel_city/tree_2.tscn" id="15_j7yqk"]
+[ext_resource type="Texture2D" uid="uid://do2t0fgmclqx2" path="res://assets/models/forest/trap door_wood_boards_blender_albedo.png" id="15_mbbhb"]
+[ext_resource type="Texture2D" uid="uid://dnu1p23slef3y" path="res://assets/models/forest/trap door_wood_boards_blender_normal.png" id="16_u4brs"]
 [ext_resource type="PackedScene" uid="uid://dup7njark81l" path="res://scenes/grid/forest/bush.tscn" id="17_27q51"]
 [ext_resource type="PackedScene" uid="uid://dgkvvfpw8ni22" path="res://scenes/grid/forest/fairy_tree_entrance.tscn" id="18_g8dfj"]
 [ext_resource type="PackedScene" uid="uid://c7ea3qogc8r82" path="res://scenes/grid/forest/pond.tscn" id="18_y7hk2"]
@@ -40,6 +42,47 @@ persistent_id = &"ThievesDenEntrance"
 npc_name = "Thieve's Den"
 dialogue_label = "Enter"
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hli0y"]
+resource_name = "Material"
+cull_mode = 2
+albedo_texture = ExtResource("15_mbbhb")
+roughness = 0.91964287
+normal_enabled = true
+normal_texture = ExtResource("16_u4brs")
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rxrmx"]
+_surfaces = [{
+"aabb": AABB(-1, -15.586668, -1, 2, 2.3380003, 2),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAwAAAAQABAAAAAIAAwAEAAUABAACAAYABQAEAAYAAwAFAAcAAwAHAAEABQAGAAcACAAGAAIACQABAAcACgAHAAYACQAHAAoACgAGAAgACwABAAkACgALAAkACwACAAEACgAIAAsACAACAAsA"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAPzaAAAAAAAA/Nr//wAAAAAAAAAAAAD//wAA//8AAP//AAAAAAAA///82v//AAD///zaAAAAADzz//888wAAwgz//8IMAAA88///wgwAAMIM//888wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rnsqj"]
+resource_name = "trap door_Cube"
+_surfaces = [{
+"aabb": AABB(-1, -15.586668, -1, 2, 2.3380003, 2),
+"attribute_data": PackedByteArray("/1////+f/7//n////1//v/9f/7//n/9//5//v/9f/3//X/9//5//P/+f/3//X/8//1//P/+fAAD/n/8//18AAP8f/3//X/8//1//f/8f/z8vo858ztwwQ87cznwvozBDztwwQ//f/3/O3M58/9//P87cznz/n/9/L6POfP/f/38vo858/5//Py+jMEP/n/9/L6MwQ//f/z/O3DBD/5//Pw=="),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUA"),
+"material": SubResource("StandardMaterial3D_hli0y"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 40,
+"vertex_data": PackedByteArray("AAAAAP//VNUAAPzaAABU1QAA/Nr//1TVAAAAAAAAVNUAAAAAAAD//////NoAAP//AAD82gAA/////wAAAAD/////AAAAAFTV///82v//VNX///zaAABU1f//AAD//1TV//8AAP///78AAPza////v////Nr///+/AAAAAP///78AAAAAAAD/v///AAD///+///8AAAAA/78AAAAA////vzzz///CDP//wgz//zzz///CDP//wgz//zzz//888///wgz//zzzXtwAAPzaAABe3MIM///CDF7cAAD82v//XtzCDP//wgz//////NoAAP//PPP//8IM//8AAPzaAAD//zzz///CDF7c///82v//Xtw88///PPNe3P///NoAAF7cPPP//zzz//8AAPza/////8IM//888//////82v////9U1VTVVNVU1VTVVNVU1VTV/7//v/+//7//v/+//7//v6oqqiqqKqoqqiqqKqoqqir/////////////////////AAD/fwAA/38AAP9/AAD/f/9//7//f/+//3//v/9//78rXZWuK12Vritdla4rXZWu/3/Y7/9/2O//f9jv/3/Y75Uu1CKVLtQilS7UIpUu1CL/fyWQ/38lkP9/JZD/fyWQ")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_rxrmx")
 
 [node name="forest" type="Node3D" unique_id=1556622436]
 script = ExtResource("1_tq4d2")
@@ -77,10 +120,12 @@ script = ExtResource("6_1kw7y")
 npc_tile_id = &"ThievesDen"
 NPC_List = Array[ExtResource("7_7j2fw")]([SubResource("Resource_sivqk")])
 
-[node name="SecretComponent" type="Node3D" parent="stump4" unique_id=1826147842]
+[node name="SecretComponent" type="Node3D" parent="stump4" unique_id=1826147842 node_paths=PackedStringArray("visibible_object", "secret_object")]
 script = ExtResource("9_rc6nc")
 secret_ID = &"forest.secret1"
 secret_type = "NPC"
+visibible_object = NodePath("../Cylinder")
+secret_object = NodePath("../TrapDoor")
 metadata/_custom_type_script = "uid://bceexab1akxyc"
 
 [node name="BlockerComponent" type="Node" parent="stump4" unique_id=1210921182]
@@ -90,6 +135,11 @@ metadata/_custom_type_script = "uid://cpd6aclgammco"
 [node name="GridElement" type="Node3D" parent="stump4" unique_id=1252362769]
 script = ExtResource("26_wafvc")
 metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="TrapDoor" type="MeshInstance3D" parent="stump4" unique_id=1738557037]
+transform = Transform3D(0.375, 0, 0, 0, 0.0641574, 0, 0, 0, 0.375, -0.31704903, 0, 0)
+visible = false
+mesh = SubResource("ArrayMesh_rnsqj")
 
 [node name="stump5" parent="." unique_id=798724353 instance=ExtResource("14_j7yqk")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 12, 0, -12)
@@ -144,6 +194,13 @@ metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
 [node name="stump" parent="." unique_id=1805898282 instance=ExtResource("14_j7yqk")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 8)
 
+[node name="SecretComponent" type="Node3D" parent="stump/Cylinder" parent_id_path=PackedInt32Array(1805898282, 1344971199) index="0" unique_id=1299797600]
+transform = Transform3D(-7.415955e-08, 0, -1.6965728, 0, 1.4512454, 0, 1.7787542, 0, -7.7751814e-08, 13.572582, 1.4512454, -3.5575078)
+script = ExtResource("9_rc6nc")
+secret_ID = &"forest.secret3"
+secret_type = "chest"
+metadata/_custom_type_script = "uid://bceexab1akxyc"
+
 [node name="GridElement" type="Node3D" parent="stump" unique_id=1174263010]
 script = ExtResource("26_wafvc")
 metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
@@ -158,13 +215,6 @@ chest_ID = &"forest.secretchest2"
 gold_roll_dice = 2
 is_discovered = false
 metadata/_custom_type_script = "uid://cu55r1gs5ol76"
-
-[node name="SecretComponent" type="Node3D" parent="stump" unique_id=1299797600]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, -1.9999996)
-script = ExtResource("9_rc6nc")
-secret_ID = &"forest.secret3"
-secret_type = "chest"
-metadata/_custom_type_script = "uid://bceexab1akxyc"
 
 [node name="forest floor29" parent="." unique_id=710177542 instance=ExtResource("6_d1kvm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -20)
@@ -182,7 +232,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
 script = ExtResource("6_1quc5")
 metadata/_custom_type_script = "uid://c1lus734wl56v"
 
-[node name="chest3" parent="." unique_id=1001326355 instance=ExtResource("4_jjnui")]
+[node name="chest3" parent="." unique_id=101069525 instance=ExtResource("4_jjnui")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, -12)
 
 [node name="ChestComponent" parent="chest3" index="4" unique_id=971460780]
@@ -763,7 +813,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -18)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -1.0794992, -12)
 
 [node name="forest_canopy3" parent="." unique_id=413159980 instance=ExtResource("14_1quc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -1.0788779, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.4, 6, -1.0788779, 8)
 
 [node name="tree2" parent="." unique_id=1830953628 instance=ExtResource("15_j7yqk")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 6.4440413)

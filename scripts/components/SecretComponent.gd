@@ -6,6 +6,8 @@ signal discovered(secret: SecretComponent)
 @export var secret_ID : StringName = ""
 @export var is_secret := true
 @export var secret_type : String
+@export var visibible_object : MeshInstance3D
+@export var secret_object : MeshInstance3D
 
 func _ready() -> void:
 	MapManager.register_secret(self)
