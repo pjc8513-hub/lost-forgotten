@@ -10,6 +10,7 @@ signal loot_requested(chest: ChestComponent, loot: Dictionary)
 @export var gold_roll_sides: int = 20
 @export var loot_table: LootManager.Loot_Table = LootManager.Loot_Table.EQUIP_1
 @export var is_trapped: bool =  false
+@export var is_discovered: bool = true
 @export var trap_type: trap_data
 @export var dc_rank: int = 0
 @export var is_empty: bool = false

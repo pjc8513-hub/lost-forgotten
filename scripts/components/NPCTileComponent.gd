@@ -2,6 +2,7 @@ class_name NPC_Tile_Component
 extends Node3D
 
 @export var npc_tile_id: StringName
+@export var is_discovered: bool = true
 @export var NPC_List: Array[NPCComponent] = [] # array of NPCs available from the tile
 var _removed_npc_ids: Dictionary = {}
 

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://jrioh1et57iw"]
 
-[ext_resource type="PackedScene" uid="uid://btgals7hsegse" path="res://assets/models/forest/forest floor3.glb" id="1_njau3"]
-[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_dhdpr"]
+[ext_resource type="PackedScene" uid="uid://b0138u4whiga4" path="res://assets/models/forest/forest floor3.glb" id="1_0ibls"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_njau3"]
 
-[node name="forest floor3" unique_id=502341988 instance=ExtResource("1_njau3")]
+[node name="forest floor3" unique_id=1666970048 instance=ExtResource("1_0ibls")]
 
-[node name="GridElement" type="Node3D" parent="." index="1" unique_id=1472537547]
-script = ExtResource("2_dhdpr")
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=871017211]
+script = ExtResource("2_njau3")
 metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
