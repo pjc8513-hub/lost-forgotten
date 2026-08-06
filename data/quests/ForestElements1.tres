@@ -11,6 +11,6 @@ is_main_quest = true
 description = "Those foolish druids in the center of the forest have spurred up the elements into an uncontrollable force!
 
 Someone needs to speak to the Head Druid and find out what they are up to!"
-display_name = "forest"
+display_name = "Forest"
 destination_map = "uid://eya04obhcvrt"
 metadata/_custom_type_script = "uid://phuimf2skp05"

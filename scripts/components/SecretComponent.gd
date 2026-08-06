@@ -6,7 +6,7 @@ signal discovered(secret: SecretComponent)
 @export var secret_ID : StringName = ""
 @export var is_secret := true
 @export var secret_type : String
-@export var visibible_object : MeshInstance3D
+@export var visible_object : MeshInstance3D
 @export var secret_object : MeshInstance3D
 
 func _ready() -> void:
@@ -32,6 +32,7 @@ func discover() -> bool:
 func apply_state(state: Dictionary, _instant: bool = false) -> void:
 	var was_secret := is_secret
 	is_secret = not bool(state.get("discovered", false))
+	_sync_object_visibility()
 	if is_secret:
 		return
 	var door := get_parent().get_node_or_null("DoorComponent") as DoorComponent
@@ -42,6 +43,12 @@ func apply_state(state: Dictionary, _instant: bool = false) -> void:
 		trap.discover_trap()
 	if was_secret:
 		discovered.emit(self)
+
+func _sync_object_visibility() -> void:
+	if visible_object != null:
+		visible_object.visible = is_secret
+	if secret_object != null:
+		secret_object.visible = not is_secret
 
 func get_discovery_message() -> String:
 	match secret_type.to_lower().strip_edges():
