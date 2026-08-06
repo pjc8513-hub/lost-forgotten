@@ -5,9 +5,14 @@ extends Node3D
 @export var is_discovered: bool = true
 @export var NPC_List: Array[NPCComponent] = [] # array of NPCs available from the tile
 var _removed_npc_ids: Dictionary = {}
+var _secret: SecretComponent
 
 func _ready() -> void:
 	MapManager.register_npc_tile(self)
+	_secret = get_node_or_null("SecretComponent") as SecretComponent
+	if _secret != null:
+		is_discovered = not _secret.is_secret
+		_secret.discovered.connect(_on_secret_discovered)
 
 func _exit_tree() -> void:
 	MapManager.unregister_npc_tile(self)
@@ -33,11 +38,17 @@ func apply_persistent_state(state: Dictionary) -> void:
 		queue_free()
 
 func interact(_actor: Node) -> void:
+	if not is_discovered:
+		MapManager.request_alert("There may be something here...")
+		return
 	var active_npcs := get_active_npcs()
 	if active_npcs.is_empty():
 		MapManager.request_alert("No one is available.")
 		return
 	MapManager.request_dialogue(active_npcs, self)
+
+func _on_secret_discovered(_secret_component: SecretComponent) -> void:
+	is_discovered = true
 
 
 func get_grid_pos() -> Vector3i:

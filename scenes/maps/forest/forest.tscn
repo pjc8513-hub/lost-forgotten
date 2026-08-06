@@ -11,10 +11,15 @@
 [ext_resource type="Script" uid="uid://d3memun0m0avi" path="res://scripts/components/NPCTileComponent.gd" id="6_1kw7y"]
 [ext_resource type="Script" uid="uid://c1lus734wl56v" path="res://scripts/components/BumpComponent.gd" id="6_1quc5"]
 [ext_resource type="PackedScene" uid="uid://jrioh1et57iw" path="res://scenes/grid/forest/forest_floor_3.tscn" id="6_d1kvm"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="7_7j2fw"]
 [ext_resource type="PackedScene" uid="uid://drc5ytrh6qhmg" path="res://scenes/grid/forest/forest_tree_3.tscn" id="7_ay085"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="8_2skyn"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="9_mbbhb"]
 [ext_resource type="Script" uid="uid://bceexab1akxyc" path="res://scripts/components/SecretComponent.gd" id="9_rc6nc"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="10_u4brs"]
 [ext_resource type="PackedScene" uid="uid://dduccnw0ncg6f" path="res://scenes/grid/forest/forest_trees_cube_3.tscn" id="10_xmyvr"]
 [ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="11_1shvf"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="11_rnsqj"]
 [ext_resource type="Script" uid="uid://ip1ql2nqap5m" path="res://scripts/components/TeleportTileComponent.gd" id="11_rvwwk"]
 [ext_resource type="PackedScene" uid="uid://bc5npu8vkvan5" path="res://scenes/grid/forest/forest_canopy_2.tscn" id="14_1quc5"]
 [ext_resource type="PackedScene" uid="uid://c8ce73liocfbc" path="res://scenes/grid/forest/stump.tscn" id="14_j7yqk"]
@@ -28,6 +33,13 @@
 [ext_resource type="Script" uid="uid://cu55r1gs5ol76" path="res://scripts/components/ChestComponent.gd" id="24_q5kem"]
 [ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="25_knxf5"]
 [ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="26_wafvc"]
+
+[sub_resource type="Resource" id="Resource_sivqk"]
+script = ExtResource("7_7j2fw")
+persistent_id = &"ThievesDenEntrance"
+npc_name = "Thieve's Den"
+dialogue_label = "Enter"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
 [node name="forest" type="Node3D" unique_id=1556622436]
 script = ExtResource("1_tq4d2")
@@ -62,6 +74,8 @@ spawn_id = &"forest.teleport3"
 [node name="stump4" parent="." unique_id=29370894 instance=ExtResource("14_j7yqk")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 16, 0, -2)
 script = ExtResource("6_1kw7y")
+npc_tile_id = &"ThievesDen"
+NPC_List = Array[ExtResource("7_7j2fw")]([SubResource("Resource_sivqk")])
 
 [node name="SecretComponent" type="Node3D" parent="stump4" unique_id=1826147842]
 script = ExtResource("9_rc6nc")

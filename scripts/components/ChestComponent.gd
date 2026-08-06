@@ -19,9 +19,14 @@ signal loot_requested(chest: ChestComponent, loot: Dictionary)
 
 var is_open: bool = false
 var _trap: TrapComponent
+var _secret: SecretComponent
 
 func _ready() -> void:
 	MapManager.register_chest(self)
+	_secret = get_parent().get_node_or_null("SecretComponent") as SecretComponent
+	if _secret != null:
+		is_discovered = not _secret.is_secret
+		_secret.discovered.connect(_on_secret_discovered)
 	var interactable := get_parent().get_node_or_null("InteractableComponent") as InteractableComponent
 	if interactable == null:
 		push_warning("ChestComponent requires an InteractableComponent sibling.")
@@ -46,7 +51,13 @@ func _exit_tree() -> void:
 func _on_interacted(actor: Node) -> void:
 	open(actor)
 
+func _on_secret_discovered(_secret_component: SecretComponent) -> void:
+	is_discovered = true
+
 func open(actor: Node) -> bool:
+	if not is_discovered:
+		MapManager.request_alert("There may be something here...")
+		return false
 	if is_open:
 		return false
 
