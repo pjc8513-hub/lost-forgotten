@@ -45,8 +45,17 @@ func get_discovery_message() -> String:
 	match secret_type.to_lower().strip_edges():
 		"door": return "Found secret door"
 		"trap": return "Found trap"
+		"npc": return "Found %s" % _get_npc_name()
 		var type_name when not type_name.is_empty(): return "Found %s" % type_name
 		_: return "Found a secret"
+
+func _get_npc_name() -> String:
+	var npc_tile := get_parent() as NPC_Tile_Component
+	if npc_tile != null:
+		for npc in npc_tile.NPC_List:
+			if npc != null and not npc.npc_name.strip_edges().is_empty():
+				return npc.npc_name
+	return "NPC"
 
 func _find_grid_element() -> GridElement:
 	var ancestor := get_parent()
