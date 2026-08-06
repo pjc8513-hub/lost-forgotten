@@ -3,6 +3,9 @@ class_name MapData
 
 @export var Map_ID: StringName
 @export var has_daynight: bool = false
+## Visual time in 24-hour HHMM format for maps without a day/night cycle.
+## This does not change WorldManager's tracked time.
+@export_range(0, 2359, 1) var time_of_day: int = 1730
 @export var enable_torch: bool = true
 @export var main_screen_filter_visible: bool = true
 @export var is_underwater: bool = false
@@ -44,19 +47,20 @@ var _day_sun_color: Color = Color(1.0, 0.95, 0.8)
 
 
 func _ready() -> void:
-	if not has_daynight:
-		return
-
 	if _daynight_light == null or _daynight_world_environment == null or _daynight_world_environment.environment == null:
-		push_warning("Map '%s' has_daynight enabled but is missing a DirectionalLight3D or environment." % name)
+		if has_daynight:
+			push_warning("Map '%s' has_daynight enabled but is missing a DirectionalLight3D or environment." % name)
 		return
 
 	if _daynight_world_environment.environment != null and _daynight_world_environment.environment.sky != null:
 		_daynight_sky_material = _daynight_world_environment.environment.sky.sky_material as ShaderMaterial
 
 	_cache_daynight_day_values()
-	WorldManager.dungeon_time_changed.connect(_on_daynight_time_changed)
-	_on_daynight_time_changed(WorldManager.dungeon_elapsed_time)
+	if has_daynight:
+		WorldManager.dungeon_time_changed.connect(_on_daynight_time_changed)
+		_on_daynight_time_changed(WorldManager.dungeon_elapsed_time)
+	else:
+		_apply_visual_time(_hhmm_to_seconds(time_of_day))
 
 
 func _exit_tree() -> void:
@@ -93,8 +97,22 @@ func _on_daynight_time_changed(elapsed_seconds: int) -> void:
 	if not has_daynight or _daynight_light == null or _daynight_world_environment == null:
 		return
 
-	var time_of_day := fmod(float(WorldManager.DUNGEON_START_TIME_SECONDS + elapsed_seconds), SECONDS_PER_DAY)
-	var sun_height := sin((time_of_day - DAY_START_SECONDS) / (12.0 * 60.0 * 60.0) * PI)
+	var world_time_of_day := fmod(float(WorldManager.DUNGEON_START_TIME_SECONDS + elapsed_seconds), SECONDS_PER_DAY)
+	_apply_visual_time(world_time_of_day)
+
+
+func _hhmm_to_seconds(hhmm: int) -> float:
+	var hour := hhmm / 100
+	var minute := hhmm % 100
+	if hour > 23 or minute > 59:
+		push_warning("Map '%s' has invalid time_of_day %04d; expected 24-hour HHMM." % [name, hhmm])
+		hour = clampi(hour, 0, 23)
+		minute = clampi(minute, 0, 59)
+	return float(hour * 60 * 60 + minute * 60)
+
+
+func _apply_visual_time(visual_time_seconds: float) -> void:
+	var sun_height := sin((visual_time_seconds - DAY_START_SECONDS) / (12.0 * 60.0 * 60.0) * PI)
 	var daylight := smoothstep(-0.12, 0.25, sun_height)
 	var twilight := smoothstep(-0.35, 0.15, sun_height) * (1.0 - smoothstep(0.2, 0.75, sun_height))
 

@@ -87,6 +87,7 @@ shadow_mesh = SubResource("ArrayMesh_rxrmx")
 [node name="forest" type="Node3D" unique_id=1556622436]
 script = ExtResource("1_tq4d2")
 Map_ID = &"forest"
+time_of_day = 1730
 main_shader_palette_texture = ExtResource("2_r4nvb")
 main_shader_dither_strength = 0.08
 main_shader_contrast = 1.13
