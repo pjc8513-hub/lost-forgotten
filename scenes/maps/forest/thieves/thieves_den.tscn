@@ -347,7 +347,7 @@ transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 14, 
 
 [node name="TeleportTileComponent" type="Node" parent="dirt_tele81" unique_id=1107615288]
 script = ExtResource("18_xhi3t")
-teleport_id = &"ThievesTele7"
+teleport_id = &"ThievesTele11"
 spawn_location_ids = Array[StringName]([&"tele2"])
 metadata/_custom_type_script = "uid://ip1ql2nqap5m"
 
@@ -491,7 +491,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 6)
 
 [node name="TeleportTileComponent" type="Node" parent="dirt_tele104" unique_id=820989106]
 script = ExtResource("18_xhi3t")
-teleport_id = &"ThievesTele5"
+teleport_id = &"ThievesTele6"
 spawn_location_ids = Array[StringName]([&"tele4"])
 metadata/_custom_type_script = "uid://ip1ql2nqap5m"
 
@@ -528,7 +528,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 12)
 
 [node name="TeleportTileComponent" type="Node" parent="dirt_tele109" unique_id=573635434]
 script = ExtResource("18_xhi3t")
-teleport_id = &"ThievesTele5"
+teleport_id = &"ThievesTele7"
 spawn_location_ids = Array[StringName]([&"tele2"])
 metadata/_custom_type_script = "uid://ip1ql2nqap5m"
 
@@ -631,7 +631,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0
 
 [node name="TeleportTileComponent" type="Node" parent="dirt_tele127" unique_id=1143221883]
 script = ExtResource("18_xhi3t")
-teleport_id = &"ThievesTele6"
+teleport_id = &"ThievesTele8"
 spawn_location_ids = Array[StringName]([&"tele5"])
 metadata/_custom_type_script = "uid://ip1ql2nqap5m"
 
@@ -753,7 +753,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 18)
 
 [node name="TeleportTileComponent" type="Node" parent="dirt_wall142" unique_id=978908396]
 script = ExtResource("18_xhi3t")
-teleport_id = &"ThievesTele8"
+teleport_id = &"ThievesTele10"
 spawn_location_ids = Array[StringName]([&"tele6"])
 metadata/_custom_type_script = "uid://ip1ql2nqap5m"
 
