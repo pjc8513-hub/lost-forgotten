@@ -1,0 +1,788 @@
+[gd_scene format=3 uid="uid://cnjk4537b1k0n"]
+
+[ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_2y3rq"]
+[ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_7ckwy"]
+[ext_resource type="Environment" uid="uid://cv7posx2uelkc" path="res://data/bonepit_environment.tres" id="3_jp8nt"]
+[ext_resource type="PackedScene" uid="uid://bo13kelcwgkew" path="res://scenes/grid/thieves/dirt_corner.tscn" id="4_jp8nt"]
+[ext_resource type="PackedScene" uid="uid://b3f70htpkb1nr" path="res://scenes/grid/thieves/ladder.tscn" id="5_2ctbl"]
+[ext_resource type="Script" uid="uid://d3memun0m0avi" path="res://scripts/components/NPCTileComponent.gd" id="5_3mgn3"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="6_ad2ao"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="7_36cex"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="7_j8c75"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="8_j8c75"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="9_vjtrh"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="9_xhi3t"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="10_xhi3t"]
+[ext_resource type="PackedScene" uid="uid://c3dmxesx8kdxb" path="res://scenes/grid/thieves/dirt_wall.tscn" id="12_n3ucg"]
+[ext_resource type="PackedScene" uid="uid://dgr6tc7bsd26x" path="res://scenes/grid/castle/torch_1.tscn" id="13_u3gsx"]
+[ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="14_yik7c"]
+[ext_resource type="PackedScene" uid="uid://g3h5af7ck3wf" path="res://scenes/grid/thieves/dirt_floor.tscn" id="17_j8c75"]
+[ext_resource type="PackedScene" uid="uid://cdcdrl03jc84f" path="res://scenes/grid/mountain/teleport_tile.tscn" id="17_n3ucg"]
+[ext_resource type="PackedScene" uid="uid://b5x4iwyyonjjq" path="res://scenes/grid/thieves/dirt_pillar.tscn" id="18_vjtrh"]
+[ext_resource type="Script" uid="uid://ip1ql2nqap5m" path="res://scripts/components/TeleportTileComponent.gd" id="18_xhi3t"]
+[ext_resource type="PackedScene" uid="uid://dk3pu5ssng2p2" path="res://scenes/grid/castle/chest_3.tscn" id="21_yik7c"]
+[ext_resource type="Resource" uid="uid://dd5a150sn26i3" path="res://data/traps/poison.tres" id="22_epwe5"]
+[ext_resource type="PackedScene" uid="uid://be55piwbhi0wn" path="res://scenes/grid/thieves/dirt_hall.tscn" id="23_epwe5"]
+[ext_resource type="PackedScene" uid="uid://mvypaaglnt4g" path="res://scenes/grid/thieves/dirt_hall_trap.tscn" id="24_bfg5p"]
+[ext_resource type="PackedScene" uid="uid://djfbbmtx30m8i" path="res://scenes/grid/thieves/dirt_dead.tscn" id="25_2f7o7"]
+[ext_resource type="Resource" uid="uid://cprqkatkl7hpc" path="res://data/traps/blades.tres" id="26_fbjbf"]
+[ext_resource type="Resource" uid="uid://dfc5or6svg7no" path="res://data/traps/thorns.tres" id="27_k283h"]
+[ext_resource type="PackedScene" uid="uid://cw51gvstk7ps2" path="res://scenes/maps/bonepit/doors/button_1.tscn" id="28_fbjbf"]
+
+[sub_resource type="Resource" id="Resource_rl7oc"]
+script = ExtResource("7_36cex")
+text = "A ladder leads up to the surface"
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_mansq"]
+script = ExtResource("6_ad2ao")
+persistent_id = &"thieves1exit"
+npc_name = "Thieves Den Exit"
+default_dialogue = SubResource("Resource_rl7oc")
+dialogue_label = "Inspect"
+destination_map = "uid://eya04obhcvrt"
+destination_spawn_id = &"ThievesEntrance"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
+
+[node name="ThievesDen" type="Node3D" unique_id=2066449183]
+script = ExtResource("1_2y3rq")
+Map_ID = &"ThievesDen"
+main_shader_palette_texture = ExtResource("2_7ckwy")
+main_shader_dither_strength = 0.05
+main_shader_contrast = 1.13
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=243696950]
+environment = ExtResource("3_jp8nt")
+
+[node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("14_yik7c")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+spawn_id = &"entrance"
+
+[node name="MapSpawnPoint2" parent="." unique_id=569970880 instance=ExtResource("14_yik7c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 8)
+spawn_id = &"tele1"
+
+[node name="MapSpawnPoint3" parent="." unique_id=1071876402 instance=ExtResource("14_yik7c")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 18, 0, 0)
+spawn_id = &"tele2"
+
+[node name="MapSpawnPoint4" parent="." unique_id=1823047851 instance=ExtResource("14_yik7c")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16, 0, 10)
+spawn_id = &"tele3"
+
+[node name="MapSpawnPoint5" parent="." unique_id=1860701891 instance=ExtResource("14_yik7c")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2, 0, 8)
+spawn_id = &"tele4"
+
+[node name="MapSpawnPoint6" parent="." unique_id=1749085780 instance=ExtResource("14_yik7c")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2, 0, 10)
+spawn_id = &"tele5"
+
+[node name="MapSpawnPoint7" parent="." unique_id=1353419417 instance=ExtResource("14_yik7c")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 7.999998, 0, 10)
+spawn_id = &"tele6"
+
+[node name="MapSpawnPoint8" parent="." unique_id=1831369634 instance=ExtResource("14_yik7c")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, 0, 24)
+spawn_id = &"tele7"
+
+[node name="dirt_wall" parent="." unique_id=403644597 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+script = ExtResource("5_3mgn3")
+npc_tile_id = &"thieves1.exit"
+NPC_List = Array[ExtResource("6_ad2ao")]([SubResource("Resource_mansq")])
+
+[node name="ladder" parent="." unique_id=406612134 instance=ExtResource("5_2ctbl")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3, 0, 0)
+
+[node name="dirt_wall2" parent="." unique_id=434199718 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="dirt_wall3" parent="." unique_id=1670296165 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0, 0)
+
+[node name="dirt_wall4" parent="." unique_id=1498175334 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, 0)
+
+[node name="dirt_wall5" parent="." unique_id=954257450 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0, 0)
+
+[node name="dirt_wall6" parent="." unique_id=1683023617 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 0)
+
+[node name="dirt_wall7" parent="." unique_id=587680193 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10, 0, 0)
+
+[node name="dirt_wall8" parent="." unique_id=1899509335 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12, 0, 0)
+
+[node name="dirt_wall9" parent="." unique_id=496988456 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, 0, 0)
+
+[node name="dirt_wall10" parent="." unique_id=1291268712 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16, 0, 0)
+
+[node name="dirt_wall11" parent="." unique_id=179721368 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 18, 0, 0)
+
+[node name="dirt_wall13" parent="." unique_id=2124833796 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 20, 0, 2)
+
+[node name="dirt_wall15" parent="." unique_id=1362021424 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 20, 0, 6)
+
+[node name="dirt_wall16" parent="." unique_id=321288119 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 20, 0, 8)
+
+[node name="dirt_wall17" parent="." unique_id=117348345 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 20, 0, 10)
+
+[node name="dirt_wall18" parent="." unique_id=1720661333 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 20, 0, 12)
+
+[node name="dirt_wall19" parent="." unique_id=2124848395 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 20, 0, 16)
+
+[node name="dirt_wall21" parent="." unique_id=2272667 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 20, 0, 18)
+
+[node name="dirt_wall22" parent="." unique_id=724536497 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 20, 0, 20)
+
+[node name="dirt_wall23" parent="." unique_id=864311763 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 20, 0, 22)
+
+[node name="dirt_wall25" parent="." unique_id=1176634394 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 18, 0, 24)
+
+[node name="dirt_wall26" parent="." unique_id=917441608 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 16, 0, 24)
+
+[node name="dirt_wall27" parent="." unique_id=430805130 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 14, 0, 24)
+
+[node name="dirt_wall29" parent="." unique_id=312816498 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 10, 0, 24)
+
+[node name="dirt_wall30" parent="." unique_id=1340103962 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 8, 0, 24)
+
+[node name="dirt_wall31" parent="." unique_id=1285932584 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 6, 0, 24)
+
+[node name="dirt_wall32" parent="." unique_id=1335797217 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 4, 0, 24)
+
+[node name="dirt_wall34" parent="." unique_id=1487615369 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 0, 0, 24)
+
+[node name="dirt_wall37" parent="." unique_id=1704737833 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, -4, 0, 22)
+
+[node name="dirt_wall39" parent="." unique_id=2051496735 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, -4, 0, 18)
+
+[node name="dirt_wall40" parent="." unique_id=490515100 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, -4, 0, 16)
+
+[node name="dirt_wall41" parent="." unique_id=803087817 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, -4, 0, 14)
+
+[node name="dirt_wall42" parent="." unique_id=740031561 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, -4, 0, 12)
+
+[node name="dirt_wall43" parent="." unique_id=626855647 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, -4, 0, 10)
+
+[node name="dirt_wall45" parent="." unique_id=240691507 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, -4, 0, 6)
+
+[node name="dirt_wall47" parent="." unique_id=340119636 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, -4, 0, 4)
+
+[node name="dirt_wall50" parent="." unique_id=1471800801 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, 0, 0, 4)
+
+[node name="dirt_wall60" parent="." unique_id=93365732 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 2, 0, 2)
+
+[node name="dirt_wall61" parent="." unique_id=1886547853 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 6, 0, 2)
+
+[node name="dirt_tele3" parent="." unique_id=1427274195 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, 0, 0, 6)
+
+[node name="TeleportTileComponent" type="Node" parent="dirt_tele3" unique_id=981029184]
+script = ExtResource("18_xhi3t")
+teleport_id = &"ThievesTele3"
+spawn_location_ids = Array[StringName]([&"tele7"])
+is_activated = false
+metadata/_custom_type_script = "uid://ip1ql2nqap5m"
+
+[node name="TeleportTile" parent="dirt_tele3" unique_id=453829681 instance=ExtResource("17_n3ucg")]
+
+[node name="dirt_wall53" parent="." unique_id=1888297684 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 2, 0, 8)
+
+[node name="dirt_wall54" parent="." unique_id=1173942211 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 4, 0, 8)
+
+[node name="dirt_wall55" parent="." unique_id=1569388073 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 6, 0, 8)
+
+[node name="dirt_wall73" parent="." unique_id=1722032920 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, 8, 0, 10)
+
+[node name="dirt_wall78" parent="." unique_id=690940672 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 10, 0, 10)
+
+[node name="dirt_wall79" parent="." unique_id=2036968017 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 12, 0, 10)
+
+[node name="dirt_wall82" parent="." unique_id=248824881 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, 14, 0, 12)
+
+[node name="dirt_wall83" parent="." unique_id=624764907 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, 14, 0, 14)
+
+[node name="dirt_tele99" parent="." unique_id=492256235 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 16, 0, 14)
+
+[node name="TeleportTile" parent="dirt_tele99" unique_id=661469174 instance=ExtResource("17_n3ucg")]
+
+[node name="TeleportTileComponent" type="Node" parent="dirt_tele99" unique_id=1424263592]
+script = ExtResource("18_xhi3t")
+teleport_id = &"ThievesTele5"
+spawn_location_ids = Array[StringName]([&"tele1"])
+metadata/_custom_type_script = "uid://ip1ql2nqap5m"
+
+[node name="dirt_wall100" parent="." unique_id=1989475183 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 18, 0, 14)
+
+[node name="dirt_wall84" parent="." unique_id=1911582832 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 12, 0, 16)
+
+[node name="dirt_wall74" parent="." unique_id=289540635 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, 8, 0, 12)
+
+[node name="dirt_wall75" parent="." unique_id=1563537969 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, 8, 0, 14)
+
+[node name="dirt_wall77" parent="." unique_id=920566940 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 10, 0, 16)
+
+[node name="dirt_tele2" parent="." unique_id=488940373 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 8, 0, 6)
+
+[node name="TeleportTileComponent" type="Node" parent="dirt_tele2" unique_id=1717101658]
+script = ExtResource("18_xhi3t")
+teleport_id = &"ThievesTele2"
+spawn_location_ids = Array[StringName]([&"tele3"])
+metadata/_custom_type_script = "uid://ip1ql2nqap5m"
+
+[node name="TeleportTile" parent="dirt_tele2" unique_id=185368903 instance=ExtResource("17_n3ucg")]
+
+[node name="dirt_wall58" parent="." unique_id=50377969 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 8, 0, 4)
+
+[node name="dirt_wall64" parent="." unique_id=1938340382 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-2.1855693e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855693e-07, 10, 0, 2)
+
+[node name="dirt_wall89" parent="." unique_id=1502610168 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 1, 0, -2.6226832e-07, 0, -1, 14, 0, 6)
+
+[node name="dirt_wall90" parent="." unique_id=160668984 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 1, 0, -2.6226832e-07, 0, -1, 14, 0, 8)
+
+[node name="torch1" parent="." unique_id=179294296 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="torch2" parent="." unique_id=586089728 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14, 0, 0)
+
+[node name="torch8" parent="." unique_id=631022093 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 18, 0, 2)
+
+[node name="torch7" parent="." unique_id=2059902455 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 12, 0, 8)
+
+[node name="torch3" parent="." unique_id=36397030 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 8, 0, 8)
+
+[node name="torch4" parent="." unique_id=318065662 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, 8)
+
+[node name="torch13" parent="." unique_id=391508403 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 2, 0, 12)
+
+[node name="dirt_wall12" parent="." unique_id=1037883311 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20, 0, 0)
+
+[node name="dirt_wall24" parent="." unique_id=1377809329 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20, 0, 24)
+
+[node name="dirt_wall36" parent="." unique_id=870092861 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 24)
+
+[node name="dirt_wall46" parent="." unique_id=1902680 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+
+[node name="dirt_wall48" parent="." unique_id=702545014 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="dirt_wall49" parent="." unique_id=808134532 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="dirt_wall52" parent="." unique_id=792480104 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 8)
+
+[node name="dirt_wall56" parent="." unique_id=1923567245 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8, 0, 8)
+
+[node name="dirt_wall80" parent="." unique_id=779626797 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 14, 0, 10)
+
+[node name="dirt_tele81" parent="." unique_id=1488857692 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 14, 0, 16)
+
+[node name="TeleportTileComponent" type="Node" parent="dirt_tele81" unique_id=1107615288]
+script = ExtResource("18_xhi3t")
+teleport_id = &"ThievesTele7"
+spawn_location_ids = Array[StringName]([&"tele2"])
+metadata/_custom_type_script = "uid://ip1ql2nqap5m"
+
+[node name="TeleportTile" parent="dirt_tele81" unique_id=1622537393 instance=ExtResource("17_n3ucg")]
+
+[node name="dirt_wall76" parent="." unique_id=940499172 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 16)
+
+[node name="dirt_wall59" parent="." unique_id=1410034394 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 8, 0, 2)
+
+[node name="dirt_wall62" parent="." unique_id=1382531560 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+
+[node name="dirt_wall63" parent="." unique_id=1180076155 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="dirt_teleport1" parent="." unique_id=16179314 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6)
+
+[node name="TeleportTileComponent" type="Node" parent="dirt_teleport1" unique_id=1763423044]
+script = ExtResource("18_xhi3t")
+teleport_id = &"ThievesTele1"
+spawn_location_ids = Array[StringName]([&"entrance"])
+metadata/_custom_type_script = "uid://ip1ql2nqap5m"
+
+[node name="TeleportTile" parent="dirt_teleport1" unique_id=656921584 instance=ExtResource("17_n3ucg")]
+
+[node name="dirt_wall65" parent="." unique_id=1659723404 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="dirt_wall66" parent="." unique_id=2143037862 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+
+[node name="dirt_wall67" parent="." unique_id=1316597150 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4)
+
+[node name="dirt_wall68" parent="." unique_id=1078950484 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 6)
+
+[node name="dirt_wall69" parent="." unique_id=1519306791 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+
+[node name="dirt_wall70" parent="." unique_id=1705186760 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
+
+[node name="dirt_wall72" parent="." unique_id=1697111071 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 8)
+
+[node name="torch5" parent="." unique_id=782874327 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 0, 12)
+
+[node name="torch6" parent="." unique_id=281477258 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12, 0, 16)
+
+[node name="dirt_wall44" parent="." unique_id=1029657456 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 14)
+
+[node name="dirt_wall85" parent="." unique_id=1023379749 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 12)
+
+[node name="dirt_wall86" parent="." unique_id=1380625573 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 12)
+
+[node name="dirt_wall87" parent="." unique_id=1973249039 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 14)
+
+[node name="chest3" parent="." unique_id=1001326355 instance=ExtResource("21_yik7c")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 8)
+
+[node name="ChestComponent" parent="chest3" index="4" unique_id=971460780]
+chest_ID = &"ThievesChest1"
+gold_roll_dice = 2
+is_trapped = true
+trap_type = ExtResource("22_epwe5")
+
+[node name="dirt_wall51" parent="." unique_id=1360312343 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, 0, 2)
+
+[node name="dirt_wall57" parent="." unique_id=1721748910 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 2)
+
+[node name="dirt_wall97" parent="." unique_id=206355543 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 2)
+
+[node name="dirt_wall98" parent="." unique_id=76349877 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 2)
+
+[node name="dirt_wall71" parent="." unique_id=133923354 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 4)
+
+[node name="dirt_wall88" parent="." unique_id=1907004959 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 4)
+
+[node name="dirt_tele91" parent="." unique_id=125878151 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 6)
+
+[node name="TeleportTileComponent" type="Node" parent="dirt_tele91" unique_id=1933409800]
+script = ExtResource("18_xhi3t")
+teleport_id = &"ThievesTele4"
+spawn_location_ids = Array[StringName]([&"tele2"])
+metadata/_custom_type_script = "uid://ip1ql2nqap5m"
+
+[node name="TeleportTile" parent="dirt_tele91" unique_id=300368765 instance=ExtResource("17_n3ucg")]
+
+[node name="dirt_wall92" parent="." unique_id=2019990139 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 8)
+
+[node name="dirt_wall93" parent="." unique_id=1279181627 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 8)
+
+[node name="dirt_wall94" parent="." unique_id=1543455907 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 6)
+
+[node name="dirt_wall95" parent="." unique_id=143308267 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 4)
+
+[node name="dirt_wall14" parent="." unique_id=357678547 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 4)
+
+[node name="dirt_wall91" parent="." unique_id=384028073 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 4)
+
+[node name="dirt_wall96" parent="." unique_id=2146384545 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 4)
+
+[node name="dirt_wall20" parent="." unique_id=968452893 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20, 0, 14)
+
+[node name="dirt_wall101" parent="." unique_id=1613493753 instance=ExtResource("23_epwe5")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 18, 0, 10)
+
+[node name="dirt_wall102" parent="." unique_id=1764362422 instance=ExtResource("23_epwe5")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16, 0, 10)
+
+[node name="dirt_wall103" parent="." unique_id=1677338133 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 8)
+
+[node name="dirt_tele104" parent="." unique_id=33870523 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 6)
+
+[node name="TeleportTileComponent" type="Node" parent="dirt_tele104" unique_id=820989106]
+script = ExtResource("18_xhi3t")
+teleport_id = &"ThievesTele5"
+spawn_location_ids = Array[StringName]([&"tele4"])
+metadata/_custom_type_script = "uid://ip1ql2nqap5m"
+
+[node name="TeleportTile" parent="dirt_tele104" unique_id=1474039222 instance=ExtResource("17_n3ucg")]
+
+[node name="dirt_wall105" parent="." unique_id=1615060207 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 6)
+
+[node name="dirt_wall106" parent="." unique_id=680430385 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 8)
+
+[node name="torch9" parent="." unique_id=1662199277 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16, 0, 8)
+
+[node name="torch10" parent="." unique_id=48849920 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16, 0, 12)
+
+[node name="dirt_wall107" parent="." unique_id=1143514945 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 12)
+
+[node name="dirt_wall108" parent="." unique_id=1455517077 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 12)
+
+[node name="dirt_wall99" parent="." unique_id=2019878994 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8)
+
+[node name="dirt_wall104" parent="." unique_id=536575805 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2, 0, 10)
+
+[node name="dirt_tele109" parent="." unique_id=754805897 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 12)
+
+[node name="TeleportTile" parent="dirt_tele109" unique_id=937008951 instance=ExtResource("17_n3ucg")]
+
+[node name="TeleportTileComponent" type="Node" parent="dirt_tele109" unique_id=573635434]
+script = ExtResource("18_xhi3t")
+teleport_id = &"ThievesTele5"
+spawn_location_ids = Array[StringName]([&"tele2"])
+metadata/_custom_type_script = "uid://ip1ql2nqap5m"
+
+[node name="dirt_trap110" parent="." unique_id=2132290419 instance=ExtResource("24_bfg5p")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2, 0, 14)
+
+[node name="TrapComponent" parent="dirt_trap110/trap" parent_id_path=PackedInt32Array(2132290419, 815520868) index="0" unique_id=417324677]
+trap_id = &"thieves.trap1"
+trap_type = ExtResource("22_epwe5")
+
+[node name="chest4" parent="." unique_id=741328656 instance=ExtResource("21_yik7c")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 14)
+
+[node name="ChestComponent" parent="chest4" index="4" unique_id=971460780]
+chest_ID = &"ThievesChest2"
+gold_roll_dice = 2
+is_trapped = true
+trap_type = ExtResource("26_fbjbf")
+
+[node name="dirt_wall38" parent="." unique_id=1695016460 instance=ExtResource("25_2f7o7")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6, 0, 20)
+
+[node name="dirt_wall110" parent="." unique_id=1605312288 instance=ExtResource("23_epwe5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 18)
+
+[node name="dirt_wall113" parent="." unique_id=236716481 instance=ExtResource("23_epwe5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 20)
+
+[node name="dirt_wall111" parent="." unique_id=591657669 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2, 0, 16)
+
+[node name="dirt_wall35" parent="." unique_id=859085844 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 24)
+
+[node name="dirt_wall112" parent="." unique_id=1356626841 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 20)
+
+[node name="torch11" parent="." unique_id=692633394 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 18)
+
+[node name="dirt_wall114" parent="." unique_id=2078998722 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 22)
+
+[node name="chest5" parent="." unique_id=1676427253 instance=ExtResource("21_yik7c")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 24)
+
+[node name="ChestComponent" parent="chest5" index="4" unique_id=971460780]
+chest_ID = &"ThievesChest3"
+gold_roll_dice = 3
+loot_table = 3
+
+[node name="dirt_wall115" parent="." unique_id=1871693736 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 22)
+
+[node name="dirt_trap33" parent="." unique_id=1855393922 instance=ExtResource("24_bfg5p")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0, 24)
+
+[node name="TrapComponent" parent="dirt_trap33/trap" parent_id_path=PackedInt32Array(1855393922, 815520868) index="0" unique_id=417324677]
+trap_id = &"thieves.trap2"
+trap_type = ExtResource("27_k283h")
+
+[node name="dirt_wall33" parent="." unique_id=1622811079 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 22)
+
+[node name="dirt_wall116" parent="." unique_id=968066122 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 22)
+
+[node name="dirt_wall117" parent="." unique_id=1849939945 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 20)
+
+[node name="dirt_wall118" parent="." unique_id=2082050734 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+
+[node name="dirt_wall119" parent="." unique_id=1397110997 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
+
+[node name="dirt_wall120" parent="." unique_id=1618364011 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+
+[node name="dirt_wall121" parent="." unique_id=1480857158 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 16)
+
+[node name="dirt_wall122" parent="." unique_id=568288473 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 18)
+
+[node name="dirt_wall123" parent="." unique_id=1713623145 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 18)
+
+[node name="dirt_wall124" parent="." unique_id=1519517037 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 20)
+
+[node name="dirt_wall125" parent="." unique_id=2014356124 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 16)
+
+[node name="dirt_wall126" parent="." unique_id=456372473 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 16)
+
+[node name="dirt_tele127" parent="." unique_id=1337163463 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0, 14)
+
+[node name="TeleportTileComponent" type="Node" parent="dirt_tele127" unique_id=1143221883]
+script = ExtResource("18_xhi3t")
+teleport_id = &"ThievesTele6"
+spawn_location_ids = Array[StringName]([&"tele5"])
+metadata/_custom_type_script = "uid://ip1ql2nqap5m"
+
+[node name="TeleportTile" parent="dirt_tele127" unique_id=1973371080 instance=ExtResource("17_n3ucg")]
+
+[node name="torch12" parent="." unique_id=276750837 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 18)
+
+[node name="dirt_wall128" parent="." unique_id=1522910196 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="dirt_wall129" parent="." unique_id=712869667 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 12)
+
+[node name="dirt_wall130" parent="." unique_id=1489488313 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 10)
+
+[node name="dirt_wall131" parent="." unique_id=1690463232 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="dirt_wall132" parent="." unique_id=3670990 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 10)
+
+[node name="dirt_wall133" parent="." unique_id=1743516816 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 10)
+
+[node name="dirt_wall134" parent="." unique_id=2058093841 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 12)
+
+[node name="dirt_wall135" parent="." unique_id=2037268310 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 12)
+
+[node name="dirt_wall136" parent="." unique_id=1300708173 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 14)
+
+[node name="dirt_wall137" parent="." unique_id=2100824541 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 14)
+
+[node name="dirt_wall109" parent="." unique_id=318811544 instance=ExtResource("25_2f7o7")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 14)
+
+[node name="chest6" parent="." unique_id=1772436862 instance=ExtResource("21_yik7c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 16)
+
+[node name="ChestComponent" parent="chest6" index="4" unique_id=971460780]
+chest_ID = &"ThievesChest4"
+gold_roll_dice = 2
+loot_table = 3
+
+[node name="AnimationPlayer" parent="chest6" index="6" unique_id=1870956552]
+root_node = NodePath("../../chest6")
+
+[node name="chest7" parent="." unique_id=1645016125 instance=ExtResource("21_yik7c")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0, 16)
+
+[node name="ChestComponent" parent="chest7" index="4" unique_id=971460780]
+chest_ID = &"ThievesChest5"
+gold_roll_dice = 2
+is_trapped = true
+trap_type = ExtResource("22_epwe5")
+
+[node name="dirt_wall138" parent="." unique_id=1596850210 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 22)
+
+[node name="dirt_wall139" parent="." unique_id=65869155 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 20)
+
+[node name="dirt_wall140" parent="." unique_id=1491371140 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 18)
+
+[node name="button" parent="." unique_id=1618898909 instance=ExtResource("28_fbjbf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.999999, 0, 9.999999)
+
+[node name="SwitchComponent" parent="button" index="3" unique_id=1763643439]
+target_teleporter_ids = Array[StringName]([&"ThievesTele3"])
+
+[node name="dirt_wall81" parent="." unique_id=475199468 instance=ExtResource("12_n3ucg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 10, 0, 22)
+
+[node name="dirt_wall127" parent="." unique_id=2017400118 instance=ExtResource("17_j8c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 22)
+
+[node name="dirt_tele141" parent="." unique_id=1317688028 instance=ExtResource("4_jp8nt")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10, 0, 20)
+
+[node name="TeleportTileComponent" type="Node" parent="dirt_tele141" unique_id=2126118512]
+script = ExtResource("18_xhi3t")
+teleport_id = &"ThievesTele9"
+spawn_location_ids = Array[StringName]([&"tele2"])
+metadata/_custom_type_script = "uid://ip1ql2nqap5m"
+
+[node name="TeleportTile" parent="dirt_tele141" unique_id=909205517 instance=ExtResource("17_n3ucg")]
+
+[node name="dirt_trap142" parent="." unique_id=625378871 instance=ExtResource("24_bfg5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 20)
+
+[node name="TrapComponent" parent="dirt_trap142/trap" parent_id_path=PackedInt32Array(625378871, 815520868) index="0" unique_id=417324677]
+trap_id = &"thieves.trap3"
+trap_type = ExtResource("26_fbjbf")
+
+[node name="torch14" parent="." unique_id=1645610707 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 20)
+
+[node name="dirt_wall28" parent="." unique_id=288811198 instance=ExtResource("18_vjtrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 24)
+
+[node name="chest8" parent="." unique_id=1048371047 instance=ExtResource("21_yik7c")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0, 18)
+
+[node name="ChestComponent" parent="chest8" index="4" unique_id=971460780]
+chest_ID = &"ThievesChest6"
+gold_roll_dice = 2
+loot_table = 3
+is_trapped = true
+trap_type = ExtResource("27_k283h")
+
+[node name="dirt_wall142" parent="." unique_id=259738539 instance=ExtResource("23_epwe5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 18)
+
+[node name="TeleportTileComponent" type="Node" parent="dirt_wall142" unique_id=978908396]
+script = ExtResource("18_xhi3t")
+teleport_id = &"ThievesTele8"
+spawn_location_ids = Array[StringName]([&"tele6"])
+metadata/_custom_type_script = "uid://ip1ql2nqap5m"
+
+[node name="TeleportTile" parent="dirt_wall142" unique_id=979955880 instance=ExtResource("17_n3ucg")]
+
+[node name="torch15" parent="." unique_id=589185349 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 18, 0, 24)
+
+[node name="torch16" parent="." unique_id=1330395354 instance=ExtResource("13_u3gsx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 18)
+
+[editable path="dirt_tele3"]
+[editable path="dirt_tele99"]
+[editable path="dirt_tele2"]
+[editable path="dirt_tele81"]
+[editable path="dirt_teleport1"]
+[editable path="chest3"]
+[editable path="dirt_tele91"]
+[editable path="dirt_tele104"]
+[editable path="dirt_tele109"]
+[editable path="dirt_trap110"]
+[editable path="chest4"]
+[editable path="chest5"]
+[editable path="dirt_trap33"]
+[editable path="dirt_tele127"]
+[editable path="chest6"]
+[editable path="chest7"]
+[editable path="button"]
+[editable path="dirt_tele141"]
+[editable path="dirt_trap142"]
+[editable path="chest8"]
+[editable path="dirt_wall142"]

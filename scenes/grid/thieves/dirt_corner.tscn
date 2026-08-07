@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bo13kelcwgkew"]
+
+[ext_resource type="Material" uid="uid://b6rgpe26nfqek" path="res://assets/models/forest/Material.007.tres" id="1_03pa5"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_00l1b"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xa8nu"]
+material = ExtResource("1_03pa5")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vvxho"]
+material = ExtResource("1_03pa5")
+
+[node name="dirt_wall" type="Node3D" unique_id=403644597]
+
+[node name="floor" type="MeshInstance3D" parent="." unique_id=815520868]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("PlaneMesh_xa8nu")
+
+[node name="ceiling" type="MeshInstance3D" parent="." unique_id=1088822228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("PlaneMesh_xa8nu")
+
+[node name="GridElement" type="Node3D" parent="." unique_id=1418792845]
+script = ExtResource("2_00l1b")
+cell_shape = 3
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="wall" type="MeshInstance3D" parent="." unique_id=1905259118]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1, 0, 0)
+mesh = SubResource("PlaneMesh_vvxho")
+
+[node name="wall2" type="MeshInstance3D" parent="." unique_id=1356686688]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, -1)
+mesh = SubResource("PlaneMesh_vvxho")

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://b5x4iwyyonjjq"]
+
+[ext_resource type="Material" uid="uid://b6rgpe26nfqek" path="res://assets/models/forest/Material.007.tres" id="1_qcpjt"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xa8nu"]
+material = ExtResource("1_qcpjt")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vvxho"]
+material = ExtResource("1_qcpjt")
+
+[node name="dirt_wall" type="Node3D" unique_id=403644597]
+
+[node name="floor" type="MeshInstance3D" parent="." unique_id=815520868]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("PlaneMesh_xa8nu")
+
+[node name="ceiling" type="MeshInstance3D" parent="." unique_id=1088822228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("PlaneMesh_xa8nu")
+
+[node name="wall" type="MeshInstance3D" parent="." unique_id=1905259118]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1, 0, 0)
+mesh = SubResource("PlaneMesh_vvxho")
+
+[node name="wall3" type="MeshInstance3D" parent="." unique_id=1730331811]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("PlaneMesh_vvxho")
+
+[node name="wall2" type="MeshInstance3D" parent="." unique_id=1356686688]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, -1)
+mesh = SubResource("PlaneMesh_vvxho")
+
+[node name="wall4" type="MeshInstance3D" parent="." unique_id=490085569]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 1)
+mesh = SubResource("PlaneMesh_vvxho")
