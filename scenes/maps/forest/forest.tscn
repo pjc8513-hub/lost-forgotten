@@ -38,6 +38,7 @@
 [ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="25_knxf5"]
 [ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="26_wafvc"]
 [ext_resource type="PackedScene" uid="uid://in1vli67ea1" path="res://scenes/grid/forest/forest_wall_4.tscn" id="38_qnbuo"]
+[ext_resource type="PackedScene" uid="uid://c7f1aws5fa6ga" path="res://scenes/grid/garden/garden_wall_gate.tscn" id="39_rl7oc"]
 
 [sub_resource type="Resource" id="Resource_mbbhb"]
 script = ExtResource("8_2skyn")
@@ -95,6 +96,21 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_rxrmx")
 
+[sub_resource type="Resource" id="Resource_y3k1y"]
+script = ExtResource("8_2skyn")
+text = "A beautiful garden is on the other side."
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_128y4"]
+script = ExtResource("7_7j2fw")
+persistent_id = &"gardengate"
+npc_name = "Garden Gate"
+dialogue_nodes = Array[ExtResource("8_2skyn")]([SubResource("Resource_y3k1y")])
+dialogue_label = "Examine"
+destination_map = "uid://cr7xcdx3ssrr3"
+destination_spawn_id = &"entrance"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
+
 [node name="forest" type="Node3D" unique_id=1556622436]
 script = ExtResource("1_tq4d2")
 Map_ID = &"forest"
@@ -123,6 +139,10 @@ spawn_id = &"forest.teleport2"
 [node name="teleport3" parent="." unique_id=936953767 instance=ExtResource("4_r4nvb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 2)
 spawn_id = &"forest.teleport3"
+
+[node name="MapSpawnPoint3" parent="." unique_id=114259692 instance=ExtResource("4_r4nvb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 20)
+spawn_id = &"garden"
 
 [node name="stump4" parent="." unique_id=29370894 instance=ExtResource("14_j7yqk")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 16, 0, -2)
@@ -1341,6 +1361,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 16)
 [node name="forest wall69" parent="." unique_id=1579777473 instance=ExtResource("10_xmyvr")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 20, 0, 12)
 
+[node name="garden_wall_gate" parent="." unique_id=924219171 instance=ExtResource("39_rl7oc")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 30, 0, 20)
+script = ExtResource("6_1kw7y")
+npc_tile_id = &"gardenenter"
+NPC_List = Array[ExtResource("7_7j2fw")]([SubResource("Resource_128y4")])
+
+[node name="DoorComponent" parent="garden_wall_gate" index="3" unique_id=725584326]
+door_id = &"gardenenter"
+
 [editable path="stump4"]
 [editable path="stump5"]
 [editable path="stump6"]
@@ -1351,3 +1380,4 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 20, 
 [editable path="forest floor100"]
 [editable path="forest floor102"]
 [editable path="chest4"]
+[editable path="garden_wall_gate"]

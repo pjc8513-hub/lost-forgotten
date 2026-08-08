@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://c7f1aws5fa6ga"]
+
+[ext_resource type="PackedScene" uid="uid://b52h858gv8x1n" path="res://assets/models/garden/garden_wall_gate.glb" id="1_sn2d5"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_hblyl"]
+[ext_resource type="Script" uid="uid://31xg5h6wio64" path="res://scripts/components/DoorComponent.gd" id="3_naq1y"]
+
+[sub_resource type="Animation" id="Animation_4hqjc"]
+length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_ga7b3"]
+resource_name = "open"
+length = 0.76666665
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.7, 1, 1, 0.01, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fe271"]
+_data = {
+&"RESET": SubResource("Animation_4hqjc"),
+&"open": SubResource("Animation_ga7b3")
+}
+
+[node name="garden_wall_gate" unique_id=924219171 instance=ExtResource("1_sn2d5")]
+
+[node name="GridElement" type="Node3D" parent="." index="2" unique_id=1209686533]
+script = ExtResource("2_hblyl")
+cell_shape = 1
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="DoorComponent" type="Node3D" parent="." index="3" unique_id=725584326]
+script = ExtResource("3_naq1y")
+metadata/_custom_type_script = "uid://31xg5h6wio64"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=1743974169]
+root_motion_local = true
+libraries/ = SubResource("AnimationLibrary_fe271")

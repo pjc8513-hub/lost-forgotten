@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://k8rb1ijo20vn" path="res://assets/models/garden/garden_wall_door.glb" id="1_isbll"]
 [ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_8ho28"]
-[ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="3_wl8ga"]
 [ext_resource type="Script" uid="uid://31xg5h6wio64" path="res://scripts/components/DoorComponent.gd" id="4_27i7i"]
 
 [sub_resource type="Animation" id="Animation_isbll"]
@@ -32,6 +31,9 @@ _data = {
 &"open": SubResource("Animation_8ho28")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
+size = Vector3(0.31811523, 1.6188507, 1.2331543)
+
 [node name="garden_wall_door" unique_id=256889518 instance=ExtResource("1_isbll")]
 
 [node name="GridElement" type="Node3D" parent="." index="2" unique_id=1614807385]
@@ -39,14 +41,18 @@ script = ExtResource("2_8ho28")
 cell_shape = 1
 metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
 
-[node name="InteractableComponent" type="Node" parent="." index="3" unique_id=1852499430]
-script = ExtResource("3_wl8ga")
-metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
-
-[node name="DoorComponent" type="Node3D" parent="." index="4" unique_id=1464060015]
+[node name="DoorComponent" type="Node3D" parent="." index="3" unique_id=1464060015]
 script = ExtResource("4_27i7i")
 metadata/_custom_type_script = "uid://31xg5h6wio64"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=1223803048]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=1223803048]
 root_motion_local = true
 libraries/ = SubResource("AnimationLibrary_wl8ga")
+
+[node name="Area3D" type="Area3D" parent="." index="5" unique_id=581901435]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=1672818816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0032253, -0.12641144, 0.01574707)
+shape = SubResource("BoxShape3D_xa8nu")
+
+[connection signal="input_event" from="Area3D" to="DoorComponent" method="_on_area_3d_input_event"]

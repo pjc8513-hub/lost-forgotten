@@ -1,0 +1,246 @@
+[gd_scene format=3 uid="uid://cr7xcdx3ssrr3"]
+
+[ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_8t6uw"]
+[ext_resource type="PackedScene" uid="uid://jjw3jxnb2yd2" path="res://scenes/grid/garden/garden_wall_bush_corner.tscn" id="1_uxfmj"]
+[ext_resource type="Texture2D" uid="uid://deljl4uigw6s6" path="res://assets/palettes/florentine24-1x.png" id="2_ouk2f"]
+[ext_resource type="PackedScene" uid="uid://ceq0xnlsdrgmi" path="res://scenes/grid/nobel_city/grass_1.tscn" id="2_rk5rm"]
+[ext_resource type="Environment" uid="uid://i64ewy3e6ok2" path="res://scenes/maps/nobel/nobel_environment.tres" id="3_f18ta"]
+[ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="4_f18ta"]
+[ext_resource type="PackedScene" uid="uid://e1tmafmnropg" path="res://scenes/grid/garden/garden_cube_bush.tscn" id="6_1bpc2"]
+[ext_resource type="PackedScene" uid="uid://ccb7xffdpaej6" path="res://scenes/grid/garden/garden_cube_rose.tscn" id="7_20aqd"]
+[ext_resource type="PackedScene" uid="uid://cck80kgock2ow" path="res://scenes/grid/garden/garden_wall_door.tscn" id="8_gq0o3"]
+[ext_resource type="PackedScene" uid="uid://dlx4b0sxht00d" path="res://scenes/grid/garden/garden_wall_rose.tscn" id="9_uvu2l"]
+[ext_resource type="PackedScene" uid="uid://d167wtjl4y5w" path="res://scenes/grid/garden/fountain.tscn" id="10_pv2ae"]
+[ext_resource type="PackedScene" uid="uid://bwb6fey8yx135" path="res://scenes/grid/garden/garden_wall_secret_door.tscn" id="11_i1c5w"]
+[ext_resource type="PackedScene" uid="uid://c7f1aws5fa6ga" path="res://scenes/grid/garden/garden_wall_gate.tscn" id="13_1bpc2"]
+[ext_resource type="PackedScene" uid="uid://d3ol8knkqgj2x" path="res://scenes/grid/nobel_city/garden_1.tscn" id="14_128y4"]
+[ext_resource type="Script" uid="uid://d3memun0m0avi" path="res://scripts/components/NPCTileComponent.gd" id="15_y3k1y"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="16_tvda2"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="17_ghc87"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="18_4uvic"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="19_lxehw"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="20_bljgo"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="21_v7366"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="22_i7jc6"]
+[ext_resource type="PackedScene" uid="uid://c2no206au6xb5" path="res://scenes/grid/garden/garden_wall_bush_dead.tscn" id="23_tvda2"]
+[ext_resource type="PackedScene" uid="uid://cdfnwxvev1hjv" path="res://scenes/grid/garden/garden_wall_bush.tscn" id="24_ghc87"]
+
+[sub_resource type="Resource" id="Resource_1bpc2"]
+script = ExtResource("20_bljgo")
+text = "A splendid gate. A true marvel."
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_f18ta"]
+script = ExtResource("16_tvda2")
+persistent_id = &"gardengate"
+npc_name = "Garden Gate"
+default_dialogue = SubResource("Resource_1bpc2")
+dialogue_label = "examine"
+destination_map = "uid://eya04obhcvrt"
+destination_spawn_id = &"garden"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
+
+[node name="Node3D" type="Node3D" unique_id=321282693]
+script = ExtResource("1_8t6uw")
+Map_ID = &"garden"
+has_daynight = true
+main_shader_palette_texture = ExtResource("2_ouk2f")
+main_shader_dither_strength = 0.08
+main_shader_contrast = 1.13
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=924590947]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 12, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=981804862]
+environment = ExtResource("3_f18ta")
+
+[node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("4_f18ta")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+spawn_id = &"entrance"
+
+[node name="garden_wall_bush_corner" parent="." unique_id=1901211939 instance=ExtResource("1_uxfmj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="garden_wall_bush_corner2" parent="." unique_id=959077042 instance=ExtResource("1_uxfmj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 2)
+
+[node name="grass2" parent="." unique_id=1396002224 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="grass3" parent="." unique_id=1803488409 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="grass16" parent="." unique_id=1227721097 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+
+[node name="grass17" parent="." unique_id=1185964259 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -6)
+
+[node name="grass4" parent="." unique_id=1049912315 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="grass9" parent="." unique_id=847068215 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+
+[node name="grass5" parent="." unique_id=1306565981 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8)
+
+[node name="grass10" parent="." unique_id=150374433 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 12)
+
+[node name="grass11" parent="." unique_id=1665946018 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 14)
+
+[node name="grass14" parent="." unique_id=1270461177 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 16)
+
+[node name="grass15" parent="." unique_id=2012967705 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+
+[node name="grass12" parent="." unique_id=905182400 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 18)
+
+[node name="grass13" parent="." unique_id=226881787 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 20)
+
+[node name="grass6" parent="." unique_id=1586014596 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="grass8" parent="." unique_id=1059046388 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="grass7" parent="." unique_id=1509907108 instance=ExtResource("2_rk5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="garden_cube_bush" parent="." unique_id=1627657296 instance=ExtResource("6_1bpc2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
+
+[node name="garden_cube_rose" parent="." unique_id=1196930993 instance=ExtResource("7_20aqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="garden_wall_door" parent="." unique_id=256889518 instance=ExtResource("8_gq0o3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 4)
+
+[node name="DoorComponent" parent="garden_wall_door" index="3" unique_id=1464060015]
+door_id = &"garden.door1"
+
+[node name="garden_wall_rose" parent="." unique_id=666579525 instance=ExtResource("9_uvu2l")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 0, 2)
+
+[node name="fountain" parent="." unique_id=1079744716 instance=ExtResource("10_pv2ae")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="garden_wall_secret_door" parent="." unique_id=1444149014 instance=ExtResource("11_i1c5w")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0, -2)
+
+[node name="DoorComponent" parent="garden_wall_secret_door" index="3" unique_id=183459303]
+door_id = &"secretgarden.door1"
+
+[node name="SecretComponent" parent="garden_wall_secret_door" index="4" unique_id=719543938]
+secret_ID = &"gardensecret1"
+secret_type = "door"
+
+[node name="garden_wall_gate" parent="." unique_id=924219171 instance=ExtResource("13_1bpc2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 0)
+
+[node name="DoorComponent" parent="garden_wall_gate" index="3" unique_id=725584326]
+door_id = &"fountaingate"
+starts_locked = true
+
+[node name="Garden" parent="." unique_id=1041259088 instance=ExtResource("14_128y4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.870173, 0, 2)
+
+[node name="garden_wall_gate2" parent="." unique_id=717131431 instance=ExtResource("13_1bpc2")]
+script = ExtResource("15_y3k1y")
+npc_tile_id = &"garden_entrance"
+NPC_List = Array[ExtResource("16_tvda2")]([SubResource("Resource_f18ta")])
+
+[node name="DoorComponent" parent="garden_wall_gate2" index="3" unique_id=725584326]
+door_id = &"gardenentrance"
+starts_open = true
+
+[node name="garden_wall_bush_corner3" parent="." unique_id=1522685269 instance=ExtResource("1_uxfmj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 4)
+
+[node name="garden_wall_bush_corner4" parent="." unique_id=740131078 instance=ExtResource("1_uxfmj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="garden_cube_rose2" parent="." unique_id=559825041 instance=ExtResource("7_20aqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 10)
+
+[node name="garden_cube_rose3" parent="." unique_id=1802277174 instance=ExtResource("7_20aqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 16)
+
+[node name="garden_wall_bush_dead" parent="." unique_id=535725012 instance=ExtResource("23_tvda2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
+
+[node name="garden_wall_rose2" parent="." unique_id=1650715985 instance=ExtResource("9_uvu2l")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 6)
+
+[node name="garden_wall_rose3" parent="." unique_id=145381514 instance=ExtResource("9_uvu2l")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 8)
+
+[node name="garden_wall_rose4" parent="." unique_id=749110934 instance=ExtResource("9_uvu2l")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 10)
+
+[node name="garden_wall_rose5" parent="." unique_id=1025719145 instance=ExtResource("9_uvu2l")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 14)
+
+[node name="garden_wall_rose7" parent="." unique_id=908189889 instance=ExtResource("9_uvu2l")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 18)
+
+[node name="garden_wall_rose8" parent="." unique_id=960938200 instance=ExtResource("9_uvu2l")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 20)
+
+[node name="garden_wall_rose6" parent="." unique_id=2140796582 instance=ExtResource("9_uvu2l")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 12)
+
+[node name="garden_wall_bush" parent="." unique_id=710709470 instance=ExtResource("24_ghc87")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="garden_wall_bush2" parent="." unique_id=339074775 instance=ExtResource("24_ghc87")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="garden_wall_bush3" parent="." unique_id=766028428 instance=ExtResource("24_ghc87")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
+
+[node name="garden_wall_bush6" parent="." unique_id=1499384335 instance=ExtResource("24_ghc87")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 22)
+
+[node name="garden_wall_bush4" parent="." unique_id=169389790 instance=ExtResource("24_ghc87")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+
+[node name="garden_wall_bush5" parent="." unique_id=387066053 instance=ExtResource("24_ghc87")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
+
+[node name="garden_wall_bush_corner5" parent="." unique_id=487373627 instance=ExtResource("1_uxfmj")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 22)
+
+[node name="garden_wall_bush_corner6" parent="." unique_id=1746500472 instance=ExtResource("1_uxfmj")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 0, 0, 22)
+
+[node name="garden_wall_bush7" parent="." unique_id=1650956472 instance=ExtResource("24_ghc87")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="garden_wall_bush8" parent="." unique_id=786277004 instance=ExtResource("24_ghc87")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="garden_wall_bush9" parent="." unique_id=1640465717 instance=ExtResource("24_ghc87")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 0, -6)
+
+[node name="garden_wall_bush11" parent="." unique_id=1278925673 instance=ExtResource("24_ghc87")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 2, 0, -8)
+
+[node name="garden_wall_bush10" parent="." unique_id=710445953 instance=ExtResource("24_ghc87")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 0, -4)
+
+[node name="garden_wall_bush_corner7" parent="." unique_id=588812228 instance=ExtResource("1_uxfmj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, -8)
+
+[node name="garden_wall_bush_corner8" parent="." unique_id=1030877338 instance=ExtResource("1_uxfmj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[editable path="garden_wall_door"]
+[editable path="garden_wall_secret_door"]
+[editable path="garden_wall_gate"]
+[editable path="garden_wall_gate2"]
