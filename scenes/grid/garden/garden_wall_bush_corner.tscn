@@ -1,5 +1,11 @@
 [gd_scene format=3 uid="uid://jjw3jxnb2yd2"]
 
 [ext_resource type="PackedScene" uid="uid://b0665pfhdbpe7" path="res://assets/models/garden/garden_wall_bush_corner.glb" id="1_w50ud"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_3va18"]
 
 [node name="garden_wall_bush_corner" unique_id=1901211939 instance=ExtResource("1_w50ud")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=232334311]
+script = ExtResource("2_3va18")
+cell_shape = 3
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"

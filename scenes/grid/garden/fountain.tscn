@@ -1,5 +1,15 @@
 [gd_scene format=3 uid="uid://d167wtjl4y5w"]
 
 [ext_resource type="PackedScene" uid="uid://c85mbud2vnsi" path="res://assets/models/objects/fountain.glb" id="1_kqv14"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_aybty"]
+[ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="3_7877v"]
 
 [node name="fountain" unique_id=1079744716 instance=ExtResource("1_kqv14")]
+
+[node name="GridElement" type="Node3D" parent="." index="6" unique_id=1364487652]
+script = ExtResource("2_aybty")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="BlockerComponent" type="Node" parent="." index="7" unique_id=1885268573]
+script = ExtResource("3_7877v")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
