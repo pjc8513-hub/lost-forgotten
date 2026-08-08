@@ -17,10 +17,14 @@ var quest_db: Dictionary = {}
 # key: destination map and spawn, value: Dictionary with display_name, map, and spawn_id
 var travel_destinations: Dictionary = {}
 
+var _is_turning_in_quest := false
+
 const QUEST_ROOT := "res://data/quests/"
 
 func _ready() -> void:
 	_load_quests()
+	PartyManager.active_party_changed.connect(_on_active_party_changed)
+	_connect_party_inventory_signals()
 
 # Scans the quests folder and loads Quest resources
 func _load_quests() -> void:
@@ -72,6 +76,8 @@ func set_quest_stage(quest_id: String, stage: int) -> void:
 	if is_quest_completed(quest_id):
 		quest_completed.emit(quest_id)
 		MapManager.request_alert(_get_quest_completed_alert(quest_id))
+	elif stage > 0:
+		_refresh_item_quest_stage(quest_id)
 
 func advance_quest_stage(quest_id: String, amount: int = 1) -> void:
 	if amount <= 0:
@@ -87,15 +93,42 @@ func is_quest_active(quest_id: String) -> bool:
 # Checks if a quest is completed.
 func is_quest_completed(quest_id: String) -> bool:
 	var stage = get_quest_stage(quest_id)
-	var quest = quest_db.get(quest_id)
+	var quest := quest_db.get(quest_id) as Quest
 	if quest == null:
 		return false
-	# Check the highest stage key in stage_descriptions.
-	var max_stage = 0
-	for key in quest.stage_descriptions.keys():
-		if int(key) > max_stage:
-			max_stage = int(key)
-	return stage >= max_stage
+	return stage >= quest.get_completion_stage()
+
+func has_required_items(quest: Quest) -> bool:
+	if quest == null or quest.required_items.is_empty():
+		return false
+	var required_counts := _get_required_item_counts(quest)
+	if required_counts.is_empty():
+		return false
+	for item_id in required_counts.keys():
+		if DialogueCondition.get_party_item_count(item_id) < int(required_counts[item_id]):
+			return false
+	return true
+
+func is_quest_ready_to_turn_in(quest_id: String) -> bool:
+	var quest := quest_db.get(quest_id) as Quest
+	if quest == null or not is_quest_active(quest_id):
+		return false
+	return get_quest_stage(quest_id) >= quest.get_turn_in_stage() and has_required_items(quest)
+
+func turn_in_quest(quest_id: String, context: Dictionary = {}) -> bool:
+	if not is_quest_ready_to_turn_in(quest_id):
+		return false
+	var quest := quest_db.get(quest_id) as Quest
+	_is_turning_in_quest = true
+	var removed := _remove_required_items(quest)
+	_is_turning_in_quest = false
+	if not removed:
+		push_error("QuestManager: Failed to remove required items for quest %s." % quest_id)
+		return false
+	set_quest_stage(quest_id, quest.get_completion_stage())
+	if quest.quest_rewards != null:
+		quest.quest_rewards.give_reward(context)
+	return true
 
 func get_quest_name(quest_id: String) -> String:
 	var quest = quest_db.get(quest_id)
@@ -177,6 +210,61 @@ func load_save_data(data: Dictionary) -> void:
 		if get_quest_stage(quest_id) > 0:
 			unlock_quest_travel_destination(quest_id)
 	travel_destinations_changed.emit()
+	_connect_party_inventory_signals()
+	_refresh_item_quest_stages()
 
 func _get_travel_destination_key(destination_map: String, destination_spawn_id: StringName) -> String:
 	return "%s:%s" % [destination_map, str(destination_spawn_id)]
+
+func _on_active_party_changed() -> void:
+	_connect_party_inventory_signals()
+	_refresh_item_quest_stages()
+
+func _connect_party_inventory_signals() -> void:
+	for member in PartyManager.party:
+		if member != null and not member.inventory_changed.is_connected(_on_party_inventory_changed):
+			member.inventory_changed.connect(_on_party_inventory_changed)
+
+func _on_party_inventory_changed() -> void:
+	if not _is_turning_in_quest:
+		_refresh_item_quest_stages()
+
+func _refresh_item_quest_stages() -> void:
+	for quest_id in quest_stages.keys():
+		_refresh_item_quest_stage(str(quest_id))
+
+func _refresh_item_quest_stage(quest_id: String) -> void:
+	var quest := quest_db.get(quest_id) as Quest
+	if quest == null or quest.required_items.is_empty() or not is_quest_active(quest_id):
+		return
+	var turn_in_stage := quest.get_turn_in_stage()
+	if get_quest_stage(quest_id) < turn_in_stage and has_required_items(quest):
+		set_quest_stage(quest_id, turn_in_stage)
+
+func _get_required_item_counts(quest: Quest) -> Dictionary:
+	var counts: Dictionary = {}
+	for item in quest.required_items:
+		if item == null or item.item_id.is_empty():
+			continue
+		counts[item.item_id] = int(counts.get(item.item_id, 0)) + 1
+	return counts
+
+func _remove_required_items(quest: Quest) -> bool:
+	var remaining := _get_required_item_counts(quest)
+	for member in PartyManager.party:
+		var inventory_changed := false
+		for item in member.inventory.duplicate():
+			if item.item_data == null:
+				continue
+			var item_id: String = item.item_data.item_id
+			if int(remaining.get(item_id, 0)) <= 0:
+				continue
+			member.inventory.erase(item)
+			remaining[item_id] = int(remaining[item_id]) - 1
+			inventory_changed = true
+		if inventory_changed:
+			member.inventory_changed.emit()
+	for count in remaining.values():
+		if int(count) > 0:
+			return false
+	return true

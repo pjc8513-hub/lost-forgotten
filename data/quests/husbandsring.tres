@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://dustrvrc7my8y"]
+
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="1_84e6n"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="2_shj2q"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="3_ndq86"]
+[ext_resource type="Resource" uid="uid://1emlmlc3dfpa" path="res://data/items/quest/husbandsring.tres" id="4_ring"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="5_item"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="6_mound"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="7_drx8r"]
+
+[sub_resource type="Resource" id="Resource_nycvh"]
+script = ExtResource("2_shj2q")
+type = 4
+value = 300
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_j3pel"]
+script = ExtResource("7_drx8r")
+text = "My husband was murdered by a group of filthy thieves just outside of the forest.
+
+The thieves took everything from him, his boots, shirt, hat, hell they even took his small clothes!
+
+Nothing he had was of any value, but he did have a cheap ring that he had inherited from his mother when she passed. It's a cheap metal ring hardly worth killing anyone over.
+
+I would still very much like to have that ring back, just so that I could keep some memory of him near me.
+
+You will probably find those rotten murdering thieves hiding underneath a stump or a bush in the forest! A bunch of cowards is all that they are."
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_g28q7"]
+script = ExtResource("7_drx8r")
+text = "Yes that is it! You see, it isn't much, but it is enough."
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_n8wo2"]
+script = ExtResource("7_drx8r")
+text = "Thank you strangers. Have a round on me!"
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("3_ndq86")
+quest_id = "husbandsringquest"
+quest_name = "Husband's Ring"
+description = "My husband was murdered by a group of filthy thieves just outside of the forest.
+
+The thieves took everything from him, his boots, shirt, hat, hell they even took his small clothes!
+
+Nothing he had was of any value, but he did have a cheap ring that he had inherited from his mother when she passed. It's a cheap metal ring hardly worth killing anyone over.
+
+I would still very much like to have that ring back, just so that I could keep some memory of him near me."
+stage_descriptions = {
+0: "Not Started",
+1: "Find Annia's husband's ring in the Thieves' Den.",
+2: "Return the ring to Annia at the inn in Nobel.",
+3: "Quest Completed"
+}
+stage_dialogue = {
+1: SubResource("Resource_j3pel"),
+2: SubResource("Resource_g28q7"),
+3: SubResource("Resource_n8wo2")
+}
+required_items = Array[ExtResource("5_item")]([ExtResource("4_ring")])
+quest_giver = "Annia"
+return_location = "Inn in Nobel"
+suggested_level = 4
+display_name = "Forest"
+destination_map = "uid://eya04obhcvrt"
+quest_rewards = SubResource("Resource_nycvh")
+metadata/_custom_type_script = "uid://phuimf2skp05"

@@ -103,12 +103,12 @@ func _show_npc_actions() -> void:
 	options_panel.size_flags_stretch_ratio = 0.39
 	_add_option(_get_dialogue_action_label(_selected_npc), _start_dialogue)
 
-	for quest in _selected_npc.quests_offered:
+	for quest in _selected_npc.get_quests():
 		if quest != null:
 			var quest_ref := quest
 			var stage := QuestManager.get_quest_stage(quest.quest_id)
 			if stage == 0:
-				if not quest.is_available():
+				if not _selected_npc.offers_quest(quest) or not quest.is_available():
 					continue
 				_add_option("Quest: %s" % quest.quest_name, func(): _accept_quest(quest_ref))
 			else:
@@ -213,6 +213,12 @@ func _accept_quest(quest: Quest) -> void:
 
 func _show_quest_dialogue(quest: Quest) -> void:
 	if quest == null:
+		return
+	if QuestManager.is_quest_ready_to_turn_in(quest.quest_id):
+		if QuestManager.turn_in_quest(quest.quest_id, _get_reward_context()):
+			dialogue_label.text = "Quest completed: %s" % quest.quest_name
+			_refresh_npc_list(_selected_npc, false)
+			_show_npc_actions()
 		return
 	var node := quest.get_stage_dialogue(QuestManager.get_quest_stage(quest.quest_id))
 	if node != null:

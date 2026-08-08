@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bqkry7mtq0lyr"]
+
+[ext_resource type="PackedScene" uid="uid://djj82th5p17fr" path="res://assets/models/objects/QuestChest.glb" id="1_h2p0s"]
+[ext_resource type="Script" uid="uid://cu55r1gs5ol76" path="res://scripts/components/ChestComponent.gd" id="2_b0sjk"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="3_0udh0"]
+[ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="4_gta1v"]
+[ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="5_b0sjk"]
+
+[node name="QuestChest" unique_id=476640192 instance=ExtResource("1_h2p0s")]
+
+[node name="ChestComponent" type="Node" parent="." index="2" unique_id=2076280215]
+script = ExtResource("2_b0sjk")
+metadata/_custom_type_script = "uid://cu55r1gs5ol76"
+
+[node name="GridElement" type="Node3D" parent="." index="3" unique_id=478889800]
+script = ExtResource("3_0udh0")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="InteractableComponent" type="Node" parent="." index="4" unique_id=1042152080]
+script = ExtResource("4_gta1v")
+metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
+
+[node name="BlockerComponent" type="Node" parent="." index="5" unique_id=133264003]
+script = ExtResource("5_b0sjk")
+metadata/_custom_type_script = "uid://cpd6aclgammco"

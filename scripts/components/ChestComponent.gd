@@ -9,6 +9,7 @@ signal loot_requested(chest: ChestComponent, loot: Dictionary)
 @export var gold_roll_dice: int = 1
 @export var gold_roll_sides: int = 20
 @export var loot_table: LootManager.Loot_Table = LootManager.Loot_Table.EQUIP_1
+@export var item_id: StringName
 @export var is_trapped: bool =  false
 @export var is_discovered: bool = true
 @export var trap_type: trap_data
@@ -99,6 +100,12 @@ func _distribute_loot() -> void:
 		gold = DiceRoller.roll(gold_roll_dice, gold_roll_sides).total
 	var tables: Array[LootManager.Loot_Table] = [loot_table]
 	var generated_items := LootManager.generate_loot(tables)
+	if not item_id.is_empty():
+		var specific_item := LootManager.create_item_instance(item_id)
+		if specific_item != null:
+			generated_items.append(specific_item)
+		else:
+			push_error("ChestComponent: Could not create configured item '%s'." % item_id)
 	var loot := {
 		"chest_id": chest_ID,
 		"gold": gold,

@@ -51,6 +51,21 @@ func get_current_dialogue_node() -> DialogueNode:
 			return node
 	return default_dialogue
 
+## Returns offered and related quests once each. Related quests let an NPC
+## participate in or receive a quest without also being able to offer it.
+func get_quests() -> Array[Quest]:
+	var result: Array[Quest] = []
+	var seen_ids: Dictionary = {}
+	for quest in quests_offered + quests_related:
+		if quest == null or seen_ids.has(quest.quest_id):
+			continue
+		seen_ids[quest.quest_id] = true
+		result.append(quest)
+	return result
+
+func offers_quest(quest: Quest) -> bool:
+	return quest != null and quests_offered.has(quest)
+
 ## Checks if the shop is currently open/available to the player.
 func is_shop_available() -> bool:
 	if shop_type == Shop_Type.NONE:

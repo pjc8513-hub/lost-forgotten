@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="1_q17j5"]
 [ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="2_ckvh8"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="3_boe0u"]
 [ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="3_dialogue"]
 [ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="3_icwrm"]
 [ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="4_boe0u"]

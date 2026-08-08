@@ -38,6 +38,7 @@
 [ext_resource type="Resource" uid="uid://d4d3lt534u22" path="res://data/dialogue/nobel/houses/OldJim.tres" id="21_ae1so"]
 [ext_resource type="PackedScene" uid="uid://cwphdwqqt832y" path="res://scenes/grid/nobel_city/mountain.tscn" id="21_yl67k"]
 [ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="22_c1pmp"]
+[ext_resource type="Resource" uid="uid://dn7h0crr34mo3" path="res://data/dialogue/nobel/inn/annia.tres" id="24_7v2gy"]
 [ext_resource type="Resource" uid="uid://b2k8humik75au" path="res://data/dialogue/nobel/well.tres" id="29_hgk2k"]
 [ext_resource type="PackedScene" uid="uid://bm7pcqg5euhra" path="res://scenes/grid/nobel_city/training_2.tscn" id="31_t6sru"]
 [ext_resource type="Resource" uid="uid://dslkl36jpy6a8" path="res://data/dialogue/nobel/shop/Mary.tres" id="34_2m8eg"]
@@ -498,7 +499,7 @@ metadata/_custom_type_script = "uid://cpd6aclgammco"
 [node name="inn5" parent="." unique_id=1061531617 instance=ExtResource("12_sycog")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.17738879, 6)
 script = ExtResource("6_ktwdp")
-NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("7_wld13")])
+NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("7_wld13"), ExtResource("24_7v2gy")])
 
 [node name="grass1" parent="." unique_id=1227721097 instance=ExtResource("12_72yvy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)

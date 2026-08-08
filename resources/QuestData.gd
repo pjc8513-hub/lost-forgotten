@@ -20,9 +20,24 @@ class_name Quest extends Resource
 # Keys are stage numbers and values are DialogueNode resources.
 @export var stage_dialogue: Dictionary = {}
 
+@export_group("Quest Items")
+# Items that must be in the active party's inventory before this quest can be
+# turned in. QuestManager advances the quest to its penultimate stage when all
+# of them have been collected and consumes them during turn-in.
+@export var required_items: Array[ItemData] = []
+
 func get_stage_dialogue(stage: int) -> DialogueNode:
 	var node = stage_dialogue.get(stage, stage_dialogue.get(str(stage), null))
 	return node as DialogueNode
+
+func get_completion_stage() -> int:
+	var completion_stage := 0
+	for key in stage_descriptions.keys():
+		completion_stage = maxi(completion_stage, int(key))
+	return completion_stage
+
+func get_turn_in_stage() -> int:
+	return maxi(get_completion_stage() - 1, 1)
 
 func is_available() -> bool:
 	for condition in availability_conditions:

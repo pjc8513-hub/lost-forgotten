@@ -11,12 +11,7 @@ func is_met() -> bool:
 		ConditionType.GOLD_GREATER_THAN:
 			return PartyManager.gold >= target_value
 		ConditionType.HAS_ITEM:
-			# check if any party member has target_id
-			for member in PartyManager.party:
-				for item in member.inventory:
-					if item.item_data != null and item.item_data.item_id == target_id:
-						return true
-			return false
+			return get_party_item_count(target_id) >= maxi(target_value, 1)
 		ConditionType.QUEST_STAGE_EQUAL:
 			# check if player's quest stage is at a target value
 			return QuestManager.get_quest_stage(target_id) == target_value
@@ -24,3 +19,11 @@ func is_met() -> bool:
 			# check if payer's quest stage is beyond a target value
 			return QuestManager.get_quest_stage(target_id) > target_value
 	return true
+
+static func get_party_item_count(item_id: String) -> int:
+	var count := 0
+	for member in PartyManager.party:
+		for item in member.inventory:
+			if item.item_data != null and item.item_data.item_id == item_id:
+				count += 1
+	return count
