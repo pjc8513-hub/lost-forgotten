@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://jjw3jxnb2yd2"]
+
+[ext_resource type="PackedScene" uid="uid://b0665pfhdbpe7" path="res://assets/models/garden/garden_wall_bush_corner.glb" id="1_w50ud"]
+
+[node name="garden_wall_bush_corner" unique_id=1901211939 instance=ExtResource("1_w50ud")]

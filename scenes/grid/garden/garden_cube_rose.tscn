@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://ccb7xffdpaej6"]
+
+[ext_resource type="PackedScene" uid="uid://owptd4q872tn" path="res://assets/models/garden/garden_cube_rose.glb" id="1_i5d4i"]
+
+[node name="garden_cube_rose" unique_id=1196930993 instance=ExtResource("1_i5d4i")]
