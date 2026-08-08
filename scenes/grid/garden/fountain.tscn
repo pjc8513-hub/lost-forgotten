@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://d167wtjl4y5w"]
+
+[ext_resource type="PackedScene" uid="uid://c85mbud2vnsi" path="res://assets/models/objects/fountain.glb" id="1_kqv14"]
+
+[node name="fountain" unique_id=1079744716 instance=ExtResource("1_kqv14")]
