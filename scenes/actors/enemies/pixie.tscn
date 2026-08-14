@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bf4lgyhwisawc"]
+
+[ext_resource type="Script" uid="uid://bbtw0ikdkb245" path="res://scenes/actors/enemies/enemy_scene.gd" id="1_in6ud"]
+[ext_resource type="Texture2D" uid="uid://e0b0xbi6msfk" path="res://assets/sprites/combat/hit24.png" id="2_e71hh"]
+[ext_resource type="Texture2D" uid="uid://bgsla1sba0tkx" path="res://assets/sprites/enemies/pixie.png" id="2_gjxm6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvxho"]
+bg_color = Color(0.73333335, 0.05490196, 0.0627451, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j3pel"]
+font_size = 22
+
+[node name="Pixie" type="Node3D" unique_id=502711961]
+script = ExtResource("1_in6ud")
+combat_size_multiplier = 0.95
+
+[node name="EnemySprite" type="Sprite3D" parent="." unique_id=2097108720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+offset = Vector2(0, -2)
+billboard = 2
+texture = ExtResource("2_gjxm6")
+
+[node name="UIAnchor" type="Marker3D" parent="." unique_id=1172551363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+
+[node name="Node" type="Node" parent="." unique_id=1426459998]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Node" unique_id=175793063]
+visible = false
+
+[node name="HealthBar" type="ProgressBar" parent="Node/CanvasLayer" unique_id=2001778963]
+custom_minimum_size = Vector2(100, 0)
+offset_right = 4.0
+offset_bottom = 27.0
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_vvxho")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="HitAnimation" type="Sprite2D" parent="Node/CanvasLayer" unique_id=603132464]
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_e71hh")
+metadata/_edit_use_anchors_ = true
+
+[node name="DamageLabel" type="Label" parent="Node/CanvasLayer/HitAnimation" unique_id=1903688885]
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_j3pel")
+metadata/_edit_use_anchors_ = true
+
+[node name="TooltipLayer" type="CanvasLayer" parent="Node" unique_id=208302145]
+layer = 20
+
+[node name="HoverTarget" type="Control" parent="Node/TooltipLayer" unique_id=208302146]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 100.0

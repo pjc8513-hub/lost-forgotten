@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://dif71nli4wyhm"]
+[gd_scene format=3 uid="uid://c7utj4smfoboy"]
 
-[ext_resource type="Script" uid="uid://bjt4xr07js3mx" path="res://scenes/combat/animations/spell_animation.gd" id="1_vocmm"]
-[ext_resource type="Shader" uid="uid://cwwwkp1vxj7tc" path="res://scenes/combat/animations/fire_spell.gdshader" id="2_to06w"]
+[ext_resource type="Script" uid="uid://bjt4xr07js3mx" path="res://scenes/combat/animations/spell_animation.gd" id="1_tmiss"]
+[ext_resource type="Shader" uid="uid://cwwwkp1vxj7tc" path="res://scenes/combat/animations/fire_spell.gdshader" id="2_3gj6e"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_g28q7"]
 noise_type = 2
@@ -13,11 +13,11 @@ in_3d_space = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vvxho"]
 render_priority = 2
-shader = ExtResource("2_to06w")
+shader = ExtResource("2_3gj6e")
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_j3pel")
-shader_parameter/fire_color = Color(1, 0.4, 0, 1)
+shader_parameter/fire_color = Color(0.32771376, 0.10777322, 0.07111528, 1)
 shader_parameter/core_color = Color(1, 1, 0.8, 1)
-shader_parameter/speed = 1.55
+shader_parameter/speed = 2.0
 shader_parameter/noise_scale = Vector2(1, 2)
 shader_parameter/distortion_strength = 0.1
 shader_parameter/pillar_growth = 1.0
@@ -55,8 +55,8 @@ _data = {
 &"cast": SubResource("Animation_8klx8")
 }
 
-[node name="SpellAnimationFire" type="Node3D" unique_id=1507943485]
-script = ExtResource("1_vocmm")
+[node name="SpellAnimationEarth" type="Node3D" unique_id=1507943485]
+script = ExtResource("1_tmiss")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1979710674]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)

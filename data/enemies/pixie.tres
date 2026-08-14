@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://syqyub3mlo4u"]
+
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_72he6"]
+[ext_resource type="PackedScene" uid="uid://bf4lgyhwisawc" path="res://scenes/actors/enemies/pixie.tscn" id="1_gojj6"]
+[ext_resource type="Texture2D" uid="uid://bgsla1sba0tkx" path="res://assets/sprites/enemies/pixie.png" id="3_6e7se"]
+
+[resource]
+script = ExtResource("1_72he6")
+enemy_id = &"pixie"
+display_name = "Pixie"
+enemy_level = 7
+sprite_texture = ExtResource("3_6e7se")
+enemy_scene = ExtResource("1_gojj6")
+base_endurance = 5
+base_wisdom = 10
+base_dexterity = 7
+base_piety = 6
+base_willpower = 3
+damage_dice_rolls = 3
+damage_dice_sides = 4
+hp_base = 10
+ac_bonus = -2
+accuracy_bonus = 3
+initiative_bonus = 3
+bonus_damage_base = 1
+skills = Dictionary[StringName, float]({
+&"dazzle": 0.17
+})
+has_reach = true
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

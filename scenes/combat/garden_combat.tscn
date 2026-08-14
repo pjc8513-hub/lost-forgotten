@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://cc0c0kajxt475"]
+
+[ext_resource type="Script" uid="uid://dtujqy3ay80p4" path="res://scenes/combat/CombatArena.gd" id="1_yo400"]
+[ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_eakmu"]
+[ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="3_ou8ex"]
+[ext_resource type="PackedScene" uid="uid://dimfx3lxksn7v" path="res://scenes/combat/animations/spirit_spell.tscn" id="4_we350"]
+[ext_resource type="Environment" uid="uid://bc3oq0crlyidp" path="res://data/castle_combat.tres" id="5_y2avb"]
+[ext_resource type="PackedScene" uid="uid://dajpl27a3y52a" path="res://scenes/grid/castle/stone_wall_2.tscn" id="6_qv1qg"]
+[ext_resource type="PackedScene" uid="uid://urwlv585wae5" path="res://scenes/grid/castle/stone_corner_2.tscn" id="7_xgsy5"]
+[ext_resource type="PackedScene" uid="uid://dgr6tc7bsd26x" path="res://scenes/grid/castle/torch_1.tscn" id="8_fl5ts"]
+[ext_resource type="Shader" uid="uid://j3cxcog1fvhk" path="res://scenes/combat/castle_combat.gdshader" id="9_lit66"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xa8nu"]
+shader = ExtResource("9_lit66")
+shader_parameter/effect_progress = 1.0
+shader_parameter/effect_strength = 0.0
+shader_parameter/critical_strength = 0.0
+shader_parameter/damage_color = Color(0.75, 0.015, 0.025, 1)
+shader_parameter/critical_color = Color(1, 0.62, 0.18, 1)
+
+[node name="Node3D" type="Node3D" unique_id=736917976]
+script = ExtResource("1_yo400")
+main_shader_palette_texture = ExtResource("2_eakmu")
+main_shader_pixel_size = 3.0
+main_shader_dither_strength = 0.06
+main_shader_contrast = 1.36
+
+[node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("3_ou8ex")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+spawn_id = &"entrance"
+
+[node name="BattleCamera" type="Camera3D" parent="." unique_id=1400540082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2.4)
+fov = 37.849285
+
+[node name="SpellAnimationSpirt" parent="BattleCamera" unique_id=1507943485 instance=ExtResource("4_we350")]
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1948999522]
+environment = ExtResource("5_y2avb")
+
+[node name="cells" type="Node" parent="." unique_id=1174723412]
+
+[node name="stone_wall2" parent="cells" unique_id=659127570 instance=ExtResource("6_qv1qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+
+[node name="stone_wall8" parent="cells" unique_id=551847829 instance=ExtResource("6_qv1qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="stone_wall5" parent="cells" unique_id=453745554 instance=ExtResource("6_qv1qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -4)
+
+[node name="stone_wall6" parent="cells" unique_id=411259704 instance=ExtResource("6_qv1qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -6)
+
+[node name="stone_wall10" parent="cells" unique_id=1107022277 instance=ExtResource("6_qv1qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -8)
+
+[node name="stone_wall13" parent="cells" unique_id=1796584328 instance=ExtResource("6_qv1qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -10)
+
+[node name="stone_wall3" parent="cells" unique_id=475627632 instance=ExtResource("6_qv1qg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, 0, -2)
+
+[node name="stone_wall9" parent="cells" unique_id=1560557702 instance=ExtResource("6_qv1qg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, 0, 0)
+
+[node name="stone_wall4" parent="cells" unique_id=339948464 instance=ExtResource("6_qv1qg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, 0, -4)
+
+[node name="stone_wall7" parent="cells" unique_id=1407702555 instance=ExtResource("6_qv1qg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, 0, -6)
+
+[node name="stone_wall11" parent="cells" unique_id=736889347 instance=ExtResource("6_qv1qg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, 0, -8)
+
+[node name="stone_wall12" parent="cells" unique_id=880212731 instance=ExtResource("6_qv1qg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, 0, -10)
+
+[node name="stone_corner2" parent="cells" unique_id=1870512281 instance=ExtResource("7_xgsy5")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3, 0, 2)
+
+[node name="stone_corner3" parent="cells" unique_id=1200142316 instance=ExtResource("7_xgsy5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, 0, 2)
+
+[node name="stone_corner4" parent="cells" unique_id=546336130 instance=ExtResource("7_xgsy5")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -1, 0, -12)
+
+[node name="stone_corner5" parent="cells" unique_id=1009569660 instance=ExtResource("7_xgsy5")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -3, 0, -12)
+
+[node name="torch" type="Node" parent="." unique_id=905562401]
+
+[node name="torch1" parent="torch" unique_id=179294296 instance=ExtResource("8_fl5ts")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3, 0, -4)
+
+[node name="OmniLight3D" parent="torch/torch1" index="1" unique_id=109918779]
+light_color = Color(0.9999996, 0.83472055, 0.7573666, 1)
+light_volumetric_fog_energy = 1.0
+
+[node name="torch2" parent="torch" unique_id=464269070 instance=ExtResource("8_fl5ts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -10)
+
+[node name="OmniLight3D" parent="torch/torch2" index="1" unique_id=109918779]
+light_volumetric_fog_energy = 1.0
+
+[node name="enemies" type="Node" parent="." unique_id=1903484377]
+
+[node name="row_1" type="Node" parent="enemies" unique_id=828495681]
+
+[node name="EnemySlot_1" type="Marker3D" parent="enemies/row_1" unique_id=1270464870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -0.5)
+
+[node name="EnemySlot_2" type="Marker3D" parent="enemies/row_1" unique_id=46949160]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -0.5)
+
+[node name="EnemySlot_3" type="Marker3D" parent="enemies/row_1" unique_id=2064902767]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -0.5)
+
+[node name="row_2" type="Node" parent="enemies" unique_id=336808941]
+
+[node name="EnemySlot_4" type="Marker3D" parent="enemies/row_2" unique_id=1989440496]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -2)
+
+[node name="EnemySlot_5" type="Marker3D" parent="enemies/row_2" unique_id=1845491043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, -2)
+
+[node name="EnemySlot_6" type="Marker3D" parent="enemies/row_2" unique_id=514345267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+
+[node name="row_3" type="Node" parent="enemies" unique_id=959745392]
+
+[node name="EnemySlot_7" type="Marker3D" parent="enemies/row_3" unique_id=210570496]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -3.5)
+
+[node name="EnemySlot_8" type="Marker3D" parent="enemies/row_3" unique_id=631897553]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -3.5)
+
+[node name="EnemySlot_9" type="Marker3D" parent="enemies/row_3" unique_id=1231298226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3.5)
+
+[node name="canvaslayer" type="Node" parent="." unique_id=41540201]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="canvaslayer" unique_id=331537741]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="canvaslayer/CanvasLayer" unique_id=1159571242]
+material = SubResource("ShaderMaterial_xa8nu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[editable path="BattleCamera/SpellAnimationSpirt"]
+[editable path="torch/torch1"]
+[editable path="torch/torch2"]

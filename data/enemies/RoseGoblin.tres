@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://dqu5srruo34vk"]
+
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_3adrd"]
+[ext_resource type="PackedScene" uid="uid://b4h2n3cny8d7t" path="res://scenes/actors/enemies/RoseGoblin.tscn" id="1_f1pfu"]
+[ext_resource type="Texture2D" uid="uid://dvkjca2p0y3xj" path="res://assets/sprites/enemies/plant.png" id="2_f1pfu"]
+
+[resource]
+script = ExtResource("1_3adrd")
+enemy_id = &"RoseGoblin"
+display_name = "Rose Goblin"
+enemy_level = 7
+sprite_texture = ExtResource("2_f1pfu")
+enemy_scene = ExtResource("1_f1pfu")
+xp = 55
+gold = 30
+base_strength = 6
+base_endurance = 6
+base_dexterity = 5
+base_willpower = 3
+damage_dice_rolls = 3
+damage_dice_sides = 6
+hp_base = 18
+accuracy_bonus = 2
+initiative_bonus = 1
+bonus_damage_base = 1
+resist_water = true
+resist_earth = true
+skills = Dictionary[StringName, float]({
+&"ThornWhip": 0.15
+})
+flee_chance = 0.02
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

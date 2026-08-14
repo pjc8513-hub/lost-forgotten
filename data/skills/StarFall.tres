@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://x4whg4sghdfr"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_2x48t"]
+[ext_resource type="PackedScene" uid="uid://cwkdp5d4cohki" path="res://scenes/combat/animations/air_spell.tscn" id="1_csydu"]
+
+[resource]
+script = ExtResource("1_2x48t")
+skill_id = &"StarFall"
+display_name = "Star Fall"
+description = "Single target 8d3 air damage."
+available_classes = Array[int]([5])
+archetype = 2
+element = 2
+maximum_rank = 5
+stamina_cost = 8
+uses_per_day = 3
+bonus_uses_per_rank = 1
+damage_amount_dice = 8
+damage_amount_rolls = 3
+AnimationScene = ExtResource("1_csydu")
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dimfx3lxksn7v"]
 
-[ext_resource type="Script" uid="uid://bjt4xr07js3mx" path="res://scenes/combat/animations/spell_animatin.gd" id="1_632q2"]
+[ext_resource type="Script" uid="uid://bjt4xr07js3mx" path="res://scenes/combat/animations/spell_animation.gd" id="1_632q2"]
 [ext_resource type="Shader" uid="uid://cwwwkp1vxj7tc" path="res://scenes/combat/animations/fire_spell.gdshader" id="2_y0n5p"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_g28q7"]

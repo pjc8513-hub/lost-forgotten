@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://vi5aa6vaws3i"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_780he"]
+[ext_resource type="PackedScene" uid="uid://dvnaw8elvugwf" path="res://scenes/combat/animations/water_spell.tscn" id="1_828l0"]
+
+[resource]
+script = ExtResource("1_780he")
+skill_id = &"dazzle"
+display_name = "Dazzle"
+description = "Chance to inflict confusion"
+available_classes = Array[int]([2])
+archetype = 2
+element = 3
+is_AOE = true
+stamina_cost = 6
+uses_per_day = 3
+bonus_uses_per_rank = 1
+dc_stat = "willpower"
+damage_amount_dice = 2
+damage_amount_rolls = 6
+status_effect = 12
+AnimationScene = ExtResource("1_828l0")
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

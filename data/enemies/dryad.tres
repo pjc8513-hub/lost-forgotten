@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://7gjrar713erk"]
+
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_xgges"]
+[ext_resource type="PackedScene" uid="uid://bk2r6gipwkwvo" path="res://scenes/actors/enemies/dryad.tscn" id="1_xqrxx"]
+[ext_resource type="Texture2D" uid="uid://drmtc7lp2rttb" path="res://assets/sprites/enemies/dryad.png" id="3_l0bh7"]
+
+[resource]
+script = ExtResource("1_xgges")
+enemy_id = &"dryad"
+display_name = "Dryad"
+enemy_level = 7
+sprite_texture = ExtResource("3_l0bh7")
+enemytype = 1
+enemy_scene = ExtResource("1_xqrxx")
+xp = 33
+gold = 60
+base_strength = 5
+base_endurance = 5
+base_wisdom = 6
+base_piety = 6
+base_willpower = 2
+damage_dice_rolls = 4
+damage_dice_sides = 4
+hp_base = 15
+magic_amp_base = 1
+skills = Dictionary[StringName, float]({
+&"minor_heal": 0.1
+})
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"
