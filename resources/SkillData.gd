@@ -83,6 +83,7 @@ enum Status_effect {
 @export var damage_amount_rolls: int = 0
 @export var status_effect: Status_effect = Status_effect.NONE
 @export var enemy_type: EnemyData.EnemyType = EnemyData.EnemyType.NONE
+@export var weapon_type: WeaponData.Weapon_Type = WeaponData.Weapon_Type.NONE
 
 # heal and remove effect
 @export_group("Heal and remove effect")
@@ -98,6 +99,7 @@ enum Status_effect {
 @export var resist_status: Status_effect = Status_effect.NONE
 
 @export var bonus_damage_per_rank: int = 0
+@export var bonus_accuracy_per_rank: int = 0
 @export var grants_crit: bool = false
 
 # presentation

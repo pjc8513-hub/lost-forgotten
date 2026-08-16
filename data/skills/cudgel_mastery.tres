@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_skill"]
+
+[resource]
+script = ExtResource("1_skill")
+skill_id = &"cudgel_mastery"
+display_name = "Cudgel Mastery"
+description = "Adds 1 accuracy per rank while a Cudgel is equipped."
+available_classes = Array[int]([0, 3, 1, 6])
+archetype = 1
+maximum_rank = 4
+weapon_type = 4
+bonus_accuracy_per_rank = 1
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

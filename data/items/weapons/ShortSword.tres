@@ -9,4 +9,5 @@ dice_rolls = 1
 name = "Short Sword"
 sell_value = 15
 equip_slot = 1
+weapon_type = 0
 metadata/_custom_type_script = "uid://bnfrxh1xo7jsn"

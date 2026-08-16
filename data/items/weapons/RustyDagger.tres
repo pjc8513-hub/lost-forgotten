@@ -12,4 +12,5 @@ item_id = "RustyDagger"
 name = "Rusty Dagger"
 sell_value = 5
 equip_slot = 1
+weapon_type = 0
 metadata/_custom_type_script = "uid://bnfrxh1xo7jsn"

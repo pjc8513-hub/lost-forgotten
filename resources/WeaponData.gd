@@ -7,7 +7,8 @@ enum Weapon_Type{
 	POLEARM,
 	AXE,
 	CUDGEL,
-	Staff
+	Staff,
+	NONE = -1
 }
 
 #enum Loot_Table { EQUIP_1, EQUIP_2, EQUIP_3 }
@@ -20,4 +21,4 @@ enum Weapon_Type{
 @export var loot_table: LootManager.Loot_Table
 @export var is_ranged: bool = false
 @export var has_reach: bool = false
-@export var weapon_type: Weapon_Type
+@export var weapon_type: Weapon_Type = Weapon_Type.NONE

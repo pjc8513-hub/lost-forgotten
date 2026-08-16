@@ -11,5 +11,6 @@ item_id = "IronSword"
 name = "Iron Sword"
 sell_value = 25
 equip_slot = 1
+weapon_type = 0
 bonus_damage_bonus = 5
 metadata/_custom_type_script = "uid://bnfrxh1xo7jsn"

@@ -73,6 +73,7 @@ func get_accuracy(state: PartyMember) -> int:
 		+ floori(dex_modifier * cd.accuracy_dex_scale) \
 		+ floori(wis_modifier * cd.accuracy_wis_scale) \
 		+ _equipped_accuracy(state) \
+		+ _weapon_mastery_accuracy_bonus(state) \
 		+ _status_modifier(state, "accuracy") \
 		+ _combat_bonus(state, "accuracy")
 
@@ -227,6 +228,29 @@ func _equipped_accuracy(state: PartyMember) -> int:
 	for item in state.inventory:
 		if item.is_equipped and item.item_data is WeaponData:
 			total += (item.item_data as WeaponData).accuracy_bonus
+	return total
+
+func _weapon_mastery_accuracy_bonus(state: PartyMember) -> int:
+	var equipped_weapon_type := WeaponData.Weapon_Type.NONE
+	for item in state.inventory:
+		if item.is_equipped and item.item_data is WeaponData:
+			equipped_weapon_type = (item.item_data as WeaponData).weapon_type
+			break
+	if equipped_weapon_type == WeaponData.Weapon_Type.NONE:
+		return 0
+
+	var total := 0
+	for raw_skill_id in state.learned_skills:
+		var skill := SkillSystem.get_skill(StringName(raw_skill_id))
+		if skill == null \
+				or skill.archetype != SkillData.Archetype.PASSIVE \
+				or skill.weapon_type != equipped_weapon_type:
+			continue
+		var rank := int(state.learned_skills.get(raw_skill_id, 0))
+		if rank <= 0:
+			continue
+		rank = mini(rank, maxi(skill.maximum_rank, 1))
+		total += rank * skill.bonus_accuracy_per_rank
 	return total
 
 func _equipped_bonus_damage(state: PartyMember) -> int:
