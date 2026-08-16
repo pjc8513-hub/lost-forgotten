@@ -64,7 +64,9 @@ static func initiative(actor: Resource) -> int:
 static func damage_profile(actor: Resource, target: Resource = null) -> Dictionary:
 	if actor is PartyMember:
 		var profile := StatCalculator.get_damage_profile(actor)
-		profile["bonus"] = int(profile.get("bonus", 0)) + _arms_master_bonus(actor, target)
+		profile["bonus"] = int(profile.get("bonus", 0)) \
+				+ _arms_master_bonus(actor, target) \
+				+ _enemy_type_skill_bonus(actor, target)
 		return profile
 	var enemy := actor as EnemyInstance
 	return {"dice_rolls": enemy.enemy_data.damage_dice_rolls, "dice_sides": enemy.enemy_data.damage_dice_sides, "bonus": enemy.enemy_data.bonus_damage_base + ability_modifier(strength(enemy)) + _status_bonus(enemy, "bonus_damage")}
@@ -77,6 +79,25 @@ static func _arms_master_bonus(attacker: PartyMember, target: Resource) -> int:
 		return 0
 	var level_bonus := maxi(level(attacker) - level(target) + 1, 0)
 	return mini(level_bonus, rank)
+
+static func _enemy_type_skill_bonus(attacker: PartyMember, target: Resource) -> int:
+	if target is not EnemyInstance or target.enemy_data == null:
+		return 0
+
+	var target_type: EnemyData.EnemyType = target.enemy_data.enemytype
+	var total := 0
+	for raw_skill_id in attacker.learned_skills:
+		var skill := SkillSystem.get_skill(StringName(raw_skill_id))
+		if skill == null \
+				or skill.archetype != SkillData.Archetype.PASSIVE \
+				or skill.enemy_type != target_type:
+			continue
+		var rank := int(attacker.learned_skills.get(raw_skill_id, 0))
+		if rank <= 0:
+			continue
+		rank = mini(rank, maxi(skill.maximum_rank, 1))
+		total += rank * skill.bonus_damage_per_rank
+	return total
 
 static func has_resistance(actor: Resource, element: String) -> bool:
 	if actor is PartyMember:

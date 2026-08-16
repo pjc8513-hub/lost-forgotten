@@ -29,4 +29,5 @@ initiative_bonus = 3
 bonus_damage_base = 3
 resist_fire = true
 resist_earth = true
+has_reach = true
 metadata/_custom_type_script = "uid://ckfeg40bqjxsv"
