@@ -26,17 +26,17 @@ const LOOT_POOLS = {
 		"chance": 0.5
 	},
 	Loot_Table.ITEM_1: {
-		"items": ["minor_health_potion"],
+		"items": ["minor_health_potion", "bandage", "ointment"],
 		"rolls": 2, # tier 1 items drop more often
 		"chance": 1.0
 	},
 	Loot_Table.ITEM_2: {
-		"items": ["health_potion", "antidote", "resurrection_scroll"],
+		"items": ["health_potion", "antidote", "resurrection_scroll", "eye_drops", "medicine"],
 		"rolls": 2,
 		"chance": 0.8
 	},
 	Loot_Table.ITEM_3: {
-		"items": ["elixir", "phoenix_down", "scroll_teleport"],
+		"items": ["large_health_potion", "magic_dust", "scroll_teleport"],
 		"rolls": 1,
 		"chance": 0.6
 	}

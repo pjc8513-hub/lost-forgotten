@@ -8,6 +8,11 @@
 [ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="6_yygtf"]
 [ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="7_ojq7m"]
 [ext_resource type="Resource" uid="uid://dw104fo5xmf8o" path="res://data/items/consumables/minor_health_potion.tres" id="8_ty0d1"]
+[ext_resource type="Resource" uid="uid://1gje1ms7f8cu" path="res://data/items/consumables/bandage.tres" id="9_rrrqb"]
+[ext_resource type="Resource" uid="uid://bonq60mq6vt2w" path="res://data/items/consumables/ointment.tres" id="10_yygtf"]
+[ext_resource type="Resource" uid="uid://c6b1lenwev71m" path="res://data/items/consumables/antidote.tres" id="11_ojq7m"]
+[ext_resource type="Resource" uid="uid://di5xvg7ucfoa7" path="res://data/items/consumables/eye_drops.tres" id="12_ty0d1"]
+[ext_resource type="Resource" uid="uid://cm70rvpi1p1d6" path="res://data/items/consumables/magic_dust.tres" id="13_yygtf"]
 
 [sub_resource type="Resource" id="Resource_es3m5"]
 script = ExtResource("1_pcoyk")
@@ -20,5 +25,5 @@ npc_name = "Jo"
 dialogue_nodes = Array[ExtResource("1_pcoyk")]([SubResource("Resource_es3m5")])
 shop_type = 1
 shop_name = "Jo's Stuff"
-shop_items = Array[ExtResource("7_ojq7m")]([ExtResource("8_ty0d1")])
+shop_items = Array[ExtResource("7_ojq7m")]([ExtResource("8_ty0d1"), ExtResource("9_rrrqb"), ExtResource("10_yygtf"), ExtResource("11_ojq7m"), ExtResource("12_ty0d1"), ExtResource("13_yygtf")])
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"

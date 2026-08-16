@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ConsumableData" format=3 uid="uid://di5xvg7ucfoa7"]
+
+[ext_resource type="Script" uid="uid://cjgfitbwodkdj" path="res://resources/ConsumableData.gd" id="1_rv38m"]
+
+[resource]
+script = ExtResource("1_rv38m")
+remove_status = Array[String](["BLIND"])
+item_id = "eye_drops"
+name = "Eye Drops"
+item_type = 1
+is_stackable = true
+sell_value = 40
+description = "Removes blind status"
+metadata/_custom_type_script = "uid://cjgfitbwodkdj"

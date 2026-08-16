@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ConsumableData" format=3 uid="uid://1gje1ms7f8cu"]
+
+[ext_resource type="Script" uid="uid://cjgfitbwodkdj" path="res://resources/ConsumableData.gd" id="1_xnc40"]
+
+[resource]
+script = ExtResource("1_xnc40")
+remove_status = Array[String](["BLEED"])
+item_id = "bandage"
+name = "Bandage"
+item_type = 1
+is_stackable = true
+sell_value = 25
+description = "Removes bleed status"
+metadata/_custom_type_script = "uid://cjgfitbwodkdj"

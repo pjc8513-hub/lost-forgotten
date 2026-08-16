@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ConsumableData" format=3 uid="uid://boost4sbum4cq"]
+
+[ext_resource type="Script" uid="uid://cjgfitbwodkdj" path="res://resources/ConsumableData.gd" id="1_bv437"]
+
+[resource]
+script = ExtResource("1_bv437")
+hp_restore = 22
+item_id = "health_potion"
+name = "Health Potion"
+item_type = 1
+is_stackable = true
+sell_value = 80
+description = "Heals a large amount of HP"
+metadata/_custom_type_script = "uid://cjgfitbwodkdj"
