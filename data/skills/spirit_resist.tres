@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_skill"]
+
+[resource]
+script = ExtResource("1_skill")
+skill_id = &"spirit_resist"
+display_name = "Spirit Resist"
+description = "Provides resistance to spirit magic"
+archetype = 1
+element = 5
+maximum_rank = 1
+resist_element = 5
+metadata/_custom_type_script = "uid://bfe0w1owguy30"
