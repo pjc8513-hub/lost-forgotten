@@ -82,6 +82,7 @@ enum Status_effect {
 @export var  damage_amount_dice: int = 0
 @export var damage_amount_rolls: int = 0
 @export var status_effect: Status_effect = Status_effect.NONE
+@export var enemy_type: EnemyData.EnemyType = EnemyType.NONE
 
 # heal and remove effect
 @export_group("Heal and remove effect")
