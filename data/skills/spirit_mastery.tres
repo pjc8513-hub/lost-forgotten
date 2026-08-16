@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_skill"]
+
+[resource]
+script = ExtResource("1_skill")
+skill_id = &"spirit_mastery"
+display_name = "Spirit Mastery"
+description = "Adds 1 daily use per rank to Spirit spells."
+available_classes = Array[int]([3])
+archetype = 1
+element = 5
+maximum_rank = 4
+is_elemental_mastery = true
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

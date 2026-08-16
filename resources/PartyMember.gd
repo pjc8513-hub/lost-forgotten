@@ -206,7 +206,28 @@ func get_skill_uses_per_day(skill: SkillData) -> int:
 		return -1
 	var rank := maxi(int(learned_skills.get(skill.skill_id, skill.starting_rank)), skill.starting_rank)
 	var bonus_ranks := maxi(rank - skill.starting_rank, 0)
-	return skill.uses_per_day + bonus_ranks * maxi(skill.bonus_uses_per_rank, 0)
+	return skill.uses_per_day \
+			+ bonus_ranks * maxi(skill.bonus_uses_per_rank, 0) \
+			+ _elemental_mastery_uses_bonus(skill.element)
+
+func _elemental_mastery_uses_bonus(element: SkillData.Element) -> int:
+	if element == SkillData.Element.NONE:
+		return 0
+
+	var total := 0
+	for raw_skill_id in learned_skills:
+		var mastery := SkillSystem.get_skill(StringName(raw_skill_id))
+		if mastery == null \
+				or not mastery.is_elemental_mastery \
+				or mastery.archetype != SkillData.Archetype.PASSIVE \
+				or mastery.element != element:
+			continue
+		var mastery_rank := int(learned_skills.get(raw_skill_id, 0))
+		if mastery_rank <= 0:
+			continue
+		mastery_rank = mini(mastery_rank, maxi(mastery.maximum_rank, 1))
+		total += mastery_rank
+	return total
 
 func consume_skill_use(skill: SkillData) -> bool:
 	if skill == null:

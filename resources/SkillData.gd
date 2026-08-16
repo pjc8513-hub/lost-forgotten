@@ -72,6 +72,7 @@ enum Status_effect {
 @export var stamina_cost: int = 0
 @export var uses_per_day: int = -1 # -1 = unlimited
 @export var bonus_uses_per_rank: int = 0
+@export var is_elemental_mastery: bool = false
 @export var charge_turns: int = 0
 
 # difficulty check roll
