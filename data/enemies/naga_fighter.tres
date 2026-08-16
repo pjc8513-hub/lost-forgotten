@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://c1iryamj1egka"]
+
+[ext_resource type="PackedScene" uid="uid://d34agpvqntpie" path="res://scenes/actors/enemies/naga_fighter.tscn" id="1_oilwx"]
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_u2l0n"]
+[ext_resource type="Texture2D" uid="uid://d3usm1akvdrke" path="res://assets/sprites/enemies/naga.png" id="3_w2nyt"]
+
+[resource]
+script = ExtResource("1_u2l0n")
+enemy_id = &"NagaFighter"
+display_name = "Naga Fighter"
+enemy_level = 11
+sprite_texture = ExtResource("3_w2nyt")
+enemytype = 0
+enemy_scene = ExtResource("1_oilwx")
+xp = 85
+gold = 120
+loot_table = 1
+base_strength = 11
+base_endurance = 12
+base_wisdom = 5
+base_dexterity = 8
+base_piety = 4
+base_willpower = 4
+damage_dice_rolls = 4
+damage_dice_sides = 5
+hp_base = 25
+ac_bonus = -3
+accuracy_bonus = 4
+initiative_bonus = 2
+bonus_damage_base = 3
+resist_earth = true
+resist_physical = true
+flee_chance = 0.005
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

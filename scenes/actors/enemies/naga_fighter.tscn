@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://d34agpvqntpie"]
+
+[ext_resource type="PackedScene" uid="uid://cblk1gb73wnc8" path="res://scenes/actors/enemies/EnemyScene.tscn" id="1_6gm10"]
+[ext_resource type="Texture2D" uid="uid://d3usm1akvdrke" path="res://assets/sprites/enemies/naga.png" id="2_s0v2v"]
+
+[node name="NagaFighter" unique_id=502711961 instance=ExtResource("1_6gm10")]
+combat_size_multiplier = 1.2
+
+[node name="EnemySprite" parent="." index="0" unique_id=2097108720]
+pixel_size = 0.025
+texture = ExtResource("2_s0v2v")
+
+[node name="HoverTarget" parent="Node/TooltipLayer" parent_id_path=PackedInt32Array(208302145) index="0" unique_id=208302146]
+layout_mode = 3
+anchors_preset = 0

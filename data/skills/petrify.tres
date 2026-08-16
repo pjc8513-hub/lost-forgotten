@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://ccodo1fyr1bse"]
+
+[ext_resource type="PackedScene" uid="uid://c7utj4smfoboy" path="res://scenes/combat/animations/earth_spell.tscn" id="1_3jcyr"]
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_vwwpb"]
+
+[resource]
+script = ExtResource("1_vwwpb")
+skill_id = &"petrify"
+display_name = "Petrify"
+description = "Attempts to petrify single target"
+available_classes = Array[int]([5])
+archetype = 2
+element = 1
+maximum_rank = 3
+stamina_cost = 7
+uses_per_day = 3
+bonus_uses_per_rank = 1
+dc_stat = "willpower"
+dc_base = 14
+status_effect = 5
+AnimationScene = ExtResource("1_3jcyr")
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://datfm32ybaghn"]
+
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_1g72p"]
+[ext_resource type="PackedScene" uid="uid://cfqjmmp4kki11" path="res://scenes/actors/enemies/medusa.tscn" id="1_d5h4v"]
+[ext_resource type="Texture2D" uid="uid://bbnwsph1rixhc" path="res://assets/sprites/enemies/medusa.png" id="3_lmexd"]
+
+[resource]
+script = ExtResource("1_1g72p")
+enemy_id = &"medusa"
+display_name = "Medusa"
+enemy_level = 10
+sprite_texture = ExtResource("3_lmexd")
+enemytype = 0
+enemy_scene = ExtResource("1_d5h4v")
+xp = 80
+gold = 80
+base_strength = 9
+base_endurance = 9
+base_wisdom = 5
+base_dexterity = 4
+base_willpower = 1
+damage_dice_rolls = 2
+damage_dice_sides = 8
+hp_base = 25
+ac_bonus = -3
+accuracy_bonus = 3
+initiative_bonus = 2
+bonus_damage_base = 3
+resist_fire = true
+resist_water = true
+resist_earth = true
+skills = Dictionary[StringName, float]({
+&"petrify": 0.15
+})
+flee_chance = 0.005
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

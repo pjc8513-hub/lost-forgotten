@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://jg1o6tnd436d"]
+
+[ext_resource type="PackedScene" uid="uid://d3xgpynbinoq5" path="res://scenes/actors/enemies/naga_archer.tscn" id="1_171pg"]
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_wfjke"]
+[ext_resource type="Texture2D" uid="uid://cjssktg6gf257" path="res://assets/sprites/enemies/NagaArcher.png" id="3_67a0u"]
+
+[resource]
+script = ExtResource("1_wfjke")
+enemy_id = &"NagaArcher"
+display_name = "Naga Archer"
+enemy_level = 9
+sprite_texture = ExtResource("3_67a0u")
+enemytype = 0
+enemy_scene = ExtResource("1_171pg")
+xp = 65
+gold = 110
+loot_table = 1
+base_strength = 8
+base_endurance = 8
+base_wisdom = 2
+base_dexterity = 7
+base_piety = 4
+base_willpower = 3
+damage_dice_rolls = 4
+hp_base = 15
+ac_bonus = -5
+accuracy_bonus = 4
+initiative_bonus = 3
+bonus_damage_base = 3
+resist_fire = true
+resist_earth = true
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"
