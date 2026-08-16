@@ -55,13 +55,13 @@ _data = {
 [node name="stone_wall3_door" unique_id=141663307 instance=ExtResource("1_6uh1y")]
 
 [node name="wall" parent="." index="0" unique_id=524815201]
-surface_material_override/0 = SubResource("StandardMaterial3D_de0ng")
+material_override = SubResource("StandardMaterial3D_de0ng")
 
 [node name="door" parent="." index="1" unique_id=893429260]
-surface_material_override/0 = ExtResource("3_i1110")
+material_override = ExtResource("3_i1110")
 
 [node name="floor" parent="." index="2" unique_id=1029300820]
-surface_material_override/0 = SubResource("StandardMaterial3D_ra81x")
+material_override = SubResource("StandardMaterial3D_ra81x")
 
 [node name="GridElement" type="Node3D" parent="." index="3" unique_id=1886403208]
 script = ExtResource("5_1ptlr")
