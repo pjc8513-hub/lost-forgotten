@@ -31,7 +31,7 @@ const LOOT_POOLS = {
 		"chance": 1.0
 	},
 	Loot_Table.ITEM_2: {
-		"items": ["health_potion", "antidote"],
+		"items": ["health_potion", "antidote", "resurrection_scroll"],
 		"rolls": 2,
 		"chance": 0.8
 	},

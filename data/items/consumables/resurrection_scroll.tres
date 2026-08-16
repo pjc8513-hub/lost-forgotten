@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ConsumableData" format=3]
+
+[ext_resource type="Script" uid="uid://cjgfitbwodkdj" path="res://resources/ConsumableData.gd" id="1_scroll"]
+
+[resource]
+script = ExtResource("1_scroll")
+item_id = "resurrection_scroll"
+name = "Resurrection Scroll"
+description = "Revives a dead party member with 1 HP and applies Weaken."
+item_type = 1
+is_stackable = true
+sell_value = 100
+is_resurrection_scroll = true
+remove_status = Array[String](["DEAD"])
+metadata/_custom_type_script = "uid://cjgfitbwodkdj"
