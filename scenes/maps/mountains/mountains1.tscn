@@ -84,6 +84,21 @@ albedo_color = Color(0.14622876, 0.14622876, 0.14622873, 1)
 material = SubResource("StandardMaterial3D_ed5yw")
 size = Vector3(134, 0.79517186, 108)
 
+[sub_resource type="Resource" id="Resource_l2q2o"]
+script = ExtResource("25_7yg34")
+text = "Halls of the Naga Queen"
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_txp0l"]
+script = ExtResource("24_jvya7")
+persistent_id = &"NagaCaveEtrance"
+npc_name = "Naga Cave"
+dialogue_nodes = Array[ExtResource("25_7yg34")]([SubResource("Resource_l2q2o")])
+dialogue_label = "Inspect"
+destination_map = "uid://ciouktgp3gqt8"
+destination_spawn_id = &"entrance"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
+
 [node name="Mountains1" type="Node3D" unique_id=50737060]
 script = ExtResource("1_1ry1g")
 Map_ID = &"mountains1"
@@ -143,6 +158,10 @@ spawn_id = &"tunnel1.entrance"
 [node name="MapSpawnPoint7" parent="." unique_id=13489214 instance=ExtResource("4_2dwgv")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 30, 0, 20)
 spawn_id = &"tunnel1.exit"
+
+[node name="MapSpawnPoint8" parent="." unique_id=960527265 instance=ExtResource("4_2dwgv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18, 0, -18)
+spawn_id = &"naga.exit"
 
 [node name="button" parent="." unique_id=1618898909 instance=ExtResource("5_l6kkp")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 24, 0, 20)
@@ -336,7 +355,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -10)
 [node name="TeleportComponent" type="Node" parent="TeleportFloor34" unique_id=106736133]
 script = ExtResource("11_j8fxe")
 teleport_id = &"mountain.teleport.3"
-spawn_location_ids = Array[StringName]([&"teleport.2", &"teleport.3"])
+spawn_location_ids = Array[StringName]([&"teleport.2"])
 
 [node name="TeleportTile" parent="TeleportFloor34" unique_id=453829681 instance=ExtResource("13_v3w5d")]
 
@@ -1466,6 +1485,9 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -20,
 
 [node name="MountainCave6" parent="." unique_id=559525768 instance=ExtResource("21_2ftqi")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20, 0, -18)
+script = ExtResource("23_7ov23")
+npc_tile_id = &"NagaEntrance"
+NPC_List = Array[ExtResource("24_jvya7")]([SubResource("Resource_txp0l")])
 
 [node name="SnowDrift30" parent="." unique_id=326102382 instance=ExtResource("18_w66h7")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20, 0, -22)

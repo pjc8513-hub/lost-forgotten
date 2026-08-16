@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://d348455tsm4x7"]
+
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="1_eqyfp"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="2_scixr"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="3_e5kdd"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="4_x0ee7"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="5_xrecj"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="6_6y08p"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="7_kywt7"]
+
+[sub_resource type="Resource" id="Resource_vvxho"]
+script = ExtResource("4_x0ee7")
+text = "A heavy red door."
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("6_6y08p")
+persistent_id = &"NagaEntrance"
+npc_name = "Exit"
+default_dialogue = SubResource("Resource_vvxho")
+dialogue_label = "Inspect"
+destination_map = "uid://b13pb46j8ie33"
+destination_spawn_id = &"naga.exit"
+destination_label = "Exit"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"

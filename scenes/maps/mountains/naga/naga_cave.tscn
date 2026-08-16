@@ -1,0 +1,241 @@
+[gd_scene format=3 uid="uid://ciouktgp3gqt8"]
+
+[ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_u4lsi"]
+[ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_wi563"]
+[ext_resource type="Environment" uid="uid://cv7posx2uelkc" path="res://data/bonepit_environment.tres" id="3_46crw"]
+[ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="3_g04xt"]
+[ext_resource type="PackedScene" uid="uid://8wi2o2we72rx" path="res://scenes/grid/castle/stone_exit_4.tscn" id="4_vaexr"]
+[ext_resource type="PackedScene" uid="uid://urwlv585wae5" path="res://scenes/grid/castle/stone_corner_2.tscn" id="5_p8iy2"]
+[ext_resource type="PackedScene" uid="uid://dapuyqeqivxm8" path="res://scenes/grid/castle/stone_floor_2.tscn" id="6_5i8lj"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="6_m024r"]
+[ext_resource type="Resource" uid="uid://d348455tsm4x7" path="res://scenes/maps/mountains/naga/NagaEntrance.tres" id="7_4qy1r"]
+[ext_resource type="PackedScene" uid="uid://cc8otyxgp7ygu" path="res://scenes/grid/castle/stone_wall_pillar.tscn" id="7_fft0j"]
+[ext_resource type="PackedScene" uid="uid://dgr6tc7bsd26x" path="res://scenes/grid/castle/torch_1.tscn" id="8_yxsc2"]
+[ext_resource type="PackedScene" uid="uid://co3tikurkecrl" path="res://scenes/grid/castle/stone_wall_3_secret.tscn" id="9_yxsc2"]
+[ext_resource type="Texture2D" uid="uid://26d0nva8usjm" path="res://assets/models/rooms/stone_lift1_temple_stone_blend.png" id="10_ayb1h"]
+[ext_resource type="Texture2D" uid="uid://c2tephrn5a07d" path="res://assets/models/rooms/stone_lift1_temple_stone_normal.png" id="11_g04xt"]
+[ext_resource type="Texture2D" uid="uid://1e3flnphw81c" path="res://assets/models/rooms/stone_lift1_broken_brick_blend.png" id="12_i03i8"]
+[ext_resource type="Texture2D" uid="uid://4lfg118x650w" path="res://assets/models/rooms/stone_lift1_broken_brick_normal.png" id="13_4qy1r"]
+[ext_resource type="PackedScene" uid="uid://x5kyyslryhw4" path="res://scenes/grid/castle/stone_wall_3_door.tscn" id="14_txp0l"]
+[ext_resource type="PackedScene" uid="uid://daxubdx6y7a05" path="res://scenes/grid/castle/stone_hall_3.tscn" id="15_ayb1h"]
+[ext_resource type="PackedScene" uid="uid://dajpl27a3y52a" path="res://scenes/grid/castle/stone_wall_2.tscn" id="15_l2q2o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b7le3"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("10_ayb1h")
+normal_enabled = true
+normal_texture = ExtResource("11_g04xt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_odyce"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("12_i03i8")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("13_4qy1r")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yxsc2"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("10_ayb1h")
+normal_enabled = true
+normal_texture = ExtResource("11_g04xt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ayb1h"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("12_i03i8")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("13_4qy1r")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g04xt"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("10_ayb1h")
+normal_enabled = true
+normal_texture = ExtResource("11_g04xt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i03i8"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("12_i03i8")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("13_4qy1r")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[node name="NagaCave" type="Node3D" unique_id=7982234]
+script = ExtResource("1_u4lsi")
+Map_ID = &"NagaCave"
+main_shader_palette_texture = ExtResource("2_wi563")
+main_shader_dither_strength = 0.08
+main_shader_contrast = 1.3
+
+[node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("3_g04xt")]
+spawn_id = &"entrance"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1641728255]
+environment = ExtResource("3_46crw")
+
+[node name="stone_exit4" parent="." unique_id=133908069 instance=ExtResource("4_vaexr")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 2)
+npc_tile_id = &"NagaEntrance"
+NPC_List = Array[ExtResource("6_m024r")]([ExtResource("7_4qy1r")])
+
+[node name="stone_corner2" parent="." unique_id=1870512281 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2, 0, 0)
+
+[node name="stone_corner4" parent="." unique_id=2107943661 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, -1.9999999)
+
+[node name="stone_corner8" parent="." unique_id=347631994 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.0000005, 0, -6)
+
+[node name="stone_corner5" parent="." unique_id=238633676 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -4, 0, -2.0000005)
+
+[node name="stone_corner6" parent="." unique_id=179540141 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -6, 0, -2.0000007)
+
+[node name="stone_corner7" parent="." unique_id=1077293070 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -5.9999995, 0, -6.000001)
+
+[node name="stone_corner3" parent="." unique_id=2086700778 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -2, 0, -3.496911e-07)
+
+[node name="stone_floor2" parent="." unique_id=807525150 instance=ExtResource("6_5i8lj")]
+
+[node name="stone_floor3" parent="." unique_id=1121652146 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="stone_floor4" parent="." unique_id=1927312298 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="stone_floor5" parent="." unique_id=325586226 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="stone_floor6" parent="." unique_id=2059162132 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="stone_wall_pillar" parent="." unique_id=321652682 instance=ExtResource("7_fft0j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="torch1" parent="." unique_id=179294296 instance=ExtResource("8_yxsc2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -2)
+
+[node name="stone_secret3_door" parent="." unique_id=141663307 instance=ExtResource("9_yxsc2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
+
+[node name="wall" parent="stone_secret3_door" index="0" unique_id=524815201]
+surface_material_override/0 = SubResource("StandardMaterial3D_b7le3")
+
+[node name="door" parent="stone_secret3_door" index="1" unique_id=893429260]
+surface_material_override/0 = SubResource("StandardMaterial3D_b7le3")
+
+[node name="floor" parent="stone_secret3_door" index="2" unique_id=1029300820]
+surface_material_override/0 = SubResource("StandardMaterial3D_odyce")
+
+[node name="DoorComponent" parent="stone_secret3_door" index="4" unique_id=534338047]
+door_id = &"naga.door1"
+
+[node name="SecretComponent" parent="stone_secret3_door" index="5" unique_id=845481881]
+secret_ID = &"naga.secret1"
+secret_type = "door"
+
+[node name="stone_floor7" parent="." unique_id=451425932 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="stone_floor8" parent="." unique_id=503429892 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+
+[node name="stone_floor9" parent="." unique_id=1388700586 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
+
+[node name="stone_floor11" parent="." unique_id=1235396946 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="stone_floor12" parent="." unique_id=652337776 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -6)
+
+[node name="stone_floor13" parent="." unique_id=762555028 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+
+[node name="stone_floor10" parent="." unique_id=637426360 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -6)
+
+[node name="stone_wall3_door" parent="." unique_id=1015458246 instance=ExtResource("14_txp0l")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 0, -3.9999998)
+
+[node name="wall" parent="stone_wall3_door" index="0" unique_id=524815201]
+surface_material_override/0 = SubResource("StandardMaterial3D_yxsc2")
+
+[node name="floor" parent="stone_wall3_door" index="2" unique_id=1029300820]
+surface_material_override/0 = SubResource("StandardMaterial3D_ayb1h")
+
+[node name="DoorComponent" parent="stone_wall3_door" index="4" unique_id=534338047]
+door_id = &"naga.door3"
+starts_locked = true
+
+[node name="stone_hall3" parent="stone_wall3_door" unique_id=813386216 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3.9999995, 0, 6.0000005)
+
+[node name="stone_wall3_door2" parent="." unique_id=1970461443 instance=ExtResource("14_txp0l")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -8)
+
+[node name="wall" parent="stone_wall3_door2" index="0" unique_id=524815201]
+surface_material_override/0 = SubResource("StandardMaterial3D_g04xt")
+
+[node name="floor" parent="stone_wall3_door2" index="2" unique_id=1029300820]
+surface_material_override/0 = SubResource("StandardMaterial3D_i03i8")
+
+[node name="DoorComponent" parent="stone_wall3_door2" index="4" unique_id=534338047]
+door_id = &"naga.door2"
+starts_locked = true
+
+[node name="stone_corner9" parent="." unique_id=1417702112 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0, -8)
+
+[node name="stone_corner10" parent="." unique_id=901607513 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
+
+[node name="stone_wall2" parent="." unique_id=659127570 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.0000002, 0, -8)
+
+[node name="torch2" parent="." unique_id=290987615 instance=ExtResource("8_yxsc2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -6)
+
+[node name="stone_hall3" parent="." unique_id=1152281307 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0, -4)
+
+[node name="stone_hall4" parent="." unique_id=2015142653 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0, -4)
+
+[editable path="stone_secret3_door"]
+[editable path="stone_wall3_door"]
+[editable path="stone_wall3_door2"]
