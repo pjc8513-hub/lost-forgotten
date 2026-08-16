@@ -39,6 +39,8 @@ static func use_skill(caster: Resource, targets: Array, skill: SkillData) -> Dic
 	if caster is PartyMember and caster.get_skill_uses_remaining(skill) == 0:
 		result.message = "No uses of %s remaining until you rest." % skill.display_name
 		return result
+	if skill.is_resurrection:
+		return _use_resurrection_skill(caster, targets, skill, result)
 
 	var valid_targets := _valid_skill_targets(targets)
 	if valid_targets.is_empty():
@@ -68,6 +70,46 @@ static func use_skill(caster: Resource, targets: Array, skill: SkillData) -> Dic
 	result.success = true
 	if not result.target_results.is_empty():
 		result.target = result.target_results[0].get("target")
+	return result
+
+static func _use_resurrection_skill(caster: Resource, targets: Array, skill: SkillData, result: Dictionary) -> Dictionary:
+	var valid_targets: Array[PartyMember] = []
+	for value in targets:
+		var target := value as PartyMember
+		if target != null and target.active_status_effects.has(StatusEffects.Effect.DEAD):
+			valid_targets.append(target)
+	if valid_targets.is_empty():
+		result.message = "Resurrection can only target dead characters."
+		return result
+	if not caster.spend_stamina(skill.stamina_cost):
+		result.message = "Not enough stamina."
+		return result
+	if caster is PartyMember and not caster.consume_skill_use(skill):
+		caster.restore_stamina(skill.stamina_cost)
+		result.message = "No uses of %s remaining until you rest." % skill.display_name
+		return result
+
+	for target in valid_targets:
+		if not ResurrectionSkill.revive_target(target, CombatStats.display_name(caster)):
+			continue
+		result.target_results.append({
+			"target": target,
+			"resisted": false,
+			"resist_roll": 0,
+			"damage": 0,
+			"healing": 1,
+			"stamina_restored": 0,
+			"status_applied": StatusEffects.Effect.WEAKEN,
+			"status_resisted": false,
+			"status_save_roll": 0,
+			"removed_effects": [StatusEffects.Effect.DEAD],
+		})
+	if result.target_results.is_empty():
+		caster.restore_stamina(skill.stamina_cost)
+		result.message = "Resurrection failed."
+		return result
+	result.success = true
+	result.target = result.target_results[0].get("target")
 	return result
 
 static func apply_status(target: Resource, effect_id: int, save_dc: int = 0, source: String = "") -> bool:

@@ -356,7 +356,9 @@ func _on_skill_execution_requested(caster: PartyMember, skill: SkillData) -> voi
 			if player_movement != null:
 				alert.show_message(DisarmTrapSkill.execute(caster, skill, player_movement.grid_pos))
 		_:
-			if _is_healing_skill(skill):
+			if skill.is_resurrection:
+				_begin_targeted_cast(caster, skill)
+			elif _is_healing_skill(skill):
 				if skill.is_AOE:
 					alert.show_message(HealingSkill.execute(caster, skill, PartyManager.party))
 				else:
@@ -537,7 +539,9 @@ func _execute_pending_target_skill(target_index: int) -> void:
 	var skill := _pending_target_skill
 	var target := PartyManager.party[target_index]
 	_clear_pending_cast()
-	if _is_healing_skill(skill):
+	if skill.is_resurrection:
+		alert.show_message(ResurrectionSkill.execute(caster, skill, [target]))
+	elif _is_healing_skill(skill):
 		alert.show_message(HealingSkill.execute(caster, skill, [target]))
 	elif not skill.remove_effect.is_empty():
 		alert.show_message(StatusRemovalSkill.execute(caster, skill, [target]))

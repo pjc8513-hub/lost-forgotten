@@ -368,8 +368,11 @@ func _resolve_skill_targets(command: CombatCommand) -> Array:
 			return _living_party()
 		if command.skill.target_self:
 			return [command.actor] if command.actor.is_alive() else []
-		if command.target is PartyMember and command.target in _living_party():
-			return [command.target]
+		if command.target is PartyMember:
+			if command.skill.is_resurrection:
+				return [command.target] if command.target.active_status_effects.has(StatusEffects.Effect.DEAD) else []
+			if command.target in _living_party():
+				return [command.target]
 		return []
 	var legal_rows := get_targetable_enemy_rows_for_skill(command.skill)
 	if command.target_row not in legal_rows:

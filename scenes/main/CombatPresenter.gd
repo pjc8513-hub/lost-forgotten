@@ -274,7 +274,10 @@ func select_party_target(party_index: int) -> bool:
 	if party_index < 0 or party_index >= PartyManager.party.size():
 		return true
 	var target := PartyManager.party[party_index]
-	if target == null or not target.is_alive():
+	var is_resurrection_target := _pending_party_skill.is_resurrection \
+			and target != null \
+			and target.active_status_effects.has(StatusEffects.Effect.DEAD)
+	if target == null or (not target.is_alive() and not is_resurrection_target):
 		message_requested.emit("That party member cannot be targeted.")
 		return true
 	_queue_party_skill(_pending_party_actor, _pending_party_skill, target)
