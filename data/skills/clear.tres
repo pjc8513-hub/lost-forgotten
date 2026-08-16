@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://geovya12321c"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_0187f"]
+
+[resource]
+script = ExtResource("1_0187f")
+skill_id = &"clear_mind"
+display_name = "Clear Mind"
+description = "Removes confuse and decay status"
+available_classes = Array[int]([3, 5, 6])
+archetype = 4
+element = 5
+stamina_cost = 8
+uses_per_day = 2
+bonus_uses_per_rank = 1
+remove_effect = Array[String](["CONFUSE", "DECAY"])
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

@@ -6,12 +6,12 @@
 script = ExtResource("1_ujopx")
 skill_id = &"remedy"
 display_name = "Remedy"
-description = "Clears the poison status"
+description = "Clears the poison and disease status"
 available_classes = Array[int]([3, 5, 6])
 archetype = 4
 element = 5
 stamina_cost = 3
 uses_per_day = 3
 dc_base = 0
-remove_effect = Array[String](["poison"])
+remove_effect = Array[String](["poison", "DISEASED"])
 metadata/_custom_type_script = "uid://bfe0w1owguy30"

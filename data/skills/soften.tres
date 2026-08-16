@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://b13v310ee2lae"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_ebj13"]
+
+[resource]
+script = ExtResource("1_ebj13")
+skill_id = &"soften"
+display_name = "Soften"
+description = "Removes the paralyze status"
+available_classes = Array[int]([3, 6])
+archetype = 4
+element = 5
+maximum_rank = 4
+stamina_cost = 9
+uses_per_day = 1
+bonus_uses_per_rank = 1
+remove_effect = Array[String](["PARALYSIS"])
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

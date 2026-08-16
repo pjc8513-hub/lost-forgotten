@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SkillData" format=3]
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://bbq6eg7gcj64q"]
 
 [ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_skill"]
 
@@ -7,6 +7,7 @@ script = ExtResource("1_skill")
 skill_id = &"dark_resist"
 display_name = "Dark Resist"
 description = "Provides resistance to dark magic"
+available_classes = Array[int]([4, 6])
 archetype = 1
 element = 7
 maximum_rank = 1

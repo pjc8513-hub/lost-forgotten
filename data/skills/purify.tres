@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://dfcrr3e4urgbu"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_rwuya"]
+
+[resource]
+script = ExtResource("1_rwuya")
+skill_id = &"purify"
+display_name = "Purify"
+description = "Removes the curse and fear status"
+available_classes = Array[int]([3, 6])
+archetype = 4
+element = 5
+maximum_rank = 5
+stamina_cost = 5
+uses_per_day = 2
+bonus_uses_per_rank = 1
+remove_effect = Array[String](["CURSE", "FEAR"])
+metadata/_custom_type_script = "uid://bfe0w1owguy30"
