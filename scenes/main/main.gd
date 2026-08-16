@@ -221,6 +221,7 @@ func _on_travel_menu_requested() -> void:
 func _on_map_transition_requested(map_path: String, spawn_id: StringName) -> void:
 	if _map_transition_running:
 		return
+	_close_exploration_menus()
 	_run_map_transition(map_path, spawn_id)
 
 func _on_inn_rest_requested() -> void:

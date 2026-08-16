@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ConsumableData" format=3]
+
+[ext_resource type="Script" uid="uid://cjgfitbwodkdj" path="res://resources/ConsumableData.gd" id="1_scroll"]
+
+[resource]
+script = ExtResource("1_scroll")
+item_id = "scroll_teleport"
+name = "Scroll of Teleport"
+description = "Returns the party to Nobel's entrance. Can only be used during exploration."
+item_type = 1
+is_stackable = true
+sell_value = 200
+is_teleport_scroll = true
+metadata/_custom_type_script = "uid://cjgfitbwodkdj"
