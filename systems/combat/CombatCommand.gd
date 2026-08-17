@@ -14,6 +14,9 @@ var target: Resource
 var target_row: int = -1
 var skill: SkillData
 var item: ItemInstance
+var costs_paid: bool = false
+var charge_turns_remaining: int = 0
+var resolved_targets: Array[Resource] = []
 
 static func create(
 	command_actor: Resource,

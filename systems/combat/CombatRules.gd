@@ -28,7 +28,7 @@ static func can_cast(caster: Resource) -> bool:
 
 ## Resolves one cast against every supplied target. Costs are paid once and
 ## target_results contains the independent resistance/effect result per target.
-static func use_skill(caster: Resource, targets: Array, skill: SkillData) -> Dictionary:
+static func use_skill(caster: Resource, targets: Array, skill: SkillData, costs_already_paid: bool = false) -> Dictionary:
 	var result := {"kind": &"skill", "success": false, "actor": caster, "skill": skill, "target_results": []}
 	if skill == null or caster == null or not caster.learned_skills.has(skill.skill_id):
 		result.message = "Skill is not known."
@@ -36,7 +36,7 @@ static func use_skill(caster: Resource, targets: Array, skill: SkillData) -> Dic
 	if not can_cast(caster):
 		result.message = "%s cannot cast." % CombatStats.display_name(caster)
 		return result
-	if caster is PartyMember and caster.get_skill_uses_remaining(skill) == 0:
+	if not costs_already_paid and caster is PartyMember and caster.get_skill_uses_remaining(skill) == 0:
 		result.message = "No uses of %s remaining until you rest." % skill.display_name
 		return result
 	if skill.is_resurrection:
@@ -56,17 +56,88 @@ static func use_skill(caster: Resource, targets: Array, skill: SkillData) -> Dic
 		if valid_targets.is_empty():
 			result.message = "No matching status effects to remove."
 			return result
-	if not caster.spend_stamina(skill.stamina_cost):
-		result.message = "Not enough stamina."
-		return result
-	if caster is PartyMember and not caster.consume_skill_use(skill):
-		caster.restore_stamina(skill.stamina_cost)
-		result.message = "No uses of %s remaining until you rest." % skill.display_name
+
+	if skill.is_instant_kill:
+		if not costs_already_paid and not _pay_skill_cost(caster, skill, result):
+			return result
+		return _use_instant_kill_skill(caster, valid_targets, skill, result)
+
+	if not costs_already_paid and not _pay_skill_cost(caster, skill, result):
 		return result
 
 	var shared_heal := _roll_heal(skill, caster) if _is_healing_skill(skill) else 0
 	for target in valid_targets:
 		result.target_results.append(_apply_skill_to_target(caster, target, skill, shared_heal))
+	result.success = true
+	if not result.target_results.is_empty():
+		result.target = result.target_results[0].get("target")
+	return result
+
+static func _check_skill_dc(caster: Resource, skill: SkillData) -> DCCheckResult:
+	if caster is PartyMember:
+		return DCChecks.check_character(caster as PartyMember, skill.dc_stat, skill.dc_base)
+	var modifier := 0
+	match skill.dc_stat.to_lower().strip_edges():
+		"strength": modifier = CombatStats.ability_modifier(CombatStats.strength(caster))
+		"endurance": modifier = CombatStats.ability_modifier(CombatStats.endurance(caster))
+		"wisdom": modifier = CombatStats.ability_modifier(CombatStats.wisdom(caster))
+		"dexterity": modifier = CombatStats.ability_modifier(CombatStats.dexterity(caster))
+		"willpower": modifier = CombatStats.ability_modifier(CombatStats.willpower(caster))
+	return DCChecks.check(skill.dc_base, modifier)
+
+static func _pay_skill_cost(caster: Resource, skill: SkillData, result: Dictionary) -> bool:
+	if not caster.spend_stamina(skill.stamina_cost):
+		result.message = "Not enough stamina."
+		return false
+	if caster is PartyMember and not caster.consume_skill_use(skill):
+		caster.restore_stamina(skill.stamina_cost)
+		result.message = "No uses of %s remaining until you rest." % skill.display_name
+		return false
+	return true
+
+static func _use_instant_kill_skill(caster: Resource, targets: Array[Resource], skill: SkillData, result: Dictionary) -> Dictionary:
+	for target in targets:
+		var outcome := {
+			"target": target,
+			"resisted": false,
+			"resist_roll": 0,
+			"damage": 0,
+			"healing": 0,
+			"stamina_restored": 0,
+			"status_applied": StatusEffects.Effect.NONE,
+			"status_resisted": false,
+			"status_save_roll": 0,
+			"removed_effects": [],
+			"attacker_check_roll": 0,
+			"attacker_check_total": 0,
+			"attacker_check_dc": skill.dc_base,
+			"target_saved": false,
+			"check_failed": false,
+		}
+		var attacker_check := _check_skill_dc(caster, skill)
+		outcome.attacker_check_roll = attacker_check.roll.rolls[0] if not attacker_check.roll.rolls.is_empty() else 0
+		outcome.attacker_check_total = attacker_check.roll.total
+		if not attacker_check.succeeded:
+			outcome.check_failed = true
+			result.target_results.append(outcome)
+			continue
+
+		var target_save := DiceRoller.d20(CombatStats.ability_modifier(CombatStats.willpower(target))).total
+		outcome.status_save_roll = target_save
+		if target_save >= skill.dc_base:
+			outcome.status_resisted = true
+			outcome.target_saved = true
+			result.target_results.append(outcome)
+			continue
+
+		var hp_before := maxi(int(target.current_hp), 0)
+		if hp_before > 0:
+			target.take_damage(hp_before, &"damage")
+			outcome.damage = hp_before
+		if apply_status(target, StatusEffects.Effect.DEAD, skill.dc_base, CombatStats.display_name(caster)):
+			outcome.status_applied = StatusEffects.Effect.DEAD
+		result.target_results.append(outcome)
+
 	result.success = true
 	if not result.target_results.is_empty():
 		result.target = result.target_results[0].get("target")
@@ -323,6 +394,7 @@ static func _status_effect_id(effect: SkillData.Status_effect) -> int:
 		SkillData.Status_effect.CURSE: return StatusEffects.Effect.CURSE
 		SkillData.Status_effect.DISEASED: return StatusEffects.Effect.DISEASED
 		SkillData.Status_effect.DROWNING: return StatusEffects.Effect.DROWNING
+		SkillData.Status_effect.DEAD: return StatusEffects.Effect.DEAD
 		SkillData.Status_effect.REGENERATE: return StatusEffects.Effect.REGENERATE
 		SkillData.Status_effect.HASTE: return StatusEffects.Effect.HASTE
 		SkillData.Status_effect.BLESS: return StatusEffects.Effect.BLESS

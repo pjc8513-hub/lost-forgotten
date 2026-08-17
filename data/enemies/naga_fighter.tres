@@ -30,5 +30,8 @@ initiative_bonus = 2
 bonus_damage_base = 3
 resist_earth = true
 resist_physical = true
+skills = Dictionary[StringName, float]({
+&"decapitate": 0.05
+})
 flee_chance = 0.005
 metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

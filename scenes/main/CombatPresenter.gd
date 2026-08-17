@@ -397,6 +397,10 @@ func _present_skill_action(result: Dictionary) -> void:
 				await camera_tween.finished
 			await _await_skill_presentation(skill, target_visual)
 			var feedback_text := "RESIST" if outcome.get("resisted", false) else ""
+			if feedback_text.is_empty() and outcome.get("check_failed", false):
+				feedback_text = "FAIL"
+			if feedback_text.is_empty() and outcome.get("target_saved", false):
+				feedback_text = "SAVE"
 			if feedback_text.is_empty() and outcome.get("status_resisted", false) and int(outcome.get("damage", 0)) <= 0:
 				feedback_text = "SAVE"
 			var damage := int(outcome.get("damage", 0))
@@ -448,6 +452,8 @@ func _finish_action_presentation(result: Dictionary) -> void:
 				battle_log_requested.emit(result.get("message", "The skill failed."))
 			else:
 				_log_skill_result(result)
+		&"skill_charge":
+			battle_log_requested.emit("%s begins charging %s." % [CombatStats.display_name(actor), result.get("skill").display_name])
 		&"defend": battle_log_requested.emit("%s defends." % CombatStats.display_name(actor))
 		&"item": battle_log_requested.emit("%s uses %s." % [CombatStats.display_name(actor), result.get("item_name", "an item")])
 		&"run": battle_log_requested.emit("The party escapes!" if result.get("success", false) else "%s fails to escape." % CombatStats.display_name(actor))
@@ -475,6 +481,12 @@ func _log_skill_result(result: Dictionary) -> void:
 		var outcome: Dictionary = value
 		var outcome_target := outcome.get("target") as Resource
 		var target_name := CombatStats.display_name(outcome_target)
+		if outcome.get("check_failed", false):
+			battle_log_requested.emit("%s fails the Strength check for %s." % [CombatStats.display_name(actor), skill.display_name])
+			continue
+		if outcome.get("target_saved", false):
+			battle_log_requested.emit("%s resists %s with a saving throw." % [target_name, skill.display_name])
+			continue
 		if outcome.get("resisted", false):
 			battle_log_requested.emit("%s resists %s." % [target_name, skill.display_name])
 			continue

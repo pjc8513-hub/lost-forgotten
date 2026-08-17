@@ -18,6 +18,7 @@ var _eligible_party: Array[PartyMember] = []
 var _planned_commands: Dictionary = {}
 var _planning_index := 0
 var _turn_queue: Array[Resource] = []
+var _charging_commands: Dictionary = {}
 var _finished := false
 var _action_resolution_held := false
 
@@ -45,6 +46,10 @@ func queue_auto_attack_commands() -> int:
 	var queued_count := 0
 	while _planning_index < _eligible_party.size():
 		var actor := _eligible_party[_planning_index]
+		if _charging_commands.has(actor):
+			_planned_commands[actor] = _charging_commands[actor]
+			_planning_index += 1
+			continue
 		if actor != null and actor.is_alive() and CombatRules.can_act(actor):
 			_planned_commands[actor] = _create_auto_attack_command(actor)
 			queued_count += 1
@@ -114,6 +119,12 @@ func perform_enemy_skill(skill: SkillData, target: Resource = null) -> void:
 			return
 		target = valid_targets.pick_random()
 	var skill_targets: Array = valid_targets if skill.is_AOE else [target]
+	if skill.charge_turns > 0:
+		var command := CombatCommand.create(current_actor, CombatCommand.CAST, target)
+		command.skill = skill
+		command.resolved_targets.assign(skill_targets)
+		_finish_current_turn(_execute_charged_skill(command))
+		return
 	_finish_current_turn(CombatRules.use_skill(current_actor, skill_targets, skill))
 
 func perform_enemy_wait() -> void:
@@ -158,8 +169,13 @@ func _begin_round() -> void:
 	_request_next_command()
 
 func _request_next_command() -> void:
-	if _planning_index < _eligible_party.size():
-		planning_actor = _eligible_party[_planning_index]
+	while _planning_index < _eligible_party.size():
+		var actor := _eligible_party[_planning_index]
+		if _charging_commands.has(actor):
+			_planned_commands[actor] = _charging_commands[actor]
+			_planning_index += 1
+			continue
+		planning_actor = actor
 		command_requested.emit(planning_actor, _planning_index, _eligible_party.size())
 		return
 	_begin_resolution()
@@ -185,10 +201,15 @@ func _advance_resolution() -> void:
 	while not _turn_queue.is_empty():
 		var actor: Resource = _turn_queue.pop_front()
 		if actor == null or not actor.is_alive() or (actor is EnemyInstance and actor.has_fled):
+			if actor != null:
+				_charging_commands.erase(actor)
 			continue
 		actor.active_combat_buffs.erase("armor_class")
 		current_actor = actor
 		if not CombatRules.can_act(actor):
+			# Losing the turn interrupts a pending charge. The skill was not
+			# executed, so it must not resume automatically after the status ends.
+			_charging_commands.erase(actor)
 			var blocking_effects := CombatRules.consume_blocked_turn(actor)
 			var reason := ""
 			if not blocking_effects.is_empty():
@@ -217,6 +238,7 @@ func _advance_resolution() -> void:
 
 		var enemy := actor as EnemyInstance
 		if _enemy_flees(enemy):
+			_charging_commands.erase(enemy)
 			enemy.has_fled = true
 			action_resolved.emit({"kind": &"enemy_fled", "actor": enemy})
 			if _action_resolution_held:
@@ -225,6 +247,19 @@ func _advance_resolution() -> void:
 			if _check_finished():
 				return
 			continue
+		if _charging_commands.has(enemy):
+			var pending_command := _charging_commands[enemy] as CombatCommand
+			if pending_command != null:
+				var charge_result := _execute_charged_skill(pending_command)
+				action_resolved.emit(charge_result)
+				if _action_resolution_held:
+					return
+				if _finished:
+					return
+				current_actor = null
+				if _check_finished():
+					return
+				continue
 		turn_started.emit(enemy)
 		return
 	_begin_round()
@@ -242,11 +277,14 @@ func _execute_player_command(command: CombatCommand) -> void:
 			command.actor.active_combat_buffs["armor_class"] = {"value": -2, "expires": &"next_turn"}
 			result = {"kind": &"defend", "actor": command.actor}
 		CombatCommand.CAST:
-			var spell_targets := _resolve_skill_targets(command)
-			if not spell_targets.is_empty() and command.skill != null:
-				result = CombatRules.use_skill(command.actor, spell_targets, command.skill)
+			if command.skill != null and command.skill.charge_turns > 0:
+				result = _execute_charged_skill(command)
 			else:
-				result = _invalid_command_result(command, "The spell target is no longer available.")
+				var spell_targets := _resolve_skill_targets(command)
+				if not spell_targets.is_empty() and command.skill != null:
+					result = CombatRules.use_skill(command.actor, spell_targets, command.skill)
+				else:
+					result = _invalid_command_result(command, "The spell target is no longer available.")
 		CombatCommand.ITEM:
 			if command.item != null and command.actor.inventory.has(command.item) and command.actor.use_inventory_item(command.item):
 				result = {"kind": &"item", "actor": command.actor, "item_name": command.item.item_data.name}
@@ -263,6 +301,57 @@ func _execute_player_command(command: CombatCommand) -> void:
 		_:
 			result = _invalid_command_result(command, "That command is no longer available.")
 	action_resolved.emit(result)
+
+func _execute_charged_skill(command: CombatCommand) -> Dictionary:
+	var spell_targets := _resolve_charged_skill_targets(command)
+	if spell_targets.is_empty():
+		_charging_commands.erase(command.actor)
+		return _invalid_command_result(command, "The spell target is no longer available.")
+	if not command.costs_paid:
+		if not command.actor.learned_skills.has(command.skill.skill_id):
+			return _invalid_command_result(command, "Skill is not known.")
+		if not CombatRules.can_cast(command.actor):
+			return _invalid_command_result(command, "%s cannot cast." % CombatStats.display_name(command.actor))
+		if command.actor is PartyMember and command.actor.get_skill_uses_remaining(command.skill) == 0:
+			return _invalid_command_result(command, "No uses of %s remaining until you rest." % command.skill.display_name)
+		if not command.actor.spend_stamina(command.skill.stamina_cost):
+			return _invalid_command_result(command, "Not enough stamina.")
+		if command.actor is PartyMember and not command.actor.consume_skill_use(command.skill):
+			command.actor.restore_stamina(command.skill.stamina_cost)
+			return _invalid_command_result(command, "No uses of %s remaining until you rest." % command.skill.display_name)
+		command.costs_paid = true
+		command.charge_turns_remaining = command.skill.charge_turns
+		_charging_commands[command.actor] = command
+		return {
+			"kind": &"skill_charge",
+			"actor": command.actor,
+			"skill": command.skill,
+			"charge_turns_remaining": command.charge_turns_remaining,
+		}
+
+	command.charge_turns_remaining -= 1
+	if command.charge_turns_remaining > 0:
+		_charging_commands[command.actor] = command
+		return {
+			"kind": &"skill_charge",
+			"actor": command.actor,
+			"skill": command.skill,
+			"charge_turns_remaining": command.charge_turns_remaining,
+		}
+	_charging_commands.erase(command.actor)
+	return CombatRules.use_skill(command.actor, spell_targets, command.skill, true)
+
+func _resolve_charged_skill_targets(command: CombatCommand) -> Array:
+	if not command.resolved_targets.is_empty():
+		var still_valid: Array[Resource] = []
+		for target in command.resolved_targets:
+			if target != null and target.has_method("is_alive") and target.is_alive() \
+					and (not target is EnemyInstance or not target.has_fled):
+				still_valid.append(target)
+		if command.skill.is_AOE:
+			return still_valid
+		return [still_valid[0]] if still_valid.size() == command.resolved_targets.size() else []
+	return _resolve_skill_targets(command, true)
 
 func _finish_current_turn(result: Dictionary) -> void:
 	if current_actor == null:
@@ -291,6 +380,7 @@ func _end(outcome: StringName) -> void:
 	if _finished:
 		return
 	_finished = true
+	_charging_commands.clear()
 	planning_actor = null
 	current_actor = null
 	_clear_end_of_combat_statuses()
@@ -360,7 +450,7 @@ func _resolve_enemy_target(
 	var targets := get_enemy_targets_in_row(attacker, legal_rows[0])
 	return null if targets.is_empty() else targets.pick_random()
 
-func _resolve_skill_targets(command: CombatCommand) -> Array:
+func _resolve_skill_targets(command: CombatCommand, preserve_target: bool = false) -> Array:
 	if command.skill == null:
 		return []
 	if command.skill.archetype == SkillData.Archetype.PARTY_SPELL:
@@ -380,6 +470,8 @@ func _resolve_skill_targets(command: CombatCommand) -> Array:
 	var row_targets := get_enemy_targets_in_row_for_skill(command.skill, command.target_row)
 	if command.skill.is_AOE:
 		return row_targets
+	if preserve_target:
+		return [command.target] if command.target in row_targets else []
 	if command.target in row_targets:
 		return [command.target]
 	return [] if row_targets.is_empty() else [row_targets.pick_random()]

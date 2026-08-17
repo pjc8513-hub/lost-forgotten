@@ -45,6 +45,7 @@ enum Status_effect {
 	CURSE,
 	DISEASED,
 	DROWNING,
+	DEAD,
 	REGENERATE,
 	HASTE,
 	BLESS,
@@ -75,6 +76,7 @@ enum Status_effect {
 @export var is_elemental_mastery: bool = false
 @export var is_resurrection: bool = false
 @export var charge_turns: int = 0
+@export var is_instant_kill: bool = false
 
 # difficulty check roll
 @export var dc_stat: String
