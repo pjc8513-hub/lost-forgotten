@@ -481,6 +481,9 @@ func _log_skill_result(result: Dictionary) -> void:
 		var outcome: Dictionary = value
 		var outcome_target := outcome.get("target") as Resource
 		var target_name := CombatStats.display_name(outcome_target)
+		if skill.is_dispel and outcome.get("check_failed", false):
+			battle_log_requested.emit("%s fails the Wisdom check for %s against %s." % [CombatStats.display_name(actor), skill.display_name, target_name])
+			continue
 		if outcome.get("check_failed", false):
 			battle_log_requested.emit("%s fails the Strength check for %s." % [CombatStats.display_name(actor), skill.display_name])
 			continue

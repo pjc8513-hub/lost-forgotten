@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_dispel"]
+
+[resource]
+script = ExtResource("1_dispel")
+skill_id = &"dispel"
+display_name = "Dispel"
+description = "Affects an entire reachable row. Make a Wisdom DC 12 check for each target to remove all dispellable status effects."
+available_classes = Array[int]([5])
+archetype = 2
+element = 3
+is_AOE = true
+has_reach = true
+stamina_cost = 8
+uses_per_day = 3
+bonus_uses_per_rank = 1
+is_dispel = true
+dc_stat = "wisdom"
+dc_base = 12
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

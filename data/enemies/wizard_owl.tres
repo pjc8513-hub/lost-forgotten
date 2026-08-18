@@ -32,6 +32,9 @@ resist_water = true
 resist_air = true
 resist_light = true
 resist_spirit = true
+skills = Dictionary[StringName, float]({
+&"dispel": 0.2
+})
 flee_chance = 0.02
 has_reach = true
 metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

@@ -51,6 +51,10 @@ static func use_skill(caster: Resource, targets: Array, skill: SkillData, costs_
 		if valid_targets.is_empty():
 			result.message = "No one needs healing."
 			return result
+	elif skill.is_dispel:
+		if _dispelable_targets(valid_targets).is_empty():
+			result.message = "No dispellable status effects found."
+			return result
 	elif not skill.remove_effect.is_empty():
 		valid_targets = _removable_targets(valid_targets, skill)
 		if valid_targets.is_empty():
@@ -63,6 +67,12 @@ static func use_skill(caster: Resource, targets: Array, skill: SkillData, costs_
 		return _use_instant_kill_skill(caster, valid_targets, skill, result)
 
 	if not costs_already_paid and not _pay_skill_cost(caster, skill, result):
+		return result
+	if skill.is_dispel:
+		for target in valid_targets:
+			result.target_results.append(_apply_dispel_to_target(caster, target, skill))
+		result.success = true
+		result.target = result.target_results[0].get("target")
 		return result
 
 	var shared_heal := _roll_heal(skill, caster) if _is_healing_skill(skill) else 0
@@ -352,6 +362,46 @@ static func _has_status_resistance(target: Resource, status_effect: SkillData.St
 			return true
 	return false
 
+static func _dispelable_targets(targets: Array[Resource]) -> Array[Resource]:
+	var result: Array[Resource] = []
+	for target in targets:
+		for raw_effect_id in target.active_status_effects:
+			if bool(StatusEffects.get_definition(int(raw_effect_id)).get("dispelled", false)):
+				result.append(target)
+				break
+	return result
+
+static func _apply_dispel_to_target(caster: Resource, target: Resource, skill: SkillData) -> Dictionary:
+	var removed_effects: Array[int] = []
+	var caster_check := _check_skill_dc(caster, skill)
+	var outcome := {
+		"target": target,
+		"resisted": false,
+		"resist_roll": 0,
+		"damage": 0,
+		"healing": 0,
+		"stamina_restored": 0,
+		"status_applied": StatusEffects.Effect.NONE,
+		"status_resisted": false,
+		"status_save_roll": 0,
+		"removed_effects": removed_effects,
+		"caster_check_roll": caster_check.roll.rolls[0] if not caster_check.roll.rolls.is_empty() else 0,
+		"caster_check_total": caster_check.roll.total,
+		"caster_check_dc": skill.dc_base,
+		"check_failed": not caster_check.succeeded,
+	}
+	if outcome.check_failed:
+		return outcome
+
+	for raw_effect_id in target.active_status_effects.keys():
+		var effect_id := int(raw_effect_id)
+		if bool(StatusEffects.get_definition(effect_id).get("dispelled", false)):
+			target.active_status_effects.erase(raw_effect_id)
+			removed_effects.append(effect_id)
+	if target is PartyMember and not removed_effects.is_empty():
+		StatCalculator.recalculate(target)
+	return outcome
+
 static func _removable_targets(targets: Array[Resource], skill: SkillData) -> Array[Resource]:
 	var result: Array[Resource] = []
 	var ids := _removal_effect_ids(skill)
@@ -402,7 +452,6 @@ static func _status_effect_id(effect: SkillData.Status_effect) -> int:
 		SkillData.Status_effect.DROWNING: return StatusEffects.Effect.DROWNING
 		SkillData.Status_effect.DEAD: return StatusEffects.Effect.DEAD
 		SkillData.Status_effect.REGENERATE: return StatusEffects.Effect.REGENERATE
-		SkillData.Status_effect.HASTE: return StatusEffects.Effect.HASTE
 		SkillData.Status_effect.BLESS: return StatusEffects.Effect.BLESS
 		SkillData.Status_effect.STONE_SKIN: return StatusEffects.Effect.STONE_SKIN
 		SkillData.Status_effect.SHIELD: return StatusEffects.Effect.SHIELD
