@@ -34,9 +34,10 @@ enum Effect {
 	DEAD,           # Member is dead
 	# Positive
 	REGENERATE,     # HP per round
-	HASTE,          # +initiative, +dexterity
 	BLESS,          # +accuracy, +willpower saves
 	STONE_SKIN,     # AC bonus ( negative AC system low AC = good )
+	SHIELD,			# AC bonus to self
+	HAWK_EYE,		# Accuracy bonus to self
 }
 
 # Canonical lifetime for timed effects. Effects omitted from this table persist
@@ -366,28 +367,12 @@ const DEFINITIONS: Dictionary = {
 		"dispelled": true,
 		"cost_to_remove": 0,
 	},
-	Effect.HASTE: {
-		"label": "Haste",
-		"description": "+Initiative and dexterity",
-		"is_negative": false,
-		"dot_damage": 0,
-		"stat_deltas": { "initiative": 4, "dexterity": 2 },
-		"blocks_action": false,
-		"blocks_healing": false,
-		"blocks_move": false,
-		"blocks_casting": false,
-		"end_of_combat": true,
-		"clear_on_rest": false,
-		"shaken_off": false,
-		"dispelled": true,
-		"cost_to_remove": 0,
-	},
 	Effect.BLESS: {
 		"label": "Bless",
-		"description": "+Accuracy and +Willpower saves.",
+		"description": "+Dexterity, Strength, and +Willpower.",
 		"is_negative": false,
 		"dot_damage": 0,
-		"stat_deltas": { "accuracy": 3, "willpower": 2 },
+		"stat_deltas": { "strength": 3, "willpower": 2, "dexterity": 2 },
 		"blocks_action": false,
 		"blocks_healing": false,
 		"blocks_move": false,
@@ -414,6 +399,38 @@ const DEFINITIONS: Dictionary = {
 		"dispelled": true,
 		"cost_to_remove": 0,
 	},
+	Effect.SHIELD: {
+		"label": "Shield",
+		"description": "Self buff, AC bonus -1",
+		"is_negative": false,
+		"dot_damage": 0,
+		"stat_deltas": { "armor_class": -1 },
+		"blocks_action": false,
+		"blocks_healing": false,
+		"blocks_move": false,
+		"blocks_casting": false,
+		"end_of_combat": true,
+		"clear_on_rest": false,
+		"shaken_off": false,
+		"dispelled": true,
+		"cost_to_remove": 0,
+	},	
+	Effect.HAWK_EYE: {
+		"label": "Hawk Eye",
+		"description": "Self buff, accuracy bonus 2",
+		"is_negative": false,
+		"dot_damage": 0,
+		"stat_deltas": { "accuracy": 2 },
+		"blocks_action": false,
+		"blocks_healing": false,
+		"blocks_move": false,
+		"blocks_casting": false,
+		"end_of_combat": true,
+		"clear_on_rest": false,
+		"shaken_off": false,
+		"dispelled": true,
+		"cost_to_remove": 0,
+	},	
 }
 
 # ---------------------------------------------------------------------------

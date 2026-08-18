@@ -47,9 +47,10 @@ enum Status_effect {
 	DROWNING,
 	DEAD,
 	REGENERATE,
-	HASTE,
 	BLESS,
-	STONE_SKIN
+	STONE_SKIN,
+	SHIELD,
+	HAWK_EYE
 }
 
 # identity

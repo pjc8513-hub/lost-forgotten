@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://3tijojo5odcw"]
+
+[ext_resource type="PackedScene" uid="uid://c7utj4smfoboy" path="res://scenes/combat/animations/earth_spell.tscn" id="1_02plj"]
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_s73hx"]
+
+[resource]
+script = ExtResource("1_s73hx")
+skill_id = &"StoneSkin"
+display_name = "Stone Skin"
+description = "-2 armor class for party for duration of combat"
+available_classes = Array[int]([6])
+archetype = 4
+element = 1
+is_AOE = true
+has_reach = false
+stamina_cost = 10
+uses_per_day = 3
+bonus_uses_per_rank = 1
+status_effect = 20
+AnimationScene = ExtResource("1_02plj")
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

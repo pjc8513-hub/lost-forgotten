@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://cuqroo7sc3ea5"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_c6ghn"]
+
+[resource]
+script = ExtResource("1_c6ghn")
+skill_id = &"HawkEye"
+display_name = "Hawk Eye"
+description = "Accuracy bonus till end of combat. Self buff."
+available_classes = Array[int]([2])
+archetype = 2
+element = 4
+maximum_rank = 5
+target_self = true
+has_reach = false
+stamina_cost = 8
+uses_per_day = 3
+bonus_uses_per_rank = 1
+status_effect = 22
+metadata/_custom_type_script = "uid://bfe0w1owguy30"
