@@ -11,7 +11,8 @@ enum Archetype {
 	PASSIVE,
 	COMBAT_ACTIVE,
 	COMBAT_PASSIVE,
-	PARTY_SPELL
+	PARTY_SPELL,
+	COMBAT_PARTY_ACTIVE
 }
 
 enum Element {
@@ -87,6 +88,8 @@ enum Status_effect {
 @export var  damage_amount_dice: int = 0
 @export var damage_amount_rolls: int = 0
 @export var status_effect: Status_effect = Status_effect.NONE
+@export var status_effect_base_amount: int = 0
+@export var status_effect_amount_per_rank: int = 0
 @export var enemy_type: EnemyData.EnemyType = EnemyData.EnemyType.NONE
 @export var weapon_type: WeaponData.Weapon_Type = WeaponData.Weapon_Type.NONE
 

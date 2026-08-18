@@ -110,10 +110,12 @@ func perform_enemy_skill(skill: SkillData, target: Resource = null) -> void:
 	if not _can_enemy_act():
 		_finish_current_turn({"kind": &"skipped", "actor": current_actor, "message": "No valid target."})
 		return
-	var valid_targets: Array = get_enemy_allies_for_skill(skill) \
-			if skill != null and skill.archetype == SkillData.Archetype.PARTY_SPELL \
-			else get_party_targets_for_skill(skill)
-	if target not in valid_targets:
+	var is_party_buff := skill != null \
+			and skill.archetype in [SkillData.Archetype.PARTY_SPELL, SkillData.Archetype.COMBAT_PARTY_ACTIVE]
+	var valid_targets: Array = get_enemy_allies_for_skill(skill) if is_party_buff else get_party_targets_for_skill(skill)
+	if skill.target_self and not skill.is_AOE:
+		target = current_actor
+	elif target not in valid_targets:
 		if valid_targets.is_empty():
 			_finish_current_turn({"kind": &"skipped", "actor": current_actor, "message": "No valid target."})
 			return
@@ -453,7 +455,7 @@ func _resolve_enemy_target(
 func _resolve_skill_targets(command: CombatCommand, preserve_target: bool = false) -> Array:
 	if command.skill == null:
 		return []
-	if command.skill.archetype == SkillData.Archetype.PARTY_SPELL:
+	if command.skill.archetype in [SkillData.Archetype.PARTY_SPELL, SkillData.Archetype.COMBAT_PARTY_ACTIVE]:
 		if command.skill.is_AOE:
 			return _living_party()
 		if command.skill.target_self:

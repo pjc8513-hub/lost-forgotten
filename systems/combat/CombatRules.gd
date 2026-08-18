@@ -183,15 +183,18 @@ static func _use_resurrection_skill(caster: Resource, targets: Array, skill: Ski
 	result.target = result.target_results[0].get("target")
 	return result
 
-static func apply_status(target: Resource, effect_id: int, save_dc: int = 0, source: String = "") -> bool:
+static func apply_status(target: Resource, effect_id: int, save_dc: int = 0, source: String = "", periodic_amount: int = 0) -> bool:
 	if target == null or not StatusEffects.DEFINITIONS.has(effect_id):
 		return false
-	target.active_status_effects[effect_id] = {
+	var entry := {
 		"remaining_rounds": StatusEffects.duration_rounds(effect_id),
 		"save_dc": save_dc,
 		"source": source,
 		"awaiting_blocked_turn": StatusEffects.blocks_action(effect_id),
 	}
+	if periodic_amount != 0:
+		entry["periodic_amount"] = periodic_amount
+	target.active_status_effects[effect_id] = entry
 	if target is PartyMember:
 		StatCalculator.recalculate(target)
 	return true
@@ -206,7 +209,7 @@ static func tick_statuses(actor: Resource) -> Array[Dictionary]:
 				and int(entry.get("remaining_rounds", -1)) > 0 \
 				and not entry.has("awaiting_blocked_turn"):
 			entry.awaiting_blocked_turn = true
-		var dot := StatusEffects.dot_damage(effect_id)
+		var dot := int(entry.get("periodic_amount", StatusEffects.dot_damage(effect_id)))
 		if dot > 0:
 			var hp_before: int = actor.current_hp
 			actor.take_damage(dot, &"dot")
@@ -300,7 +303,10 @@ static func _apply_skill_to_target(caster: Resource, target: Resource, skill: Sk
 			if not outcome.status_resisted and skill.dc_base > 0:
 				outcome.status_save_roll = DiceRoller.d20(CombatStats.ability_modifier(CombatStats.willpower(target))).total
 				outcome.status_resisted = outcome.status_save_roll >= skill.dc_base
-		if not outcome.status_resisted and apply_status(target, applied_effect, skill.dc_base, CombatStats.display_name(caster)):
+		var periodic_amount := 0
+		if applied_effect == StatusEffects.Effect.REGENERATE:
+			periodic_amount = -(skill.status_effect_base_amount + skill.status_effect_amount_per_rank * _skill_rank(caster, skill))
+		if not outcome.status_resisted and apply_status(target, applied_effect, skill.dc_base, CombatStats.display_name(caster), periodic_amount):
 			outcome.status_applied = applied_effect
 	return outcome
 
@@ -399,4 +405,6 @@ static func _status_effect_id(effect: SkillData.Status_effect) -> int:
 		SkillData.Status_effect.HASTE: return StatusEffects.Effect.HASTE
 		SkillData.Status_effect.BLESS: return StatusEffects.Effect.BLESS
 		SkillData.Status_effect.STONE_SKIN: return StatusEffects.Effect.STONE_SKIN
+		SkillData.Status_effect.SHIELD: return StatusEffects.Effect.SHIELD
+		SkillData.Status_effect.HAWK_EYE: return StatusEffects.Effect.HAWK_EYE
 	return StatusEffects.Effect.NONE

@@ -250,7 +250,7 @@ func _on_combat_skill_selected(skill: SkillData) -> void:
 	if _session == null or _session.planning_actor == null or skill == null:
 		return
 	var actor := _session.planning_actor
-	if skill.archetype == SkillData.Archetype.PARTY_SPELL:
+	if skill.archetype in [SkillData.Archetype.PARTY_SPELL, SkillData.Archetype.COMBAT_PARTY_ACTIVE]:
 		if skill.is_AOE or skill.target_self:
 			var target: Resource = actor if skill.target_self else null
 			_queue_party_skill(actor, skill, target)
@@ -533,11 +533,11 @@ func _choose_enemy_skill(enemy: EnemyInstance) -> SkillData:
 	for raw_skill_id in enemy.enemy_data.skills:
 		var skill_id := StringName(raw_skill_id)
 		var skill := SkillSystem.get_skill(skill_id)
-		if skill == null or skill.archetype not in [SkillData.Archetype.COMBAT_ACTIVE, SkillData.Archetype.PARTY_SPELL]:
+		if skill == null or skill.archetype not in [SkillData.Archetype.COMBAT_ACTIVE, SkillData.Archetype.PARTY_SPELL, SkillData.Archetype.COMBAT_PARTY_ACTIVE]:
 			continue
 		if not enemy.learned_skills.has(skill_id) or enemy.current_stamina < skill.stamina_cost:
 			continue
-		if skill.archetype == SkillData.Archetype.PARTY_SPELL \
+		if skill.archetype in [SkillData.Archetype.PARTY_SPELL, SkillData.Archetype.COMBAT_PARTY_ACTIVE] \
 				and (_session == null or _session.get_enemy_allies_for_skill(skill).is_empty()):
 			continue
 		var use_chance := clampf(float(enemy.enemy_data.skills[raw_skill_id]), 0.0, 1.0)

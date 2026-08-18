@@ -11,6 +11,7 @@ const ARCHETYPE_ORDER: Array[SkillData.Archetype] = [
 	SkillData.Archetype.PARTY_SPELL,
 	SkillData.Archetype.EXPLORATION,
 	SkillData.Archetype.COMBAT_ACTIVE,
+	SkillData.Archetype.COMBAT_PARTY_ACTIVE,
 	SkillData.Archetype.COMBAT_PASSIVE,
 	SkillData.Archetype.PASSIVE,
 ]
@@ -20,6 +21,7 @@ const EXECUTABLE_ARCHETYPES: Array[SkillData.Archetype] = [
 ]
 const COMBAT_ARCHETYPES: Array[SkillData.Archetype] = [
 	SkillData.Archetype.COMBAT_ACTIVE,
+	SkillData.Archetype.COMBAT_PARTY_ACTIVE,
 	SkillData.Archetype.PARTY_SPELL,
 ]
 
