@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://nn0amdi4p6kj"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_bvyko"]
+[ext_resource type="PackedScene" uid="uid://drmtm78wq6icy" path="res://scenes/combat/animations/dark_spell.tscn" id="1_h5prh"]
+
+[resource]
+script = ExtResource("1_bvyko")
+skill_id = &"dread"
+display_name = "Dread"
+description = "Attempts to inflict fear on a row of enemies"
+available_classes = Array[int]([4])
+archetype = 2
+maximum_rank = 6
+is_AOE = true
+stamina_cost = 7
+uses_per_day = 2
+bonus_uses_per_rank = 1
+status_effect = 1
+AnimationScene = ExtResource("1_h5prh")
+metadata/_custom_type_script = "uid://bfe0w1owguy30"
