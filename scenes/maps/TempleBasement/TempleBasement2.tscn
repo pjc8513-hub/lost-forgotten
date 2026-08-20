@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_v3llr"]
 [ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_puoal"]
-[ext_resource type="PackedScene" uid="uid://bpaar2wmwn36f" path="res://scenes/combat/castle_combat.tscn" id="3_pholp"]
+[ext_resource type="PackedScene" uid="uid://bpaar2wmwn36f" path="res://scenes/combat/garden_combat.tscn" id="3_pholp"]
 [ext_resource type="PackedScene" uid="uid://udlcxn1d6b7a" path="res://scenes/grid/castle/stone_lift_2.tscn" id="3_rmd2c"]
 [ext_resource type="Environment" uid="uid://cv7posx2uelkc" path="res://data/bonepit_environment.tres" id="4_1kk8w"]
 [ext_resource type="PackedScene" uid="uid://urwlv585wae5" path="res://scenes/grid/castle/stone_corner_2.tscn" id="4_pholp"]

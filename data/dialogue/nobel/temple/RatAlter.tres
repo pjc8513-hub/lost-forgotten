@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="2_1odwf"]
 [ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="3_4swub"]
 [ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="4_53oal"]
-[ext_resource type="PackedScene" uid="uid://bpaar2wmwn36f" path="res://scenes/combat/castle_combat.tscn" id="5_4swub"]
+[ext_resource type="PackedScene" uid="uid://bpaar2wmwn36f" path="res://scenes/combat/garden_combat.tscn" id="5_4swub"]
 [ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="5_raclq"]
 [ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="6_qwbvw"]
 [ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="7_2aw71"]

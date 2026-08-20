@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://b3ay0np3dqmup"]
+
+[ext_resource type="PackedScene" uid="uid://dvnaw8elvugwf" path="res://scenes/combat/animations/water_spell.tscn" id="1_n4mus"]
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_qexxx"]
+
+[resource]
+script = ExtResource("1_qexxx")
+skill_id = &"sing"
+display_name = "Sing"
+description = "Attempts to put a row of enemies to sleep"
+available_classes = Array[int]([6])
+archetype = 2
+element = 3
+maximum_rank = 4
+is_AOE = true
+stamina_cost = 9
+uses_per_day = 3
+bonus_uses_per_rank = 1
+status_effect = 11
+AnimationScene = ExtResource("1_n4mus")
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

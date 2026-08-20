@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://cuekbsbee0ck"]
+
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_c7e48"]
+[ext_resource type="PackedScene" uid="uid://cw30j63bi78bg" path="res://scenes/actors/enemies/mermaid.tscn" id="1_no2e8"]
+[ext_resource type="Texture2D" uid="uid://b5xovp13vvibs" path="res://assets/sprites/enemies/mermaid.png" id="3_e0smi"]
+
+[resource]
+script = ExtResource("1_c7e48")
+enemy_id = &"mermaid"
+display_name = "Mermaid"
+enemy_level = 12
+sprite_texture = ExtResource("3_e0smi")
+enemytype = 1
+enemy_scene = ExtResource("1_no2e8")
+xp = 90
+gold = 130
+loot_table = 5
+base_strength = 6
+base_endurance = 11
+base_wisdom = 10
+base_dexterity = 9
+base_piety = 5
+base_willpower = 7
+damage_dice_rolls = 3
+damage_dice_sides = 5
+hp_base = 21
+ac_bonus = -7
+accuracy_bonus = 5
+initiative_bonus = 5
+bonus_damage_base = 3
+magic_amp_base = 1
+resist_water = true
+skills = Dictionary[StringName, float]({
+&"sing": 0.2
+})
+flee_chance = 0.04
+has_reach = true
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

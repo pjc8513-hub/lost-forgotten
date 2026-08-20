@@ -22,7 +22,7 @@
 [ext_resource type="Resource" uid="uid://dnwvpn4nbo4xc" path="res://data/traps/weakness.tres" id="19_jr1l3"]
 [ext_resource type="PackedScene" uid="uid://dk3pu5ssng2p2" path="res://scenes/grid/castle/chest_3.tscn" id="20_4w8b5"]
 [ext_resource type="Resource" uid="uid://bvxnc7kpsi76q" path="res://data/traps/exhaust.tres" id="21_cknfr"]
-[ext_resource type="PackedScene" uid="uid://bpaar2wmwn36f" path="res://scenes/combat/castle_combat.tscn" id="encounter_arena"]
+[ext_resource type="PackedScene" uid="uid://bpaar2wmwn36f" path="res://scenes/combat/garden_combat.tscn" id="encounter_arena"]
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="encounter_map_data"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kc6bh"]

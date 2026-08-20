@@ -30,7 +30,7 @@
 [ext_resource type="Script" uid="uid://c4lr44p3emdjd" path="res://resources/MapExit.gd" id="31_7t7on"]
 [ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="32_d03vq"]
 [ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="33_7c1h1"]
-[ext_resource type="PackedScene" uid="uid://bpaar2wmwn36f" path="res://scenes/combat/castle_combat.tscn" id="encounter_arena"]
+[ext_resource type="PackedScene" uid="uid://bpaar2wmwn36f" path="res://scenes/combat/garden_combat.tscn" id="encounter_arena"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l7c38"]
 resource_local_to_scene = true

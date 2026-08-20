@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cw30j63bi78bg"]
+
+[ext_resource type="PackedScene" uid="uid://cblk1gb73wnc8" path="res://scenes/actors/enemies/EnemyScene.tscn" id="1_84s3w"]
+[ext_resource type="Texture2D" uid="uid://b5xovp13vvibs" path="res://assets/sprites/enemies/mermaid.png" id="2_36dod"]
+
+[node name="mermaid" unique_id=502711961 instance=ExtResource("1_84s3w")]
+
+[node name="EnemySprite" parent="." index="0" unique_id=2097108720]
+pixel_size = 0.013
+texture = ExtResource("2_36dod")
+
+[node name="HoverTarget" parent="Node/TooltipLayer" parent_id_path=PackedInt32Array(208302145) index="0" unique_id=208302146]
+layout_mode = 3
+anchors_preset = 0

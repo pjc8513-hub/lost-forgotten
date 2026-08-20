@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://dnytytdjrqow2"]
+
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_4eh4b"]
+[ext_resource type="PackedScene" uid="uid://3x5sl3u01fku" path="res://scenes/actors/enemies/naiad.tscn" id="1_5edhq"]
+[ext_resource type="Texture2D" uid="uid://5q6qiggfbxs7" path="res://assets/sprites/enemies/naiad.png" id="3_3pujm"]
+
+[resource]
+script = ExtResource("1_4eh4b")
+enemy_id = &"naiad"
+display_name = "Naiad"
+enemy_level = 10
+sprite_texture = ExtResource("3_3pujm")
+enemy_scene = ExtResource("1_5edhq")
+xp = 85
+gold = 110
+loot_table = 5
+base_strength = 7
+base_endurance = 10
+base_wisdom = 9
+base_dexterity = 7
+base_piety = 7
+base_willpower = 10
+damage_dice_rolls = 4
+damage_dice_sides = 4
+hp_base = 18
+ac_bonus = -5
+accuracy_bonus = 5
+initiative_bonus = 6
+bonus_damage_base = 2
+resist_water = true
+resist_earth = true
+resist_air = true
+flee_chance = 0.03
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"
