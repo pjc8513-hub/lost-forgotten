@@ -22,6 +22,7 @@ base_willpower = 2
 damage_dice_rolls = 4
 damage_dice_sides = 4
 hp_base = 15
+lowest_AC = 1
 magic_amp_base = 1
 skills = Dictionary[StringName, float]({
 &"minor_heal": 0.1

@@ -13,6 +13,7 @@ enemytype = 0
 enemy_scene = ExtResource("1_fs3pg")
 loot_probability = 0.06
 loot_table = 1
+lowest_AC = 2
 skills = Dictionary[StringName, float]({
 &"earthquake": 0.1
 })

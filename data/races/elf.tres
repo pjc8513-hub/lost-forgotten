@@ -8,5 +8,6 @@ display_name = "Elf"
 bonus_dexterity = 4
 bonus_wisdom = 3
 bonus_piety = 2
+lowest_AC = -8
 starting_skills = Array[String](["remedy"])
 metadata/_custom_type_script = "uid://cxh3jt7r6t3a5"

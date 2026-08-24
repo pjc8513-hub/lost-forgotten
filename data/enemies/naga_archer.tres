@@ -23,6 +23,7 @@ base_piety = 4
 base_willpower = 3
 damage_dice_rolls = 4
 hp_base = 15
+lowest_AC = -9
 ac_bonus = -5
 accuracy_bonus = 4
 initiative_bonus = 3

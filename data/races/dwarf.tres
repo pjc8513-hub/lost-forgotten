@@ -8,5 +8,6 @@ display_name = "Dwarf"
 bonus_strength = 3
 bonus_endurance = 4
 bonus_willpower = 1
+lowest_AC = -11
 starting_skills = Array[String](["toughness"])
 metadata/_custom_type_script = "uid://cxh3jt7r6t3a5"

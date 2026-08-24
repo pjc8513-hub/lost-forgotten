@@ -18,5 +18,8 @@ enum SelectedRace{
 @export var bonus_willpower: int = 0
 @export var bonus_piety: int = 0
 
+@export_group ("Race max stats")
+@export var lowest_AC: int = -10
+
 @export_group("Race Starting Skills")
 @export var starting_skills: Array[String] = []

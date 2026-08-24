@@ -36,6 +36,9 @@ enum EnemyType {
 @export var damage_dice_sides: int = 3
 @export var hp_base: int = 5
 
+@export_group ("Max stats")
+@export var lowest_AC: int = -10
+
 @export_group("bonuses and penalties")
 @export var ac_bonus: int = 0          # Flat class AC modifier (negative = better in old-school convention)
 @export var accuracy_bonus: int = 0

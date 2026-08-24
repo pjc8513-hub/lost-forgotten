@@ -23,6 +23,7 @@ base_willpower = 10
 damage_dice_rolls = 4
 damage_dice_sides = 4
 hp_base = 18
+lowest_AC = -6
 ac_bonus = -5
 accuracy_bonus = 5
 initiative_bonus = 6

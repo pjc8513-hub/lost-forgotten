@@ -15,6 +15,7 @@ xp = 30
 gold = 30
 loot_probability = 0.09
 loot_table = 4
+lowest_AC = 2
 ac_bonus = -2
 accuracy_bonus = 2
 initiative_bonus = 1

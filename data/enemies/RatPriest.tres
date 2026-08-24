@@ -25,6 +25,7 @@ base_willpower = 1
 damage_dice_rolls = 3
 damage_dice_sides = 4
 hp_base = 10
+lowest_AC = 3
 skills = Dictionary[StringName, float]({
 &"darkness": 0.2
 })

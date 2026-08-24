@@ -13,5 +13,6 @@ enemytype = 2
 enemy_scene = ExtResource("1_p20ms")
 loot_probability = 0.1
 loot_table = 0
+lowest_AC = 5
 starting_status_effects = Array[StringName]([&"REGENERATE"])
 metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

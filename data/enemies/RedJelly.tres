@@ -16,6 +16,7 @@ base_endurance = 4
 base_wisdom = 0
 base_dexterity = 0
 hp_base = 6
+lowest_AC = 5
 initiative_bonus = -1
 resist_water = true
 resist_physical = true
