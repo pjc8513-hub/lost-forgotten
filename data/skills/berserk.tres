@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Script" path="res://resources/SkillData.gd" id="1_berserk"]
+
+[resource]
+script = ExtResource("1_berserk")
+skill_id = &"berserk"
+display_name = "Berserk"
+description = "Greatly increases Strength and breaks all equipment armor until the end of combat."
+available_classes = Array[int]([1])
+archetype = 2
+element = 4
+maximum_rank = 5
+target_self = true
+has_reach = false
+stamina_cost = 8
+uses_per_day = 2
+bonus_uses_per_rank = 1
+status_effect = 25
+secondary_status_effect = 24

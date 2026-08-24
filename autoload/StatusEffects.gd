@@ -38,6 +38,8 @@ enum Effect {
 	STONE_SKIN,     # AC bonus ( negative AC system low AC = good )
 	SHIELD,			# AC bonus to self
 	HAWK_EYE,		# Accuracy bonus to self
+	BROKEN_ARMOR,   # Equipment armor bonuses are disabled
+	BERSERK,        # Greatly increases Strength
 }
 
 # Canonical lifetime for timed effects. Effects omitted from this table persist
@@ -430,7 +432,39 @@ const DEFINITIONS: Dictionary = {
 		"shaken_off": false,
 		"dispelled": true,
 		"cost_to_remove": 0,
-	},	
+	},
+	Effect.BROKEN_ARMOR: {
+		"label": "Broken Armor",
+		"description": "Equipment armor bonuses are disabled until the end of combat.",
+		"is_negative": true,
+		"dot_damage": 0,
+		"stat_deltas": {},
+		"blocks_action": false,
+		"blocks_healing": false,
+		"blocks_move": false,
+		"blocks_casting": false,
+		"end_of_combat": true,
+		"clear_on_rest": false,
+		"shaken_off": false,
+		"dispelled": false,
+		"cost_to_remove": 0,
+	},
+	Effect.BERSERK: {
+		"label": "Berserk",
+		"description": "Greatly increases Strength until the end of combat.",
+		"is_negative": false,
+		"dot_damage": 0,
+		"stat_deltas": { "strength": 10 },
+		"blocks_action": false,
+		"blocks_healing": false,
+		"blocks_move": false,
+		"blocks_casting": false,
+		"end_of_combat": true,
+		"clear_on_rest": false,
+		"shaken_off": false,
+		"dispelled": true,
+		"cost_to_remove": 0,
+	},
 }
 
 # ---------------------------------------------------------------------------

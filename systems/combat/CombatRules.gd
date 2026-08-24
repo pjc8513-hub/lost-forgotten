@@ -318,7 +318,13 @@ static func _apply_skill_to_target(caster: Resource, target: Resource, skill: Sk
 			periodic_amount = -(skill.status_effect_base_amount + skill.status_effect_amount_per_rank * _skill_rank(caster, skill))
 		if not outcome.status_resisted and apply_status(target, applied_effect, skill.dc_base, CombatStats.display_name(caster), periodic_amount):
 			outcome.status_applied = applied_effect
+			_apply_secondary_status(target, skill, caster)
 	return outcome
+
+static func _apply_secondary_status(target: Resource, skill: SkillData, caster: Resource) -> void:
+	var secondary_effect := _status_effect_id(skill.secondary_status_effect)
+	if secondary_effect != StatusEffects.Effect.NONE:
+		apply_status(target, secondary_effect, 0, CombatStats.display_name(caster))
 
 static func _valid_skill_targets(targets: Array) -> Array[Resource]:
 	var result: Array[Resource] = []
@@ -456,4 +462,6 @@ static func _status_effect_id(effect: SkillData.Status_effect) -> int:
 		SkillData.Status_effect.STONE_SKIN: return StatusEffects.Effect.STONE_SKIN
 		SkillData.Status_effect.SHIELD: return StatusEffects.Effect.SHIELD
 		SkillData.Status_effect.HAWK_EYE: return StatusEffects.Effect.HAWK_EYE
+		SkillData.Status_effect.BROKEN_ARMOR: return StatusEffects.Effect.BROKEN_ARMOR
+		SkillData.Status_effect.BERSERK: return StatusEffects.Effect.BERSERK
 	return StatusEffects.Effect.NONE

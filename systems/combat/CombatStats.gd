@@ -38,7 +38,11 @@ static func armor_class(actor: Resource) -> int:
 	if actor is PartyMember:
 		return StatCalculator.get_armor_class(actor)
 	var enemy := actor as EnemyInstance
-	return 10 + enemy.enemy_data.ac_bonus - ability_modifier(dexterity(enemy)) + _status_bonus(enemy, "armor_class") + _buff(enemy, "armor_class")
+	var calculated := 10 + enemy.enemy_data.ac_bonus \
+			- ability_modifier(dexterity(enemy)) \
+			+ _status_bonus(enemy, "armor_class") \
+			+ _buff(enemy, "armor_class")
+	return maxi(calculated, enemy.enemy_data.lowest_AC)
 
 static func accuracy(actor: Resource) -> int:
 	if actor is PartyMember:

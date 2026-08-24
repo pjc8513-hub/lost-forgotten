@@ -52,14 +52,15 @@ func get_max_stamina(state: PartyMember) -> int:
 func get_armor_class(state: PartyMember) -> int:
 	var cd := state.class_data
 	if cd == null:
-		return 10
+		return _enforce_lowest_armor_class(state, 10)
 	var dex_modifier := get_ability_modifier(get_dexterity(state))
-	return 10 \
+	var calculated := 10 \
 		+ cd.ac_bonus \
 		- floori(dex_modifier * cd.ac_dex_scale) \
 		+ _equipped_armor_class(state) \
 		+ _status_modifier(state, "armor_class") \
 		+ _combat_bonus(state, "armor_class")
+	return _enforce_lowest_armor_class(state, calculated)
 
 func get_accuracy(state: PartyMember) -> int:
 	var cd := state.class_data
@@ -212,6 +213,8 @@ func _equipment_bonus(state: PartyMember, keys: Array[String]) -> int:
 	return total
 
 func _equipped_armor_class(state: PartyMember) -> int:
+	if state.active_status_effects.has(StatusEffects.Effect.BROKEN_ARMOR):
+		return 0
 	var total := _equipment_bonus(state, ["armor_class", "armor_class_bonus"])
 	for item in state.inventory:
 		if not item.is_equipped or item.item_data == null:
@@ -306,3 +309,8 @@ func _class_stat(state: PartyMember, property: StringName) -> int:
 
 func _race_stat(state: PartyMember, property: StringName) -> int:
 	return 0 if state.race_data == null else int(state.race_data.get(property))
+
+func _enforce_lowest_armor_class(state: PartyMember, calculated: int) -> int:
+	if state.race_data == null:
+		return calculated
+	return maxi(calculated, state.race_data.lowest_AC)

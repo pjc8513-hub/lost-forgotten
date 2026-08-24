@@ -51,7 +51,9 @@ enum Status_effect {
 	BLESS,
 	STONE_SKIN,
 	SHIELD,
-	HAWK_EYE
+	HAWK_EYE,
+	BROKEN_ARMOR,
+	BERSERK
 }
 
 # identity
@@ -89,6 +91,7 @@ enum Status_effect {
 @export var  damage_amount_dice: int = 0
 @export var damage_amount_rolls: int = 0
 @export var status_effect: Status_effect = Status_effect.NONE
+@export var secondary_status_effect: Status_effect = Status_effect.NONE
 @export var status_effect_base_amount: int = 0
 @export var status_effect_amount_per_rank: int = 0
 @export var enemy_type: EnemyData.EnemyType = EnemyData.EnemyType.NONE
