@@ -42,7 +42,6 @@ cell_shape = 2
 
 [node name="DoorComponent" type="Node3D" parent="." index="3" unique_id=820589636]
 script = ExtResource("3_knehd")
-local_edge = Vector3i(0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=1299333250]
 root_motion_local = true

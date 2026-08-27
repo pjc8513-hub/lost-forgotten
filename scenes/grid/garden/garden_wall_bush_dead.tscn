@@ -5,6 +5,9 @@
 
 [node name="garden_wall_bush_dead" unique_id=535725012 instance=ExtResource("1_ahoss")]
 
+[node name="ground" parent="." index="0" unique_id=50693282]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
 [node name="GridElement" type="Node3D" parent="." index="1" unique_id=1138100918]
 script = ExtResource("2_07l4r")
 cell_shape = 4
