@@ -30,6 +30,11 @@
 [ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="28_h8uyi"]
 [ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="29_bhd33"]
 [ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="30_akhdv"]
+[ext_resource type="Resource" uid="uid://dd5a150sn26i3" path="res://data/traps/poison.tres" id="31_b0ken"]
+[ext_resource type="PackedScene" uid="uid://dk3pu5ssng2p2" path="res://scenes/grid/castle/chest_3.tscn" id="32_ktftg"]
+[ext_resource type="PackedScene" uid="uid://cw51gvstk7ps2" path="res://scenes/maps/bonepit/doors/button_1.tscn" id="33_ajaoi"]
+[ext_resource type="Resource" uid="uid://brxb8l6ciajxm" path="res://data/traps/ice.tres" id="34_dno7q"]
+[ext_resource type="Resource" uid="uid://dghyw7h6eqps8" path="res://data/traps/fire.tres" id="35_4bojo"]
 
 [sub_resource type="Resource" id="Resource_ty0d1"]
 script = ExtResource("28_h8uyi")
@@ -43,112 +48,6 @@ npc_name = "Mysterious Entity"
 default_dialogue = SubResource("Resource_ty0d1")
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_odyce"]
-resource_local_to_scene = true
-resource_name = "wall"
-cull_mode = 2
-albedo_texture = ExtResource("10_ayb1h")
-normal_enabled = true
-normal_texture = ExtResource("11_g04xt")
-uv1_triplanar = true
-uv1_world_triplanar = true
-uv2_triplanar = true
-texture_filter = 2
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m024r"]
-resource_local_to_scene = true
-resource_name = "wall"
-cull_mode = 2
-albedo_texture = ExtResource("10_ayb1h")
-normal_enabled = true
-normal_texture = ExtResource("11_g04xt")
-uv1_triplanar = true
-uv1_world_triplanar = true
-uv2_triplanar = true
-texture_filter = 2
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s132k"]
-resource_local_to_scene = true
-resource_name = "floor"
-cull_mode = 2
-albedo_texture = ExtResource("12_i03i8")
-emission_enabled = true
-normal_enabled = true
-normal_texture = ExtResource("13_4qy1r")
-texture_filter = 2
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8flu6"]
-resource_local_to_scene = true
-resource_name = "floor"
-cull_mode = 2
-albedo_texture = ExtResource("12_i03i8")
-emission_enabled = true
-normal_enabled = true
-normal_texture = ExtResource("13_4qy1r")
-texture_filter = 2
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_clpa6"]
-resource_local_to_scene = true
-resource_name = "wall"
-cull_mode = 2
-albedo_texture = ExtResource("10_ayb1h")
-normal_enabled = true
-normal_texture = ExtResource("11_g04xt")
-uv1_triplanar = true
-uv1_world_triplanar = true
-uv2_triplanar = true
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ehgnt"]
-resource_local_to_scene = true
-resource_name = "wall"
-cull_mode = 2
-albedo_texture = ExtResource("10_ayb1h")
-normal_enabled = true
-normal_texture = ExtResource("11_g04xt")
-uv1_triplanar = true
-uv1_world_triplanar = true
-uv2_triplanar = true
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wiop8"]
-resource_local_to_scene = true
-resource_name = "floor"
-cull_mode = 2
-albedo_texture = ExtResource("12_i03i8")
-emission_enabled = true
-normal_enabled = true
-normal_texture = ExtResource("13_4qy1r")
-texture_filter = 2
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1isj4"]
-resource_local_to_scene = true
-resource_name = "floor"
-cull_mode = 2
-albedo_texture = ExtResource("12_i03i8")
-emission_enabled = true
-normal_enabled = true
-normal_texture = ExtResource("13_4qy1r")
-texture_filter = 2
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b0ken"]
-resource_local_to_scene = true
-resource_name = "wall"
-cull_mode = 2
-albedo_texture = ExtResource("10_ayb1h")
-normal_enabled = true
-normal_texture = ExtResource("11_g04xt")
-uv1_triplanar = true
-uv1_world_triplanar = true
-uv2_triplanar = true
-metadata/_gltf_primary_texture_coord = 0
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ktftg"]
 resource_local_to_scene = true
 resource_name = "wall"
@@ -159,16 +58,19 @@ normal_texture = ExtResource("11_g04xt")
 uv1_triplanar = true
 uv1_world_triplanar = true
 uv2_triplanar = true
+texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajaoi"]
 resource_local_to_scene = true
-resource_name = "floor"
+resource_name = "wall"
 cull_mode = 2
-albedo_texture = ExtResource("12_i03i8")
-emission_enabled = true
+albedo_texture = ExtResource("10_ayb1h")
 normal_enabled = true
-normal_texture = ExtResource("13_4qy1r")
+normal_texture = ExtResource("11_g04xt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
@@ -185,6 +87,17 @@ metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4bojo"]
 resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("12_i03i8")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("13_4qy1r")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8uyi"]
+resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
 albedo_texture = ExtResource("10_ayb1h")
@@ -193,18 +106,6 @@ normal_texture = ExtResource("11_g04xt")
 uv1_triplanar = true
 uv1_world_triplanar = true
 uv2_triplanar = true
-texture_filter = 2
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8uyi"]
-resource_local_to_scene = true
-resource_name = "floor"
-cull_mode = 2
-albedo_texture = ExtResource("12_i03i8")
-emission_enabled = true
-normal_enabled = true
-normal_texture = ExtResource("13_4qy1r")
-texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhd33"]
@@ -220,6 +121,180 @@ uv2_triplanar = true
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akhdv"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("12_i03i8")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("13_4qy1r")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aigga"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("12_i03i8")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("13_4qy1r")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s08bm"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("10_ayb1h")
+normal_enabled = true
+normal_texture = ExtResource("11_g04xt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mhy3t"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("10_ayb1h")
+normal_enabled = true
+normal_texture = ExtResource("11_g04xt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_444ff"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("12_i03i8")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("13_4qy1r")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvy7o"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("12_i03i8")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("13_4qy1r")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhemt"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("10_ayb1h")
+normal_enabled = true
+normal_texture = ExtResource("11_g04xt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ymper"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("12_i03i8")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("13_4qy1r")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_swmjs"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("10_ayb1h")
+normal_enabled = true
+normal_texture = ExtResource("11_g04xt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nck0i"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("12_i03i8")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("13_4qy1r")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e0ek7"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("10_ayb1h")
+normal_enabled = true
+normal_texture = ExtResource("11_g04xt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_df2fg"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("12_i03i8")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("13_4qy1r")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmeps"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("10_ayb1h")
+normal_enabled = true
+normal_texture = ExtResource("11_g04xt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74el3"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("12_i03i8")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("13_4qy1r")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_008nr"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("10_ayb1h")
+normal_enabled = true
+normal_texture = ExtResource("11_g04xt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1yis1"]
 resource_local_to_scene = true
 resource_name = "floor"
 cull_mode = 2
@@ -298,16 +373,16 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
 
 [node name="wall" parent="stone_secret3_door" index="0" unique_id=524815201]
-material_override = SubResource("StandardMaterial3D_odyce")
-surface_material_override/0 = SubResource("StandardMaterial3D_m024r")
+material_override = SubResource("StandardMaterial3D_ktftg")
+surface_material_override/0 = SubResource("StandardMaterial3D_ajaoi")
 
 [node name="door" parent="stone_secret3_door" index="1" unique_id=893429260]
-material_override = SubResource("StandardMaterial3D_odyce")
-surface_material_override/0 = SubResource("StandardMaterial3D_m024r")
+material_override = SubResource("StandardMaterial3D_ktftg")
+surface_material_override/0 = SubResource("StandardMaterial3D_ajaoi")
 
 [node name="floor" parent="stone_secret3_door" index="2" unique_id=1029300820]
-material_override = SubResource("StandardMaterial3D_s132k")
-surface_material_override/0 = SubResource("StandardMaterial3D_8flu6")
+material_override = SubResource("StandardMaterial3D_dno7q")
+surface_material_override/0 = SubResource("StandardMaterial3D_4bojo")
 
 [node name="DoorComponent" parent="stone_secret3_door" index="4" unique_id=534338047]
 door_id = &"naga.door1"
@@ -344,12 +419,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -6)
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 0, -3.9999998)
 
 [node name="wall" parent="stone_wall3_door" index="0" unique_id=524815201]
-material_override = SubResource("StandardMaterial3D_clpa6")
-surface_material_override/0 = SubResource("StandardMaterial3D_ehgnt")
+material_override = SubResource("StandardMaterial3D_h8uyi")
+surface_material_override/0 = SubResource("StandardMaterial3D_bhd33")
 
 [node name="floor" parent="stone_wall3_door" index="2" unique_id=1029300820]
-material_override = SubResource("StandardMaterial3D_wiop8")
-surface_material_override/0 = SubResource("StandardMaterial3D_1isj4")
+material_override = SubResource("StandardMaterial3D_akhdv")
+surface_material_override/0 = SubResource("StandardMaterial3D_aigga")
 
 [node name="DoorComponent" parent="stone_wall3_door" index="4" unique_id=534338047]
 door_id = &"naga.door3"
@@ -362,12 +437,12 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3.99
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -8)
 
 [node name="wall" parent="stone_wall3_door2" index="0" unique_id=524815201]
-material_override = SubResource("StandardMaterial3D_b0ken")
-surface_material_override/0 = SubResource("StandardMaterial3D_ktftg")
+material_override = SubResource("StandardMaterial3D_s08bm")
+surface_material_override/0 = SubResource("StandardMaterial3D_mhy3t")
 
 [node name="floor" parent="stone_wall3_door2" index="2" unique_id=1029300820]
-material_override = SubResource("StandardMaterial3D_ajaoi")
-surface_material_override/0 = SubResource("StandardMaterial3D_dno7q")
+material_override = SubResource("StandardMaterial3D_444ff")
+surface_material_override/0 = SubResource("StandardMaterial3D_rvy7o")
 
 [node name="DoorComponent" parent="stone_wall3_door2" index="4" unique_id=534338047]
 door_id = &"naga.door2"
@@ -384,6 +459,12 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.0
 
 [node name="stone_wall3" parent="." unique_id=469959696 instance=ExtResource("15_l2q2o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -4.000001)
+
+[node name="stone_wall8" parent="." unique_id=1442839753 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -20, 0, -12.000001)
+
+[node name="stone_wall9" parent="." unique_id=466490995 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, -12)
 
 [node name="torch2" parent="." unique_id=290987615 instance=ExtResource("8_yxsc2")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -6)
@@ -406,6 +487,66 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12,
 [node name="stone_hall7" parent="." unique_id=686787687 instance=ExtResource("15_ayb1h")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14, 0, -4)
 
+[node name="stone_hall13" parent="." unique_id=1313185048 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -8)
+
+[node name="stone_hall15" parent="." unique_id=247631308 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -10)
+
+[node name="stone_hall17" parent="." unique_id=1609248383 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -24, 0, -12)
+
+[node name="stone_hall19" parent="." unique_id=1679942460 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -26, 0, -12)
+
+[node name="stone_hall20" parent="." unique_id=226436047 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -28, 0, -10)
+
+[node name="stone_hall18" parent="." unique_id=1064916508 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -22, 0, -12)
+
+[node name="stone_hall16" parent="." unique_id=1475280667 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -14)
+
+[node name="stone_hall24" parent="." unique_id=518551054 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -16)
+
+[node name="stone_hall25" parent="." unique_id=2017789396 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -18)
+
+[node name="stone_hall28" parent="." unique_id=765188900 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -20)
+
+[node name="stone_hall29" parent="." unique_id=321443663 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -22)
+
+[node name="stone_hall26" parent="." unique_id=478943424 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, -14)
+
+[node name="stone_hall27" parent="." unique_id=108459746 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, -16)
+
+[node name="stone_hall30" parent="." unique_id=1031885922 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -26, 0, -18)
+
+[node name="stone_hall31" parent="." unique_id=196602150 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -24, 0, -18)
+
+[node name="stone_hall32" parent="." unique_id=1562128674 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -22, 0, -18)
+
+[node name="stone_hall14" parent="." unique_id=1654627825 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -6)
+
+[node name="stone_hall21" parent="." unique_id=176674275 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22, 0, -8)
+
+[node name="stone_hall22" parent="." unique_id=1424865407 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -24, 0, -8)
+
+[node name="stone_hall23" parent="." unique_id=843397293 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -26, 0, -8)
+
 [node name="stone_hall8" parent="." unique_id=840719492 instance=ExtResource("15_ayb1h")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16, 0, -4)
 
@@ -416,10 +557,10 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -2)
 
 [node name="wall" parent="stone_hall3_trap" index="0" unique_id=1337457531]
-surface_material_override/0 = SubResource("StandardMaterial3D_4bojo")
+surface_material_override/0 = SubResource("StandardMaterial3D_qhemt")
 
 [node name="trap" parent="stone_hall3_trap" index="1" unique_id=1006758298]
-surface_material_override/0 = SubResource("StandardMaterial3D_h8uyi")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymper")
 
 [node name="SecretComponent" parent="stone_hall3_trap/trap" index="0" unique_id=149759868]
 secret_ID = &"naga.secret2"
@@ -429,16 +570,16 @@ trap_id = &"naga.trap1"
 trap_type = ExtResource("21_b7le3")
 
 [node name="celing" parent="stone_hall3_trap" index="2" unique_id=1808366261]
-surface_material_override/0 = SubResource("StandardMaterial3D_h8uyi")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymper")
 
 [node name="stone_wall3_door3" parent="." unique_id=1798679857 instance=ExtResource("14_txp0l")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -20, 0, 0)
 
 [node name="wall" parent="stone_wall3_door3" index="0" unique_id=524815201]
-material_override = SubResource("StandardMaterial3D_bhd33")
+material_override = SubResource("StandardMaterial3D_swmjs")
 
 [node name="floor" parent="stone_wall3_door3" index="2" unique_id=1029300820]
-material_override = SubResource("StandardMaterial3D_akhdv")
+material_override = SubResource("StandardMaterial3D_nck0i")
 
 [node name="DoorComponent" parent="stone_wall3_door3" index="4" unique_id=534338047]
 door_id = &"naga.door4"
@@ -492,6 +633,427 @@ loot_table = 4
 [node name="stone_dead3" parent="." unique_id=948585608 instance=ExtResource("23_b0ken")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -30, 0, 4)
 
+[node name="stone_corner12" parent="." unique_id=1501245732 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -28, 0, -8)
+
+[node name="stone_corner13" parent="." unique_id=1360692277 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, -18)
+
+[node name="stone_corner14" parent="." unique_id=1125658466 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -26)
+
+[node name="stone_corner16" parent="." unique_id=1219931348 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18, 0, -26)
+
+[node name="stone_corner18" parent="." unique_id=352002928 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18, 0, -32)
+
+[node name="stone_corner19" parent="." unique_id=908187684 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -32)
+
+[node name="stone_corner17" parent="." unique_id=1512068018 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -18, 0, -24)
+
+[node name="stone_corner15" parent="." unique_id=986113539 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22, 0, -24)
+
+[node name="torch4" parent="." unique_id=873714105 instance=ExtResource("8_yxsc2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -6)
+
+[node name="stone_hall3_trap2" parent="." unique_id=255379069 instance=ExtResource("20_l2q2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -24)
+
+[node name="wall" parent="stone_hall3_trap2" index="0" unique_id=1337457531]
+surface_material_override/0 = SubResource("StandardMaterial3D_e0ek7")
+
+[node name="trap" parent="stone_hall3_trap2" index="1" unique_id=1006758298]
+surface_material_override/0 = SubResource("StandardMaterial3D_df2fg")
+
+[node name="SecretComponent" parent="stone_hall3_trap2/trap" index="0" unique_id=149759868]
+secret_ID = &"naga.secret2"
+
+[node name="TrapComponent" parent="stone_hall3_trap2/trap" index="1" unique_id=1882980845]
+trap_id = &"naga.trap2"
+trap_type = ExtResource("31_b0ken")
+
+[node name="celing" parent="stone_hall3_trap2" index="2" unique_id=1808366261]
+surface_material_override/0 = SubResource("StandardMaterial3D_df2fg")
+
+[node name="stone_wall3_door4" parent="." unique_id=426942508 instance=ExtResource("14_txp0l")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -20, 0, -26)
+
+[node name="wall" parent="stone_wall3_door4" index="0" unique_id=524815201]
+material_override = SubResource("StandardMaterial3D_hmeps")
+
+[node name="floor" parent="stone_wall3_door4" index="2" unique_id=1029300820]
+material_override = SubResource("StandardMaterial3D_74el3")
+
+[node name="DoorComponent" parent="stone_wall3_door4" index="4" unique_id=534338047]
+door_id = &"naga.door5"
+
+[node name="torch5" parent="." unique_id=26390291 instance=ExtResource("8_yxsc2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -22)
+
+[node name="crate3" parent="." unique_id=1832269761 instance=ExtResource("22_1isj4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -22, 0, -24)
+
+[node name="ChestComponent" parent="crate3" index="3" unique_id=1267731204]
+chest_ID = &"naga.crate3"
+gold_roll_dice = 3
+loot_table = 4
+
+[node name="chest3" parent="." unique_id=1001326355 instance=ExtResource("32_ktftg")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -22, 0, -18)
+
+[node name="ChestComponent" parent="chest3" index="4" unique_id=971460780]
+chest_ID = &"naga.chest1"
+loot_table = 1
+is_trapped = true
+trap_type = ExtResource("21_b7le3")
+dc_rank = 1
+
+[node name="stone_wall10" parent="." unique_id=1473466180 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -28)
+
+[node name="stone_wall11" parent="." unique_id=1686343607 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -30)
+
+[node name="stone_wall12" parent="." unique_id=845513734 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -20, 0, -32)
+
+[node name="stone_wall13" parent="." unique_id=1065404453 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -18, 0, -28)
+
+[node name="stone_floor15" parent="." unique_id=1542920291 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -30)
+
+[node name="stone_floor17" parent="." unique_id=1381516356 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -30)
+
+[node name="stone_floor16" parent="." unique_id=1340736552 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -28)
+
+[node name="torch6" parent="." unique_id=206611238 instance=ExtResource("8_yxsc2")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -22, 0, -30)
+
+[node name="stone_hall33" parent="." unique_id=940594086 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 0, -30)
+
+[node name="stone_hall34" parent="." unique_id=1582153285 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 0, -30)
+
+[node name="stone_hall35" parent="." unique_id=215713751 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, -30)
+
+[node name="stone_hall36" parent="." unique_id=1322793300 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, -30)
+
+[node name="stone_hall38" parent="." unique_id=1253155700 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, -30)
+
+[node name="stone_hall50" parent="." unique_id=1785143961 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -32)
+
+[node name="stone_hall39" parent="." unique_id=1840165144 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, -30)
+
+[node name="stone_hall40" parent="." unique_id=1412079934 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, -30)
+
+[node name="stone_hall41" parent="." unique_id=1123956583 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, -28)
+
+[node name="stone_hall42" parent="." unique_id=254105935 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, -26)
+
+[node name="stone_hall43" parent="." unique_id=239474707 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, -24)
+
+[node name="stone_hall44" parent="." unique_id=496237032 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, -22)
+
+[node name="stone_hall45" parent="." unique_id=1066563375 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, -20)
+
+[node name="stone_hall46" parent="." unique_id=502446871 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, -18)
+
+[node name="stone_hall47" parent="." unique_id=1116336049 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, -16)
+
+[node name="stone_hall48" parent="." unique_id=1967425801 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, -14)
+
+[node name="stone_hall49" parent="." unique_id=1604703375 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, -12)
+
+[node name="stone_corner20" parent="." unique_id=2106954265 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -30)
+
+[node name="torch7" parent="." unique_id=816220129 instance=ExtResource("8_yxsc2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, -30)
+
+[node name="torch8" parent="." unique_id=1129746511 instance=ExtResource("8_yxsc2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)
+
+[node name="button" parent="." unique_id=1618898909 instance=ExtResource("33_ajaoi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="SwitchComponent" parent="button" index="3" unique_id=1763643439]
+target_door_ids = Array[StringName]([&"naga.door2"])
+
+[node name="stone_floor18" parent="." unique_id=1918187391 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -30)
+
+[node name="stone_floor19" parent="." unique_id=531887825 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -28)
+
+[node name="stone_floor22" parent="." unique_id=711881822 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -28)
+
+[node name="stone_floor25" parent="." unique_id=865642715 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -24)
+
+[node name="stone_floor27" parent="." unique_id=1961834979 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -24)
+
+[node name="stone_floor28" parent="." unique_id=577849637 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -22)
+
+[node name="stone_floor26" parent="." unique_id=649652018 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -24)
+
+[node name="stone_floor24" parent="." unique_id=368049349 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -26)
+
+[node name="stone_floor23" parent="." unique_id=1287954125 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -28)
+
+[node name="stone_floor20" parent="." unique_id=90078837 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -28)
+
+[node name="stone_floor21" parent="." unique_id=206095729 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -28)
+
+[node name="stone_dead4" parent="." unique_id=319768157 instance=ExtResource("23_b0ken")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -34)
+
+[node name="stone_wall14" parent="." unique_id=1375800551 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, -26)
+
+[node name="stone_wall16" parent="." unique_id=1875027663 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, -26)
+
+[node name="stone_wall20" parent="." unique_id=1196439874 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -24)
+
+[node name="stone_wall22" parent="." unique_id=250504487 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -22)
+
+[node name="stone_wall23" parent="." unique_id=767440282 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -20)
+
+[node name="stone_wall26" parent="." unique_id=617484940 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -18)
+
+[node name="stone_wall21" parent="." unique_id=889705336 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4, 0, -24)
+
+[node name="stone_wall17" parent="." unique_id=2074247074 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 0, -26)
+
+[node name="stone_wall18" parent="." unique_id=2084525081 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-2.1855695e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855695e-07, -12, 0, -26)
+
+[node name="stone_wall15" parent="." unique_id=190461219 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, -28)
+
+[node name="stone_corner21" parent="." unique_id=1241666748 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 0, -26)
+
+[node name="stone_corner22" parent="." unique_id=1058028241 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 0, -24)
+
+[node name="stone_corner23" parent="." unique_id=1971091369 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, -16)
+
+[node name="stone_corner25" parent="." unique_id=730370579 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -12, 0, -20)
+
+[node name="stone_corner27" parent="." unique_id=479635143 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 0, -20)
+
+[node name="stone_corner24" parent="." unique_id=1539443517 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 0, -16)
+
+[node name="stone_corner26" parent="." unique_id=1255662149 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.9999998, 0, -14)
+
+[node name="stone_wall19" parent="." unique_id=1962658833 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -28)
+
+[node name="chest4" parent="." unique_id=1227611001 instance=ExtResource("32_ktftg")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, -28)
+
+[node name="ChestComponent" parent="chest4" index="4" unique_id=971460780]
+chest_ID = &"naga.chest1"
+loot_table = 5
+is_trapped = true
+trap_type = ExtResource("34_dno7q")
+dc_rank = 2
+
+[node name="torch9" parent="." unique_id=1584290140 instance=ExtResource("8_yxsc2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6, 0, -26)
+
+[node name="crate4" parent="." unique_id=961467945 instance=ExtResource("22_1isj4")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -14, 0, -26)
+
+[node name="ChestComponent" parent="crate4" index="3" unique_id=1267731204]
+chest_ID = &"naga.crate4"
+is_empty = true
+
+[node name="stone_hall37" parent="." unique_id=978166328 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -22)
+
+[node name="stone_hall51" parent="." unique_id=1479558241 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -20)
+
+[node name="stone_wall24" parent="." unique_id=1123583972 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, -22)
+
+[node name="stone_wall25" parent="." unique_id=1386843329 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -22)
+
+[node name="torch10" parent="." unique_id=1735071390 instance=ExtResource("8_yxsc2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -10, 0, -22)
+
+[node name="stone_dead5" parent="." unique_id=1294218141 instance=ExtResource("23_b0ken")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4, 0, -18)
+
+[node name="chest5" parent="." unique_id=1270098501 instance=ExtResource("32_ktftg")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, -18)
+
+[node name="ChestComponent" parent="chest5" index="4" unique_id=971460780]
+chest_ID = &"naga.chest3"
+is_empty = true
+
+[node name="button2" parent="." unique_id=1842024387 instance=ExtResource("33_ajaoi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -16)
+
+[node name="SwitchComponent" parent="button2" index="3" unique_id=1763643439]
+target_door_ids = Array[StringName]([&"naga.door6"])
+
+[node name="stone_wall27" parent="." unique_id=143468990 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -20)
+
+[node name="stone_wall28" parent="." unique_id=211448453 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -18)
+
+[node name="stone_wall29" parent="." unique_id=1928356486 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -16)
+
+[node name="stone_wall30" parent="." unique_id=2009383226 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, -14)
+
+[node name="stone_wall31" parent="." unique_id=125147621 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, -14)
+
+[node name="chest6" parent="." unique_id=664296231 instance=ExtResource("32_ktftg")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 0, -14)
+
+[node name="ChestComponent" parent="chest6" index="4" unique_id=971460780]
+chest_ID = &"naga.chest4"
+is_empty = true
+
+[node name="stone_hall52" parent="." unique_id=396082146 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14, 0, -20)
+
+[node name="stone_hall53" parent="." unique_id=323843510 instance=ExtResource("15_ayb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -22)
+
+[node name="stone_floor29" parent="." unique_id=743082071 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -24)
+
+[node name="stone_floor30" parent="." unique_id=1764796156 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -26)
+
+[node name="stone_floor31" parent="." unique_id=1503860173 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -28)
+
+[node name="chest7" parent="." unique_id=382755075 instance=ExtResource("32_ktftg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16, 0, -28)
+
+[node name="ChestComponent" parent="chest7" index="4" unique_id=971460780]
+chest_ID = &"naga.chest5"
+loot_table = 2
+is_trapped = true
+trap_type = ExtResource("35_4bojo")
+dc_rank = 3
+
+[node name="stone_corner28" parent="." unique_id=35679076 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -14)
+
+[node name="stone_corner31" parent="." unique_id=781548673 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -14)
+
+[node name="stone_corner32" parent="." unique_id=1713088293 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 0, -10)
+
+[node name="torch11" parent="." unique_id=1477792267 instance=ExtResource("8_yxsc2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -18)
+
+[node name="stone_wall3_door5" parent="." unique_id=434174919 instance=ExtResource("14_txp0l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -12)
+
+[node name="wall" parent="stone_wall3_door5" index="0" unique_id=524815201]
+material_override = SubResource("StandardMaterial3D_008nr")
+
+[node name="floor" parent="stone_wall3_door5" index="2" unique_id=1029300820]
+material_override = SubResource("StandardMaterial3D_1yis1")
+
+[node name="DoorComponent" parent="stone_wall3_door5" index="4" unique_id=534338047]
+door_id = &"naga.door6"
+starts_locked = true
+
+[node name="stone_wall32" parent="." unique_id=1030882768 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 0, -12)
+
+[node name="stone_corner29" parent="." unique_id=331619934 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 0, -10)
+
+[node name="stone_corner30" parent="." unique_id=1689763700 instance=ExtResource("5_p8iy2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, -10)
+
+[node name="stone_wall33" parent="." unique_id=1568119016 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 0, -10)
+
+[node name="stone_wall34" parent="." unique_id=712853275 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, -10)
+
+[node name="stone_wall35" parent="." unique_id=201279046 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -12, 0, -14)
+
+[node name="stone_wall36" parent="." unique_id=583329314 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -14, 0, -14)
+
+[node name="stone_wall37" parent="." unique_id=436675932 instance=ExtResource("15_l2q2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -12)
+
+[node name="stone_floor32" parent="." unique_id=1472074518 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -12)
+
+[node name="stone_floor33" parent="." unique_id=1499587500 instance=ExtResource("6_5i8lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -12)
+
+[node name="torch12" parent="." unique_id=65534322 instance=ExtResource("8_yxsc2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 0, -14)
+
+[node name="button3" parent="." unique_id=1390999657 instance=ExtResource("33_ajaoi")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -16, 0, -12)
+
+[node name="SwitchComponent" parent="button3" index="3" unique_id=1763643439]
+target_door_ids = Array[StringName]([&"naga.door3"])
+
 [editable path="stone_secret3_door"]
 [editable path="stone_wall3_door"]
 [editable path="stone_wall3_door2"]
@@ -499,3 +1061,16 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -30,
 [editable path="stone_wall3_door3"]
 [editable path="crate1"]
 [editable path="crate2"]
+[editable path="stone_hall3_trap2"]
+[editable path="stone_wall3_door4"]
+[editable path="crate3"]
+[editable path="chest3"]
+[editable path="button"]
+[editable path="chest4"]
+[editable path="crate4"]
+[editable path="chest5"]
+[editable path="button2"]
+[editable path="chest6"]
+[editable path="chest7"]
+[editable path="stone_wall3_door5"]
+[editable path="button3"]
