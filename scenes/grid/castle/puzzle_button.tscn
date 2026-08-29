@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dktjtisbaiug7"]
+
+[ext_resource type="PackedScene" uid="uid://bha40112hpeok" path="res://assets/models/objects/button.glb" id="1_4vbf0"]
+[ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="2_g1kfw"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="3_hkjim"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
+size = Vector3(0.23815918, 0.336792, 0.38504028)
+
+[node name="button" unique_id=2071792906 instance=ExtResource("1_4vbf0")]
+
+[node name="InteractableComponent" type="Node" parent="." index="2" unique_id=1326889447]
+script = ExtResource("2_g1kfw")
+metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
+
+[node name="GridElement" type="Node3D" parent="." index="3" unique_id=888178184]
+script = ExtResource("3_hkjim")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="Area3D" type="Area3D" parent="." index="4" unique_id=638921618]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=2096232505]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98362964, -0.0015258789, -0.028335571)
+shape = SubResource("BoxShape3D_xa8nu")
