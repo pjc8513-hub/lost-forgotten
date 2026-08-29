@@ -1,0 +1,226 @@
+[gd_scene format=3 uid="uid://dn53da3r7m7xs"]
+
+[ext_resource type="PackedScene" uid="uid://c2no206au6xb5" path="res://scenes/grid/garden/garden_wall_bush_dead.tscn" id="1_r46hl"]
+[ext_resource type="PackedScene" uid="uid://b3f70htpkb1nr" path="res://scenes/grid/thieves/ladder.tscn" id="2_8m4bf"]
+[ext_resource type="Script" uid="uid://d3memun0m0avi" path="res://scripts/components/NPCTileComponent.gd" id="2_vvj7f"]
+[ext_resource type="PackedScene" uid="uid://ccb7xffdpaej6" path="res://scenes/grid/garden/garden_cube_rose.tscn" id="3_ddtko"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="3_kons0"]
+[ext_resource type="PackedScene" uid="uid://ceq0xnlsdrgmi" path="res://scenes/grid/nobel_city/grass_1.tscn" id="4_6kjlb"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="4_88v2q"]
+[ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="5_8m4bf"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="5_g0qtk"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="6_cy0y0"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="7_xj1r3"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="8_1not0"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="9_lqooy"]
+[ext_resource type="PackedScene" uid="uid://dlx4b0sxht00d" path="res://scenes/grid/garden/garden_wall_rose.tscn" id="14_88v2q"]
+[ext_resource type="PackedScene" uid="uid://jjw3jxnb2yd2" path="res://scenes/grid/garden/garden_wall_bush_corner.tscn" id="15_g0qtk"]
+
+[sub_resource type="Resource" id="Resource_6kjlb"]
+script = ExtResource("7_xj1r3")
+text = "Ladder leading back down"
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_ddtko"]
+script = ExtResource("3_kons0")
+persistent_id = &"gardenladder"
+npc_name = "ladder"
+default_dialogue = SubResource("Resource_6kjlb")
+dialogue_label = "inspect"
+destination_map = "uid://cr7xcdx3ssrr3"
+destination_spawn_id = &"ladderspawn"
+destination_label = "Descend"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
+
+[node name="gardensecondfloor" type="Node3D" unique_id=1105626899]
+
+[node name="garden_wall_bush_dead" parent="." unique_id=535725012 instance=ExtResource("1_r46hl")]
+script = ExtResource("2_vvj7f")
+npc_tile_id = &"gardenladdertile"
+NPC_List = Array[ExtResource("3_kons0")]([SubResource("Resource_ddtko")])
+
+[node name="ladder" parent="garden_wall_bush_dead" unique_id=406612134 instance=ExtResource("2_8m4bf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.012461)
+
+[node name="garden_cube_rose" parent="." unique_id=1196930993 instance=ExtResource("3_ddtko")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="grass1" parent="." unique_id=1227721097 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="grass11" parent="." unique_id=70439103 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="grass12" parent="." unique_id=246223946 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+
+[node name="grass40" parent="." unique_id=1140373594 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
+
+[node name="grass41" parent="." unique_id=1044742090 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+
+[node name="grass15" parent="." unique_id=1467289223 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="grass16" parent="." unique_id=33882677 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+
+[node name="grass17" parent="." unique_id=689687685 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="grass18" parent="." unique_id=2042892972 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6)
+
+[node name="grass28" parent="." unique_id=793576207 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+
+[node name="grass29" parent="." unique_id=510144093 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
+
+[node name="grass30" parent="." unique_id=1395760944 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="grass31" parent="." unique_id=103476051 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="grass32" parent="." unique_id=818516452 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="grass44" parent="." unique_id=770446743 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -6)
+
+[node name="grass45" parent="." unique_id=1097773701 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -6)
+
+[node name="grass46" parent="." unique_id=778509360 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="grass47" parent="." unique_id=1630578830 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
+
+[node name="grass48" parent="." unique_id=1432958465 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -6)
+
+[node name="grass49" parent="." unique_id=2025049039 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="grass50" parent="." unique_id=1229323687 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
+
+[node name="grass51" parent="." unique_id=2120842127 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="grass52" parent="." unique_id=1024423441 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+
+[node name="grass53" parent="." unique_id=267420103 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="grass54" parent="." unique_id=2129489178 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 6)
+
+[node name="grass2" parent="." unique_id=1367414784 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="grass3" parent="." unique_id=1822180362 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="grass4" parent="." unique_id=1812714841 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="grass5" parent="." unique_id=81815651 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="grass6" parent="." unique_id=1958718324 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+
+[node name="grass7" parent="." unique_id=1963492063 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="grass8" parent="." unique_id=1729029855 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+
+[node name="grass9" parent="." unique_id=1240115567 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="grass10" parent="." unique_id=1892087200 instance=ExtResource("4_6kjlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("5_8m4bf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+spawn_id = &"entrance"
+
+[node name="garden_wall_rose" parent="." unique_id=666579525 instance=ExtResource("14_88v2q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, -8)
+
+[node name="garden_wall_rose7" parent="." unique_id=234087706 instance=ExtResource("14_88v2q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0, -8)
+
+[node name="garden_wall_rose8" parent="." unique_id=303320984 instance=ExtResource("14_88v2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -6)
+
+[node name="garden_wall_rose12" parent="." unique_id=1021869983 instance=ExtResource("14_88v2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
+
+[node name="garden_wall_rose13" parent="." unique_id=1202785574 instance=ExtResource("14_88v2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -2)
+
+[node name="garden_wall_rose14" parent="." unique_id=774609103 instance=ExtResource("14_88v2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 2)
+
+[node name="garden_wall_rose15" parent="." unique_id=29638519 instance=ExtResource("14_88v2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
+
+[node name="garden_wall_rose16" parent="." unique_id=900177748 instance=ExtResource("14_88v2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6)
+
+[node name="garden_wall_rose17" parent="." unique_id=975499815 instance=ExtResource("14_88v2q")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 8)
+
+[node name="garden_wall_rose18" parent="." unique_id=1344012842 instance=ExtResource("14_88v2q")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 8)
+
+[node name="garden_wall_rose19" parent="." unique_id=854545554 instance=ExtResource("14_88v2q")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 8)
+
+[node name="garden_wall_rose20" parent="." unique_id=1352068575 instance=ExtResource("14_88v2q")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 8)
+
+[node name="garden_wall_rose9" parent="." unique_id=295031271 instance=ExtResource("14_88v2q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2, 0, -8)
+
+[node name="garden_wall_rose10" parent="." unique_id=1139547324 instance=ExtResource("14_88v2q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0, -8)
+
+[node name="garden_wall_rose2" parent="." unique_id=377544458 instance=ExtResource("14_88v2q")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0, -4)
+
+[node name="garden_wall_rose11" parent="." unique_id=150316290 instance=ExtResource("14_88v2q")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0, -6)
+
+[node name="garden_wall_rose3" parent="." unique_id=770413080 instance=ExtResource("14_88v2q")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0, -2)
+
+[node name="garden_wall_rose4" parent="." unique_id=1564393208 instance=ExtResource("14_88v2q")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0, 2)
+
+[node name="garden_wall_rose5" parent="." unique_id=171061947 instance=ExtResource("14_88v2q")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0, 4)
+
+[node name="garden_wall_rose6" parent="." unique_id=369981115 instance=ExtResource("14_88v2q")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0, 6)
+
+[node name="garden_wall_bush_corner" parent="." unique_id=1901211939 instance=ExtResource("15_g0qtk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0, -8)
+
+[node name="garden_wall_bush_corner3" parent="." unique_id=1022003263 instance=ExtResource("15_g0qtk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -8)
+
+[node name="garden_wall_bush_corner2" parent="." unique_id=208739418 instance=ExtResource("15_g0qtk")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0, 8)
+
+[node name="garden_wall_bush_corner4" parent="." unique_id=1153088191 instance=ExtResource("15_g0qtk")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -6, 0, 8)
+
+[editable path="garden_wall_bush_dead"]
