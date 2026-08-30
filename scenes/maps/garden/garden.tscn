@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_8t6uw"]
 [ext_resource type="PackedScene" uid="uid://jjw3jxnb2yd2" path="res://scenes/grid/garden/garden_wall_bush_corner.tscn" id="1_uxfmj"]
 [ext_resource type="PackedScene" uid="uid://ceq0xnlsdrgmi" path="res://scenes/grid/nobel_city/grass_1.tscn" id="2_rk5rm"]
-[ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_t1xb6"]
+[ext_resource type="Texture2D" uid="uid://deljl4uigw6s6" path="res://assets/palettes/florentine24-1x.png" id="2_t1xb6"]
 [ext_resource type="Environment" uid="uid://i64ewy3e6ok2" path="res://scenes/maps/nobel/nobel_environment.tres" id="3_f18ta"]
 [ext_resource type="PackedScene" uid="uid://cc0c0kajxt475" path="res://scenes/combat/castle_combat.tscn" id="3_ghc87"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="4_f18ta"]

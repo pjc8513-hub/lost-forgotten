@@ -52,6 +52,12 @@ func _ready() -> void:
 			push_warning("Map '%s' has_daynight enabled but is missing a DirectionalLight3D or environment." % name)
 		return
 
+	# Visual-time updates change Environment and Sky shader properties.  A map may
+	# deliberately use a fixed time (for example Forest at 17:30 or Garden's
+	# second floor at 21:30), so those changes must never leak into another map
+	# that uses the same Environment resource.
+	_duplicate_environment_for_map()
+
 	if _daynight_world_environment.environment != null and _daynight_world_environment.environment.sky != null:
 		_daynight_sky_material = _daynight_world_environment.environment.sky.sky_material as ShaderMaterial
 
@@ -66,6 +72,26 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	if WorldManager.dungeon_time_changed.is_connected(_on_daynight_time_changed):
 		WorldManager.dungeon_time_changed.disconnect(_on_daynight_time_changed)
+
+
+func _duplicate_environment_for_map() -> void:
+	var source_environment := _daynight_world_environment.environment
+	var map_environment := source_environment.duplicate(true) as Environment
+	if map_environment == null:
+		push_warning("Map '%s' could not duplicate its environment for visual-time updates." % name)
+		return
+
+	# ShaderMaterial is mutable but is not necessarily marked local to its Sky
+	# resource, so copy it explicitly as well.
+	if map_environment.sky != null:
+		var map_sky := map_environment.sky.duplicate(true) as Sky
+		if map_sky != null:
+			var sky_material := map_sky.sky_material
+			if sky_material != null:
+				map_sky.sky_material = sky_material.duplicate(true) as Material
+			map_environment.sky = map_sky
+
+	_daynight_world_environment.environment = map_environment
 
 
 func _cache_daynight_day_values() -> void:
