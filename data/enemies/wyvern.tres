@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://b7s5mtmsxpeut"]
+
+[ext_resource type="PackedScene" uid="uid://b3bvvpoaxd730" path="res://scenes/actors/enemies/wyvern.tscn" id="1_647i5"]
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_vb5ov"]
+[ext_resource type="Texture2D" uid="uid://sldudakw28nx" path="res://assets/sprites/enemies/wyvern.png" id="3_ys46k"]
+
+[resource]
+script = ExtResource("1_vb5ov")
+enemy_id = &"wyvern"
+display_name = "Wyvern"
+enemy_level = 9
+sprite_texture = ExtResource("3_ys46k")
+enemytype = 4
+enemy_scene = ExtResource("1_647i5")
+xp = 110
+gold = 210
+loot_table = 2
+base_strength = 14
+base_endurance = 11
+base_wisdom = 9
+base_dexterity = 11
+base_piety = 8
+base_willpower = 10
+damage_dice_rolls = 6
+damage_dice_sides = 4
+hp_base = 30
+ac_bonus = -7
+accuracy_bonus = 4
+initiative_bonus = 4
+resist_fire = true
+resist_water = true
+resist_air = true
+skills = Dictionary[StringName, float]({
+&"poisonspray": 0.15
+})
+flee_chance = 0.02
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

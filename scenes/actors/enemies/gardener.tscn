@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bayj7o6ixq6wn"]
+
+[ext_resource type="PackedScene" uid="uid://cblk1gb73wnc8" path="res://scenes/actors/enemies/EnemyScene.tscn" id="1_wxjdc"]
+[ext_resource type="Texture2D" uid="uid://bekj1ytbb1n8m" path="res://assets/sprites/enemies/gardener.png" id="2_p5bjq"]
+
+[node name="gardener" unique_id=502711961 instance=ExtResource("1_wxjdc")]
+combat_size_multiplier = 1.2
+
+[node name="EnemySprite" parent="." index="0" unique_id=2097108720]
+pixel_size = 0.025
+texture_filter = 0
+texture = ExtResource("2_p5bjq")
+
+[node name="HoverTarget" parent="Node/TooltipLayer" parent_id_path=PackedInt32Array(208302145) index="0" unique_id=208302146]
+layout_mode = 3
+anchors_preset = 0

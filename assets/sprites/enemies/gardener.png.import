@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blptmeaqhyyri"
-path.s3tc="res://.godot/imported/bearbush.png-7a4271edb9b5c902ff57584d86265800.s3tc.ctex"
+uid="uid://bekj1ytbb1n8m"
+path.s3tc="res://.godot/imported/gardener.png-a38b54661ac6c48e1f58c14ecafc823c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/enemies/bearbush.png"
-dest_files=["res://.godot/imported/bearbush.png-7a4271edb9b5c902ff57584d86265800.s3tc.ctex"]
+source_file="res://assets/sprites/enemies/gardener.png"
+dest_files=["res://.godot/imported/gardener.png-a38b54661ac6c48e1f58c14ecafc823c.s3tc.ctex"]
 
 [params]
 

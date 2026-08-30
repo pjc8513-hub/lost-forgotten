@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://h3xevg0npggi"]
+
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_t532x"]
+[ext_resource type="PackedScene" uid="uid://bayj7o6ixq6wn" path="res://scenes/actors/enemies/gardener.tscn" id="1_vh3f6"]
+[ext_resource type="Texture2D" uid="uid://bekj1ytbb1n8m" path="res://assets/sprites/enemies/gardener.png" id="3_mpr7t"]
+
+[resource]
+script = ExtResource("1_t532x")
+enemy_id = &"gardener"
+display_name = "Gardener"
+enemy_level = 7
+sprite_texture = ExtResource("3_mpr7t")
+enemytype = 1
+enemy_scene = ExtResource("1_vh3f6")
+xp = 80
+gold = 150
+loot_table = 5
+base_strength = 15
+base_endurance = 13
+base_wisdom = 6
+base_dexterity = 8
+base_piety = 3
+base_willpower = 9
+damage_dice_rolls = 3
+damage_dice_sides = 4
+hp_base = 30
+lowest_AC = -5
+ac_bonus = -4
+accuracy_bonus = 6
+initiative_bonus = 2
+bonus_damage_base = 3
+skills = Dictionary[StringName, float]({
+&"mud": 0.2
+})
+can_flee = false
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

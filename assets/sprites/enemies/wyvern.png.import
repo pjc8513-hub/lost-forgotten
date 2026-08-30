@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blptmeaqhyyri"
-path.s3tc="res://.godot/imported/bearbush.png-7a4271edb9b5c902ff57584d86265800.s3tc.ctex"
+uid="uid://sldudakw28nx"
+path.s3tc="res://.godot/imported/wyvern.png-f92e4b446ad6b9ac0381f4ea369c1849.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/enemies/bearbush.png"
-dest_files=["res://.godot/imported/bearbush.png-7a4271edb9b5c902ff57584d86265800.s3tc.ctex"]
+source_file="res://assets/sprites/enemies/wyvern.png"
+dest_files=["res://.godot/imported/wyvern.png-f92e4b446ad6b9ac0381f4ea369c1849.s3tc.ctex"]
 
 [params]
 

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://c03w24p1ped3p"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_70fsk"]
+[ext_resource type="PackedScene" uid="uid://dvnaw8elvugwf" path="res://scenes/combat/animations/water_spell.tscn" id="1_y466h"]
+
+[resource]
+script = ExtResource("1_70fsk")
+skill_id = &"poisonspray"
+display_name = "Poison Spray"
+description = "Attempts to poison a row of enemies"
+available_classes = Array[int]([2])
+archetype = 2
+element = 3
+maximum_rank = 5
+is_AOE = true
+stamina_cost = 6
+uses_per_day = 3
+bonus_uses_per_rank = 1
+damage_amount_dice = 2
+damage_amount_rolls = 6
+status_effect = 2
+AnimationScene = ExtResource("1_y466h")
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

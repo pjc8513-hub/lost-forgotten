@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://peyoeco7k77b"]
+
+[ext_resource type="Script" uid="uid://bfe0w1owguy30" path="res://resources/SkillData.gd" id="1_v86cy"]
+
+[resource]
+script = ExtResource("1_v86cy")
+skill_id = &"mud"
+display_name = "Mud"
+description = "Attempts to slow row of enemies"
+available_classes = Array[int]([5, 2])
+archetype = 2
+element = 1
+maximum_rank = 5
+is_AOE = true
+stamina_cost = 4
+uses_per_day = 2
+bonus_uses_per_rank = 1
+damage_amount_dice = 1
+damage_amount_rolls = 8
+status_effect = 13
+metadata/_custom_type_script = "uid://bfe0w1owguy30"

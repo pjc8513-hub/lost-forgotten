@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://dlwc03vvfn8wq"]
+
+[ext_resource type="Script" uid="uid://ckfeg40bqjxsv" path="res://resources/EnemyData.gd" id="1_2y2a5"]
+[ext_resource type="PackedScene" uid="uid://wn2f3c35tutx" path="res://scenes/actors/enemies/bear_bush.tscn" id="1_wn5kn"]
+[ext_resource type="Texture2D" uid="uid://blptmeaqhyyri" path="res://assets/sprites/enemies/bearbush.png" id="3_dlgcv"]
+
+[resource]
+script = ExtResource("1_2y2a5")
+enemy_id = &"bushbear"
+display_name = "Bush Bear"
+enemy_level = 7
+sprite_texture = ExtResource("3_dlgcv")
+enemy_scene = ExtResource("1_wn5kn")
+xp = 90
+gold = 80
+loot_table = 1
+base_strength = 10
+base_endurance = 9
+base_wisdom = 6
+base_dexterity = 6
+base_piety = 5
+base_willpower = 5
+damage_dice_rolls = 3
+hp_base = 20
+lowest_AC = -3
+ac_bonus = -3
+accuracy_bonus = 3
+initiative_bonus = 4
+bonus_damage_base = 3
+skills = Dictionary[StringName, float]({
+&"berserk": 0.1
+})
+flee_chance = 0.02
+metadata/_custom_type_script = "uid://ckfeg40bqjxsv"

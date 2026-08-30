@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://wn2f3c35tutx"]
+
+[ext_resource type="PackedScene" uid="uid://cblk1gb73wnc8" path="res://scenes/actors/enemies/EnemyScene.tscn" id="1_r5b0r"]
+[ext_resource type="Texture2D" uid="uid://blptmeaqhyyri" path="res://assets/sprites/enemies/bearbush.png" id="2_7de5q"]
+
+[node name="BearBush" unique_id=502711961 instance=ExtResource("1_r5b0r")]
+
+[node name="EnemySprite" parent="." index="0" unique_id=2097108720]
+pixel_size = 0.0095
+texture = ExtResource("2_7de5q")
+
+[node name="HoverTarget" parent="Node/TooltipLayer" parent_id_path=PackedInt32Array(208302145) index="0" unique_id=208302146]
+layout_mode = 3
+anchors_preset = 0
