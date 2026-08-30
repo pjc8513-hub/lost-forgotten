@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DialogueNode" format=3 uid="uid://c1a41rx17d2l1"]
+
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="1_qscjq"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="2_jcqhi"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="3_7fqre"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="4_g0bpb"]
+
+[resource]
+script = ExtResource("4_g0bpb")
+text = "When you find a statue, always make sure that it faces south. Every treasure hunter knows that!"
+choice_string = "Statues"
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"

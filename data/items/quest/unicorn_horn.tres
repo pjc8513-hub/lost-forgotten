@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bwkrhlyvhbila"]
+
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="1_vn7nf"]
+
+[resource]
+script = ExtResource("1_vn7nf")
+item_id = "unicornhorn"
+name = "War Unicorn Horn"
+item_type = 2
+description = "It is not a real unicorn's horn but still it flows with power"
+metadata/_custom_type_script = "uid://cx0db5cie0hir"

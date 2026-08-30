@@ -19,17 +19,24 @@
 [ext_resource type="PackedScene" uid="uid://ceq0xnlsdrgmi" path="res://scenes/grid/nobel_city/grass_1.tscn" id="12_72yvy"]
 [ext_resource type="PackedScene" uid="uid://c0qg7yyq6qd6l" path="res://scenes/grid/nobel_city/wall_1.tscn" id="12_oyxdf"]
 [ext_resource type="PackedScene" uid="uid://dyi63mi8rdwj0" path="res://scenes/grid/nobel_city/inn_5.tscn" id="12_sycog"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="13_8jvlm"]
 [ext_resource type="PackedScene" uid="uid://ds4am0k25g8q4" path="res://scenes/grid/nobel_city/wallcorner_1.tscn" id="13_72yvy"]
 [ext_resource type="Resource" uid="uid://dbanhfbvjpgcf" path="res://data/dialogue/nobel/forestwizard/ForestWizard.tres" id="13_hlvby"]
 [ext_resource type="PackedScene" uid="uid://co81duxjlu76s" path="res://scenes/grid/nobel_city/gate_3.tscn" id="14_oyxdf"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="14_w3xgp"]
 [ext_resource type="PackedScene" uid="uid://dmge8mm2unmb0" path="res://scenes/grid/nobel_city/tree_2.tscn" id="15_3morc"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="15_05t1u"]
 [ext_resource type="PackedScene" uid="uid://b2fjhjvv0wnqc" path="res://scenes/grid/nobel_city/moat_1.tscn" id="16_0xi3f"]
 [ext_resource type="Resource" uid="uid://s517uq4us8a1" path="res://data/dialogue/nobel/training/TrainerDee.tres" id="16_g6jm8"]
 [ext_resource type="PackedScene" uid="uid://b50pl125e0e61" path="res://scenes/grid/nobel_city/well_2.tscn" id="16_i5yg6"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="16_tfufr"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="17_1vjdp"]
 [ext_resource type="Resource" uid="uid://dut5g57fqk1me" path="res://data/dialogue/nobel/training/TeacherSaul.tres" id="17_2m8eg"]
 [ext_resource type="Resource" uid="uid://bqogx53osfocl" path="res://data/dialogue/nobel/temple/Temple_basement.tres" id="17_g6jm8"]
 [ext_resource type="PackedScene" uid="uid://nkv24ao2eb0v" path="res://scenes/grid/nobel_city/moat_corner_1.tscn" id="18_3fuu0"]
 [ext_resource type="PackedScene" uid="uid://cmdb7mnvmevaw" path="res://scenes/grid/nobel_city/moat_bridge_1.tscn" id="18_4766a"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="18_b1ry1"]
+[ext_resource type="Resource" uid="uid://dsj14q1kdi65p" path="res://data/quests/warunicorn.tres" id="18_w3xgp"]
 [ext_resource type="Script" uid="uid://dqne8i3vgw0vo" path="res://scenes/grid/nobel_city/gate_tile.gd" id="19_i6hlf"]
 [ext_resource type="Resource" uid="uid://ddp6v6rx2yy3j" path="res://data/dialogue/nobel/swampwizard/swampwizard.tres" id="19_nqyfo"]
 [ext_resource type="Resource" uid="uid://bgqnstag74af5" path="res://data/dialogue/nobel/mountainwizard/mountainwizard.tres" id="20_0wmrl"]
@@ -49,6 +56,19 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xa8nu"]
 size = Vector3(1.1108398, 1.1833496, 1)
+
+[sub_resource type="Resource" id="Resource_0db8d"]
+script = ExtResource("16_tfufr")
+text = "...it has to be in that old garden somewhere..."
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_7v2gy"]
+script = ExtResource("4_qt0u2")
+persistent_id = &"flambert"
+npc_name = "Flambert"
+default_dialogue = SubResource("Resource_0db8d")
+quests_offered = Array[ExtResource("17_1vjdp")]([ExtResource("18_w3xgp")])
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
 [node name="Nobel" type="Node3D" unique_id=1819116379]
 script = ExtResource("1_t0kxk")
@@ -275,6 +295,17 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2, 0
 
 [node name="nobel_house5" parent="." unique_id=971472596 instance=ExtResource("8_26rvf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
+script = ExtResource("6_ktwdp")
+npc_tile_id = &"flamberthouse"
+NPC_List = Array[ExtResource("4_qt0u2")]([SubResource("Resource_7v2gy")])
+
+[node name="GridElement" type="Node3D" parent="nobel_house5" unique_id=495481449]
+script = ExtResource("20_c1pmp")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="BlockerComponent" type="Node" parent="nobel_house5" unique_id=6698401]
+script = ExtResource("22_c1pmp")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
 
 [node name="nobel_house7" parent="." unique_id=2011862418 instance=ExtResource("8_26rvf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
@@ -1035,6 +1066,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -4)
 [connection signal="input_event" from="training2/Area3D" to="training2" method="_on_area_3d_input_event"]
 
 [editable path="nobel_house16"]
+[editable path="nobel_house5"]
 [editable path="nobel_house7"]
 [editable path="dirt4"]
 [editable path="dirt7"]
