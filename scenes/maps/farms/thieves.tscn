@@ -27,8 +27,9 @@
 [ext_resource type="Texture2D" uid="uid://4lfg118x650w" path="res://assets/models/rooms/stone_lift1_broken_brick_normal.png" id="25_dhoyt"]
 [ext_resource type="PackedScene" uid="uid://b5x4iwyyonjjq" path="res://scenes/grid/thieves/dirt_pillar.tscn" id="26_updr5"]
 [ext_resource type="PackedScene" uid="uid://dktjtisbaiug7" path="res://scenes/grid/castle/puzzle_button.tscn" id="27_h312d"]
+[ext_resource type="Script" uid="uid://dmw2rcj3ugpwn" path="res://scripts/components/ButtonOrderPuzzleComponent.gd" id="28_button_puzzle"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_px6k2"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nk1ie"]
 resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
@@ -40,7 +41,7 @@ uv1_world_triplanar = true
 uv2_triplanar = true
 metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bh865"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhoyt"]
 resource_local_to_scene = true
 resource_name = "floor"
 cull_mode = 2
@@ -1100,14 +1101,20 @@ spawn_location_ids = Array[StringName]([&"hq.spawn1", &"hq.spawn2", &"hq.spawn3"
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 28, 0, 24)
 
 [node name="wall" parent="stone_wall3_door" index="0" unique_id=524815201]
-material_override = SubResource("StandardMaterial3D_px6k2")
+material_override = SubResource("StandardMaterial3D_nk1ie")
 
 [node name="floor" parent="stone_wall3_door" index="2" unique_id=1029300820]
-material_override = SubResource("StandardMaterial3D_bh865")
+material_override = SubResource("StandardMaterial3D_dhoyt")
 
 [node name="DoorComponent" parent="stone_wall3_door" index="4" unique_id=534338047]
 door_id = &"hq.door1"
 starts_locked = true
+
+[node name="ButtonOrderPuzzleComponent" type="Node" parent="." unique_id=1987654321]
+script = ExtResource("28_button_puzzle")
+puzzle_id = &"hq.button_puzzle"
+button_order = Array[StringName]([&"button-a", &"button-b", &"button-c", &"button-d"])
+target_door_ids = Array[StringName]([&"hq.door1"])
 
 [node name="dirt_wall140" parent="." unique_id=1890363027 instance=ExtResource("26_updr5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 48)
@@ -1118,11 +1125,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0, 48)
 [node name="button-a" parent="." unique_id=2071792906 instance=ExtResource("27_h312d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, 44)
 
+[node name="PuzzleButtonComponent" parent="button-a" index="4" unique_id=888178185]
+button_id = &"button-a"
+puzzle_id = &"hq.button_puzzle"
+
 [node name="button-b" parent="." unique_id=325607793 instance=ExtResource("27_h312d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, 46)
 
 [node name="button-c" parent="." unique_id=423424254 instance=ExtResource("27_h312d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, 42)
+
+[node name="PuzzleButtonComponent" parent="button-c" index="4" unique_id=888178185]
+button_id = &"button-c"
+puzzle_id = &"hq.button_puzzle"
 
 [node name="button-d" parent="." unique_id=1091718266 instance=ExtResource("27_h312d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, 48)
@@ -1151,3 +1166,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, 48)
 [editable path="chest10"]
 [editable path="fake_chest6"]
 [editable path="stone_wall3_door"]
+[editable path="button-a"]
+[editable path="button-c"]
