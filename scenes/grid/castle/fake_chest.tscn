@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="3_6v45v"]
 [ext_resource type="Script" uid="uid://6jay6td1i066" path="res://scripts/components/FakeChestComponent.gd" id="4_fake_chest"]
 [ext_resource type="Script" uid="uid://ip1ql2nqap5m" path="res://scripts/components/TeleportTileComponent.gd" id="5_teleporter"]
+[ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="6_6v45v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a2g0v"]
 size = Vector3(0.37295532, 0.3930664, 0.5366211)
@@ -61,5 +62,9 @@ shape = SubResource("BoxShape3D_a2g0v")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7" unique_id=1870956552]
 libraries/ = SubResource("AnimationLibrary_1o7t0")
+
+[node name="BlockerComponent" type="Node" parent="." index="8" unique_id=1505501619]
+script = ExtResource("6_6v45v")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
 
 [connection signal="input_event" from="Area3D" to="InteractableComponent" method="_on_area_3d_input_event"]

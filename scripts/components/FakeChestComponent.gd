@@ -6,9 +6,13 @@ extends Node
 
 var is_open: bool = false
 
-@onready var _teleporter: TeleportTileComponent = $TeleportTileComponent
+@onready var _teleporter: TeleportTileComponent = get_parent().get_node_or_null("TeleportTileComponent") as TeleportTileComponent
 
 func _ready() -> void:
+	if _teleporter == null:
+		push_error("FakeChestComponent requires a TeleportTileComponent sibling.")
+		return
+
 	var interactable := get_parent().get_node_or_null("InteractableComponent") as InteractableComponent
 	if interactable == null:
 		push_warning("FakeChestComponent requires an InteractableComponent sibling.")

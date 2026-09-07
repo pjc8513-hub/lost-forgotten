@@ -27,16 +27,17 @@
 [ext_resource type="Resource" uid="uid://dfc5or6svg7no" path="res://data/traps/thorns.tres" id="17_qm4y1"]
 [ext_resource type="Resource" uid="uid://cprqkatkl7hpc" path="res://data/traps/blades.tres" id="18_ph2oq"]
 [ext_resource type="Resource" uid="uid://brxb8l6ciajxm" path="res://data/traps/ice.tres" id="19_v6n5g"]
-[ext_resource type="PackedScene" uid="uid://d0i7eltkulexf" path="res://scenes/actors/enemies/dark_elf.tscn" id="20_3obhy"]
 [ext_resource type="PackedScene" uid="uid://x5kyyslryhw4" path="res://scenes/grid/castle/stone_wall_3_door.tscn" id="21_hqvnk"]
 [ext_resource type="Texture2D" uid="uid://26d0nva8usjm" path="res://assets/models/rooms/stone_lift1_temple_stone_blend.png" id="22_updr5"]
 [ext_resource type="Texture2D" uid="uid://c2tephrn5a07d" path="res://assets/models/rooms/stone_lift1_temple_stone_normal.png" id="23_h312d"]
 [ext_resource type="Texture2D" uid="uid://1e3flnphw81c" path="res://assets/models/rooms/stone_lift1_broken_brick_blend.png" id="24_nk1ie"]
 [ext_resource type="Texture2D" uid="uid://4lfg118x650w" path="res://assets/models/rooms/stone_lift1_broken_brick_normal.png" id="25_dhoyt"]
+[ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="26_fhinj"]
 [ext_resource type="PackedScene" uid="uid://b5x4iwyyonjjq" path="res://scenes/grid/thieves/dirt_pillar.tscn" id="26_updr5"]
 [ext_resource type="PackedScene" uid="uid://dktjtisbaiug7" path="res://scenes/grid/castle/puzzle_button.tscn" id="27_h312d"]
 [ext_resource type="Script" uid="uid://dmw2rcj3ugpwn" path="res://scripts/components/ButtonOrderPuzzleComponent.gd" id="28_button_puzzle"]
 [ext_resource type="PackedScene" uid="uid://b3f70htpkb1nr" path="res://scenes/grid/thieves/ladder.tscn" id="37_otc2p"]
+[ext_resource type="PackedScene" uid="uid://bchojk6jw3rax" path="res://scenes/actors/npc/darkelfnpc.tscn" id="38_fhinj"]
 
 [sub_resource type="Resource" id="Resource_oaxtm"]
 script = ExtResource("11_h85lj")
@@ -53,7 +54,7 @@ destination_map = "uid://rwkbk7sjchwr"
 destination_spawn_id = &"hideout"
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wf5um"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vypt"]
 resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
@@ -65,7 +66,7 @@ uv1_world_triplanar = true
 uv2_triplanar = true
 metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6knam"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51jov"]
 resource_local_to_scene = true
 resource_name = "floor"
 cull_mode = 2
@@ -75,6 +76,12 @@ normal_enabled = true
 normal_texture = ExtResource("25_dhoyt")
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="Resource" id="Resource_2k1vq"]
+script = ExtResource("7_fhinj")
+persistent_id = &"darkelfleader"
+npc_name = "Nargue"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
 [node name="Node3D" type="Node3D" unique_id=978898034]
 script = ExtResource("1_62gkx")
@@ -350,6 +357,10 @@ loot_table = 3
 is_trapped = true
 trap_type = ExtResource("17_qm4y1")
 
+[node name="BlockerComponent" type="Node" parent="chest3" unique_id=610059283]
+script = ExtResource("26_fhinj")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
 [node name="dirt_wall64" parent="." unique_id=177722014 instance=ExtResource("5_idqgm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)
 
@@ -461,6 +472,10 @@ loot_table = 1
 is_trapped = true
 trap_type = ExtResource("11_h312d")
 
+[node name="BlockerComponent" type="Node" parent="chest4" unique_id=977893705]
+script = ExtResource("26_fhinj")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
 [node name="dirt_wall92" parent="." unique_id=553573518 instance=ExtResource("8_wl24a")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 46)
 
@@ -535,6 +550,10 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 18, 
 chest_ID = &"hq.chest3"
 gold_roll_dice = 5
 loot_table = 4
+
+[node name="BlockerComponent" type="Node" parent="chest5" unique_id=268166060]
+script = ExtResource("26_fhinj")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
 
 [node name="dirt_wall104" parent="." unique_id=469059895 instance=ExtResource("8_wl24a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 50)
@@ -733,12 +752,20 @@ trap_type = ExtResource("11_h312d")
 [node name="CollisionShape3D" parent="chest6/Area3D" parent_id_path=PackedInt32Array(1257315924, 258547174) index="0" unique_id=293072086]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5723152, -0.7778866, -0.010009766)
 
+[node name="BlockerComponent" type="Node" parent="chest6" unique_id=1338432924]
+script = ExtResource("26_fhinj")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
 [node name="chest7" parent="." unique_id=853266293 instance=ExtResource("16_ufiwc")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 30, 0, 52)
 
 [node name="ChestComponent" parent="chest7" index="4" unique_id=971460780]
 chest_ID = &"hq.chest6"
 is_empty = true
+
+[node name="BlockerComponent" type="Node" parent="chest7" unique_id=616818894]
+script = ExtResource("26_fhinj")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
 
 [node name="MapSpawnPoint6" parent="." unique_id=740618147 instance=ExtResource("14_px6k2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 46)
@@ -967,6 +994,10 @@ loot_table = 5
 is_trapped = true
 trap_type = ExtResource("18_ph2oq")
 
+[node name="BlockerComponent" type="Node" parent="chest8" unique_id=288110505]
+script = ExtResource("26_fhinj")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
 [node name="dirt_wall218" parent="." unique_id=759663231 instance=ExtResource("9_hqvnk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 12)
 
@@ -1094,9 +1125,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 24)
 [node name="dirt_wall251" parent="." unique_id=320499762 instance=ExtResource("6_81cv2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 26)
 
-[node name="DarkElf" parent="." unique_id=502711961 instance=ExtResource("20_3obhy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.15321827, 22)
-
 [node name="chest9" parent="." unique_id=1864617110 instance=ExtResource("16_ufiwc")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26, 0, 18)
 
@@ -1105,6 +1133,10 @@ chest_ID = &"hq.chest12"
 gold_roll_dice = 4
 gold_roll_sides = 25
 loot_table = 2
+
+[node name="BlockerComponent" type="Node" parent="chest9" unique_id=319029979]
+script = ExtResource("26_fhinj")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
 
 [node name="chest10" parent="." unique_id=734128525 instance=ExtResource("16_ufiwc")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 26.000004, 0, 28)
@@ -1118,6 +1150,10 @@ trap_type = ExtResource("10_updr5")
 [node name="AnimationPlayer" parent="chest10" index="6" unique_id=1870956552]
 root_node = NodePath("../../chest10")
 
+[node name="BlockerComponent" type="Node" parent="chest10" unique_id=1546919097]
+script = ExtResource("26_fhinj")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
+
 [node name="fake_chest6" parent="." unique_id=194080457 instance=ExtResource("13_dhoyt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 24)
 
@@ -1128,10 +1164,10 @@ spawn_location_ids = Array[StringName]([&"hq.spawn1", &"hq.spawn2", &"hq.spawn3"
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 28, 0, 24)
 
 [node name="wall" parent="stone_wall3_door" index="0" unique_id=524815201]
-material_override = SubResource("StandardMaterial3D_wf5um")
+material_override = SubResource("StandardMaterial3D_4vypt")
 
 [node name="floor" parent="stone_wall3_door" index="2" unique_id=1029300820]
-material_override = SubResource("StandardMaterial3D_6knam")
+material_override = SubResource("StandardMaterial3D_51jov")
 
 [node name="DoorComponent" parent="stone_wall3_door" index="4" unique_id=534338047]
 door_id = &"hq.door1"
@@ -1159,6 +1195,10 @@ puzzle_id = &"hq.button_puzzle"
 [node name="button-b" parent="." unique_id=325607793 instance=ExtResource("27_h312d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, 46)
 
+[node name="PuzzleButtonComponent" parent="button-b" index="4" unique_id=888178185]
+button_id = &"button-b"
+puzzle_id = &"hq.button_puzzle"
+
 [node name="button-c" parent="." unique_id=423424254 instance=ExtResource("27_h312d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, 42)
 
@@ -1169,8 +1209,17 @@ puzzle_id = &"hq.button_puzzle"
 [node name="button-d" parent="." unique_id=1091718266 instance=ExtResource("27_h312d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, 48)
 
+[node name="PuzzleButtonComponent" parent="button-d" index="4" unique_id=888178185]
+button_id = &"button-d"
+puzzle_id = &"hq.button_puzzle"
+
 [node name="ladder" parent="." unique_id=406612134 instance=ExtResource("37_otc2p")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.0215797, 0, 2)
+
+[node name="darkelfnpc" parent="." unique_id=2036753109 instance=ExtResource("38_fhinj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.14082533, 22)
+npc_tile_id = &"darkelfleadertile"
+NPC_List = Array[ExtResource("7_fhinj")]([SubResource("Resource_2k1vq")])
 
 [editable path="dirt_wall12"]
 [editable path="dirt_wall26"]
@@ -1197,4 +1246,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.0
 [editable path="fake_chest6"]
 [editable path="stone_wall3_door"]
 [editable path="button-a"]
+[editable path="button-b"]
 [editable path="button-c"]
+[editable path="button-d"]
