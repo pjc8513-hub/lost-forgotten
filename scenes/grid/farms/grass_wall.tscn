@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cth1bk58ides3"]
+
+[ext_resource type="PackedScene" uid="uid://7xcjm0sg5031" path="res://assets/models/farms/grass_wall.glb" id="1_el0rf"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_nbh8p"]
+
+[node name="grass_wall" unique_id=1952213371 instance=ExtResource("1_el0rf")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=684006417]
+script = ExtResource("2_nbh8p")
+cell_shape = 1
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"

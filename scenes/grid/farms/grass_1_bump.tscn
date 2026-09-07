@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bkfs6its63ex8"]
+
+[ext_resource type="PackedScene" uid="uid://cwrva602m3681" path="res://assets/models/farms/grass1.glb" id="1_s3vs0"]
+[ext_resource type="Script" uid="uid://c1lus734wl56v" path="res://scripts/components/BumpComponent.gd" id="2_xyoqm"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="3_ubtwa"]
+
+[node name="grass1_bump" unique_id=1837585240 instance=ExtResource("1_s3vs0")]
+
+[node name="BumpComponent" type="Node" parent="." index="1" unique_id=612671652]
+script = ExtResource("2_xyoqm")
+metadata/_custom_type_script = "uid://c1lus734wl56v"
+
+[node name="GridElement" type="Node3D" parent="." index="2" unique_id=1443016444]
+script = ExtResource("3_ubtwa")
+cell_shape = 1
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"

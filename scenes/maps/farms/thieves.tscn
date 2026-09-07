@@ -6,13 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://bo13kelcwgkew" path="res://scenes/grid/thieves/dirt_corner.tscn" id="4_3obhy"]
 [ext_resource type="PackedScene" uid="uid://c3dmxesx8kdxb" path="res://scenes/grid/thieves/dirt_wall.tscn" id="5_idqgm"]
 [ext_resource type="PackedScene" uid="uid://g3h5af7ck3wf" path="res://scenes/grid/thieves/dirt_floor.tscn" id="6_81cv2"]
+[ext_resource type="Script" uid="uid://d3memun0m0avi" path="res://scripts/components/NPCTileComponent.gd" id="6_y3711"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="7_fhinj"]
 [ext_resource type="PackedScene" uid="uid://dgr6tc7bsd26x" path="res://scenes/grid/castle/torch_1.tscn" id="7_ggmob"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="8_4vypt"]
 [ext_resource type="PackedScene" uid="uid://be55piwbhi0wn" path="res://scenes/grid/thieves/dirt_hall.tscn" id="8_wl24a"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="9_51jov"]
 [ext_resource type="PackedScene" uid="uid://mvypaaglnt4g" path="res://scenes/grid/thieves/dirt_hall_trap.tscn" id="9_hqvnk"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="10_ocdak"]
 [ext_resource type="Resource" uid="uid://dnwvpn4nbo4xc" path="res://data/traps/weakness.tres" id="10_updr5"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="11_h85lj"]
 [ext_resource type="Resource" uid="uid://dd5a150sn26i3" path="res://data/traps/poison.tres" id="11_h312d"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="12_ce6lo"]
 [ext_resource type="Resource" uid="uid://bvxnc7kpsi76q" path="res://data/traps/exhaust.tres" id="12_nk1ie"]
 [ext_resource type="PackedScene" uid="uid://bs10qy6qgoq1o" path="res://scenes/grid/castle/fake_chest.tscn" id="13_dhoyt"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="13_tijfh"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="14_px6k2"]
 [ext_resource type="PackedScene" uid="uid://djfbbmtx30m8i" path="res://scenes/grid/thieves/dirt_dead.tscn" id="15_bh865"]
 [ext_resource type="PackedScene" uid="uid://dk3pu5ssng2p2" path="res://scenes/grid/castle/chest_3.tscn" id="16_ufiwc"]
@@ -28,8 +36,24 @@
 [ext_resource type="PackedScene" uid="uid://b5x4iwyyonjjq" path="res://scenes/grid/thieves/dirt_pillar.tscn" id="26_updr5"]
 [ext_resource type="PackedScene" uid="uid://dktjtisbaiug7" path="res://scenes/grid/castle/puzzle_button.tscn" id="27_h312d"]
 [ext_resource type="Script" uid="uid://dmw2rcj3ugpwn" path="res://scripts/components/ButtonOrderPuzzleComponent.gd" id="28_button_puzzle"]
+[ext_resource type="PackedScene" uid="uid://b3f70htpkb1nr" path="res://scenes/grid/thieves/ladder.tscn" id="37_otc2p"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nk1ie"]
+[sub_resource type="Resource" id="Resource_oaxtm"]
+script = ExtResource("11_h85lj")
+text = "A ladder leading up..."
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_wrbfl"]
+script = ExtResource("7_fhinj")
+persistent_id = &"hideoutexit"
+npc_name = "Exit"
+default_dialogue = SubResource("Resource_oaxtm")
+dialogue_label = "Inspect"
+destination_map = "uid://rwkbk7sjchwr"
+destination_spawn_id = &"hideout"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wf5um"]
 resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
@@ -41,7 +65,7 @@ uv1_world_triplanar = true
 uv2_triplanar = true
 metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhoyt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6knam"]
 resource_local_to_scene = true
 resource_name = "floor"
 cull_mode = 2
@@ -73,6 +97,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
 [node name="dirt_wall4" parent="." unique_id=1420192808 instance=ExtResource("5_idqgm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+script = ExtResource("6_y3711")
+npc_tile_id = &"hideoutexittile"
+NPC_List = Array[ExtResource("7_fhinj")]([SubResource("Resource_wrbfl")])
 
 [node name="dirt_wall9" parent="." unique_id=2131780195 instance=ExtResource("5_idqgm")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2, 0, -2)
@@ -1101,10 +1128,10 @@ spawn_location_ids = Array[StringName]([&"hq.spawn1", &"hq.spawn2", &"hq.spawn3"
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 28, 0, 24)
 
 [node name="wall" parent="stone_wall3_door" index="0" unique_id=524815201]
-material_override = SubResource("StandardMaterial3D_nk1ie")
+material_override = SubResource("StandardMaterial3D_wf5um")
 
 [node name="floor" parent="stone_wall3_door" index="2" unique_id=1029300820]
-material_override = SubResource("StandardMaterial3D_dhoyt")
+material_override = SubResource("StandardMaterial3D_6knam")
 
 [node name="DoorComponent" parent="stone_wall3_door" index="4" unique_id=534338047]
 door_id = &"hq.door1"
@@ -1141,6 +1168,9 @@ puzzle_id = &"hq.button_puzzle"
 
 [node name="button-d" parent="." unique_id=1091718266 instance=ExtResource("27_h312d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, 48)
+
+[node name="ladder" parent="." unique_id=406612134 instance=ExtResource("37_otc2p")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.0215797, 0, 2)
 
 [editable path="dirt_wall12"]
 [editable path="dirt_wall26"]

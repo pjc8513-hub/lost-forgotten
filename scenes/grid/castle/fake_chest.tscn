@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b62a8lxec6kms" path="res://assets/models/objects/chest3.glb" id="1_qao8d"]
 [ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_ojdtj"]
 [ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="3_6v45v"]
-[ext_resource type="Script" path="res://scripts/components/FakeChestComponent.gd" id="4_fake_chest"]
+[ext_resource type="Script" uid="uid://6jay6td1i066" path="res://scripts/components/FakeChestComponent.gd" id="4_fake_chest"]
 [ext_resource type="Script" uid="uid://ip1ql2nqap5m" path="res://scripts/components/TeleportTileComponent.gd" id="5_teleporter"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a2g0v"]

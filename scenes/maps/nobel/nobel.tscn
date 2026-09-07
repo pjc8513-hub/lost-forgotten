@@ -70,6 +70,24 @@ default_dialogue = SubResource("Resource_0db8d")
 quests_offered = Array[ExtResource("17_1vjdp")]([ExtResource("18_w3xgp")])
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
+[sub_resource type="Resource" id="Resource_boe36"]
+script = ExtResource("17_1vjdp")
+quest_id = "farmlands"
+quest_name = "Farm Lands"
+description = "The northern farmlands and small villlages have been raided and burned to the ground by maraudering orcs, goblins, and dark elves!
+
+If you want to show the Queen your worth, you will find their headquarters and put an end to them."
+display_name = "Farms"
+destination_map = "uid://rwkbk7sjchwr"
+metadata/_custom_type_script = "uid://phuimf2skp05"
+
+[sub_resource type="Resource" id="Resource_cfhxa"]
+script = ExtResource("4_qt0u2")
+persistent_id = &"constable"
+npc_name = "Constable"
+quests_offered = Array[ExtResource("17_1vjdp")]([SubResource("Resource_boe36")])
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
+
 [node name="Nobel" type="Node3D" unique_id=1819116379]
 script = ExtResource("1_t0kxk")
 Map_ID = &"Nobel"
@@ -780,6 +798,9 @@ metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
 
 [node name="gate4" parent="." unique_id=1120782456 instance=ExtResource("14_oyxdf")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -16, 0, 4)
+script = ExtResource("6_ktwdp")
+npc_tile_id = &"castle_gate"
+NPC_List = Array[ExtResource("4_qt0u2")]([SubResource("Resource_cfhxa")])
 
 [node name="decor" type="Node3D" parent="." unique_id=1109713801]
 

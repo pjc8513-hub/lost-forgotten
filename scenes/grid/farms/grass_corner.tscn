@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c66ec60g3e5n"]
+
+[ext_resource type="PackedScene" uid="uid://bf32r7c6k1q3t" path="res://assets/models/farms/grass_corner.glb" id="1_7q2f5"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_t58by"]
+
+[node name="grass_corner" unique_id=1323313011 instance=ExtResource("1_7q2f5")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=2065016059]
+script = ExtResource("2_t58by")
+cell_shape = 3
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b0ykumbcikctb"]
+
+[ext_resource type="PackedScene" uid="uid://c6w0g13su0124" path="res://assets/models/farms/farm_house.glb" id="1_0pq2b"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_nwo7x"]
+[ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="3_im1ji"]
+
+[node name="farm_house" unique_id=1500826243 instance=ExtResource("1_0pq2b")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=2049882182]
+script = ExtResource("2_nwo7x")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="BlockerComponent" type="Node" parent="." index="2" unique_id=807497093]
+script = ExtResource("3_im1ji")
+metadata/_custom_type_script = "uid://cpd6aclgammco"

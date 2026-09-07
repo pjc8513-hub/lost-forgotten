@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d0ilj7dx74el"]
+
+[ext_resource type="PackedScene" uid="uid://cr22yc86rojh8" path="res://assets/models/farms/grass_dead.glb" id="1_8h6vi"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="2_oj4ka"]
+
+[node name="grass_dead" unique_id=772271749 instance=ExtResource("1_8h6vi")]
+
+[node name="GridElement" type="Node3D" parent="." index="1" unique_id=2140116477]
+script = ExtResource("2_oj4ka")
+cell_shape = 4
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
