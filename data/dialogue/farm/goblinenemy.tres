@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://bt0sdriiijoki"]
+
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="1_kx61w"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="1_l8ss7"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="2_5olrf"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="2_ndryo"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="3_4ahfx"]
+[ext_resource type="PackedScene" uid="uid://bpaar2wmwn36f" path="res://scenes/combat/garden_combat.tscn" id="3_c02b3"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="4_l8ss7"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="5_5olrf"]
+
+[sub_resource type="Resource" id="Resource_04hhl"]
+script = ExtResource("2_5olrf")
+type = 9
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_s2wnq"]
+script = ExtResource("2_5olrf")
+type = 7
+combat_scene = ExtResource("3_c02b3")
+enemy_ids = Array[StringName]([&"goblin", &"goblin"])
+enemy_counts = Array[int]([3, 2])
+victory_rewards = Array[ExtResource("2_5olrf")]([SubResource("Resource_04hhl")])
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_xipmx"]
+script = ExtResource("1_l8ss7")
+choice_string = "Fight"
+choice_rewards = Array[ExtResource("2_5olrf")]([SubResource("Resource_s2wnq")])
+metadata/_custom_type_script = "uid://crjpwo8no2r4u"
+
+[sub_resource type="Resource" id="Resource_3usg8"]
+script = ExtResource("1_kx61w")
+text = "..."
+choice_string = "Fight"
+choices = Array[ExtResource("1_l8ss7")]([SubResource("Resource_xipmx")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("4_l8ss7")
+persistent_id = &"goblinenemy"
+npc_name = "Goblins"
+default_dialogue = SubResource("Resource_3usg8")
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"

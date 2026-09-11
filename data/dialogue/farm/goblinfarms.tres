@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://ct2bvhryht4bn"]
+
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="1_cq70d"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="2_i10ch"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="3_7tikb"]
+
+[resource]
+script = ExtResource("3_7tikb")
+quest_id = "farmlands"
+quest_name = "Farm Lands"
+description = "The northern farmlands and small villlages have been raided and burned to the ground by maraudering orcs, goblins, and dark elves!
+
+If you want to show the Queen your worth, you will find their headquarters and put an end to them."
+stage_descriptions = {
+0: "Not Started",
+1: "Find the key into the goblin hideout",
+2: "Use the key to get into the goblin hideout and defeat the leader.",
+3: "Quest Completed"
+}
+quest_giver = "Constable"
+suggested_level = 5
+display_name = "Farms"
+destination_map = "uid://rwkbk7sjchwr"
+metadata/_custom_type_script = "uid://phuimf2skp05"

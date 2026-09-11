@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://b8tclov672xy8"]
+
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="1_s87w8"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="2_w32sy"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="3_prli1"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="4_b0n0s"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="5_w17ec"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="6_6yket"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="7_b5747"]
+
+[sub_resource type="Resource" id="Resource_dq7i8"]
+script = ExtResource("4_b0n0s")
+text = "A hole dug out in the middle of the small building leads down..."
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_vo6e8"]
+script = ExtResource("2_w32sy")
+type = 2
+target_id = "farmlands"
+target_value = 2
+metadata/_custom_type_script = "uid://biwbs1n6b7tyr"
+
+[resource]
+script = ExtResource("6_6yket")
+persistent_id = &"Goblinhq"
+npc_name = "Hideout"
+default_dialogue = SubResource("Resource_dq7i8")
+dialogue_label = "Inspect"
+destination_map = "uid://cvb4lefsrx3gj"
+destination_spawn_id = &"entrance"
+travel_conditions = Array[ExtResource("2_w32sy")]([SubResource("Resource_vo6e8")])
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://fpamh8h0b2x1"]
+
+[ext_resource type="Script" uid="uid://d3memun0m0avi" path="res://scripts/components/NPCTileComponent.gd" id="1_puy4k"]
+[ext_resource type="Texture2D" uid="uid://cxv5vdhvpmmma" path="res://assets/sprites/enemies/goblin.png" id="2_puy4k"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="3_fi7gg"]
+[ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="4_fwn85"]
+
+[node name="goblinnpc" type="Node3D" unique_id=2036753109]
+script = ExtResource("1_puy4k")
+
+[node name="EnemySprite" type="Sprite3D" parent="." unique_id=2036368468]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+offset = Vector2(0, -2)
+pixel_size = 0.0095
+billboard = 2
+texture = ExtResource("2_puy4k")
+
+[node name="GridElement" type="Node3D" parent="." unique_id=1166371954]
+script = ExtResource("3_fi7gg")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="BlockerComponent" type="Node" parent="." unique_id=797690759]
+script = ExtResource("4_fwn85")
+metadata/_custom_type_script = "uid://cpd6aclgammco"
