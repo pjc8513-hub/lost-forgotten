@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://lbqy42idlnoq"]
+
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="1_10voc"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="2_0lm2x"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="3_va6qj"]
+[ext_resource type="Resource" uid="uid://ct2bvhryht4bn" path="res://data/quests/goblinfarms.tres" id="4_wnj1x"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="5_1m8ti"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="6_udr78"]
+
+[resource]
+script = ExtResource("5_1m8ti")
+persistent_id = &"constable"
+npc_name = "Constable"
+quests_offered = Array[ExtResource("3_va6qj")]([ExtResource("4_wnj1x")])
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"

@@ -50,7 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://bm7pcqg5euhra" path="res://scenes/grid/nobel_city/training_2.tscn" id="31_t6sru"]
 [ext_resource type="Resource" uid="uid://dslkl36jpy6a8" path="res://data/dialogue/nobel/shop/Mary.tres" id="34_2m8eg"]
 [ext_resource type="Resource" uid="uid://b3pdgl4c2yodv" path="res://data/dialogue/nobel/shop/Jo.tres" id="35_ae1so"]
-[ext_resource type="Resource" uid="uid://ct2bvhryht4bn" path="res://data/dialogue/farm/goblinfarms.tres" id="38_05t1u"]
+[ext_resource type="Resource" uid="uid://lbqy42idlnoq" path="res://data/dialogue/nobel/constable.tres" id="38_05t1u"]
 [ext_resource type="PackedScene" uid="uid://gtp30eywbk8q" path="res://scenes/grid/nobel_city/shop_1.tscn" id="40_c1pmp"]
 [ext_resource type="PackedScene" uid="uid://yoaii84iw34x" path="res://scenes/grid/castle/crate_1.tscn" id="41_mywnk"]
 [ext_resource type="PackedScene" uid="uid://4jsf368dwp7" path="res://scenes/lights/outside_torch.tscn" id="42_hgk2k"]
@@ -69,13 +69,6 @@ persistent_id = &"flambert"
 npc_name = "Flambert"
 default_dialogue = SubResource("Resource_0db8d")
 quests_offered = Array[ExtResource("17_1vjdp")]([ExtResource("18_w3xgp")])
-metadata/_custom_type_script = "uid://djewvwy2k0t3x"
-
-[sub_resource type="Resource" id="Resource_cfhxa"]
-script = ExtResource("4_qt0u2")
-persistent_id = &"constable"
-npc_name = "Constable"
-quests_offered = Array[ExtResource("17_1vjdp")]([ExtResource("38_05t1u")])
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
 [node name="Nobel" type="Node3D" unique_id=1819116379]
@@ -790,7 +783,7 @@ metadata/_custom_type_script = "uid://c4j8ow06wkj4t"
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -16, 0, 4)
 script = ExtResource("6_ktwdp")
 npc_tile_id = &"castle_gate"
-NPC_List = Array[ExtResource("4_qt0u2")]([SubResource("Resource_cfhxa")])
+NPC_List = Array[ExtResource("4_qt0u2")]([ExtResource("38_05t1u")])
 
 [node name="decor" type="Node3D" parent="." unique_id=1109713801]
 

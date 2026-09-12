@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_dq7i8"]
 script = ExtResource("4_b0n0s")
-text = "A hole dug out in the middle of the small building leads down..."
+text = "A locked door..."
 metadata/_custom_type_script = "uid://bu2iii31o0rrx"
 
 [sub_resource type="Resource" id="Resource_vo6e8"]

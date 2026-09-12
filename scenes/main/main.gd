@@ -433,7 +433,6 @@ func _run_combat_exit(outcome: StringName, rewards: Dictionary) -> void:
 	blackout.visible = false
 	_combat_transition_running = false
 	TurnManager.set_state(TurnManager.State.PAUSED if outcome == &"defeat" else TurnManager.State.EXPLORATION)
-	alert.dismiss()
 	alert.show_message(reward_message)
 
 func _apply_dialogue_combat_rewards(rewards: Array[DialogueReward], context: Dictionary) -> void:
