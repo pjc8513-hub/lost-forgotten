@@ -398,15 +398,12 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
 
 [node name="wall" parent="stone_secret3_door" index="0" unique_id=524815201]
-material_override = SubResource("StandardMaterial3D_h8uyi")
 surface_material_override/0 = SubResource("StandardMaterial3D_bhd33")
 
 [node name="door" parent="stone_secret3_door" index="1" unique_id=893429260]
-material_override = SubResource("StandardMaterial3D_h8uyi")
 surface_material_override/0 = SubResource("StandardMaterial3D_bhd33")
 
 [node name="floor" parent="stone_secret3_door" index="2" unique_id=1029300820]
-material_override = SubResource("StandardMaterial3D_akhdv")
 surface_material_override/0 = SubResource("StandardMaterial3D_aigga")
 
 [node name="DoorComponent" parent="stone_secret3_door" index="4" unique_id=534338047]
@@ -447,11 +444,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -6)
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 0, -3.9999998)
 
 [node name="wall" parent="stone_wall3_door" index="0" unique_id=524815201]
-material_override = SubResource("StandardMaterial3D_s08bm")
 surface_material_override/0 = SubResource("StandardMaterial3D_mhy3t")
 
 [node name="floor" parent="stone_wall3_door" index="2" unique_id=1029300820]
-material_override = SubResource("StandardMaterial3D_444ff")
 surface_material_override/0 = SubResource("StandardMaterial3D_rvy7o")
 
 [node name="DoorComponent" parent="stone_wall3_door" index="4" unique_id=534338047]
@@ -465,11 +460,9 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3.99
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -8)
 
 [node name="wall" parent="stone_wall3_door2" index="0" unique_id=524815201]
-material_override = SubResource("StandardMaterial3D_qhemt")
 surface_material_override/0 = SubResource("StandardMaterial3D_ymper")
 
 [node name="floor" parent="stone_wall3_door2" index="2" unique_id=1029300820]
-material_override = SubResource("StandardMaterial3D_swmjs")
 surface_material_override/0 = SubResource("StandardMaterial3D_nck0i")
 
 [node name="DoorComponent" parent="stone_wall3_door2" index="4" unique_id=534338047]
@@ -604,10 +597,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_df2fg")
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -20, 0, 0)
 
 [node name="wall" parent="stone_wall3_door3" index="0" unique_id=524815201]
-material_override = SubResource("StandardMaterial3D_hmeps")
+surface_material_override/0 = SubResource("StandardMaterial3D_hmeps")
 
 [node name="floor" parent="stone_wall3_door3" index="2" unique_id=1029300820]
-material_override = SubResource("StandardMaterial3D_74el3")
+surface_material_override/0 = SubResource("StandardMaterial3D_74el3")
 
 [node name="DoorComponent" parent="stone_wall3_door3" index="4" unique_id=534338047]
 door_id = &"naga.door4"
@@ -711,10 +704,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_1yis1")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -20, 0, -26)
 
 [node name="wall" parent="stone_wall3_door4" index="0" unique_id=524815201]
-material_override = SubResource("StandardMaterial3D_a54is")
+surface_material_override/0 = SubResource("StandardMaterial3D_a54is")
 
 [node name="floor" parent="stone_wall3_door4" index="2" unique_id=1029300820]
-material_override = SubResource("StandardMaterial3D_gdtfe")
+surface_material_override/0 = SubResource("StandardMaterial3D_gdtfe")
 
 [node name="DoorComponent" parent="stone_wall3_door4" index="4" unique_id=534338047]
 door_id = &"naga.door5"
@@ -1034,10 +1027,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -18)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -12)
 
 [node name="wall" parent="stone_wall3_door5" index="0" unique_id=524815201]
-material_override = SubResource("StandardMaterial3D_ldd4s")
+surface_material_override/0 = SubResource("StandardMaterial3D_ldd4s")
 
 [node name="floor" parent="stone_wall3_door5" index="2" unique_id=1029300820]
-material_override = SubResource("StandardMaterial3D_nnj4q")
+surface_material_override/0 = SubResource("StandardMaterial3D_nnj4q")
 
 [node name="DoorComponent" parent="stone_wall3_door5" index="4" unique_id=534338047]
 door_id = &"naga.door6"
@@ -1198,13 +1191,13 @@ is_empty = true
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 14, 0, -10)
 
 [node name="wall" parent="stone_secret3_door2" index="0" unique_id=524815201]
-material_override = SubResource("StandardMaterial3D_cgwdt")
+surface_material_override/0 = SubResource("StandardMaterial3D_cgwdt")
 
 [node name="door" parent="stone_secret3_door2" index="1" unique_id=893429260]
-material_override = SubResource("StandardMaterial3D_cgwdt")
+surface_material_override/0 = SubResource("StandardMaterial3D_cgwdt")
 
 [node name="floor" parent="stone_secret3_door2" index="2" unique_id=1029300820]
-material_override = SubResource("StandardMaterial3D_jgfex")
+surface_material_override/0 = SubResource("StandardMaterial3D_jgfex")
 
 [node name="DoorComponent" parent="stone_secret3_door2" index="4" unique_id=534338047]
 door_id = &"naga.door9"
