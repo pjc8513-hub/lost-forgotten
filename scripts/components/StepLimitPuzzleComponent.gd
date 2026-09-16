@@ -49,10 +49,23 @@ func _on_steps_changed(_total_steps: int) -> void:
 	if steps_remaining <= 0:
 		_timeout_triggered = true
 		if not timeout_message.is_empty():
-			MapManager.request_alert(timeout_message)
+			# The normal movement handler dismisses alerts after step_taken. Defer
+			# this until the current movement signal has finished so the expulsion
+			# message is not immediately cleaned up.
+			_show_alert_deferred(timeout_message)
 		MapManager.request_map_transition(destination_map, destination_spawn_id)
 		return
 
 	if not _warning_shown and warning_steps > 0 and steps_remaining <= warning_steps:
 		_warning_shown = true
-		MapManager.request_alert(warning_message % steps_remaining)
+		_show_alert_deferred(warning_message % steps_remaining)
+
+
+func _show_alert_deferred(message: String) -> void:
+	call_deferred("_show_alert", message)
+
+
+func _show_alert(message: String) -> void:
+	if not is_inside_tree():
+		return
+	MapManager.request_alert(message)

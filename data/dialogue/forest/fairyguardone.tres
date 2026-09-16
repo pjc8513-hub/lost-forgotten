@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_vvxho"]
 script = ExtResource("1_43iuy")
-text = "Time works different in Fairy Land. You will only have 30 steps before you will be teleported back out into the forest again. Any longer than that and you may be stuck for good!"
+text = "Time works different in Fairy Land. You will only have 31 steps before you will be teleported back out into the forest again. Any longer than that and you may be stuck for good!"
 metadata/_custom_type_script = "uid://bu2iii31o0rrx"
 
 [resource]

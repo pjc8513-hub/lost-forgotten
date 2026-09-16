@@ -48,8 +48,7 @@ main_shader_contrast = 1.12
 
 [node name="StepLimitPuzzleComponent" type="Node" parent="." unique_id=2048174261]
 script = ExtResource("18_step_limit")
-step_limit = 30
-warning_steps = 10
+step_limit = 31
 destination_map = "res://scenes/maps/forest/forest.tscn"
 destination_spawn_id = &"fairyspawn"
 warning_message = "You have %d steps remaining before Fairyland sends you back to the forest."
@@ -211,9 +210,6 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -14,
 [node name="torch4" parent="." unique_id=1824688012 instance=ExtResource("10_3nuab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -2)
 
-[node name="dirt_wall35" parent="." unique_id=375886217 instance=ExtResource("5_ief1a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
-
 [node name="dirt_wall36" parent="." unique_id=983945088 instance=ExtResource("5_ief1a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
 
@@ -328,9 +324,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -10)
 [node name="dirt_wall82" parent="." unique_id=835051421 instance=ExtResource("7_00kvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10)
 
-[node name="dirt_wall83" parent="." unique_id=1536654194 instance=ExtResource("7_00kvd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -12)
-
 [node name="dirt_wall84" parent="." unique_id=55685171 instance=ExtResource("7_00kvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -14)
 
@@ -378,9 +371,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -16)
 
 [node name="dirt_wall93" parent="." unique_id=717961582 instance=ExtResource("4_j6y1u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -18)
-
-[node name="dirt_wall99" parent="." unique_id=1460664279 instance=ExtResource("7_00kvd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -18)
 
 [node name="dirt_wall96" parent="." unique_id=744173805 instance=ExtResource("7_00kvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -14)
@@ -444,3 +434,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.4808334, -6)
 
 [node name="Mysterious" parent="." unique_id=1524911491 instance=ExtResource("13_w5q3q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -18)
+
+[node name="dirt_wall35" parent="." unique_id=1597375233 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
+
+[node name="dirt_wall109" parent="." unique_id=471844333 instance=ExtResource("5_ief1a")]
+transform = Transform3D(1.1924881e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924881e-08, -4, 0, -6)
+
+[node name="dirt_wall110" parent="." unique_id=1738796777 instance=ExtResource("5_ief1a")]
+transform = Transform3D(1.1924881e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924881e-08, -6, 0, -6)
+
+[node name="dirt_wall111" parent="." unique_id=1382243908 instance=ExtResource("5_ief1a")]
+transform = Transform3D(1.1924881e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924881e-08, -8, 0, -6)
+
+[node name="dirt_wall112" parent="." unique_id=1044384060 instance=ExtResource("5_ief1a")]
+transform = Transform3D(1.1924881e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924881e-08, -10, 0, -6)
+
+[node name="dirt_wall83" parent="." unique_id=1486323039 instance=ExtResource("5_ief1a")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, -12)
+
+[node name="dirt_wall99" parent="." unique_id=637570854 instance=ExtResource("5_ief1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -18)
