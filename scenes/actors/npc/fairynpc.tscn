@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dmobsvnlu7f01"]
+
+[ext_resource type="Script" uid="uid://d3memun0m0avi" path="res://scripts/components/NPCTileComponent.gd" id="1_i522u"]
+[ext_resource type="Texture2D" uid="uid://bgsla1sba0tkx" path="res://assets/sprites/enemies/pixie.png" id="2_i522u"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="3_wgfa0"]
+[ext_resource type="Script" uid="uid://cpd6aclgammco" path="res://scripts/components/BlockerComponent.gd" id="4_rcaat"]
+
+[node name="fairynpc" type="Node3D" unique_id=2036753109]
+script = ExtResource("1_i522u")
+
+[node name="EnemySprite" type="Sprite3D" parent="." unique_id=2036368468]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+offset = Vector2(0, -2)
+pixel_size = 0.0095
+billboard = 2
+texture = ExtResource("2_i522u")
+
+[node name="GridElement" type="Node3D" parent="." unique_id=1166371954]
+script = ExtResource("3_wgfa0")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="BlockerComponent" type="Node" parent="." unique_id=797690759]
+script = ExtResource("4_rcaat")
+metadata/_custom_type_script = "uid://cpd6aclgammco"

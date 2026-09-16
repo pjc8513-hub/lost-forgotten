@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://d4flw1007mpj2"]
+
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="1_4ka2r"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="2_e4xl0"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="2_ih211"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="3_kx1y6"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="4_e4xl0"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="4_y5l6x"]
+[ext_resource type="PackedScene" uid="uid://cc0c0kajxt475" path="res://scenes/combat/castle_combat.tscn" id="5_n8r6k"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="5_y5l6x"]
+
+[sub_resource type="Resource" id="Resource_2o428"]
+script = ExtResource("4_y5l6x")
+type = 5
+target_id = "farmlands"
+value = 3
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_e4xl0"]
+script = ExtResource("4_y5l6x")
+type = 9
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_de1t8"]
+script = ExtResource("4_y5l6x")
+type = 7
+combat_scene = ExtResource("5_n8r6k")
+enemy_ids = Array[StringName]([&"wyvern", &"goblin", &"darkelf"])
+enemy_counts = Array[int]([2, 2, 2])
+victory_rewards = Array[ExtResource("4_y5l6x")]([SubResource("Resource_2o428"), SubResource("Resource_e4xl0")])
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_37a66"]
+script = ExtResource("2_e4xl0")
+choice_string = "fight"
+choice_rewards = Array[ExtResource("4_y5l6x")]([SubResource("Resource_de1t8")])
+metadata/_custom_type_script = "uid://crjpwo8no2r4u"
+
+[sub_resource type="Resource" id="Resource_n8r6k"]
+script = ExtResource("1_4ka2r")
+text = "..."
+choice_string = "Fight"
+choices = Array[ExtResource("2_e4xl0")]([SubResource("Resource_37a66")])
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("4_e4xl0")
+persistent_id = &"darkelfleader"
+npc_name = "Nargue"
+dialogue_nodes = Array[ExtResource("1_4ka2r")]([SubResource("Resource_n8r6k")])
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"

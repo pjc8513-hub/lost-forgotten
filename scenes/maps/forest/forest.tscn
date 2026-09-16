@@ -37,6 +37,8 @@
 [ext_resource type="Script" uid="uid://cu55r1gs5ol76" path="res://scripts/components/ChestComponent.gd" id="24_q5kem"]
 [ext_resource type="Script" uid="uid://c4j8ow06wkj4t" path="res://scripts/components/InteractableComponent.gd" id="25_knxf5"]
 [ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="26_wafvc"]
+[ext_resource type="Resource" uid="uid://b0tq0pp7sm168" path="res://data/dialogue/forest/fairyguardone.tres" id="35_avaw7"]
+[ext_resource type="Resource" uid="uid://dp3glritm3205" path="res://data/dialogue/forest/fairytree.tres" id="36_k8wyd"]
 [ext_resource type="PackedScene" uid="uid://in1vli67ea1" path="res://scenes/grid/forest/forest_wall_4.tscn" id="38_qnbuo"]
 [ext_resource type="PackedScene" uid="uid://c7f1aws5fa6ga" path="res://scenes/grid/garden/garden_wall_gate.tscn" id="39_rl7oc"]
 
@@ -927,7 +929,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.352735, 0, -6.514006)
 transform = Transform3D(18.711, 0, 0, 0, 1, 0, 0, 0, 9.152, 18, 0, -30)
 
 [node name="fairy_tree_entrance" parent="." unique_id=1459425100 instance=ExtResource("18_g8dfj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -2, -22)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -22)
+script = ExtResource("6_1kw7y")
+npc_tile_id = &"fairytreetile"
+NPC_List = Array[ExtResource("7_7j2fw")]([ExtResource("35_avaw7"), ExtResource("36_k8wyd")])
+
+[node name="world" parent="fairy_tree_entrance" index="0" unique_id=1826051563]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -2, 0)
+
+[node name="GridElement" type="Node3D" parent="fairy_tree_entrance" unique_id=273215526]
+script = ExtResource("26_wafvc")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
 
 [node name="forest wall empty" parent="." unique_id=686328852 instance=ExtResource("21_uythk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -24)
@@ -1370,6 +1382,10 @@ NPC_List = Array[ExtResource("7_7j2fw")]([SubResource("Resource_128y4")])
 [node name="DoorComponent" parent="garden_wall_gate" index="3" unique_id=725584326]
 door_id = &"gardenenter"
 
+[node name="MapSpawnPoint4" parent="." unique_id=1764671011 instance=ExtResource("4_r4nvb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -20)
+spawn_id = &"fairyspawn"
+
 [editable path="stump4"]
 [editable path="stump5"]
 [editable path="stump6"]
@@ -1379,5 +1395,6 @@ door_id = &"gardenenter"
 [editable path="chest3"]
 [editable path="forest floor100"]
 [editable path="forest floor102"]
+[editable path="fairy_tree_entrance"]
 [editable path="chest4"]
 [editable path="garden_wall_gate"]

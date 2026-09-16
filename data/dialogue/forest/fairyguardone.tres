@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="NPCComponent" format=3 uid="uid://b0tq0pp7sm168"]
+
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="1_43iuy"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="2_0r0ua"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="3_rovvm"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="4_lj3cp"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="5_ec2yk"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="6_g0fh7"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="7_rk6vf"]
+
+[sub_resource type="Resource" id="Resource_vvxho"]
+script = ExtResource("1_43iuy")
+text = "Time works different in Fairy Land. You will only have 30 steps before you will be teleported back out into the forest again. Any longer than that and you may be stuck for good!"
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("6_g0fh7")
+persistent_id = &"fairyguard"
+npc_name = "Fairy Guard"
+dialogue_nodes = Array[ExtResource("1_43iuy")]([SubResource("Resource_vvxho")])
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"

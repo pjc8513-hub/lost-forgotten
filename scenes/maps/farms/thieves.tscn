@@ -38,6 +38,7 @@
 [ext_resource type="Script" uid="uid://dmw2rcj3ugpwn" path="res://scripts/components/ButtonOrderPuzzleComponent.gd" id="28_button_puzzle"]
 [ext_resource type="PackedScene" uid="uid://b3f70htpkb1nr" path="res://scenes/grid/thieves/ladder.tscn" id="37_otc2p"]
 [ext_resource type="PackedScene" uid="uid://bchojk6jw3rax" path="res://scenes/actors/npc/darkelfnpc.tscn" id="38_fhinj"]
+[ext_resource type="Resource" uid="uid://d4flw1007mpj2" path="res://data/dialogue/farm/darkelfboss.tres" id="39_4vypt"]
 
 [sub_resource type="Resource" id="Resource_oaxtm"]
 script = ExtResource("11_h85lj")
@@ -54,7 +55,7 @@ destination_map = "uid://rwkbk7sjchwr"
 destination_spawn_id = &"hideout"
 metadata/_custom_type_script = "uid://djewvwy2k0t3x"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vypt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51jov"]
 resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
@@ -66,7 +67,19 @@ uv1_world_triplanar = true
 uv2_triplanar = true
 metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51jov"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ocdak"]
+resource_local_to_scene = true
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("22_updr5")
+normal_enabled = true
+normal_texture = ExtResource("23_h312d")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h85lj"]
 resource_local_to_scene = true
 resource_name = "floor"
 cull_mode = 2
@@ -77,11 +90,16 @@ normal_texture = ExtResource("25_dhoyt")
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="Resource" id="Resource_2k1vq"]
-script = ExtResource("7_fhinj")
-persistent_id = &"darkelfleader"
-npc_name = "Nargue"
-metadata/_custom_type_script = "uid://djewvwy2k0t3x"
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ce6lo"]
+resource_local_to_scene = true
+resource_name = "floor"
+cull_mode = 2
+albedo_texture = ExtResource("24_nk1ie")
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("25_dhoyt")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
 
 [node name="Node3D" type="Node3D" unique_id=978898034]
 script = ExtResource("1_62gkx")
@@ -1164,10 +1182,12 @@ spawn_location_ids = Array[StringName]([&"hq.spawn1", &"hq.spawn2", &"hq.spawn3"
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 28, 0, 24)
 
 [node name="wall" parent="stone_wall3_door" index="0" unique_id=524815201]
-material_override = SubResource("StandardMaterial3D_4vypt")
+material_override = SubResource("StandardMaterial3D_51jov")
+surface_material_override/0 = SubResource("StandardMaterial3D_ocdak")
 
 [node name="floor" parent="stone_wall3_door" index="2" unique_id=1029300820]
-material_override = SubResource("StandardMaterial3D_51jov")
+material_override = SubResource("StandardMaterial3D_h85lj")
+surface_material_override/0 = SubResource("StandardMaterial3D_ce6lo")
 
 [node name="DoorComponent" parent="stone_wall3_door" index="4" unique_id=534338047]
 door_id = &"hq.door1"
@@ -1219,7 +1239,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.0
 [node name="darkelfnpc" parent="." unique_id=2036753109 instance=ExtResource("38_fhinj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.14082533, 22)
 npc_tile_id = &"darkelfleadertile"
-NPC_List = Array[ExtResource("7_fhinj")]([SubResource("Resource_2k1vq")])
+NPC_List = Array[ExtResource("7_fhinj")]([ExtResource("39_4vypt")])
 
 [editable path="dirt_wall12"]
 [editable path="dirt_wall26"]
