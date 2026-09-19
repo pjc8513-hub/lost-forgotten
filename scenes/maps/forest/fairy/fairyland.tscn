@@ -23,6 +23,11 @@
 [ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="17_6ecdr"]
 [ext_resource type="Script" uid="uid://babvokqsv0842" path="res://scripts/components/StepLimitPuzzleComponent.gd" id="18_step_limit"]
 [ext_resource type="PackedScene" uid="uid://x5kyyslryhw4" path="res://scenes/grid/castle/stone_wall_3_door.tscn" id="23_kgvyc"]
+[ext_resource type="PackedScene" uid="uid://cc8otyxgp7ygu" path="res://scenes/grid/castle/stone_wall_pillar.tscn" id="24_xmrea"]
+[ext_resource type="PackedScene" uid="uid://dk3pu5ssng2p2" path="res://scenes/grid/castle/chest_3.tscn" id="25_6ecdr"]
+[ext_resource type="Resource" uid="uid://dfc5or6svg7no" path="res://data/traps/thorns.tres" id="26_6miyx"]
+[ext_resource type="PackedScene" uid="uid://cw51gvstk7ps2" path="res://scenes/maps/bonepit/doors/button_1.tscn" id="27_ismnq"]
+[ext_resource type="Resource" uid="uid://brxb8l6ciajxm" path="res://data/traps/ice.tres" id="28_6miyx"]
 
 [sub_resource type="Resource" id="Resource_k8wyd"]
 script = ExtResource("15_xi2ak")
@@ -496,6 +501,12 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10,
 [node name="torch15" parent="." unique_id=359135450 instance=ExtResource("10_3nuab")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -10, 0, -4)
 
+[node name="torch16" parent="." unique_id=1032576144 instance=ExtResource("10_3nuab")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -18, 0, -2)
+
+[node name="torch17" parent="." unique_id=587865844 instance=ExtResource("10_3nuab")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -24, 0, -4)
+
 [node name="dirt_wall125" parent="." unique_id=1565109466 instance=ExtResource("7_00kvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -6)
 
@@ -567,3 +578,90 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 0)
 
 [node name="stone_wall3_door" parent="." unique_id=141663307 instance=ExtResource("23_kgvyc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 2)
+
+[node name="DoorComponent" parent="stone_wall3_door" index="4" unique_id=534338047]
+door_id = &"fairy_door1"
+starts_locked = true
+
+[node name="stone_wall_pillar" parent="." unique_id=321652682 instance=ExtResource("24_xmrea")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 0)
+
+[node name="stone_wall_pillar2" parent="." unique_id=224219645 instance=ExtResource("24_xmrea")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 4)
+
+[node name="dirt_wall148" parent="." unique_id=246546470 instance=ExtResource("11_mquxy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -2)
+
+[node name="dirt_wall150" parent="." unique_id=1420584741 instance=ExtResource("11_mquxy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -2)
+
+[node name="dirt_wall151" parent="." unique_id=848083353 instance=ExtResource("11_mquxy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -6)
+
+[node name="dirt_wall149" parent="." unique_id=1214052451 instance=ExtResource("11_mquxy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -6)
+
+[node name="dirt_wall152" parent="." unique_id=1992320234 instance=ExtResource("11_mquxy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 0)
+
+[node name="dirt_wall153" parent="." unique_id=588667610 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+
+[node name="dirt_wall154" parent="." unique_id=437080632 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 0)
+
+[node name="dirt_wall156" parent="." unique_id=1076606214 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -2)
+
+[node name="dirt_wall157" parent="." unique_id=198545503 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -4)
+
+[node name="dirt_wall160" parent="." unique_id=1009791423 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -4)
+
+[node name="dirt_wall161" parent="." unique_id=446147784 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -4)
+
+[node name="dirt_wall162" parent="." unique_id=1621050531 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -6)
+
+[node name="dirt_wall163" parent="." unique_id=869489642 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -2)
+
+[node name="dirt_wall159" parent="." unique_id=1376478394 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -6)
+
+[node name="dirt_wall158" parent="." unique_id=1877737936 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -4)
+
+[node name="dirt_wall155" parent="." unique_id=1645750625 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
+
+[node name="chest3" parent="." unique_id=1001326355 instance=ExtResource("25_6ecdr")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 0, 2)
+
+[node name="ChestComponent" parent="chest3" index="4" unique_id=971460780]
+chest_ID = &"fairy_chest1"
+gold_roll_dice = 5
+loot_table = 4
+is_trapped = true
+trap_type = ExtResource("26_6miyx")
+
+[node name="button" parent="." unique_id=1618898909 instance=ExtResource("27_ismnq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18, 0, -8)
+
+[node name="SwitchComponent" parent="button" index="3" unique_id=1763643439]
+target_door_ids = Array[StringName]([&"fairy_door1"])
+
+[node name="chest4" parent="." unique_id=1886576064 instance=ExtResource("25_6ecdr")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -22, 0, -8)
+
+[node name="ChestComponent" parent="chest4" index="4" unique_id=971460780]
+chest_ID = &"fairy_chest2"
+is_trapped = true
+trap_type = ExtResource("28_6miyx")
+
+[editable path="stone_wall3_door"]
+[editable path="chest3"]
+[editable path="button"]
+[editable path="chest4"]
