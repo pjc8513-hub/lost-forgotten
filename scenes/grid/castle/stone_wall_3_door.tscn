@@ -11,7 +11,6 @@
 [ext_resource type="Animation" uid="uid://djmamdfmblcjq" path="res://assets/animations/open.res" id="7_7pau4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_de0ng"]
-resource_local_to_scene = true
 resource_name = "wall"
 cull_mode = 2
 albedo_texture = ExtResource("2_i1110")
@@ -23,7 +22,6 @@ uv2_triplanar = true
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ra81x"]
-resource_local_to_scene = true
 resource_name = "floor"
 cull_mode = 2
 albedo_texture = ExtResource("5_ckha8")
