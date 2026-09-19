@@ -88,12 +88,13 @@ func can_interact(player_grid_pos: Vector3i, player_facing: Vector3i) -> bool:
 func discover_door() -> void:
 	if blink_tween != null and blink_tween.is_valid():
 		return
-	# Get the material (assumes it's unique or a local-to-scene material)
-	var mat = door_mesh.get_active_material(0) as StandardMaterial3D
-	if not mat:
+	var source_material = door_mesh.get_active_material(0) as StandardMaterial3D
+	if not source_material:
 		print ("not mat")
 		return
 
+	# Discovery must not animate the wall or other doors sharing this material.
+	var mat = source_material.duplicate() as StandardMaterial3D
 	mat.emission_enabled = true
 	door_mesh.set_surface_override_material(0, mat)
 	
