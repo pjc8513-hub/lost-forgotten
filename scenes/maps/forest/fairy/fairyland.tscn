@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="16_6iwi5"]
 [ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="17_6ecdr"]
 [ext_resource type="Script" uid="uid://babvokqsv0842" path="res://scripts/components/StepLimitPuzzleComponent.gd" id="18_step_limit"]
+[ext_resource type="PackedScene" uid="uid://x5kyyslryhw4" path="res://scenes/grid/castle/stone_wall_3_door.tscn" id="23_kgvyc"]
 
 [sub_resource type="Resource" id="Resource_k8wyd"]
 script = ExtResource("15_xi2ak")
@@ -142,9 +143,6 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 12, 
 [node name="dirt_wall28" parent="." unique_id=683719229 instance=ExtResource("7_00kvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -4)
 
-[node name="dirt_wall29" parent="." unique_id=1633994771 instance=ExtResource("5_ief1a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
-
 [node name="dirt_wall30" parent="." unique_id=787883236 instance=ExtResource("4_j6y1u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 
@@ -156,6 +154,9 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0
 
 [node name="dirt_wall33" parent="." unique_id=1812972721 instance=ExtResource("7_00kvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="dirt_wall113" parent="." unique_id=1962542951 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
 
 [node name="dirt_wall34" parent="." unique_id=813759667 instance=ExtResource("7_00kvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
@@ -455,3 +456,114 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10,
 
 [node name="dirt_wall99" parent="." unique_id=637570854 instance=ExtResource("5_ief1a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -18)
+
+[node name="dirt_wall29" parent="." unique_id=1177731729 instance=ExtResource("6_w5q3q")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, -2)
+
+[node name="dirt_wall114" parent="." unique_id=1285977238 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="dirt_wall115" parent="." unique_id=951802223 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
+
+[node name="dirt_wall116" parent="." unique_id=1744503477 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -4)
+
+[node name="dirt_wall117" parent="." unique_id=329486113 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -4)
+
+[node name="dirt_wall118" parent="." unique_id=253812099 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -2)
+
+[node name="dirt_wall119" parent="." unique_id=1198284442 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -2)
+
+[node name="dirt_wall120" parent="." unique_id=1894574665 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -2)
+
+[node name="dirt_wall121" parent="." unique_id=1428519988 instance=ExtResource("5_ief1a")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
+
+[node name="dirt_wall122" parent="." unique_id=1350843100 instance=ExtResource("5_ief1a")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, 0)
+
+[node name="dirt_wall123" parent="." unique_id=1992274403 instance=ExtResource("5_ief1a")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
+
+[node name="dirt_wall124" parent="." unique_id=495566160 instance=ExtResource("5_ief1a")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, 0)
+
+[node name="torch15" parent="." unique_id=359135450 instance=ExtResource("10_3nuab")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -10, 0, -4)
+
+[node name="dirt_wall125" parent="." unique_id=1565109466 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -6)
+
+[node name="dirt_wall126" parent="." unique_id=111181533 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -4)
+
+[node name="dirt_wall127" parent="." unique_id=2107974940 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -2)
+
+[node name="dirt_wall128" parent="." unique_id=626897271 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -2)
+
+[node name="dirt_wall129" parent="." unique_id=1274566489 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
+
+[node name="dirt_wall130" parent="." unique_id=829355133 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 0)
+
+[node name="dirt_wall131" parent="." unique_id=1881264296 instance=ExtResource("5_ief1a")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 0, 2)
+
+[node name="dirt_wall132" parent="." unique_id=1520812084 instance=ExtResource("4_j6y1u")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -12, 0, 2)
+
+[node name="dirt_wall133" parent="." unique_id=411044193 instance=ExtResource("4_j6y1u")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -14, 0, 2)
+
+[node name="dirt_wall134" parent="." unique_id=1105716862 instance=ExtResource("4_j6y1u")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -16, 0, 2)
+
+[node name="dirt_wall135" parent="." unique_id=1501054991 instance=ExtResource("4_j6y1u")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -18, 0, 2)
+
+[node name="dirt_wall136" parent="." unique_id=2045844260 instance=ExtResource("4_j6y1u")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -20, 0, 2)
+
+[node name="dirt_wall137" parent="." unique_id=1159443155 instance=ExtResource("4_j6y1u")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -22, 0, 2)
+
+[node name="dirt_wall138" parent="." unique_id=1993934592 instance=ExtResource("4_j6y1u")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -24, 0, 2)
+
+[node name="dirt_wall139" parent="." unique_id=51586294 instance=ExtResource("4_j6y1u")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -24, 0, -8)
+
+[node name="dirt_wall140" parent="." unique_id=868628031 instance=ExtResource("4_j6y1u")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -22, 0, -8)
+
+[node name="dirt_wall141" parent="." unique_id=885982072 instance=ExtResource("4_j6y1u")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -20, 0, -8)
+
+[node name="dirt_wall142" parent="." unique_id=1881610700 instance=ExtResource("4_j6y1u")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -18, 0, -8)
+
+[node name="dirt_wall143" parent="." unique_id=996245206 instance=ExtResource("4_j6y1u")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -16, 0, -8)
+
+[node name="dirt_wall144" parent="." unique_id=18801244 instance=ExtResource("5_ief1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -6)
+
+[node name="dirt_wall145" parent="." unique_id=1626279767 instance=ExtResource("5_ief1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -4)
+
+[node name="dirt_wall146" parent="." unique_id=342674875 instance=ExtResource("5_ief1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -2)
+
+[node name="dirt_wall147" parent="." unique_id=199156041 instance=ExtResource("5_ief1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 0)
+
+[node name="stone_wall3_door" parent="." unique_id=141663307 instance=ExtResource("23_kgvyc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 2)
