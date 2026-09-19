@@ -28,6 +28,7 @@
 [ext_resource type="Resource" uid="uid://dfc5or6svg7no" path="res://data/traps/thorns.tres" id="26_6miyx"]
 [ext_resource type="PackedScene" uid="uid://cw51gvstk7ps2" path="res://scenes/maps/bonepit/doors/button_1.tscn" id="27_ismnq"]
 [ext_resource type="Resource" uid="uid://brxb8l6ciajxm" path="res://data/traps/ice.tres" id="28_6miyx"]
+[ext_resource type="PackedScene" uid="uid://bqkry7mtq0lyr" path="res://scenes/grid/castle/quest_chest.tscn" id="29_ismnq"]
 
 [sub_resource type="Resource" id="Resource_k8wyd"]
 script = ExtResource("15_xi2ak")
@@ -546,9 +547,6 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -20,
 [node name="dirt_wall137" parent="." unique_id=1159443155 instance=ExtResource("4_j6y1u")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -22, 0, 2)
 
-[node name="dirt_wall138" parent="." unique_id=1993934592 instance=ExtResource("4_j6y1u")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -24, 0, 2)
-
 [node name="dirt_wall139" parent="." unique_id=51586294 instance=ExtResource("4_j6y1u")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -24, 0, -8)
 
@@ -559,7 +557,7 @@ transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -22,
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -20, 0, -8)
 
 [node name="dirt_wall142" parent="." unique_id=1881610700 instance=ExtResource("4_j6y1u")]
-transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -18, 0, -8)
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -18, 0, -10)
 
 [node name="dirt_wall143" parent="." unique_id=996245206 instance=ExtResource("4_j6y1u")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -16, 0, -8)
@@ -577,17 +575,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 0)
 
 [node name="stone_wall3_door" parent="." unique_id=141663307 instance=ExtResource("23_kgvyc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 2)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -24, 0, 2)
 
 [node name="DoorComponent" parent="stone_wall3_door" index="4" unique_id=534338047]
 door_id = &"fairy_door1"
 starts_locked = true
 
-[node name="stone_wall_pillar" parent="." unique_id=321652682 instance=ExtResource("24_xmrea")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 0)
-
 [node name="stone_wall_pillar2" parent="." unique_id=224219645 instance=ExtResource("24_xmrea")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 2)
 
 [node name="dirt_wall148" parent="." unique_id=246546470 instance=ExtResource("11_mquxy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -2)
@@ -595,14 +590,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -2)
 [node name="dirt_wall150" parent="." unique_id=1420584741 instance=ExtResource("11_mquxy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -2)
 
-[node name="dirt_wall151" parent="." unique_id=848083353 instance=ExtResource("11_mquxy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -6)
-
 [node name="dirt_wall149" parent="." unique_id=1214052451 instance=ExtResource("11_mquxy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -6)
-
-[node name="dirt_wall152" parent="." unique_id=1992320234 instance=ExtResource("11_mquxy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 0)
 
 [node name="dirt_wall153" parent="." unique_id=588667610 instance=ExtResource("7_00kvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
@@ -612,9 +601,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 0)
 
 [node name="dirt_wall156" parent="." unique_id=1076606214 instance=ExtResource("7_00kvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -2)
-
-[node name="dirt_wall157" parent="." unique_id=198545503 instance=ExtResource("7_00kvd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -4)
 
 [node name="dirt_wall160" parent="." unique_id=1009791423 instance=ExtResource("7_00kvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -4)
@@ -627,12 +613,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -6)
 
 [node name="dirt_wall163" parent="." unique_id=869489642 instance=ExtResource("7_00kvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -2)
-
-[node name="dirt_wall159" parent="." unique_id=1376478394 instance=ExtResource("7_00kvd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -6)
-
-[node name="dirt_wall158" parent="." unique_id=1877737936 instance=ExtResource("7_00kvd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -4)
 
 [node name="dirt_wall155" parent="." unique_id=1645750625 instance=ExtResource("7_00kvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
@@ -648,7 +628,7 @@ is_trapped = true
 trap_type = ExtResource("26_6miyx")
 
 [node name="button" parent="." unique_id=1618898909 instance=ExtResource("27_ismnq")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18, 0, -8)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18, 0, -10)
 
 [node name="SwitchComponent" parent="button" index="3" unique_id=1763643439]
 target_door_ids = Array[StringName]([&"fairy_door1"])
@@ -661,7 +641,46 @@ chest_ID = &"fairy_chest2"
 is_trapped = true
 trap_type = ExtResource("28_6miyx")
 
+[node name="dirt_wall164" parent="." unique_id=1890960720 instance=ExtResource("11_mquxy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -10)
+
+[node name="dirt_wall165" parent="." unique_id=1557660757 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -8)
+
+[node name="dirt_wall158" parent="." unique_id=86621378 instance=ExtResource("6_w5q3q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -4)
+
+[node name="dirt_wall151" parent="." unique_id=362032954 instance=ExtResource("4_j6y1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -4)
+
+[node name="dirt_wall157" parent="." unique_id=1292084211 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -6)
+
+[node name="dirt_wall159" parent="." unique_id=1685348902 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -6)
+
+[node name="dirt_wall152" parent="." unique_id=1885616364 instance=ExtResource("7_00kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 0)
+
+[node name="dirt_wall138" parent="." unique_id=1753357176 instance=ExtResource("8_veofx")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -24, 0, 8)
+
+[node name="QuestChest" parent="." unique_id=476640192 instance=ExtResource("29_ismnq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -24, 0, 8)
+
+[node name="ChestComponent" parent="QuestChest" index="2" unique_id=2076280215]
+chest_ID = &"fairy.questchest1"
+gold_roll_dice = 6
+loot_table = 5
+
+[node name="dirt_wall166" parent="." unique_id=1464040057 instance=ExtResource("6_w5q3q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 4)
+
+[node name="dirt_wall167" parent="." unique_id=856297450 instance=ExtResource("6_w5q3q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 6)
+
 [editable path="stone_wall3_door"]
 [editable path="chest3"]
 [editable path="button"]
 [editable path="chest4"]
+[editable path="QuestChest"]

@@ -82,11 +82,15 @@ func _get_map_id(map_path: String) -> StringName:
 	var map_scene := load(map_path) as PackedScene
 	if map_scene == null:
 		return StringName(map_path)
-	var map_instance := map_scene.instantiate()
-	var map_data := map_instance as MapData
-	var map_id := map_data.Map_ID if map_data != null else StringName(map_path)
-	map_instance.free()
-	return map_id
+	# Read metadata without creating/freeing a whole map and its render objects.
+	var state := map_scene.get_state()
+	while state != null:
+		if state.get_node_count() > 0:
+			for property_index in range(state.get_node_property_count(0)):
+				if state.get_node_property_name(0, property_index) == &"Map_ID":
+					return StringName(state.get_node_property_value(0, property_index))
+		state = state.get_base_scene_state()
+	return StringName(map_path)
 
 
 func _on_destination_list_item_activated(index: int) -> void:
