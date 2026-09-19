@@ -672,6 +672,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -24,
 chest_ID = &"fairy.questchest1"
 gold_roll_dice = 6
 loot_table = 5
+item_id = &"goldpotion"
 
 [node name="dirt_wall166" parent="." unique_id=1464040057 instance=ExtResource("6_w5q3q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 4)

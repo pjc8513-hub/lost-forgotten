@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://totkboedm3u8"]
+
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="1_atr67"]
+
+[resource]
+script = ExtResource("1_atr67")
+item_id = "goldpotion"
+name = "Gold Potion"
+item_type = 2
+description = "A magic gold potion. What could its powers be?"
+metadata/_custom_type_script = "uid://cx0db5cie0hir"

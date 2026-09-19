@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://bp2l3c5kyssn0"]
+
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="1_enx37"]
+[ext_resource type="Script" uid="uid://boy0c7bryv6tm" path="res://scripts/components/DialogueReward.gd" id="2_ac8sa"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="3_fsdhe"]
+[ext_resource type="Resource" uid="uid://totkboedm3u8" path="res://data/items/quest/goldpotion.tres" id="4_btffw"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="5_fv68w"]
+[ext_resource type="Script" uid="uid://crjpwo8no2r4u" path="res://scripts/components/DialogueEdge.gd" id="6_fsdhe"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="7_btffw"]
+
+[sub_resource type="Resource" id="Resource_ed5yw"]
+script = ExtResource("2_ac8sa")
+type = 4
+value = 800
+metadata/_custom_type_script = "uid://boy0c7bryv6tm"
+
+[sub_resource type="Resource" id="Resource_enx37"]
+script = ExtResource("7_btffw")
+text = "Do you think the potion really exists?"
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[sub_resource type="Resource" id="Resource_ac8sa"]
+script = ExtResource("7_btffw")
+text = "Do you think it is dangerous to drink? I wonder..."
+metadata/_custom_type_script = "uid://bu2iii31o0rrx"
+
+[resource]
+script = ExtResource("5_fv68w")
+quest_id = "linquest"
+quest_name = "Fairy Potion"
+description = "My mother used to tell me a story about a woman who drink a golden potion and was transformed into a fairy! Wouldn't that be wonderful? Do you think that potion really exists?"
+stage_descriptions = {
+0: "Not Started",
+1: "There is an old story about a gold potion with the ability to change a person into a fairy.",
+2: "Return the gold potion to Lin in Nobel.",
+3: "Quest Completed"
+}
+stage_dialogue = {
+2: SubResource("Resource_enx37"),
+3: SubResource("Resource_ac8sa")
+}
+required_items = Array[ExtResource("3_fsdhe")]([ExtResource("4_btffw")])
+quest_giver = "Lin"
+suggested_level = 5
+quest_rewards = SubResource("Resource_ed5yw")
+metadata/_custom_type_script = "uid://phuimf2skp05"
