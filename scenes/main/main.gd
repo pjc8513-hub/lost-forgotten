@@ -155,6 +155,7 @@ func _on_map_changed(_map_path: String, _spawn_id: StringName) -> void:
 	var current_level = StageManager.current_level
 	if current_level is MapData:
 		enable_torch = current_level.enable_torch
+		MusicManager.play_map_music(current_level)
 		_apply_main_shader_settings(current_level)
 		EncounterManager.configure_map(current_level)
 	else:

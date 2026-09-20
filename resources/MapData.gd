@@ -14,6 +14,14 @@ class_name MapData
 @export_range(0.0, 1.0, 0.001) var main_shader_dither_strength: float = 0.001
 @export_range(0.5, 3.0, 0.01) var main_shader_contrast: float = 0.95
 
+@export_group("Music")
+@export var music_song: AudioStream
+@export var music_loops: bool = false
+@export_range(0.0, 300.0, 0.1, "suffix:s") var music_loop_delay: float = 0.0
+## Number of additional times the song plays after its initial playback.
+@export_range(0, 99, 1) var music_loop_count: int = 0
+@export_range(0.0, 30.0, 0.1, "suffix:s") var music_fade_in: float = 0.0
+
 @export_group("Day/Night Cycle")
 @export_range(0.0, 2.0, 0.01) var night_ambient_energy: float = 0.4
 @export_range(0.0, 2.0, 0.01) var night_directional_energy: float = 0.12

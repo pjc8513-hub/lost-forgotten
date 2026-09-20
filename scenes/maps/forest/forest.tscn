@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_tq4d2"]
 [ext_resource type="Texture2D" uid="uid://bmnbuvpsjckc0" path="res://assets/palettes/dawnbringer-32-1x.png" id="2_r4nvb"]
 [ext_resource type="Environment" uid="uid://i64ewy3e6ok2" path="res://scenes/maps/nobel/nobel_environment.tres" id="3_cibvq"]
+[ext_resource type="AudioStream" uid="uid://px2l6prfqymk" path="res://assets/audio/music/Forest_Weeps.mp3" id="3_k8wyd"]
 [ext_resource type="PackedScene" uid="uid://c2g7g6iojymj1" path="res://scenes/grid/forest/forest_cube_2.tscn" id="4_8kjue"]
 [ext_resource type="PackedScene" uid="uid://dk3pu5ssng2p2" path="res://scenes/grid/castle/chest_3.tscn" id="4_jjnui"]
 [ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="4_r4nvb"]
@@ -119,6 +120,10 @@ Map_ID = &"forest"
 main_shader_palette_texture = ExtResource("2_r4nvb")
 main_shader_dither_strength = 0.08
 main_shader_contrast = 1.13
+music_song = ExtResource("3_k8wyd")
+music_loops = true
+music_loop_delay = 7.0
+music_loop_count = 15
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=696616460]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 12, 0)
