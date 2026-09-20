@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://nbew8u7ly5pl"]
+
+[ext_resource type="Script" uid="uid://c18qpturhs6bi" path="res://resources/MapData.gd" id="1_f0jxs"]
+[ext_resource type="Texture2D" uid="uid://dkelxnond1x4c" path="res://assets/palettes/windows 256.png" id="2_ecic7"]
+[ext_resource type="Environment" uid="uid://scu1xnln8b1r" path="res://mountain_environment_1.tres" id="3_scqb4"]
+[ext_resource type="PackedScene" uid="uid://cerm24rgxpv08" path="res://scenes/grid/map_spawn_point.tscn" id="4_mysy7"]
+[ext_resource type="PackedScene" uid="uid://3syqlsk4d6tg" path="res://scenes/grid/mountain/mountain_edge_1.tscn" id="5_ecic7"]
+[ext_resource type="PackedScene" path="res://scenes/grid/cave/tunnel_cave_corner2.tscn" id="6_5tr2c"]
+[ext_resource type="PackedScene" uid="uid://ct6mngy6esulj" path="res://scenes/grid/mountain/mountain_bridge.tscn" id="7_ho5co"]
+[ext_resource type="PackedScene" uid="uid://b0ba8ohaeqly4" path="res://scenes/grid/mountain/mountain_edge_2.tscn" id="8_7wlye"]
+[ext_resource type="Script" uid="uid://k6sp7q0sdyg5" path="res://scripts/components/GridElement.gd" id="8_xaao5"]
+[ext_resource type="PackedScene" uid="uid://d0teisng6e7ln" path="res://scenes/grid/mountain/mountain_floor_1.tscn" id="9_vfflk"]
+[ext_resource type="PackedScene" uid="uid://dtme8q4bpvhh4" path="res://scenes/grid/cave/tunnel_cave_wall2.tscn" id="10_rn012"]
+[ext_resource type="PackedScene" uid="uid://dkc3s7ctxge3" path="res://scenes/grid/cave/cave_floor.tscn" id="11_4qhro"]
+[ext_resource type="PackedScene" uid="uid://qr3o17e8tjhj" path="res://scenes/grid/mountain/mountain_peak_1.tscn" id="12_qleaj"]
+[ext_resource type="PackedScene" uid="uid://o4qof71bxj3x" path="res://scenes/grid/cave/tunnel_exit_4.tscn" id="13_xqi1a"]
+[ext_resource type="Script" uid="uid://djewvwy2k0t3x" path="res://scripts/components/NPCComponent.gd" id="14_4r5rx"]
+[ext_resource type="Script" uid="uid://bu2iii31o0rrx" path="res://scripts/components/DialogueNode.gd" id="15_q4501"]
+[ext_resource type="Script" uid="uid://biwbs1n6b7tyr" path="res://resources/DialogueCondition.gd" id="16_xce7k"]
+[ext_resource type="Script" uid="uid://phuimf2skp05" path="res://resources/QuestData.gd" id="17_rwgax"]
+[ext_resource type="Script" uid="uid://cx0db5cie0hir" path="res://resources/ItemData.gd" id="18_68s84"]
+[ext_resource type="PackedScene" uid="uid://dgr6tc7bsd26x" path="res://scenes/grid/castle/torch_1.tscn" id="20_scqb4"]
+[ext_resource type="PackedScene" uid="uid://udlcxn1d6b7a" path="res://scenes/grid/castle/stone_lift_2.tscn" id="21_5tr2c"]
+[ext_resource type="PackedScene" path="res://scenes/grid/cave/tunnel_cave_wall.tscn" id="22_ho5co"]
+
+[sub_resource type="Resource" id="Resource_iti8x"]
+script = ExtResource("14_4r5rx")
+persistent_id = &"mineexit"
+npc_name = "Exit"
+destination_map = "uid://b13pb46j8ie33"
+destination_spawn_id = &"teleport.3"
+destination_label = "Exit"
+metadata/_custom_type_script = "uid://djewvwy2k0t3x"
+
+[node name="Node3D" type="Node3D" unique_id=434084167]
+script = ExtResource("1_f0jxs")
+Map_ID = &"mines"
+main_shader_palette_texture = ExtResource("2_ecic7")
+main_shader_dither_strength = 0.08
+main_shader_contrast = 1.13
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=510108772]
+environment = ExtResource("3_scqb4")
+
+[node name="MapSpawnPoint" parent="." unique_id=302214123 instance=ExtResource("4_mysy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+spawn_id = &"entrance"
+
+[node name="MountainEdge1" parent="." unique_id=1307248116 instance=ExtResource("5_ecic7")]
+
+[node name="MountainEdge5" parent="." unique_id=1590414018 instance=ExtResource("5_ecic7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="MountainEdge6" parent="." unique_id=934550188 instance=ExtResource("5_ecic7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="MountainEdge7" parent="." unique_id=1215146579 instance=ExtResource("5_ecic7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="MountainEdge8" parent="." unique_id=546468456 instance=ExtResource("5_ecic7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="CaveWall" parent="." unique_id=1596270219 instance=ExtResource("6_5tr2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
+
+[node name="CaveWall3" parent="." unique_id=989901294 instance=ExtResource("6_5tr2c")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0, -8)
+
+[node name="CaveWall4" parent="." unique_id=118911354 instance=ExtResource("6_5tr2c")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, -6)
+
+[node name="CaveWall2" parent="." unique_id=257430338 instance=ExtResource("6_5tr2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -6)
+
+[node name="MountainBridge" parent="." unique_id=1594766019 instance=ExtResource("7_ho5co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3440087, -2)
+
+[node name="GridElement" type="Node3D" parent="MountainBridge" unique_id=1757279612]
+script = ExtResource("8_xaao5")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="MountainBridge2" parent="." unique_id=342979114 instance=ExtResource("7_ho5co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3440087, -4)
+
+[node name="GridElement" type="Node3D" parent="MountainBridge2" unique_id=1311516526]
+script = ExtResource("8_xaao5")
+metadata/_custom_type_script = "uid://k6sp7q0sdyg5"
+
+[node name="MountainEdge2" parent="." unique_id=591333094 instance=ExtResource("5_ecic7")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -6)
+
+[node name="MountainEdge4" parent="." unique_id=73325729 instance=ExtResource("5_ecic7")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2, 0, -6)
+
+[node name="MountainEdge3" parent="." unique_id=1707740576 instance=ExtResource("8_7wlye")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0, -6)
+
+[node name="MountainFloor1" parent="." unique_id=1732927692 instance=ExtResource("9_vfflk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="MountainEdge9" parent="." unique_id=1489403917 instance=ExtResource("8_7wlye")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="CaveWall5" parent="." unique_id=928024608 instance=ExtResource("10_rn012")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0, 2)
+
+[node name="CaveWall7" parent="." unique_id=1386417152 instance=ExtResource("10_rn012")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 4)
+
+[node name="CaveFloor" parent="." unique_id=376560664 instance=ExtResource("11_4qhro")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 2)
+
+[node name="CaveFloor2" parent="." unique_id=2051616267 instance=ExtResource("11_4qhro")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 2)
+
+[node name="CaveFloor3" parent="." unique_id=154115315 instance=ExtResource("11_4qhro")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 2)
+
+[node name="CaveFloor5" parent="." unique_id=389280240 instance=ExtResource("11_4qhro")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 2)
+
+[node name="CaveFloor6" parent="." unique_id=1124378687 instance=ExtResource("11_4qhro")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 2)
+
+[node name="CaveFloor4" parent="." unique_id=1464170190 instance=ExtResource("11_4qhro")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.742278e-08, 0, 4)
+
+[node name="CaveWall6" parent="." unique_id=1994082166 instance=ExtResource("6_5tr2c")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0, 4)
+
+[node name="CaveWall8" parent="." unique_id=1726388960 instance=ExtResource("10_rn012")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.9999999, 0, 4)
+
+[node name="CaveWall9" parent="." unique_id=1429024269 instance=ExtResource("10_rn012")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 4)
+
+[node name="CaveWall10" parent="." unique_id=1316564411 instance=ExtResource("6_5tr2c")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 4)
+
+[node name="CaveWall11" parent="." unique_id=1156629642 instance=ExtResource("6_5tr2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="CaveWall12" parent="." unique_id=409352280 instance=ExtResource("6_5tr2c")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, 2)
+
+[node name="MountainPeak1" parent="." unique_id=1083259678 instance=ExtResource("12_qleaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -2)
+
+[node name="MountainPeak2" parent="." unique_id=308172021 instance=ExtResource("12_qleaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -6)
+
+[node name="MountainPeak3" parent="." unique_id=498703597 instance=ExtResource("12_qleaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
+
+[node name="tunnel_exit4" parent="." unique_id=133908069 instance=ExtResource("13_xqi1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+npc_tile_id = &"mineexit"
+NPC_List = Array[ExtResource("14_4r5rx")]([SubResource("Resource_iti8x")])
+
+[node name="torch1" parent="." unique_id=179294296 instance=ExtResource("20_scqb4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, 3.8681474)
+
+[node name="torch2" parent="." unique_id=1430687579 instance=ExtResource("20_scqb4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0, 3.8681471)
+
+[node name="torch3" parent="." unique_id=1703614452 instance=ExtResource("20_scqb4")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.9999994, 0, -7.8758373)
+
+[node name="torch4" parent="." unique_id=63135034 instance=ExtResource("20_scqb4")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.0000005, 0, -7.8758373)
+
+[node name="stone_lift2" parent="." unique_id=1795187880 instance=ExtResource("21_5tr2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14)
+
+[node name="CaveWall13" parent="." unique_id=349950976 instance=ExtResource("22_ho5co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="CaveWall14" parent="." unique_id=1257043662 instance=ExtResource("22_ho5co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[editable path="MountainBridge"]
+[editable path="MountainBridge2"]

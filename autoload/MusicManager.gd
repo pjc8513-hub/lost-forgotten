@@ -6,7 +6,7 @@ var _playback_id: int = 0
 
 func _ready() -> void:
 	player.bus = "Dungeon"
-	player.volume_db = -30
+	player.volume_db = -5
 
 func play_music(stream: AudioStream, fade := 0.0, loops := false, loop_delay := 0.0, loop_count := 0) -> void:
 	if stream == null:

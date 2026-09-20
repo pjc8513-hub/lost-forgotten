@@ -122,7 +122,7 @@ main_shader_dither_strength = 0.08
 main_shader_contrast = 1.13
 music_song = ExtResource("3_k8wyd")
 music_loops = true
-music_loop_delay = 7.0
+music_loop_delay = 4.0
 music_loop_count = 15
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=696616460]
